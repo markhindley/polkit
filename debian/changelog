@@ -1,0 +1,6 @@
+policykit (0.5-1) experimental; urgency=low
+
+  * Initial release. (Closes: #397087)
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 02 Oct 2007 22:38:04 +0200
+

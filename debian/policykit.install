@@ -1,0 +1,6 @@
+debian/tmp/etc/pam.d/
+debian/tmp/etc/PolicyKit
+debian/tmp/usr/bin/*
+debian/tmp/usr/lib/policykit/*
+debian/tmp/usr/share/man/
+debian/tmp/usr/share/PolicyKit
