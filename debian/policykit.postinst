@@ -27,13 +27,18 @@ case "$1" in
 		--no-create-home \
 		--gecos "PolicyKit" \
 		--group polkituser
+	
 	chown polkituser:polkituser /var/run/PolicyKit
-	chown polkituser:polkituser /var/lib/PolicyKit
 	chmod 775 /var/run/PolicyKit
+	
+	chown polkituser:polkituser /var/lib/PolicyKit
 	chmod 775 /var/lib/PolicyKit
+	
 	chown root:polkituser /usr/lib/policykit/polkit-grant-helper
 	chmod 2755 /usr/lib/policykit/polkit-grant-helper
-	chmod 4755 /usr/lib/policykit/polkit-grant-helper-pam
+
+	chown root:polkituser /usr/lib/policykit/polkit-grant-helper-pam
+	chmod 4750 /usr/lib/policykit/polkit-grant-helper-pam
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

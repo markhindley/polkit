@@ -3,19 +3,19 @@ Section: admin
 Priority: optional
 Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
 Uploaders: Michael Biebl <biebl@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), autotools-dev, libglib2.0-dev (>= 2.6.0), libdbus-1-dev (>= 1.0), libexpat1-dev, libpam0g-dev, gtk-doc-tools, xsltproc
+Build-Depends: cdbs, debhelper (>= 5), autotools-dev, libglib2.0-dev (>= 2.6.0), libdbus-1-dev (>= 1.0), libexpat1-dev, libpam0g-dev, libselinux1-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64], gtk-doc-tools, xsltproc
 Standards-Version: 3.7.2
-XS-Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/experimental/policykit
-XS-Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/experimental/policykit
+Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/experimental/policykit
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/experimental/policykit
+Homepage: http://cgit.freedesktop.org/PolicyKit/
 
 Package: policykit
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, consolekit, dbus
+Recommends: policykit-gnome
 Description: framework for managing administrative policies and privileges
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
- .
-  Homepage: http://cgit.freedesktop.org/PolicyKit/
 
 Package: policykit-doc
 Architecture: all
@@ -26,8 +26,6 @@ Description: documentation for PolicyKit
  allows unprivileged processes to speak to privileged processes.
  .
  This package contains the API documentation of PolicyKit.
- .
-  Homepage: http://cgit.freedesktop.org/PolicyKit/
 
 Package: libpolkit2
 Architecture: any
@@ -38,8 +36,6 @@ Description: library for accessing PolicyKit
  allows unprivileged processes to speak to privileged processes.
  .
  This package contains a library for querying system-wide policy.
- .
-  Homepage: http://cgit.freedesktop.org/PolicyKit/
 
 Package: libpolkit-dev
 Architecture: any
@@ -51,8 +47,6 @@ Description: library for accessing PolicyKit - development files
  .
  This package contains the development files for the library found in 
  libpolkit2.
- .
-  Homepage: http://cgit.freedesktop.org/PolicyKit/
 
 Package: libpolkit-dbus2
 Architecture: any
@@ -64,8 +58,6 @@ Description: library for accessing PolicyKit via D-Bus
  .
  This package contains a helper library for obtaining seat, session
  and caller information via D-Bus and ConsoleKit.
- .
-  Homepage: http://cgit.freedesktop.org/PolicyKit/
 
 Package: libpolkit-dbus-dev
 Architecture: any
@@ -79,8 +71,6 @@ Description: library for accessing PolicyKit via D-Bus - development files
  .
  This package contains the development files for the library found in 
  libpolkit-dbus2.
- .
-  Homepage: http://cgit.freedesktop.org/PolicyKit/
 
 Package: libpolkit-grant2
 Architecture: any
@@ -91,8 +81,6 @@ Description: library for obtaining privileges via PolicyKit
  allows unprivileged processes to speak to privileged processes.
  .
  This package contains a library for obtaining privileges via PolicyKit.
- .
-  Homepage: http://cgit.freedesktop.org/PolicyKit/
 
 Package: libpolkit-grant-dev
 Architecture: any
@@ -104,5 +92,3 @@ Description: library for obtaining privileges via PolicyKit - development files
  .
  This package contains the development files for the library found in 
  libpolkit-grant2.
- .
-  Homepage: http://cgit.freedesktop.org/PolicyKit/

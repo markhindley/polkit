@@ -1,3 +1,17 @@
+policykit (0.6-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/control
+    - Use new "Homepage:" field to specify the upstream URL.
+    - The Vcs-* fields are now officially supported, so remove the XS- prefix.  
+    - Add a Recommends: policykit-gnome to the policykit package.
+    - Enable SELinux support by adding a Build-Depends on libselinux1-dev for
+      all supported platforms.
+  * debian/policykit.postinst
+    - Install polkit-grant-helper-pam with the correct permissions.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 03 Nov 2007 00:02:33 +0100
+
 policykit (0.5-1) experimental; urgency=low
 
   * Initial release. (Closes: #397087)
