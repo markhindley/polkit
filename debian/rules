@@ -9,3 +9,5 @@ include /usr/share/cdbs/1/rules/utils.mk
 DEB_CONFIGURE_EXTRA_FLAGS := --enable-gtk-doc \
                              --enable-man-pages
 
+binary-install/policykit::
+	chmod -x debian/policykit/var/lib/misc/PolicyKit.reload

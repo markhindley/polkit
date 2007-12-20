@@ -1,3 +1,29 @@
+policykit (0.7-1) experimental; urgency=low
+
+  * New upstream release. (Closes: #455874)
+  * debian/control
+    - Bump Standards-Version to 3.7.3. No further changes required.
+    - Add Build-Depends on libdbus-glib-1-dev (>= 0.73).
+    - Change Homepage URL to http://hal.freedesktop.org/docs/PolicyKit/.
+      (Closes: #446504)
+    - Improve package description. (Closes: #446554)
+  * debian/copyright
+    - All code is now licensed under the MIT/X11 license. Update the copyright
+      notice accordingly.
+  * debian/policykit.dirs
+    - Add the directory /var/lib/PolicyKit-public.
+  * debian/policykit.install
+    - Install the D-Bus config and service files for the PolicyKit system
+      service.
+    - Install /var/lib/misc/PolicyKit.reload.
+  * debian/rules
+    - Fix the permissions of /var/lib/misc/PolicyKit.reload.
+  * debian/policykit.postinst
+    - Use dpkg-statoverride to check for local modifications before setting
+      the SUID/SGID bits.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 20 Dec 2007 18:01:38 +0100
+
 policykit (0.6-1) experimental; urgency=low
 
   * New upstream release.

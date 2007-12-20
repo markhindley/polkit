@@ -28,17 +28,34 @@ case "$1" in
 		--gecos "PolicyKit" \
 		--group polkituser
 	
-	chown polkituser:polkituser /var/run/PolicyKit
-	chmod 775 /var/run/PolicyKit
-	
-	chown polkituser:polkituser /var/lib/PolicyKit
-	chmod 775 /var/lib/PolicyKit
-	
-	chown root:polkituser /usr/lib/policykit/polkit-grant-helper
-	chmod 2755 /usr/lib/policykit/polkit-grant-helper
+	if ! dpkg-statoverride --list /var/run/PolicyKit > /dev/null 2>&1; then
+		chown root:polkituser /var/run/PolicyKit
+		chmod 770 /var/run/PolicyKit
+	fi
+	if ! dpkg-statoverride --list /var/lib/PolicyKit > /dev/null 2>&1; then
+		chown root:polkituser /var/lib/PolicyKit
+		chmod 770 /var/lib/PolicyKit
+	fi
+	if ! dpkg-statoverride --list /var/lib/PolicyKit-public > /dev/null 2>&1; then
+		chown root:polkituser /var/lib/PolicyKit-public
+		chmod 775 /var/lib/PolicyKit-public
+	fi
+	if ! dpkg-statoverride --list /var/lib/misc/PolicyKit.reload > /dev/null 2>&1; then
+		chown root:polkituser /var/lib/misc/PolicyKit.reload
+		chmod 664 /var/lib/misc/PolicyKit.reload
+	fi
 
-	chown root:polkituser /usr/lib/policykit/polkit-grant-helper-pam
-	chmod 4750 /usr/lib/policykit/polkit-grant-helper-pam
+	for i in polkit-read-auth-helper polkit-revoke-helper polkit-grant-helper polkit-explicit-grant-helper polkit-set-default-helper; do
+		if ! dpkg-statoverride --list /usr/lib/policykit/$i > /dev/null 2>&1; then
+			chown root:polkituser /usr/lib/policykit/$i
+			chmod 2755 /usr/lib/policykit/$i
+		fi
+	done
+	if ! dpkg-statoverride --list /usr/lib/policykit/polkit-grant-helper-pam > /dev/null 2>&1; then
+		chown root:polkituser /usr/lib/policykit/polkit-grant-helper-pam
+		chmod 4754 /usr/lib/policykit/polkit-grant-helper-pam
+	fi
+	
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
