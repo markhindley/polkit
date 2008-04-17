@@ -1,3 +1,13 @@
+policykit (0.8-1) unstable; urgency=medium
+
+  * New upstream release.
+    - SECURITY - CVE-2008-1658:
+      Fixes format string vulnerability in the grant helper. (Closes: #476615)
+  * debian/control
+    - Add Build-Depends on pkg-config.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 18 Apr 2008 01:39:08 +0200
+
 policykit (0.7-2) unstable; urgency=low
 
   * Upload to unstable.
