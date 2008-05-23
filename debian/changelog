@@ -1,3 +1,13 @@
+policykit (0.8-2) unstable; urgency=low
+
+  * Add symbols files for libpolkit2, libpolkit-grant2 and libpolkit-dbus2. 
+  * debian/policykit.postinst
+    - Set correct permissions for all files. (Closes: #482064)
+    - Define a small helper function to apply the permissions. This makes it
+      more concise and readable.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 23 May 2008 04:33:48 +0200
+
 policykit (0.8-1) unstable; urgency=medium
 
   * New upstream release.

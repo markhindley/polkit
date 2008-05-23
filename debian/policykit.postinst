@@ -17,6 +17,16 @@ set -e
 # for details, see http://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+set_perms() {
+	USER=$1
+	GROUP=$2
+	MODE=$3
+	FILE=$4
+	if ! dpkg-statoverride --list $FILE > /dev/null 2>&1; then
+		chown $USER:$GROUP $FILE
+		chmod $MODE $FILE
+	fi
+}
 
 case "$1" in
     configure)
@@ -28,33 +38,18 @@ case "$1" in
 		--gecos "PolicyKit" \
 		--group polkituser
 	
-	if ! dpkg-statoverride --list /var/run/PolicyKit > /dev/null 2>&1; then
-		chown root:polkituser /var/run/PolicyKit
-		chmod 770 /var/run/PolicyKit
-	fi
-	if ! dpkg-statoverride --list /var/lib/PolicyKit > /dev/null 2>&1; then
-		chown root:polkituser /var/lib/PolicyKit
-		chmod 770 /var/lib/PolicyKit
-	fi
-	if ! dpkg-statoverride --list /var/lib/PolicyKit-public > /dev/null 2>&1; then
-		chown root:polkituser /var/lib/PolicyKit-public
-		chmod 775 /var/lib/PolicyKit-public
-	fi
-	if ! dpkg-statoverride --list /var/lib/misc/PolicyKit.reload > /dev/null 2>&1; then
-		chown root:polkituser /var/lib/misc/PolicyKit.reload
-		chmod 664 /var/lib/misc/PolicyKit.reload
-	fi
-
-	for i in polkit-read-auth-helper polkit-revoke-helper polkit-grant-helper polkit-explicit-grant-helper polkit-set-default-helper; do
-		if ! dpkg-statoverride --list /usr/lib/policykit/$i > /dev/null 2>&1; then
-			chown root:polkituser /usr/lib/policykit/$i
-			chmod 2755 /usr/lib/policykit/$i
-		fi
-	done
-	if ! dpkg-statoverride --list /usr/lib/policykit/polkit-grant-helper-pam > /dev/null 2>&1; then
-		chown root:polkituser /usr/lib/policykit/polkit-grant-helper-pam
-		chmod 4754 /usr/lib/policykit/polkit-grant-helper-pam
-	fi
+	libexec=/usr/lib/policykit
+	set_perms root       polkituser  770 /var/run/PolicyKit 
+	set_perms root       polkituser  770 /var/lib/PolicyKit
+	set_perms polkituser root        755 /var/lib/PolicyKit-public
+	set_perms polkituser polkituser  664 /var/lib/misc/PolicyKit.reload
+	set_perms root       polkituser 2755 $libexec/polkit-read-auth-helper
+	set_perms root       polkituser 2755 $libexec/polkit-revoke-helper
+	set_perms root       polkituser 2755 $libexec/polkit-grant-helper
+	set_perms root       polkituser 2755 $libexec/polkit-explicit-grant-helper
+	set_perms polkituser root       4755 $libexec/polkit-set-default-helper
+	set_perms root       root       4755 $libexec/polkit-resolve-exe-helper
+	set_perms root       polkituser 4754 $libexec/polkit-grant-helper-pam
 	
     ;;
 
