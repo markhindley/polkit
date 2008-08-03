@@ -1,3 +1,11 @@
+policykit (0.9-1) unstable; urgency=low
+
+  * New upstream release. 
+  * debian/control
+    - Bump Standards-Version to 3.8.0. No further changes.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 03 Aug 2008 10:53:11 +0200
+
 policykit (0.8-2) unstable; urgency=low
 
   * Add symbols files for libpolkit2, libpolkit-grant2 and libpolkit-dbus2. 
