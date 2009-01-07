@@ -1,3 +1,16 @@
+policykit (0.9-2) unstable; urgency=high
+
+  [ Simon McVittie ]
+  * Add patch committed in Fedora (although not upstream) by the upstream
+    maintainer, to allow PolicyKit to be used when CVE-2008-4311 has
+    been fixed in dbus-daemon. (Closes: #510646)
+
+  [ Michael Biebl ]
+  * debian/control
+    - Add ${misc:Depends} to all binary packages.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 07 Jan 2009 18:18:56 +0100
+
 policykit (0.9-1) unstable; urgency=low
 
   * New upstream release. 

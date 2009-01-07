@@ -24,6 +24,7 @@ Description: framework for managing administrative policies and privileges
 Package: policykit-doc
 Architecture: all
 Section: doc
+Depends: ${misc:Depends}
 Suggests: devhelp
 Description: documentation for PolicyKit
  PolicyKit is a toolkit for defining and handling the policy that
@@ -34,7 +35,7 @@ Description: documentation for PolicyKit
 Package: libpolkit2
 Architecture: any
 Section: libs
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: library for accessing PolicyKit
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -44,7 +45,7 @@ Description: library for accessing PolicyKit
 Package: libpolkit-dev
 Architecture: any
 Section: libdevel
-Depends: libpolkit2 (= ${binary:Version}), libglib2.0-dev
+Depends: libpolkit2 (= ${binary:Version}), ${misc:Depends}, libglib2.0-dev
 Description: library for accessing PolicyKit - development files
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -55,7 +56,7 @@ Description: library for accessing PolicyKit - development files
 Package: libpolkit-dbus2
 Architecture: any
 Section: libs
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: library for accessing PolicyKit via D-Bus
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -66,7 +67,7 @@ Description: library for accessing PolicyKit via D-Bus
 Package: libpolkit-dbus-dev
 Architecture: any
 Section: libdevel
-Depends: libpolkit-dbus2 (= ${binary:Version}), libpolkit-dev, libdbus-1-dev
+Depends: libpolkit-dbus2 (= ${binary:Version}), ${misc:Depends}, libpolkit-dev, libdbus-1-dev
 Description: library for accessing PolicyKit via D-Bus - development files
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -79,7 +80,7 @@ Description: library for accessing PolicyKit via D-Bus - development files
 Package: libpolkit-grant2
 Architecture: any
 Section: libs
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: library for obtaining privileges via PolicyKit
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -89,7 +90,7 @@ Description: library for obtaining privileges via PolicyKit
 Package: libpolkit-grant-dev
 Architecture: any
 Section: libdevel
-Depends: libpolkit-grant2 (= ${binary:Version}), libpolkit-dev, libglib2.0-dev
+Depends: libpolkit-grant2 (= ${binary:Version}), ${misc:Depends}, libpolkit-dev, libglib2.0-dev
 Description: library for obtaining privileges via PolicyKit - development files
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
