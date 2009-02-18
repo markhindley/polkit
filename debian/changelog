@@ -1,3 +1,21 @@
+policykit (0.9-3) unstable; urgency=low
+
+  * Switch patch management system to quilt.
+  * debian/control
+    - Wrap Build-Depends.
+    - Demote Recommends: policykit-gnome to Suggests. (Closes: #513758)
+    - Bump Build-Depends on debhelper to (>= 7).
+  * debian/compat
+    - Bump debhelper compat level to 7.
+  * debian/rules
+    - Include debhelper.mk before any other files as recommended by the cdbs
+      documentation.
+  * debian/patches/03_consolekit0.3-api.patch
+    - Try both the ConsoleKit 0.3 and the older 0.2 API, to work with either.
+      Patch pulled from Ubuntu.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 18 Feb 2009 17:25:52 +0100
+
 policykit (0.9-2) unstable; urgency=high
 
   [ Simon McVittie ]
