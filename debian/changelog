@@ -1,3 +1,24 @@
+policykit (0.9-4) unstable; urgency=low
+
+  * Add support for /var/run being a tmpfs. (Closes: #532101)
+    - Create /var/run/PolicyKit dynamically on boot by using an init script.
+      Original patch by Martin Pitt, thanks. Updated patch to only run the
+      init script in runlevel S at priority 75.
+    - Do no longer ship /var/run/PolicyKit in the package itself.
+  * debian/control
+    - Bump Standards-Version to 3.8.1.
+  * debian/patches/04_entry_leak.patch
+    - Plug a memory leak. Patch pulled from Fedora.
+  * debian/patches/05_manpage_typo_fix.patch
+    - Fix a small typo in the polkit-auth man page. (Closes: #523565)
+  * debian/patches/06_no_inotify_or_path_max.patch
+    - Add support for systems which don't support inotify (like hurd) and
+      don't use PATH_MAX unconditionally, instead use dynamically growing
+      buffers. (Closes: #521756)
+      Patch by Samuel Thibault, thanks.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 18 Jun 2009 09:55:34 +0200
+
 policykit (0.9-3) unstable; urgency=low
 
   * Switch patch management system to quilt.

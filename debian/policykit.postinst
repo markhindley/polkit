@@ -39,7 +39,6 @@ case "$1" in
 		--group polkituser
 	
 	libexec=/usr/lib/policykit
-	set_perms root       polkituser  770 /var/run/PolicyKit 
 	set_perms root       polkituser  770 /var/lib/PolicyKit
 	set_perms polkituser root        755 /var/lib/PolicyKit-public
 	set_perms polkituser polkituser  664 /var/lib/misc/PolicyKit.reload

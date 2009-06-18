@@ -16,7 +16,7 @@ Build-Depends: cdbs,
  gtk-doc-tools,
  xsltproc,
  quilt
-Standards-Version: 3.8.0
+Standards-Version: 3.8.1
 Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/unstable/policykit
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/unstable/policykit
 Homepage: http://hal.freedesktop.org/docs/PolicyKit/
