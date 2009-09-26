@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-grant-database">
+<refmeta>
+<refentrytitle role="top_of_page">polkit-grant-database</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>polkit-grant-database</refname>
+<refpurpose>Local grant database</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+enum                <link linkend="PolKitGrantDbGrantType">PolKitGrantDbGrantType</link>;
+<link linkend="void">void</link>                (<link linkend="PolKitGrantDbForeachFunc">*PolKitGrantDbForeachFunc</link>)         (const <link linkend="char">char</link> *action_id,
+                                                         <link linkend="uid-t">uid_t</link> uid,
+                                                         <link linkend="time-t">time_t</link> when,
+                                                         <link linkend="PolKitGrantDbGrantType">PolKitGrantDbGrantType</link> grant_type,
+                                                         <link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="polkit-uint64-t">polkit_uint64_t</link> pid_time,
+                                                         const <link linkend="char">char</link> *session_id,
+                                                         <link linkend="void">void</link> *user_data);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+This private class is used to represent the grant database and provides read/write functions to access it.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="PolKitGrantDbGrantType" role="enum"/>enum PolKitGrantDbGrantType</title>
+<indexterm><primary>PolKitGrantDbGrantType</primary></indexterm><programlisting>typedef enum {
+        POLKIT_GRANTDB_GRANT_TYPE_PROCESS,
+        POLKIT_GRANTDB_GRANT_TYPE_SESSION,
+        POLKIT_GRANTDB_GRANT_TYPE_ALWAYS
+} PolKitGrantDbGrantType;
+</programlisting>
+<para>
+Defines the type and scope of a privilege grant.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry>
+<term><anchor id="POLKIT-GRANTDB-GRANT-TYPE-PROCESS:CAPS" role="constant"/><literal>POLKIT_GRANTDB_GRANT_TYPE_PROCESS</literal></term>
+<listitem><simpara> The privilege was granted to a process
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><anchor id="POLKIT-GRANTDB-GRANT-TYPE-SESSION:CAPS" role="constant"/><literal>POLKIT_GRANTDB_GRANT_TYPE_SESSION</literal></term>
+<listitem><simpara> The privilege was granted to session
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><anchor id="POLKIT-GRANTDB-GRANT-TYPE-ALWAYS:CAPS" role="constant"/><literal>POLKIT_GRANTDB_GRANT_TYPE_ALWAYS</literal></term>
+<listitem><simpara> The privilege was granted permanently
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="PolKitGrantDbForeachFunc" role="function"/>PolKitGrantDbForeachFunc ()</title>
+<indexterm><primary>PolKitGrantDbForeachFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitGrantDbForeachFunc)         (const <link linkend="char">char</link> *action_id,
+                                                         <link linkend="uid-t">uid_t</link> uid,
+                                                         <link linkend="time-t">time_t</link> when,
+                                                         <link linkend="PolKitGrantDbGrantType">PolKitGrantDbGrantType</link> grant_type,
+                                                         <link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="polkit-uint64-t">polkit_uint64_t</link> pid_time,
+                                                         const <link linkend="char">char</link> *session_id,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Callback function for <link linkend="polkit-policy-cache-foreach"><function>polkit_policy_cache_foreach()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action_id</parameter>&nbsp;:</term>
+<listitem><simpara> Identifer for the action granted
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>uid</parameter>&nbsp;:</term>
+<listitem><simpara> the UNIX process id, or -1 if the passed grant_type is not POLKIT_GRANTDB_GRANT_TYPE_ALWAYS
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>when</parameter>&nbsp;:</term>
+<listitem><simpara> when the privilege was granted
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>grant_type</parameter>&nbsp;:</term>
+<listitem><simpara> the type of grant; one of <link linkend="PolKitGrantDbGrantType"><type>PolKitGrantDbGrantType</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> the process id, or -1 if the passed grant_type is not POLKIT_GRANTDB_GRANT_TYPE_PROCESS
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pid_time</parameter>&nbsp;:</term>
+<listitem><simpara> the start time of the process (only if pid is set)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>session_id</parameter>&nbsp;:</term>
+<listitem><simpara> the session id, or NULL if the passed grant_type is not POLKIT_GRANTDB_GRANT_TYPE_SESSION
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data passed to <link linkend="polkit-grantdb-foreach"><function>polkit_grantdb_foreach()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

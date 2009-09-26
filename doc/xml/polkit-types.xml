@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-types">
+<refmeta>
+<refentrytitle role="top_of_page">Basic types</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Basic types</refname>
+<refpurpose>Type definitions for common primitive types.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+typedef             <link linkend="polkit-bool-t">polkit_bool_t</link>;
+typedef             <link linkend="polkit-uint64-t">polkit_uint64_t</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+Type definitions for common primitive types.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="polkit-bool-t" role="typedef"/>polkit_bool_t</title>
+<indexterm><primary>polkit_bool_t</primary></indexterm><programlisting>typedef int polkit_bool_t;
+</programlisting>
+<para>
+A boolean, valid values are <link linkend="TRUE:CAPS"><type>TRUE</type></link> and <link linkend="FALSE:CAPS"><type>FALSE</type></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-uint64-t" role="typedef"/>polkit_uint64_t</title>
+<indexterm><primary>polkit_uint64_t</primary></indexterm><programlisting>typedef unsigned long long polkit_uint64_t;
+</programlisting>
+<para>
+Type for unsigned 64 bit integer.</para>
+<para>
+
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

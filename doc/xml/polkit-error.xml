@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-error">
+<refmeta>
+<refentrytitle role="top_of_page">Error reporting</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Error reporting</refname>
+<refpurpose>Representation of recoverable errors.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+enum                <link linkend="PolKitErrorCode">PolKitErrorCode</link>;
+                    <link linkend="PolKitError">PolKitError</link>;
+<link linkend="PolKitErrorCode">PolKitErrorCode</link>     <link linkend="polkit-error-get-error-code">polkit_error_get_error_code</link>         (<link linkend="PolKitError">PolKitError</link> *error);
+const <link linkend="char">char</link>*         <link linkend="polkit-error-get-error-message">polkit_error_get_error_message</link>      (<link linkend="PolKitError">PolKitError</link> *error);
+<link linkend="void">void</link>                <link linkend="polkit-error-free">polkit_error_free</link>                   (<link linkend="PolKitError">PolKitError</link> *error);
+<link linkend="void">void</link>                <link linkend="polkit-error-set-error">polkit_error_set_error</link>              (<link linkend="PolKitError">PolKitError</link> **error,
+                                                         <link linkend="PolKitErrorCode">PolKitErrorCode</link> error_code,
+                                                         const <link linkend="char">char</link> *format,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+Error codes from PolicyKit.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="PolKitErrorCode" role="enum"/>enum PolKitErrorCode</title>
+<indexterm><primary>PolKitErrorCode</primary></indexterm><programlisting>typedef enum
+{      
+        POLKIT_ERROR_OUT_OF_MEMORY,
+        POLKIT_ERROR_POLICY_FILE_INVALID
+} PolKitErrorCode;
+</programlisting>
+<para>
+Error codes returned by PolicyKit</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry>
+<term><anchor id="POLKIT-ERROR-OUT-OF-MEMORY:CAPS" role="constant"/><literal>POLKIT_ERROR_OUT_OF_MEMORY</literal></term>
+<listitem><simpara> Out of memory
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><anchor id="POLKIT-ERROR-POLICY-FILE-INVALID:CAPS" role="constant"/><literal>POLKIT_ERROR_POLICY_FILE_INVALID</literal></term>
+<listitem><simpara> There was an error parsing the given policy file
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="PolKitError" role="struct"/>PolKitError</title>
+<indexterm><primary>PolKitError</primary></indexterm><programlisting>typedef struct _PolKitError PolKitError;</programlisting>
+<para>
+Objects of this class are used for error reporting.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-error-get-error-code" role="function"/>polkit_error_get_error_code ()</title>
+<indexterm><primary>polkit_error_get_error_code</primary></indexterm><programlisting><link linkend="PolKitErrorCode">PolKitErrorCode</link>     polkit_error_get_error_code         (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
+<para>
+Returns the error code.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> the error object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A value from the <link linkend="PolKitErrorCode"><type>PolKitErrorCode</type></link> enumeration.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-error-get-error-message" role="function"/>polkit_error_get_error_message ()</title>
+<indexterm><primary>polkit_error_get_error_message</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_error_get_error_message      (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
+<para>
+Get the error message.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> the error object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A string describing the error. Caller shall not free this string.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-error-free" role="function"/>polkit_error_free ()</title>
+<indexterm><primary>polkit_error_free</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_error_free                   (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
+<para>
+Free an error.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> the error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-error-set-error" role="function"/>polkit_error_set_error ()</title>
+<indexterm><primary>polkit_error_set_error</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_error_set_error              (<link linkend="PolKitError">PolKitError</link> **error,
+                                                         <link linkend="PolKitErrorCode">PolKitErrorCode</link> error_code,
+                                                         const <link linkend="char">char</link> *format,
+                                                         ...);</programlisting>
+<para>
+Sets an error. If OOM, the error will be set to a pre-allocated OOM error.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> the error object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error_code</parameter>&nbsp;:</term>
+<listitem><simpara> A value from the <link linkend="PolKitErrorCode"><type>PolKitErrorCode</type></link> enumeration.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&nbsp;:</term>
+<listitem><simpara> printf style formatting string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> printf style arguments
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

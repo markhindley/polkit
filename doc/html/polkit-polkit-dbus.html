@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Caller Determination</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="rn03.html" title="Convenience API Reference">
+<link rel="prev" href="rn03.html" title="Convenience API Reference">
+<link rel="next" href="rn04.html" title="Authorization and privilege granting API Reference">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="rn02.html" title="Core API Reference">
+<link rel="reference" href="rn03.html" title="Convenience API Reference">
+<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
+<link rel="reference" href="rn05.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="rn03.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="rn03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="rn04.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2878174" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2924916" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-dbus"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2878174"></a><span class="refentrytitle">Caller Determination</span>
+</h2>
+<p>Caller Determination &#8212; Obtaining seat, session and caller information
+via D-Bus and ConsoleKit.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      <a class="link" href="polkit-polkit-dbus.html#polkit-session-new-from-objpath">polkit_session_new_from_objpath</a>     (DBusConnection *con,
+                                                         const char *objpath,
+                                                         uid_t uid,
+                                                         DBusError *error);
+<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      <a class="link" href="polkit-polkit-dbus.html#polkit-session-new-from-cookie">polkit_session_new_from_cookie</a>      (DBusConnection *con,
+                                                         const char *cookie,
+                                                         DBusError *error);
+<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       <a class="link" href="polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name">polkit_caller_new_from_dbus_name</a>    (DBusConnection *con,
+                                                         const char *dbus_name,
+                                                         DBusError *error);
+<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       <a class="link" href="polkit-polkit-dbus.html#polkit-caller-new-from-pid">polkit_caller_new_from_pid</a>          (DBusConnection *con,
+                                                         pid_t pid,
+                                                         DBusError *error);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2924916"></a><h2>Description</h2>
+<p>
+Helper library for obtaining seat, session and caller information
+via D-Bus and ConsoleKit. This library is only useful when writing
+a mechanism. If the mechanism itself is a daemon exposing a remote
+services (via e.g. D-Bus) it's often a better idea, to reduce
+roundtrips, to track and cache caller information and construct
+<a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> objects yourself based on this information (for an
+example of this, see the hald sources on how this can be done).</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2925315"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2925326"></a><h3>
+<a name="polkit-session-new-from-objpath"></a>polkit_session_new_from_objpath ()</h3>
+<a class="indexterm" name="id2925337"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new_from_objpath     (DBusConnection *con,
+                                                         const char *objpath,
+                                                         uid_t uid,
+                                                         DBusError *error);</pre>
+<p>
+This function will construct a <a class="link" href="polkit-polkit-session.html#PolKitSession"><span class="type">PolKitSession</span></a> object by querying
+the ConsoleKit daemon for information. Note that this will do a lot
+of blocking IO so it is best avoided if your process already
+tracks/caches all the information. If you pass in <em class="parameter"><code>uid</code></em> as a
+non-negative number, a round trip can be saved.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>objpath</code></em>&#160;:</span></p></td>
+<td> object path of ConsoleKit session object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uid</code></em>&#160;:</span></p></td>
+<td> the user owning the session or -1 if unknown
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case
+<em class="parameter"><code>error</code></em> will be set)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2928701"></a><h3>
+<a name="polkit-session-new-from-cookie"></a>polkit_session_new_from_cookie ()</h3>
+<a class="indexterm" name="id2928712"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new_from_cookie      (DBusConnection *con,
+                                                         const char *cookie,
+                                                         DBusError *error);</pre>
+<p>
+This function will construct a <a class="link" href="polkit-polkit-session.html#PolKitSession"><span class="type">PolKitSession</span></a> object by querying
+the ConsoleKit daemon for information. Note that this will do a lot
+of blocking IO so it is best avoided if your process already
+tracks/caches all the information.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cookie</code></em>&#160;:</span></p></td>
+<td> a ConsoleKit XDG_SESSION_COOKIE
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case
+<em class="parameter"><code>error</code></em> will be set)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2928840"></a><h3>
+<a name="polkit-caller-new-from-dbus-name"></a>polkit_caller_new_from_dbus_name ()</h3>
+<a class="indexterm" name="id2928853"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new_from_dbus_name    (DBusConnection *con,
+                                                         const char *dbus_name,
+                                                         DBusError *error);</pre>
+<p>
+This function will construct a <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> object by querying
+both the system bus daemon and the ConsoleKit daemon for
+information. Note that this will do a lot of blocking IO so it is
+best avoided if your process already tracks/caches all the
+information.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dbus_name</code></em>&#160;:</span></p></td>
+<td> unique system bus connection name
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case
+<em class="parameter"><code>error</code></em> will be set)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2925630"></a><h3>
+<a name="polkit-caller-new-from-pid"></a>polkit_caller_new_from_pid ()</h3>
+<a class="indexterm" name="id2925641"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new_from_pid          (DBusConnection *con,
+                                                         pid_t pid,
+                                                         DBusError *error);</pre>
+<p>
+This function will construct a <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> object by querying
+both information in /proc (on Linux) and the ConsoleKit daemon for
+information about a given process. Note that this will do a lot of
+blocking IO so it is best avoided if your process already
+tracks/caches all the information.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>&#160;:</span></p></td>
+<td> process id
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case
+<em class="parameter"><code>error</code></em> will be set)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!-- ##### SECTION Title ##### -->
+polkit-error
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM PolKitErrorCode ##### -->
+<para>
+
+</para>
+
+@POLKIT_ERROR_OUT_OF_MEMORY: 
+@POLKIT_ERROR_POLICY_FILE_INVALID: 
+
+<!-- ##### STRUCT PolKitError ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_error_get_error_code ##### -->
+<para>
+
+</para>
+
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_error_get_error_message ##### -->
+<para>
+
+</para>
+
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_error_free ##### -->
+<para>
+
+</para>
+
+@error: 
+
+
+<!-- ##### FUNCTION polkit_error_set_error ##### -->
+<para>
+
+</para>
+
+@error: 
+@error_code: 
+@format: 
+@Varargs: 
+
+

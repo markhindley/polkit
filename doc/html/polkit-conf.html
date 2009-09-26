@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>PolicyKit configuration</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="rn01.html" title="Design Overview">
+<link rel="prev" href="ch02s03.html" title="Theory of Operation">
+<link rel="next" href="beyond-defaults.html" title="Beyond the Defaults">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="rn02.html" title="Core API Reference">
+<link rel="reference" href="rn03.html" title="Convenience API Reference">
+<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
+<link rel="reference" href="rn05.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="ch02s03.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="rn01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="beyond-defaults.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="chapter" lang="en">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="polkit-conf"></a>PolicyKit configuration</h2></div></div></div>
+<div class="toc"><dl>
+<dt><span class="sect1"><a href="polkit-conf.html#id2901856">Declaring Actions</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="polkit-conf.html#id2827259">Annotations</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="beyond-defaults.html">Beyond the Defaults</a></span></dt>
+</dl></div>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2901856"></a>Declaring Actions</h2></div></div></div>
+<p>
+      A Mechanism needs to declare what Actions it supports. This is
+      achieved by dropping one or more XML files with the suffix <code class="literal">.policy</code>
+      into the <code class="literal">/usr/share/PolicyKit/policy</code> directory. An example:
+    </p>
+<pre class="programlisting">
+      
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd"&gt;
+&lt;policyconfig&gt;
+
+  &lt;action id="org.gnome.policykit.examples.frobnicate"&gt;
+    &lt;description&gt;Frobnicate&lt;/description&gt;
+    &lt;description xml:lang="da"&gt;Frobniker&lt;/description&gt;
+    &lt;description xml:lang="en_CA"&gt;Frobnicate, Aye!&lt;/description&gt;
+    &lt;message&gt;System policy prevents the PolicyKit-gnome example helper from Frobnicating&lt;/message&gt;
+    &lt;message xml:lang="da"&gt;System indstillinger forhindrer PolicyKit-gnome eksempel hj&#230;lper i at Frobnikere!&lt;/message&gt;
+    &lt;message xml:lang="en_CA"&gt;System policy prevents the PolicyKit-gnome example helper from Frobnicating, Aye!&lt;/message&gt;
+    &lt;defaults&gt;
+      &lt;allow_inactive&gt;no&lt;/allow_inactive&gt;
+      &lt;allow_active&gt;auth_self&lt;/allow_active&gt;
+    &lt;/defaults&gt;
+  &lt;/action&gt;
+  
+  &lt;action id="org.gnome.policykit.examples.tweak"&gt;
+    &lt;description&gt;Tweak&lt;/description&gt;
+    &lt;description xml:lang="da"&gt;Tv&#230;k&lt;/description&gt;
+    &lt;description xml:lang="en_CA"&gt;Tweak, Aye!&lt;/description&gt;
+    &lt;message&gt;System policy prevents the PolicyKit-gnome example helper from Tweaking&lt;/message&gt;
+    &lt;message xml:lang="da"&gt;System indstillinger forhindrer PolicyKit-gnome eksempel hj&#230;lper i at Tv&#230;kke!&lt;/message&gt;
+    &lt;message xml:lang="en_CA"&gt;System policy prevents the PolicyKit-gnome example helper from Tweaking, Aye!&lt;/message&gt;
+    &lt;defaults&gt;
+      &lt;allow_inactive&gt;no&lt;/allow_inactive&gt;
+      &lt;allow_active&gt;auth_admin&lt;/allow_active&gt;
+    &lt;/defaults&gt;
+  &lt;/action&gt;
+
+&lt;/policyconfig&gt; 
+
+    </pre>
+<p>
+      The policy declaration includes:
+      </p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>
+            <span class="emphasis"><em>Action Identifier:</em></span> This identifies
+            the action and can only contain the
+            characters <code class="literal">[a-z][0-9].-</code>,
+            e.g. lower-case ASCII, digits, period and hyphen. In
+            addition the identifier needs to start with a lower-case
+            ASCII character. The rationale for having everything is
+            lower case is to make it easy to make a distinction
+            between PolicyKit actions and D-Bus methods / interfaces
+            as the latter is normally using CamelCase.
+          </p>
+<p> 
+            In order for the identifier to be unique, it is
+            recommended that a revser domain name is chosen, for
+            example if the company Acme Inc. has a product called
+            Frakker that exports two Actions Blit and Blop the action
+            names should be chosen
+            as <code class="literal">com.acme.frakker.blit</code>
+            and <code class="literal">com.acme.frakker.blop</code>.
+          </p>
+</li>
+<li><p>
+            <span class="emphasis"><em>Defaults:</em></span>
+            The <code class="literal">allow_inactive</code>
+            and <code class="literal">allow_active</code> specify the default
+            answer that <code class="literal">libpolkit</code> will return for
+            respectively inactive and active sessions. See below for
+            valid values and their meaning.
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>Textual descriptions:</em></span> Simply included
+            for convenience and organizational
+            purposes. Standard <code class="literal">xml:lang</code> mechnanisms
+            are used to convey localized strings (note that intltool
+            0.36 or greater includes native support for
+            handling <code class="literal">.policy</code> files).
+          </p></li>
+</ul></div>
+<p>
+      The following values for the defaults are
+      </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+            <span class="emphasis"><em>no</em></span>
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>auth_self</em></span>
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>auth_self_keep_session</em></span>
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>auth_self_keep_always</em></span>
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>auth_admin</em></span>
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>auth_admin_keep_session</em></span>
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>auth_admin_keep_always</em></span>
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>yes</em></span>
+          </p></li>
+</ul></div>
+<p>
+      The main point here is that individual upstream software
+      projects can provide sensible defaults, e.g. it's sensible for
+      the example with a dial-up mechanism to configure
+      the <code class="literal">org.freedesktop.networkmanager.dialup-trusted</code> Action to
+      return <span class="emphasis"><em>yes</em></span> for local active sessions and
+      the Action
+      <code class="literal">org.freedesktop.networkmanager.dialup-untrusted</code> to perhaps
+      return <span class="emphasis"><em>auth_admin_keep_session</em></span>. See
+      <a class="xref" href="beyond-defaults.html" title="Beyond the Defaults">the section called &#8220;Beyond the Defaults&#8221;</a> for how individual machines
+      and sites can customize this.
+    </p>
+<p>
+      The <code class="literal">polkit-list-actions</code>(1) tool will list all
+      the Actions known to <code class="literal">libpolkit</code> in a
+      convenient
+      format. The <code class="literal">polkit-policy-file-validate</code>(1)
+      tool can be used to check policy files as part of the software
+      release and installation process.
+    </p>
+<div class="sect2" lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="id2827259"></a>Annotations</h3></div></div></div>
+<p>
+        When declaring an Action, one can also annotate it with one or
+        more key/value pairs: 
+      </p>
+<pre class="programlisting">
+      
+  &lt;action id="com.example.blahblaster.run-as-root"&gt;
+    &lt;description&gt;Run the graphical BlahBlaster application as the super user&lt;/description&gt;
+    &lt;message&gt;System policy prevents the BlahBlaster application&lt;/message&gt;
+    &lt;defaults&gt;
+      &lt;allow_inactive&gt;no&lt;/allow_inactive&gt;
+      &lt;allow_active&gt;auth_admin&lt;/allow_active&gt;
+    &lt;/defaults&gt;
+    &lt;annotate key="org.freedesktop.PolicyKit.run-as-superuser.path"&gt;/usr/bin/BlahBlaster&lt;/annotate&gt;
+  &lt;/action&gt;
+
+    </pre>
+<p>
+        This is useful when writing an extensible Mechanism that other
+        applications wants to use. The example declaration above is
+        dealing with an (hypothetical and setuid root) mechanism,
+        let's call it
+        <code class="literal">run-as-superuser</code>, that can start graphical
+        applications as uid 0. Suppose the user invokes it like this
+      </p>
+<pre class="programlisting">
+        run-as-superuser /usr/bin/BlahBlaster
+      </pre>
+<p>
+        Now, the <code class="literal">run-as-superuser</code> mechanism is only
+        passed a path to the application to start. In order to
+        determine if the calling user is allowed to run the given
+        application as root, we need to determine the PolicyKit Action
+        and then use libpolkit as usual to get an answer (and possibly
+        make the user authenticate to gain the privilege to run the
+        application). By using annotations,
+        the <code class="literal">run-as-superuser</code> mechanism can query
+        what the action is simply by searching for the Action that has
+        an annotation
+        where <code class="literal">org.freedesktop.PolicyKit.run-as-superuser.path</code>
+        equals the given path,
+        e.g. <code class="literal">/usr/bin/BlahBlaster</code>. It then becomes
+        part of the documentation for
+        the <code class="literal">run-as-superuser</code> program to specify
+        that applications wanting to use it, simply just needs to
+        provide a PolicyKit <code class="literal">.policy</code> file that
+        declares an Action with an
+        annotation <code class="literal">org.freedesktop.PolicyKit.run-as-superuser.path</code>
+        whose value is the path to the binary.
+      </p>
+</div>
+</div>
+</div>
+</body>
+</html>

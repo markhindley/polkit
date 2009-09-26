@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>PolicyKit Library Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="next" href="rn01.html" title="Design Overview">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="rn02.html" title="Core API Reference">
+<link rel="reference" href="rn03.html" title="Convenience API Reference">
+<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
+<link rel="reference" href="rn05.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" lang="en">
+<div class="titlepage">
+<div>
+<div><table class="navigation" id="top" width="100%" cellpadding="2" cellspacing="0"><tr><th valign="middle"><p class="title">PolicyKit Library Reference Manual</p></th></tr></table></div>
+<div><div class="authorgroup"><div class="author">
+<h3 class="author">
+<span class="firstname">David</span> <span class="surname">Zeuthen</span>
+</h3>
+<div class="affiliation"><div class="address"><p><br>
+	&#160;&#160;&#160;&#160;<code class="email">&lt;<a class="email" href="mailto:david@fubar.dk">david@fubar.dk</a>&gt;</code><br>
+	&#160;&#160;</p></div></div>
+</div></div></div>
+<div><p class="releaseinfo">Version 0.5
+</p></div>
+<div><p class="copyright">Copyright &#169; 2007 The PolicyKit Authors</p></div>
+<div><div class="legalnotice">
+<a name="id2831881"></a><p>
+	Permission is granted to copy, distribute and/or modify this
+	document under the terms of the <em class="citetitle">GNU Free
+	Documentation License</em>, Version 1.1 or any later
+	version published by the Free Software Foundation with no
+	Invariant Sections, no Front-Cover Texts, and no Back-Cover
+	Texts. You may obtain a copy of the <em class="citetitle">GNU Free
+	Documentation License</em> from the Free Software
+	Foundation by visiting <a class="ulink" href="http://www.fsf.org" target="_top">their Web site</a> or by writing
+	to:
+
+	</p>
+<div class="address"><p><br>
+	&#160;&#160;The&#160;Free&#160;Software&#160;Foundation,&#160;Inc.,<br>
+	&#160;&#160;<span class="street">59&#160;Temple&#160;Place</span>&#160;-&#160;Suite&#160;330,<br>
+	&#160;&#160;<span class="city">Boston</span>,&#160;<span class="state">MA</span>&#160;<span class="postcode">02111-1307</span>,<br>
+	&#160;&#160;<span class="country">USA</span><br>
+	</p></div>
+<p>
+      </p>
+<p>
+	Many of the names used by companies to distinguish their
+	products and services are claimed as trademarks. Where those
+	names appear in any GNOME documentation, and those trademarks
+	are made aware to the members of the GNOME Documentation
+	Project, the names have been printed in caps or initial caps.
+      </p>
+</div></div>
+</div>
+<hr>
+</div>
+<div class="toc"><dl>
+<dt><span class="reference"><a href="rn01.html">I. Design Overview</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="introduction.html">Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="introduction.html#id2899609">About</a></span></dt>
+<dt><span class="sect1"><a href="polkit-spec-history.html">History and Prior Art</a></span></dt>
+<dt><span class="sect1"><a href="ch01s03.html">Defining the Problem</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="model.html">PolicyKit Model</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="model.html#id2886668">Mechanims vs. Policy</a></span></dt>
+<dt><span class="sect1"><a href="ch02s02.html">Concepts</a></span></dt>
+<dt><span class="sect1"><a href="ch02s03.html">Theory of Operation</a></span></dt>
+</dl></dd>
+<dt><span class="chapter"><a href="polkit-conf.html">PolicyKit configuration</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="polkit-conf.html#id2901856">Declaring Actions</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="polkit-conf.html#id2827259">Annotations</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="beyond-defaults.html">Beyond the Defaults</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="reference"><a href="rn02.html">II. Core API Reference</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-types.html">Basic types</a></span><span class="refpurpose"> &#8212; Type definitions for common primitive types.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-error.html">Error reporting</a></span><span class="refpurpose"> &#8212; Representation of recoverable errors.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-result.html">Results</a></span><span class="refpurpose"> &#8212; Definition of results of PolicyKit queries.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-action.html">Actions</a></span><span class="refpurpose"> &#8212; Models what a caller is attempting to do.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-seat.html">Seat</a></span><span class="refpurpose"> &#8212; Represents a ConsoleKit Seat.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-session.html">Session</a></span><span class="refpurpose"> &#8212; Represents a ConsoleKit Session.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-caller.html">Caller</a></span><span class="refpurpose"> &#8212; Represents a process requesting a mechanism to do something.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-context.html">Context</a></span><span class="refpurpose"> &#8212; The main interface used to query PolicyKit.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-config.html">Configuration</a></span><span class="refpurpose"> &#8212; Represents the system-wide <code class="literal">/etc/PolicyKit/PolicyKit.conf</code> file.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-policy-file.html">Policy Definition Files</a></span><span class="refpurpose"> &#8212; Represents a set of declared actions.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-policy-file-entry.html">Policy File Entry</a></span><span class="refpurpose"> &#8212; Represents a declared action in a policy file.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-policy-default.html">Defaults</a></span><span class="refpurpose"> &#8212; Models the default policy for an action.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-policy-cache.html">Policy Cache</a></span><span class="refpurpose"> &#8212; Holds the actions defined on the system.</span>
+</dt>
+</dl></dd>
+<dt><span class="reference"><a href="rn03.html">III. Convenience API Reference</a></span></dt>
+<dd><dl><dt>
+<span class="refentrytitle"><a href="polkit-polkit-dbus.html">Caller Determination</a></span><span class="refpurpose"> &#8212; Obtaining seat, session and caller information
+via D-Bus and ConsoleKit.</span>
+</dt></dl></dd>
+<dt><span class="reference"><a href="rn04.html">IV. Authorization and privilege granting API Reference</a></span></dt>
+<dd><dl><dt>
+<span class="refentrytitle"><a href="polkit-polkit-grant.html">PolKitGrant</a></span><span class="refpurpose"> &#8212; A class used for obtain privileges through
+authentication.</span>
+</dt></dl></dd>
+<dt><span class="reference"><a href="rn05.html">V. Tools and file formats</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="rn05re17.html">PolicyKit</a></span><span class="refpurpose"> &#8212; Centralized policy management</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="rn05re18.html">PolicyKit.conf</a></span><span class="refpurpose"> &#8212; PolicyKit configuration file</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="rn05re19.html">polkit-grant</a></span><span class="refpurpose"> &#8212; manage PolicyKit privilege grants</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="rn05re20.html">polkit-list-actions</a></span><span class="refpurpose"> &#8212; List registered PolicyKit actions</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="rn05re21.html">polkit-policy-file-validate</a></span><span class="refpurpose"> &#8212; Validate a PolicyKit policy file</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="rn05re22.html">polkit-config-file-validate</a></span><span class="refpurpose"> &#8212; Validate a PolicyKit configuration file</span>
+</dt>
+</dl></dd>
+<dt><span class="index"><a href="ix01.html">Index</a></span></dt>
+<dt><span class="appendix"><a href="license.html">A. License</a></span></dt>
+</dl></div>
+</div></body>
+</html>

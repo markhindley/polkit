@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Theory of Operation</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="model.html" title="PolicyKit Model">
+<link rel="prev" href="ch02s02.html" title="Concepts">
+<link rel="next" href="polkit-conf.html" title="PolicyKit configuration">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="rn02.html" title="Core API Reference">
+<link rel="reference" href="rn03.html" title="Convenience API Reference">
+<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
+<link rel="reference" href="rn05.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="ch02s02.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="model.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-conf.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2892864"></a>Theory of Operation</h2></div></div></div>
+<p>
+      The core of PolicyKit is implemented as a shared library that
+      Mechanisms can link to and use as the decider component. There's
+      a small set of (extensible) data structures that establish a
+      vocabulary for <code class="literal">libpolkit</code> and the Mechanism to
+      describe the Subject and Action in question. The Mechanism
+      should think about <code class="literal">libpolkit</code> as a black box;
+      it's sole purpose is to answer whether a given Subject is
+      permitted to do a specific Action. The answer, obviously, comes
+      from a configuration source read by the library and maintained
+      by the system administrator; see <a class="xref" href="polkit-conf.html" title="PolicyKit configuration"><i>PolicyKit configuration</i></a>
+      for details on PolicyKit configuration.
+    </p>
+<p>
+      The answer from <code class="literal">libpolkit</code> is not limited to a
+      boolean value; essentially the following values can be returned
+      </p>
+<div class="itemizedlist"><ul type="disc"><li>
+<p>
+            <span class="emphasis"><em>Yes:</em></span> It is ok for the Mechanism to
+            carry out the Action requsted by the given Subject.
+          </p>
+<p>
+            <span class="emphasis"><em>No:</em></span> The Mechanism should not carry
+            out the Action requested by the given Subject.
+          </p>
+<p>
+            <span class="emphasis"><em>Require authentication:</em></span> The Subject
+            (e.g. the UI application) needs to ask the user to
+            authenticate in order for the Mechanism to carry out this
+            Action.
+          </p>
+</li></ul></div>
+<p>
+      In addition,
+      </p>
+<div class="itemizedlist"><ul type="disc"><li>
+<p>
+            Authentication can be specified (in the return value
+            from <code class="literal">libpolkit</code>) as either user
+            authentication (user puts in his own password) or super
+            user authentication (user puts in the root password or a
+            user in an administrator group authenticates).
+          </p>
+<p>
+            The authorization can be kept (this is also specified in
+            the return value from <code class="literal">libpolkit</code>) either
+            1) indefinitely (e.g. it persists across reboots and
+            different desktop sessions); 2) for the remainer of the
+            desktop session the Subject is part of; or 3) confined to
+            the process life-time of the Subject.
+          </p>
+</li></ul></div>
+<p>
+    </p>
+<p>
+      To facilitate the authentication step, there's a shared library
+      called <code class="literal">libpolkit-grant</code>. Given an Action, this
+      library uses a privileged helper (as in it's a <code class="literal">setgid
+      polkit</code> application) to authenticate the user (using
+      PAM) and upon successful authentication leave a cookie
+      specifying that the given Action can be carried out. It is the
+      presence and contents of this cookie that will
+      allow <code class="literal">libpolkit</code> to
+      return <span class="emphasis"><em>Yes</em></span> when the Subject asks the
+      Mechanism to carry out the Action again.
+    </p>
+<p>
+      In order to keep the PolicyKit model reasonably simple, there is
+      no representation of the Object. Instead, a Mechanism that cares
+      about Objects (and many don't; for example, Mechanisms to change
+      the timezone, punch a hole in the firewall or add a user all
+      operate on a singleton Object: the system as a whole) must
+      instead divide a given Action into multiple sub-Actions
+      depending on the nature of the Object.
+    </p>
+<p>
+      For example, consider a Mechanism for dial-up networking. Here,
+      the Subject is a UI applet running in a desktop session, the
+      Object is the phone number to dial and the Action is to
+      establish the connection (another Action could be to hang-up an
+      existing connection). Suppose that the Mechanism has a
+      white-list of phone numbers that are trusted; this could simply
+      be a
+      directory <code class="literal">/var/lib/dialup-helper/trusted-dialup.d</code>
+      where the system administrator can drop simple text or XML files
+      with phone numbers that are considered safe to dial. If the
+      phone number given by the client matches this white-list, the
+      Mechanism chooses the Action to
+      be <code class="literal">dialup-connect-trusted</code>. If it's not in the
+      white-list, the Action will be
+      <code class="literal">dialup-connect-untrusted</code>.  Hence, depending
+      on how PolicyKit is configured it may return different answers
+      since these are different Actions; one sensible thing in a
+      default desktop rollout would be to always allow the
+      Action <code class="literal">dialup-connect-trusted</code> for local
+      active sessions and always require authentication for the Action
+      <code class="literal">dialup-connect-untrusted</code>.
+    </p>
+<p>
+      When authentication is involved, the interaction diagram for
+      having a Mechanism carry out an Action on behalf of a Subject
+      looks roughly like this
+    </p>
+<p>
+      TODO: include diagram
+    </p>
+</div>
+</body>
+</html>

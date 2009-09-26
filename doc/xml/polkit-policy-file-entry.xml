@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-policy-file-entry">
+<refmeta>
+<refentrytitle role="top_of_page">Policy File Entry</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Policy File Entry</refname>
+<refpurpose>Represents a declared action in a policy file.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+                    <link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>;
+<link linkend="void">void</link>                (<link linkend="PolKitPolicyFileEntryAnnotationsForeachFunc">*PolKitPolicyFileEntryAnnotationsForeachFunc</link>)
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         const <link linkend="char">char</link> *key,
+                                                         const <link linkend="char">char</link> *value,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>* <link linkend="polkit-policy-file-entry-ref">polkit_policy_file_entry_ref</link>     (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+<link linkend="void">void</link>                <link linkend="polkit-policy-file-entry-unref">polkit_policy_file_entry_unref</link>      (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+<link linkend="void">void</link>                <link linkend="polkit-policy-file-entry-debug">polkit_policy_file_entry_debug</link>      (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-id">polkit_policy_file_entry_get_id</link>     (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* <link linkend="polkit-policy-file-entry-get-default">polkit_policy_file_entry_get_default</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-action-description">polkit_policy_file_entry_get_action_description</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-action-message">polkit_policy_file_entry_get_action_message</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+<link linkend="void">void</link>                <link linkend="polkit-policy-file-entry-annotations-foreach">polkit_policy_file_entry_annotations_foreach</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         <link linkend="PolKitPolicyFileEntryAnnotationsForeachFunc">PolKitPolicyFileEntryAnnotationsForeachFunc</link> cb,
+                                                         <link linkend="void">void</link> *user_data);
+const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-annotation">polkit_policy_file_entry_get_annotation</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         const <link linkend="char">char</link> *key);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class is used to represent a entries in policy files.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="PolKitPolicyFileEntry" role="struct"/>PolKitPolicyFileEntry</title>
+<indexterm><primary>PolKitPolicyFileEntry</primary></indexterm><programlisting>typedef struct _PolKitPolicyFileEntry PolKitPolicyFileEntry;</programlisting>
+<para>
+Objects of this class are used to record information about a
+policy.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="PolKitPolicyFileEntryAnnotationsForeachFunc" role="function"/>PolKitPolicyFileEntryAnnotationsForeachFunc ()</title>
+<indexterm><primary>PolKitPolicyFileEntryAnnotationsForeachFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitPolicyFileEntryAnnotationsForeachFunc)
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         const <link linkend="char">char</link> *key,
+                                                         const <link linkend="char">char</link> *value,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Callback function for <link linkend="polkit-policy-file-entry-annotations-foreach"><function>polkit_policy_file_entry_annotations_foreach()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> key of the annotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> corrosponding value of the annotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data passed to <link linkend="polkit-policy-file-entry-annotations-foreach"><function>polkit_policy_file_entry_annotations_foreach()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-ref" role="function"/>polkit_policy_file_entry_ref ()</title>
+<indexterm><primary>polkit_policy_file_entry_ref</primary></indexterm><programlisting><link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>* polkit_policy_file_entry_ref     (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Increase reference count.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-unref" role="function"/>polkit_policy_file_entry_unref ()</title>
+<indexterm><primary>polkit_policy_file_entry_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_file_entry_unref      (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-debug" role="function"/>polkit_policy_file_entry_debug ()</title>
+<indexterm><primary>polkit_policy_file_entry_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_file_entry_debug      (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Print debug information about object</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the entry
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-get-id" role="function"/>polkit_policy_file_entry_get_id ()</title>
+<indexterm><primary>polkit_policy_file_entry_get_id</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_policy_file_entry_get_id     (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Get the action identifier.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the file entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A string - caller shall not free this string.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-get-default" role="function"/>polkit_policy_file_entry_get_default ()</title>
+<indexterm><primary>polkit_policy_file_entry_get_default</primary></indexterm><programlisting><link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* polkit_policy_file_entry_get_default
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Get the the default policy for this policy.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the file entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitPolicyDefault"><type>PolKitPolicyDefault</type></link> object - caller shall not unref this object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-get-action-description" role="function"/>polkit_policy_file_entry_get_action_description ()</title>
+<indexterm><primary>polkit_policy_file_entry_get_action_description</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_policy_file_entry_get_action_description
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Get the description of the action that this policy entry describes. This
+is intended to be used in policy editors, for example "Mount internal
+volumes". Contrast with <link linkend="polkit-policy-file-entry-get-action-message"><function>polkit_policy_file_entry_get_action_message()</function></link>. The
+textual string will be returned in the current locale.
+</para>
+<para>
+Note, if <link linkend="polkit-context-set-load-descriptions"><function>polkit_context_set_load_descriptions()</function></link> on the
+<link linkend="PolKitContext"><type>PolKitContext</type></link> object used to get this object wasn't called, this
+method will return <link linkend="NULL:CAPS"><type>NULL</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> string or <link linkend="NULL:CAPS"><type>NULL</type></link> if descriptions are not loaded - caller shall not free this string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-get-action-message" role="function"/>polkit_policy_file_entry_get_action_message ()</title>
+<indexterm><primary>polkit_policy_file_entry_get_action_message</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_policy_file_entry_get_action_message
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Get the message describing the action that this policy entry
+describes. This is to be used in dialogs, for example "System
+Policy prevents mounting this volume". Contrast with
+<link linkend="polkit-policy-file-entry-get-action-description"><function>polkit_policy_file_entry_get_action_description()</function></link>. The textual string
+will be returned in the current locale.
+</para>
+<para>
+Note, if <link linkend="polkit-context-set-load-descriptions"><function>polkit_context_set_load_descriptions()</function></link> on the
+<link linkend="PolKitContext"><type>PolKitContext</type></link> object used to get this object wasn't called, this
+method will return <link linkend="NULL:CAPS"><type>NULL</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> string or <link linkend="NULL:CAPS"><type>NULL</type></link> if descriptions are not loaded - caller shall not free this string
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-annotations-foreach" role="function"/>polkit_policy_file_entry_annotations_foreach ()</title>
+<indexterm><primary>polkit_policy_file_entry_annotations_foreach</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_file_entry_annotations_foreach
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         <link linkend="PolKitPolicyFileEntryAnnotationsForeachFunc">PolKitPolicyFileEntryAnnotationsForeachFunc</link> cb,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Iterate over all annotations on the policy file entry.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cb</parameter>&nbsp;:</term>
+<listitem><simpara> callback function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to the callback function
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-get-annotation" role="function"/>polkit_policy_file_entry_get_annotation ()</title>
+<indexterm><primary>polkit_policy_file_entry_get_annotation</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_policy_file_entry_get_annotation
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         const <link linkend="char">char</link> *key);</programlisting>
+<para>
+Look of the value of a given annotation.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> the key of the annotation
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The value of the annotation or NULL if not found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

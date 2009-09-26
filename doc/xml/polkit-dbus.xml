@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-dbus">
+<refmeta>
+<refentrytitle role="top_of_page">Caller Determination</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Caller Determination</refname>
+<refpurpose>Obtaining seat, session and caller information
+via D-Bus and ConsoleKit.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+<link linkend="PolKitSession">PolKitSession</link>*      <link linkend="polkit-session-new-from-objpath">polkit_session_new_from_objpath</link>     (<link linkend="DBusConnection">DBusConnection</link> *con,
+                                                         const <link linkend="char">char</link> *objpath,
+                                                         <link linkend="uid-t">uid_t</link> uid,
+                                                         <link linkend="DBusError">DBusError</link> *error);
+<link linkend="PolKitSession">PolKitSession</link>*      <link linkend="polkit-session-new-from-cookie">polkit_session_new_from_cookie</link>      (<link linkend="DBusConnection">DBusConnection</link> *con,
+                                                         const <link linkend="char">char</link> *cookie,
+                                                         <link linkend="DBusError">DBusError</link> *error);
+<link linkend="PolKitCaller">PolKitCaller</link>*       <link linkend="polkit-caller-new-from-dbus-name">polkit_caller_new_from_dbus_name</link>    (<link linkend="DBusConnection">DBusConnection</link> *con,
+                                                         const <link linkend="char">char</link> *dbus_name,
+                                                         <link linkend="DBusError">DBusError</link> *error);
+<link linkend="PolKitCaller">PolKitCaller</link>*       <link linkend="polkit-caller-new-from-pid">polkit_caller_new_from_pid</link>          (<link linkend="DBusConnection">DBusConnection</link> *con,
+                                                         <link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="DBusError">DBusError</link> *error);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+Helper library for obtaining seat, session and caller information
+via D-Bus and ConsoleKit. This library is only useful when writing
+a mechanism. If the mechanism itself is a daemon exposing a remote
+services (via e.g. D-Bus) it's often a better idea, to reduce
+roundtrips, to track and cache caller information and construct
+<link linkend="PolKitCaller"><type>PolKitCaller</type></link> objects yourself based on this information (for an
+example of this, see the hald sources on how this can be done).</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="polkit-session-new-from-objpath" role="function"/>polkit_session_new_from_objpath ()</title>
+<indexterm><primary>polkit_session_new_from_objpath</primary></indexterm><programlisting><link linkend="PolKitSession">PolKitSession</link>*      polkit_session_new_from_objpath     (<link linkend="DBusConnection">DBusConnection</link> *con,
+                                                         const <link linkend="char">char</link> *objpath,
+                                                         <link linkend="uid-t">uid_t</link> uid,
+                                                         <link linkend="DBusError">DBusError</link> *error);</programlisting>
+<para>
+This function will construct a <link linkend="PolKitSession"><type>PolKitSession</type></link> object by querying
+the ConsoleKit daemon for information. Note that this will do a lot
+of blocking IO so it is best avoided if your process already
+tracks/caches all the information. If you pass in <parameter>uid</parameter> as a
+non-negative number, a round trip can be saved.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>con</parameter>&nbsp;:</term>
+<listitem><simpara> D-Bus system bus connection
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>objpath</parameter>&nbsp;:</term>
+<listitem><simpara> object path of ConsoleKit session object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>uid</parameter>&nbsp;:</term>
+<listitem><simpara> the user owning the session or -1 if unknown
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> D-Bus error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new object or <link linkend="NULL:CAPS"><type>NULL</type></link> if an error occured (in which case
+<parameter>error</parameter> will be set)
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-session-new-from-cookie" role="function"/>polkit_session_new_from_cookie ()</title>
+<indexterm><primary>polkit_session_new_from_cookie</primary></indexterm><programlisting><link linkend="PolKitSession">PolKitSession</link>*      polkit_session_new_from_cookie      (<link linkend="DBusConnection">DBusConnection</link> *con,
+                                                         const <link linkend="char">char</link> *cookie,
+                                                         <link linkend="DBusError">DBusError</link> *error);</programlisting>
+<para>
+This function will construct a <link linkend="PolKitSession"><type>PolKitSession</type></link> object by querying
+the ConsoleKit daemon for information. Note that this will do a lot
+of blocking IO so it is best avoided if your process already
+tracks/caches all the information.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>con</parameter>&nbsp;:</term>
+<listitem><simpara> D-Bus system bus connection
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cookie</parameter>&nbsp;:</term>
+<listitem><simpara> a ConsoleKit XDG_SESSION_COOKIE
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> D-Bus error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new object or <link linkend="NULL:CAPS"><type>NULL</type></link> if an error occured (in which case
+<parameter>error</parameter> will be set)
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-caller-new-from-dbus-name" role="function"/>polkit_caller_new_from_dbus_name ()</title>
+<indexterm><primary>polkit_caller_new_from_dbus_name</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_caller_new_from_dbus_name    (<link linkend="DBusConnection">DBusConnection</link> *con,
+                                                         const <link linkend="char">char</link> *dbus_name,
+                                                         <link linkend="DBusError">DBusError</link> *error);</programlisting>
+<para>
+This function will construct a <link linkend="PolKitCaller"><type>PolKitCaller</type></link> object by querying
+both the system bus daemon and the ConsoleKit daemon for
+information. Note that this will do a lot of blocking IO so it is
+best avoided if your process already tracks/caches all the
+information.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>con</parameter>&nbsp;:</term>
+<listitem><simpara> D-Bus system bus connection
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dbus_name</parameter>&nbsp;:</term>
+<listitem><simpara> unique system bus connection name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> D-Bus error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new object or <link linkend="NULL:CAPS"><type>NULL</type></link> if an error occured (in which case
+<parameter>error</parameter> will be set)
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-caller-new-from-pid" role="function"/>polkit_caller_new_from_pid ()</title>
+<indexterm><primary>polkit_caller_new_from_pid</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_caller_new_from_pid          (<link linkend="DBusConnection">DBusConnection</link> *con,
+                                                         <link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="DBusError">DBusError</link> *error);</programlisting>
+<para>
+This function will construct a <link linkend="PolKitCaller"><type>PolKitCaller</type></link> object by querying
+both information in /proc (on Linux) and the ConsoleKit daemon for
+information about a given process. Note that this will do a lot of
+blocking IO so it is best avoided if your process already
+tracks/caches all the information.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>con</parameter>&nbsp;:</term>
+<listitem><simpara> D-Bus system bus connection
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> process id
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> D-Bus error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new object or <link linkend="NULL:CAPS"><type>NULL</type></link> if an error occured (in which case
+<parameter>error</parameter> will be set)
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

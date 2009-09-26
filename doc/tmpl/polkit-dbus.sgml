@@ -1,0 +1,66 @@
+<!-- ##### SECTION Title ##### -->
+polkit-dbus
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION polkit_session_new_from_objpath ##### -->
+<para>
+
+</para>
+
+@con: 
+@objpath: 
+@uid: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_new_from_cookie ##### -->
+<para>
+
+</para>
+
+@con: 
+@cookie: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_new_from_dbus_name ##### -->
+<para>
+
+</para>
+
+@con: 
+@dbus_name: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_new_from_pid ##### -->
+<para>
+
+</para>
+
+@con: 
+@pid: 
+@error: 
+@Returns: 
+
+

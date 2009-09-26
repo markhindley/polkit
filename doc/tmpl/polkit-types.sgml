@@ -1,0 +1,33 @@
+<!-- ##### SECTION Title ##### -->
+polkit-types
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### TYPEDEF polkit_bool_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF polkit_uint64_t ##### -->
+<para>
+
+</para>
+
+
