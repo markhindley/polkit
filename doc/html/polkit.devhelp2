@@ -4,17 +4,17 @@
   <chapters>
     <sub name="Design Overview" link="rn01.html">
       <sub name="Introduction" link="introduction.html">
-        <sub name="About" link="introduction.html#id2899609"/>
+        <sub name="About" link="introduction.html#id3130738"/>
         <sub name="History and Prior Art" link="polkit-spec-history.html"/>
         <sub name="Defining the Problem" link="ch01s03.html"/>
       </sub>
       <sub name="PolicyKit Model" link="model.html">
-        <sub name="Mechanims vs. Policy" link="model.html#id2886668"/>
+        <sub name="Mechanims vs. Policy" link="model.html#id3123433"/>
         <sub name="Concepts" link="ch02s02.html"/>
         <sub name="Theory of Operation" link="ch02s03.html"/>
       </sub>
       <sub name="PolicyKit configuration" link="polkit-conf.html">
-        <sub name="Declaring Actions" link="polkit-conf.html#id2901856"/>
+        <sub name="Declaring Actions" link="polkit-conf.html#id3131512"/>
         <sub name="Beyond the Defaults" link="beyond-defaults.html"/>
       </sub>
     </sub>
@@ -194,12 +194,12 @@
     <keyword type="function" name="polkit_grant_cancel_auth ()" link="polkit-polkit-grant.html#polkit-grant-cancel-auth"/>
     <keyword type="function" name="polkit_grant_io_func ()" link="polkit-polkit-grant.html#polkit-grant-io-func"/>
     <keyword type="function" name="polkit_grant_child_func ()" link="polkit-polkit-grant.html#polkit-grant-child-func"/>
-    <keyword type="" name="config" link="rn05re18.html#id2902406"/>
-    <keyword type="" name="match" link="rn05re18.html#id2881633"/>
-    <keyword type="" name="return" link="rn05re18.html#id2882388"/>
-    <keyword type="" name="define_admin_auth" link="rn05re18.html#id2901506"/>
-    <keyword type="" name="ALLOW EVERYTHING" link="rn05re18.html#id2907058"/>
-    <keyword type="" name="MOUNTING FIXED DRIVES" link="rn05re18.html#id2879750"/>
-    <keyword type="" name="AVOIDING THE ROOT PASSWORD" link="rn05re18.html#id2898404"/>
+    <keyword type="" name="config" link="rn05re18.html#id3131613"/>
+    <keyword type="" name="match" link="rn05re18.html#id3106370"/>
+    <keyword type="" name="return" link="rn05re18.html#id3107120"/>
+    <keyword type="" name="define_admin_auth" link="rn05re18.html#id3110444"/>
+    <keyword type="" name="ALLOW EVERYTHING" link="rn05re18.html#id3115102"/>
+    <keyword type="" name="MOUNTING FIXED DRIVES" link="rn05re18.html#id3148348"/>
+    <keyword type="" name="AVOIDING THE ROOT PASSWORD" link="rn05re18.html#id3136193"/>
   </functions>
 </book>

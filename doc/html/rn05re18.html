@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>PolicyKit.conf</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="rn05.html" title="Tools and file formats">
 <link rel="prev" href="rn05re17.html" title="PolicyKit">
@@ -30,7 +30,7 @@
 <td><a accesskey="n" href="rn05re19.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry" lang="en">
-<a name="id2932417"></a><div class="titlepage"></div>
+<a name="id3163576"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle">PolicyKit.conf</span></h2>
@@ -39,7 +39,7 @@
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1" lang="en">
-<a name="id2889776"></a><h2>DESCRIPTION</h2>
+<a name="id3129055"></a><h2>DESCRIPTION</h2>
 <p>
       The <code class="filename">/etc/PolicyKit/PolicyKit.conf</code>
       configuration file provides a way for system administrators to
@@ -61,7 +61,7 @@
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2916115"></a><h2>FILE FORMAT</h2>
+<a name="id3123492"></a><h2>FILE FORMAT</h2>
 <p>
       The configuration file is an XML document. It must have the
       following doctype declaration:
@@ -77,7 +77,7 @@
       The following elements may be present in the configuration file:
     </p>
 <div class="refsect2" lang="en">
-<a name="id2902406"></a><h3>config</h3>
+<a name="id3131613"></a><h3>config</h3>
 <p>
         This is the root element. A single
         attribute <span class="emphasis"><em>version</em></span> must be present and
@@ -87,7 +87,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2881633"></a><h3>match</h3>
+<a name="id3106370"></a><h3>match</h3>
 <p>
         This element is for matching information related to the
         decision making process and includes values describing both
@@ -126,7 +126,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2882388"></a><h3>return</h3>
+<a name="id3107120"></a><h3>return</h3>
 <p>
         This element is for used to specify what result the PolicyKit
         library will return. It can only be embedded in
@@ -205,7 +205,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2901506"></a><h3>define_admin_auth</h3>
+<a name="id3110444"></a><h3>define_admin_auth</h3>
 <p>
         This element is used to specify the meaning of
         <span class="emphasis"><em>"authenticate as administrator"</em></span>. It
@@ -257,7 +257,7 @@
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2894683"></a><h2>EXAMPLES</h2>
+<a name="id3123095"></a><h2>EXAMPLES</h2>
 <p>
       For brevity, the standard XML and DOCTYPE headers as well as
       the top-level <span class="emphasis"><em>config</em></span> are omitted in the
@@ -267,7 +267,7 @@
       to learn about the actions available on your system.
     </p>
 <div class="refsect2" lang="en">
-<a name="id2907058"></a><h3>ALLOW EVERYTHING</h3>
+<a name="id3115102"></a><h3>ALLOW EVERYTHING</h3>
 <p>
         The users "davidz" and "bateman" are allowed to do any
         action:
@@ -282,7 +282,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2879750"></a><h3>MOUNTING FIXED DRIVES</h3>
+<a name="id3148348"></a><h3>MOUNTING FIXED DRIVES</h3>
 <p>
         Suppose the
         action <span class="emphasis"><em>org.freedesktop.hal.storage.mount-fixed</em></span>
@@ -312,7 +312,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2898404"></a><h3>AVOIDING THE ROOT PASSWORD</h3>
+<a name="id3136193"></a><h3>AVOIDING THE ROOT PASSWORD</h3>
 <p>
         Suppose the group <span class="emphasis"><em>wheel</em></span> contains the
         users on a system who are allowed to carry out administrative
@@ -332,14 +332,14 @@
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2891891"></a><h2>AUTHOR</h2>
+<a name="id3119638"></a><h2>AUTHOR</h2>
 <p>
       Written by David Zeuthen <code class="email">&lt;<a class="email" href="mailto:david@fubar.dk">david@fubar.dk</a>&gt;</code> with
       a lot of help from many others.
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2881996"></a><h2>BUGS</h2>
+<a name="id3115979"></a><h2>BUGS</h2>
 <p>
       Please send bug reports to either the distribution or the
       hal mailing list,
@@ -348,7 +348,7 @@
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2892644"></a><h2>SEE ALSO</h2>
+<a name="id3120394"></a><h2>SEE ALSO</h2>
 <p>
       <span class="citerefentry"><span class="refentrytitle">PolicyKit</span>(8)</span>, 
       <span class="citerefentry"><span class="refentrytitle">polkit-config-file-validate</span>(1)</span>, 

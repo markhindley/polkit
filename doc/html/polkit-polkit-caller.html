@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Caller</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="rn02.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-session.html" title="Session">
@@ -30,16 +30,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-context.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2882386" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3110143" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2878382" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id3141432" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-caller"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2882386"></a><span class="refentrytitle">Caller</span>
+<a name="id3110143"></a><span class="refentrytitle">Caller</span>
 </h2>
 <p>Caller &#8212; Represents a process requesting a mechanism to do something.</p>
 </td>
@@ -80,7 +80,7 @@ void                <a class="link" href="polkit-polkit-caller.html#polkit-calle
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2878382"></a><h2>Description</h2>
+<a name="id3141432"></a><h2>Description</h2>
 <p>
 This class is used to represent a caller in another process that is
 calling into a mechanism to make the mechanism do something.</p>
@@ -89,11 +89,11 @@ calling into a mechanism to make the mechanism do something.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2878404"></a><h2>Details</h2>
+<a name="id3141454"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2878415"></a><h3>
+<a name="id3141464"></a><h3>
 <a name="PolKitCaller"></a>PolKitCaller</h3>
-<a class="indexterm" name="id2878427"></a><pre class="programlisting">typedef struct _PolKitCaller PolKitCaller;</pre>
+<a class="indexterm" name="id3141477"></a><pre class="programlisting">typedef struct _PolKitCaller PolKitCaller;</pre>
 <p>
 Objects of this class are used to record information about a caller
 in another process.</p>
@@ -103,9 +103,9 @@ in another process.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2878448"></a><h3>
+<a name="id3141497"></a><h3>
 <a name="polkit-caller-new"></a>polkit_caller_new ()</h3>
-<a class="indexterm" name="id2878460"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new                   (void);</pre>
+<a class="indexterm" name="id3141510"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new                   (void);</pre>
 <p>
 Creates a new <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> object.</p>
 <p>
@@ -122,9 +122,9 @@ Creates a new <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><spa
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2878508"></a><h3>
+<a name="id3141557"></a><h3>
 <a name="polkit-caller-ref"></a>polkit_caller_ref ()</h3>
-<a class="indexterm" name="id2878520"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_ref                   (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
+<a class="indexterm" name="id3141570"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_ref                   (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -148,9 +148,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2878580"></a><h3>
+<a name="id3141630"></a><h3>
 <a name="polkit-caller-unref"></a>polkit_caller_unref ()</h3>
-<a class="indexterm" name="id2878593"></a><pre class="programlisting">void                polkit_caller_unref                 (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
+<a class="indexterm" name="id3141643"></a><pre class="programlisting">void                polkit_caller_unref                 (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -169,9 +169,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2916406"></a><h3>
+<a name="id3145931"></a><h3>
 <a name="polkit-caller-set-dbus-name"></a>polkit_caller_set_dbus_name ()</h3>
-<a class="indexterm" name="id2916417"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_dbus_name         (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3145942"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_dbus_name         (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          const char *dbus_name);</pre>
 <p>
 Set the callers unique system bus connection name.</p>
@@ -203,9 +203,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2916505"></a><h3>
+<a name="id3146032"></a><h3>
 <a name="polkit-caller-set-uid"></a>polkit_caller_set_uid ()</h3>
-<a class="indexterm" name="id2916516"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_uid               (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3146043"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_uid               (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          uid_t uid);</pre>
 <p>
 Set the callers UNIX user id.</p>
@@ -237,9 +237,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2916604"></a><h3>
+<a name="id3146131"></a><h3>
 <a name="polkit-caller-set-pid"></a>polkit_caller_set_pid ()</h3>
-<a class="indexterm" name="id2916615"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_pid               (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3146142"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_pid               (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          pid_t pid);</pre>
 <p>
 Set the callers UNIX process id.</p>
@@ -271,9 +271,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2920590"></a><h3>
+<a name="id3151731"></a><h3>
 <a name="polkit-caller-set-selinux-context"></a>polkit_caller_set_selinux_context ()</h3>
-<a class="indexterm" name="id2920603"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_selinux_context   (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3151741"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_selinux_context   (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          const char *selinux_context);</pre>
 <p>
 Set the callers SELinux security context.</p>
@@ -305,9 +305,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2920684"></a><h3>
+<a name="id3151822"></a><h3>
 <a name="polkit-caller-set-ck-session"></a>polkit_caller_set_ck_session ()</h3>
-<a class="indexterm" name="id2920696"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_ck_session        (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3151836"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_set_ck_session        (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          <a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
 <p>
 Set the callers session. The reference count on the given object
@@ -341,9 +341,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2920790"></a><h3>
+<a name="id3151929"></a><h3>
 <a name="polkit-caller-get-dbus-name"></a>polkit_caller_get_dbus_name ()</h3>
-<a class="indexterm" name="id2920802"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_dbus_name         (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3151941"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_dbus_name         (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          char **out_dbus_name);</pre>
 <p>
 Get the callers unique system bus connection name.</p>
@@ -373,9 +373,9 @@ Get the callers unique system bus connection name.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2920886"></a><h3>
+<a name="id3152025"></a><h3>
 <a name="polkit-caller-get-uid"></a>polkit_caller_get_uid ()</h3>
-<a class="indexterm" name="id2920897"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_uid               (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3152036"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_uid               (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          uid_t *out_uid);</pre>
 <p>
 Get the callers UNIX user id.</p>
@@ -405,9 +405,9 @@ Get the callers UNIX user id.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2920979"></a><h3>
+<a name="id3152118"></a><h3>
 <a name="polkit-caller-get-pid"></a>polkit_caller_get_pid ()</h3>
-<a class="indexterm" name="id2920990"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_pid               (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3152129"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_pid               (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          pid_t *out_pid);</pre>
 <p>
 Get the callers UNIX process id.</p>
@@ -437,9 +437,9 @@ Get the callers UNIX process id.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2921073"></a><h3>
+<a name="id3152212"></a><h3>
 <a name="polkit-caller-get-selinux-context"></a>polkit_caller_get_selinux_context ()</h3>
-<a class="indexterm" name="id2921087"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_selinux_context   (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3152226"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_selinux_context   (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          char **out_selinux_context);</pre>
 <p>
 Get the callers SELinux security context. Note that this may be
@@ -472,9 +472,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2921178"></a><h3>
+<a name="id3152317"></a><h3>
 <a name="polkit-caller-get-ck-session"></a>polkit_caller_get_ck_session ()</h3>
-<a class="indexterm" name="id2921192"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_ck_session        (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+<a class="indexterm" name="id3152331"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_get_ck_session        (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
                                                          <a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> **out_session);</pre>
 <p>
 Get the callers session. Note that this may be <a
@@ -507,9 +507,9 @@ is not in any session.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2921284"></a><h3>
+<a name="id3152423"></a><h3>
 <a name="polkit-caller-debug"></a>polkit_caller_debug ()</h3>
-<a class="indexterm" name="id2921296"></a><pre class="programlisting">void                polkit_caller_debug                 (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
+<a class="indexterm" name="id3152435"></a><pre class="programlisting">void                polkit_caller_debug                 (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
 <p>
 Print debug details</p>
 <p>
@@ -526,9 +526,9 @@ Print debug details</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2921346"></a><h3>
+<a name="id3152485"></a><h3>
 <a name="polkit-caller-validate"></a>polkit_caller_validate ()</h3>
-<a class="indexterm" name="id2921357"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_validate              (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
+<a class="indexterm" name="id3152496"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_caller_validate              (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
 <p>
 Validate the object</p>
 <p>
