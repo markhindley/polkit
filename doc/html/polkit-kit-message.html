@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Message utilities</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-internal.html" title="Internal API Reference">
+<link rel="prev" href="polkit-kit-string.html" title="String utilities">
+<link rel="next" href="polkit-kit-list.html" title="Doubly-linked lists">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-kit-string.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-internal.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-kit-list.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2686363" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2685322" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-kit-message"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2686363"></a><span class="refentrytitle">Message utilities</span>
+</h2>
+<p>Message utilities &#8212; Message utilities</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+void                <a class="link" href="polkit-kit-message.html#kit-debug">kit_debug</a>                           (const char *format,
+                                                         ...);
+void                <a class="link" href="polkit-kit-message.html#kit-warning">kit_warning</a>                         (const char *format,
+                                                         ...);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2685322"></a><h2>Description</h2>
+<p>
+Various message and logging utilities.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2685341"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2685351"></a><h3>
+<a name="kit-debug"></a>kit_debug ()</h3>
+<a class="indexterm" name="id2685364"></a><pre class="programlisting">void                kit_debug                           (const char *format,
+                                                         ...);</pre>
+<p>
+Outputs a debug message on stdout.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em>&#160;:</span></p></td>
+<td> printf(3) style format string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em>&#160;:</span></p></td>
+<td> the parameters to insert into <em class="parameter"><code>format</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2716125"></a><h3>
+<a name="kit-warning"></a>kit_warning ()</h3>
+<a class="indexterm" name="id2716137"></a><pre class="programlisting">void                kit_warning                         (const char *format,
+                                                         ...);</pre>
+<p>
+Outputs a warning message on stderr.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em>&#160;:</span></p></td>
+<td> printf(3) style format string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em>&#160;:</span></p></td>
+<td> the parameters to insert into <em class="parameter"><code>format</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2716209"></a><div class="refsect2" lang="en"><a name="id2716210"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2716211"></a></div>
+</div>
+</div>
+</body>
+</html>

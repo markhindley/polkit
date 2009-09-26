@@ -23,7 +23,11 @@
 
 
 
+#define             <link linkend="POLKIT-BEGIN-DECLS:CAPS">POLKIT_BEGIN_DECLS</link>
+#define             <link linkend="POLKIT-END-DECLS:CAPS">POLKIT_END_DECLS</link>
+#define             <link linkend="POLKIT-GNUC-DEPRECATED:CAPS">POLKIT_GNUC_DEPRECATED</link>
 typedef             <link linkend="polkit-bool-t">polkit_bool_t</link>;
+typedef             <link linkend="polkit-uint32-t">polkit_uint32_t</link>;
 typedef             <link linkend="polkit-uint64-t">polkit_uint64_t</link>;
 </synopsis>
 </refsynopsisdiv>
@@ -48,11 +52,44 @@ Type definitions for common primitive types.</para>
 <refsect1 role="details">
 <title role="details.title">Details</title>
 <refsect2>
+<title><anchor id="POLKIT-BEGIN-DECLS:CAPS" role="macro"/>POLKIT_BEGIN_DECLS</title>
+<indexterm><primary>POLKIT_BEGIN_DECLS</primary></indexterm><programlisting>#define             POLKIT_BEGIN_DECLS</programlisting>
+<para>
+C++ include header guard.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="POLKIT-END-DECLS:CAPS" role="macro"/>POLKIT_END_DECLS</title>
+<indexterm><primary>POLKIT_END_DECLS</primary></indexterm><programlisting>#define             POLKIT_END_DECLS</programlisting>
+<para>
+C++ include header guard.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="POLKIT-GNUC-DEPRECATED:CAPS" role="macro"/>POLKIT_GNUC_DEPRECATED</title>
+<indexterm><primary>POLKIT_GNUC_DEPRECATED</primary></indexterm><programlisting>#define             POLKIT_GNUC_DEPRECATED</programlisting>
+<para>
+Used in front of deprecated functions.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
 <title><anchor id="polkit-bool-t" role="typedef"/>polkit_bool_t</title>
 <indexterm><primary>polkit_bool_t</primary></indexterm><programlisting>typedef int polkit_bool_t;
 </programlisting>
 <para>
 A boolean, valid values are <link linkend="TRUE:CAPS"><type>TRUE</type></link> and <link linkend="FALSE:CAPS"><type>FALSE</type></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-uint32-t" role="typedef"/>polkit_uint32_t</title>
+<indexterm><primary>polkit_uint32_t</primary></indexterm><programlisting>typedef unsigned int polkit_uint32_t;
+</programlisting>
+<para>
+Type for unsigned 32 bit integer.</para>
 <para>
 
 </para></refsect2>
@@ -71,4 +108,6 @@ Type for unsigned 64 bit integer.</para>
 
 
 
+
+<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

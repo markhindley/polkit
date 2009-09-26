@@ -32,6 +32,7 @@ polkit-policy-file-entry
 @key: 
 @value: 
 @user_data: 
+@Returns: 
 
 
 <!-- ##### FUNCTION polkit_policy_file_entry_ref ##### -->
@@ -95,6 +96,33 @@ polkit-policy-file-entry
 @Returns: 
 
 
+<!-- ##### FUNCTION polkit_policy_file_entry_get_action_vendor ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_action_vendor_url ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_action_icon_name ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
 <!-- ##### FUNCTION polkit_policy_file_entry_annotations_foreach ##### -->
 <para>
 
@@ -103,6 +131,7 @@ polkit-policy-file-entry
 @policy_file_entry: 
 @cb: 
 @user_data: 
+@Returns: 
 
 
 <!-- ##### FUNCTION polkit_policy_file_entry_get_annotation ##### -->
@@ -112,6 +141,26 @@ polkit-policy-file-entry
 
 @policy_file_entry: 
 @key: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_default_factory ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_set_default ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@defaults: 
+@error: 
 @Returns: 
 
 

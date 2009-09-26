@@ -5,41 +5,42 @@
 <title>Results</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
-<link rel="up" href="rn02.html" title="Core API Reference">
+<link rel="up" href="ref-core.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-error.html" title="Error reporting">
 <link rel="next" href="polkit-polkit-action.html" title="Actions">
-<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="rn02.html" title="Core API Reference">
-<link rel="reference" href="rn03.html" title="Convenience API Reference">
-<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
-<link rel="reference" href="rn05.html" title="Tools and file formats">
-<link rel="index" href="ix01.html" title="Index">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
 <td><a accesskey="p" href="polkit-polkit-error.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="rn02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-action.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3120962" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2672627" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id3123187" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2718569" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-result"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id3120962"></a><span class="refentrytitle">Results</span>
+<a name="id2672627"></a><span class="refentrytitle">Results</span>
 </h2>
 <p>Results &#8212; Definition of results of PolicyKit queries.</p>
 </td>
@@ -60,7 +61,7 @@ const char*         <a class="link" href="polkit-polkit-result.html#polkit-resul
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id3123187"></a><h2>Description</h2>
+<a name="id2718569"></a><h2>Description</h2>
 <p>
 These functions are used to manipulate PolicyKit results.</p>
 <p>
@@ -68,11 +69,11 @@ These functions are used to manipulate PolicyKit results.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id3123207"></a><h2>Details</h2>
+<a name="id2718590"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id3123218"></a><h3>
+<a name="id2718600"></a><h3>
 <a name="PolKitResult"></a>enum PolKitResult</h3>
-<a class="indexterm" name="id3123230"></a><pre class="programlisting">typedef enum
+<a class="indexterm" name="id2718613"></a><pre class="programlisting">typedef enum
 {
         POLKIT_RESULT_UNKNOWN,
 
@@ -87,12 +88,16 @@ These functions are used to manipulate PolicyKit results.</p>
         POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS,
 
         POLKIT_RESULT_YES,
+
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT,
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT,
+
         POLKIT_RESULT_N_RESULTS
 } PolKitResult;
 </pre>
 <p>
 Result codes from queries to PolicyKit. This enumeration may grow
-in the future.</p>
+in the future. One should never rely on the ordering</p>
 <p>
 
 </p>
@@ -161,6 +166,25 @@ resource in the future.
 </td>
 </tr>
 <tr>
+<td><p><span class="term"><a name="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-ONE-SHOT:CAPS"></a><code class="literal">POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access exactly one time to the process the caller is originating
+from. See <a class="link" href="polkit-polkit-context.html#polkit-context-is-caller-authorized"><code class="function">polkit_context_is_caller_authorized()</code></a> for discussion (and
+limitations) about one-shot authorizations.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a name="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-ONE-SHOT:CAPS"></a><code class="literal">POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as himself will grant access exactly
+one time to the process the caller is originating from. See
+<a class="link" href="polkit-polkit-context.html#polkit-context-is-caller-authorized"><code class="function">polkit_context_is_caller_authorized()</code></a> for discussion (and
+limitations) about one-shot authorizations.
+</td>
+</tr>
+<tr>
 <td><p><span class="term"><a name="POLKIT-RESULT-N-RESULTS:CAPS"></a><code class="literal">POLKIT_RESULT_N_RESULTS</code></span></p></td>
 <td> Number of result codes
 </td>
@@ -170,9 +194,9 @@ resource in the future.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3140851"></a><h3>
+<a name="id2727469"></a><h3>
 <a name="polkit-result-to-string-representation"></a>polkit_result_to_string_representation ()</h3>
-<a class="indexterm" name="id3140864"></a><pre class="programlisting">const char*         polkit_result_to_string_representation
+<a class="indexterm" name="id2727482"></a><pre class="programlisting">const char*         polkit_result_to_string_representation
                                                         (<a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a> result);</pre>
 <p>
 Gives a textual representation of a <a class="link" href="polkit-polkit-result.html#PolKitResult"><span class="type">PolKitResult</span></a> object. This
@@ -203,9 +227,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3140964"></a><h3>
+<a name="id2727582"></a><h3>
 <a name="polkit-result-from-string-representation"></a>polkit_result_from_string_representation ()</h3>
-<a class="indexterm" name="id3140977"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_result_from_string_representation
+<a class="indexterm" name="id2727596"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_result_from_string_representation
                                                         (const char *string,
                                                          <a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a> *out_result);</pre>
 <p>
@@ -235,6 +259,11 @@ Given a textual representation of a <a class="link" href="polkit-polkit-result.h
 </tbody>
 </table></div>
 </div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2721537"></a><div class="refsect2" lang="en"><a name="id2721538"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2721539"></a></div>
 </div>
 </div>
 </body>

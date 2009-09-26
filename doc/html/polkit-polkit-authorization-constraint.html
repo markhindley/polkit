@@ -1,0 +1,601 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Authorization Constraints</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-authorization.html" title="Authorization Entry">
+<link rel="next" href="polkit-polkit-authorization-db.html" title="Authorization Database">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-authorization.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-authorization-db.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2714382" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2749042" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-authorization-constraint"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2714382"></a><span class="refentrytitle">Authorization Constraints</span>
+</h2>
+<p>Authorization Constraints &#8212; Conditions that must be satisfied in
+order for an authorization to apply</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+enum                <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraintType">PolKitAuthorizationConstraintType</a>;
+                    <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>;
+<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>* <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-require-local">polkit_authorization_constraint_get_require_local</a>
+                                                        (void);
+<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>* <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-require-active">polkit_authorization_constraint_get_require_active</a>
+                                                        (void);
+<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>* <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-ref">polkit_authorization_constraint_ref</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);
+void                <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-unref">polkit_authorization_constraint_unref</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);
+void                <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-debug">polkit_authorization_constraint_debug</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);
+<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-validate">polkit_authorization_constraint_validate</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);
+<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraintType">PolKitAuthorizationConstraintType</a> <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-type">polkit_authorization_constraint_type</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);
+<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-check-session">polkit_authorization_constraint_check_session</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc,
+                                                         <a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);
+<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-check-caller">polkit_authorization_constraint_check_caller</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc,
+                                                         <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);
+size_t              <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-to-string">polkit_authorization_constraint_to_string</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc,
+                                                         char *out_buf,
+                                                         size_t buf_size);
+<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>* <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-from-string">polkit_authorization_constraint_from_string</a>
+                                                        (const char *str);
+size_t              <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-from-caller">polkit_authorization_constraint_get_from_caller</a>
+                                                        (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+                                                         <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> **out_array,
+                                                         size_t array_size);
+<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-equal">polkit_authorization_constraint_equal</a>
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *a,
+                                                         <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *b);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2749042"></a><h2>Description</h2>
+<p>
+This class is used to represent conditions that must be satisfied
+in order for an authorization to apply</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2749063"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2749074"></a><h3>
+<a name="PolKitAuthorizationConstraintType"></a>enum PolKitAuthorizationConstraintType</h3>
+<a class="indexterm" name="id2749088"></a><pre class="programlisting">typedef enum {
+        POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_LOCAL,
+        POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE
+} PolKitAuthorizationConstraintType;
+</pre>
+<p>
+This enumeration describes the type of the authorization
+constraint.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a name="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-LOCAL:CAPS"></a><code class="literal">POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_LOCAL</code></span></p></td>
+<td> the session or
+caller must be local
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a name="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-ACTIVE:CAPS"></a><code class="literal">POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE</code></span></p></td>
+<td> the session or
+caller must be in an active session
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2749164"></a><h3>
+<a name="PolKitAuthorizationConstraint"></a>PolKitAuthorizationConstraint</h3>
+<a class="indexterm" name="id2747550"></a><pre class="programlisting">typedef struct _PolKitAuthorizationConstraint PolKitAuthorizationConstraint;</pre>
+<p>
+Instances of this class are used to represent conditions that must
+be satisfied in order for an authorization to apply.</p>
+<p>
+
+</p>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2747580"></a><h3>
+<a name="polkit-authorization-constraint-get-require-local"></a>polkit_authorization_constraint_get_require_local ()</h3>
+<a class="indexterm" name="id2747597"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>* polkit_authorization_constraint_get_require_local
+                                                        (void);</pre>
+<p>
+Get a <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint"><span class="type">PolKitAuthorizationConstraint</span></a> object that represents the
+constraint that the session or caller must be local.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> the constraint; the caller shall not unref this object
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2747656"></a><h3>
+<a name="polkit-authorization-constraint-get-require-active"></a>polkit_authorization_constraint_get_require_active ()</h3>
+<a class="indexterm" name="id2747672"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>* polkit_authorization_constraint_get_require_active
+                                                        (void);</pre>
+<p>
+Get a <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint"><span class="type">PolKitAuthorizationConstraint</span></a> object that represents the
+constraint that the session or caller must be active.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> the constraint; the caller shall not unref this object
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2747732"></a><h3>
+<a name="polkit-authorization-constraint-ref"></a>polkit_authorization_constraint_ref ()</h3>
+<a class="indexterm" name="id2747747"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>* polkit_authorization_constraint_ref
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);</pre>
+<p>
+Increase reference count.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> the object
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2747817"></a><h3>
+<a name="polkit-authorization-constraint-unref"></a>polkit_authorization_constraint_unref ()</h3>
+<a class="indexterm" name="id2747832"></a><pre class="programlisting">void                polkit_authorization_constraint_unref
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td> the authorization_constraint object
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2739730"></a><h3>
+<a name="polkit-authorization-constraint-debug"></a>polkit_authorization_constraint_debug ()</h3>
+<a class="indexterm" name="id2739746"></a><pre class="programlisting">void                polkit_authorization_constraint_debug
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);</pre>
+<p>
+Print debug details</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2739805"></a><h3>
+<a name="polkit-authorization-constraint-validate"></a>polkit_authorization_constraint_validate ()</h3>
+<a class="indexterm" name="id2739821"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_constraint_validate
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);</pre>
+<p>
+Validate the object</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> iff the object is valid.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2739897"></a><h3>
+<a name="polkit-authorization-constraint-type"></a>polkit_authorization_constraint_type ()</h3>
+<a class="indexterm" name="id2739913"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraintType">PolKitAuthorizationConstraintType</a> polkit_authorization_constraint_type
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc);</pre>
+<p>
+Describe the constraint; this is only useful when inspecting an
+authorization to present information to the user (e.g. as
+polkit-auth(1) does).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> type from <span class="type">PolKitAuthorizationConstraintFlags</span>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2739993"></a><h3>
+<a name="polkit-authorization-constraint-check-session"></a>polkit_authorization_constraint_check_session ()</h3>
+<a class="indexterm" name="id2740010"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_constraint_check_session
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc,
+                                                         <a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
+<p>
+Determine if the given session satisfies the conditions imposed by
+the given constraint.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></p></td>
+<td> the session
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> if, and only if, the given session satisfies the
+conditions imposed by the given constraint.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2751936"></a><h3>
+<a name="polkit-authorization-constraint-check-caller"></a>polkit_authorization_constraint_check_caller ()</h3>
+<a class="indexterm" name="id2751951"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_constraint_check_caller
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc,
+                                                         <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
+<p>
+Determine if the given caller satisfies the conditions imposed by
+the given constraint</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>&#160;:</span></p></td>
+<td> the caller
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> if, and only if, the given caller satisfies the
+conditions imposed by the given constraint.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2752043"></a><h3>
+<a name="polkit-authorization-constraint-to-string"></a>polkit_authorization_constraint_to_string ()</h3>
+<a class="indexterm" name="id2752058"></a><pre class="programlisting">size_t              polkit_authorization_constraint_to_string
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc,
+                                                         char *out_buf,
+                                                         size_t buf_size);</pre>
+<p>
+Get a textual representation of the constraint; this is only useful
+for serializing; it's a machine, not human, readable string.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_buf</code></em>&#160;:</span></p></td>
+<td> buffer to store the string representation in
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf_size</code></em>&#160;:</span></p></td>
+<td> size of buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> Number of characters written (not including trailing
+'\0'). If the output was truncated due to the buffer being too
+small, buf_size will be returned. Thus, a return value of buf_size
+or more indicates that the output was truncated (see snprintf(3))
+or an error occured.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2752175"></a><h3>
+<a name="polkit-authorization-constraint-from-string"></a>polkit_authorization_constraint_from_string ()</h3>
+<a class="indexterm" name="id2752190"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a>* polkit_authorization_constraint_from_string
+                                                        (const char *str);</pre>
+<p>
+Construct a constraint from a textual representation as returned by
+<a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-to-string"><code class="function">polkit_authorization_constraint_to_string()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>str</code></em>&#160;:</span></p></td>
+<td> textual representation of constraint
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> the constraint or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if the string coulnd't be parsed.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2752271"></a><h3>
+<a name="polkit-authorization-constraint-get-from-caller"></a>polkit_authorization_constraint_get_from_caller ()</h3>
+<a class="indexterm" name="id2752285"></a><pre class="programlisting">size_t              polkit_authorization_constraint_get_from_caller
+                                                        (<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
+                                                         <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> **out_array,
+                                                         size_t array_size);</pre>
+<p>
+Given a caller, return the set of most restrictive constraints
+possible. For example, if the caller is local and active, a set
+constraints requiring this will be returned.
+</p>
+<p>
+This function is typically used when the caller obtains an
+authorization through authentication; the goal is to put
+constraints on the authorization such that it's only valid when the
+caller is in the context as where she obtained it.
+</p>
+<p>
+The caller must unref all the created objects using
+<a class="link" href="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-unref"><code class="function">polkit_authorization_constraint_unref()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>&#160;:</span></p></td>
+<td> caller
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_array</code></em>&#160;:</span></p></td>
+<td> return location for constraints
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>array_size</code></em>&#160;:</span></p></td>
+<td> size of the passed array
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> This function do not create more than <em class="parameter"><code>array_size</code></em> constraints
+(including the trailing <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>). If the output was truncated due to
+this limit then the return value is the number of objects (not
+including the trailing <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>) which would have been written to the
+final array if enough space had been available. Thus, a return
+value of <em class="parameter"><code>array_size</code></em> or more means that the output was truncated. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2752452"></a><h3>
+<a name="polkit-authorization-constraint-equal"></a>polkit_authorization_constraint_equal ()</h3>
+<a class="indexterm" name="id2752468"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_constraint_equal
+                                                        (<a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *a,
+                                                         <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *b);</pre>
+<p>
+Determines if two constraints are equal</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em>&#160;:</span></p></td>
+<td> first constraint
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em>&#160;:</span></p></td>
+<td> first constraint
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if the given constraints are equal
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2752570"></a><div class="refsect2" lang="en"><a name="id2752571"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2752572"></a></div>
+</div>
+</div>
+</body>
+</html>

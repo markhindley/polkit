@@ -5,41 +5,42 @@
 <title>Configuration</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
-<link rel="up" href="rn02.html" title="Core API Reference">
+<link rel="up" href="ref-core.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-context.html" title="Context">
 <link rel="next" href="polkit-polkit-policy-file.html" title="Policy Definition Files">
-<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="rn02.html" title="Core API Reference">
-<link rel="reference" href="rn03.html" title="Convenience API Reference">
-<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
-<link rel="reference" href="rn05.html" title="Tools and file formats">
-<link rel="index" href="ix01.html" title="Index">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
 <td><a accesskey="p" href="polkit-polkit-context.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="rn02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-policy-file.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3120400" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2713200" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id3146432" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2736598" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-config"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id3120400"></a><span class="refentrytitle">Configuration</span>
+<a name="id2713200"></a><span class="refentrytitle">Configuration</span>
 </h2>
 <p>Configuration &#8212; Represents the system-wide <code class="literal">/etc/PolicyKit/PolicyKit.conf</code> file.</p>
 </td>
@@ -72,7 +73,7 @@ enum                <a class="link" href="polkit-polkit-config.html#PolKitConfig
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id3146432"></a><h2>Description</h2>
+<a name="id2736598"></a><h2>Description</h2>
 <p>
 This class is used to represent the /etc/PolicyKit/PolicyKit.conf
 configuration file. Applications using PolicyKit should never use
@@ -83,11 +84,11 @@ components.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id3146455"></a><h2>Details</h2>
+<a name="id2736621"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id3146465"></a><h3>
+<a name="id2736632"></a><h3>
 <a name="PolKitConfig"></a>PolKitConfig</h3>
-<a class="indexterm" name="id3146478"></a><pre class="programlisting">typedef struct _PolKitConfig PolKitConfig;</pre>
+<a class="indexterm" name="id2736644"></a><pre class="programlisting">typedef struct _PolKitConfig PolKitConfig;</pre>
 <p>
 This class represents the system-wide configuration file for
 PolicyKit. Applications using PolicyKit should never use this
@@ -99,9 +100,9 @@ components.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3146500"></a><h3>
+<a name="id2736666"></a><h3>
 <a name="polkit-config-new"></a>polkit_config_new ()</h3>
-<a class="indexterm" name="id3146512"></a><pre class="programlisting"><a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a>*       polkit_config_new                   (const char *path,
+<a class="indexterm" name="id2736679"></a><pre class="programlisting"><a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a>*       polkit_config_new                   (const char *path,
                                                          <a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error);</pre>
 <p>
 Load and parse a PolicyKit configuration file.</p>
@@ -131,9 +132,9 @@ Load and parse a PolicyKit configuration file.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3139148"></a><h3>
+<a name="id2730092"></a><h3>
 <a name="polkit-config-ref"></a>polkit_config_ref ()</h3>
-<a class="indexterm" name="id3139160"></a><pre class="programlisting"><a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a>*       polkit_config_ref                   (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config);</pre>
+<a class="indexterm" name="id2730104"></a><pre class="programlisting"><a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a>*       polkit_config_ref                   (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -157,9 +158,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3139221"></a><h3>
+<a name="id2730165"></a><h3>
 <a name="polkit-config-unref"></a>polkit_config_unref ()</h3>
-<a class="indexterm" name="id3139234"></a><pre class="programlisting">void                polkit_config_unref                 (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config);</pre>
+<a class="indexterm" name="id2730177"></a><pre class="programlisting">void                polkit_config_unref                 (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -178,9 +179,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3139286"></a><h3>
+<a name="id2736052"></a><h3>
 <a name="polkit-config-can-session-do-action"></a>polkit_config_can_session_do_action ()</h3>
-<a class="indexterm" name="id3139297"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        polkit_config_can_session_do_action (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config,
+<a class="indexterm" name="id2736064"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        polkit_config_can_session_do_action (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
 <p>
@@ -218,9 +219,9 @@ was no match in the configuration file.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3152969"></a><h3>
+<a name="id2736183"></a><h3>
 <a name="polkit-config-can-caller-do-action"></a>polkit_config_can_caller_do_action ()</h3>
-<a class="indexterm" name="id3152980"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        polkit_config_can_caller_do_action  (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config,
+<a class="indexterm" name="id2736194"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        polkit_config_can_caller_do_action  (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
 <p>
@@ -258,9 +259,9 @@ was no match in the configuration file.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3153099"></a><h3>
+<a name="id2730539"></a><h3>
 <a name="PolKitConfigAdminAuthType"></a>enum PolKitConfigAdminAuthType</h3>
-<a class="indexterm" name="id3153110"></a><pre class="programlisting">typedef enum
+<a class="indexterm" name="id2730551"></a><pre class="programlisting">typedef enum
 {
         POLKIT_CONFIG_ADMIN_AUTH_TYPE_USER,
         POLKIT_CONFIG_ADMIN_AUTH_TYPE_GROUP
@@ -292,9 +293,9 @@ administrator matches users from one or more groups
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3138555"></a><h3>
+<a name="id2730625"></a><h3>
 <a name="polkit-config-determine-admin-auth-type"></a>polkit_config_determine_admin_auth_type ()</h3>
-<a class="indexterm" name="id3138568"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_config_determine_admin_auth_type
+<a class="indexterm" name="id2730638"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_config_determine_admin_auth_type
                                                         (<a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a> *pk_config,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
@@ -346,6 +347,11 @@ string.
 </tbody>
 </table></div>
 </div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2730792"></a><div class="refsect2" lang="en"><a name="id2730793"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2730794"></a></div>
 </div>
 </div>
 </body>

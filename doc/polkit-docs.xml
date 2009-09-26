@@ -55,7 +55,7 @@
     </legalnotice>
   </bookinfo>
 
-  <reference>
+  <reference id="ref-design">
     <title>Design Overview</title>
     <partintro>
       <para>
@@ -68,55 +68,64 @@
     <xi:include href="spec/polkit-spec-configuration.xml" />    
   </reference>
 
-  <reference>
+  <reference id="ref-internal">
+    <title>Internal API Reference</title>
+    <partintro>
+      <para>
+	This part presents the class and function reference for the
+	internal support classes, data structures and functions. These
+	symbols are not exported.
+      </para>
+    </partintro>
+    <xi:include href="xml/kit.xml"/>
+    <xi:include href="xml/kit-memory.xml"/>
+    <xi:include href="xml/kit-string.xml"/>
+    <xi:include href="xml/kit-message.xml"/>
+    <xi:include href="xml/kit-list.xml"/>
+    <xi:include href="xml/kit-hash.xml"/>
+    <xi:include href="xml/kit-file.xml"/>
+    <xi:include href="xml/kit-spawn.xml"/>
+    <xi:include href="xml/kit-entity.xml"/>
+    <xi:include href="xml/kit-test.xml"/>
+  </reference>
+
+  <reference id="ref-core">
     <title>Core API Reference</title>
     <partintro>
       <para>
 	This part presents the class and function reference for the
-	core PolicyKit library, <literal>libpolkit</literal>.
+	core PolicyKit
+	libraries, <literal>libpolkit</literal>, <literal>libpolkit-grant</literal>
+	and <literal>libpolkit-dbus</literal>. Note that unless
+	explictly stated, a function belongs
+	to <literal>libpolkit</literal>. The split is arranged such
+	that mechanisms checking for authorizations only need to link
+	with <literal>libpolkit</literal>.
       </para>
     </partintro>
     <xi:include href="xml/polkit-types.xml"/>
+    <xi:include href="xml/polkit-sysdeps.xml"/>
+    <xi:include href="xml/polkit-simple.xml"/>
     <xi:include href="xml/polkit-error.xml"/>
     <xi:include href="xml/polkit-result.xml"/>
     <xi:include href="xml/polkit-action.xml"/>
     <xi:include href="xml/polkit-seat.xml"/>
     <xi:include href="xml/polkit-session.xml"/>
     <xi:include href="xml/polkit-caller.xml"/>
+    <xi:include href="xml/polkit-dbus.xml"/>
     <xi:include href="xml/polkit-context.xml"/>
     <xi:include href="xml/polkit-config.xml"/>
     <xi:include href="xml/polkit-policy-file.xml"/>
     <xi:include href="xml/polkit-policy-file-entry.xml"/>
     <xi:include href="xml/polkit-policy-default.xml"/>
     <xi:include href="xml/polkit-policy-cache.xml"/>
-  </reference>
-
-  <reference>
-    <title>Convenience API Reference</title>
-    <partintro>
-      <para>
-	This part presents the class and function reference for the
-	convenience library <literal>libpolkit-dbus</literal>.
-      </para>
-    </partintro>
-    <xi:include href="xml/polkit-dbus.xml"/>
-  </reference>
-
-  <reference>
-    <title>Authorization and privilege granting API Reference</title>
-    <partintro>
-      <para>
-	This part presents the class and function reference for the
-	PolicyKit granting library, libpolkit-grant. This library is
-	targetted at desktop developers writing authentication dialogs
-	that users can use to obtain privileges to do specific
-	actions.
-      </para>
-    </partintro>
+    <xi:include href="xml/polkit-authorization.xml"/>
+    <xi:include href="xml/polkit-authorization-constraint.xml"/>
+    <xi:include href="xml/polkit-authorization-db.xml"/>
     <xi:include href="xml/polkit-grant.xml"/>
   </reference>
 
-  <reference>
+  <reference id="tools-fileformats">
     <title>Tools and file formats</title>
     <partintro>
       <para>
@@ -125,11 +134,18 @@
     </partintro>
     <xi:include href="man/PolicyKit.xml"/>
     <xi:include href="man/PolicyKit.conf.xml"/>
-    <xi:include href="man/polkit-grant.xml"/>
-    <xi:include href="man/polkit-list-actions.xml"/>
+    <xi:include href="man/polkit-auth.xml"/>
+    <xi:include href="man/polkit-action.xml"/>
     <xi:include href="man/polkit-policy-file-validate.xml"/>
     <xi:include href="man/polkit-config-file-validate.xml"/>
   </reference>
+
+  <index role="deprecated">
+    <title>Index of deprecated symbols</title>
+  </index>
+  <index role="0.7">
+    <title>Index of new symbols in 0.7</title>
+  </index>
 
   <index>
     <title>Index</title>
@@ -140,24 +156,7 @@
   <appendix id="license">
     <title>License</title>
     <para>
-      The PolicyKit command-line tools are licensed to you under the
-      GNU General Public License either version 2 of the License, or
-      (at your option) any later version.
-    </para>
-    <para>
-      The PolicyKit libraries (libpolkit, libpolkit-grant,
-      libpolkit-dbus) are licensed to you under your choice of the
-      Academic Free License version 2.1, or the GNU General Public
-      License either version 2 of the License, or (at your option) any
-      later version.
-    </para>
-    <para>
-      Both licenses are included here. Some individual source code
-      files and/or binaries may be under the GPL only.
-    </para>
-    <para>
-      Each source code file is marked with the proper copyright
-      information.
+<programlisting><xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../COPYING" parse="text"><xi:fallback>FIXME: MISSING XINCLUDE CONTENT</xi:fallback></xi:include></programlisting>
     </para>
   </appendix>
 </book>

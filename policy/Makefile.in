@@ -33,7 +33,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = policy
-DIST_COMMON = $(dist_polkit_privilege_DATA) $(srcdir)/Makefile.am \
+DIST_COMMON = $(dist_polkit_policy_DATA) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
@@ -51,11 +51,12 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(polkit_privilegedir)"
-dist_polkit_privilegeDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(dist_polkit_privilege_DATA)
+am__installdirs = "$(DESTDIR)$(polkit_policydir)"
+dist_polkit_policyDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(dist_polkit_policy_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
+ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AR = @AR@
 AUTH_LIBS = @AUTH_LIBS@
@@ -63,6 +64,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+CATALOGS = @CATALOGS@
+CATOBJEXT = @CATOBJEXT@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -73,7 +76,10 @@ CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
+DATADIRNAME = @DATADIRNAME@
 DBUS_CFLAGS = @DBUS_CFLAGS@
+DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
+DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -86,8 +92,11 @@ EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
 F77 = @F77@
 FFLAGS = @FFLAGS@
+GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
+GMOFILES = @GMOFILES@
+GMSGFMT = @GMSGFMT@
 GREP = @GREP@
 HAVE_PAM = @HAVE_PAM@
 HTML_DIR = @HTML_DIR@
@@ -96,6 +105,31 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INSTOBJEXT = @INSTOBJEXT@
+INTLLIBS = @INTLLIBS@
+INTLTOOL_CAVES_RULE = @INTLTOOL_CAVES_RULE@
+INTLTOOL_DESKTOP_RULE = @INTLTOOL_DESKTOP_RULE@
+INTLTOOL_DIRECTORY_RULE = @INTLTOOL_DIRECTORY_RULE@
+INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
+INTLTOOL_KBD_RULE = @INTLTOOL_KBD_RULE@
+INTLTOOL_KEYS_RULE = @INTLTOOL_KEYS_RULE@
+INTLTOOL_MERGE = @INTLTOOL_MERGE@
+INTLTOOL_OAF_RULE = @INTLTOOL_OAF_RULE@
+INTLTOOL_PERL = @INTLTOOL_PERL@
+INTLTOOL_POLICY_RULE = @INTLTOOL_POLICY_RULE@
+INTLTOOL_PONG_RULE = @INTLTOOL_PONG_RULE@
+INTLTOOL_PROP_RULE = @INTLTOOL_PROP_RULE@
+INTLTOOL_SCHEMAS_RULE = @INTLTOOL_SCHEMAS_RULE@
+INTLTOOL_SERVER_RULE = @INTLTOOL_SERVER_RULE@
+INTLTOOL_SERVICE_RULE = @INTLTOOL_SERVICE_RULE@
+INTLTOOL_SHEET_RULE = @INTLTOOL_SHEET_RULE@
+INTLTOOL_SOUNDLIST_RULE = @INTLTOOL_SOUNDLIST_RULE@
+INTLTOOL_THEME_RULE = @INTLTOOL_THEME_RULE@
+INTLTOOL_UI_RULE = @INTLTOOL_UI_RULE@
+INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
+INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
+INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
+INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -108,6 +142,9 @@ LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+MKINSTALLDIRS = @MKINSTALLDIRS@
+MSGFMT = @MSGFMT@
+MSGFMT_OPTS = @MSGFMT_OPTS@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -123,15 +160,23 @@ PAM_MODULE_DIR = @PAM_MODULE_DIR@
 PAM_PREFIX = @PAM_PREFIX@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+POFILES = @POFILES@
+POLKIT_AUTHDB = @POLKIT_AUTHDB@
 POLKIT_GROUP = @POLKIT_GROUP@
 POLKIT_USER = @POLKIT_USER@
+POSUB = @POSUB@
+PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
+R_DYNAMIC_LDFLAG = @R_DYNAMIC_LDFLAG@
 SED = @SED@
 SELINUX_LIBS = @SELINUX_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+XGETTEXT = @XGETTEXT@
 XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -184,8 +229,10 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-polkit_privilegedir = $(datadir)/PolicyKit/policy
-dist_polkit_privilege_DATA = 
+polkit_policydir = $(datadir)/PolicyKit/policy
+dist_polkit_policy_DATA = org.freedesktop.policykit.policy
+DISTCLEANFILES = org.freedesktop.policykit.policy
+EXTRA_DIST = org.freedesktop.policykit.policy.in
 all: all-am
 
 .SUFFIXES:
@@ -224,22 +271,22 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-dist_polkit_privilegeDATA: $(dist_polkit_privilege_DATA)
+install-dist_polkit_policyDATA: $(dist_polkit_policy_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(polkit_privilegedir)" || $(MKDIR_P) "$(DESTDIR)$(polkit_privilegedir)"
-	@list='$(dist_polkit_privilege_DATA)'; for p in $$list; do \
+	test -z "$(polkit_policydir)" || $(MKDIR_P) "$(DESTDIR)$(polkit_policydir)"
+	@list='$(dist_polkit_policy_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(dist_polkit_privilegeDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(polkit_privilegedir)/$$f'"; \
-	  $(dist_polkit_privilegeDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(polkit_privilegedir)/$$f"; \
+	  echo " $(dist_polkit_policyDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(polkit_policydir)/$$f'"; \
+	  $(dist_polkit_policyDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(polkit_policydir)/$$f"; \
 	done
 
-uninstall-dist_polkit_privilegeDATA:
+uninstall-dist_polkit_policyDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(dist_polkit_privilege_DATA)'; for p in $$list; do \
+	@list='$(dist_polkit_policy_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(polkit_privilegedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(polkit_privilegedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(polkit_policydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(polkit_policydir)/$$f"; \
 	done
 tags: TAGS
 TAGS:
@@ -278,7 +325,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(polkit_privilegedir)"; do \
+	for dir in "$(DESTDIR)$(polkit_policydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -301,6 +348,7 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -323,7 +371,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-dist_polkit_privilegeDATA
+install-data-am: install-dist_polkit_policyDATA
 
 install-dvi: install-dvi-am
 
@@ -357,7 +405,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-dist_polkit_privilegeDATA
+uninstall-am: uninstall-dist_polkit_policyDATA
 
 .MAKE: install-am install-strip
 
@@ -365,25 +413,20 @@ uninstall-am: uninstall-dist_polkit_privilegeDATA
 	clean-local distclean distclean-generic distclean-libtool \
 	distdir dvi dvi-am html html-am info info-am install \
 	install-am install-data install-data-am \
-	install-dist_polkit_privilegeDATA install-dvi install-dvi-am \
+	install-dist_polkit_policyDATA install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-dist_polkit_privilegeDATA
+	uninstall-dist_polkit_policyDATA
 
+
+@INTLTOOL_POLICY_RULE@
 
 check:
-	for f in $(dist_polkit_privilege_DATA); do \
-          echo "Validating privilege file: $$f"; \
-          $(top_builddir)/tools/polkit-policy-file-validate --file $(srcdir)/$$f; \
-          if [ "$$?" != "0" ]; then \
-            echo "failed"; \
-            exit 1; \
-          fi; \
-        done
+	$(top_builddir)/tools/polkit-policy-file-validate $(dist_polkit_policy_DATA)
 
 clean-local :
 	rm -f *~

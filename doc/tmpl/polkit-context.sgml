@@ -114,6 +114,14 @@ polkit-context
 @pk_context: 
 
 
+<!-- ##### FUNCTION polkit_context_force_reload ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+
+
 <!-- ##### FUNCTION polkit_context_io_func ##### -->
 <para>
 
@@ -161,6 +169,40 @@ polkit-context
 
 @pk_context: 
 @error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_is_caller_authorized ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@action: 
+@caller: 
+@revoke_if_one_shot: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_is_session_authorized ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@action: 
+@session: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_get_authorization_db ##### -->
+<para>
+
+</para>
+
+@pk_context: 
 @Returns: 
 
 

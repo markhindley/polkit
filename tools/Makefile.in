@@ -14,6 +14,7 @@
 
 @SET_MAKE@
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -33,8 +34,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = polkit-config-file-validate$(EXEEXT) \
-	polkit-policy-file-validate$(EXEEXT) polkit-grant$(EXEEXT) \
-	polkit-list-actions$(EXEEXT)
+	polkit-policy-file-validate$(EXEEXT) polkit-action$(EXEEXT) \
+	polkit-auth$(EXEEXT)
 subdir = tools
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -45,31 +46,31 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(profiledir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
+am_polkit_action_OBJECTS = polkit-action.$(OBJEXT)
+polkit_action_OBJECTS = $(am_polkit_action_OBJECTS)
+polkit_action_DEPENDENCIES = $(top_builddir)/src/polkit/libpolkit.la
+am_polkit_auth_OBJECTS = polkit-auth.$(OBJEXT)
+polkit_auth_OBJECTS = $(am_polkit_auth_OBJECTS)
+polkit_auth_DEPENDENCIES = $(top_builddir)/src/polkit/libpolkit.la \
+	$(top_builddir)/src/polkit-grant/libpolkit-grant.la \
+	$(top_builddir)/src/polkit-dbus/libpolkit-dbus.la
 am_polkit_config_file_validate_OBJECTS =  \
 	polkit-config-file-validate.$(OBJEXT)
 polkit_config_file_validate_OBJECTS =  \
 	$(am_polkit_config_file_validate_OBJECTS)
 polkit_config_file_validate_DEPENDENCIES =  \
-	$(top_builddir)/polkit/libpolkit.la
-am_polkit_grant_OBJECTS = polkit-grant.$(OBJEXT)
-polkit_grant_OBJECTS = $(am_polkit_grant_OBJECTS)
-polkit_grant_DEPENDENCIES = $(top_builddir)/polkit/libpolkit.la \
-	$(top_builddir)/polkit-grant/libpolkit-grant.la \
-	$(top_builddir)/polkit-dbus/libpolkit-dbus.la \
-	$(top_builddir)/polkit/libpolkit-grant-private.la
-am_polkit_list_actions_OBJECTS = polkit-list-actions.$(OBJEXT)
-polkit_list_actions_OBJECTS = $(am_polkit_list_actions_OBJECTS)
-polkit_list_actions_DEPENDENCIES =  \
-	$(top_builddir)/polkit/libpolkit.la
+	$(top_builddir)/src/polkit/libpolkit.la
 am_polkit_policy_file_validate_OBJECTS =  \
 	polkit-policy-file-validate.$(OBJEXT)
 polkit_policy_file_validate_OBJECTS =  \
 	$(am_polkit_policy_file_validate_OBJECTS)
 polkit_policy_file_validate_DEPENDENCIES =  \
-	$(top_builddir)/polkit/libpolkit.la
+	$(top_builddir)/src/polkit/libpolkit.la
+profileSCRIPT_INSTALL = $(INSTALL_SCRIPT)
+SCRIPTS = $(profile_SCRIPTS)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -82,16 +83,17 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(polkit_config_file_validate_SOURCES) \
-	$(polkit_grant_SOURCES) $(polkit_list_actions_SOURCES) \
+SOURCES = $(polkit_action_SOURCES) $(polkit_auth_SOURCES) \
+	$(polkit_config_file_validate_SOURCES) \
 	$(polkit_policy_file_validate_SOURCES)
-DIST_SOURCES = $(polkit_config_file_validate_SOURCES) \
-	$(polkit_grant_SOURCES) $(polkit_list_actions_SOURCES) \
+DIST_SOURCES = $(polkit_action_SOURCES) $(polkit_auth_SOURCES) \
+	$(polkit_config_file_validate_SOURCES) \
 	$(polkit_policy_file_validate_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
+ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AR = @AR@
 AUTH_LIBS = @AUTH_LIBS@
@@ -99,6 +101,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+CATALOGS = @CATALOGS@
+CATOBJEXT = @CATOBJEXT@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -109,7 +113,10 @@ CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
+DATADIRNAME = @DATADIRNAME@
 DBUS_CFLAGS = @DBUS_CFLAGS@
+DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
+DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -122,8 +129,11 @@ EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
 F77 = @F77@
 FFLAGS = @FFLAGS@
+GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
+GMOFILES = @GMOFILES@
+GMSGFMT = @GMSGFMT@
 GREP = @GREP@
 HAVE_PAM = @HAVE_PAM@
 HTML_DIR = @HTML_DIR@
@@ -132,6 +142,31 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INSTOBJEXT = @INSTOBJEXT@
+INTLLIBS = @INTLLIBS@
+INTLTOOL_CAVES_RULE = @INTLTOOL_CAVES_RULE@
+INTLTOOL_DESKTOP_RULE = @INTLTOOL_DESKTOP_RULE@
+INTLTOOL_DIRECTORY_RULE = @INTLTOOL_DIRECTORY_RULE@
+INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
+INTLTOOL_KBD_RULE = @INTLTOOL_KBD_RULE@
+INTLTOOL_KEYS_RULE = @INTLTOOL_KEYS_RULE@
+INTLTOOL_MERGE = @INTLTOOL_MERGE@
+INTLTOOL_OAF_RULE = @INTLTOOL_OAF_RULE@
+INTLTOOL_PERL = @INTLTOOL_PERL@
+INTLTOOL_POLICY_RULE = @INTLTOOL_POLICY_RULE@
+INTLTOOL_PONG_RULE = @INTLTOOL_PONG_RULE@
+INTLTOOL_PROP_RULE = @INTLTOOL_PROP_RULE@
+INTLTOOL_SCHEMAS_RULE = @INTLTOOL_SCHEMAS_RULE@
+INTLTOOL_SERVER_RULE = @INTLTOOL_SERVER_RULE@
+INTLTOOL_SERVICE_RULE = @INTLTOOL_SERVICE_RULE@
+INTLTOOL_SHEET_RULE = @INTLTOOL_SHEET_RULE@
+INTLTOOL_SOUNDLIST_RULE = @INTLTOOL_SOUNDLIST_RULE@
+INTLTOOL_THEME_RULE = @INTLTOOL_THEME_RULE@
+INTLTOOL_UI_RULE = @INTLTOOL_UI_RULE@
+INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
+INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
+INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
+INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -144,6 +179,9 @@ LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+MKINSTALLDIRS = @MKINSTALLDIRS@
+MSGFMT = @MSGFMT@
+MSGFMT_OPTS = @MSGFMT_OPTS@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -159,15 +197,23 @@ PAM_MODULE_DIR = @PAM_MODULE_DIR@
 PAM_PREFIX = @PAM_PREFIX@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+POFILES = @POFILES@
+POLKIT_AUTHDB = @POLKIT_AUTHDB@
 POLKIT_GROUP = @POLKIT_GROUP@
 POLKIT_USER = @POLKIT_USER@
+POSUB = @POSUB@
+PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
+R_DYNAMIC_LDFLAG = @R_DYNAMIC_LDFLAG@
 SED = @SED@
 SELINUX_LIBS = @SELINUX_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+XGETTEXT = @XGETTEXT@
 XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -221,7 +267,7 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 INCLUDES = \
-	-I$(top_builddir) -I$(top_srcdir) \
+	-I$(top_builddir)/src -I$(top_srcdir)/src \
 	-DPACKAGE_LIBEXEC_DIR=\""$(libexecdir)"\" \
 	-DPACKAGE_SYSCONF_DIR=\""$(sysconfdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
@@ -232,20 +278,16 @@ INCLUDES = \
 	@DBUS_CFLAGS@
 
 polkit_config_file_validate_SOURCES = polkit-config-file-validate.c
-polkit_config_file_validate_LDADD = $(top_builddir)/polkit/libpolkit.la
+polkit_config_file_validate_LDADD = $(top_builddir)/src/polkit/libpolkit.la
 polkit_policy_file_validate_SOURCES = polkit-policy-file-validate.c
-polkit_policy_file_validate_LDADD = $(top_builddir)/polkit/libpolkit.la
-polkit_grant_SOURCES = polkit-grant.c
-polkit_grant_LDADD = @GLIB_LIBS@ @DBUS_LIBS@ $(top_builddir)/polkit/libpolkit.la $(top_builddir)/polkit-grant/libpolkit-grant.la $(top_builddir)/polkit-dbus/libpolkit-dbus.la $(top_builddir)/polkit/libpolkit-grant-private.la
-polkit_list_actions_SOURCES = polkit-list-actions.c
-polkit_list_actions_LDADD = $(GLIB) $(top_builddir)/polkit/libpolkit.la
-edit = sed \
-	-e 's|@docdir[@]|$(docdir)|g' \
-	-e 's|@sbindir[@]|$(sbindir)|g' \
-	-e 's|@sysconfdir[@]|$(sysconfdir)|g' \
-	-e 's|@datadir[@]|$(datadir)|g' \
-	-e 's|@localstatedir[@]|$(localstatedir)|g'
-
+polkit_policy_file_validate_LDADD = $(top_builddir)/src/polkit/libpolkit.la
+polkit_auth_SOURCES = polkit-auth.c
+polkit_auth_LDADD = @GLIB_LIBS@ @DBUS_LIBS@ $(top_builddir)/src/polkit/libpolkit.la $(top_builddir)/src/polkit-grant/libpolkit-grant.la $(top_builddir)/src/polkit-dbus/libpolkit-dbus.la
+polkit_action_SOURCES = polkit-action.c
+polkit_action_LDADD = $(top_builddir)/src/polkit/libpolkit.la
+profiledir = $(sysconfdir)/profile.d
+profile_SCRIPTS = polkit-bash-completion.sh
+EXTRA_DIST = $(profile_SCRIPTS)
 all: all-am
 
 .SUFFIXES:
@@ -307,18 +349,37 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
+polkit-action$(EXEEXT): $(polkit_action_OBJECTS) $(polkit_action_DEPENDENCIES) 
+	@rm -f polkit-action$(EXEEXT)
+	$(LINK) $(polkit_action_OBJECTS) $(polkit_action_LDADD) $(LIBS)
+polkit-auth$(EXEEXT): $(polkit_auth_OBJECTS) $(polkit_auth_DEPENDENCIES) 
+	@rm -f polkit-auth$(EXEEXT)
+	$(LINK) $(polkit_auth_OBJECTS) $(polkit_auth_LDADD) $(LIBS)
 polkit-config-file-validate$(EXEEXT): $(polkit_config_file_validate_OBJECTS) $(polkit_config_file_validate_DEPENDENCIES) 
 	@rm -f polkit-config-file-validate$(EXEEXT)
 	$(LINK) $(polkit_config_file_validate_OBJECTS) $(polkit_config_file_validate_LDADD) $(LIBS)
-polkit-grant$(EXEEXT): $(polkit_grant_OBJECTS) $(polkit_grant_DEPENDENCIES) 
-	@rm -f polkit-grant$(EXEEXT)
-	$(LINK) $(polkit_grant_OBJECTS) $(polkit_grant_LDADD) $(LIBS)
-polkit-list-actions$(EXEEXT): $(polkit_list_actions_OBJECTS) $(polkit_list_actions_DEPENDENCIES) 
-	@rm -f polkit-list-actions$(EXEEXT)
-	$(LINK) $(polkit_list_actions_OBJECTS) $(polkit_list_actions_LDADD) $(LIBS)
 polkit-policy-file-validate$(EXEEXT): $(polkit_policy_file_validate_OBJECTS) $(polkit_policy_file_validate_DEPENDENCIES) 
 	@rm -f polkit-policy-file-validate$(EXEEXT)
 	$(LINK) $(polkit_policy_file_validate_OBJECTS) $(polkit_policy_file_validate_LDADD) $(LIBS)
+install-profileSCRIPTS: $(profile_SCRIPTS)
+	@$(NORMAL_INSTALL)
+	test -z "$(profiledir)" || $(MKDIR_P) "$(DESTDIR)$(profiledir)"
+	@list='$(profile_SCRIPTS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  if test -f $$d$$p; then \
+	    f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	    echo " $(profileSCRIPT_INSTALL) '$$d$$p' '$(DESTDIR)$(profiledir)/$$f'"; \
+	    $(profileSCRIPT_INSTALL) "$$d$$p" "$(DESTDIR)$(profiledir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-profileSCRIPTS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(profile_SCRIPTS)'; for p in $$list; do \
+	  f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	  echo " rm -f '$(DESTDIR)$(profiledir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(profiledir)/$$f"; \
+	done
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -326,9 +387,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit-action.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit-auth.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit-config-file-validate.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit-grant.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit-list-actions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit-policy-file-validate.Po@am__quote@
 
 .c.o:
@@ -434,9 +495,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS)
+all-am: Makefile $(PROGRAMS) $(SCRIPTS)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(profiledir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -484,7 +545,7 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-profileSCRIPTS
 
 install-dvi: install-dvi-am
 
@@ -520,7 +581,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS
+uninstall-am: uninstall-binPROGRAMS uninstall-profileSCRIPTS
 
 .MAKE: install-am install-strip
 
@@ -532,11 +593,12 @@ uninstall-am: uninstall-binPROGRAMS
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
 	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-profileSCRIPTS install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-binPROGRAMS
+	tags uninstall uninstall-am uninstall-binPROGRAMS \
+	uninstall-profileSCRIPTS
 
 
 clean-local :

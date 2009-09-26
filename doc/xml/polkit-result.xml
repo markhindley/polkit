@@ -68,12 +68,16 @@ These functions are used to manipulate PolicyKit results.</para>
         POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS,
 
         POLKIT_RESULT_YES,
+
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT,
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT,
+
         POLKIT_RESULT_N_RESULTS
 } PolKitResult;
 </programlisting>
 <para>
 Result codes from queries to PolicyKit. This enumeration may grow
-in the future.</para>
+in the future. One should never rely on the ordering</para>
 <para>
 
 </para><variablelist role="enum">
@@ -139,6 +143,25 @@ resource in the future.
 </simpara></listitem>
 </varlistentry>
 <varlistentry>
+<term><anchor id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-ONE-SHOT:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access exactly one time to the process the caller is originating
+from. See <link linkend="polkit-context-is-caller-authorized"><function>polkit_context_is_caller_authorized()</function></link> for discussion (and
+limitations) about one-shot authorizations.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><anchor id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-ONE-SHOT:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as himself will grant access exactly
+one time to the process the caller is originating from. See
+<link linkend="polkit-context-is-caller-authorized"><function>polkit_context_is_caller_authorized()</function></link> for discussion (and
+limitations) about one-shot authorizations.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
 <term><anchor id="POLKIT-RESULT-N-RESULTS:CAPS" role="constant"/><literal>POLKIT_RESULT_N_RESULTS</literal></term>
 <listitem><simpara> Number of result codes
 </simpara></listitem>
@@ -189,4 +212,6 @@ Given a textual representation of a <link linkend="PolKitResult"><type>PolKitRes
 
 
 
+
+<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

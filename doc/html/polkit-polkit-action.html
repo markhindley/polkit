@@ -5,41 +5,42 @@
 <title>Actions</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
-<link rel="up" href="rn02.html" title="Core API Reference">
+<link rel="up" href="ref-core.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-result.html" title="Results">
 <link rel="next" href="polkit-polkit-seat.html" title="Seat">
-<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="rn02.html" title="Core API Reference">
-<link rel="reference" href="rn03.html" title="Convenience API Reference">
-<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
-<link rel="reference" href="rn05.html" title="Tools and file formats">
-<link rel="index" href="ix01.html" title="Index">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
 <td><a accesskey="p" href="polkit-polkit-result.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="rn02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-seat.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3132360" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2679034" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id3119254" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2721471" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-action"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id3132360"></a><span class="refentrytitle">Actions</span>
+<a name="id2679034"></a><span class="refentrytitle">Actions</span>
 </h2>
 <p>Actions &#8212; Models what a caller is attempting to do.</p>
 </td>
@@ -65,7 +66,7 @@ void                <a class="link" href="polkit-polkit-action.html#polkit-actio
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id3119254"></a><h2>Description</h2>
+<a name="id2721471"></a><h2>Description</h2>
 <p>
 This class is used to represent a PolicyKit action.</p>
 <p>
@@ -73,11 +74,11 @@ This class is used to represent a PolicyKit action.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id3119400"></a><h2>Details</h2>
+<a name="id2725366"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id3119410"></a><h3>
+<a name="id2725377"></a><h3>
 <a name="PolKitAction"></a>PolKitAction</h3>
-<a class="indexterm" name="id3119423"></a><pre class="programlisting">typedef struct _PolKitAction PolKitAction;</pre>
+<a class="indexterm" name="id2725389"></a><pre class="programlisting">typedef struct _PolKitAction PolKitAction;</pre>
 <p>
 Objects of this class are used to record information about an action.</p>
 <p>
@@ -86,9 +87,9 @@ Objects of this class are used to record information about an action.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3119443"></a><h3>
+<a name="id2725409"></a><h3>
 <a name="polkit-action-new"></a>polkit_action_new ()</h3>
-<a class="indexterm" name="id3119455"></a><pre class="programlisting"><a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a>*       polkit_action_new                   (void);</pre>
+<a class="indexterm" name="id2725422"></a><pre class="programlisting"><a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a>*       polkit_action_new                   (void);</pre>
 <p>
 Create a new <a class="link" href="polkit-polkit-action.html#PolKitAction"><span class="type">PolKitAction</span></a> object.</p>
 <p>
@@ -105,9 +106,9 @@ Create a new <a class="link" href="polkit-polkit-action.html#PolKitAction"><span
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3119503"></a><h3>
+<a name="id2725469"></a><h3>
 <a name="polkit-action-ref"></a>polkit_action_ref ()</h3>
-<a class="indexterm" name="id3119515"></a><pre class="programlisting"><a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a>*       polkit_action_ref                   (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
+<a class="indexterm" name="id2725482"></a><pre class="programlisting"><a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a>*       polkit_action_ref                   (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -131,9 +132,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3127279"></a><h3>
+<a name="id2728521"></a><h3>
 <a name="polkit-action-unref"></a>polkit_action_unref ()</h3>
-<a class="indexterm" name="id3127291"></a><pre class="programlisting">void                polkit_action_unref                 (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
+<a class="indexterm" name="id2728533"></a><pre class="programlisting">void                polkit_action_unref                 (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -152,9 +153,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3127344"></a><h3>
+<a name="id2728586"></a><h3>
 <a name="polkit-action-set-action-id"></a>polkit_action_set_action_id ()</h3>
-<a class="indexterm" name="id3127355"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_action_set_action_id         (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
+<a class="indexterm" name="id2728597"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_action_set_action_id         (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          const char *action_id);</pre>
 <p>
 Set the action identifier</p>
@@ -186,9 +187,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3127444"></a><h3>
+<a name="id2728686"></a><h3>
 <a name="polkit-action-get-action-id"></a>polkit_action_get_action_id ()</h3>
-<a class="indexterm" name="id3127455"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_action_get_action_id         (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
+<a class="indexterm" name="id2728697"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_action_get_action_id         (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          char **out_action_id);</pre>
 <p>
 Get the action identifier.</p>
@@ -218,9 +219,9 @@ Get the action identifier.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3110972"></a><h3>
+<a name="id2721578"></a><h3>
 <a name="polkit-action-debug"></a>polkit_action_debug ()</h3>
-<a class="indexterm" name="id3110984"></a><pre class="programlisting">void                polkit_action_debug                 (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
+<a class="indexterm" name="id2721591"></a><pre class="programlisting">void                polkit_action_debug                 (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
 <p>
 Print debug details</p>
 <p>
@@ -237,9 +238,9 @@ Print debug details</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3111034"></a><h3>
+<a name="id2721640"></a><h3>
 <a name="polkit-action-validate"></a>polkit_action_validate ()</h3>
-<a class="indexterm" name="id3111045"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_action_validate              (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
+<a class="indexterm" name="id2721652"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_action_validate              (<a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
 <p>
 Validate the object</p>
 <p>
@@ -265,13 +266,15 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3111112"></a><h3>
+<a name="id2721719"></a><h3>
 <a name="polkit-action-validate-id"></a>polkit_action_validate_id ()</h3>
-<a class="indexterm" name="id3111124"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_action_validate_id           (const char *action_id);</pre>
+<a class="indexterm" name="id2721730"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_action_validate_id           (const char *action_id);</pre>
 <p>
 Validate whether an action identifier is well formed. To be well
 formed, an action identifier needs to start with a lower case ASCII
-character and can only contain the characters "[a-z][0-9].-".</p>
+character and can only contain the characters "[a-z][0-9].-". It
+must be less than or equal 256 bytes in length including the
+terminating NUL character.</p>
 <p>
 
 </p>
@@ -293,6 +296,11 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </tbody>
 </table></div>
 </div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2721803"></a><div class="refsect2" lang="en"><a name="id2721804"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2721805"></a></div>
 </div>
 </div>
 </body>
