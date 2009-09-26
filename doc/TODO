@@ -1,73 +1,56 @@
 
- - Have someone review the external API
+ - On every polkit_context_is_[caller|session]_authorized we load
+   all .policy XML files. This is bad. Dave Jones will kill us. 
+   We should
 
- - Verify the security model
+   1. Suggest that a single .policy file only contains actions
+      with a given name space com.example.MyApp. We do this
+      by printing a big fat WARNING in polkit-policy-file-validate(1)
+      if it isn't the case.
 
- - Audit all code; especially the setgid polkit_user helper and setuid
-   root pam specific helper
+   2. We make the policy cache smart and look for the right .policy
+      file when called from the is_*_authorized path. If it aint there
+      or if it doesn't contain the given action we load all the
+      .policy XML files.
 
- - Granted privileges are currently world-visible; see
-   https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=244941
-   for details. This may just be a Fedora-ism. Alternatively, depending
-   on what the FHS says, punt it to the distros and ask them to clean
-   up the directories during boot?
+   3. When we break ABI (for 1.0 or sooner) we turn the WARNING
+      from 1. into an ERROR and drop the "Load all XML files"
+      from the is_*_authorized path. Of course, other paths
+      (iterate over all declared actions; find action by
+      annotation) will still need to load the bulk of the files.
+      But normally only polkit-auth(1) and polkit-action(1)
+      and other management tools will ever do this.
 
- - Add missing details to the spec document
-   - provide some real world examples e.g. how the example from
-     the PolicyKit-gnome app works. Preferably in tutorial form.
-   - more detailed description of the internals, e.g. the dirs
-     /var/lib/PolicyKit and /var/run/PolicyKit
+ - Increase test suite coverage
 
- - Clean up all man pages
+ - Finish up documentation; in particular how results from
+   config files, defaults and authorizations play together
 
- - Polish the commandline tools (especially polkit-list-actions could
-   be nicer)
+ - Potentially drop the glib dependency from polkit-grant
 
- - Make sure API coverage is 100%
+ - Kill the config file
 
- - Potentially drop the glib dependency (it's not visible in the
-   external API). This is mainly to be able to handle OOM for
-   mechanisms that will need this (such as dbus-daemon)
+ - Add support for granting authorizations to a) UNIX Groups; and 
+   b) SELinux security contexts
 
- - add support for additional <match> attributes
-   in /etc/PolicyKit/PolicyKit.conf
+ - Add API and support in polkit-auth/polkit-action for maintaining
+   a list of entities for whom implicit authorizations do not apply.
+   (Typical example is that in a desktop OS one wants a UNIX group
+    for "Restricted Users". Another example is a guest account.)
 
-   - <match timeofday="0900-1700">
-     Matches 9am through 5pm local time
+ - Add API and support in polkit-auth/polkit-action to define what
+   administrator auth means.
 
-   - <match weekday="Mon-Fri">
-     Matches only on Monday->Friday both inclusive
-
-   - <match selinux_context="regexp">
-     Match on caller's SELinux context
-
-   - <match caller_exe="regexp">
-     Matches the path of the executable the caller stems from
-
-   - <match group="regexp">
-     Match on group
-
-   - <match session_active="true|false">
-     Only if the caller is in an active session (or not)
-
-   - <match seat_local="true|false">
-     Only if the caller is on a local seat (or not)
-
-   ... And of course the we need the ULTIMATE copout
-
-   - <match run_program="">
-     Run a program to make the decision; details are exported in the
-     environment. Program cannot assume to run as root or in a specific
-     security context; it will need to use a helper a'la
-     pam_unix_password.so
-
- - Reconsider adding k/v dictionaries to Actions; e.g. the Mechanism for
-   dial-up networking can attach the key/value pair
+ - Add k/v dictionaries to Actions; e.g. the Mechanism for dial-up
+   networking can attach the key/value pair
 
      "phone_number" -> "555-123-4567"
 
    The is a bit like Objects mentioned in the spec (and what we used
-   to have as PolKitResource) but a bit more blurry. It may just work.
+   to have as PolKitResource) but a bit more blurry. They need to be
+   typed too for presentation in the UI
 
  - Go to 1.0 soon
 
+ - Include the patch from Piter PUNK to optionally avoid the PAM
+   dependency (manually checks against /etc/shadow instead)

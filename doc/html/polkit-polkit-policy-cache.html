@@ -5,41 +5,42 @@
 <title>Policy Cache</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
-<link rel="up" href="rn02.html" title="Core API Reference">
+<link rel="up" href="ref-core.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-policy-default.html" title="Defaults">
-<link rel="next" href="rn03.html" title="Convenience API Reference">
-<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="next" href="polkit-polkit-authorization.html" title="Authorization Entry">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="rn02.html" title="Core API Reference">
-<link rel="reference" href="rn03.html" title="Convenience API Reference">
-<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
-<link rel="reference" href="rn05.html" title="Tools and file formats">
-<link rel="index" href="ix01.html" title="Index">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
 <tr valign="middle">
 <td><a accesskey="p" href="polkit-polkit-policy-default.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="rn02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
-<td><a accesskey="n" href="rn03.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="polkit-polkit-authorization.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3140600" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2709501" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id3155415" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2746808" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-policy-cache"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id3140600"></a><span class="refentrytitle">Policy Cache</span>
+<a name="id2709501"></a><span class="refentrytitle">Policy Cache</span>
 </h2>
 <p>Policy Cache &#8212; Holds the actions defined on the system.</p>
 </td>
@@ -52,7 +53,7 @@
 
 
                     <a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a>;
-void                (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCacheForeachFunc">*PolKitPolicyCacheForeachFunc</a>)     (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
+<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCacheForeachFunc">*PolKitPolicyCacheForeachFunc</a>)     (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
                                                          <a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *entry,
                                                          void *user_data);
 <a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a>*  <a class="link" href="polkit-polkit-policy-cache.html#polkit-policy-cache-ref">polkit_policy_cache_ref</a>             (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache);
@@ -63,13 +64,17 @@ void                <a class="link" href="polkit-polkit-policy-cache.html#polkit
 <a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* <a class="link" href="polkit-polkit-policy-cache.html#polkit-policy-cache-get-entry-by-id">polkit_policy_cache_get_entry_by_id</a>
                                                         (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
                                                          const char *action_id);
-void                <a class="link" href="polkit-polkit-policy-cache.html#polkit-policy-cache-foreach">polkit_policy_cache_foreach</a>         (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
+<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* <a class="link" href="polkit-polkit-policy-cache.html#polkit-policy-cache-get-entry-by-annotation">polkit_policy_cache_get_entry_by_annotation</a>
+                                                        (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
+                                                         const char *annotation_key,
+                                                         const char *annotation_value);
+<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-policy-cache.html#polkit-policy-cache-foreach">polkit_policy_cache_foreach</a>         (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
                                                          <a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCacheForeachFunc">PolKitPolicyCacheForeachFunc</a> callback,
                                                          void *user_data);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id3155415"></a><h2>Description</h2>
+<a name="id2746808"></a><h2>Description</h2>
 <p>
 This class is used to hold all policy objects (stemming from policy
 files) and provide look-up functions.</p>
@@ -78,11 +83,11 @@ files) and provide look-up functions.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id3155435"></a><h2>Details</h2>
+<a name="id2746830"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id3155446"></a><h3>
+<a name="id2746840"></a><h3>
 <a name="PolKitPolicyCache"></a>PolKitPolicyCache</h3>
-<a class="indexterm" name="id3155458"></a><pre class="programlisting">typedef struct _PolKitPolicyCache PolKitPolicyCache;</pre>
+<a class="indexterm" name="id2746853"></a><pre class="programlisting">typedef struct _PolKitPolicyCache PolKitPolicyCache;</pre>
 <p>
 Instances of this class are used to hold all policy objects
 (stemming from policy files) and provide look-up functions.</p>
@@ -92,9 +97,9 @@ Instances of this class are used to hold all policy objects
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3155481"></a><h3>
+<a name="id2746875"></a><h3>
 <a name="PolKitPolicyCacheForeachFunc"></a>PolKitPolicyCacheForeachFunc ()</h3>
-<a class="indexterm" name="id3155492"></a><pre class="programlisting">void                (*PolKitPolicyCacheForeachFunc)     (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
+<a class="indexterm" name="id2746886"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (*PolKitPolicyCacheForeachFunc)     (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
                                                          <a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *entry,
                                                          void *user_data);</pre>
 <p>
@@ -120,14 +125,21 @@ Callback function for <a class="link" href="polkit-polkit-policy-cache.html#polk
 <td> user data passed to <a class="link" href="polkit-polkit-policy-cache.html#polkit-policy-cache-foreach"><code class="function">polkit_policy_cache_foreach()</code></a>
 </td>
 </tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> to short-circuit; e.g. stop the iteration
+</td>
+</tr>
 </tbody>
 </table></div>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3158646"></a><h3>
+<a name="id2747014"></a><h3>
 <a name="polkit-policy-cache-ref"></a>polkit_policy_cache_ref ()</h3>
-<a class="indexterm" name="id3158657"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a>*  polkit_policy_cache_ref             (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache);</pre>
+<a class="indexterm" name="id2747025"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a>*  polkit_policy_cache_ref             (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -151,9 +163,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3158716"></a><h3>
+<a name="id2743770"></a><h3>
 <a name="polkit-policy-cache-unref"></a>polkit_policy_cache_unref ()</h3>
-<a class="indexterm" name="id3158727"></a><pre class="programlisting">void                polkit_policy_cache_unref           (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache);</pre>
+<a class="indexterm" name="id2743781"></a><pre class="programlisting">void                polkit_policy_cache_unref           (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -172,9 +184,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3158780"></a><h3>
+<a name="id2743833"></a><h3>
 <a name="polkit-policy-cache-debug"></a>polkit_policy_cache_debug ()</h3>
-<a class="indexterm" name="id3158792"></a><pre class="programlisting">void                polkit_policy_cache_debug           (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache);</pre>
+<a class="indexterm" name="id2743845"></a><pre class="programlisting">void                polkit_policy_cache_debug           (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache);</pre>
 <p>
 Print debug information about object</p>
 <p>
@@ -191,9 +203,9 @@ Print debug information about object</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3158841"></a><h3>
+<a name="id2743895"></a><h3>
 <a name="polkit-policy-cache-get-entry"></a>polkit_policy_cache_get_entry ()</h3>
-<a class="indexterm" name="id3158854"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* polkit_policy_cache_get_entry    (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
+<a class="indexterm" name="id2743906"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* polkit_policy_cache_get_entry    (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action);</pre>
 <p>
 Given a action, find the object describing the definition of the
@@ -229,9 +241,9 @@ this object.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3153376"></a><h3>
+<a name="id2744004"></a><h3>
 <a name="polkit-policy-cache-get-entry-by-id"></a>polkit_policy_cache_get_entry_by_id ()</h3>
-<a class="indexterm" name="id3153390"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* polkit_policy_cache_get_entry_by_id
+<a class="indexterm" name="id2744016"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* polkit_policy_cache_get_entry_by_id
                                                         (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
                                                          const char *action_id);</pre>
 <p>
@@ -268,9 +280,58 @@ this object.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id3153489"></a><h3>
+<a name="id2744115"></a><h3>
+<a name="polkit-policy-cache-get-entry-by-annotation"></a>polkit_policy_cache_get_entry_by_annotation ()</h3>
+<a class="indexterm" name="id2744132"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* polkit_policy_cache_get_entry_by_annotation
+                                                        (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
+                                                         const char *annotation_key,
+                                                         const char *annotation_value);</pre>
+<p>
+Find the first policy file entry where a given annotation matches a
+given value. Note that there is nothing preventing the existence of
+multiple policy file entries matching this criteria; it would
+however be a packaging bug if this situation occured.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_cache</code></em>&#160;:</span></p></td>
+<td> the policy cache
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>annotation_key</code></em>&#160;:</span></p></td>
+<td> the key to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>annotation_value</code></em>&#160;:</span></p></td>
+<td> the value to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> The first <a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"><span class="type">PolKitPolicyFileEntry</span></a> matching the search
+criteria. The caller shall not unref this object. Returns <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if
+there are no policy file entries matching the search criteria.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2745838"></a><h3>
 <a name="polkit-policy-cache-foreach"></a>polkit_policy_cache_foreach ()</h3>
-<a class="indexterm" name="id3153501"></a><pre class="programlisting">void                polkit_policy_cache_foreach         (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
+<a class="indexterm" name="id2745849"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_policy_cache_foreach         (<a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a> *policy_cache,
                                                          <a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCacheForeachFunc">PolKitPolicyCacheForeachFunc</a> callback,
                                                          void *user_data);</pre>
 <p>
@@ -296,9 +357,21 @@ Visit all entries in the policy cache.</p>
 <td> user data to pass to callback function
 </td>
 </tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if iteration was short-circuited
+</td>
+</tr>
 </tbody>
 </table></div>
 </div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2745962"></a><div class="refsect2" lang="en"><a name="id2745963"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2745964"></a></div>
 </div>
 </div>
 </body>

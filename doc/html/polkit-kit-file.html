@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>File utilities</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-internal.html" title="Internal API Reference">
+<link rel="prev" href="polkit-kit-hash.html" title="Hash tables">
+<link rel="next" href="polkit-kit-spawn.html" title="Spawn utilities">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-kit-hash.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-internal.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-kit-spawn.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2706682" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2712657" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-kit-file"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2706682"></a><span class="refentrytitle">File utilities</span>
+</h2>
+<p>File utilities &#8212; File utilities</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-file.html#kit-file-get-contents">kit_file_get_contents</a>               (const char *path,
+                                                         char **out_contents,
+                                                         size_t *out_contents_size);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-file.html#kit-file-set-contents">kit_file_set_contents</a>               (const char *path,
+                                                         mode_t mode,
+                                                         const char *contents,
+                                                         size_t contents_size);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2712657"></a><h2>Description</h2>
+<p>
+Various file utilities.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2712676"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2712687"></a><h3>
+<a name="kit-file-get-contents"></a>kit_file_get_contents ()</h3>
+<a class="indexterm" name="id2712698"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_file_get_contents               (const char *path,
+                                                         char **out_contents,
+                                                         size_t *out_contents_size);</pre>
+<p>
+Reads an entire file into allocated memory.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em>&#160;:</span></p></td>
+<td> path to file
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_contents</code></em>&#160;:</span></p></td>
+<td> Return location for allocated memory. Free with <a class="link" href="polkit-kit-memory.html#kit-free"><code class="function">kit_free()</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_contents_size</code></em>&#160;:</span></p></td>
+<td> Return location for size of the file.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> if the file was read into memory; <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><span class="type">FALSE</span></a> if an error
+occured and errno will be set. On OOM, errno will be set to
+ENOMEM. If the file doesn't exist, errno will be set to ENOENT.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2710427"></a><h3>
+<a name="kit-file-set-contents"></a>kit_file_set_contents ()</h3>
+<a class="indexterm" name="id2710438"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_file_set_contents               (const char *path,
+                                                         mode_t mode,
+                                                         const char *contents,
+                                                         size_t contents_size);</pre>
+<p>
+Writes all of contents to a file named <em class="parameter"><code>path</code></em>, with good error
+checking. If a file called <em class="parameter"><code>path</code></em> already exists it will be
+overwritten. This write is atomic in the sense that it is first
+written to a temporary file which is then renamed to the final
+name.
+</p>
+<p>
+If the file already exists hard links to <em class="parameter"><code>path</code></em> will break. Also
+since the file is recreated, existing permissions, access control
+lists, metadata etc. may be lost. If <em class="parameter"><code>path</code></em> is a symbolic link, the
+link itself will be replaced, not the linked file.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em>&#160;:</span></p></td>
+<td> path to file
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mode</code></em>&#160;:</span></p></td>
+<td> mode for file
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>contents</code></em>&#160;:</span></p></td>
+<td> contents to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>contents_size</code></em>&#160;:</span></p></td>
+<td> size of contents
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> if contents were set; <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><span class="type">FALSE</span></a> if an error occured and
+errno will be set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2714274"></a><div class="refsect2" lang="en"><a name="id2714276"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2714277"></a></div>
+</div>
+</div>
+</body>
+</html>

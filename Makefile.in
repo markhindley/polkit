@@ -35,8 +35,8 @@ subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
 	$(top_srcdir)/configure AUTHORS COPYING ChangeLog INSTALL NEWS \
-	config.guess config.sub depcomp install-sh ltmain.sh missing \
-	mkinstalldirs
+	compile config.guess config.sub depcomp install-sh ltmain.sh \
+	missing mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
 	$(top_srcdir)/configure.in
@@ -73,6 +73,7 @@ GZIP_ENV = --best
 distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
 ACLOCAL = @ACLOCAL@
+ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AR = @AR@
 AUTH_LIBS = @AUTH_LIBS@
@@ -80,6 +81,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+CATALOGS = @CATALOGS@
+CATOBJEXT = @CATOBJEXT@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -90,7 +93,10 @@ CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
+DATADIRNAME = @DATADIRNAME@
 DBUS_CFLAGS = @DBUS_CFLAGS@
+DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
+DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -103,8 +109,11 @@ EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
 F77 = @F77@
 FFLAGS = @FFLAGS@
+GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
+GMOFILES = @GMOFILES@
+GMSGFMT = @GMSGFMT@
 GREP = @GREP@
 HAVE_PAM = @HAVE_PAM@
 HTML_DIR = @HTML_DIR@
@@ -113,6 +122,31 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INSTOBJEXT = @INSTOBJEXT@
+INTLLIBS = @INTLLIBS@
+INTLTOOL_CAVES_RULE = @INTLTOOL_CAVES_RULE@
+INTLTOOL_DESKTOP_RULE = @INTLTOOL_DESKTOP_RULE@
+INTLTOOL_DIRECTORY_RULE = @INTLTOOL_DIRECTORY_RULE@
+INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
+INTLTOOL_KBD_RULE = @INTLTOOL_KBD_RULE@
+INTLTOOL_KEYS_RULE = @INTLTOOL_KEYS_RULE@
+INTLTOOL_MERGE = @INTLTOOL_MERGE@
+INTLTOOL_OAF_RULE = @INTLTOOL_OAF_RULE@
+INTLTOOL_PERL = @INTLTOOL_PERL@
+INTLTOOL_POLICY_RULE = @INTLTOOL_POLICY_RULE@
+INTLTOOL_PONG_RULE = @INTLTOOL_PONG_RULE@
+INTLTOOL_PROP_RULE = @INTLTOOL_PROP_RULE@
+INTLTOOL_SCHEMAS_RULE = @INTLTOOL_SCHEMAS_RULE@
+INTLTOOL_SERVER_RULE = @INTLTOOL_SERVER_RULE@
+INTLTOOL_SERVICE_RULE = @INTLTOOL_SERVICE_RULE@
+INTLTOOL_SHEET_RULE = @INTLTOOL_SHEET_RULE@
+INTLTOOL_SOUNDLIST_RULE = @INTLTOOL_SOUNDLIST_RULE@
+INTLTOOL_THEME_RULE = @INTLTOOL_THEME_RULE@
+INTLTOOL_UI_RULE = @INTLTOOL_UI_RULE@
+INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
+INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
+INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
+INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -125,6 +159,9 @@ LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+MKINSTALLDIRS = @MKINSTALLDIRS@
+MSGFMT = @MSGFMT@
+MSGFMT_OPTS = @MSGFMT_OPTS@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -140,15 +177,23 @@ PAM_MODULE_DIR = @PAM_MODULE_DIR@
 PAM_PREFIX = @PAM_PREFIX@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+POFILES = @POFILES@
+POLKIT_AUTHDB = @POLKIT_AUTHDB@
 POLKIT_GROUP = @POLKIT_GROUP@
 POLKIT_USER = @POLKIT_USER@
+POSUB = @POSUB@
+PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
+R_DYNAMIC_LDFLAG = @R_DYNAMIC_LDFLAG@
 SED = @SED@
 SELINUX_LIBS = @SELINUX_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+XGETTEXT = @XGETTEXT@
 XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -201,11 +246,23 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = data polkit polkit-dbus polkit-grant doc tools policy
-EXTRA_DIST = HACKING mkinstalldirs ChangeLog
+SUBDIRS = data src polkitd doc tools policy po test
+EXTRA_DIST = \
+	HACKING 		\
+	mkinstalldirs 		\
+	ChangeLog 		\
+	intltool-extract.in 	\
+	intltool-merge.in 	\
+	intltool-update.in
+
+DISTCLEANFILES = \
+	intltool-extract	\
+	intltool-merge		\
+	intltool-update
+
 
 # xsltproc barfs on 'make distcheck'; disable for now
-DISTCHECK_CONFIGURE_FLAGS = --disable-man-pages
+DISTCHECK_CONFIGURE_FLAGS = --disable-man-pages --disable-gtk-doc
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -548,7 +605,7 @@ check: check-recursive
 all-am: Makefile config.h
 installdirs: installdirs-recursive
 installdirs-am:
-install: install-recursive
+@POLKIT_BUILD_TESTS_FALSE@install: install-recursive
 install-exec: install-exec-recursive
 install-data: install-data-recursive
 uninstall: uninstall-recursive
@@ -568,6 +625,7 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -667,7 +725,27 @@ $(srcdir)/ChangeLog:
 	  echo A git checkout and git-log is required to generate this file >> $@); \
 	fi
 
-.PHONY: ChangeLog $(srcdir)/ChangeLog
+@POLKIT_GCOV_ENABLED_TRUE@.PHONY: ChangeLog $(srcdir)/ChangeLog coverage-report.txt
+@POLKIT_GCOV_ENABLED_TRUE@coverage-report.txt :
+@POLKIT_GCOV_ENABLED_TRUE@	make -C src/kit coverage-report.txt
+@POLKIT_GCOV_ENABLED_TRUE@	make -C src/polkit coverage-report.txt
+@POLKIT_GCOV_ENABLED_TRUE@	make -C src/polkit-dbus coverage-report.txt
+@POLKIT_GCOV_ENABLED_TRUE@	make -C src/polkit-grant coverage-report.txt
+@POLKIT_GCOV_ENABLED_TRUE@	$(top_srcdir)/test/create-coverage-report.sh "PolicyKit" `cat src/kit/covered-files.txt src/polkit/covered-files.txt src/polkit-dbus/covered-files.txt src/polkit-grant/covered-files.txt` > coverage-report.txt
+
+@POLKIT_GCOV_ENABLED_TRUE@check-coverage: coverage-report.txt
+@POLKIT_GCOV_ENABLED_TRUE@	cat coverage-report.txt
+@POLKIT_GCOV_ENABLED_FALSE@.PHONY: ChangeLog $(srcdir)/ChangeLog
+
+@POLKIT_GCOV_ENABLED_FALSE@coverage-report.txt:
+@POLKIT_GCOV_ENABLED_FALSE@	@echo "Need to reconfigure with --enable-gcov"
+
+@POLKIT_GCOV_ENABLED_FALSE@check-coverage:
+@POLKIT_GCOV_ENABLED_FALSE@	@echo "Need to reconfigure with --enable-gcov"
+
+@POLKIT_BUILD_TESTS_TRUE@install:
+@POLKIT_BUILD_TESTS_TRUE@	@echo "Cowardly refusing to install with --enable-tests."
+@POLKIT_BUILD_TESTS_TRUE@	@exit 1
 
 clean-local :
 	rm -f *~

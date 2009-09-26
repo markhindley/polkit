@@ -23,6 +23,14 @@ polkit-policy-default
 </para>
 
 
+<!-- ##### FUNCTION polkit_policy_default_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
 <!-- ##### FUNCTION polkit_policy_default_ref ##### -->
 <para>
 
@@ -48,6 +56,25 @@ polkit-policy-default
 @policy_default: 
 
 
+<!-- ##### FUNCTION polkit_policy_default_clone ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_equals ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
 <!-- ##### FUNCTION polkit_policy_default_can_session_do_action ##### -->
 <para>
 
@@ -70,6 +97,15 @@ polkit-policy-default
 @Returns: 
 
 
+<!-- ##### FUNCTION polkit_policy_default_get_allow_any ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@Returns: 
+
+
 <!-- ##### FUNCTION polkit_policy_default_get_allow_inactive ##### -->
 <para>
 
@@ -86,5 +122,32 @@ polkit-policy-default
 
 @policy_default: 
 @Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_set_allow_any ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@value: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_set_allow_inactive ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@value: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_set_allow_active ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@value: 
 
 

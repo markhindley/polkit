@@ -64,6 +64,7 @@ CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
+ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AR = @AR@
 AUTH_LIBS = @AUTH_LIBS@
@@ -71,6 +72,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+CATALOGS = @CATALOGS@
+CATOBJEXT = @CATOBJEXT@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -81,7 +84,10 @@ CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
+DATADIRNAME = @DATADIRNAME@
 DBUS_CFLAGS = @DBUS_CFLAGS@
+DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
+DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -94,8 +100,11 @@ EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
 F77 = @F77@
 FFLAGS = @FFLAGS@
+GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
+GMOFILES = @GMOFILES@
+GMSGFMT = @GMSGFMT@
 GREP = @GREP@
 HAVE_PAM = @HAVE_PAM@
 HTML_DIR = @HTML_DIR@
@@ -104,6 +113,31 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INSTOBJEXT = @INSTOBJEXT@
+INTLLIBS = @INTLLIBS@
+INTLTOOL_CAVES_RULE = @INTLTOOL_CAVES_RULE@
+INTLTOOL_DESKTOP_RULE = @INTLTOOL_DESKTOP_RULE@
+INTLTOOL_DIRECTORY_RULE = @INTLTOOL_DIRECTORY_RULE@
+INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
+INTLTOOL_KBD_RULE = @INTLTOOL_KBD_RULE@
+INTLTOOL_KEYS_RULE = @INTLTOOL_KEYS_RULE@
+INTLTOOL_MERGE = @INTLTOOL_MERGE@
+INTLTOOL_OAF_RULE = @INTLTOOL_OAF_RULE@
+INTLTOOL_PERL = @INTLTOOL_PERL@
+INTLTOOL_POLICY_RULE = @INTLTOOL_POLICY_RULE@
+INTLTOOL_PONG_RULE = @INTLTOOL_PONG_RULE@
+INTLTOOL_PROP_RULE = @INTLTOOL_PROP_RULE@
+INTLTOOL_SCHEMAS_RULE = @INTLTOOL_SCHEMAS_RULE@
+INTLTOOL_SERVER_RULE = @INTLTOOL_SERVER_RULE@
+INTLTOOL_SERVICE_RULE = @INTLTOOL_SERVICE_RULE@
+INTLTOOL_SHEET_RULE = @INTLTOOL_SHEET_RULE@
+INTLTOOL_SOUNDLIST_RULE = @INTLTOOL_SOUNDLIST_RULE@
+INTLTOOL_THEME_RULE = @INTLTOOL_THEME_RULE@
+INTLTOOL_UI_RULE = @INTLTOOL_UI_RULE@
+INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
+INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
+INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
+INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -116,6 +150,9 @@ LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+MKINSTALLDIRS = @MKINSTALLDIRS@
+MSGFMT = @MSGFMT@
+MSGFMT_OPTS = @MSGFMT_OPTS@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -131,15 +168,23 @@ PAM_MODULE_DIR = @PAM_MODULE_DIR@
 PAM_PREFIX = @PAM_PREFIX@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+POFILES = @POFILES@
+POLKIT_AUTHDB = @POLKIT_AUTHDB@
 POLKIT_GROUP = @POLKIT_GROUP@
 POLKIT_USER = @POLKIT_USER@
+POSUB = @POSUB@
+PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
+R_DYNAMIC_LDFLAG = @R_DYNAMIC_LDFLAG@
 SED = @SED@
 SELINUX_LIBS = @SELINUX_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+XGETTEXT = @XGETTEXT@
 XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -206,11 +251,11 @@ DOC_MAIN_SGML_FILE = polkit-docs.xml
 SCAN_OPTIONS = --ignore-headers=config.h
 
 # The directory containing the source code. Relative to $(srcdir)
-DOC_SOURCE_DIR = ..
+DOC_SOURCE_DIR = ../src
 
 # Used for dependencies
-HFILE_GLOB = $(top_srcdir)/polkit*/*.h
-CFILE_GLOB = $(top_srcdir)/polkit*/*.c
+HFILE_GLOB = $(top_srcdir)/src/*/*.h
+CFILE_GLOB = $(top_srcdir)/src/*/*.c
 
 # Headers to ignore
 IGNORE_HFILES = \
@@ -220,14 +265,19 @@ IGNORE_HFILES = \
 # CFLAGS and LDFLAGS for compiling scan program. Only needed
 # if $(DOC_MODULE).types is non-empty.
 INCLUDES = \
+	$(DBUS_GLIB_CFLAGS)	\
 	$(GLIB_CFLAGS)		\
-	-I$(top_srcdir) 	\
-	-I$(top_builddir)	\
+	-I$(top_srcdir)/src 	\
+	-I$(top_builddir)/src	\
 	$(NULL)
 
 GTKDOC_LIBS = \
-	$(GLIB_LIBS)				\
-	$(top_builddir)/polkit/libpolkit.la	\
+	$(DBUS_GLIB_LIBS)					\
+	$(GLIB_LIBS)						\
+	$(top_builddir)/src/kit/libkit.la			\
+	$(top_builddir)/src/polkit/libpolkit.la			\
+	$(top_builddir)/src/polkit-dbus/libpolkit-dbus.la	\
+	$(top_builddir)/src/polkit-grant/libpolkit-grant.la	\
 	$(NULL)
 
 
@@ -242,8 +292,8 @@ content_files = \
 	version.xml			    \
 	man/PolicyKit.xml		    \
 	man/PolicyKit.conf.xml		    \
-	man/polkit-grant.xml		    \
-	man/polkit-list-actions.xml	    \
+	man/polkit-auth.xml		    \
+	man/polkit-action.xml		    \
 	man/polkit-policy-file-validate.xml \
 	man/polkit-config-file-validate.xml \
 	spec/polkit-spec-configuration.xml  \
@@ -253,7 +303,10 @@ content_files = \
 
 
 # Images to copy into HTML directory
-HTML_IMAGES = 
+HTML_IMAGES = \
+	diagram-bus-model.png		\
+	diagram-interaction.png
+
 
 # Extra options to supply to gtkdoc-fixref
 FIXXREF_OPTIONS = 
@@ -264,34 +317,39 @@ MAINTAINERCLEANFILES = \
 	polkit-*.txt	\
 	$(NULL)
 
-@GTK_DOC_USE_LIBTOOL_FALSE@GTKDOC_CC = $(CC) $(INCLUDES) $(AM_CFLAGS) $(CFLAGS)
-@GTK_DOC_USE_LIBTOOL_TRUE@GTKDOC_CC = $(LIBTOOL) --mode=compile $(CC) $(INCLUDES) $(AM_CFLAGS) $(CFLAGS)
-@GTK_DOC_USE_LIBTOOL_FALSE@GTKDOC_LD = $(CC) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS)
-@GTK_DOC_USE_LIBTOOL_TRUE@GTKDOC_LD = $(LIBTOOL) --mode=link $(CC) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS)
+@ENABLE_GTK_DOC_TRUE@@GTK_DOC_USE_LIBTOOL_FALSE@GTKDOC_CC = $(CC) $(INCLUDES) $(AM_CFLAGS) $(CFLAGS)
+@ENABLE_GTK_DOC_TRUE@@GTK_DOC_USE_LIBTOOL_TRUE@GTKDOC_CC = $(LIBTOOL) --mode=compile $(CC) $(INCLUDES) $(AM_CFLAGS) $(CFLAGS)
+@ENABLE_GTK_DOC_TRUE@@GTK_DOC_USE_LIBTOOL_FALSE@GTKDOC_LD = $(CC) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS)
+@ENABLE_GTK_DOC_TRUE@@GTK_DOC_USE_LIBTOOL_TRUE@GTKDOC_LD = $(LIBTOOL) --mode=link $(CC) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS)
 
 # We set GPATH here; this gives us semantics for GNU make
 # which are more like other make's VPATH, when it comes to
 # whether a source that is a target of one rule is then
 # searched for in VPATH/GPATH.
 #
-GPATH = $(srcdir)
-TARGET_DIR = $(HTML_DIR)/$(DOC_MODULE)
+@ENABLE_GTK_DOC_TRUE@GPATH = $(srcdir)
+@ENABLE_GTK_DOC_TRUE@TARGET_DIR = $(HTML_DIR)/$(DOC_MODULE)
 
 # Version information for marking the documentation
-EXTRA_DIST = $(content_files) $(HTML_IMAGES) $(DOC_MAIN_SGML_FILE) \
-	$(DOC_MODULE)-sections.txt $(DOC_MODULE)-overrides.txt \
-	version.xml.in
-DOC_STAMPS = scan-build.stamp tmpl-build.stamp sgml-build.stamp html-build.stamp \
-	   $(srcdir)/tmpl.stamp $(srcdir)/sgml.stamp $(srcdir)/html.stamp
+@ENABLE_GTK_DOC_FALSE@EXTRA_DIST = version.xml.in
 
-SCANOBJ_FILES = \
-	$(DOC_MODULE).args 	 \
-	$(DOC_MODULE).hierarchy  \
-	$(DOC_MODULE).interfaces \
-	$(DOC_MODULE).prerequisites \
-	$(DOC_MODULE).signals
+# Version information for marking the documentation
+@ENABLE_GTK_DOC_TRUE@EXTRA_DIST = $(content_files) $(HTML_IMAGES) \
+@ENABLE_GTK_DOC_TRUE@	$(DOC_MAIN_SGML_FILE) \
+@ENABLE_GTK_DOC_TRUE@	$(DOC_MODULE)-sections.txt \
+@ENABLE_GTK_DOC_TRUE@	$(DOC_MODULE)-overrides.txt \
+@ENABLE_GTK_DOC_TRUE@	version.xml.in
+@ENABLE_GTK_DOC_TRUE@DOC_STAMPS = scan-build.stamp tmpl-build.stamp sgml-build.stamp html-build.stamp \
+@ENABLE_GTK_DOC_TRUE@	   $(srcdir)/tmpl.stamp $(srcdir)/sgml.stamp $(srcdir)/html.stamp
 
-CLEANFILES = $(SCANOBJ_FILES) $(DOC_MODULE)-unused.txt $(DOC_STAMPS)
+@ENABLE_GTK_DOC_TRUE@SCANOBJ_FILES = \
+@ENABLE_GTK_DOC_TRUE@	$(DOC_MODULE).args 	 \
+@ENABLE_GTK_DOC_TRUE@	$(DOC_MODULE).hierarchy  \
+@ENABLE_GTK_DOC_TRUE@	$(DOC_MODULE).interfaces \
+@ENABLE_GTK_DOC_TRUE@	$(DOC_MODULE).prerequisites \
+@ENABLE_GTK_DOC_TRUE@	$(DOC_MODULE).signals
+
+@ENABLE_GTK_DOC_TRUE@CLEANFILES = $(SCANOBJ_FILES) $(DOC_MODULE)-unused.txt $(DOC_STAMPS)
 all: all-recursive
 
 .SUFFIXES:
@@ -463,6 +521,7 @@ GTAGS:
 
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
+@ENABLE_GTK_DOC_FALSE@dist-hook:
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -512,6 +571,7 @@ distdir: $(DISTFILES)
 	  dist-hook
 check-am: all-am
 check: check-recursive
+@ENABLE_GTK_DOC_FALSE@all-local:
 all-am: Makefile all-local
 installdirs: installdirs-recursive
 installdirs-am:
@@ -541,6 +601,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
+@ENABLE_GTK_DOC_FALSE@uninstall-local:
+@ENABLE_GTK_DOC_FALSE@install-data-local:
+@ENABLE_GTK_DOC_FALSE@maintainer-clean-local:
+@ENABLE_GTK_DOC_FALSE@clean-local:
 clean: clean-recursive
 
 clean-am: clean-generic clean-libtool clean-local mostlyclean-am
@@ -616,12 +680,17 @@ uninstall-am: uninstall-local
 
 
 @ENABLE_GTK_DOC_TRUE@all-local: html-build.stamp
+#all-local:
+
+@ENABLE_GTK_DOC_TRUE@docs: html-build.stamp
 
 #### scan ####
 
 @ENABLE_GTK_DOC_TRUE@scan-build.stamp: $(HFILE_GLOB) $(CFILE_GLOB)
 @ENABLE_GTK_DOC_TRUE@	@echo 'gtk-doc: Scanning header files'
 @ENABLE_GTK_DOC_TRUE@	@-chmod -R u+w $(srcdir)
+@ENABLE_GTK_DOC_TRUE@	cd $(srcdir) && \
+@ENABLE_GTK_DOC_TRUE@	  gtkdoc-scan --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --ignore-headers="$(IGNORE_HFILES)" $(SCAN_OPTIONS) $(EXTRA_HFILES)
 @ENABLE_GTK_DOC_TRUE@	if grep -l '^..*$$' $(srcdir)/$(DOC_MODULE).types > /dev/null 2>&1 ; then \
 @ENABLE_GTK_DOC_TRUE@	    CC="$(GTKDOC_CC)" LD="$(GTKDOC_LD)" CFLAGS="$(GTKDOC_CFLAGS)" LDFLAGS="$(GTKDOC_LIBS)" gtkdoc-scangobj $(SCANGOBJ_OPTIONS) --module=$(DOC_MODULE) --output-dir=$(srcdir) ; \
 @ENABLE_GTK_DOC_TRUE@	else \
@@ -630,11 +699,9 @@ uninstall-am: uninstall-local
 @ENABLE_GTK_DOC_TRUE@               test -f $$i || touch $$i ; \
 @ENABLE_GTK_DOC_TRUE@	    done \
 @ENABLE_GTK_DOC_TRUE@	fi
-@ENABLE_GTK_DOC_TRUE@	cd $(srcdir) && \
-@ENABLE_GTK_DOC_TRUE@	  gtkdoc-scan --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --ignore-headers="$(IGNORE_HFILES)" $(SCAN_OPTIONS) $(EXTRA_HFILES)
 @ENABLE_GTK_DOC_TRUE@	touch scan-build.stamp
 
-@ENABLE_GTK_DOC_TRUE@$(DOC_MODULE)-decl.txt $(SCANOBJ_FILES): scan-build.stamp
+@ENABLE_GTK_DOC_TRUE@$(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)-overrides.txt: scan-build.stamp
 @ENABLE_GTK_DOC_TRUE@	@true
 
 #### templates ####
@@ -648,9 +715,12 @@ uninstall-am: uninstall-local
 @ENABLE_GTK_DOC_TRUE@tmpl.stamp: tmpl-build.stamp
 @ENABLE_GTK_DOC_TRUE@	@true
 
+@ENABLE_GTK_DOC_TRUE@tmpl/*.sgml:
+@ENABLE_GTK_DOC_TRUE@	@true
+
 #### xml ####
 
-@ENABLE_GTK_DOC_TRUE@sgml-build.stamp: tmpl.stamp $(CFILE_GLOB) $(expand_content_files)
+@ENABLE_GTK_DOC_TRUE@sgml-build.stamp: tmpl.stamp $(HFILE_GLOB) $(CFILE_GLOB) $(DOC_MODULE)-sections.txt $(srcdir)/tmpl/*.sgml $(expand_content_files)
 @ENABLE_GTK_DOC_TRUE@	@echo 'gtk-doc: Building XML'
 @ENABLE_GTK_DOC_TRUE@	@-chmod -R u+w $(srcdir)
 @ENABLE_GTK_DOC_TRUE@	cd $(srcdir) && \
@@ -672,55 +742,53 @@ uninstall-am: uninstall-local
 @ENABLE_GTK_DOC_TRUE@	@echo 'gtk-doc: Fixing cross-references' 
 @ENABLE_GTK_DOC_TRUE@	cd $(srcdir) && gtkdoc-fixxref --module-dir=html --html-dir=$(HTML_DIR) $(FIXXREF_OPTIONS)
 @ENABLE_GTK_DOC_TRUE@	touch html-build.stamp
-@ENABLE_GTK_DOC_FALSE@all-local:
 
 ##############
 
-clean-local:
-	rm -f *~ *.bak
-	rm -rf .libs
-	rm -rf tmpl
+@ENABLE_GTK_DOC_TRUE@clean-local:
+@ENABLE_GTK_DOC_TRUE@	rm -f *~ *.bak
+@ENABLE_GTK_DOC_TRUE@	rm -rf .libs
 
-maintainer-clean-local: clean
-	cd $(srcdir) && rm -rf xml html $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt
+@ENABLE_GTK_DOC_TRUE@maintainer-clean-local: clean
+@ENABLE_GTK_DOC_TRUE@	cd $(srcdir) && rm -rf xml html $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt
 
-install-data-local:
-	installfiles=`echo $(srcdir)/html/*`; \
-	if test "$$installfiles" = '$(srcdir)/html/*'; \
-	then echo '-- Nothing to install' ; \
-	else \
-	  $(mkinstalldirs) $(DESTDIR)$(TARGET_DIR); \
-	  for i in $$installfiles; do \
-	    echo '-- Installing '$$i ; \
-	    $(INSTALL_DATA) $$i $(DESTDIR)$(TARGET_DIR); \
-	  done; \
-	  echo '-- Installing $(srcdir)/html/index.sgml' ; \
-	  $(INSTALL_DATA) $(srcdir)/html/index.sgml $(DESTDIR)$(TARGET_DIR) || :; \
-	fi
+@ENABLE_GTK_DOC_TRUE@install-data-local:
+@ENABLE_GTK_DOC_TRUE@	installfiles=`echo $(srcdir)/html/*`; \
+@ENABLE_GTK_DOC_TRUE@	if test "$$installfiles" = '$(srcdir)/html/*'; \
+@ENABLE_GTK_DOC_TRUE@	then echo '-- Nothing to install' ; \
+@ENABLE_GTK_DOC_TRUE@	else \
+@ENABLE_GTK_DOC_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(TARGET_DIR); \
+@ENABLE_GTK_DOC_TRUE@	  for i in $$installfiles; do \
+@ENABLE_GTK_DOC_TRUE@	    echo '-- Installing '$$i ; \
+@ENABLE_GTK_DOC_TRUE@	    $(INSTALL_DATA) $$i $(DESTDIR)$(TARGET_DIR); \
+@ENABLE_GTK_DOC_TRUE@	  done; \
+@ENABLE_GTK_DOC_TRUE@	  echo '-- Installing $(srcdir)/html/index.sgml' ; \
+@ENABLE_GTK_DOC_TRUE@	  $(INSTALL_DATA) $(srcdir)/html/index.sgml $(DESTDIR)$(TARGET_DIR) || :; \
+@ENABLE_GTK_DOC_TRUE@	fi
 
-uninstall-local:
-	rm -f $(DESTDIR)$(TARGET_DIR)/*
+@ENABLE_GTK_DOC_TRUE@uninstall-local:
+@ENABLE_GTK_DOC_TRUE@	rm -f $(DESTDIR)$(TARGET_DIR)/*
 
 #
 # Require gtk-doc when making dist
 #
 @ENABLE_GTK_DOC_TRUE@dist-check-gtkdoc:
-@ENABLE_GTK_DOC_FALSE@dist-check-gtkdoc:
-@ENABLE_GTK_DOC_FALSE@	@echo "*** gtk-doc must be installed and enabled in order to make dist"
-@ENABLE_GTK_DOC_FALSE@	@false
+#dist-check-gtkdoc:
+#	@echo "*** gtk-doc must be installed and enabled in order to make dist"
+#	@false
 
-dist-hook: dist-check-gtkdoc dist-hook-local
-	mkdir $(distdir)/tmpl
-	mkdir $(distdir)/xml
-	mkdir $(distdir)/html
-	-cp $(srcdir)/tmpl/*.sgml $(distdir)/tmpl
-	-cp $(srcdir)/xml/*.xml $(distdir)/xml
-	-cp $(srcdir)/html/* $(distdir)/html
-	if test -f $(srcdir)/$(DOC_MODULE).types; then \
-	  cp $(srcdir)/$(DOC_MODULE).types $(distdir)/$(DOC_MODULE).types; \
-	fi
+@ENABLE_GTK_DOC_TRUE@dist-hook: dist-check-gtkdoc dist-hook-local
+@ENABLE_GTK_DOC_TRUE@	mkdir $(distdir)/tmpl
+@ENABLE_GTK_DOC_TRUE@	mkdir $(distdir)/xml
+@ENABLE_GTK_DOC_TRUE@	mkdir $(distdir)/html
+@ENABLE_GTK_DOC_TRUE@	-cp $(srcdir)/tmpl/*.sgml $(distdir)/tmpl
+@ENABLE_GTK_DOC_TRUE@	-cp $(srcdir)/xml/*.xml $(distdir)/xml
+@ENABLE_GTK_DOC_TRUE@	cp $(srcdir)/html/* $(distdir)/html
+@ENABLE_GTK_DOC_TRUE@	if test -f $(srcdir)/$(DOC_MODULE).types; then \
+@ENABLE_GTK_DOC_TRUE@	  cp $(srcdir)/$(DOC_MODULE).types $(distdir)/$(DOC_MODULE).types; \
+@ENABLE_GTK_DOC_TRUE@	fi
 
-.PHONY : dist-hook-local
+@ENABLE_GTK_DOC_TRUE@.PHONY : dist-hook-local docs
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

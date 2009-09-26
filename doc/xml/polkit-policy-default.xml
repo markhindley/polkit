@@ -24,9 +24,13 @@
 
 
                     <link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>;
+<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* <link linkend="polkit-policy-default-new">polkit_policy_default_new</link>          (void);
 <link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* <link linkend="polkit-policy-default-ref">polkit_policy_default_ref</link>          (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);
 <link linkend="void">void</link>                <link linkend="polkit-policy-default-unref">polkit_policy_default_unref</link>         (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);
 <link linkend="void">void</link>                <link linkend="polkit-policy-default-debug">polkit_policy_default_debug</link>         (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);
+<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* <link linkend="polkit-policy-default-clone">polkit_policy_default_clone</link>        (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-policy-default-equals">polkit_policy_default_equals</link>        (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *a,
+                                                         <link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *b);
 <link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-policy-default-can-session-do-action">polkit_policy_default_can_session_do_action</link>
                                                         (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default,
                                                          <link linkend="PolKitAction">PolKitAction</link> *action,
@@ -35,10 +39,19 @@
                                                         (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default,
                                                          <link linkend="PolKitAction">PolKitAction</link> *action,
                                                          <link linkend="PolKitCaller">PolKitCaller</link> *caller);
+<link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-policy-default-get-allow-any">polkit_policy_default_get_allow_any</link> (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);
 <link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-policy-default-get-allow-inactive">polkit_policy_default_get_allow_inactive</link>
                                                         (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);
 <link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-policy-default-get-allow-active">polkit_policy_default_get_allow_active</link>
                                                         (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);
+<link linkend="void">void</link>                <link linkend="polkit-policy-default-set-allow-any">polkit_policy_default_set_allow_any</link> (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default,
+                                                         <link linkend="PolKitResult">PolKitResult</link> value);
+<link linkend="void">void</link>                <link linkend="polkit-policy-default-set-allow-inactive">polkit_policy_default_set_allow_inactive</link>
+                                                        (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default,
+                                                         <link linkend="PolKitResult">PolKitResult</link> value);
+<link linkend="void">void</link>                <link linkend="polkit-policy-default-set-allow-active">polkit_policy_default_set_allow_active</link>
+                                                        (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default,
+                                                         <link linkend="PolKitResult">PolKitResult</link> value);
 </synopsis>
 </refsynopsisdiv>
 
@@ -69,6 +82,19 @@ Objects of this class are used to record information about a
 default policy for an action.</para>
 <para>
 
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-default-new" role="function" condition="since:0.7"/>polkit_policy_default_new ()</title>
+<indexterm role="0.7"><primary>polkit_policy_default_new</primary></indexterm><programlisting><link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* polkit_policy_default_new          (void);</programlisting>
+<para>
+Construct a new object with all defaults set as restrictive as possible.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new object or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
 </para></refsect2>
 <refsect2>
 <title><anchor id="polkit-policy-default-ref" role="function"/>polkit_policy_default_ref ()</title>
@@ -108,6 +134,40 @@ Print debug details</para>
 </para><variablelist role="params">
 <varlistentry><term><parameter>policy_default</parameter>&nbsp;:</term>
 <listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-default-clone" role="function" condition="since:0.7"/>polkit_policy_default_clone ()</title>
+<indexterm role="0.7"><primary>polkit_policy_default_clone</primary></indexterm><programlisting><link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* polkit_policy_default_clone        (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);</programlisting>
+<para>
+Create a new object with the same value as the given object</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_default</parameter>&nbsp;:</term>
+<listitem><simpara> object to clone
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a new object or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-default-equals" role="function"/>polkit_policy_default_equals ()</title>
+<indexterm><primary>polkit_policy_default_equals</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_policy_default_equals        (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *a,
+                                                         <link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *b);</programlisting>
+<para>
+Compare if two objects are equal.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="PolKitPolicyDefault"><type>PolKitPolicyDefault</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> a <link linkend="PolKitPolicyDefault"><type>PolKitPolicyDefault</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> only if the objects are equal
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2>
@@ -161,6 +221,20 @@ do the given action.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2>
+<title><anchor id="polkit-policy-default-get-allow-any" role="function"/>polkit_policy_default_get_allow_any ()</title>
+<indexterm><primary>polkit_policy_default_get_allow_any</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_policy_default_get_allow_any (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);</programlisting>
+<para>
+Get default policy.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_default</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> default policy
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
 <title><anchor id="polkit-policy-default-get-allow-inactive" role="function"/>polkit_policy_default_get_allow_inactive ()</title>
 <indexterm><primary>polkit_policy_default_get_allow_inactive</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_policy_default_get_allow_inactive
                                                         (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default);</programlisting>
@@ -190,10 +264,62 @@ Get default policy.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> default policy
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-default-set-allow-any" role="function"/>polkit_policy_default_set_allow_any ()</title>
+<indexterm><primary>polkit_policy_default_set_allow_any</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_default_set_allow_any (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default,
+                                                         <link linkend="PolKitResult">PolKitResult</link> value);</programlisting>
+<para>
+Set default policy.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_default</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the value to set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-default-set-allow-inactive" role="function"/>polkit_policy_default_set_allow_inactive ()</title>
+<indexterm><primary>polkit_policy_default_set_allow_inactive</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_default_set_allow_inactive
+                                                        (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default,
+                                                         <link linkend="PolKitResult">PolKitResult</link> value);</programlisting>
+<para>
+Set default policy.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_default</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the value to set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-default-set-allow-active" role="function"/>polkit_policy_default_set_allow_active ()</title>
+<indexterm><primary>polkit_policy_default_set_allow_active</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_default_set_allow_active
+                                                        (<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *policy_default,
+                                                         <link linkend="PolKitResult">PolKitResult</link> value);</programlisting>
+<para>
+Set default policy.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_default</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> the value to set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
 
 </refsect1>
 
 
 
 
+
+<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

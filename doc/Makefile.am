@@ -16,11 +16,11 @@ DOC_MAIN_SGML_FILE=polkit-docs.xml
 SCAN_OPTIONS=--ignore-headers=config.h
 
 # The directory containing the source code. Relative to $(srcdir)
-DOC_SOURCE_DIR=..
+DOC_SOURCE_DIR=../src
 
 # Used for dependencies
-HFILE_GLOB=$(top_srcdir)/polkit*/*.h
-CFILE_GLOB=$(top_srcdir)/polkit*/*.c
+HFILE_GLOB=$(top_srcdir)/src/*/*.h
+CFILE_GLOB=$(top_srcdir)/src/*/*.c
 
 # Headers to ignore
 IGNORE_HFILES= \
@@ -29,14 +29,19 @@ IGNORE_HFILES= \
 # CFLAGS and LDFLAGS for compiling scan program. Only needed
 # if $(DOC_MODULE).types is non-empty.
 INCLUDES = \
+	$(DBUS_GLIB_CFLAGS)	\
 	$(GLIB_CFLAGS)		\
-	-I$(top_srcdir) 	\
-	-I$(top_builddir)	\
+	-I$(top_srcdir)/src 	\
+	-I$(top_builddir)/src	\
 	$(NULL)
 
 GTKDOC_LIBS = \
-	$(GLIB_LIBS)				\
-	$(top_builddir)/polkit/libpolkit.la	\
+	$(DBUS_GLIB_LIBS)					\
+	$(GLIB_LIBS)						\
+	$(top_builddir)/src/kit/libkit.la			\
+	$(top_builddir)/src/polkit/libpolkit.la			\
+	$(top_builddir)/src/polkit-dbus/libpolkit-dbus.la	\
+	$(top_builddir)/src/polkit-grant/libpolkit-grant.la	\
 	$(NULL)
 
 # Extra options to supply to gtkdoc-mkdb
@@ -50,8 +55,8 @@ content_files =  			    \
 	version.xml			    \
 	man/PolicyKit.xml		    \
 	man/PolicyKit.conf.xml		    \
-	man/polkit-grant.xml		    \
-	man/polkit-list-actions.xml	    \
+	man/polkit-auth.xml		    \
+	man/polkit-action.xml		    \
 	man/polkit-policy-file-validate.xml \
 	man/polkit-config-file-validate.xml \
 	spec/polkit-spec-configuration.xml  \
@@ -60,7 +65,9 @@ content_files =  			    \
 	$(NULL)
 
 # Images to copy into HTML directory
-HTML_IMAGES =
+HTML_IMAGES = 				\
+	diagram-bus-model.png		\
+	diagram-interaction.png
 
 # Extra options to supply to gtkdoc-fixref
 FIXXREF_OPTIONS=
@@ -72,7 +79,11 @@ MAINTAINERCLEANFILES =	\
 	polkit-*.txt	\
 	$(NULL)
 
+if ENABLE_GTK_DOC
 include $(top_srcdir)/gtk-doc.make
+else
+EXTRA_DIST =
+endif
 
 # Version information for marking the documentation
 EXTRA_DIST += version.xml.in

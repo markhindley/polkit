@@ -1,8 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT(PolicyKit, 0.6, david@fubar.dk)
-AM_INIT_AUTOMAKE(PolicyKit, 0.6)
+AC_INIT(PolicyKit, 0.7, david@fubar.dk)
+AM_INIT_AUTOMAKE(PolicyKit, 0.7)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -25,12 +25,42 @@ AM_PROG_LIBTOOL
 AC_PROG_MAKE_SET
 AC_PROG_LN_S
 AC_SYS_LARGEFILE
+AM_PROG_CC_C_O
 
 # Taken from dbus
 AC_ARG_ENABLE(ansi,             [  --enable-ansi           enable -ansi -pedantic gcc flags],enable_ansi=$enableval,enable_ansi=no)
 AC_ARG_ENABLE(verbose-mode,     [  --enable-verbose-mode   support verbose debug mode],enable_verbose_mode=$enableval,enable_verbose_mode=$USE_MAINTAINER_MODE)
-
+AC_ARG_ENABLE(tests, AS_HELP_STRING([--enable-tests],[enable unit test code]),enable_tests=$enableval,enable_tests=$USE_MAINTAINER_MODE)
+AC_ARG_ENABLE(gcov, AS_HELP_STRING([--enable-gcov],[compile with coverage profiling instrumentation (gcc only)]),enable_gcov=$enableval,enable_gcov=no)
 AC_ARG_ENABLE(man-pages,        [  --enable-man-pages      build manual pages],enable_man_pages=$enableval,enable_man_pages=yes)
+
+AM_CONDITIONAL(KIT_BUILD_TESTS, test x$enable_tests = xyes)
+AM_CONDITIONAL(POLKIT_BUILD_TESTS, test x$enable_tests = xyes)
+if test x$enable_tests = xyes; then
+    AC_DEFINE(KIT_BUILD_TESTS,1,[Build test code])
+    AC_DEFINE(POLKIT_BUILD_TESTS,1,[Build test code])
+fi
+
+if test x$enable_gcov = xyes; then
+     if test x$enable_tests = xno; then
+          AC_ERROR([It only makes sense to use gcov if tests are enabled.])
+     fi
+     ## so that config.h changes when you toggle gcov support
+     AC_DEFINE_UNQUOTED(KIT_GCOV_ENABLED, 1, [Defined if gcov is enabled to force a rebuild due to config.h changing])
+     AC_DEFINE_UNQUOTED(POLKIT_GCOV_ENABLED, 1, [Defined if gcov is enabled to force a rebuild due to config.h changing])
+fi
+AM_CONDITIONAL(KIT_GCOV_ENABLED, test x$enable_gcov = xyes)
+AM_CONDITIONAL(POLKIT_GCOV_ENABLED, test x$enable_gcov = xyes)
+
+if test "${enable_verbose_mode}" != no; then
+    # To get -rdynamic you pass -export-dynamic to libtool.
+    AC_DEFINE(BUILT_R_DYNAMIC,1,[whether -export-dynamic was passed to libtool])
+    R_DYNAMIC_LDFLAG=-export-dynamic
+else
+    R_DYNAMIC_LDFLAG=
+fi
+AC_SUBST(R_DYNAMIC_LDFLAG)
+
 if test "${enable_man_page}" != no; then
 dnl
 dnl Check for xsltproc
@@ -135,6 +165,10 @@ PKG_CHECK_MODULES(DBUS, [dbus-1 >= 1.0])
 AC_SUBST(DBUS_CFLAGS)
 AC_SUBST(DBUS_LIBS)
 
+PKG_CHECK_MODULES(DBUS_GLIB, [dbus-glib-1 >= 0.73])
+AC_SUBST(DBUS_GLIB_CFLAGS)
+AC_SUBST(DBUS_GLIB_LIBS)
+
 AC_CHECK_FUNCS(getgrouplist)
 
 EXPAT_LIB=""
@@ -218,6 +252,42 @@ fi
 AC_SUBST(SELINUX_LIBS)
 
 dnl ---------------------------------------------------------------------------
+dnl - Select what authorization database to use
+dnl ---------------------------------------------------------------------------
+
+AC_ARG_WITH([authdb],
+	    AS_HELP_STRING([--with-authdb=<name>], 
+                           [Authorization database (default/dummy)]))
+if ! test -z "$with_authdb" ; then
+  POLKIT_AUTHDB=$with_authdb
+else
+  POLKIT_AUTHDB=default
+fi
+
+AC_SUBST(POLKIT_AUTHDB)
+AC_DEFINE_UNQUOTED(POLKIT_AUTHDB,"$POLKIT_AUTHDB", [Authorization Database to use])
+
+case $POLKIT_AUTHDB in
+  dummy)
+    need_pam=no
+    AC_DEFINE(POLKIT_AUTHDB_DUMMY, 1, [If using the dummy authorization database])
+    ;;
+
+  default)
+    need_pam=yes
+    AC_DEFINE(POLKIT_AUTHDB_DEFAULT, 1, [If using the default authorization database])
+    ;;
+
+  *)
+    AC_MSG_ERROR([Unknown Authorization Database: $POLKIT_AUTHDB])
+    ;;
+esac
+
+AM_CONDITIONAL(POLKIT_AUTHDB_DUMMY, [test x$POLKIT_AUTHDB = xdummy], [Using dummy authdb])
+AM_CONDITIONAL(POLKIT_AUTHDB_DEFAULT, [test x$POLKIT_AUTHDB = xdefault], [Using default authdb])
+
+
+dnl ---------------------------------------------------------------------------
 dnl - Check for PAM
 dnl ---------------------------------------------------------------------------
 
@@ -236,9 +306,14 @@ PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
 AC_SUBST(PAM_PREFIX)
 
 have_pam=no
-AC_CHECK_LIB(pam, pam_start, have_pam=yes)
+if test "$need_pam" = yes ; then
+  AC_CHECK_LIB(pam, pam_start, have_pam=yes)
+fi
+
 if test x$have_pam = xno; then
-    AC_ERROR([Could not find pam/pam-devel, please install the needed packages.])
+    if test "$need_pam" = yes ; then
+      AC_ERROR([Could not find pam/pam-devel, please install the needed packages.])
+    fi
 else
     AUTH_LIBS="${AUTH_LIBS} -lpam"
     AC_DEFINE(HAVE_PAM, 1, [Define if PAM support is included])
@@ -366,6 +441,17 @@ AC_DEFINE_UNQUOTED(PAM_FILE_INCLUDE_ACCOUNT, "$PAM_FILE_INCLUDE_ACCOUNT", [pam f
 AC_DEFINE_UNQUOTED(PAM_FILE_INCLUDE_PASSWORD, "$PAM_FILE_INCLUDE_PASSWORD", [pam file password])
 AC_DEFINE_UNQUOTED(PAM_FILE_INCLUDE_SESSION, "$PAM_FILE_INCLUDE_SESSION", [pam file session])
 
+# ********************
+# Internationalisation
+# ********************
+
+IT_PROG_INTLTOOL([0.36.0])
+GETTEXT_PACKAGE=PolicyKit
+AC_SUBST([GETTEXT_PACKAGE])
+AM_GLIB_GNU_GETTEXT
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
+
+
 AC_OUTPUT([
 Makefile
 data/Makefile
@@ -373,14 +459,19 @@ data/polkit
 data/polkit.pc
 data/polkit-dbus.pc
 data/polkit-grant.pc
-polkit/Makefile
-polkit-dbus/Makefile
-polkit-grant/Makefile
+src/Makefile
+src/kit/Makefile
+src/polkit/Makefile
+src/polkit-dbus/Makefile
+src/polkit-grant/Makefile
+polkitd/Makefile
 tools/Makefile
 doc/Makefile
 doc/version.xml
 doc/man/Makefile
 policy/Makefile
+po/Makefile.in
+test/Makefile
 ])
 
 dnl ==========================================================================
@@ -406,32 +497,64 @@ echo "
         user for PolicyKit:         ${POLKIT_USER}
         group for PolicyKit:        ${POLKIT_GROUP}
 
+        authorization database:     ${POLKIT_AUTHDB}
+
         Distribution/OS:            ${with_os_type}
         SELinux support:            ${have_selinux}
 
-        PAM support:                ${have_pam}
-        PAM file auth:              ${PAM_FILE_INCLUDE_AUTH}
+        PAM support:                ${have_pam}"
+
+if test "$have_pam" = yes ; then
+echo "        PAM file auth:              ${PAM_FILE_INCLUDE_AUTH}
         PAM file account:           ${PAM_FILE_INCLUDE_ACCOUNT}
         PAM file password:          ${PAM_FILE_INCLUDE_PASSWORD}
-        PAM file session:           ${PAM_FILE_INCLUDE_SESSION}
+        PAM file session:           ${PAM_FILE_INCLUDE_SESSION}"
+fi
 
+echo "
         Maintainer mode:            ${USE_MAINTAINER_MODE}
+        Building unit tests:        ${enable_tests}
+        GCC coverage profiling:     ${enable_gcov}
         Building verbose mode:      ${enable_verbose_mode}
         Building api docs:          ${enable_gtk_doc}
         Building man pages:         ${enable_man_pages}
 "
 
-echo "NOTE: Remember to create user '${POLKIT_USER}' and group '${POLKIT_GROUP}' before 'make install'"
-echo
+if test x$enable_tests = xyes; then
+  echo "NOTE: Building with unit tests increases the size of the installed "
+  echo "      library and renders it insecure."
+  echo
+fi
 
-echo "NOTE: ${libexecdir}/polkit-grant-helper will be owned by group"
-echo "      '${POLKIT_USER}', and installed with mode 2755 (setgid binary)."
-echo "      The directories ${localstatedir}/run/PolicyKit and ${localstatedir}/lib/PolicyKit will be"
-echo "      owned by user '${POLKIT_USER}' and group '${POLKIT_GROUP}' and will be of mode 775."
-echo
+if test x$enable_gcov = xyes; then
+  echo "NOTE: Building with coverage profiling is definitely for developers only."
+  echo 
+fi
 
-echo "NOTE: ${libexecdir}/polkit-grant-helper-pam will be setuid root."
-echo
-
-echo "NOTE: For packaging, remember to retain the modes and ownership."
-echo
+if test "${POLKIT_AUTHDB}" = default ; then
+  echo "NOTE: Remember to create user ${POLKIT_USER} and group ${POLKIT_GROUP}"
+  echo "      before 'make install'"
+  echo
+  echo "NOTE: The directories ${localstatedir}/run/PolicyKit and ${localstatedir}/lib/PolicyKit will be"
+  echo "      owned by group ${POLKIT_GROUP} and will be mode 770."
+  echo
+  echo "NOTE: The directory ${localstatedir}/run/PolicyKit-public will be"
+  echo "      owned by group ${POLKIT_GROUP} and will be mode 775."
+  echo
+  echo "NOTE: ${libexecdir}/polkit-read-auth-helper will be owned by"
+  echo "      group ${POLKIT_GROUP} and installed with mode 2755 (setgid binary)."
+  echo
+  echo "NOTE: ${libexecdir}/polkit-revoke-helper will be owned by"
+  echo "      group '${POLKIT_GROUP} and installed with mode 2755 (setgid binary)."
+  echo
+  echo "NOTE: ${libexecdir}/polkit-grant-helper will be owned by"
+  echo "      group ${POLKIT_GROUP} and installed with mode 2755 (setgid binary)."
+  echo
+  echo "NOTE: ${libexecdir}/polkit-explicit-grant-helper will be owned by"
+  echo "      group ${POLKIT_GROUP} and installed with mode 2755 (setgid binary)."
+  echo
+  echo "NOTE: ${libexecdir}/polkit-grant-helper-pam will be setuid root."
+  echo
+  echo "NOTE: For packaging, remember to retain the modes and ownership."
+  echo
+fi

@@ -52,15 +52,19 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(confdir)" "$(DESTDIR)$(dtddir)" \
-	"$(DESTDIR)$(pamdir)" "$(DESTDIR)$(pkgconfigdir)"
+am__installdirs = "$(DESTDIR)$(confdir)" "$(DESTDIR)$(dbusifdir)" \
+	"$(DESTDIR)$(dtddir)" "$(DESTDIR)$(pamdir)" \
+	"$(DESTDIR)$(pkgconfigdir)"
 confDATA_INSTALL = $(INSTALL_DATA)
+dbusifDATA_INSTALL = $(INSTALL_DATA)
 dtdDATA_INSTALL = $(INSTALL_DATA)
 pamDATA_INSTALL = $(INSTALL_DATA)
 pkgconfigDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(conf_DATA) $(dtd_DATA) $(pam_DATA) $(pkgconfig_DATA)
+DATA = $(conf_DATA) $(dbusif_DATA) $(dtd_DATA) $(pam_DATA) \
+	$(pkgconfig_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
+ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
 AR = @AR@
 AUTH_LIBS = @AUTH_LIBS@
@@ -68,6 +72,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+CATALOGS = @CATALOGS@
+CATOBJEXT = @CATOBJEXT@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
@@ -78,7 +84,10 @@ CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
+DATADIRNAME = @DATADIRNAME@
 DBUS_CFLAGS = @DBUS_CFLAGS@
+DBUS_GLIB_CFLAGS = @DBUS_GLIB_CFLAGS@
+DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -91,8 +100,11 @@ EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
 F77 = @F77@
 FFLAGS = @FFLAGS@
+GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
+GMOFILES = @GMOFILES@
+GMSGFMT = @GMSGFMT@
 GREP = @GREP@
 HAVE_PAM = @HAVE_PAM@
 HTML_DIR = @HTML_DIR@
@@ -101,6 +113,31 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INSTOBJEXT = @INSTOBJEXT@
+INTLLIBS = @INTLLIBS@
+INTLTOOL_CAVES_RULE = @INTLTOOL_CAVES_RULE@
+INTLTOOL_DESKTOP_RULE = @INTLTOOL_DESKTOP_RULE@
+INTLTOOL_DIRECTORY_RULE = @INTLTOOL_DIRECTORY_RULE@
+INTLTOOL_EXTRACT = @INTLTOOL_EXTRACT@
+INTLTOOL_KBD_RULE = @INTLTOOL_KBD_RULE@
+INTLTOOL_KEYS_RULE = @INTLTOOL_KEYS_RULE@
+INTLTOOL_MERGE = @INTLTOOL_MERGE@
+INTLTOOL_OAF_RULE = @INTLTOOL_OAF_RULE@
+INTLTOOL_PERL = @INTLTOOL_PERL@
+INTLTOOL_POLICY_RULE = @INTLTOOL_POLICY_RULE@
+INTLTOOL_PONG_RULE = @INTLTOOL_PONG_RULE@
+INTLTOOL_PROP_RULE = @INTLTOOL_PROP_RULE@
+INTLTOOL_SCHEMAS_RULE = @INTLTOOL_SCHEMAS_RULE@
+INTLTOOL_SERVER_RULE = @INTLTOOL_SERVER_RULE@
+INTLTOOL_SERVICE_RULE = @INTLTOOL_SERVICE_RULE@
+INTLTOOL_SHEET_RULE = @INTLTOOL_SHEET_RULE@
+INTLTOOL_SOUNDLIST_RULE = @INTLTOOL_SOUNDLIST_RULE@
+INTLTOOL_THEME_RULE = @INTLTOOL_THEME_RULE@
+INTLTOOL_UI_RULE = @INTLTOOL_UI_RULE@
+INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
+INTLTOOL_XAM_RULE = @INTLTOOL_XAM_RULE@
+INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
+INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -113,6 +150,9 @@ LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
+MKINSTALLDIRS = @MKINSTALLDIRS@
+MSGFMT = @MSGFMT@
+MSGFMT_OPTS = @MSGFMT_OPTS@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -128,15 +168,23 @@ PAM_MODULE_DIR = @PAM_MODULE_DIR@
 PAM_PREFIX = @PAM_PREFIX@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+POFILES = @POFILES@
+POLKIT_AUTHDB = @POLKIT_AUTHDB@
 POLKIT_GROUP = @POLKIT_GROUP@
 POLKIT_USER = @POLKIT_USER@
+POSUB = @POSUB@
+PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
+PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
 RANLIB = @RANLIB@
+R_DYNAMIC_LDFLAG = @R_DYNAMIC_LDFLAG@
 SED = @SED@
 SELINUX_LIBS = @SELINUX_LIBS@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+XGETTEXT = @XGETTEXT@
 XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
@@ -189,16 +237,21 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-pamdir = $(sysconfdir)/pam.d
-pam_DATA = polkit
+
+# See polkit-grant/Makefile.am for discussion
+#
+@POLKIT_AUTHDB_DEFAULT_TRUE@pamdir = $(sysconfdir)/pam.d
+@POLKIT_AUTHDB_DEFAULT_TRUE@pam_DATA = polkit
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = polkit.pc polkit-dbus.pc polkit-grant.pc
 confdir = $(sysconfdir)/PolicyKit
 conf_DATA = PolicyKit.conf
 dtddir = $(datadir)/PolicyKit
 dtd_DATA = config.dtd
+dbusifdir = $(datadir)/dbus-1/interfaces
+dbusif_DATA = org.freedesktop.PolicyKit.AuthenticationAgent.xml
 DISTCLEANFILES = polkit.pc polkit-dbus.pc polkit-grant.pc PolicyKit.conf
-EXTRA_DIST = polkit.in polkit.pc.in polkit-dbus.pc.in polkit-grant.pc.in PolicyKit.conf.in config.dtd
+EXTRA_DIST = polkit.in polkit.pc.in polkit-dbus.pc.in polkit-grant.pc.in PolicyKit.conf.in config.dtd org.freedesktop.PolicyKit.AuthenticationAgent.xml
 edit = sed \
 	-e 's|@docdir[@]|$(docdir)|g' \
 	-e 's|@sbindir[@]|$(sbindir)|g' \
@@ -267,6 +320,23 @@ uninstall-confDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(confdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(confdir)/$$f"; \
+	done
+install-dbusifDATA: $(dbusif_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(dbusifdir)" || $(MKDIR_P) "$(DESTDIR)$(dbusifdir)"
+	@list='$(dbusif_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(dbusifDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(dbusifdir)/$$f'"; \
+	  $(dbusifDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(dbusifdir)/$$f"; \
+	done
+
+uninstall-dbusifDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dbusif_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(dbusifdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(dbusifdir)/$$f"; \
 	done
 install-dtdDATA: $(dtd_DATA)
 	@$(NORMAL_INSTALL)
@@ -356,7 +426,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(confdir)" "$(DESTDIR)$(dtddir)" "$(DESTDIR)$(pamdir)" "$(DESTDIR)$(pkgconfigdir)"; do \
+	for dir in "$(DESTDIR)$(confdir)" "$(DESTDIR)$(dbusifdir)" "$(DESTDIR)$(dtddir)" "$(DESTDIR)$(pamdir)" "$(DESTDIR)$(pkgconfigdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -402,8 +472,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-confDATA install-dtdDATA install-pamDATA \
-	install-pkgconfigDATA
+install-data-am: install-confDATA install-dbusifDATA install-dtdDATA \
+	install-pamDATA install-pkgconfigDATA
 
 install-dvi: install-dvi-am
 
@@ -437,8 +507,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-confDATA uninstall-dtdDATA uninstall-pamDATA \
-	uninstall-pkgconfigDATA
+uninstall-am: uninstall-confDATA uninstall-dbusifDATA \
+	uninstall-dtdDATA uninstall-pamDATA uninstall-pkgconfigDATA
 
 .MAKE: install-am install-strip
 
@@ -446,15 +516,16 @@ uninstall-am: uninstall-confDATA uninstall-dtdDATA uninstall-pamDATA \
 	clean-local distclean distclean-generic distclean-libtool \
 	distdir dvi dvi-am html html-am info info-am install \
 	install-am install-confDATA install-data install-data-am \
-	install-dtdDATA install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pamDATA install-pdf \
-	install-pdf-am install-pkgconfigDATA install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	uninstall uninstall-am uninstall-confDATA uninstall-dtdDATA \
-	uninstall-pamDATA uninstall-pkgconfigDATA
+	install-dbusifDATA install-dtdDATA install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-pamDATA \
+	install-pdf install-pdf-am install-pkgconfigDATA install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am uninstall uninstall-am uninstall-confDATA \
+	uninstall-dbusifDATA uninstall-dtdDATA uninstall-pamDATA \
+	uninstall-pkgconfigDATA
 
 
 clean-local :

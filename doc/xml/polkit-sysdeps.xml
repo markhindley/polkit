@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-sysdeps">
+<refmeta>
+<refentrytitle role="top_of_page">System Dependencies</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>System Dependencies</refname>
+<refpurpose>Various platform specific utility functions</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+<link linkend="polkit-uint64-t">polkit_uint64_t</link>     <link linkend="polkit-sysdeps-get-start-time-for-pid">polkit_sysdeps_get_start_time_for_pid</link>
+                                                        (<link linkend="pid-t">pid_t</link> pid);
+<link linkend="int">int</link>                 <link linkend="polkit-sysdeps-get-exe-for-pid">polkit_sysdeps_get_exe_for_pid</link>      (<link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="char">char</link> *out_buf,
+                                                         <link linkend="size-t">size_t</link> buf_size);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+Various platform specific utility functions.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="polkit-sysdeps-get-start-time-for-pid" role="function" condition="since:0.7"/>polkit_sysdeps_get_start_time_for_pid ()</title>
+<indexterm role="0.7"><primary>polkit_sysdeps_get_start_time_for_pid</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_sysdeps_get_start_time_for_pid
+                                                        (<link linkend="pid-t">pid_t</link> pid);</programlisting>
+<para>
+Get when a process started.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> process id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> start time for the process or 0 if an error occured and errno will be set
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-sysdeps-get-exe-for-pid" role="function" condition="since:0.7"/>polkit_sysdeps_get_exe_for_pid ()</title>
+<indexterm role="0.7"><primary>polkit_sysdeps_get_exe_for_pid</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_sysdeps_get_exe_for_pid      (<link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="char">char</link> *out_buf,
+                                                         <link linkend="size-t">size_t</link> buf_size);</programlisting>
+<para>
+Get the name of the binary a given process was started from. Note
+that this is not reliable information; it should not be part of any
+security decision. If the information could not be obtained 0 is
+returned and out_buf will be set to "(unknown)".</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> process id
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_buf</parameter>&nbsp;:</term>
+<listitem><simpara> buffer to store the string representation in
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Number of characters written (not including trailing
+'\0'). If the output was truncated due to the buffer being too
+small, buf_size will be returned. Thus, a return value of buf_size
+or more indicates that the output was truncated (see snprintf(3))
+or an error occured. If the name cannot be found, -1 will be
+returned.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+
+<refsect1><refsect2 /><refsect2 /></refsect1>
+</refentry>

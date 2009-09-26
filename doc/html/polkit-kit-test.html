@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Unit testing</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-internal.html" title="Internal API Reference">
+<link rel="prev" href="polkit-kit-entity.html" title="Entity management">
+<link rel="next" href="ref-core.html" title="Core API Reference">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-kit-entity.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-internal.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="ref-core.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2699285" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2706267" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-kit-test"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2699285"></a><span class="refentrytitle">Unit testing</span>
+</h2>
+<p>Unit testing &#8212; Unit testing</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+                    <a class="link" href="polkit-kit-test.html#KitTest">KitTest</a>;
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-test.html#kit-test-run">kit_test_run</a>                        (<a class="link" href="polkit-kit-test.html#KitTest">KitTest</a> **tests,
+                                                         size_t num_tests);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2706267"></a><h2>Description</h2>
+<p>
+Functions used for unit testing.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2706286"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2706297"></a><h3>
+<a name="KitTest"></a>KitTest</h3>
+<a class="indexterm" name="id2706309"></a><pre class="programlisting">typedef struct {
+        const char *name;
+        void (*setup) (void);
+        void (*teardown) (void);
+        kit_bool_t (*run) (void);
+} KitTest;
+</pre>
+<p>
+Test suite abstraction. See <a class="link" href="polkit-kit-test.html#kit-test-run"><code class="function">kit_test_run()</code></a> for details.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">const&#160;char&#160;*<em class="structfield"><code>name</code></em>;</span></p></td>
+<td> name of the unit test
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>setup</code></em>&#160;()</span></p></td>
+<td> setup function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>teardown</code></em>&#160;()</span></p></td>
+<td> teardown function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>run</code></em>&#160;()</span></p></td>
+<td> actual test function.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2722674"></a><h3>
+<a name="kit-test-run"></a>kit_test_run ()</h3>
+<a class="indexterm" name="id2722687"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_test_run                        (<a class="link" href="polkit-kit-test.html#KitTest">KitTest</a> **tests,
+                                                         size_t num_tests);</pre>
+<p>
+Runs a number of tests simulating Out Of Memory. Checks for both
+memory and file descriptor leaks. 
+</p>
+<p>
+This function is only available if libkit have been built with
+KIT_BUILD_TESTS.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tests</code></em>&#160;:</span></p></td>
+<td> array of <a class="link" href="polkit-kit-test.html#KitTest"><span class="type">KitTest</span></a> objects
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>num_tests</code></em>&#160;:</span></p></td>
+<td> size of <em class="parameter"><code>tests</code></em> array
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> only if all tests succeed without memory or file descriptor leaks
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2722800"></a><div class="refsect2" lang="en"><a name="id2722801"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2722802"></a></div>
+</div>
+</div>
+</body>
+</html>

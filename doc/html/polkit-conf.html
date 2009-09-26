@@ -5,26 +5,27 @@
 <title>PolicyKit configuration</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
-<link rel="up" href="rn01.html" title="Design Overview">
-<link rel="prev" href="ch02s03.html" title="Theory of Operation">
+<link rel="up" href="ref-design.html" title="Design Overview">
+<link rel="prev" href="model-authentication-agent.html" title="Authentication Agent">
 <link rel="next" href="beyond-defaults.html" title="Beyond the Defaults">
-<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="reference" href="rn01.html" title="Design Overview">
+<link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="rn02.html" title="Core API Reference">
-<link rel="reference" href="rn03.html" title="Convenience API Reference">
-<link rel="reference" href="rn04.html" title="Authorization and privilege granting API Reference">
-<link rel="reference" href="rn05.html" title="Tools and file formats">
-<link rel="index" href="ix01.html" title="Index">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
-<td><a accesskey="p" href="ch02s03.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="rn01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="model-authentication-agent.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-design.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="beyond-defaults.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
@@ -33,13 +34,13 @@
 <div class="titlepage"><div><div><h2 class="title">
 <a name="polkit-conf"></a>PolicyKit configuration</h2></div></div></div>
 <div class="toc"><dl>
-<dt><span class="sect1"><a href="polkit-conf.html#id3131512">Declaring Actions</a></span></dt>
-<dd><dl><dt><span class="sect2"><a href="polkit-conf.html#id3125880">Annotations</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="polkit-conf.html#conf-declaring-actions">Declaring Actions</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="polkit-conf.html#conf-declaring-actions-annotations">Annotations</a></span></dt></dl></dd>
 <dt><span class="sect1"><a href="beyond-defaults.html">Beyond the Defaults</a></span></dt>
 </dl></div>
 <div class="sect1" lang="en">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="id3131512"></a>Declaring Actions</h2></div></div></div>
+<a name="conf-declaring-actions"></a>Declaring Actions</h2></div></div></div>
 <p>
       A Mechanism needs to declare what Actions it supports. This is
       achieved by dropping one or more XML files with the suffix <code class="literal">.policy</code>
@@ -52,6 +53,9 @@
  "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
  "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd"&gt;
 &lt;policyconfig&gt;
+  &lt;vendor&gt;The PolicyKit Project&lt;/vendor&gt;
+  &lt;vendor_url&gt;http://hal.freedesktop.org/docs/PolicyKit/&lt;/vendor_url&gt;
+  &lt;icon_name&gt;polkit-icon&lt;/icon_name&gt;
 
   &lt;action id="org.gnome.policykit.examples.frobnicate"&gt;
     &lt;description&gt;Frobnicate&lt;/description&gt;
@@ -60,6 +64,10 @@
     &lt;message&gt;System policy prevents the PolicyKit-gnome example helper from Frobnicating&lt;/message&gt;
     &lt;message xml:lang="da"&gt;System indstillinger forhindrer PolicyKit-gnome eksempel hj&#230;lper i at Frobnikere!&lt;/message&gt;
     &lt;message xml:lang="en_CA"&gt;System policy prevents the PolicyKit-gnome example helper from Frobnicating, Aye!&lt;/message&gt;
+
+    &lt;icon_name&gt;polkit-icon-frobnicate&lt;/icon_name&gt;
+    &lt;vendor_url&gt;http://hal.freedesktop.org/docs/PolicyKit/about-frobnicating&lt;/vendor_url&gt;
+
     &lt;defaults&gt;
       &lt;allow_any&gt;no&lt;/allow_any&gt;
       &lt;allow_inactive&gt;no&lt;/allow_inactive&gt;
@@ -74,6 +82,9 @@
     &lt;message&gt;System policy prevents the PolicyKit-gnome example helper from Tweaking&lt;/message&gt;
     &lt;message xml:lang="da"&gt;System indstillinger forhindrer PolicyKit-gnome eksempel hj&#230;lper i at Tv&#230;kke!&lt;/message&gt;
     &lt;message xml:lang="en_CA"&gt;System policy prevents the PolicyKit-gnome example helper from Tweaking, Aye!&lt;/message&gt;
+
+    &lt;!-- just inherit icon_name and vendor_url --&gt;
+
     &lt;defaults&gt;
       &lt;allow_any&gt;no&lt;/allow_any&gt;
       &lt;allow_inactive&gt;no&lt;/allow_inactive&gt;
@@ -123,11 +134,31 @@
           </p></li>
 <li><p>
             <span class="emphasis"><em>Textual descriptions:</em></span> Simply included
-            for convenience and organizational
-            purposes. Standard <code class="literal">xml:lang</code> mechnanisms
-            are used to convey localized strings (note that intltool
-            0.36 or greater includes native support for
+            for convenience and organizational purposes. Useful for
+            graphical editors for
+            authorizations. Standard <code class="literal">xml:lang</code>
+            mechnanisms are used to convey localized strings (note
+            that intltool 0.36 or greater includes native support for
             handling <code class="literal">.policy</code> files).
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>Vendor:</em></span> The <code class="literal">vendor</code>
+            and <code class="literal">vendor_url</code> describes who is
+            supplying the action. Both can be set at the top-level of
+            the <code class="literal">.policy</code> file and each Action can
+            further override it. These tags are optional.
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>Icon:</em></span>
+            The <code class="literal">icon_name</code> tag can be used to
+            specify an icon name for the action or group of
+            actions. The name must adhere to the freedesktop.org Icon
+            Naming spec (for theming purposes) and cannot include
+            directory separators and must not include filename
+            extensions like <code class="literal">.png</code>. Like with vendor
+            tags, this tag can be set at the top level and also be
+            specialized for each individual action. This tag is
+            optional.
           </p></li>
 </ul></div>
 <p>
@@ -138,6 +169,9 @@
             <span class="emphasis"><em>no</em></span>
           </p></li>
 <li><p>
+            <span class="emphasis"><em>auth_self_one_shot</em></span>
+          </p></li>
+<li><p>
             <span class="emphasis"><em>auth_self</em></span>
           </p></li>
 <li><p>
@@ -145,6 +179,9 @@
           </p></li>
 <li><p>
             <span class="emphasis"><em>auth_self_keep_always</em></span>
+          </p></li>
+<li><p>
+            <span class="emphasis"><em>auth_admin_one_shot</em></span>
           </p></li>
 <li><p>
             <span class="emphasis"><em>auth_admin</em></span>
@@ -181,7 +218,7 @@
     </p>
 <div class="sect2" lang="en">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="id3125880"></a>Annotations</h3></div></div></div>
+<a name="conf-declaring-actions-annotations"></a>Annotations</h3></div></div></div>
 <p>
         When declaring an Action, one can also annotate it with one or
         more key/value pairs: 

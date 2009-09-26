@@ -31,6 +31,7 @@ polkit-policy-file
 @policy_file: 
 @policy_file_entry: 
 @user_data: 
+@Returns: 
 
 
 <!-- ##### FUNCTION polkit_policy_file_new ##### -->
@@ -69,5 +70,6 @@ polkit-policy-file
 @policy_file: 
 @cb: 
 @user_data: 
+@Returns: 
 
 

@@ -31,6 +31,7 @@ polkit-policy-cache
 @policy_cache: 
 @entry: 
 @user_data: 
+@Returns: 
 
 
 <!-- ##### FUNCTION polkit_policy_cache_ref ##### -->
@@ -78,6 +79,17 @@ polkit-policy-cache
 @Returns: 
 
 
+<!-- ##### FUNCTION polkit_policy_cache_get_entry_by_annotation ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+@annotation_key: 
+@annotation_value: 
+@Returns: 
+
+
 <!-- ##### FUNCTION polkit_policy_cache_foreach ##### -->
 <para>
 
@@ -86,5 +98,6 @@ polkit-policy-cache
 @policy_cache: 
 @callback: 
 @user_data: 
+@Returns: 
 
 

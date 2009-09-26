@@ -24,7 +24,7 @@
 
 
                     <link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>;
-<link linkend="void">void</link>                (<link linkend="PolKitPolicyFileEntryAnnotationsForeachFunc">*PolKitPolicyFileEntryAnnotationsForeachFunc</link>)
+<link linkend="polkit-bool-t">polkit_bool_t</link>       (<link linkend="PolKitPolicyFileEntryAnnotationsForeachFunc">*PolKitPolicyFileEntryAnnotationsForeachFunc</link>)
                                                         (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
                                                          const <link linkend="char">char</link> *key,
                                                          const <link linkend="char">char</link> *value,
@@ -39,13 +39,25 @@ const <link linkend="char">char</link>*         <link linkend="polkit-policy-fil
                                                         (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
 const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-action-message">polkit_policy_file_entry_get_action_message</link>
                                                         (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
-<link linkend="void">void</link>                <link linkend="polkit-policy-file-entry-annotations-foreach">polkit_policy_file_entry_annotations_foreach</link>
+const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-action-vendor">polkit_policy_file_entry_get_action_vendor</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-action-vendor-url">polkit_policy_file_entry_get_action_vendor_url</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-action-icon-name">polkit_policy_file_entry_get_action_icon_name</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-policy-file-entry-annotations-foreach">polkit_policy_file_entry_annotations_foreach</link>
                                                         (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
                                                          <link linkend="PolKitPolicyFileEntryAnnotationsForeachFunc">PolKitPolicyFileEntryAnnotationsForeachFunc</link> cb,
                                                          <link linkend="void">void</link> *user_data);
 const <link linkend="char">char</link>*         <link linkend="polkit-policy-file-entry-get-annotation">polkit_policy_file_entry_get_annotation</link>
                                                         (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
                                                          const <link linkend="char">char</link> *key);
+<link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* <link linkend="polkit-policy-file-entry-get-default-factory">polkit_policy_file_entry_get_default_factory</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-policy-file-entry-set-default">polkit_policy_file_entry_set_default</link>
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         <link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *defaults,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);
 </synopsis>
 </refsynopsisdiv>
 
@@ -79,7 +91,7 @@ policy.</para>
 </para></refsect2>
 <refsect2>
 <title><anchor id="PolKitPolicyFileEntryAnnotationsForeachFunc" role="function"/>PolKitPolicyFileEntryAnnotationsForeachFunc ()</title>
-<indexterm><primary>PolKitPolicyFileEntryAnnotationsForeachFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitPolicyFileEntryAnnotationsForeachFunc)
+<indexterm><primary>PolKitPolicyFileEntryAnnotationsForeachFunc</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       (*PolKitPolicyFileEntryAnnotationsForeachFunc)
                                                         (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
                                                          const <link linkend="char">char</link> *key,
                                                          const <link linkend="char">char</link> *value,
@@ -100,6 +112,8 @@ Callback function for <link linkend="polkit-policy-file-entry-annotations-foreac
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
 <listitem><simpara> user data passed to <link linkend="polkit-policy-file-entry-annotations-foreach"><function>polkit_policy_file_entry_annotations_foreach()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Pass <link linkend="TRUE:CAPS"><type>TRUE</type></link> to short-circuit, e.g. stop the iteration
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2>
@@ -168,7 +182,7 @@ Get the the default policy for this policy.</para>
 <varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
 <listitem><simpara> the file entry
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitPolicyDefault"><type>PolKitPolicyDefault</type></link> object - caller shall not unref this object.
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitPolicyDefault"><type>PolKitPolicyDefault</type></link> object - caller shall not unref or modify this object.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2>
@@ -219,8 +233,78 @@ method will return <link linkend="NULL:CAPS"><type>NULL</type></link>.</para>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2>
+<title><anchor id="polkit-policy-file-entry-get-action-vendor" role="function" condition="since:0.7"/>polkit_policy_file_entry_get_action_vendor ()</title>
+<indexterm role="0.7"><primary>polkit_policy_file_entry_get_action_vendor</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_policy_file_entry_get_action_vendor
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Get the name of the vendor of this action.
+</para>
+<para>
+Note, if <link linkend="polkit-context-set-load-descriptions"><function>polkit_context_set_load_descriptions()</function></link> on the
+<link linkend="PolKitContext"><type>PolKitContext</type></link> object used to get this object wasn't called, this
+method will return <link linkend="NULL:CAPS"><type>NULL</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> string or <link linkend="NULL:CAPS"><type>NULL</type></link> if descriptions are not loaded or vendor
+tag isn't set - caller shall not free this string
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-get-action-vendor-url" role="function" condition="since:0.7"/>polkit_policy_file_entry_get_action_vendor_url ()</title>
+<indexterm role="0.7"><primary>polkit_policy_file_entry_get_action_vendor_url</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_policy_file_entry_get_action_vendor_url
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Get the URL of the vendor of this action.
+</para>
+<para>
+Note, if <link linkend="polkit-context-set-load-descriptions"><function>polkit_context_set_load_descriptions()</function></link> on the
+<link linkend="PolKitContext"><type>PolKitContext</type></link> object used to get this object wasn't called, this
+method will return <link linkend="NULL:CAPS"><type>NULL</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> string or <link linkend="NULL:CAPS"><type>NULL</type></link> if descriptions are not loaded or vendor
+url isn't set - caller shall not free this string
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-get-action-icon-name" role="function" condition="since:0.7"/>polkit_policy_file_entry_get_action_icon_name ()</title>
+<indexterm role="0.7"><primary>polkit_policy_file_entry_get_action_icon_name</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_policy_file_entry_get_action_icon_name
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Get the name of the icon that represents the action. This name
+conforms to the freedesktop.org icon naming specification.
+</para>
+<para>
+Note, if <link linkend="polkit-context-set-load-descriptions"><function>polkit_context_set_load_descriptions()</function></link> on the
+<link linkend="PolKitContext"><type>PolKitContext</type></link> object used to get this object wasn't called, this
+method will return <link linkend="NULL:CAPS"><type>NULL</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> string or <link linkend="NULL:CAPS"><type>NULL</type></link> if descriptions are not loaded or icon
+tag isn't set - caller shall not free this string
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
 <title><anchor id="polkit-policy-file-entry-annotations-foreach" role="function"/>polkit_policy_file_entry_annotations_foreach ()</title>
-<indexterm><primary>polkit_policy_file_entry_annotations_foreach</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_file_entry_annotations_foreach
+<indexterm><primary>polkit_policy_file_entry_annotations_foreach</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_policy_file_entry_annotations_foreach
                                                         (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
                                                          <link linkend="PolKitPolicyFileEntryAnnotationsForeachFunc">PolKitPolicyFileEntryAnnotationsForeachFunc</link> cb,
                                                          <link linkend="void">void</link> *user_data);</programlisting>
@@ -237,6 +321,8 @@ Iterate over all annotations on the policy file entry.</para>
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
 <listitem><simpara> user data to pass to the callback function
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the iteration was short-circuited
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2>
@@ -255,13 +341,68 @@ Look of the value of a given annotation.</para>
 <varlistentry><term><parameter>key</parameter>&nbsp;:</term>
 <listitem><simpara> the key of the annotation
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The value of the annotation or NULL if not found.
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The value of the annotation or <link linkend="NULL:CAPS"><type>NULL</type></link> if not found.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-get-default-factory" role="function" condition="since:0.7"/>polkit_policy_file_entry_get_default_factory ()</title>
+<indexterm role="0.7"><primary>polkit_policy_file_entry_get_default_factory</primary></indexterm><programlisting><link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link>* polkit_policy_file_entry_get_default_factory
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry);</programlisting>
+<para>
+Get the factory defaults for the entry. This may be different that
+what <link linkend="polkit-policy-file-entry-get-default"><function>polkit_policy_file_entry_get_default()</function></link> returns if the function
+<link linkend="polkit-policy-file-entry-set-default"><function>polkit_policy_file_entry_set_default()</function></link> have been used to change the
+defaults.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the file entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitPolicyDefault"><type>PolKitPolicyDefault</type></link> object - caller shall not unref or modify this object.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-policy-file-entry-set-default" role="function" condition="since:0.7"/>polkit_policy_file_entry_set_default ()</title>
+<indexterm role="0.7"><primary>polkit_policy_file_entry_set_default</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_policy_file_entry_set_default
+                                                        (<link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         <link linkend="PolKitPolicyDefault">PolKitPolicyDefault</link> *defaults,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
+<para>
+Set new defaults for a given policy file entry; subsequent calls to
+<link linkend="polkit-policy-file-get-default"><function>polkit_policy_file_get_default()</function></link> will return these values. Note
+that the old defaults are not modified; they are still available via
+<link linkend="polkit-policy-file-entry-get-default-factory"><function>polkit_policy_file_entry_get_default_factory()</function></link>.
+</para>
+<para>
+This operation requires the
+org.freedesktop.policykit.modify-defaults authorization and will
+fail if the caller lacks it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the file entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>defaults</parameter>&nbsp;:</term>
+<listitem><simpara> the new defaults to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for error or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the given defaults was set; <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if <parameter>error</parameter> is set.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
 
 </refsect1>
 
 
 
 
+
+<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

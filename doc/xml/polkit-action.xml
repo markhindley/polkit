@@ -171,7 +171,9 @@ Validate the object</para>
 <para>
 Validate whether an action identifier is well formed. To be well
 formed, an action identifier needs to start with a lower case ASCII
-character and can only contain the characters "[a-z][0-9].-".</para>
+character and can only contain the characters "[a-z][0-9].-". It
+must be less than or equal 256 bytes in length including the
+terminating NUL character.</para>
 <para>
 
 </para><variablelist role="params">
@@ -187,4 +189,6 @@ character and can only contain the characters "[a-z][0-9].-".</para>
 
 
 
+
+<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

@@ -1,0 +1,930 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>String utilities</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
+<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-internal.html" title="Internal API Reference">
+<link rel="prev" href="polkit-kit-memory.html" title="Memory management">
+<link rel="next" href="polkit-kit-message.html" title="Message utilities">
+<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-internal.html" title="Internal API Reference">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-kit-memory.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-internal.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-kit-message.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2694709" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2695083" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-kit-string"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2694709"></a><span class="refentrytitle">String utilities</span>
+</h2>
+<p>String utilities &#8212; String utilities</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+char*               <a class="link" href="polkit-kit-string.html#kit-strdup">kit_strdup</a>                          (const char *s);
+char*               <a class="link" href="polkit-kit-string.html#kit-strndup">kit_strndup</a>                         (const char *s,
+                                                         size_t n);
+char*               <a class="link" href="polkit-kit-string.html#kit-strdup-printf">kit_strdup_printf</a>                   (const char *format,
+                                                         ...);
+char*               <a class="link" href="polkit-kit-string.html#kit-strdup-vprintf">kit_strdup_vprintf</a>                  (const char *format,
+                                                         va_list args);
+char*               <a class="link" href="polkit-kit-string.html#kit-str-append">kit_str_append</a>                      (char *s,
+                                                         const char *s2);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-string.html#kit-str-has-prefix">kit_str_has_prefix</a>                  (const char *s,
+                                                         const char *prefix);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-string.html#kit-str-has-suffix">kit_str_has_suffix</a>                  (const char *s,
+                                                         const char *suffix);
+char**              <a class="link" href="polkit-kit-string.html#kit-strsplit">kit_strsplit</a>                        (const char *s,
+                                                         char delim,
+                                                         size_t *num_tokens);
+void                <a class="link" href="polkit-kit-string.html#kit-strfreev">kit_strfreev</a>                        (char **str_array);
+size_t              <a class="link" href="polkit-kit-string.html#kit-strv-length">kit_strv_length</a>                     (char **str_array);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          (<a class="link" href="polkit-kit-string.html#KitStringEntryParseFunc">*KitStringEntryParseFunc</a>)          (const char *key,
+                                                         const char *value,
+                                                         void *user_data);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-string.html#kit-string-entry-parse">kit_string_entry_parse</a>              (const char *entry,
+                                                         <a class="link" href="polkit-kit-string.html#KitStringEntryParseFunc">KitStringEntryParseFunc</a> func,
+                                                         void *user_data);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-string.html#kit-string-percent-decode">kit_string_percent_decode</a>           (char *s);
+size_t              <a class="link" href="polkit-kit-string.html#kit-string-percent-encode">kit_string_percent_encode</a>           (char *buf,
+                                                         size_t buf_size,
+                                                         const char *s);
+size_t              <a class="link" href="polkit-kit-string.html#kit-string-entry-create">kit_string_entry_create</a>             (char *buf,
+                                                         size_t buf_size,
+                                                         ...);
+size_t              <a class="link" href="polkit-kit-string.html#kit-string-entry-createv">kit_string_entry_createv</a>            (char *buf,
+                                                         size_t buf_size,
+                                                         const char *kv_pairs[]);
+                    <a class="link" href="polkit-kit-string.html#KitString">KitString</a>;
+<a class="link" href="polkit-kit-string.html#KitString">KitString</a>*          <a class="link" href="polkit-kit-string.html#kit-string-new">kit_string_new</a>                      (const char *init,
+                                                         size_t len);
+char*               <a class="link" href="polkit-kit-string.html#kit-string-free">kit_string_free</a>                     (<a class="link" href="polkit-kit-string.html#KitString">KitString</a> *s,
+                                                         <a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a> free_segment,
+                                                         size_t *out_segment_size);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-string.html#kit-string-ensure-size">kit_string_ensure_size</a>              (<a class="link" href="polkit-kit-string.html#KitString">KitString</a> *s,
+                                                         size_t new_size);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-string.html#kit-string-append-c">kit_string_append_c</a>                 (<a class="link" href="polkit-kit-string.html#KitString">KitString</a> *s,
+                                                         char c);
+<a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          <a class="link" href="polkit-kit-string.html#kit-string-append">kit_string_append</a>                   (<a class="link" href="polkit-kit-string.html#KitString">KitString</a> *s,
+                                                         const char *str);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2695083"></a><h2>Description</h2>
+<p>
+Various string utilities.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2695102"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2695113"></a><h3>
+<a name="kit-strdup"></a>kit_strdup ()</h3>
+<a class="indexterm" name="id2695125"></a><pre class="programlisting">char*               kit_strdup                          (const char *s);</pre>
+<p>
+Duplicate a string. Similar to strdup(3).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> Allocated memory or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> on OOM. Free with <a class="link" href="polkit-kit-memory.html#kit-free"><code class="function">kit_free()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2684861"></a><h3>
+<a name="kit-strndup"></a>kit_strndup ()</h3>
+<a class="indexterm" name="id2684873"></a><pre class="programlisting">char*               kit_strndup                         (const char *s,
+                                                         size_t n);</pre>
+<p>
+Duplicate a string but copy at most <em class="parameter"><code>n</code></em> characters. If <em class="parameter"><code>s</code></em> is longer
+than <em class="parameter"><code>n</code></em>, only <em class="parameter"><code>n</code></em> characters are copied, and a terminating null byte
+is added. Similar to strndup(3).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></p></td>
+<td> size
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> Allocated memory or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> on OOM. Free with <a class="link" href="polkit-kit-memory.html#kit-free"><code class="function">kit_free()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2684996"></a><h3>
+<a name="kit-strdup-printf"></a>kit_strdup_printf ()</h3>
+<a class="indexterm" name="id2685008"></a><pre class="programlisting">char*               kit_strdup_printf                   (const char *format,
+                                                         ...);</pre>
+<p>
+Similar to the standard C sprintf(3) function but safer, since it
+calculates the maximum space required and allocates memory to hold
+the result. The returned string should be freed when no longer
+needed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em>&#160;:</span></p></td>
+<td> sprintf(3) format string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em>&#160;:</span></p></td>
+<td>  the parameters to insert into the format string.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> A newly allocated string or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> on OOM. Free with <a class="link" href="polkit-kit-memory.html#kit-free"><code class="function">kit_free()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2718911"></a><h3>
+<a name="kit-strdup-vprintf"></a>kit_strdup_vprintf ()</h3>
+<a class="indexterm" name="id2718922"></a><pre class="programlisting">char*               kit_strdup_vprintf                  (const char *format,
+                                                         va_list args);</pre>
+<p>
+Similar to the standard C vsprintf(3) function but safer, since it
+calculates the maximum space required and allocates memory to hold
+the result. The returned string should be freed when no longer
+needed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em>&#160;:</span></p></td>
+<td> printf(3) format string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>args</code></em>&#160;:</span></p></td>
+<td> list of parameters to insert
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> A newly allocated string or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> on OOM. Free with <a class="link" href="polkit-kit-memory.html#kit-free"><code class="function">kit_free()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2719016"></a><h3>
+<a name="kit-str-append"></a>kit_str_append ()</h3>
+<a class="indexterm" name="id2719028"></a><pre class="programlisting">char*               kit_str_append                      (char *s,
+                                                         const char *s2);</pre>
+<p>
+Append a string to an existing string.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> either <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> or a string previously allocated on the heap
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></p></td>
+<td> string to append
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> on OOM or the new string; possibly at the same
+location as <em class="parameter"><code>s</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2719136"></a><h3>
+<a name="kit-str-has-prefix"></a>kit_str_has_prefix ()</h3>
+<a class="indexterm" name="id2719148"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_str_has_prefix                  (const char *s,
+                                                         const char *prefix);</pre>
+<p>
+Determines if a string has a given prefix.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> string to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prefix</code></em>&#160;:</span></p></td>
+<td> prefix to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if <em class="parameter"><code>s</code></em> starts with <em class="parameter"><code>prefix</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2719249"></a><h3>
+<a name="kit-str-has-suffix"></a>kit_str_has_suffix ()</h3>
+<a class="indexterm" name="id2719261"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_str_has_suffix                  (const char *s,
+                                                         const char *suffix);</pre>
+<p>
+Determines if a string has a given suffix.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> string to check
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>suffix</code></em>&#160;:</span></p></td>
+<td> suffix to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if <em class="parameter"><code>s</code></em> ends with <em class="parameter"><code>suffix</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2719361"></a><h3>
+<a name="kit-strsplit"></a>kit_strsplit ()</h3>
+<a class="indexterm" name="id2719374"></a><pre class="programlisting">char**              kit_strsplit                        (const char *s,
+                                                         char delim,
+                                                         size_t *num_tokens);</pre>
+<p>
+Split a given string into components given a delimiter.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> string to split
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>delim</code></em>&#160;:</span></p></td>
+<td> delimiter used for splitting
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>num_tokens</code></em>&#160;:</span></p></td>
+<td> return location for number of elements or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> A <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> terminated array of strings. Free with <a class="link" href="polkit-kit-string.html#kit-strfreev"><code class="function">kit_strfreev()</code></a>. Returns <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> on OOM.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2719510"></a><h3>
+<a name="kit-strfreev"></a>kit_strfreev ()</h3>
+<a class="indexterm" name="id2719522"></a><pre class="programlisting">void                kit_strfreev                        (char **str_array);</pre>
+<p>
+Free a <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> terminated string array.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>str_array</code></em>&#160;:</span></p></td>
+<td> string array
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2719579"></a><h3>
+<a name="kit-strv-length"></a>kit_strv_length ()</h3>
+<a class="indexterm" name="id2719592"></a><pre class="programlisting">size_t              kit_strv_length                     (char **str_array);</pre>
+<p>
+Compute number of elements in a <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> terminated string array.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>str_array</code></em>&#160;:</span></p></td>
+<td> string array
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> Number of elements not including the terminating <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2719667"></a><h3>
+<a name="KitStringEntryParseFunc"></a>KitStringEntryParseFunc ()</h3>
+<a class="indexterm" name="id2719678"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          (*KitStringEntryParseFunc)          (const char *key,
+                                                         const char *value,
+                                                         void *user_data);</pre>
+<p>
+Type of callback function to use in <a class="link" href="polkit-kit-string.html#kit-string-entry-parse"><code class="function">kit_string_entry_parse()</code></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em>&#160;:</span></p></td>
+<td> key of one of the entries
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></p></td>
+<td> value of one of the entries
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></p></td>
+<td> user data passed to <a class="link" href="polkit-kit-string.html#kit-string-entry-parse"><code class="function">kit_string_entry_parse()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> If <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> is returned the parsing will be aborted and
+<a class="link" href="polkit-kit-string.html#kit-string-entry-parse"><code class="function">kit_string_entry_parse()</code></a> will return FALSE.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2719816"></a><h3>
+<a name="kit-string-entry-parse"></a>kit_string_entry_parse ()</h3>
+<a class="indexterm" name="id2719828"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_string_entry_parse              (const char *entry,
+                                                         <a class="link" href="polkit-kit-string.html#KitStringEntryParseFunc">KitStringEntryParseFunc</a> func,
+                                                         void *user_data);</pre>
+<p>
+Parse a line of the form
+<code class="literal">key1=val1:key2=val2:key3=val3</code>. 
+</p>
+<p>
+The given <em class="parameter"><code>entry</code></em> is said not to be wellformed if a) it doesn't
+follow this structure (for example
+<code class="literal">key1=val1:key2:key3=val3</code> is not well-formed
+because it's missing the '=' character) or the extracted key and
+value strings are not properly percent encoded.
+</p>
+<p>
+Both the key and value values are run through the
+<a class="link" href="polkit-kit-string.html#kit-string-percent-decode"><code class="function">kit_string_percent_decode()</code></a> function prior to being passed to
+<em class="parameter"><code>func</code></em>. Normally this function is used to decode strings produced
+with <a class="link" href="polkit-kit-string.html#kit-string-entry-create"><code class="function">kit_string_entry_create()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>entry</code></em>&#160;:</span></p></td>
+<td> line to parse
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em>&#160;:</span></p></td>
+<td> callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></p></td>
+<td> user data to pass to <em class="parameter"><code>func</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the line is wellformed and the callback didn't
+short-circuit the iteration. Returns <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> on OOM (and errno will
+be set to ENOMEM) or if <em class="parameter"><code>entry</code></em> is not wellformed (and errno will
+be set to EINVAL).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720017"></a><h3>
+<a name="kit-string-percent-decode"></a>kit_string_percent_decode ()</h3>
+<a class="indexterm" name="id2720029"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_string_percent_decode           (char *s);</pre>
+<p>
+Percent-decodes a string in place. See <a class="link" href="polkit-kit-string.html#kit-string-percent-encode"><code class="function">kit_string_percent_encode()</code></a>
+for details on the encoding format.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> string to modify in place
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if string is not properly encoded (and errno will be set to EINVAL)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720109"></a><h3>
+<a name="kit-string-percent-encode"></a>kit_string_percent_encode ()</h3>
+<a class="indexterm" name="id2720121"></a><pre class="programlisting">size_t              kit_string_percent_encode           (char *buf,
+                                                         size_t buf_size,
+                                                         const char *s);</pre>
+<p>
+Percent encodes a string; each occurence of an ASCII characters in
+the set <code class="literal">" !*'();:@&amp;=+$,/?%#[]\n\r\t"</code> will be
+replaced by a three character sequence started by the percent sign
+"%" and then the hexidecimal representation of the ASCII character
+in question.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em>&#160;:</span></p></td>
+<td> return location for output
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf_size</code></em>&#160;:</span></p></td>
+<td> size of buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> string to encode
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> This function do not write more than <em class="parameter"><code>buf_size</code></em> bytes
+(including the trailing zero). If the output was truncated due to
+this limit then the return value is the number of characters (not
+including the trailing zero) which would have been written to the
+final string if enough space had been available. Thus, a return
+value of <em class="parameter"><code>buf_size</code></em> or more means that the output was truncated.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720234"></a><h3>
+<a name="kit-string-entry-create"></a>kit_string_entry_create ()</h3>
+<a class="indexterm" name="id2720244"></a><pre class="programlisting">size_t              kit_string_entry_create             (char *buf,
+                                                         size_t buf_size,
+                                                         ...);</pre>
+<p>
+See <a class="link" href="polkit-kit-string.html#kit-string-entry-create"><code class="function">kit_string_entry_create()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em>&#160;:</span></p></td>
+<td> return location for output
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf_size</code></em>&#160;:</span></p></td>
+<td> size of buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated array of key/value pairs.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> See <a class="link" href="polkit-kit-string.html#kit-string-entry-create"><code class="function">kit_string_entry_create()</code></a>. Up to 64 pairs can be
+passed; if there are more pairs, this function will return zero and
+errno will be set to EOVERFLOW.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720360"></a><h3>
+<a name="kit-string-entry-createv"></a>kit_string_entry_createv ()</h3>
+<a class="indexterm" name="id2720370"></a><pre class="programlisting">size_t              kit_string_entry_createv            (char *buf,
+                                                         size_t buf_size,
+                                                         const char *kv_pairs[]);</pre>
+<p>
+Takes an array of key/value pairs and generates a string
+<code class="literal">"k1=v1:k2=v2:...:k_n=v_n"</code> where
+<code class="literal">k_i</code> and <code class="literal">v_i</code> are percent
+encoded representations of the given key/value pairs.
+</p>
+<p>
+The string can later be parsed with <a class="link" href="polkit-kit-string.html#kit-string-entry-parse"><code class="function">kit_string_entry_parse()</code></a> to get
+the exact same list of key/value pairs back.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em>&#160;:</span></p></td>
+<td> return location for output
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf_size</code></em>&#160;:</span></p></td>
+<td> size of buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>kv_pairs</code></em>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated array of key/value pairs.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> This function do not write more than <em class="parameter"><code>buf_size</code></em> bytes
+(including the trailing zero). If the output was truncated due to
+this limit then the return value is the number of characters (not
+including the trailing zero) which would have been written to the
+final string if enough space had been available. Thus, a return
+value of <em class="parameter"><code>buf_size</code></em> or more means that the output was truncated.
+
+If an uneven number of strings are given, this function will return
+zero and errno will be set to EINVAL.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720521"></a><h3>
+<a name="KitString"></a>KitString</h3>
+<a class="indexterm" name="id2720532"></a><pre class="programlisting">typedef struct _KitString KitString;</pre>
+<p>
+String buffer that grows automatically as text is added.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720550"></a><h3>
+<a name="kit-string-new"></a>kit_string_new ()</h3>
+<a class="indexterm" name="id2720561"></a><pre class="programlisting"><a class="link" href="polkit-kit-string.html#KitString">KitString</a>*          kit_string_new                      (const char *init,
+                                                         size_t len);</pre>
+<p>
+Initialize a new <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>init</code></em>&#160;:</span></p></td>
+<td> String to initialize with or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>len</code></em>&#160;:</span></p></td>
+<td> Initial size of buffer; pass zero to use the default size
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> The new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> on OOM
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720658"></a><h3>
+<a name="kit-string-free"></a>kit_string_free ()</h3>
+<a class="indexterm" name="id2720668"></a><pre class="programlisting">char*               kit_string_free                     (<a class="link" href="polkit-kit-string.html#KitString">KitString</a> *s,
+                                                         <a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a> free_segment,
+                                                         size_t *out_segment_size);</pre>
+<p>
+Free resources used by a <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> the <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>free_segment</code></em>&#160;:</span></p></td>
+<td> whether to free the string data itself
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_segment_size</code></em>&#160;:</span></p></td>
+<td> return location for size of string or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> If <em class="parameter"><code>free_segment</code></em> is <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>, returns the segment (will
+always be zero terminated), must be freed with <a class="link" href="polkit-kit-memory.html#kit-free"><code class="function">kit_free()</code></a>,
+otherwise <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720814"></a><h3>
+<a name="kit-string-ensure-size"></a>kit_string_ensure_size ()</h3>
+<a class="indexterm" name="id2720824"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_string_ensure_size              (<a class="link" href="polkit-kit-string.html#KitString">KitString</a> *s,
+                                                         size_t new_size);</pre>
+<p>
+Ensure that the given <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object can hold at least <em class="parameter"><code>new_size</code></em>
+characters.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> String object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>new_size</code></em>&#160;:</span></p></td>
+<td> The size to check for.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the given <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object can hold at least
+<em class="parameter"><code>new_size</code></em> characters. <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if OOM.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2720936"></a><h3>
+<a name="kit-string-append-c"></a>kit_string_append_c ()</h3>
+<a class="indexterm" name="id2720947"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_string_append_c                 (<a class="link" href="polkit-kit-string.html#KitString">KitString</a> *s,
+                                                         char c);</pre>
+<p>
+Append a character to a <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> the <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>c</code></em>&#160;:</span></p></td>
+<td> character to append
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> unless OOM
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2721040"></a><h3>
+<a name="kit-string-append"></a>kit_string_append ()</h3>
+<a class="indexterm" name="id2721050"></a><pre class="programlisting"><a class="link" href="polkit-kit.html#kit-bool-t">kit_bool_t</a>          kit_string_append                   (<a class="link" href="polkit-kit-string.html#KitString">KitString</a> *s,
+                                                         const char *str);</pre>
+<p>
+Append a string to a <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></p></td>
+<td> the <a class="link" href="polkit-kit-string.html#KitString"><span class="type">KitString</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>str</code></em>&#160;:</span></p></td>
+<td> string to append
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> unless OOM
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2721145"></a><div class="refsect2" lang="en"><a name="id2721146"></a></div>
+<hr>
+<div class="refsect2" lang="en"><a name="id2721147"></a></div>
+</div>
+</div>
+</body>
+</html>
