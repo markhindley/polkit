@@ -1,36 +1,42 @@
 ## Process this file with automake to produce Makefile.in
 
-# See polkit-grant/Makefile.am for discussion
-#
+NULL =
+
+servicedir       = $(datadir)/dbus-1/system-services
+service_in_files = org.freedesktop.PolicyKit1.service.in
+service_DATA     = $(service_in_files:.service.in=.service)
+
+$(service_DATA): $(service_in_files) Makefile
+	@sed -e "s|\@libexecdir\@|$(libexecdir)|" $< > $@
+
+dbusconfdir = $(sysconfdir)/dbus-1/system.d
+dbusconf_in_files = org.freedesktop.PolicyKit1.conf.in
+dbusconf_DATA = $(dbusconf_in_files:.conf.in=.conf)
+
+$(dbusconf_DATA): $(dbusconf_in_files) Makefile
+	@sed -e "s|\@polkituser\@|$(POLKIT_USER)|" $< > $@
+
 if POLKIT_AUTHFW_PAM
 pamdir = $(sysconfdir)/pam.d
-pam_DATA = polkit
+pam_DATA = polkit-1
 endif
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = polkit.pc polkit-dbus.pc polkit-grant.pc
+pkgconfig_DATA = polkit-gobject-1.pc polkit-backend-1.pc polkit-agent-1.pc
 
-confdir = $(sysconfdir)/PolicyKit
-conf_DATA = PolicyKit.conf
+CLEANFILES = $(BUILT_SOURCES)
 
-dtddir = $(datadir)/PolicyKit
-dtd_DATA = config.dtd
+EXTRA_DIST = 							\
+	org.freedesktop.PolicyKit1.Authority.xml 		\
+	org.freedesktop.PolicyKit1.AuthenticationAgent.xml 	\
+	$(service_in_files) 					\
+	$(dbusconf_in_files) 					\
+	polkit-1.in						\
+	polkit-gobject-1.pc.in 					\
+	polkit-backend-1.pc.in 					\
+	polkit-agent-1.pc.in					\
+	$(NULL)
 
-dbusifdir = $(datadir)/dbus-1/interfaces
-dbusif_DATA = org.freedesktop.PolicyKit.AuthenticationAgent.xml
-
-DISTCLEANFILES = polkit.pc polkit-dbus.pc polkit-grant.pc PolicyKit.conf
-
-EXTRA_DIST = polkit.in polkit.pc.in polkit-dbus.pc.in polkit-grant.pc.in PolicyKit.conf.in config.dtd org.freedesktop.PolicyKit.AuthenticationAgent.xml
 
 clean-local :
-	rm -f *~
-
-PolicyKit.conf: PolicyKit.conf.in Makefile
-	$(edit) $< >$@
-
-edit = sed \
-	-e 's|@docdir[@]|$(docdir)|g' \
-	-e 's|@sbindir[@]|$(sbindir)|g' \
-	-e 's|@sysconfdir[@]|$(sysconfdir)|g' \
-	-e 's|@datadir[@]|$(datadir)|g'
+	rm -f *~ $(service_DATA) $(dbusconf_DATA)

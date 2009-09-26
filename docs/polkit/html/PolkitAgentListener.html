@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PolkitAgentListener</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="PolicyKit Reference Manual">
+<link rel="up" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
+<link rel="prev" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
+<link rel="next" href="PolkitAgentSession.html" title="PolkitAgentSession">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
+<link rel="chapter" href="polkit-intro.html" title="Introduction">
+<link rel="chapter" href="polkit-apps.html" title="Writing PolicyKit applications">
+<link rel="chapter" href="polkit-agents.html" title="Writing PolicyKit Authentication Agents">
+<link rel="chapter" href="polkit-extending.html" title="Extending PolicyKit">
+<link rel="part" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
+<link rel="part" href="ref-api.html" title="Part III. Client API Reference">
+<link rel="chapter" href="subjects.html" title="Subjects">
+<link rel="chapter" href="Identities.html" title="Identities">
+<link rel="part" href="ref-backend-api.html" title="Part IV. Backend API Reference">
+<link rel="part" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
+<link rel="part" href="manpages.html" title="Part VI. Manual Pages">
+<link rel="chapter" href="polkit-hierarchy.html" title="Object Hierarchy">
+<link rel="index" href="polit-index.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ref-authentication-agent-api.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-authentication-agent-api.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Reference Manual</th>
+<td><a accesskey="n" href="PolkitAgentSession.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#PolkitAgentListener.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#PolkitAgentListener.description" class="shortcut">Description</a>
+                 | 
+                <a href="#PolkitAgentListener.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry" title="PolkitAgentListener">
+<a name="PolkitAgentListener"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="PolkitAgentListener.top_of_page"></a>PolkitAgentListener</span></h2>
+<p>PolkitAgentListener — Abstract base class for Authentication Agents</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" title="Stability Level">
+<a name="PolkitAgentListener.stability-level"></a><h2>Stability Level</h2>
+Unstable, unless otherwise indicated
+</div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="PolkitAgentListener.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="PolkitAgentListener.html#PolkitAgentListener-struct" title="PolkitAgentListener">PolkitAgentListener</a>;
+                    <a class="link" href="PolkitAgentListener.html#PolkitAgentListenerClass" title="PolkitAgentListenerClass">PolkitAgentListenerClass</a>;
+void                <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()">polkit_agent_listener_initiate_authentication</a>
+                                                        (<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a> *listener,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *action_id,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *message,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *icon_name,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *cookie,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *identities,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication-finish" title="polkit_agent_listener_initiate_authentication_finish ()">polkit_agent_listener_initiate_authentication_finish</a>
+                                                        (<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a> *listener,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *res,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="PolkitAgentListener.html#polkit-agent-register-listener" title="polkit_agent_register_listener ()">polkit_agent_register_listener</a>      (<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a> *listener,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *object_path,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **error);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="PolkitAgentListener.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----PolkitAgentListener
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="PolkitAgentListener.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> is an abstract base class used for implementing authentication
+agents. To implement an authentication agent, simply subclass <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> and
+implement the <em class="parameter"><code>initiate_authentication</code></em> and <em class="parameter"><code>initiate_authentication_finish</code></em> VFuncs.
+</p>
+<p>
+Typically authentication agents use <a class="link" href="PolkitAgentSession.html" title="PolkitAgentSession"><span class="type">PolkitAgentSession</span></a> to authenticate users (via
+passwords) and communicate back the authentication result to the PolicyKit daemon.
+This is however not requirement. Depending on the system an authentication agent
+may use other means (such as a Yes/No dialog) to obtain sufficient evidence that
+the user is one of the requested identities.
+</p>
+<p>
+To register a <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> with the PolicyKit daemon, use <a class="link" href="PolkitAgentListener.html#polkit-agent-register-listener" title="polkit_agent_register_listener ()"><code class="function">polkit_agent_register_listener()</code></a>.</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="PolkitAgentListener.details"></a><h2>Details</h2>
+<div class="refsect2" title="PolkitAgentListener">
+<a name="PolkitAgentListener-struct"></a><h3>PolkitAgentListener</h3>
+<pre class="programlisting">typedef struct _PolkitAgentListener PolkitAgentListener;</pre>
+<p>
+The <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> struct should not be accessed directly.</p>
+</div>
+<hr>
+<div class="refsect2" title="PolkitAgentListenerClass">
+<a name="PolkitAgentListenerClass"></a><h3>PolkitAgentListenerClass</h3>
+<pre class="programlisting">typedef struct {
+  GObjectClass parent_class;
+
+  /* Vtable */
+  void     (*initiate_authentication)        (PolkitAgentListener  *listener,
+                                              const gchar          *action_id,
+                                              const gchar          *message,
+                                              const gchar          *icon_name,
+                                              PolkitDetails        *details,
+                                              const gchar          *cookie,
+                                              GList                *identities,
+                                              GCancellable         *cancellable,
+                                              GAsyncReadyCallback   callback,
+                                              gpointer              user_data);
+
+  gboolean (*initiate_authentication_finish) (PolkitAgentListener  *listener,
+                                              GAsyncResult         *res,
+                                              GError              **error);
+} PolkitAgentListenerClass;
+</pre>
+<p>
+VFuncs that authentication agents needs to implement.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObjectClass"
+>GObjectClass</a> <em class="structfield"><code>parent_class</code></em>;</span></p></td>
+<td> The parent class.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>initiate_authentication</code></em> ()</span></p></td>
+<td> Handle an authentication request, see <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()"><code class="function">polkit_agent_listener_initiate_authentication()</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code>initiate_authentication_finish</code></em> ()</span></p></td>
+<td> Finishes handling an authentication request, see <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication-finish" title="polkit_agent_listener_initiate_authentication_finish ()"><code class="function">polkit_agent_listener_initiate_authentication_finish()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="polkit_agent_listener_initiate_authentication ()">
+<a name="polkit-agent-listener-initiate-authentication"></a><h3>polkit_agent_listener_initiate_authentication ()</h3>
+<pre class="programlisting">void                polkit_agent_listener_initiate_authentication
+                                                        (<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a> *listener,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *action_id,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *message,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *icon_name,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *cookie,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *identities,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Called on a registered authentication agent (see <a class="link" href="PolkitAgentListener.html#polkit-agent-register-listener" title="polkit_agent_register_listener ()"><code class="function">polkit_agent_register_listener()</code></a>) when
+the user owning the session needs to prove he is one of the identities listed in <em class="parameter"><code>identities</code></em>.
+</p>
+<p>
+When the user is done authenticating (for example by dismissing an authentication dialog
+or by successfully entering a password or otherwise proving the user is one of the
+identities in <em class="parameter"><code>identities</code></em>), <em class="parameter"><code>callback</code></em> will be invoked. The caller then calls
+<a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication-finish" title="polkit_agent_listener_initiate_authentication_finish ()"><code class="function">polkit_agent_listener_initiate_authentication_finish()</code></a> to get the result.
+</p>
+<p>
+<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> derived subclasses imlementing this method MUST not
+ignore <em class="parameter"><code>cancellable</code></em>; callers of this function can and will use it.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
+<td> A <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action_id</code></em> :</span></p></td>
+<td> The action to authenticate for.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
+<td> The message to present to the user.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>icon_name</code></em> :</span></p></td>
+<td> A themed icon name representing the action or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
+<td> Details describing the action.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cookie</code></em> :</span></p></td>
+<td> The cookie for the authentication request.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>identities</code></em> :</span></p></td>
+<td> A list of <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="type">PolkitIdentity</span></a> objects that the user can choose to authenticate as.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+><span class="type">GCancellable</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Function to call when the user is done authenticating.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> Data to pass to <em class="parameter"><code>callback</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="polkit_agent_listener_initiate_authentication_finish ()">
+<a name="polkit-agent-listener-initiate-authentication-finish"></a><h3>polkit_agent_listener_initiate_authentication_finish ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            polkit_agent_listener_initiate_authentication_finish
+                                                        (<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a> *listener,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *res,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Finishes an authentication request from the PolicyKit daemon, see
+<a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()"><code class="function">polkit_agent_listener_initiate_authentication()</code></a> for details.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
+<td> A <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
+<td> A <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+><span class="type">GAsyncResult</span></a> obtained from the <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+><span class="type">GAsyncReadyCallback</span></a> function passed to <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()"><code class="function">polkit_agent_listener_initiate_authentication()</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> Return location for error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>error</code></em> is set.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="polkit_agent_register_listener ()">
+<a name="polkit-agent-register-listener"></a><h3>polkit_agent_register_listener ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            polkit_agent_register_listener      (<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a> *listener,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *object_path,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Registers <em class="parameter"><code>listener</code></em> with the PolicyKit daemon as an authentication agent for <em class="parameter"><code>subject</code></em>. This
+is implemented by registering a D-Bus object at <em class="parameter"><code>object_path</code></em> on the unique name assigned by the
+system message bus.
+</p>
+<p>
+Whenever the PolicyKit daemon needs to authenticate a processes that is related <em class="parameter"><code>subject</code></em>, the methods
+<a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()"><code class="function">polkit_agent_listener_initiate_authentication()</code></a> and <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication-finish" title="polkit_agent_listener_initiate_authentication_finish ()"><code class="function">polkit_agent_listener_initiate_authentication_finish()</code></a>
+will be invoked on <em class="parameter"><code>listener</code></em>.
+</p>
+<p>
+Note that registration of an authentication agent can fail; for example another authentication agent may
+already be registered.
+</p>
+<p>
+To unregister <em class="parameter"><code>listener</code></em>, simply free it with <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
+><code class="function">g_object_unref()</code></a>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
+<td> An instance of a class that is derived from <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>subject</code></em> :</span></p></td>
+<td> The subject to become an authentication agent for, typically a <a class="link" href="polkit-1-polkitunixsession.html#PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> object.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object_path</code></em> :</span></p></td>
+<td> The D-Bus object path to use for the authentication agent or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for the default object path.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> Return location for error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>listener</code></em> has been registered, <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
+><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

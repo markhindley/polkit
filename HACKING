@@ -64,7 +64,7 @@ tracker reference if applicable) and so forth. Be concise but not too brief.
 
  - Always add a brief description of the commit to the _first_ line of
    the commit and terminate by two newlines (it will work without the
-   second newline, but that is not nice for the interfaces). 
+   second newline, but that is not nice for the interfaces).
 
  - First line (the brief description) must only be one sentence and
    must not start with a capital letter. Don't use a trailing period
@@ -80,8 +80,7 @@ tracker reference if applicable) and so forth. Be concise but not too brief.
 Coding Style
 ===
 
- - Please follow the coding style already used - it's not a must, but it's
-   nice to have consistency.
+ - Please follow the coding style already used.
 
  - Write docs for all functions and structs and so on. We use gtkdoc format.
 

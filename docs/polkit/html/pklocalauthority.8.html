@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>pklocalauthority</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="index.html" title="PolicyKit Reference Manual">
+<link rel="up" href="manpages.html" title="Part VI. Manual Pages">
+<link rel="prev" href="polkitd.8.html" title="polkitd">
+<link rel="next" href="pkcheck.1.html" title="pkcheck">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
+<link rel="chapter" href="polkit-intro.html" title="Introduction">
+<link rel="chapter" href="polkit-apps.html" title="Writing PolicyKit applications">
+<link rel="chapter" href="polkit-agents.html" title="Writing PolicyKit Authentication Agents">
+<link rel="chapter" href="polkit-extending.html" title="Extending PolicyKit">
+<link rel="part" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
+<link rel="part" href="ref-api.html" title="Part III. Client API Reference">
+<link rel="chapter" href="subjects.html" title="Subjects">
+<link rel="chapter" href="Identities.html" title="Identities">
+<link rel="part" href="ref-backend-api.html" title="Part IV. Backend API Reference">
+<link rel="part" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
+<link rel="part" href="manpages.html" title="Part VI. Manual Pages">
+<link rel="chapter" href="polkit-hierarchy.html" title="Object Hierarchy">
+<link rel="index" href="polit-index.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="polkitd.8.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="manpages.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Reference Manual</th>
+<td><a accesskey="n" href="pkcheck.1.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" title="pklocalauthority">
+<a name="pklocalauthority.8"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">pklocalauthority</span></h2>
+<p>pklocalauthority — PolicyKit Local Authority</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" title="DESCRIPTION">
+<a name="pklocalauthority-description"></a><h2>DESCRIPTION</h2>
+<p>
+      The Local Authority is the default PolicyKit authority
+      implementation. Configuration for the Local Authority and
+      information pertaining to authorization decisions are read from
+      local files on the disk. One design goal of the Local Authority
+      is to split configuration items into separate files such that
+      3rd party packages and users won't conflict trying to edit the
+      same files. This policy also ensures smooth upgrades when
+      distributing PolicyKit using a package management system.
+    </p>
+</div>
+<div class="refsect1" title="ADMINISTRATOR AUTHENTICATION">
+<a name="pklocalauthority-admin-authentication"></a><h2>ADMINISTRATOR AUTHENTICATION</h2>
+<p>
+      PolicyKit makes a distinction between <span class="emphasis"><em>user
+      authentication</em></span> (to make the user in front of the
+      system prove he really is the user) and <span class="emphasis"><em>administrator
+      authentication</em></span> (to make the user in front of the
+      system prove he really is an administrator). Since various
+      operating systems (or even flavors of the same operating system)
+      has different ways of defining "administrator", the Local
+      Authority provides a way to specify what "administrator
+      authentication" means.
+    </p>
+<p>
+      By default, "administrator authentication" is defined as asking
+      for the root password. Since some systems, for usability
+      reasons, don't have a root password and instead rely on a group
+      of users being member of an administrative group that gives them
+      super-user privileges, the Local Authority can be configured to
+      support this use-case as well.
+    </p>
+<p>
+      Configuration for the Local Authority are read from files in
+      the <code class="filename">/etc/polkit-1/localauthority.conf.d</code>
+      directory. The file <code class="filename">50-localauthority.conf</code>
+      contains the settings provided by the OS vendor. Users and 3rd
+      party packages can drop configuration files with a priority
+      higher than 60 to change the defaults. The configuration file
+      format is simple. Each configuration file is a <span class="emphasis"><em>key
+      file</em></span> with a single <code class="literal">Configuration</code>
+      group.  Only a single key, <code class="literal">AdminIdentities</code> is
+      read.  The value of this key is a semi-colon separated list of
+      identities that can be used when administrator authentication is
+      required. Users are specified by prefixing the user name with
+      <code class="literal">unix-user:</code> and groups of users are specified
+      by prefixing with <code class="literal">unix-group:</code>.
+    </p>
+</div>
+<div class="refsect1" title="DIRECTORY STRUCTURE">
+<a name="pklocalauthority-directory-structure"></a><h2>DIRECTORY STRUCTURE</h2>
+<p>
+      The Local Authority reads files with <code class="filename">.pkla</code>
+      from the following directories
+    </p>
+<pre class="programlisting">
+/var/lib/polkit-1/
+`-- localauthority
+    |-- 10-vendor.d
+    |-- 20-org.d
+    |-- 30-site.d
+    |-- 50-local.d
+    `-- 90-mandatory.d
+    </pre>
+<p>
+      Each <code class="filename">.pkla</code> contains one or more
+      authorization entries. If the underlying filesystem supports
+      file monitoring, the Local Authority will reload information
+      whenever changes occur.
+    </p>
+<p>
+      Each directory is intended for a specific audience
+    </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>10-vendor.d</em></span></span></p></td>
+<td><p>
+            Reserved for the Operating System vendor.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>20-org.d</em></span></span></p></td>
+<td><p>
+            Reserved for the organization deploying the system.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>30-site.d</em></span></span></p></td>
+<td><p>
+            Reserved for site deploying the system.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>50-local.d</em></span></span></p></td>
+<td><p>
+            Reserved for local usage.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>90-mandatory.d</em></span></span></p></td>
+<td><p>
+            Reserved for the organization deploying the system.
+          </p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+      Each <code class="filename">.pkla</code> file is a standard <span class="emphasis"><em>key
+      file</em></span> and contains key/value pairs in one or more
+      groups with each group representing an authorization entry.
+      A <code class="filename">.pkla</code> file MUST be named by using a
+      scheme to ensure that the name is unique, e.g. reverse DNS
+      notation or similar.
+    </p>
+</div>
+<div class="refsect1" title="AUTHORIZATION ENTRY">
+<a name="pklocalauthority-authorization-entry"></a><h2>AUTHORIZATION ENTRY</h2>
+<p>
+      Each group in a <code class="filename">.pkla</code> must have a name that
+      is unique within the file it belongs to. The following keys are
+      required in each group
+    </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Identity</em></span></span></p></td>
+<td><p>
+            A semi-colon separated list of globs to match identities. Each glob
+            should start with <code class="literal">unix-user:</code> or
+            <code class="literal">unix-group:</code> to specify whether to match on a
+            UNIX user name or a UNIX group name.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Action</em></span></span></p></td>
+<td><p>
+            A semi-colon separated list of globs to match action identifiers.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>ResultActive</em></span></span></p></td>
+<td><p>
+            The result to return for subjects in an active local
+            session that matches one or more of the given identities.
+            Allowed values are similar to what can be used in
+            the <span class="emphasis"><em>defaults</em></span> section
+            of <code class="filename">.policy</code> files used to define
+            actions, e.g.
+            <code class="literal">yes</code>,
+            <code class="literal">no</code>,
+            <code class="literal">auth_self</code>,
+            <code class="literal">auth_self_keep</code>,
+            <code class="literal">auth_admin</code> and
+            <code class="literal">auth_admin_keep</code>.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>ResultInactive</em></span></span></p></td>
+<td><p>
+            Like <span class="emphasis"><em>ResultActive</em></span> but instead applies
+            to subjects in inactive local sessions.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>ResultAny</em></span></span></p></td>
+<td><p>
+            Like <span class="emphasis"><em>ResultActive</em></span> but instead applies
+            to any subject.
+          </p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+      All keys specified above are required except that only at least
+      one
+      of <span class="emphasis"><em>RequireAny</em></span>, <span class="emphasis"><em>RequireInactive</em></span>
+      and <span class="emphasis"><em>RequireActive</em></span> is present.
+    </p>
+</div>
+<div class="refsect1" title="EVALUATION ORDER">
+<a name="pklocalauthority-evaluation-order"></a><h2>EVALUATION ORDER</h2>
+<p>
+      Whenever a Mechanism does an authorization check to check if a
+      given Subject is authorized for a given action, the
+      authorization entries discussed above are consulted in the
+      following order. First, the user of the Subject is determined
+      and the groups that the user belongs are looked up.
+    </p>
+<p>
+      For each group identity, the authorization entries are consulted
+      in the standard lexigraphical order (using standard
+      lexicographical sorting (using the standard C locale) of file
+      names and appearance of each group in each file). If the
+      authorization check matches the data from the authorization
+      check, then the authorization result
+      from <span class="emphasis"><em>RequireAny</em></span>, <span class="emphasis"><em>RequireInactive</em></span>
+      or <span class="emphasis"><em>RequireActive</em></span> is used. Finally, the
+      authorization entries are consulted using the user identity.
+    </p>
+<p>
+      Note that processing continues even after a match. This allows
+      for socalled <span class="quote">“<span class="quote">negative authorizations</span>”</span>, see
+      <a class="xref" href="pklocalauthority.8.html#pklocalauthority-examples" title="EXAMPLES">the section called “EXAMPLES”</a> for further
+      discussion.
+    </p>
+</div>
+<div class="refsect1" title="EXAMPLES">
+<a name="pklocalauthority-examples"></a><h2>EXAMPLES</h2>
+<p>
+      The following <code class="filename">.pkla</code> file grants
+      authorization to all users in the <code class="literal">staff</code> group
+      for actions matching the
+      glob <code class="literal">com.example.awesomeproduct.*</code> provided
+      they are in an active session on the local console:
+    </p>
+<pre class="programlisting">
+[Normal Staff Permissions]
+Identity=unix-group:staff
+Action=com.example.awesomeproduct.*
+ResultAny=no
+ResultInactive=no
+ResultActive=yes
+    </pre>
+<p>
+      If the users <code class="literal">homer</code> and <code class="literal">grimes</code> are member of
+      the <code class="literal">staff</code> group but policy requires that an
+      administrator needs to authenticate every time authorization for
+      any action
+      matching <code class="literal">com.example.awesomeproduct.*</code> is
+      required, one would add
+    </p>
+<pre class="programlisting">
+[Exclude Some Problematic Users]
+Identity=unix-user:homer;unix-user:grimes
+Action=com.example.awesomeproduct.*
+ResultAny=no
+ResultInactive=no
+ResultActive=auth_admin
+    </pre>
+<p>
+      and make sure this authorization entry is after the first one.
+    </p>
+</div>
+<div class="refsect1" title="AUTHOR">
+<a name="pklocalauthority-author"></a><h2>AUTHOR</h2>
+<p>
+      Written by David Zeuthen <code class="email">&lt;<a class="email" href="mailto:davidz@redhat.com">davidz@redhat.com</a>&gt;</code> with
+      a lot of help from many others.
+    </p>
+</div>
+<div class="refsect1" title="BUGS">
+<a name="pklocalauthority-bugs"></a><h2>BUGS</h2>
+<p>
+      Please send bug reports to either the distribution or the
+      polkit-devel mailing list,
+      see the link <a class="ulink" href="http://lists.freedesktop.org/mailman/listinfo/polkit-devel" target="_top">http://lists.freedesktop.org/mailman/listinfo/polkit-devel</a>
+      on how to subscribe.
+    </p>
+</div>
+<div class="refsect1" title="SEE ALSO">
+<a name="pklocalauthority-see-also"></a><h2>SEE ALSO</h2>
+<p>
+      <span class="citerefentry"><span class="refentrytitle">polkit</span>(8)</span>
+    </p>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

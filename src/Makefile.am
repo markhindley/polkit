@@ -1,5 +1,5 @@
 
-SUBDIRS = kit polkit polkit-dbus polkit-grant
+SUBDIRS = polkit polkitbackend polkitagent polkitd nullbackend programs examples
 
 clean-local :
 	rm -f *~
