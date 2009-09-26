@@ -1,3 +1,289 @@
+commit 2aa16b5ea71db4912d7cb01415b6733178be3729
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Jul 22 12:43:28 2008 -0400
+
+    update NEWS again
+
+ NEWS |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit c61924a461d74b1ba226f409c83abcd2fae92409
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Jul 22 12:42:35 2008 -0400
+
+    fix 'make distcheck'
+
+ NEWS               |    1 +
+ policy/Makefile.am |    2 +-
+ 2 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 353105d64cd3020d3007822e8dfb14d009b33277
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Jul 22 12:32:37 2008 -0400
+
+    update NEWS for release
+
+ NEWS |   22 ++++++++++++++++++++++
+ 1 files changed, 22 insertions(+), 0 deletions(-)
+
+commit 6d51b505bcbfc3ab1d439db711dd12a5bbb71ff6
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Jul 22 12:29:13 2008 -0400
+
+    update README (for the right wiki page) and COPYING (for my email
+    address)
+
+ COPYING |    2 +-
+ README  |    4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 785a63bcb175bc9eee14c664353e82c5ca8a6206
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Mon Jun 30 15:44:02 2008 -0400
+
+    fix up permissions / docs for certain helpers and files/directories
+
+    Also document in README why the various permissions/modes are
+    used. Thanks to Michael Biebl <biebl@debian.org> for pointing this
+    out.
+
+ README                 |   87
+ +++++++++++++++++++++++++++++++++++++++++++++--
+ configure.in           |   12 ++++---
+ src/polkit/Makefile.am |    2 +-
+ 3 files changed, 91 insertions(+), 10 deletions(-)
+
+commit 15ae6e6acea3b1d1085d214294465fafc45af54b
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue May 6 12:45:28 2008 -0400
+
+    always allow uid 0 to ask about authorizations for anyone
+
+ polkitd/polkit-daemon.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit a7e5318bc7a8dde8a876091fec830737c3f31074
+Author: Joe Marcus Clarke <marcus@FreeBSD.org>
+Date:   Thu May 1 17:02:56 2008 -0400
+
+    remove watch on fd when reaching EOF
+
+    On Wed, 2008-04-30 at 16:30 -0400, David Zeuthen wrote:
+    > On Wed, 2008-04-30 at 16:21 -0400, Joe Marcus Clarke wrote:
+    > > David Zeuthen wrote:
+    > > > On Wed, 2008-04-30 at 13:52 -0400, Joe Marcus Clarke wrote:
+    > > >> David Zeuthen wrote:
+    > > >>> On Wed, 2008-04-30 at 13:44 -0400, Joe Marcus Clarke wrote:
+    > > >>>> Correct.  I think it does read all the data, then the stream
+    puts out
+    > > >>>> EOF which causes the helper to be called ad infinitum.
+    > > >>> I see. Mmm.. In that case, polkit_grant_io_func() can
+    detect EOF
+    > > >>> (getline() returning -1) and then call the remove_watch()
+    method
+    > > >>> supplied by polkit-gnome-manager.c right?
+    > > >> It could, but what's the difference between that and returning
+    FALSE in
+    > > >> the caller?  Both would result in the watch being removed.
+    And since
+    > > >> the io_func reads the entire amount of data (until EOF)
+    that shouldn't
+    > > >> be a problem.
+    > > >
+    > > > The PAM conversation happens over that fd and for some cases
+    I don't
+    > > > think we read all the data at once. So there may be multiple
+    calls to
+    > > > polkit_grant_io_func(). As such, returning FALSE won't work
+    for all
+    > > > cases.
+    > >
+    > > It looks like it will (read all data).  The polkit_grant_io_func()
+    runs
+    > > in a while loop waiting for readline to return -1.  I don't
+    see that
+    > > this function ever returns to the caller until readline returns -1
+    > > (signifying EOF or some other error).  Am I misunderstanding
+    something?
+    >
+    > No, you're right, that's how it works right now. But in the
+    future this
+    > function might return control back to the application and then
+    it needs
+    > to be called again by the watch when the application goes to
+    process the
+    > main loop.
+    >
+    > Anyway, the other main reason I'd like polkit_grant_io_func()
+    to call
+    > remove_watch() as opposed to making io_watch_have_data() in
+    > polkit-gnome-manager.c return FALSE is because of the fact that
+    > PolicyKit-gnome is just one of many users of libpolkit-grant (others
+    > right now are: polkit-auth(1), the PolicyKit-kde project that some
+    > people are working on)
+
+    That works.  Adding this hunk to polkit-grant.c fixes the problem:
+
+    @@ -419,6 +420,8 @@ polkit_grant_io_func (PolKitGrant *polki
+
+             if (line != NULL)
+                     free (line);
+    +
+    +        polkit_grant->func_remove_watch (polkit_grant,
+    polkit_grant->io_watch_id);
+     }
+
+     /**
+
+    Joe
+
+ src/polkit-grant/polkit-grant.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+commit af9fdf86802583671dcd7750fbdbcb099e318fb4
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Wed Apr 30 13:23:05 2008 -0400
+
+    fix typo
+
+ src/polkit-dbus/Makefile.am |    2 +-
+ src/polkit/Makefile.am      |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 8cd339bbb8c9c63a56251261a7b4cdae199b6f72
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Wed Apr 30 13:21:04 2008 -0400
+
+    fix autotools screwup
+
+    I hate autotools.
+
+ src/polkit-dbus/Makefile.am  |    9 +++++----
+ src/polkit-grant/Makefile.am |    8 +++++---
+ src/polkit/Makefile.am       |    9 +++++----
+ 3 files changed, 15 insertions(+), 11 deletions(-)
+
+commit d626acf5157bac89d2fee0e15d5449eddc26f307
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Wed Apr 30 13:11:25 2008 -0400
+
+    fix some build stuff to so the test suites run
+
+ src/polkit-dbus/Makefile.am  |    7 +++++--
+ src/polkit-grant/Makefile.am |    7 +++++--
+ src/polkit/Makefile.am       |    9 ++++++---
+ 3 files changed, 16 insertions(+), 7 deletions(-)
+
+commit bde1337785b7d97fa21e60f7608abc1876f22a18
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Wed Apr 30 12:54:08 2008 -0400
+
+    need to link with libkit.la for some helpers
+
+ src/polkit-dbus/Makefile.am  |    2 +-
+ src/polkit-grant/Makefile.am |    4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 40c8b8aedf3de55c91af9b33c239587b3f2ec36a
+Author: Joe Marcus Clarke <marcus@FreeBSD.org>
+Date:   Wed Apr 30 12:46:02 2008 -0400
+
+    add support for FreeBSD
+
+    On Mon, 2008-04-21 at 15:06 -0400, David Zeuthen wrote:
+    > On Sat, 2008-04-19 at 01:34 -0400, Joe Marcus Clarke wrote:
+    > > I'm seeing a few PK problems on FreeBSD, but I'm not sure if
+    this is a
+    > > problem with our port, or an issue in general.  First, all of
+    the tests
+    > > David mentioned earlier (with polkit-auth) work.  The built-in
+    tests
+    > > also appear to work.  PK consumers also seem to work.
+    > >
+    > > What I'm noticing is that PolicyKit-gnome doesn't update in
+    real-time.
+    > > For example, if I launch polkit-gnome-authorization, then change a
+    > > policy, the changes don't reflect in the GUI until I restart
+    > > polkit-gnome-authorization.  Also, I'm not seeing any UI
+    changes in
+    > > polkit-gnome-example when I click on the various buttons (though
+    > > polkit-gnome-manager does launch).
+    >
+    > This suggests that file monitoring of /var/lib/misc/PolicyKit.reload
+    is
+    > somehow botched. Is polkit_context_io_func() in polkit-context.c
+    ever
+    > called if you do
+    >
+    >  # touch /var/lib/misc/PolicyKit.reload
+    >
+    > Is it called if you manually grant/revoke an authorization using
+    > polkit-auth(1)? (And does /var/lib/misc/PolicyKit.reload change
+    mtime
+    > in that case?)
+
+    Thanks for your advice.  I was not monitoring the reload file for
+    attribute changes, so I was missing the mtime change.  That is working
+    now.
+
+    I updated the PK diff with the portability fix.  I didn't actually use
+    the Solaris code as it caused a slew of compiler warnings and other
+    problems.  Instead, I went with creating a kit-lib.[ch] to store the
+    missing functions.  As for strndup(), I stuck that in kit-string.c.  I
+    wrapped all of these functions with configure checks to avoid
+    hard-coding OS checks.  This should make it easier to port PK to other
+    platforms.
+
+    I would still like your advice on the IO problem with PK-gnome.
+    I have
+    changed io_watch_have_data() in polkit-gnome-manager.c to return FALSE
+    instead of TRUE to auto-remove the IO watch.  As I said, FreeBSD's
+    poll() continuously indicates EOF as a G_IO_IN condition until it is
+    handled.  By returning FALSE here, the infinite loop is fixed, and I
+    didn't notice any other problems.
+
+    What problems could this cause?  Is there a better way of handling
+    this?
+    Thanks.
+
+    http://www.marcuscom.com/downloads/pk/
+
+    Joe
+
+    --
+    Joe Marcus Clarke
+    FreeBSD GNOME Team      ::      gnome@FreeBSD.org
+    FreeNode / #freebsd-gnome
+    http://www.FreeBSD.org/gnome
+
+ configure.in                                    |   32 +++++-
+ src/kit/Makefile.am                             |    1 +
+ src/kit/kit-file.c                              |    8 ++
+ src/kit/kit-file.h                              |    1 +
+ src/kit/kit-lib.c                               |  136
+ +++++++++++++++++++++++
+ src/kit/kit-lib.h                               |   52 +++++++++
+ src/kit/kit-spawn.c                             |    1 +
+ src/kit/kit-string.c                            |   22 ++++
+ src/kit/kit.h                                   |    1 +
+ src/polkit-dbus/polkit-read-auth-helper.c       |   18 ++--
+ src/polkit-dbus/polkit-resolve-exe-helper.c     |   12 +--
+ src/polkit-dbus/polkit-set-default-helper.c     |    9 +--
+ src/polkit-grant/Makefile.am                    |    2 +-
+ src/polkit-grant/polkit-explicit-grant-helper.c |    9 +--
+ src/polkit-grant/polkit-grant-helper-pam.c      |   11 +--
+ src/polkit-grant/polkit-grant-helper.c          |   11 +--
+ src/polkit-grant/polkit-grant.c                 |   46 +--------
+ src/polkit-grant/polkit-revoke-helper.c         |    9 +--
+ src/polkit/polkit-config.c                      |    1 -
+ src/polkit/polkit-context.c                     |  127
+ +++++++++++++++++++++
+ src/polkit/polkit-policy-cache.c                |    8 ++
+ src/polkit/polkit-policy-file.c                 |   21 ----
+ src/polkit/polkit-sysdeps.c                     |   41 +++++++-
+ tools/polkit-auth.c                             |   73 ++++++++++++-
+ 24 files changed, 525 insertions(+), 127 deletions(-)
+
 commit b9c851f19dacd1dfeb92da836c183f7a90b06186
 Author: David Zeuthen <davidz@redhat.com>
 Date:   Wed Apr 16 22:06:15 2008 -0400

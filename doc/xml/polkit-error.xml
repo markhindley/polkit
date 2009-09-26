@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-error">
 <refmeta>
-<refentrytitle role="top_of_page">Error reporting</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-error.top_of_page">Error reporting</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-error.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
 enum                <link linkend="PolKitErrorCode">PolKitErrorCode</link>;
                     <link linkend="PolKitError">PolKitError</link>;
 <link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-error-is-set">polkit_error_is_set</link>                 (<link linkend="PolKitError">PolKitError</link> *error);
@@ -45,7 +42,7 @@ const <link linkend="char">char</link>*         <link linkend="polkit-error-get-
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-error.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Error codes from PolicyKit.</para>
@@ -54,11 +51,11 @@ Error codes from PolicyKit.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-error.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="PolKitErrorCode" role="enum"/>enum PolKitErrorCode</title>
-<indexterm><primary>PolKitErrorCode</primary></indexterm><programlisting>typedef enum
+<refsect2 id="PolKitErrorCode" role="enum">
+<title>enum PolKitErrorCode</title>
+<indexterm zone="PolKitErrorCode"><primary>PolKitErrorCode</primary></indexterm><programlisting>typedef enum
 {      
         POLKIT_ERROR_OUT_OF_MEMORY,
         POLKIT_ERROR_POLICY_FILE_INVALID,
@@ -78,81 +75,81 @@ Errors returned by PolicyKit</para>
 <para>
 
 </para><variablelist role="enum">
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-OUT-OF-MEMORY:CAPS" role="constant"/><literal>POLKIT_ERROR_OUT_OF_MEMORY</literal></term>
+<varlistentry id="POLKIT-ERROR-OUT-OF-MEMORY:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_OUT_OF_MEMORY</literal></term>
 <listitem><simpara> Out of memory
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-POLICY-FILE-INVALID:CAPS" role="constant"/><literal>POLKIT_ERROR_POLICY_FILE_INVALID</literal></term>
+<varlistentry id="POLKIT-ERROR-POLICY-FILE-INVALID:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_POLICY_FILE_INVALID</literal></term>
 <listitem><simpara> There was an error parsing the given policy file
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-GENERAL-ERROR:CAPS" role="constant"/><literal>POLKIT_ERROR_GENERAL_ERROR</literal></term>
+<varlistentry id="POLKIT-ERROR-GENERAL-ERROR:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_GENERAL_ERROR</literal></term>
 <listitem><simpara> A general error code typically
 indicating problems with the installation of PolicyKit,
 e.g. helpers missing or wrong owner / permission.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-NOT-AUTHORIZED-TO-READ-AUTHORIZATIONS-FOR-OTHER-USERS:CAPS" role="constant"/><literal>POLKIT_ERROR_NOT_AUTHORIZED_TO_READ_AUTHORIZATIONS_FOR_OTHER_USERS</literal></term>
+<varlistentry id="POLKIT-ERROR-NOT-AUTHORIZED-TO-READ-AUTHORIZATIONS-FOR-OTHER-USERS:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_NOT_AUTHORIZED_TO_READ_AUTHORIZATIONS_FOR_OTHER_USERS</literal></term>
 <listitem><simpara>
 An attempt was made to read authorizations for other users and the
 calling process is not authorized.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-NOT-AUTHORIZED-TO-REVOKE-AUTHORIZATIONS-FROM-OTHER-USERS:CAPS" role="constant"/><literal>POLKIT_ERROR_NOT_AUTHORIZED_TO_REVOKE_AUTHORIZATIONS_FROM_OTHER_USERS</literal></term>
+<varlistentry id="POLKIT-ERROR-NOT-AUTHORIZED-TO-REVOKE-AUTHORIZATIONS-FROM-OTHER-USERS:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_NOT_AUTHORIZED_TO_REVOKE_AUTHORIZATIONS_FROM_OTHER_USERS</literal></term>
 <listitem><simpara>
 An attempt was made to revoke authorizations for other users and the
 calling process is not authorized.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-NOT-AUTHORIZED-TO-GRANT-AUTHORIZATION:CAPS" role="constant"/><literal>POLKIT_ERROR_NOT_AUTHORIZED_TO_GRANT_AUTHORIZATION</literal></term>
+<varlistentry id="POLKIT-ERROR-NOT-AUTHORIZED-TO-GRANT-AUTHORIZATION:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_NOT_AUTHORIZED_TO_GRANT_AUTHORIZATION</literal></term>
 <listitem><simpara> An attempt was
 made to grant an authorization and the calling process is not
 authorized.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-AUTHORIZATION-ALREADY-EXISTS:CAPS" role="constant"/><literal>POLKIT_ERROR_AUTHORIZATION_ALREADY_EXISTS</literal></term>
+<varlistentry id="POLKIT-ERROR-AUTHORIZATION-ALREADY-EXISTS:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_AUTHORIZATION_ALREADY_EXISTS</literal></term>
 <listitem><simpara> Subject already has an
 similar authorization already (modulo time of grant and who granted).
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-NOT-SUPPORTED:CAPS" role="constant"/><literal>POLKIT_ERROR_NOT_SUPPORTED</literal></term>
+<varlistentry id="POLKIT-ERROR-NOT-SUPPORTED:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_NOT_SUPPORTED</literal></term>
 <listitem><simpara> The operation is not supported by the
 authorization database backend
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-NOT-AUTHORIZED-TO-MODIFY-DEFAULTS:CAPS" role="constant"/><literal>POLKIT_ERROR_NOT_AUTHORIZED_TO_MODIFY_DEFAULTS</literal></term>
+<varlistentry id="POLKIT-ERROR-NOT-AUTHORIZED-TO-MODIFY-DEFAULTS:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_NOT_AUTHORIZED_TO_MODIFY_DEFAULTS</literal></term>
 <listitem><simpara> An attempt was
 made to modify the defaults for implicit authorizations and the
 calling process is not authorized.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-ERROR-NUM-ERROR-CODES:CAPS" role="constant"/><literal>POLKIT_ERROR_NUM_ERROR_CODES</literal></term>
+<varlistentry id="POLKIT-ERROR-NUM-ERROR-CODES:CAPS" role="constant">
+<term><literal>POLKIT_ERROR_NUM_ERROR_CODES</literal></term>
 <listitem><simpara> Number of error codes. This may change
 from version to version; do not rely on it.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="PolKitError" role="struct"/>PolKitError</title>
-<indexterm><primary>PolKitError</primary></indexterm><programlisting>typedef struct _PolKitError PolKitError;</programlisting>
+<refsect2 id="PolKitError" role="struct">
+<title>PolKitError</title>
+<indexterm zone="PolKitError"><primary>PolKitError</primary></indexterm><programlisting>typedef struct _PolKitError PolKitError;</programlisting>
 <para>
 Objects of this class are used for error reporting.</para>
 <para>
 
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-error-is-set" role="function" condition="since:0.7"/>polkit_error_is_set ()</title>
-<indexterm role="0.7"><primary>polkit_error_is_set</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_error_is_set                 (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
+<refsect2 id="polkit-error-is-set" role="function" condition="since:0.7">
+<title>polkit_error_is_set ()</title>
+<indexterm zone="polkit-error-is-set" role="0.7"><primary>polkit_error_is_set</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_error_is_set                 (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
 <para>
 Determine if an error set</para>
 <para>
@@ -166,9 +163,9 @@ Determine if an error set</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-error-get-error-name" role="function" condition="since:0.7"/>polkit_error_get_error_name ()</title>
-<indexterm role="0.7"><primary>polkit_error_get_error_name</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_error_get_error_name         (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
+<refsect2 id="polkit-error-get-error-name" role="function" condition="since:0.7">
+<title>polkit_error_get_error_name ()</title>
+<indexterm zone="polkit-error-get-error-name" role="0.7"><primary>polkit_error_get_error_name</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_error_get_error_name         (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
 <para>
 Get the CamelCase name for the error;
 e.g. <link linkend="POLKIT-ERROR-OUT-OF-MEMORY:CAPS"><type>POLKIT_ERROR_OUT_OF_MEMORY</type></link> maps to "OutOfMemory" and so on.</para>
@@ -183,9 +180,9 @@ e.g. <link linkend="POLKIT-ERROR-OUT-OF-MEMORY:CAPS"><type>POLKIT_ERROR_OUT_OF_M
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-error-get-error-code" role="function"/>polkit_error_get_error_code ()</title>
-<indexterm><primary>polkit_error_get_error_code</primary></indexterm><programlisting><link linkend="PolKitErrorCode">PolKitErrorCode</link>     polkit_error_get_error_code         (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
+<refsect2 id="polkit-error-get-error-code" role="function">
+<title>polkit_error_get_error_code ()</title>
+<indexterm zone="polkit-error-get-error-code"><primary>polkit_error_get_error_code</primary></indexterm><programlisting><link linkend="PolKitErrorCode">PolKitErrorCode</link>     polkit_error_get_error_code         (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
 <para>
 Returns the error code.</para>
 <para>
@@ -197,9 +194,9 @@ Returns the error code.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A value from the <link linkend="PolKitErrorCode"><type>PolKitErrorCode</type></link> enumeration.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-error-get-error-message" role="function"/>polkit_error_get_error_message ()</title>
-<indexterm><primary>polkit_error_get_error_message</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_error_get_error_message      (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
+<refsect2 id="polkit-error-get-error-message" role="function">
+<title>polkit_error_get_error_message ()</title>
+<indexterm zone="polkit-error-get-error-message"><primary>polkit_error_get_error_message</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_error_get_error_message      (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
 <para>
 Get the error message.</para>
 <para>
@@ -211,9 +208,9 @@ Get the error message.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A string describing the error. Caller shall not free this string.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-error-free" role="function"/>polkit_error_free ()</title>
-<indexterm><primary>polkit_error_free</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_error_free                   (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
+<refsect2 id="polkit-error-free" role="function">
+<title>polkit_error_free ()</title>
+<indexterm zone="polkit-error-free"><primary>polkit_error_free</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_error_free                   (<link linkend="PolKitError">PolKitError</link> *error);</programlisting>
 <para>
 Free an error.</para>
 <para>
@@ -223,9 +220,9 @@ Free an error.</para>
 <listitem><simpara> the error
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-error-set-error" role="function"/>polkit_error_set_error ()</title>
-<indexterm><primary>polkit_error_set_error</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_error_set_error              (<link linkend="PolKitError">PolKitError</link> **error,
+<refsect2 id="polkit-error-set-error" role="function">
+<title>polkit_error_set_error ()</title>
+<indexterm zone="polkit-error-set-error"><primary>polkit_error_set_error</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_error_set_error              (<link linkend="PolKitError">PolKitError</link> **error,
                                                          <link linkend="PolKitErrorCode">PolKitErrorCode</link> error_code,
                                                          const <link linkend="char">char</link> *format,
                                                          ...);</programlisting>
@@ -255,6 +252,4 @@ Sets an error. If OOM, the error will be set to a pre-allocated OOM error.</para
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

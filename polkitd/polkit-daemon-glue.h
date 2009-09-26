@@ -53,7 +53,7 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* NONE:STRING,UINT,BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.0D7Z9T:1) */
+/* NONE:STRING,UINT,BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.U0WHDU:1) */
 extern void dbus_glib_marshal_polkit_daemon_VOID__STRING_UINT_BOOLEAN_POINTER (GClosure     *closure,
                                                                                GValue       *return_value,
                                                                                guint         n_param_values,
@@ -101,7 +101,7 @@ dbus_glib_marshal_polkit_daemon_VOID__STRING_UINT_BOOLEAN_POINTER (GClosure     
 }
 #define dbus_glib_marshal_polkit_daemon_NONE__STRING_UINT_BOOLEAN_POINTER	dbus_glib_marshal_polkit_daemon_VOID__STRING_UINT_BOOLEAN_POINTER
 
-/* NONE:STRING,STRING,BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.0D7Z9T:2) */
+/* NONE:STRING,STRING,BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.U0WHDU:2) */
 extern void dbus_glib_marshal_polkit_daemon_VOID__STRING_STRING_BOOLEAN_POINTER (GClosure     *closure,
                                                                                  GValue       *return_value,
                                                                                  guint         n_param_values,

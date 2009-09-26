@@ -48,7 +48,7 @@ LTLIBRARIES = $(noinst_LTLIBRARIES)
 libkit_la_LIBADD =
 am__objects_1 =
 am_libkit_la_OBJECTS = kit-test.lo kit-memory.lo kit-string.lo \
-	kit-list.lo kit-hash.lo kit-file.lo kit-spawn.lo \
+	kit-lib.lo kit-list.lo kit-hash.lo kit-file.lo kit-spawn.lo \
 	kit-message.lo kit-entity.lo $(am__objects_1)
 libkit_la_OBJECTS = $(am_libkit_la_OBJECTS)
 @KIT_BUILD_TESTS_TRUE@am__EXEEXT_1 = kit-test$(EXEEXT)
@@ -105,6 +105,7 @@ DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DSYMUTIL = @DSYMUTIL@
 ECHO = @ECHO@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
@@ -168,6 +169,7 @@ MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
 MSGMERGE = @MSGMERGE@
+NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -251,6 +253,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 NULL = 
@@ -273,6 +276,7 @@ libkit_la_SOURCES = \
 	kit-test.h		kit-test.c		\
 	kit-memory.h		kit-memory.c		\
 	kit-string.h		kit-string.c		\
+	kit-lib.h		kit-lib.c		\
 	kit-list.h		kit-list.c		\
 	kit-hash.h		kit-hash.c		\
 	kit-file.h		kit-file.c		\
@@ -351,6 +355,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kit-entity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kit-file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kit-hash.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kit-lib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kit-list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kit-memory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kit-message.Plo@am__quote@

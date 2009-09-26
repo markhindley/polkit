@@ -83,6 +83,7 @@ DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DSYMUTIL = @DSYMUTIL@
 ECHO = @ECHO@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
@@ -146,6 +147,7 @@ MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
 MSGMERGE = @MSGMERGE@
+NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -229,6 +231,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 polkit_policydir = $(datadir)/PolicyKit/policy
@@ -428,7 +431,7 @@ uninstall-am: uninstall-dist_polkit_policyDATA
 @INTLTOOL_POLICY_RULE@
 
 check:
-	$(top_builddir)/tools/polkit-policy-file-validate $(dist_polkit_policy_DATA)
+	$(top_builddir)/tools/polkit-policy-file-validate $(top_srcdir)/policy/$(dist_polkit_policy_DATA)
 
 clean-local :
 	rm -f *~

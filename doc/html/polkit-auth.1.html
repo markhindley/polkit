@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>polkit-auth</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
-<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="prev" href="PolicyKit.conf.5.html" title="PolicyKit.conf">
 <link rel="next" href="polkit-action.1.html" title="polkit-action">
-<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
@@ -20,7 +20,7 @@
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
 <link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
 <link rel="index" href="ix04.html" title="Index">
-<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+<link rel="appendix" href="license.html" title="Appendix A. License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
@@ -35,7 +35,7 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle">polkit-auth</span></h2>
-<p>polkit-auth &#8212; Manage authorizations</p>
+<p>polkit-auth — Manage authorizations</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
@@ -44,7 +44,7 @@
 <div class="cmdsynopsis"><p><code class="command">polkit-auth</code>  [<code class="option">--obtain <em class="replaceable"><code>action</code></em></code>] [<code class="option">--show-obtainable</code>] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --explicit</code>] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --explicit-detail</code>] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --grant <em class="replaceable"><code>action</code></em></code> [<code class="option">--constraint <em class="replaceable"><code>constraint</code></em></code>]*] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --block <em class="replaceable"><code>action</code></em></code> [<code class="option">--constraint <em class="replaceable"><code>constraint</code></em></code>]*] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --revoke <em class="replaceable"><code>action</code></em></code>] [<code class="option">--version</code>] [<code class="option">--help</code>]</p></div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2676699"></a><h2>DESCRIPTION</h2>
+<a name="id367453"></a><h2>DESCRIPTION</h2>
 <p>
       polkit-auth is used to inspect, obtain, grant and revoke
       PolicyKit authorizations. If invoked without any options, the
@@ -52,7 +52,7 @@
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2665905"></a><h2>OPTIONS</h2>
+<a name="id367466"></a><h2>OPTIONS</h2>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -71,7 +71,7 @@
 
             The gained authorization will be constrained as much as
             possible using the constraints specified in
-            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called &#8220;CONSTRAINTS&#8221;</a>. For example, on
+            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called “CONSTRAINTS”</a>. For example, on
             a system running SELinux, if the caller runs uses this
             tool to obtain an authorization from a shell in a desktop
             in an active session, then constraints
@@ -125,7 +125,7 @@
             the <code class="literal">defaults</code> stanza of the .policy file
             is not consulted. Optionally, one or more constraints on
             the granted authorization can be specified, see
-            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called &#8220;CONSTRAINTS&#8221;</a> for details. The
+            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called “CONSTRAINTS”</a> for details. The
             authorization needed to grant authorizations is
             <code class="literal">org.freedesktop.policykit.grant</code>.
           </p></td>
@@ -138,7 +138,7 @@
             normally be authorized due to implicit
             authorizations. Optionally, one or more constraints on the
             granted authorization can be specified, see
-            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called &#8220;CONSTRAINTS&#8221;</a> for details. The
+            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called “CONSTRAINTS”</a> for details. The
             authorization needed to grant negative authorizations is
             <code class="literal">org.freedesktop.policykit.grant</code> if the
             "beneficiary" is another user.
@@ -208,7 +208,7 @@
               The authorization is constrained to processes for where
               executable path (<code class="literal">/proc/pid/exe</code> on
               Linux) matches the given path. See
-              <a class="xref" href="polkit-auth.1.html#polkit-auth-notes" title="NOTES">the section called &#8220;NOTES&#8221;</a> for limitations on
+              <a class="xref" href="polkit-auth.1.html#polkit-auth-notes" title="NOTES">the section called “NOTES”</a> for limitations on
               why this may not be secure.
             </p></td>
 </tr>
@@ -282,7 +282,7 @@
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2639923"></a><h2>COMPLETION</h2>
+<a name="id396767"></a><h2>COMPLETION</h2>
 <p>
       PolicyKit ships with a collection of shell functions such that
       completion on users, actions and constraints work when using the
@@ -298,7 +298,7 @@
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2686557"></a><h2>BUGS</h2>
+<a name="id396803"></a><h2>BUGS</h2>
 <p>
       Please send bug reports to either the distribution or the
       hal mailing list,
@@ -307,7 +307,7 @@
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2690091"></a><h2>SEE ALSO</h2>
+<a name="id396819"></a><h2>SEE ALSO</h2>
 <p>
       <span class="citerefentry"><span class="refentrytitle">PolicyKit</span>(8)</span>, 
       <span class="citerefentry"><span class="refentrytitle">PolicyKit.conf</span>(5)</span>, 
@@ -315,5 +315,8 @@
     </p>
 </div>
 </div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
 </body>
 </html>

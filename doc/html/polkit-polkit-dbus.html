@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Caller Determination</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
-<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="ref-core.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-caller.html" title="Caller">
 <link rel="next" href="polkit-polkit-context.html" title="Context">
-<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
@@ -20,7 +20,7 @@
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
 <link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
 <link rel="index" href="ix04.html" title="Index">
-<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+<link rel="appendix" href="license.html" title="Appendix A. License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -31,69 +31,136 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-context.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2693927" class="shortcut">Top</a>
-                  &#160;|&#160;
-                  <a href="#id2708098" class="shortcut">Description</a></nobr></td></tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-dbus.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-dbus.description" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-dbus"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2>
-<a name="id2693927"></a><span class="refentrytitle">Caller Determination</span>
-</h2>
-<p>Caller Determination &#8212; Obtaining seat, session and caller information
+<h2><span class="refentrytitle"><a name="polkit-polkit-dbus.top_of_page"></a>Caller Determination</span></h2>
+<p>Caller Determination — Obtaining seat, session and caller information
 via D-Bus and ConsoleKit.</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<h2>Synopsis</h2>
+<a name="polkit-polkit-dbus.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-
-
-
-<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      <a class="link" href="polkit-polkit-dbus.html#polkit-session-new-from-objpath">polkit_session_new_from_objpath</a>     (DBusConnection *con,
+<a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a>*      <a
+href="../polkit/polkit-polkit-dbus.html#polkit-session-new-from-objpath"
+>polkit_session_new_from_objpath</a>     (DBusConnection *con,
                                                          const char *objpath,
                                                          uid_t uid,
                                                          DBusError *error);
-<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      <a class="link" href="polkit-polkit-dbus.html#polkit-session-new-from-cookie">polkit_session_new_from_cookie</a>      (DBusConnection *con,
+<a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a>*      <a
+href="../polkit/polkit-polkit-dbus.html#polkit-session-new-from-cookie"
+>polkit_session_new_from_cookie</a>      (DBusConnection *con,
                                                          const char *cookie,
                                                          DBusError *error);
-<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       <a class="link" href="polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name">polkit_caller_new_from_dbus_name</a>    (DBusConnection *con,
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"
+>polkit_caller_new_from_dbus_name</a>    (DBusConnection *con,
                                                          const char *dbus_name,
                                                          DBusError *error);
-<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       <a class="link" href="polkit-polkit-dbus.html#polkit-caller-new-from-pid">polkit_caller_new_from_pid</a>          (DBusConnection *con,
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-pid"
+>polkit_caller_new_from_pid</a>          (DBusConnection *con,
                                                          pid_t pid,
                                                          DBusError *error);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-dbus.html#polkit-is-authorization-relevant">polkit_is_authorization_relevant</a>    (DBusConnection *con,
-                                                         <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-is-authorization-relevant"
+>polkit_is_authorization_relevant</a>    (DBusConnection *con,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          DBusError *error);
-                    <a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a>;
-<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a>*      <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-new">polkit_tracker_new</a>                  (void);
-<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a>*      <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-ref">polkit_tracker_ref</a>                  (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker);
-void                <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-unref">polkit_tracker_unref</a>                (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker);
-void                <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-set-system-bus-connection">polkit_tracker_set_system_bus_connection</a>
-                                                        (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
+                    <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>;
+<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>*      <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-new"
+>polkit_tracker_new</a>                  (void);
+<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>*      <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-ref"
+>polkit_tracker_ref</a>                  (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);
+void                <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-unref"
+>polkit_tracker_unref</a>                (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);
+void                <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-set-system-bus-connection"
+>polkit_tracker_set_system_bus_connection</a>
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
                                                          DBusConnection *con);
-void                <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-init">polkit_tracker_init</a>                 (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-dbus-func">polkit_tracker_dbus_func</a>            (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
+void                <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-init"
+>polkit_tracker_init</a>                 (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-dbus-func"
+>polkit_tracker_dbus_func</a>            (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
                                                          DBusMessage *message);
-<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-get-caller-from-dbus-name">polkit_tracker_get_caller_from_dbus_name</a>
-                                                        (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-get-caller-from-dbus-name"
+>polkit_tracker_get_caller_from_dbus_name</a>
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
                                                          const char *dbus_name,
                                                          DBusError *error);
-<a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-get-caller-from-pid">polkit_tracker_get_caller_from_pid</a>  (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-get-caller-from-pid"
+>polkit_tracker_get_caller_from_pid</a>  (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
                                                          pid_t pid,
                                                          DBusError *error);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-dbus.html#polkit-tracker-is-authorization-relevant">polkit_tracker_is_authorization_relevant</a>
-                                                        (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
-                                                         <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-is-authorization-relevant"
+>polkit_tracker_is_authorization_relevant</a>
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          DBusError *error);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2708098"></a><h2>Description</h2>
+<a name="polkit-polkit-dbus.description"></a><h2>Description</h2>
 <p>
 Helper library for obtaining seat, session and caller information
 via D-Bus and ConsoleKit. This library is only useful when writing
@@ -102,9 +169,15 @@ a mechanism.
 <p>
 If the mechanism itself is a daemon exposing a remote services via
 the system message bus it's often a better idea, to reduce
-roundtrips, to use the high-level <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a> class rather than
-the low-level functions <a class="link" href="polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"><code class="function">polkit_caller_new_from_dbus_name()</code></a> and
-<a class="link" href="polkit-polkit-dbus.html#polkit-caller-new-from-pid"><code class="function">polkit_caller_new_from_pid()</code></a>.
+roundtrips, to use the high-level <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> class rather than
+the low-level functions <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"
+><code class="function">polkit_caller_new_from_dbus_name()</code></a> and
+<a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-pid"
+><code class="function">polkit_caller_new_from_pid()</code></a>.
 </p>
 <p>
 These functions are in <code class="literal">libpolkit-dbus</code>.</p>
@@ -113,16 +186,19 @@ These functions are in <code class="literal">libpolkit-dbus</code>.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2708160"></a><h2>Details</h2>
+<a name="polkit-polkit-dbus.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2708171"></a><h3>
-<a name="polkit-session-new-from-objpath"></a>polkit_session_new_from_objpath ()</h3>
-<a class="indexterm" name="id2708184"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new_from_objpath     (DBusConnection *con,
+<a name="polkit-session-new-from-objpath"></a><h3>polkit_session_new_from_objpath ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a>*      polkit_session_new_from_objpath     (DBusConnection *con,
                                                          const char *objpath,
                                                          uid_t uid,
                                                          DBusError *error);</pre>
 <p>
-This function will construct a <a class="link" href="polkit-polkit-session.html#PolKitSession"><span class="type">PolKitSession</span></a> object by querying
+This function will construct a <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+><span class="type">PolKitSession</span></a> object by querying
 the ConsoleKit daemon for information. Note that this will do a lot
 of blocking IO so it is best avoided if your process already
 tracks/caches all the information. If you pass in <em class="parameter"><code>uid</code></em> as a
@@ -137,29 +213,29 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
 <td> D-Bus system bus connection
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>objpath</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>objpath</code></em>:</span></p></td>
 <td> object path of ConsoleKit session object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>uid</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>uid</code></em>:</span></p></td>
 <td> the user owning the session or -1 if unknown
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
 <td> D-Bus error
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the new object or <a
-href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if an error occured (in which case
 <em class="parameter"><code>error</code></em> will be set)
 </td>
@@ -169,13 +245,16 @@ href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2715782"></a><h3>
-<a name="polkit-session-new-from-cookie"></a>polkit_session_new_from_cookie ()</h3>
-<a class="indexterm" name="id2715795"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new_from_cookie      (DBusConnection *con,
+<a name="polkit-session-new-from-cookie"></a><h3>polkit_session_new_from_cookie ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a>*      polkit_session_new_from_cookie      (DBusConnection *con,
                                                          const char *cookie,
                                                          DBusError *error);</pre>
 <p>
-This function will construct a <a class="link" href="polkit-polkit-session.html#PolKitSession"><span class="type">PolKitSession</span></a> object by querying
+This function will construct a <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+><span class="type">PolKitSession</span></a> object by querying
 the ConsoleKit daemon for information. Note that this will do a lot
 of blocking IO so it is best avoided if your process already
 tracks/caches all the information.
@@ -189,24 +268,24 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
 <td> D-Bus system bus connection
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>cookie</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>cookie</code></em>:</span></p></td>
 <td> a ConsoleKit XDG_SESSION_COOKIE
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
 <td> D-Bus error
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the new object or <a
-href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if an error occured (in which case
 <em class="parameter"><code>error</code></em> will be set)
 </td>
@@ -216,17 +295,22 @@ href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2715933"></a><h3>
-<a name="polkit-caller-new-from-dbus-name"></a>polkit_caller_new_from_dbus_name ()</h3>
-<a class="indexterm" name="id2715946"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new_from_dbus_name    (DBusConnection *con,
+<a name="polkit-caller-new-from-dbus-name"></a><h3>polkit_caller_new_from_dbus_name ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_caller_new_from_dbus_name    (DBusConnection *con,
                                                          const char *dbus_name,
                                                          DBusError *error);</pre>
 <p>
-This function will construct a <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> object by querying
+This function will construct a <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object by querying
 both the system bus daemon and the ConsoleKit daemon for
 information. Note that this will do a lot of blocking IO so it is
 best avoided if your process already tracks/caches all the
-information. You can use the <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a> class for this.
+information. You can use the <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> class for this.
 </p>
 <p>
 This function is in <code class="literal">libpolkit-dbus</code>.</p>
@@ -237,24 +321,24 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
 <td> D-Bus system bus connection
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>dbus_name</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>dbus_name</code></em>:</span></p></td>
 <td> unique system bus connection name
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
 <td> D-Bus error
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the new object or <a
-href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if an error occured (in which case
 <em class="parameter"><code>error</code></em> will be set)
 </td>
@@ -264,17 +348,22 @@ href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2716094"></a><h3>
-<a name="polkit-caller-new-from-pid"></a>polkit_caller_new_from_pid ()</h3>
-<a class="indexterm" name="id2716105"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new_from_pid          (DBusConnection *con,
+<a name="polkit-caller-new-from-pid"></a><h3>polkit_caller_new_from_pid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_caller_new_from_pid          (DBusConnection *con,
                                                          pid_t pid,
                                                          DBusError *error);</pre>
 <p>
-This function will construct a <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> object by querying
+This function will construct a <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object by querying
 both information in /proc (on Linux) and the ConsoleKit daemon for
 information about a given process. Note that this will do a lot of
 blocking IO so it is best avoided if your process already
-tracks/caches all the information. You can use the <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a>
+tracks/caches all the information. You can use the <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a>
 class for this.
 </p>
 <p>
@@ -286,24 +375,24 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
 <td> D-Bus system bus connection
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>pid</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
 <td> process id
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
 <td> D-Bus error
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the new object or <a
-href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if an error occured (in which case
 <em class="parameter"><code>error</code></em> will be set)
 </td>
@@ -313,10 +402,13 @@ href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2716252"></a><h3>
-<a name="polkit-is-authorization-relevant"></a>polkit_is_authorization_relevant ()</h3>
-<a class="indexterm" name="id2716267"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_is_authorization_relevant    (DBusConnection *con,
-                                                         <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+<a name="polkit-is-authorization-relevant"></a><h3>polkit_is_authorization_relevant ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_is_authorization_relevant    (DBusConnection *con,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          DBusError *error);</pre>
 <p>
 As explicit authorizations are scoped (process single shot,
@@ -329,8 +421,12 @@ for reporting and graphical tools displaying authorizations.
 Note that this may do blocking IO to check for session
 authorizations so it is best avoided if your process already
 tracks/caches all the information. You can use the
-<a class="link" href="polkit-polkit-dbus.html#polkit-tracker-is-authorization-relevant"><code class="function">polkit_tracker_is_authorization_relevant()</code></a> method on the
-<a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a> class for this.</p>
+<a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-is-authorization-relevant"
+><code class="function">polkit_tracker_is_authorization_relevant()</code></a> method on the
+<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> class for this.</p>
 <p>
 
 </p>
@@ -338,22 +434,22 @@ tracks/caches all the information. You can use the
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
 <td> D-Bus system bus connection
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> authorization to check for
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
 <td> return location for error
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a> if the authorization still applies, <a
@@ -373,22 +469,27 @@ This function is in <code class="literal">libpolkit-dbus</code>.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2716431"></a><h3>
-<a name="PolKitTracker"></a>PolKitTracker</h3>
-<a class="indexterm" name="id2716444"></a><pre class="programlisting">typedef struct _PolKitTracker PolKitTracker;</pre>
+<a name="PolKitTracker"></a><h3>PolKitTracker</h3>
+<pre class="programlisting">typedef struct _PolKitTracker PolKitTracker;</pre>
 <p>
 Instances of this class are used to cache information about
 callers; typically this is used in scenarios where the same caller
 is calling into a mechanism multiple times. 
 </p>
 <p>
-Thus, an application can use this class to get the <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a>
+Thus, an application can use this class to get the <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a>
 object; the class will listen to both NameOwnerChanged and
 ActivityChanged signals from the message bus and update / retire
-the <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> objects.
+the <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> objects.
 </p>
 <p>
-An example of how to use <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a> is provided here. First, build the following program
+An example of how to use <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> is provided here. First, build the following program
 </p>
 <p>
 </p>
@@ -627,11 +728,14 @@ These functions are in <code class="literal">libpolkit-dbus</code>.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2716753"></a><h3>
-<a name="polkit-tracker-new"></a>polkit_tracker_new ()</h3>
-<a class="indexterm" name="id2716767"></a><pre class="programlisting"><a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a>*      polkit_tracker_new                  (void);</pre>
+<a name="polkit-tracker-new"></a><h3>polkit_tracker_new ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>*      polkit_tracker_new                  (void);</pre>
 <p>
-Creates a new <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a> object.
+Creates a new <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> object.
 </p>
 <p>
 This function is in <code class="literal">libpolkit-dbus</code>.</p>
@@ -641,7 +745,7 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the new object
 
 </td>
@@ -652,9 +756,12 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2716831"></a><h3>
-<a name="polkit-tracker-ref"></a>polkit_tracker_ref ()</h3>
-<a class="indexterm" name="id2716846"></a><pre class="programlisting"><a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a>*      polkit_tracker_ref                  (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker);</pre>
+<a name="polkit-tracker-ref"></a><h3>polkit_tracker_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>*      polkit_tracker_ref                  (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);</pre>
 <p>
 Increase reference count.
 </p>
@@ -667,12 +774,12 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
 <td> the tracker object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the object
 
 </td>
@@ -684,9 +791,10 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2716923"></a><h3>
-<a name="polkit-tracker-unref"></a>polkit_tracker_unref ()</h3>
-<a class="indexterm" name="id2716936"></a><pre class="programlisting">void                polkit_tracker_unref                (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker);</pre>
+<a name="polkit-tracker-unref"></a><h3>polkit_tracker_unref ()</h3>
+<pre class="programlisting">void                polkit_tracker_unref                (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -700,7 +808,7 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
 <td> the tracker object
 </td>
 </tr></tbody>
@@ -710,13 +818,16 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717005"></a><h3>
-<a name="polkit-tracker-set-system-bus-connection"></a>polkit_tracker_set_system_bus_connection ()</h3>
-<a class="indexterm" name="id2717021"></a><pre class="programlisting">void                polkit_tracker_set_system_bus_connection
-                                                        (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
+<a name="polkit-tracker-set-system-bus-connection"></a><h3>polkit_tracker_set_system_bus_connection ()</h3>
+<pre class="programlisting">void                polkit_tracker_set_system_bus_connection
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
                                                          DBusConnection *con);</pre>
 <p>
-Tell the <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a> object to use the given D-Bus connection
+Tell the <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> object to use the given D-Bus connection
 when it needs to fetch information from the system message bus and
 ConsoleKit services. This is used for priming the cache.
 </p>
@@ -729,12 +840,12 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
 <td> the tracker object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>con</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
 <td> the connection to the system message bus
 </td>
 </tr>
@@ -745,9 +856,10 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717121"></a><h3>
-<a name="polkit-tracker-init"></a>polkit_tracker_init ()</h3>
-<a class="indexterm" name="id2717135"></a><pre class="programlisting">void                polkit_tracker_init                 (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker);</pre>
+<a name="polkit-tracker-init"></a><h3>polkit_tracker_init ()</h3>
+<pre class="programlisting">void                polkit_tracker_init                 (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);</pre>
 <p>
 Initialize the tracker.
 </p>
@@ -759,7 +871,7 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
 <td> the tracker object
 </td>
 </tr></tbody>
@@ -769,12 +881,17 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717201"></a><h3>
-<a name="polkit-tracker-dbus-func"></a>polkit_tracker_dbus_func ()</h3>
-<a class="indexterm" name="id2717215"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_tracker_dbus_func            (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
+<a name="polkit-tracker-dbus-func"></a><h3>polkit_tracker_dbus_func ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_tracker_dbus_func            (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
                                                          DBusMessage *message);</pre>
 <p>
-The owner of the <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a> object must pass signals from the
+The owner of the <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> object must pass signals from the
 system message bus (just NameOwnerChanged will do) and all signals
 from the ConsoleKit service into this function.
 </p>
@@ -787,17 +904,17 @@ This function is in <code class="literal">libpolkit-dbus</code>.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
 <td> the tracker object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>message</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>message</code></em>:</span></p></td>
 <td> message to pass
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a> only if there was a change in the ConsoleKit database.
@@ -811,15 +928,22 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717331"></a><h3>
-<a name="polkit-tracker-get-caller-from-dbus-name"></a>polkit_tracker_get_caller_from_dbus_name ()</h3>
-<a class="indexterm" name="id2717347"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_tracker_get_caller_from_dbus_name
-                                                        (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
+<a name="polkit-tracker-get-caller-from-dbus-name"></a><h3>polkit_tracker_get_caller_from_dbus_name ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_tracker_get_caller_from_dbus_name
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
                                                          const char *dbus_name,
                                                          DBusError *error);</pre>
 <p>
-This function is similar to <a class="link" href="polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"><code class="function">polkit_caller_new_from_dbus_name()</code></a>
-except that it uses the cache in <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a>. So on the second
+This function is similar to <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"
+><code class="function">polkit_caller_new_from_dbus_name()</code></a>
+except that it uses the cache in <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a>. So on the second
 and subsequent calls, for the same D-Bus name, there will be no
 syscall or IPC overhead in calling this function.</p>
 <p>
@@ -829,26 +953,30 @@ syscall or IPC overhead in calling this function.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
 <td> the tracker object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>dbus_name</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>dbus_name</code></em>:</span></p></td>
 <td> unique name on the system message bus
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
 <td> D-Bus error
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
-<td> A <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> object; the caller must use
-<a class="link" href="polkit-polkit-caller.html#polkit-caller-unref"><code class="function">polkit_caller_unref()</code></a> on the object when done with it. Returns
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object; the caller must use
 <a
-href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
+href="../polkit/polkit-polkit-caller.html#polkit-caller-unref"
+><code class="function">polkit_caller_unref()</code></a> on the object when done with it. Returns
+<a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if an error occured (in which case error will be set).
 
 This function is in <code class="literal">libpolkit-dbus</code>.
@@ -862,14 +990,21 @@ This function is in <code class="literal">libpolkit-dbus</code>.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717511"></a><h3>
-<a name="polkit-tracker-get-caller-from-pid"></a>polkit_tracker_get_caller_from_pid ()</h3>
-<a class="indexterm" name="id2717528"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_tracker_get_caller_from_pid  (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
+<a name="polkit-tracker-get-caller-from-pid"></a><h3>polkit_tracker_get_caller_from_pid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_tracker_get_caller_from_pid  (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
                                                          pid_t pid,
                                                          DBusError *error);</pre>
 <p>
-This function is similar to <a class="link" href="polkit-polkit-dbus.html#polkit-caller-new-from-pid"><code class="function">polkit_caller_new_from_pid()</code></a>
-except that it uses the cache in <a class="link" href="polkit-polkit-dbus.html#PolKitTracker"><span class="type">PolKitTracker</span></a>. So on the second
+This function is similar to <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-pid"
+><code class="function">polkit_caller_new_from_pid()</code></a>
+except that it uses the cache in <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a>. So on the second
 and subsequent calls, for the same D-Bus name, there will be no
 IPC overhead in calling this function. 
 </p>
@@ -885,26 +1020,30 @@ needs to record this in addition to the pid.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
 <td> the tracker object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>pid</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
 <td> UNIX process id to look at
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
 <td> D-Bus error
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
-<td> A <a class="link" href="polkit-polkit-caller.html#PolKitCaller"><span class="type">PolKitCaller</span></a> object; the caller must use
-<a class="link" href="polkit-polkit-caller.html#polkit-caller-unref"><code class="function">polkit_caller_unref()</code></a> on the object when done with it. Returns
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object; the caller must use
 <a
-href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
+href="../polkit/polkit-polkit-caller.html#polkit-caller-unref"
+><code class="function">polkit_caller_unref()</code></a> on the object when done with it. Returns
+<a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if an error occured (in which case error will be set).
 
 This function is in <code class="literal">libpolkit-dbus</code>.
@@ -918,11 +1057,16 @@ This function is in <code class="literal">libpolkit-dbus</code>.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717697"></a><h3>
-<a name="polkit-tracker-is-authorization-relevant"></a>polkit_tracker_is_authorization_relevant ()</h3>
-<a class="indexterm" name="id2720069"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_tracker_is_authorization_relevant
-                                                        (<a class="link" href="polkit-polkit-dbus.html#PolKitTracker">PolKitTracker</a> *pk_tracker,
-                                                         <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+<a name="polkit-tracker-is-authorization-relevant"></a><h3>polkit_tracker_is_authorization_relevant ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_tracker_is_authorization_relevant
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          DBusError *error);</pre>
 <p>
 As explicit authorizations are scoped (process single shot,
@@ -932,7 +1076,9 @@ determines whether the authorization is still relevant; it's useful
 for reporting and graphical tools displaying authorizations.
 </p>
 <p>
-This function is similar to <a class="link" href="polkit-polkit-dbus.html#polkit-is-authorization-relevant"><code class="function">polkit_is_authorization_relevant()</code></a> only
+This function is similar to <a
+href="../polkit/polkit-polkit-dbus.html#polkit-is-authorization-relevant"
+><code class="function">polkit_is_authorization_relevant()</code></a> only
 that it avoids IPC overhead on the 2nd and subsequent calls when
 checking authorizations scoped for a session.</p>
 <p>
@@ -942,22 +1088,22 @@ checking authorizations scoped for a session.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
 <td> the tracker
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> authorization to check for
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
 <td> return location for error
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a> if the authorization still applies, <a
@@ -976,11 +1122,9 @@ This function is in <code class="literal">libpolkit-dbus</code>.
 </p>
 </div>
 </div>
-<div class="refsect1" lang="en">
-<a name="id2720212"></a><div class="refsect2" lang="en"><a name="id2720213"></a></div>
+</div>
+<div class="footer">
 <hr>
-<div class="refsect2" lang="en"><a name="id2720214"></a></div>
-</div>
-</div>
+          Generated by GTK-Doc V1.10</div>
 </body>
 </html>

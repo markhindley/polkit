@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-simple">
 <refmeta>
-<refentrytitle role="top_of_page">Simple convenience interface</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-simple.top_of_page">Simple convenience interface</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-simple.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
 <link linkend="polkit-uint64-t">polkit_uint64_t</link>     <link linkend="polkit-check-auth">polkit_check_auth</link>                   (<link linkend="pid-t">pid_t</link> pid,
                                                          ...);
 <link linkend="polkit-uint64-t">polkit_uint64_t</link>     <link linkend="polkit-check-authv">polkit_check_authv</link>                  (<link linkend="pid-t">pid_t</link> pid,
@@ -53,7 +50,7 @@
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-simple.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Simple convenience interface</para>
@@ -62,11 +59,11 @@ Simple convenience interface</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-simple.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="polkit-check-auth" role="function" condition="since:0.7"/>polkit_check_auth ()</title>
-<indexterm role="0.7"><primary>polkit_check_auth</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_check_auth                   (<link linkend="pid-t">pid_t</link> pid,
+<refsect2 id="polkit-check-auth" role="function" condition="since:0.7">
+<title>polkit_check_auth ()</title>
+<indexterm zone="polkit-check-auth" role="0.7"><primary>polkit_check_auth</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_check_auth                   (<link linkend="pid-t">pid_t</link> pid,
                                                          ...);</programlisting>
 <para>
 A simple convenience function to check whether a given process is
@@ -132,9 +129,9 @@ occurs 0 is returned and errno will be set:
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-check-authv" role="function" condition="since:0.7"/>polkit_check_authv ()</title>
-<indexterm role="0.7"><primary>polkit_check_authv</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_check_authv                  (<link linkend="pid-t">pid_t</link> pid,
+<refsect2 id="polkit-check-authv" role="function" condition="since:0.7">
+<title>polkit_check_authv ()</title>
+<indexterm zone="polkit-check-authv" role="0.7"><primary>polkit_check_authv</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_check_authv                  (<link linkend="pid-t">pid_t</link> pid,
                                                          const <link linkend="char">char</link> **action_ids);</programlisting>
 <para>
 This function is similar to <link linkend="polkit-check-auth"><function>polkit_check_auth()</function></link> but takes an <link linkend="NULL:CAPS"><literal>NULL</literal></link>
@@ -153,9 +150,9 @@ terminated array instead of being a varadic function.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-auth-obtain" role="function" condition="since:0.7"/>polkit_auth_obtain ()</title>
-<indexterm role="0.7"><primary>polkit_auth_obtain</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_auth_obtain                  (const <link linkend="char">char</link> *action_id,
+<refsect2 id="polkit-auth-obtain" role="function" condition="since:0.7">
+<title>polkit_auth_obtain ()</title>
+<indexterm zone="polkit-auth-obtain" role="0.7"><primary>polkit_auth_obtain</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_auth_obtain                  (const <link linkend="char">char</link> *action_id,
                                                          <link linkend="polkit-uint32-t">polkit_uint32_t</link> xid,
                                                          <link linkend="pid-t">pid_t</link> pid,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
@@ -193,9 +190,9 @@ error is set
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-dbus-error-generate" role="function" condition="since:0.8"/>polkit_dbus_error_generate ()</title>
-<indexterm role="0.8"><primary>polkit_dbus_error_generate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_generate          (<link linkend="PolKitAction">PolKitAction</link> *action,
+<refsect2 id="polkit-dbus-error-generate" role="function" condition="since:0.8">
+<title>polkit_dbus_error_generate ()</title>
+<indexterm zone="polkit-dbus-error-generate" role="0.8"><primary>polkit_dbus_error_generate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_generate          (<link linkend="PolKitAction">PolKitAction</link> *action,
                                                          <link linkend="PolKitResult">PolKitResult</link> result,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
 <para>
@@ -239,9 +236,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.8
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-dbus-error-parse" role="function" condition="since:0.8"/>polkit_dbus_error_parse ()</title>
-<indexterm role="0.8"><primary>polkit_dbus_error_parse</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_parse             (<link linkend="DBusError">DBusError</link> *error,
+<refsect2 id="polkit-dbus-error-parse" role="function" condition="since:0.8">
+<title>polkit_dbus_error_parse ()</title>
+<indexterm zone="polkit-dbus-error-parse" role="0.8"><primary>polkit_dbus_error_parse</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_parse             (<link linkend="DBusError">DBusError</link> *error,
                                                          <link linkend="PolKitAction">PolKitAction</link> **action,
                                                          <link linkend="PolKitResult">PolKitResult</link> *result);</programlisting>
 <para>
@@ -270,9 +267,9 @@ and <parameter>result</parameter> is set (and caller must free <parameter>action
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.8
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-dbus-error-parse-from-strings" role="function" condition="since:0.8"/>polkit_dbus_error_parse_from_strings ()</title>
-<indexterm role="0.8"><primary>polkit_dbus_error_parse_from_strings</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_parse_from_strings
+<refsect2 id="polkit-dbus-error-parse-from-strings" role="function" condition="since:0.8">
+<title>polkit_dbus_error_parse_from_strings ()</title>
+<indexterm zone="polkit-dbus-error-parse-from-strings" role="0.8"><primary>polkit_dbus_error_parse_from_strings</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_parse_from_strings
                                                         (const <link linkend="char">char</link> *error_name,
                                                          const <link linkend="char">char</link> *error_message,
                                                          <link linkend="PolKitAction">PolKitAction</link> **action,
@@ -311,6 +308,4 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

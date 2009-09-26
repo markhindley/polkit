@@ -103,14 +103,17 @@ am__polkit_grant_helper_SOURCES_DIST = polkit-grant-helper.c
 @POLKIT_AUTHDB_DEFAULT_TRUE@am_polkit_grant_helper_OBJECTS =  \
 @POLKIT_AUTHDB_DEFAULT_TRUE@	polkit-grant-helper.$(OBJEXT)
 polkit_grant_helper_OBJECTS = $(am_polkit_grant_helper_OBJECTS)
-@POLKIT_AUTHDB_DEFAULT_TRUE@polkit_grant_helper_DEPENDENCIES = $(top_builddir)/src/polkit/libpolkit.la \
+@POLKIT_AUTHDB_DEFAULT_TRUE@polkit_grant_helper_DEPENDENCIES =  \
+@POLKIT_AUTHDB_DEFAULT_TRUE@	$(top_builddir)/src/kit/libkit.la \
+@POLKIT_AUTHDB_DEFAULT_TRUE@	$(top_builddir)/src/polkit/libpolkit.la \
 @POLKIT_AUTHDB_DEFAULT_TRUE@	$(top_builddir)/src/polkit-dbus/libpolkit-dbus.la \
 @POLKIT_AUTHDB_DEFAULT_TRUE@	libpolkit-grant.la
 am__polkit_grant_helper_pam_SOURCES_DIST = polkit-grant-helper-pam.c
 @POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_PAM_TRUE@am_polkit_grant_helper_pam_OBJECTS = polkit-grant-helper-pam.$(OBJEXT)
 polkit_grant_helper_pam_OBJECTS =  \
 	$(am_polkit_grant_helper_pam_OBJECTS)
-polkit_grant_helper_pam_DEPENDENCIES =
+@POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_PAM_TRUE@polkit_grant_helper_pam_DEPENDENCIES = $(top_builddir)/src/kit/libkit.la \
+@POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_PAM_TRUE@	$(top_builddir)/src/polkit/libpolkit.la
 am__polkit_grant_helper_shadow_SOURCES_DIST =  \
 	polkit-grant-helper-shadow.c
 @POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_SHADOW_TRUE@am_polkit_grant_helper_shadow_OBJECTS = polkit-grant-helper-shadow.$(OBJEXT)
@@ -195,6 +198,7 @@ DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DSYMUTIL = @DSYMUTIL@
 ECHO = @ECHO@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
@@ -258,6 +262,7 @@ MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
 MSGMERGE = @MSGMERGE@
+NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -341,6 +346,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 INCLUDES = \
@@ -364,13 +370,14 @@ libpolkit_grantinclude_HEADERS = \
 libpolkit_grant_la_SOURCES = polkit-grant.h polkit-grant.c \
 	$(am__append_1) $(am__append_2)
 libpolkit_grant_la_LIBADD = @GLIB_LIBS@ @DBUS_LIBS@ $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la
-libpolkit_grant_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@ \
-		             -export-dynamic -no-undefined -export-symbols-regex '(^polkit_.*|_polkit_authorization_db_auth_file_add)'
+@POLKIT_BUILD_TESTS_FALSE@libpolkit_grant_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@ \
+@POLKIT_BUILD_TESTS_FALSE@                             -export-dynamic -no-undefined -export-symbols-regex '(^polkit_.*|_polkit_authorization_db_auth_file_add)'
 
+@POLKIT_BUILD_TESTS_TRUE@libpolkit_grant_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@
 @POLKIT_AUTHDB_DEFAULT_TRUE@polkit_grant_helper_SOURCES = polkit-grant-helper.c
-@POLKIT_AUTHDB_DEFAULT_TRUE@polkit_grant_helper_LDADD = @GLIB_LIBS@ @DBUS_LIBS@ $(top_builddir)/src/polkit/libpolkit.la $(top_builddir)/src/polkit-dbus/libpolkit-dbus.la libpolkit-grant.la
+@POLKIT_AUTHDB_DEFAULT_TRUE@polkit_grant_helper_LDADD = @GLIB_LIBS@ @DBUS_LIBS@ $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la $(top_builddir)/src/polkit-dbus/libpolkit-dbus.la libpolkit-grant.la
 @POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_PAM_TRUE@polkit_grant_helper_pam_SOURCES = polkit-grant-helper-pam.c
-@POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_PAM_TRUE@polkit_grant_helper_pam_LDADD = @AUTH_LIBS@
+@POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_PAM_TRUE@polkit_grant_helper_pam_LDADD = @AUTH_LIBS@ $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la
 @POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_SHADOW_TRUE@polkit_grant_helper_shadow_SOURCES = polkit-grant-helper-shadow.c
 @POLKIT_AUTHDB_DEFAULT_TRUE@@POLKIT_AUTHFW_SHADOW_TRUE@polkit_grant_helper_shadow_LDADD = @AUTH_LIBS@
 @POLKIT_AUTHDB_DEFAULT_TRUE@polkit_explicit_grant_helper_SOURCES = polkit-explicit-grant-helper.c

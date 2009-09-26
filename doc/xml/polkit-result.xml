@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-result">
 <refmeta>
-<refentrytitle role="top_of_page">Results</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-result.top_of_page">Results</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-result.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
 enum                <link linkend="PolKitResult">PolKitResult</link>;
 const <link linkend="char">char</link>*         <link linkend="polkit-result-to-string-representation">polkit_result_to_string_representation</link>
                                                         (<link linkend="PolKitResult">PolKitResult</link> result);
@@ -40,7 +37,7 @@ const <link linkend="char">char</link>*         <link linkend="polkit-result-to-
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-result.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 These functions are used to manipulate PolicyKit results.</para>
@@ -49,11 +46,11 @@ These functions are used to manipulate PolicyKit results.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-result.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="PolKitResult" role="enum"/>enum PolKitResult</title>
-<indexterm><primary>PolKitResult</primary></indexterm><programlisting>typedef enum
+<refsect2 id="PolKitResult" role="enum">
+<title>enum PolKitResult</title>
+<indexterm zone="PolKitResult"><primary>PolKitResult</primary></indexterm><programlisting>typedef enum
 {
         POLKIT_RESULT_UNKNOWN,
 
@@ -81,69 +78,69 @@ in the future. One should never rely on the ordering</para>
 <para>
 
 </para><variablelist role="enum">
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-UNKNOWN:CAPS" role="constant"/><literal>POLKIT_RESULT_UNKNOWN</literal></term>
+<varlistentry id="POLKIT-RESULT-UNKNOWN:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_UNKNOWN</literal></term>
 <listitem><simpara> The result is unknown / cannot be
 computed. This is mostly used internally in libpolkit.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-NO:CAPS" role="constant"/><literal>POLKIT_RESULT_NO</literal></term>
+<varlistentry id="POLKIT-RESULT-NO:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_NO</literal></term>
 <listitem><simpara> Access denied.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH</literal></term>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH</literal></term>
 <listitem><simpara> Access denied, but
 authentication by the caller as administrator (e.g. root or a
 member in the wheel group depending on configuration) will grant
 access to the process the caller is originating from.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-KEEP-SESSION:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION</literal></term>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-KEEP-SESSION:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION</literal></term>
 <listitem><simpara> Access denied, but
 authentication by the caller as administrator (e.g. root or a
 member in the wheel group depending on configuration) will grant
 access for the remainder of the session
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-KEEP-ALWAYS:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS</literal></term>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-KEEP-ALWAYS:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS</literal></term>
 <listitem><simpara> Access denied, but
 authentication by the caller as administrator (e.g. root or a
 member in the wheel group depending on configuration) will grant
 access in the future.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH</literal></term>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH</literal></term>
 <listitem><simpara> Access denied, but
 authentication by the caller as himself will grant access to the
 process the caller is originating from.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-KEEP-SESSION:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION</literal></term>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-KEEP-SESSION:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION</literal></term>
 <listitem><simpara> Access denied, but
 authentication by the caller as himself will grant access to the
 resource for the remainder of the session
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-KEEP-ALWAYS:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS</literal></term>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-KEEP-ALWAYS:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS</literal></term>
 <listitem><simpara> Access denied, but
 authentication by the caller as himself will grant access to the
 resource in the future.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-YES:CAPS" role="constant"/><literal>POLKIT_RESULT_YES</literal></term>
+<varlistentry id="POLKIT-RESULT-YES:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_YES</literal></term>
 <listitem><simpara> Access granted.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-ONE-SHOT:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT</literal></term>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-ONE-SHOT:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT</literal></term>
 <listitem><simpara> Access denied, but
 authentication by the caller as administrator (e.g. root or a
 member in the wheel group depending on configuration) will grant
@@ -152,8 +149,8 @@ from. See <link linkend="polkit-context-is-caller-authorized"><function>polkit_c
 limitations) about one-shot authorizations.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-ONE-SHOT:CAPS" role="constant"/><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT</literal></term>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-ONE-SHOT:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT</literal></term>
 <listitem><simpara> Access denied, but
 authentication by the caller as himself will grant access exactly
 one time to the process the caller is originating from. See
@@ -161,15 +158,15 @@ one time to the process the caller is originating from. See
 limitations) about one-shot authorizations.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-RESULT-N-RESULTS:CAPS" role="constant"/><literal>POLKIT_RESULT_N_RESULTS</literal></term>
+<varlistentry id="POLKIT-RESULT-N-RESULTS:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_N_RESULTS</literal></term>
 <listitem><simpara> Number of result codes
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-result-to-string-representation" role="function"/>polkit_result_to_string_representation ()</title>
-<indexterm><primary>polkit_result_to_string_representation</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_result_to_string_representation
+<refsect2 id="polkit-result-to-string-representation" role="function">
+<title>polkit_result_to_string_representation ()</title>
+<indexterm zone="polkit-result-to-string-representation"><primary>polkit_result_to_string_representation</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_result_to_string_representation
                                                         (<link linkend="PolKitResult">PolKitResult</link> result);</programlisting>
 <para>
 Gives a textual representation of a <link linkend="PolKitResult"><type>PolKitResult</type></link> object. This
@@ -186,9 +183,9 @@ be converted back to a <link linkend="PolKitResult"><type>PolKitResult</type></l
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> string representing the result (do not free) or <link linkend="NULL:CAPS"><type>NULL</type></link> if the given result is invalid
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-result-from-string-representation" role="function"/>polkit_result_from_string_representation ()</title>
-<indexterm><primary>polkit_result_from_string_representation</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_result_from_string_representation
+<refsect2 id="polkit-result-from-string-representation" role="function">
+<title>polkit_result_from_string_representation ()</title>
+<indexterm zone="polkit-result-from-string-representation"><primary>polkit_result_from_string_representation</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_result_from_string_representation
                                                         (const <link linkend="char">char</link> *string,
                                                          <link linkend="PolKitResult">PolKitResult</link> *out_result);</programlisting>
 <para>
@@ -212,6 +209,4 @@ Given a textual representation of a <link linkend="PolKitResult"><type>PolKitRes
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

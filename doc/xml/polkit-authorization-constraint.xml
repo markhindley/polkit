@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-authorization-constraint">
 <refmeta>
-<refentrytitle role="top_of_page">Authorization Constraints</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-authorization-constraint.top_of_page">Authorization Constraints</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -17,13 +17,10 @@ order for an authorization to apply</refpurpose>
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-authorization-constraint.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
 enum                <link linkend="PolKitAuthorizationConstraintType">PolKitAuthorizationConstraintType</link>;
                     <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>;
 <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* <link linkend="polkit-authorization-constraint-get-require-local">polkit_authorization_constraint_get_require_local</link>
@@ -78,7 +75,7 @@ const <link linkend="char">char</link>*         <link linkend="polkit-authorizat
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-authorization-constraint.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This class is used to represent conditions that must be satisfied
@@ -88,11 +85,11 @@ in order for an authorization to apply</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-authorization-constraint.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="PolKitAuthorizationConstraintType" role="enum"/>enum PolKitAuthorizationConstraintType</title>
-<indexterm><primary>PolKitAuthorizationConstraintType</primary></indexterm><programlisting>typedef enum {
+<refsect2 id="PolKitAuthorizationConstraintType" role="enum">
+<title>enum PolKitAuthorizationConstraintType</title>
+<indexterm zone="PolKitAuthorizationConstraintType"><primary>PolKitAuthorizationConstraintType</primary></indexterm><programlisting>typedef enum {
         POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_LOCAL,
         POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE,
         POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE,
@@ -105,28 +102,28 @@ constraint.</para>
 <para>
 
 </para><variablelist role="enum">
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-LOCAL:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_LOCAL</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-LOCAL:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_LOCAL</literal></term>
 <listitem><simpara> the session or
 caller must be local
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-ACTIVE:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-ACTIVE:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE</literal></term>
 <listitem><simpara> the session or
 caller must be in an active local session
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-EXE:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-EXE:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE</literal></term>
 <listitem><simpara> the caller must
 be a specific program; use
 <link linkend="polkit-authorization-constraint-get-exe"><function>polkit_authorization_constraint_get_exe()</function></link> to get the path of the
 program.
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-SELINUX-CONTEXT:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_SELINUX_CONTEXT</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-SELINUX-CONTEXT:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_SELINUX_CONTEXT</literal></term>
 <listitem><simpara> the
 caller must be in a specific security context; use
 <link linkend="polkit-authorization-constraint-get-selinux-context"><function>polkit_authorization_constraint_get_selinux_context()</function></link> to get the
@@ -134,9 +131,9 @@ security context.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="PolKitAuthorizationConstraint" role="struct" condition="since:0.7"/>PolKitAuthorizationConstraint</title>
-<indexterm role="0.7"><primary>PolKitAuthorizationConstraint</primary></indexterm><programlisting>typedef struct _PolKitAuthorizationConstraint PolKitAuthorizationConstraint;</programlisting>
+<refsect2 id="PolKitAuthorizationConstraint" role="struct" condition="since:0.7">
+<title>PolKitAuthorizationConstraint</title>
+<indexterm zone="PolKitAuthorizationConstraint" role="0.7"><primary>PolKitAuthorizationConstraint</primary></indexterm><programlisting>typedef struct _PolKitAuthorizationConstraint PolKitAuthorizationConstraint;</programlisting>
 <para>
 Instances of this class are used to represent conditions that must
 be satisfied in order for an authorization to apply.</para>
@@ -144,9 +141,9 @@ be satisfied in order for an authorization to apply.</para>
 
 </para><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-get-require-local" role="function" condition="since:0.7"/>polkit_authorization_constraint_get_require_local ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_get_require_local</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_local
+<refsect2 id="polkit-authorization-constraint-get-require-local" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_get_require_local ()</title>
+<indexterm zone="polkit-authorization-constraint-get-require-local" role="0.7"><primary>polkit_authorization_constraint_get_require_local</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_local
                                                         (void);</programlisting>
 <para>
 Get a <link linkend="PolKitAuthorizationConstraint"><type>PolKitAuthorizationConstraint</type></link> object that represents the
@@ -159,9 +156,9 @@ constraint that the session or caller must be local.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-get-require-active" role="function" condition="since:0.7"/>polkit_authorization_constraint_get_require_active ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_get_require_active</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_active
+<refsect2 id="polkit-authorization-constraint-get-require-active" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_get_require_active ()</title>
+<indexterm zone="polkit-authorization-constraint-get-require-active" role="0.7"><primary>polkit_authorization_constraint_get_require_active</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_active
                                                         (void);</programlisting>
 <para>
 Get a <link linkend="PolKitAuthorizationConstraint"><type>PolKitAuthorizationConstraint</type></link> object that represents the
@@ -174,9 +171,9 @@ constraint that the session or caller must be active.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-get-require-exe" role="function" condition="since:0.8"/>polkit_authorization_constraint_get_require_exe ()</title>
-<indexterm role="0.8"><primary>polkit_authorization_constraint_get_require_exe</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_exe
+<refsect2 id="polkit-authorization-constraint-get-require-exe" role="function" condition="since:0.8">
+<title>polkit_authorization_constraint_get_require_exe ()</title>
+<indexterm zone="polkit-authorization-constraint-get-require-exe" role="0.8"><primary>polkit_authorization_constraint_get_require_exe</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_exe
                                                         (const <link linkend="char">char</link> *path);</programlisting>
 <para>
 Get a <link linkend="PolKitAuthorizationConstraint"><type>PolKitAuthorizationConstraint</type></link> object that represents the
@@ -192,9 +189,9 @@ constraint that the caller must be a specific program</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.8
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-get-require-selinux-context" role="function" condition="since:0.8"/>polkit_authorization_constraint_get_require_selinux_context ()</title>
-<indexterm role="0.8"><primary>polkit_authorization_constraint_get_require_selinux_context</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_selinux_context
+<refsect2 id="polkit-authorization-constraint-get-require-selinux-context" role="function" condition="since:0.8">
+<title>polkit_authorization_constraint_get_require_selinux_context ()</title>
+<indexterm zone="polkit-authorization-constraint-get-require-selinux-context" role="0.8"><primary>polkit_authorization_constraint_get_require_selinux_context</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_selinux_context
                                                         (const <link linkend="char">char</link> *context);</programlisting>
 <para>
 Get a <link linkend="PolKitAuthorizationConstraint"><type>PolKitAuthorizationConstraint</type></link> object that represents the
@@ -210,9 +207,9 @@ constraint that the caller must be in a specific SELinux context.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.8
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-ref" role="function" condition="since:0.7"/>polkit_authorization_constraint_ref ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_ref</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_ref
+<refsect2 id="polkit-authorization-constraint-ref" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_ref ()</title>
+<indexterm zone="polkit-authorization-constraint-ref" role="0.7"><primary>polkit_authorization_constraint_ref</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_ref
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
 <para>
 Increase reference count.</para>
@@ -227,9 +224,9 @@ Increase reference count.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-unref" role="function" condition="since:0.7"/>polkit_authorization_constraint_unref ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_authorization_constraint_unref
+<refsect2 id="polkit-authorization-constraint-unref" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_unref ()</title>
+<indexterm zone="polkit-authorization-constraint-unref" role="0.7"><primary>polkit_authorization_constraint_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_authorization_constraint_unref
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
 <para>
 Decreases the reference count of the object. If it becomes zero,
@@ -243,9 +240,9 @@ objects are decresed by one.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-debug" role="function" condition="since:0.7"/>polkit_authorization_constraint_debug ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_authorization_constraint_debug
+<refsect2 id="polkit-authorization-constraint-debug" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_debug ()</title>
+<indexterm zone="polkit-authorization-constraint-debug" role="0.7"><primary>polkit_authorization_constraint_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_authorization_constraint_debug
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
 <para>
 Print debug details</para>
@@ -257,9 +254,9 @@ Print debug details</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-validate" role="function" condition="since:0.7"/>polkit_authorization_constraint_validate ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_validate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_validate
+<refsect2 id="polkit-authorization-constraint-validate" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_validate ()</title>
+<indexterm zone="polkit-authorization-constraint-validate" role="0.7"><primary>polkit_authorization_constraint_validate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_validate
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
 <para>
 Validate the object</para>
@@ -274,9 +271,9 @@ Validate the object</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-type" role="function" condition="since:0.7"/>polkit_authorization_constraint_type ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_type</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraintType">PolKitAuthorizationConstraintType</link> polkit_authorization_constraint_type
+<refsect2 id="polkit-authorization-constraint-type" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_type ()</title>
+<indexterm zone="polkit-authorization-constraint-type" role="0.7"><primary>polkit_authorization_constraint_type</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraintType">PolKitAuthorizationConstraintType</link> polkit_authorization_constraint_type
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
 <para>
 Describe the constraint; this is only useful when inspecting an
@@ -293,9 +290,9 @@ polkit-auth(1) does).</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-get-exe" role="function" condition="since:0.8"/>polkit_authorization_constraint_get_exe ()</title>
-<indexterm role="0.8"><primary>polkit_authorization_constraint_get_exe</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_constraint_get_exe
+<refsect2 id="polkit-authorization-constraint-get-exe" role="function" condition="since:0.8">
+<title>polkit_authorization_constraint_get_exe ()</title>
+<indexterm zone="polkit-authorization-constraint-get-exe" role="0.8"><primary>polkit_authorization_constraint_get_exe</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_constraint_get_exe
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
 <para>
 Get the exe path for the constraint.</para>
@@ -312,9 +309,9 @@ free this string.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.8
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-get-selinux-context" role="function" condition="since:0.8"/>polkit_authorization_constraint_get_selinux_context ()</title>
-<indexterm role="0.8"><primary>polkit_authorization_constraint_get_selinux_context</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_constraint_get_selinux_context
+<refsect2 id="polkit-authorization-constraint-get-selinux-context" role="function" condition="since:0.8">
+<title>polkit_authorization_constraint_get_selinux_context ()</title>
+<indexterm zone="polkit-authorization-constraint-get-selinux-context" role="0.8"><primary>polkit_authorization_constraint_get_selinux_context</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_constraint_get_selinux_context
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
 <para>
 Get the SELinux context for the constraint.</para>
@@ -331,9 +328,9 @@ shall not free this string.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.8
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-check-session" role="function" condition="since:0.7"/>polkit_authorization_constraint_check_session ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_check_session</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_check_session
+<refsect2 id="polkit-authorization-constraint-check-session" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_check_session ()</title>
+<indexterm zone="polkit-authorization-constraint-check-session" role="0.7"><primary>polkit_authorization_constraint_check_session</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_check_session
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc,
                                                          <link linkend="PolKitSession">PolKitSession</link> *session);</programlisting>
 <para>
@@ -354,9 +351,9 @@ conditions imposed by the given constraint.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-check-caller" role="function" condition="since:0.7"/>polkit_authorization_constraint_check_caller ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_check_caller</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_check_caller
+<refsect2 id="polkit-authorization-constraint-check-caller" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_check_caller ()</title>
+<indexterm zone="polkit-authorization-constraint-check-caller" role="0.7"><primary>polkit_authorization_constraint_check_caller</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_check_caller
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc,
                                                          <link linkend="PolKitCaller">PolKitCaller</link> *caller);</programlisting>
 <para>
@@ -377,9 +374,9 @@ conditions imposed by the given constraint.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-to-string" role="function" condition="since:0.7"/>polkit_authorization_constraint_to_string ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_to_string</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              polkit_authorization_constraint_to_string
+<refsect2 id="polkit-authorization-constraint-to-string" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_to_string ()</title>
+<indexterm zone="polkit-authorization-constraint-to-string" role="0.7"><primary>polkit_authorization_constraint_to_string</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              polkit_authorization_constraint_to_string
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc,
                                                          <link linkend="char">char</link> *out_buf,
                                                          <link linkend="size-t">size_t</link> buf_size);</programlisting>
@@ -407,9 +404,9 @@ or an error occured.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-from-string" role="function"/>polkit_authorization_constraint_from_string ()</title>
-<indexterm><primary>polkit_authorization_constraint_from_string</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_from_string
+<refsect2 id="polkit-authorization-constraint-from-string" role="function">
+<title>polkit_authorization_constraint_from_string ()</title>
+<indexterm zone="polkit-authorization-constraint-from-string"><primary>polkit_authorization_constraint_from_string</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_from_string
                                                         (const <link linkend="char">char</link> *str);</programlisting>
 <para>
 Construct a constraint from a textual representation as returned by
@@ -423,9 +420,9 @@ Construct a constraint from a textual representation as returned by
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the constraint or <link linkend="NULL:CAPS"><type>NULL</type></link> if the string coulnd't be parsed.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-get-from-caller" role="function" condition="since:0.7"/>polkit_authorization_constraint_get_from_caller ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_get_from_caller</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_authorization_constraint_get_from_caller
+<refsect2 id="polkit-authorization-constraint-get-from-caller" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_get_from_caller ()</title>
+<indexterm zone="polkit-authorization-constraint-get-from-caller" role="0.7"><primary>polkit_authorization_constraint_get_from_caller</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_authorization_constraint_get_from_caller
                                                         (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
                                                          <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> **out_array,
                                                          <link linkend="size-t">size_t</link> array_size);</programlisting>
@@ -466,9 +463,9 @@ the output was truncated.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraint-equal" role="function" condition="since:0.7"/>polkit_authorization_constraint_equal ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraint_equal</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_equal
+<refsect2 id="polkit-authorization-constraint-equal" role="function" condition="since:0.7">
+<title>polkit_authorization_constraint_equal ()</title>
+<indexterm zone="polkit-authorization-constraint-equal" role="0.7"><primary>polkit_authorization_constraint_equal</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_equal
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *a,
                                                          <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *b);</programlisting>
 <para>
@@ -493,6 +490,4 @@ Determines if two constraints are equal</para>
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>
