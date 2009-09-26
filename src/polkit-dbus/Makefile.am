@@ -25,34 +25,49 @@ libpolkit_dbus_la_SOURCES =                                	\
 	polkit-dbus.h		polkit-dbus.c			\
 	polkit-simple.h		polkit-simple.c
 
-libpolkit_dbus_la_LIBADD = @DBUS_LIBS@ $(top_builddir)/src/polkit/libpolkit.la $(SELINUX_LIBS)
+libpolkit_dbus_la_LIBADD = @DBUS_LIBS@ $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la $(SELINUX_LIBS)
 
-libpolkit_dbus_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@
+libpolkit_dbus_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@ \
+		            -export-dynamic -no-undefined -export-symbols-regex '^polkit_.*'
+
+libexec_PROGRAMS = polkit-resolve-exe-helper
+
+polkit_resolve_exe_helper_SOURCES = polkit-resolve-exe-helper.c
+polkit_resolve_exe_helper_CFLAGS = @DBUS_CFLAGS@
+polkit_resolve_exe_helper_LDADD = $(top_builddir)/src/polkit/libpolkit.la libpolkit-dbus.la
 
 if POLKIT_AUTHDB_DEFAULT
-libexec_PROGRAMS = polkit-read-auth-helper polkit-set-default-helper
+libexec_PROGRAMS += polkit-read-auth-helper polkit-set-default-helper
 
 polkit_read_auth_helper_SOURCES = polkit-read-auth-helper.c
 polkit_read_auth_helper_CFLAGS = @DBUS_CFLAGS@
-polkit_read_auth_helper_LDADD = $(top_builddir)/src/polkit/libpolkit.la libpolkit-dbus.la
+polkit_read_auth_helper_LDADD = $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la libpolkit-dbus.la
 
 polkit_set_default_helper_SOURCES = polkit-set-default-helper.c
 polkit_set_default_helper_CFLAGS = @DBUS_CFLAGS@
-polkit_set_default_helper_LDADD = $(top_builddir)/src/polkit/libpolkit.la libpolkit-dbus.la
+polkit_set_default_helper_LDADD = $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la libpolkit-dbus.la
 
 # polkit-read-auth-helper needs to be setgid $POLKIT_GROUP to be able
 # to read authorization files in /var/lib/PolicyKit and
 # /var/run/PolicyKit
 #
-# polkit-set-default-helper needs to be setgid $POLKIT_GROUP to be able
-# to write .override files in /var/lib/PolicyKit-public
+# polkit-set-default-helper needs to be setuid $POLKIT_USER to be able
+# to write .defaults-override files in /var/lib/PolicyKit-public
+#
+# polkit-resolve-exe-helper needs to be setuid root to be able to resolve
+# /proc/$pid/exe symlinks.
 #
 install-exec-hook:
 	-chgrp $(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-read-auth-helper
 	-chmod 2755 $(DESTDIR)$(libexecdir)/polkit-read-auth-helper
-	-chgrp $(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-set-default-helper
-	-chmod 2755 $(DESTDIR)$(libexecdir)/polkit-set-default-helper
+	-chown $(POLKIT_USER) $(DESTDIR)$(libexecdir)/polkit-set-default-helper
+	-chmod 4755 $(DESTDIR)$(libexecdir)/polkit-set-default-helper
+	-chmod 4755 $(DESTDIR)$(libexecdir)/polkit-resolve-exe-helper
+else
+install-exec-hook:
+	-chmod 4755 $(DESTDIR)$(libexecdir)/polkit-resolve-exe-helper
 endif
+
 
 ## note that TESTS has special meaning (stuff to use in make check)
 ## so if adding tests not to be run in make check, don't add them to 

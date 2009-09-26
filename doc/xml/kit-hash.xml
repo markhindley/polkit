@@ -29,10 +29,10 @@
                                                          const <link linkend="void">void</link> *key2);
 <link linkend="void">void</link>                (<link linkend="KitFreeFunc">*KitFreeFunc</link>)                      (<link linkend="void">void</link> *p);
 <link linkend="void">void</link>*               (<link linkend="KitCopyFunc">*KitCopyFunc</link>)                      (const <link linkend="void">void</link> *p);
-<link linkend="kit-bool-t">kit_bool_t</link>          (<link linkend="KitHashForeachFunc">*KitHashForeachFunc</link>)               (<link linkend="KitHash">KitHash</link> *hash,
-                                                         <link linkend="void">void</link> *key,
+<link linkend="kit-bool-t">kit_bool_t</link>          (<link linkend="KitHashForeachFunc">*KitHashForeachFunc</link>)               (<link linkend="void">void</link> *key,
                                                          <link linkend="void">void</link> *value,
-                                                         <link linkend="void">void</link> *user_data);
+                                                         <link linkend="void">void</link> *user_data,
+                                                         <link linkend="KitHash">KitHash</link> *hash);
 <link linkend="KitHash">KitHash</link>*            <link linkend="kit-hash-new">kit_hash_new</link>                        (<link linkend="KitHashFunc">KitHashFunc</link> hash_func,
                                                          <link linkend="KitEqualFunc">KitEqualFunc</link> key_equal_func,
                                                          <link linkend="KitCopyFunc">KitCopyFunc</link> key_copy_func,
@@ -163,18 +163,15 @@ ref functions can be passed here.</para>
 </variablelist></refsect2>
 <refsect2>
 <title><anchor id="KitHashForeachFunc" role="function"/>KitHashForeachFunc ()</title>
-<indexterm><primary>KitHashForeachFunc</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          (*KitHashForeachFunc)               (<link linkend="KitHash">KitHash</link> *hash,
-                                                         <link linkend="void">void</link> *key,
+<indexterm><primary>KitHashForeachFunc</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          (*KitHashForeachFunc)               (<link linkend="void">void</link> *key,
                                                          <link linkend="void">void</link> *value,
-                                                         <link linkend="void">void</link> *user_data);</programlisting>
+                                                         <link linkend="void">void</link> *user_data,
+                                                         <link linkend="KitHash">KitHash</link> *hash);</programlisting>
 <para>
 Type signature for callback function used in <link linkend="kit-hash-foreach"><function>kit_hash_foreach()</function></link>.</para>
 <para>
 
 </para><variablelist role="params">
-<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
-<listitem><simpara> the hash table
-</simpara></listitem></varlistentry>
 <varlistentry><term><parameter>key</parameter>&nbsp;:</term>
 <listitem><simpara> key
 </simpara></listitem></varlistentry>
@@ -183,6 +180,9 @@ Type signature for callback function used in <link linkend="kit-hash-foreach"><f
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
 <listitem><simpara> user data passed to <link linkend="kit-hash-foreach"><function>kit_hash_foreach()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
+<listitem><simpara> the hash table
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Return <link linkend="TRUE:CAPS"><type>TRUE</type></link> to short-circuit, e.g. stop the iteration.
 </simpara></listitem></varlistentry>

@@ -140,7 +140,7 @@ _polkit_policy_file_entry_new   (const char *action_id,
 
 #ifdef POLKIT_AUTHDB_DEFAULT
         /* read override file */
-        path = kit_strdup_printf (PACKAGE_LOCALSTATE_DIR "/lib/PolicyKit-public/%s.override", action_id);
+        path = kit_strdup_printf (PACKAGE_LOCALSTATE_DIR "/lib/PolicyKit-public/%s.defaults-override", action_id);
         if (path == NULL)
                 goto error;
         if (!kit_file_get_contents (path, &contents, &contents_size)) {
@@ -392,9 +392,9 @@ void
 polkit_policy_file_entry_debug (PolKitPolicyFileEntry *policy_file_entry)
 {
         kit_return_if_fail (policy_file_entry != NULL);
-        _pk_debug ("PolKitPolicyFileEntry: refcount=%d action=%s",
-                   policy_file_entry->refcount,
-                   policy_file_entry->action);
+        polkit_debug ("PolKitPolicyFileEntry: refcount=%d action=%s",
+                      policy_file_entry->refcount,
+                      policy_file_entry->action);
         polkit_policy_default_debug (policy_file_entry->defaults);
 }
 
@@ -532,7 +532,7 @@ polkit_policy_file_entry_set_default (PolKitPolicyFileEntry  *policy_file_entry,
         }
 
         if (!WIFEXITED (exit_status)) {
-                kit_warning ("Revoke helper crashed!");
+                kit_warning ("Set-default helper crashed!");
                 polkit_error_set_error (error, 
                                         POLKIT_ERROR_GENERAL_ERROR, 
                                         "set-default helper crashed!");
@@ -558,10 +558,10 @@ typedef struct  {
 } _AnnotationsClosure;
 
 static polkit_bool_t
-_annotations_cb (KitHash *hash,
-                 void *key,
+_annotations_cb (void *key,
                  void *value,
-                 void *user_data)
+                 void *user_data,
+                 KitHash *hash)
 {
         _AnnotationsClosure *closure = user_data;
         return closure->cb (closure->pfe, (const char *) key, (const char *) value, closure->user_data);
@@ -593,8 +593,8 @@ polkit_policy_file_entry_annotations_foreach (PolKitPolicyFileEntry *policy_file
         closure.user_data = user_data;
 
         return kit_hash_foreach (policy_file_entry->annotations,
-                                    _annotations_cb,
-                                    &closure);
+                                 _annotations_cb,
+                                 &closure);
 }
 
 /**

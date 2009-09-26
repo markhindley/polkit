@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,16 +31,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-grant.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2682751" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2671430" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2743030" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2735523" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-authorization-db"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2682751"></a><span class="refentrytitle">Authorization Database</span>
+<a name="id2671430"></a><span class="refentrytitle">Authorization Database</span>
 </h2>
 <p>Authorization Database &#8212; Reading from and writing to the database storing authorizations</p>
 </td>
@@ -145,7 +145,7 @@ void                <a class="link" href="polkit-polkit-authorization-db.html#po
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2743030"></a><h2>Description</h2>
+<a name="id2735523"></a><h2>Description</h2>
 <p>
 This class presents an abstraction of the authorization database as
 well as methods for reading and writing to it.
@@ -158,11 +158,11 @@ writing parts are in <code class="literal">libpolkit-grant</code>.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2743068"></a><h2>Details</h2>
+<a name="id2735560"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2743079"></a><h3>
+<a name="id2735571"></a><h3>
 <a name="PolKitAuthorizationDB"></a>PolKitAuthorizationDB</h3>
-<a class="indexterm" name="id2743092"></a><pre class="programlisting">typedef struct {
+<a class="indexterm" name="id2735585"></a><pre class="programlisting">typedef struct {
 } PolKitAuthorizationDB;
 </pre>
 <p>
@@ -176,9 +176,9 @@ database.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2743120"></a><h3>
+<a name="id2735612"></a><h3>
 <a name="PolKitAuthorizationDBCapability"></a>enum PolKitAuthorizationDBCapability</h3>
-<a class="indexterm" name="id2756295"></a><pre class="programlisting">typedef enum
+<a class="indexterm" name="id2735628"></a><pre class="programlisting">typedef enum
 {
         POLKIT_AUTHORIZATION_DB_CAPABILITY_CAN_OBTAIN = 1 &lt;&lt; 0
 } PolKitAuthorizationDBCapability;
@@ -202,9 +202,9 @@ authorizations through authentication
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2756347"></a><h3>
+<a name="id2735686"></a><h3>
 <a name="polkit-authorization-db-get-capabilities"></a>polkit_authorization_db_get_capabilities ()</h3>
-<a class="indexterm" name="id2756362"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDBCapability">PolKitAuthorizationDBCapability</a> polkit_authorization_db_get_capabilities
+<a class="indexterm" name="id2735702"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDBCapability">PolKitAuthorizationDBCapability</a> polkit_authorization_db_get_capabilities
                                                         (void);</pre>
 <p>
 Determine what capabilities the authorization backend has.</p>
@@ -225,9 +225,9 @@ Determine what capabilities the authorization backend has.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2725333"></a><h3>
+<a name="id2735760"></a><h3>
 <a name="polkit-authorization-db-ref"></a>polkit_authorization_db_ref ()</h3>
-<a class="indexterm" name="id2756406"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a>* polkit_authorization_db_ref      (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb);</pre>
+<a class="indexterm" name="id2735774"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a>* polkit_authorization_db_ref      (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -254,9 +254,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2756465"></a><h3>
+<a name="id2735840"></a><h3>
 <a name="polkit-authorization-db-unref"></a>polkit_authorization_db_unref ()</h3>
-<a class="indexterm" name="id2756479"></a><pre class="programlisting">void                polkit_authorization_db_unref       (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb);</pre>
+<a class="indexterm" name="id2735855"></a><pre class="programlisting">void                polkit_authorization_db_unref       (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -277,9 +277,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2756533"></a><h3>
+<a name="id2735914"></a><h3>
 <a name="polkit-authorization-db-debug"></a>polkit_authorization_db_debug ()</h3>
-<a class="indexterm" name="id2756547"></a><pre class="programlisting">void                polkit_authorization_db_debug       (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb);</pre>
+<a class="indexterm" name="id2735930"></a><pre class="programlisting">void                polkit_authorization_db_debug       (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb);</pre>
 <p>
 Print debug details</p>
 <p>
@@ -298,9 +298,9 @@ Print debug details</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2756598"></a><h3>
+<a name="id2735986"></a><h3>
 <a name="polkit-authorization-db-validate"></a>polkit_authorization_db_validate ()</h3>
-<a class="indexterm" name="id2756612"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_validate    (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb);</pre>
+<a class="indexterm" name="id2736002"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_validate    (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb);</pre>
 <p>
 Validate the object</p>
 <p>
@@ -329,9 +329,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2756679"></a><h3>
+<a name="id2736076"></a><h3>
 <a name="polkit-authorization-db-is-session-authorized"></a>polkit_authorization_db_is_session_authorized ()</h3>
-<a class="indexterm" name="id2756694"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_is_session_authorized
+<a class="indexterm" name="id2736092"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_is_session_authorized
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
@@ -404,9 +404,9 @@ about a user that is not himself) or OOM (and <em class="parameter"><code>error<
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2756905"></a><h3>
+<a name="id2736326"></a><h3>
 <a name="polkit-authorization-db-is-caller-authorized"></a>polkit_authorization_db_is_caller_authorized ()</h3>
-<a class="indexterm" name="id2756920"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_is_caller_authorized
+<a class="indexterm" name="id2736342"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_is_caller_authorized
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
@@ -485,9 +485,9 @@ about a user that is not himself) or if OOM (and <em class="parameter"><code>err
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2757160"></a><h3>
+<a name="id2736609"></a><h3>
 <a name="PolKitAuthorizationDBForeach"></a>PolKitAuthorizationDBForeach ()</h3>
-<a class="indexterm" name="id2757175"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (*PolKitAuthorizationDBForeach)     (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
+<a class="indexterm" name="id2736624"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (*PolKitAuthorizationDBForeach)     (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
                                                          void *user_data);</pre>
 <p>
@@ -530,9 +530,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2757283"></a><h3>
+<a name="id2736744"></a><h3>
 <a name="polkit-authorization-db-foreach"></a>polkit_authorization_db_foreach ()</h3>
-<a class="indexterm" name="id2757297"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_foreach     (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
+<a class="indexterm" name="id2736759"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_foreach     (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDBForeach">PolKitAuthorizationDBForeach</a> cb,
                                                          void *user_data,
                                                          <a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error);</pre>
@@ -591,9 +591,9 @@ every invocation.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2757449"></a><h3>
+<a name="id2736926"></a><h3>
 <a name="polkit-authorization-db-foreach-for-uid"></a>polkit_authorization_db_foreach_for_uid ()</h3>
-<a class="indexterm" name="id2757464"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_foreach_for_uid
+<a class="indexterm" name="id2736942"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_foreach_for_uid
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          uid_t uid,
                                                          <a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDBForeach">PolKitAuthorizationDBForeach</a> cb,
@@ -661,9 +661,9 @@ every invocation.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2757638"></a><h3>
+<a name="id2737132"></a><h3>
 <a name="polkit-authorization-db-foreach-for-action"></a>polkit_authorization_db_foreach_for_action ()</h3>
-<a class="indexterm" name="id2757654"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_foreach_for_action
+<a class="indexterm" name="id2737149"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_foreach_for_action
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDBForeach">PolKitAuthorizationDBForeach</a> cb,
@@ -730,9 +730,9 @@ every invocation.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2757827"></a><h3>
+<a name="id2737338"></a><h3>
 <a name="polkit-authorization-db-foreach-for-action-for-uid"></a>polkit_authorization_db_foreach_for_action_for_uid ()</h3>
-<a class="indexterm" name="id2757842"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_foreach_for_action_for_uid
+<a class="indexterm" name="id2737354"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_foreach_for_action_for_uid
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          uid_t uid,
@@ -806,9 +806,9 @@ every invocation.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2758036"></a><h3>
+<a name="id2740107"></a><h3>
 <a name="polkit-authorization-db-add-entry-process-one-shot"></a>polkit_authorization_db_add_entry_process_one_shot ()</h3>
-<a class="indexterm" name="id2758052"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_add_entry_process_one_shot
+<a class="indexterm" name="id2740122"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_add_entry_process_one_shot
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
@@ -872,9 +872,9 @@ privileged.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2758211"></a><h3>
+<a name="id2740281"></a><h3>
 <a name="polkit-authorization-db-add-entry-process"></a>polkit_authorization_db_add_entry_process ()</h3>
-<a class="indexterm" name="id2758226"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_add_entry_process
+<a class="indexterm" name="id2740297"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_add_entry_process
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
@@ -938,9 +938,9 @@ privileged.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2758384"></a><h3>
+<a name="id2740455"></a><h3>
 <a name="polkit-authorization-db-add-entry-session"></a>polkit_authorization_db_add_entry_session ()</h3>
-<a class="indexterm" name="id2758400"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_add_entry_session
+<a class="indexterm" name="id2740471"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_add_entry_session
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
@@ -1005,9 +1005,9 @@ privileged.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2758558"></a><h3>
+<a name="id2740629"></a><h3>
 <a name="polkit-authorization-db-add-entry-always"></a>polkit_authorization_db_add_entry_always ()</h3>
-<a class="indexterm" name="id2758573"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_add_entry_always
+<a class="indexterm" name="id2740644"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_add_entry_always
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller,
@@ -1071,9 +1071,9 @@ privileged.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2758732"></a><h3>
+<a name="id2740802"></a><h3>
 <a name="polkit-authorization-db-grant-to-uid"></a>polkit_authorization_db_grant_to_uid ()</h3>
-<a class="indexterm" name="id2758746"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_grant_to_uid
+<a class="indexterm" name="id2740817"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_grant_to_uid
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          uid_t uid,
@@ -1109,9 +1109,9 @@ This function is in <code class="literal">libpolkit-grant</code>.</p>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>constraints</code></em>&#160;:</span></p></td>
 <td> Either <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><code class="literal">NULL</code></a> or a <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><code class="literal">NULL</code></a> terminated list of constraint to put on the authorization
 </td>
 </tr>
@@ -1138,9 +1138,9 @@ and error will be set
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2758927"></a><h3>
+<a name="id2740998"></a><h3>
 <a name="polkit-authorization-db-grant-negative-to-uid"></a>polkit_authorization_db_grant_negative_to_uid ()</h3>
-<a class="indexterm" name="id2758943"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_grant_negative_to_uid
+<a class="indexterm" name="id2741013"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_grant_negative_to_uid
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          uid_t uid,
@@ -1182,9 +1182,9 @@ This function is in <code class="literal">libpolkit-grant</code>.</p>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>constraints</code></em>&#160;:</span></p></td>
 <td> Either <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><code class="literal">NULL</code></a> or a <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><code class="literal">NULL</code></a> terminated list of constraint to put on the authorization
 </td>
 </tr>
@@ -1211,9 +1211,9 @@ and error will be set
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2759146"></a><h3>
+<a name="id2741208"></a><h3>
 <a name="polkit-authorization-db-revoke-entry"></a>polkit_authorization_db_revoke_entry ()</h3>
-<a class="indexterm" name="id2759163"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_revoke_entry
+<a class="indexterm" name="id2741222"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_revoke_entry
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
                                                          <a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error);</pre>
@@ -1258,9 +1258,9 @@ href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2759293"></a><h3>
+<a name="id2741339"></a><h3>
 <a name="polkit-authorization-db-is-uid-blocked-by-self"></a>polkit_authorization_db_is_uid_blocked_by_self ()</h3>
-<a class="indexterm" name="id2759310"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_is_uid_blocked_by_self
+<a class="indexterm" name="id2741354"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_db_is_uid_blocked_by_self
                                                         (<a class="link" href="polkit-polkit-authorization-db.html#PolKitAuthorizationDB">PolKitAuthorizationDB</a> *authdb,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          uid_t uid,
@@ -1316,9 +1316,9 @@ href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2759476"></a><div class="refsect2" lang="en"><a name="id2759477"></a></div>
+<a name="id2741502"></a><div class="refsect2" lang="en"><a name="id2741503"></a></div>
 <hr>
-<div class="refsect2" lang="en"><a name="id2759478"></a></div>
+<div class="refsect2" lang="en"><a name="id2741504"></a></div>
 </div>
 </div>
 </body>

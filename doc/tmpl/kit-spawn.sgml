@@ -35,9 +35,9 @@ kit-spawn
 @flags: 
 @argv: 
 @envp: 
-@stdin: 
-@stdout: 
-@stderr: 
+@stdinp: 
+@stdoutp: 
+@stderrp: 
 @out_exit_status: 
 @Returns: 
 

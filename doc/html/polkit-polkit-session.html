@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,16 +31,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-caller.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2685464" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2663813" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2725905" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2688066" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-session"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2685464"></a><span class="refentrytitle">Session</span>
+<a name="id2663813"></a><span class="refentrytitle">Session</span>
 </h2>
 <p>Session &#8212; Represents a ConsoleKit Session.</p>
 </td>
@@ -85,7 +85,7 @@ void                <a class="link" href="polkit-polkit-session.html#polkit-sess
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2725905"></a><h2>Description</h2>
+<a name="id2688066"></a><h2>Description</h2>
 <p>
 This class is used to represent a session.</p>
 <p>
@@ -93,11 +93,11 @@ This class is used to represent a session.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2725924"></a><h2>Details</h2>
+<a name="id2688085"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2725935"></a><h3>
+<a name="id2688096"></a><h3>
 <a name="PolKitSession"></a>PolKitSession</h3>
-<a class="indexterm" name="id2725948"></a><pre class="programlisting">typedef struct _PolKitSession PolKitSession;</pre>
+<a class="indexterm" name="id2688108"></a><pre class="programlisting">typedef struct _PolKitSession PolKitSession;</pre>
 <p>
 Objects of this class are used to record information about a
 session.</p>
@@ -107,9 +107,9 @@ session.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2725969"></a><h3>
+<a name="id2688130"></a><h3>
 <a name="polkit-session-new"></a>polkit_session_new ()</h3>
-<a class="indexterm" name="id2725981"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new                  (void);</pre>
+<a class="indexterm" name="id2688142"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new                  (void);</pre>
 <p>
 Creates a new <a class="link" href="polkit-polkit-session.html#PolKitSession"><span class="type">PolKitSession</span></a> object.</p>
 <p>
@@ -126,9 +126,9 @@ Creates a new <a class="link" href="polkit-polkit-session.html#PolKitSession"><s
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726029"></a><h3>
+<a name="id2688190"></a><h3>
 <a name="polkit-session-ref"></a>polkit_session_ref ()</h3>
-<a class="indexterm" name="id2726041"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_ref                  (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
+<a class="indexterm" name="id2688202"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_ref                  (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -152,9 +152,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726101"></a><h3>
+<a name="id2688262"></a><h3>
 <a name="polkit-session-unref"></a>polkit_session_unref ()</h3>
-<a class="indexterm" name="id2726112"></a><pre class="programlisting">void                polkit_session_unref                (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
+<a class="indexterm" name="id2688273"></a><pre class="programlisting">void                polkit_session_unref                (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -173,9 +173,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726164"></a><h3>
+<a name="id2713182"></a><h3>
 <a name="polkit-session-set-uid"></a>polkit_session_set_uid ()</h3>
-<a class="indexterm" name="id2726176"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_uid              (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2713193"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_uid              (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          uid_t uid);</pre>
 <p>
 Set the UNIX user id of the user owning the session.</p>
@@ -207,9 +207,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726265"></a><h3>
+<a name="id2713282"></a><h3>
 <a name="polkit-session-set-seat"></a>polkit_session_set_seat ()</h3>
-<a class="indexterm" name="id2726276"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_seat             (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2713293"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_seat             (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          <a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
 <p>
 Set the seat that the session belongs to. The reference count on
@@ -244,9 +244,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732087"></a><h3>
+<a name="id2713392"></a><h3>
 <a name="polkit-session-set-ck-objref"></a>polkit_session_set_ck_objref ()</h3>
-<a class="indexterm" name="id2732099"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_ck_objref        (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2713405"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_ck_objref        (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          const char *ck_objref);</pre>
 <p>
 Set the D-Bus object path to the ConsoleKit session object.</p>
@@ -278,9 +278,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732178"></a><h3>
+<a name="id2713494"></a><h3>
 <a name="polkit-session-set-ck-is-active"></a>polkit_session_set_ck_is_active ()</h3>
-<a class="indexterm" name="id2732191"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_ck_is_active     (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2713508"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_ck_is_active     (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> is_active);</pre>
 <p>
 Set whether ConsoleKit regard the session as active.</p>
@@ -312,9 +312,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732278"></a><h3>
+<a name="id2713598"></a><h3>
 <a name="polkit-session-set-ck-is-local"></a>polkit_session_set_ck_is_local ()</h3>
-<a class="indexterm" name="id2732292"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_ck_is_local      (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2713612"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_ck_is_local      (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> is_local);</pre>
 <p>
 Set whether ConsoleKit regard the session as local.</p>
@@ -346,9 +346,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732383"></a><h3>
+<a name="id2713702"></a><h3>
 <a name="polkit-session-set-ck-remote-host"></a>polkit_session_set_ck_remote_host ()</h3>
-<a class="indexterm" name="id2732397"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_ck_remote_host   (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2713716"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_set_ck_remote_host   (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          const char *remote_host);</pre>
 <p>
 Set the remote host/display that ConsoleKit reports the session to
@@ -382,9 +382,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732489"></a><h3>
+<a name="id2713807"></a><h3>
 <a name="polkit-session-get-uid"></a>polkit_session_get_uid ()</h3>
-<a class="indexterm" name="id2732500"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_uid              (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2713818"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_uid              (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          uid_t *out_uid);</pre>
 <p>
 Get the UNIX user id of the user owning the session.</p>
@@ -414,9 +414,9 @@ Get the UNIX user id of the user owning the session.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732583"></a><h3>
+<a name="id2713901"></a><h3>
 <a name="polkit-session-get-seat"></a>polkit_session_get_seat ()</h3>
-<a class="indexterm" name="id2732594"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_seat             (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2713912"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_seat             (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          <a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> **out_seat);</pre>
 <p>
 Get the seat that the session belongs to.</p>
@@ -447,9 +447,9 @@ be unreffed by the caller.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732678"></a><h3>
+<a name="id2713995"></a><h3>
 <a name="polkit-session-get-ck-objref"></a>polkit_session_get_ck_objref ()</h3>
-<a class="indexterm" name="id2732691"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_ck_objref        (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2714008"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_ck_objref        (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          char **out_ck_objref);</pre>
 <p>
 Get the D-Bus object path to the ConsoleKit session object.</p>
@@ -479,9 +479,9 @@ Get the D-Bus object path to the ConsoleKit session object.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732776"></a><h3>
+<a name="id2714093"></a><h3>
 <a name="polkit-session-get-ck-is-active"></a>polkit_session_get_ck_is_active ()</h3>
-<a class="indexterm" name="id2732789"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_ck_is_active     (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2714106"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_ck_is_active     (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> *out_is_active);</pre>
 <p>
 Get whether ConsoleKit regard the session as active.</p>
@@ -511,9 +511,9 @@ Get whether ConsoleKit regard the session as active.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732874"></a><h3>
+<a name="id2714191"></a><h3>
 <a name="polkit-session-get-ck-is-local"></a>polkit_session_get_ck_is_local ()</h3>
-<a class="indexterm" name="id2732887"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_ck_is_local      (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2714204"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_ck_is_local      (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> *out_is_local);</pre>
 <p>
 Set whether ConsoleKit regard the session as local.</p>
@@ -543,9 +543,9 @@ Set whether ConsoleKit regard the session as local.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2732972"></a><h3>
+<a name="id2714289"></a><h3>
 <a name="polkit-session-get-ck-remote-host"></a>polkit_session_get_ck_remote_host ()</h3>
-<a class="indexterm" name="id2732986"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_ck_remote_host   (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
+<a class="indexterm" name="id2714302"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_get_ck_remote_host   (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session,
                                                          char **out_remote_host);</pre>
 <p>
 Get the remote host/display that ConsoleKit reports the session to
@@ -577,9 +577,9 @@ reports the session to occur at. Shall not be freed by the caller.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2733070"></a><h3>
+<a name="id2714387"></a><h3>
 <a name="polkit-session-debug"></a>polkit_session_debug ()</h3>
-<a class="indexterm" name="id2733082"></a><pre class="programlisting">void                polkit_session_debug                (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
+<a class="indexterm" name="id2714398"></a><pre class="programlisting">void                polkit_session_debug                (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
 <p>
 Print debug details</p>
 <p>
@@ -596,9 +596,9 @@ Print debug details</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2733131"></a><h3>
+<a name="id2714447"></a><h3>
 <a name="polkit-session-validate"></a>polkit_session_validate ()</h3>
-<a class="indexterm" name="id2733142"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_validate             (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
+<a class="indexterm" name="id2714459"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_session_validate             (<a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
 <p>
 Validate the object</p>
 <p>
@@ -624,9 +624,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2733211"></a><div class="refsect2" lang="en"><a name="id2733212"></a></div>
+<a name="id2714527"></a><div class="refsect2" lang="en"><a name="id2714528"></a></div>
 <hr>
-<div class="refsect2" lang="en"><a name="id2733213"></a></div>
+<div class="refsect2" lang="en"><a name="id2714529"></a></div>
 </div>
 </div>
 </body>

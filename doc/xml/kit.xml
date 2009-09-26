@@ -103,7 +103,10 @@ error message is logged and the application is terminated.</para>
 <title><anchor id="kit-return-if-fail" role="macro"/>kit_return_if_fail()</title>
 <indexterm><primary>kit_return_if_fail</primary></indexterm><programlisting>#define             kit_return_if_fail(expr)</programlisting>
 <para>
-</para>
+Returns from the current function if the expression is not true. If
+the expression evaluates to <link linkend="FALSE:CAPS"><type>FALSE</type></link>, an error message is logged and
+the function returns. This can only be used in functions which do
+not return a value.</para>
 <para>
 
 </para><variablelist role="params">
@@ -115,7 +118,9 @@ error message is logged and the application is terminated.</para>
 <title><anchor id="kit-return-val-if-fail" role="macro"/>kit_return_val_if_fail()</title>
 <indexterm><primary>kit_return_val_if_fail</primary></indexterm><programlisting>#define             kit_return_val_if_fail(expr,val)</programlisting>
 <para>
-</para>
+Returns from the current function, returning the value <parameter>val</parameter>, if the
+expression is not true. If the expression evaluates to <link linkend="FALSE:CAPS"><type>FALSE</type></link>, an
+error message is logged and val is returned.</para>
 <para>
 
 </para><variablelist role="params">

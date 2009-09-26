@@ -39,7 +39,15 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+
+#ifdef POLKIT_AUTHFW_PAM
 #include <security/pam_appl.h>
+#endif
+
+#ifdef POLKIT_AUTHFW_SHADOW
+#include <shadow.h>
+#endif
+
 #include <grp.h>
 #include <pwd.h>
 #include <syslog.h>
@@ -51,6 +59,10 @@
 
 #include <polkit-dbus/polkit-dbus.h>
 // #include <polkit/polkit-grant-database.h>
+
+#ifdef HAVE_SOLARIS
+#define LOG_AUTHPRIV    (10<<3)
+#endif
 
 /* Development aid: define PGH_DEBUG to get debugging output. Do _NOT_
  * enable this in production builds; it may leak passwords and other
@@ -163,7 +175,12 @@ do_auth (const char *user_to_auth, gboolean *empty_conversation)
         int helper_stdin;
         int helper_stdout;
         GError *g_error;
+#ifdef POLKIT_AUTHFW_PAM
         char *helper_argv[2] = {PACKAGE_LIBEXEC_DIR "/polkit-grant-helper-pam", NULL};
+#endif
+#ifdef POLKIT_AUTHFW_SHADOW
+        char *helper_argv[2] = {PACKAGE_LIBEXEC_DIR "/polkit-grant-helper-shadow", NULL};
+#endif
         char buf[256];
         FILE *child_stdin;
         FILE *child_stdout;
@@ -228,7 +245,7 @@ do_auth (const char *user_to_auth, gboolean *empty_conversation)
                 *empty_conversation = FALSE;
 
                 /* send to parent */
-                fprintf (stdout, buf);
+                fprintf (stdout, "%s", buf);
                 fflush (stdout);
                 
                 /* read from parent */
@@ -239,7 +256,7 @@ do_auth (const char *user_to_auth, gboolean *empty_conversation)
                 fprintf (stderr, "received: '%s' from parent; sending to child\n", buf);
 #endif /* PGH_DEBUG */
                 /* send to child */
-                fprintf (child_stdin, buf);
+                fprintf (child_stdin, "%s", buf);
                 fflush (child_stdin);
         }
 
@@ -542,12 +559,20 @@ main (int argc, char *argv[])
         uid_t caller_uid;
         PolKitSession *session;
         gboolean empty_conversation;
+        char buf[256];
 
         ret = 3;
 
         /* clear the entire environment to avoid attacks using with libraries honoring environment variables */
+#ifdef HAVE_SOLARIS
+        extern char **environ;
+
+        if (environ != NULL)
+                environ[0] = NULL;
+#else
         if (clearenv () != 0)
                 goto out;
+#endif
         /* set a minimal environment */
         setenv ("PATH", "/usr/sbin:/usr/bin:/sbin:/bin", 1);
 
@@ -695,7 +720,6 @@ main (int argc, char *argv[])
         /* wait for libpolkit-grant to tell us what user to use */
         if (admin_users != NULL) {
                 int n;
-                char buf[256];
 
 #ifdef PGH_DEBUG
                 fprintf (stderr, "waiting for admin user name...\n");
@@ -713,7 +737,7 @@ main (int argc, char *argv[])
                         goto out;
                 }
 
-                user_to_auth = strdup (buf) + sizeof "POLKIT_GRANT_CALLER_SELECT_ADMIN_USER " - 1;
+                user_to_auth = buf + sizeof "POLKIT_GRANT_CALLER_SELECT_ADMIN_USER " - 1;
 #ifdef PGH_DEBUG
                 fprintf (stderr, "libpolkit-grant wants to auth as '%s'\n", user_to_auth);
 #endif /* PGH_DEBUG */

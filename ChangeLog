@@ -1,3 +1,734 @@
+commit b9c851f19dacd1dfeb92da836c183f7a90b06186
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Wed Apr 16 22:06:15 2008 -0400
+
+    update NEWS for release
+
+ NEWS |   63
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 files changed, 62 insertions(+), 1 deletions(-)
+
+commit 12582dad6560b2df9e3ea9e87a74419973908a47
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Apr 15 21:03:26 2008 -0400
+
+    be careful about what symbols we export
+
+ src/polkit-dbus/Makefile.am                  |    9 ++--
+ src/polkit-dbus/polkit-dbus.c                |    4 +-
+ src/polkit-grant/Makefile.am                 |   10 +++--
+ src/polkit/Makefile.am                       |    3 +-
+ src/polkit/polkit-action.c                   |    2 +-
+ src/polkit/polkit-authorization-constraint.c |    2 +-
+ src/polkit/polkit-authorization-db.c         |    2 +-
+ src/polkit/polkit-authorization.c            |   14 +++---
+ src/polkit/polkit-caller.c                   |    4 +-
+ src/polkit/polkit-config.c                   |   44 ++++++++++----------
+ src/polkit/polkit-context.c                  |   56
+ +++++++++++++-------------
+ src/polkit/polkit-debug.c                    |   10 +++--
+ src/polkit/polkit-debug.h                    |    4 +-
+ src/polkit/polkit-policy-cache.c             |    8 ++--
+ src/polkit/polkit-policy-default.c           |   16 ++++----
+ src/polkit/polkit-policy-file-entry.c        |    6 +-
+ src/polkit/polkit-policy-file.c              |    2 +-
+ src/polkit/polkit-seat.c                     |    2 +-
+ src/polkit/polkit-session.c                  |    6 +-
+ src/polkit/polkit-utils.c                    |    6 +-
+ tools/Makefile.am                            |    4 +-
+ 21 files changed, 110 insertions(+), 104 deletions(-)
+
+commit 1c4b06620cba12e8c22f2c6f22a7503436456fb2
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Apr 11 19:19:58 2008 -0400
+
+    ensure object is first in the list/hash iterator callback functions
+
+    This is useful for passing free / unref functions in.
+
+ src/kit/kit-hash.c                    |   12 ++++++------
+ src/kit/kit-hash.h                    |    8 ++++----
+ src/kit/kit-list.c                    |    6 +++---
+ src/kit/kit-list.h                    |    8 ++++----
+ src/polkit-dbus/polkit-dbus.c         |   18 +++++++++---------
+ src/polkit/polkit-authorization-db.c  |    2 +-
+ src/polkit/polkit-policy-file-entry.c |   10 +++++-----
+ 7 files changed, 32 insertions(+), 32 deletions(-)
+
+commit ea980bee14b790294ad644972be62ec3739a992f
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Apr 10 12:47:13 2008 -0400
+
+    print warning to stderr if a policy file is malformed and we're
+    ignoring it
+
+ src/polkit/polkit-policy-cache.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 149a3df1926c24b51b0f0336ac051473aed980fe
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Apr 8 16:57:43 2008 -0400
+
+    fix issue where users allowed to change defaults can delete override
+    files
+
+    More details at
+
+     https://bugzilla.novell.com/show_bug.cgi?id=295341#c25
+
+ NEWS                                        |    8 +++++++
+ configure.in                                |    7 ++++-
+ src/polkit-dbus/Makefile.am                 |    8 +++---
+ src/polkit-dbus/polkit-set-default-helper.c |   31
+ +++++++++-----------------
+ src/polkit/Makefile.am                      |   14 ++++++------
+ src/polkit/polkit-policy-file-entry.c       |    4 +-
+ 6 files changed, 37 insertions(+), 35 deletions(-)
+
+commit 99310128ad956bdc1a27853a9f0274171c7aee40
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Apr 8 15:51:39 2008 -0400
+
+    don't include libkit api docs
+
+ doc/polkit-docs.xml |   21 ---------------------
+ 1 files changed, 0 insertions(+), 21 deletions(-)
+
+commit 31da733c5b97a830afd92db6259e01a4cf9f5bd6
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Apr 8 15:48:38 2008 -0400
+
+    fix build when tests are disabled
+
+ src/kit/kit-memory.c |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+commit 228a6ec9691c7382a9794c79e34dbf1f5316528b
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Apr 8 15:42:46 2008 -0400
+
+    don't leak the copied authorizations list on OOM
+
+    Now the test suite passes again.
+
+ src/kit/kit-list.c                   |    6 ++++--
+ src/polkit/polkit-authorization-db.c |   10 ++++++++--
+ 2 files changed, 12 insertions(+), 4 deletions(-)
+
+commit fdea41e34e67f4007ab8705dccfaede4b9e95304
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Apr 8 15:41:54 2008 -0400
+
+    clear the right block when growing a string
+
+ src/kit/kit-string.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit d0d42aa293e8784c5a47f9cf8acf92236a51a414
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Apr 8 15:41:11 2008 -0400
+
+    print stack traces for where leaks were allocated
+
+ src/kit/kit-memory.c |   84
+ ++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/kit/kit-memory.h |    1 +
+ src/kit/kit-test.c   |    4 ++-
+ 3 files changed, 88 insertions(+), 1 deletions(-)
+
+commit 00b85cf33fde2117ec1ea6fd89eb50fdb4d67be4
+Author: Jim Li <Jim.Li@Sun.COM>
+Date:   Tue Apr 8 12:27:37 2008 -0400
+
+    add support for Solaris platform
+
+    Add support for Solaris platform. The patch contains some implement
+    for GNU library extentsion function which isn't support by Solaris,
+    for instance, vasprintf(), strndup(), clearenv(), and clearenv(). Also
+    rewriting some code which Sun compiler doesn't support, such as empty
+    union name.
+
+ configure.in                                    |   18 +++-
+ src/kit/kit-file.h                              |    3 +
+ src/kit/kit-message.h                           |    5 +
+ src/kit/kit-spawn.c                             |  106 ++++++++--------
+ src/kit/kit-spawn.h                             |    6 +-
+ src/kit/kit-string.c                            |   20 +++
+ src/kit/kit-string.h                            |    4 +
+ src/kit/kit-test.c                              |    7 +
+ src/kit/kit.h                                   |    6 +
+ src/polkit-dbus/polkit-read-auth-helper.c       |   11 ++
+ src/polkit-dbus/polkit-resolve-exe-helper.c     |   11 ++
+ src/polkit-dbus/polkit-set-default-helper.c     |   11 ++
+ src/polkit-grant/polkit-explicit-grant-helper.c |   11 ++
+ src/polkit-grant/polkit-grant-helper-pam.c      |   14 ++
+ src/polkit-grant/polkit-grant-helper.c          |   11 ++
+ src/polkit-grant/polkit-grant.c                 |   44 +++++++
+ src/polkit-grant/polkit-revoke-helper.c         |   11 ++
+ src/polkit/polkit-authorization-constraint.c    |   30 +++---
+ src/polkit/polkit-context.c                     |  150
+ +++++++++++++++++++++++
+ src/polkit/polkit-debug.h                       |    4 +
+ src/polkit/polkit-error.h                       |    4 +
+ src/polkit/polkit-policy-cache.c                |    3 +
+ src/polkit/polkit-policy-file.c                 |   20 +++
+ src/polkit/polkit-sysdeps.c                     |   56 +++++++++
+ tools/polkit-auth.c                             |    3 +
+ 25 files changed, 496 insertions(+), 73 deletions(-)
+
+commit 5bc86a14cc0e356bcf8b5f861674f842869b1be7
+Author: Kees Cook <kees@outflux.net>
+Date:   Fri Apr 4 02:26:30 2008 -0400
+
+    fix for CVE-2008-1658: format string vulnerability in password input
+
+    http://bugs.freedesktop.org/show_bug.cgi?id=15295
+
+ configure.in                           |   10 ++++++++++
+ src/polkit-grant/polkit-grant-helper.c |    4 ++--
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+commit 26c3fcb99014dcf1f01c6e9c5a7cb6db3e63b423
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Mon Mar 17 02:27:00 2008 -0400
+
+    remove more debug spew
+
+ src/polkit/polkit-authorization-db.c |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+commit d6c6cd0838de24672996c241d6a7154e6bfea997
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Mon Mar 17 02:26:08 2008 -0400
+
+    remove debug spew
+
+ src/polkit-grant/polkit-revoke-helper.c |    1 -
+ src/polkit/polkit-authorization-db.c    |    2 --
+ 2 files changed, 0 insertions(+), 3 deletions(-)
+
+commit 3c25a1759cf0795adcb199edbc762dd31599a815
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Mon Mar 17 02:21:02 2008 -0400
+
+    invalidate memory cache after revoking one shot authorization
+
+ src/kit/kit-list.c                   |   28 ++++++++++++++++++++++++++++
+ src/kit/kit-list.h                   |    1 +
+ src/polkit/polkit-authorization-db.c |   25 ++++++++++++++++++++++---
+ src/polkit/polkit-context.c          |    2 +-
+ 4 files changed, 52 insertions(+), 4 deletions(-)
+
+commit 5fbde20956aab779fd9dc50b512564f544ff8170
+Author: Jim Meyering <meyering@redhat.com>
+Date:   Tue Mar 4 14:21:29 2008 +0100
+
+    handle kit_strdup failure.
+
+    * tools/polkit-policy-file-validate.c (validate_file):
+
+    Signed-off-by: Jim Meyering <meyering@redhat.com>
+    Signed-off-by: David Zeuthen <davidz@redhat.com>
+
+ tools/polkit-policy-file-validate.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 038354db125c1471d283c30dbade9fbb7e1eefb1
+Author: Jim Meyering <meyering@redhat.com>
+Date:   Tue Mar 4 14:19:45 2008 +0100
+
+    avoid unnecessary/leaky use of strdup.
+
+    * polkit-grant-helper.c (main): Move the declaration of "buf"
+    to the outer scope and use a pointer into it, instead.
+
+    Signed-off-by: Jim Meyering <meyering@redhat.com>
+    Signed-off-by: David Zeuthen <davidz@redhat.com>
+
+ src/polkit-grant/polkit-grant-helper.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit a8a97bc37d08da95b4e7a7907ba18a5e8447bc7e
+Author: Jim Meyering <meyering@redhat.com>
+Date:   Tue Mar 4 14:09:52 2008 +0100
+
+    (do_auth): rename local: s/buf/password/
+
+    Signed-off-by: Jim Meyering <meyering@redhat.com>
+    Signed-off-by: David Zeuthen <davidz@redhat.com>
+
+ src/polkit-grant/polkit-grant-helper-shadow.c |   12 ++++++------
+ 1 files changed, 6 insertions(+), 6 deletions(-)
+
+commit 83445eb999c5e595f122a03e3a094a0d7941e67e
+Author: Jim Meyering <meyering@redhat.com>
+Date:   Tue Mar 4 11:14:10 2008 +0100
+
+    remove unnecessary strdup.
+
+    * src/polkit-grant/polkit-grant-helper-shadow.c (do_auth):
+
+    Signed-off-by: Jim Meyering <meyering@redhat.com>
+    Signed-off-by: David Zeuthen <davidz@redhat.com>
+
+ src/polkit-grant/polkit-grant-helper-shadow.c |    5 +----
+ 1 files changed, 1 insertions(+), 4 deletions(-)
+
+commit 798208df31032eb028b004442119a77f1bd0bb76
+Author: Jim Meyering <meyering@redhat.com>
+Date:   Tue Mar 4 11:12:48 2008 +0100
+
+    handle kit_strdup_printf failure.
+
+    * src/polkit-dbus/polkit-dbus.c (polkit_caller_new_from_pid):
+
+    Signed-off-by: Jim Meyering <meyering@redhat.com>
+    Signed-off-by: David Zeuthen <davidz@redhat.com>
+
+ src/polkit-dbus/polkit-dbus.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit c50aeb847526c51bfdc613067a361a4f64d60dcd
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Mar 4 16:12:43 2008 -0500
+
+    clarify docs for POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE
+
+ src/polkit/polkit-authorization-constraint.h |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 4aa626d0f8b9bf9a72880a567e48f472228eca8c
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Mar 4 15:10:24 2008 -0500
+
+    don't check key/values in KitHash; they are not neccesarily pointers
+
+ src/kit/kit-hash.c |   10 ++--------
+ 1 files changed, 2 insertions(+), 8 deletions(-)
+
+commit cef9da3c48fd209b581654a4a6735147b7c0d52e
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Feb 29 13:56:24 2008 -0500
+
+    fix typo in docs for polkit_dbus_error_parse_from_strings()
+
+ src/polkit-dbus/polkit-simple.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit d6d484216780acedf1545354464753528808bb09
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Feb 28 12:28:39 2008 -0500
+
+    also add polkit_dbus_error_parse_from_strings() function
+
+    This is useful when using D-Bus bindings, such as dbus-glib, that
+    don't expose the DBusError object directly.
+
+ src/polkit-dbus/polkit-simple.c |   34 +++++++++++++++++++++++++++++++++-
+ src/polkit-dbus/polkit-simple.h |    1 +
+ 2 files changed, 34 insertions(+), 1 deletions(-)
+
+commit 58f0474286541970f6b535189514d706d9985cc2
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Wed Feb 27 20:05:30 2008 -0500
+
+    add convenience API to consistently report authorization failures
+    over D-Bus
+
+ src/polkit-dbus/polkit-simple.c |  153
+ +++++++++++++++++++++++++++++++++++++++
+ src/polkit-dbus/polkit-simple.h |    3 +
+ src/polkit/polkit-action.c      |   94 +++++++++++++++++++++++-
+ src/polkit/polkit-action.h      |    5 ++
+ 4 files changed, 253 insertions(+), 2 deletions(-)
+
+commit 2b1a2a69f6366534609a0671f3f2e92369cb3fa1
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Feb 26 17:19:31 2008 -0500
+
+    make polkit-policy-file-validate require that actions are properly
+    packaged
+
+    Meaning this bit was added to the spec:
+
+       The name of the XML file is significant. Each XML file can only
+       declare actions from the namespace of it's own name; for example
+       actions org.foobar.action-a, org.foobar.action-b and
+       org.foobar.action-c would all go into the file org.foobar.policy
+       while actions com.my-company.product-awesome.action-a,
+       com.mycompany.product-awesome.action-b would go into the file
+       com.mycompany.product-awesome.policy.
+
+    This is the output of the validator on a broken .policy file
+
+      $ polkit-policy-file-validate
+      /usr/share/PolicyKit/policy/gnome-clock-applet-mechanism.policy
+      WARNING: The action org.gnome.clockapplet.mechanism.configurehwclock
+      does not
+               belong in a policy file named
+               gnome-clock-applet-mechanism.policy.
+               A future version of PolicyKit will ignore this action.
+
+      WARNING: The action org.gnome.clockapplet.mechanism.settime does not
+               belong in a policy file named
+               gnome-clock-applet-mechanism.policy.
+               A future version of PolicyKit will ignore this action.
+
+      WARNING: The action org.gnome.clockapplet.mechanism.settimezone
+      does not
+               belong in a policy file named
+               gnome-clock-applet-mechanism.policy.
+               A future version of PolicyKit will ignore this action.
+
+      ERROR:
+      /usr/share/PolicyKit/policy/gnome-clock-applet-mechanism.policy
+      did not validate
+
+    We currently don't enforce this but will in a future version. The
+    rationale is that we can avoid loading all .policy files at startup
+    which would be a performance win.
+
+ doc/spec/polkit-spec-configuration.xml |   15 +++++-
+ tools/polkit-policy-file-validate.c    |   86
+ +++++++++++++++++++++++++++-----
+ 2 files changed, 88 insertions(+), 13 deletions(-)
+
+commit b3930e8b942ba7f14a7c29a9411fc846d2d8449b
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Feb 26 16:45:49 2008 -0500
+
+    fix doc in bugs for PolKitContextAddIOWatch
+
+    pointed out by Dan Winship.
+
+ src/polkit/polkit-context.h |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 0b59d3e7d4b282da308b362dc440b007b9ecedbf
+Author: Holger Macht <hmacht@suse.de>
+Date:   Tue Feb 26 16:05:23 2008 -0500
+
+    avoid reliance on DT_REG so we work on reiserfs as well
+
+    (with minor fixes from davidz for avoiding memory leaks)
+
+    Recently I wondered why PolicyKit (especially polkit-auth) does
+    not work
+    on my system. While debugging, I noticed that the corresponding
+    code works
+    in my home directory, but not in the root filesystem.
+
+    readdir() and its d_type are the culprits. Quoting the readdir
+    manpage:
+
+    [...]
+    Other than Linux, the d_type field is available mainly only on BSD
+    systems.  This field makes it possible to avoid the expense of calling
+    stat() if further actions depend on the type of the file.
+    [...]
+
+    Filesystems may fill DT_UNKNOWN into this field, which reiserfs
+    does, so
+    call stat instead, which always does the right thing.
+
+    Signed-off-by: Holger Macht <hmacht@suse.de>
+
+ src/polkit-dbus/polkit-read-auth-helper.c |   20 +++++++++++++-------
+ src/polkit/polkit-policy-cache.c          |   25
+ ++++++++++++++++++-------
+ 2 files changed, 31 insertions(+), 14 deletions(-)
+
+commit fd51264a459d4e0ac0fecfabcc42c0ecca425050
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Feb 26 15:48:39 2008 -0500
+
+    avoid use normal timeout when showing auth dialog; use INT_MAX instead
+
+    Reported by Dan P. Berrange.
+
+ src/polkit-dbus/polkit-simple.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 4cfb96627a5afbe34c0bc583bdcf4caf306bf1a5
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Dec 18 13:50:38 2007 -0500
+
+    actually check for bash in polkit-bash-completion.sh
+
+    Some zsh users complained about this
+
+    https://bugzilla.redhat.com/show_bug.cgi?id=418471
+
+ tools/polkit-bash-completion.sh |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+commit 0d7167147f85f1bc046f8b6024667eec8d2c3dde
+Author: Carlos Corbacho <carlos@strangeworlds.co.uk>
+Date:   Mon Dec 17 12:14:04 2007 -0500
+
+    also add the new C file for the shadow helper
+
+ src/polkit-grant/polkit-grant-helper-shadow.c |  151
+ +++++++++++++++++++++++++
+ 1 files changed, 151 insertions(+), 0 deletions(-)
+
+commit ba2003a9492a7ef1fabcb6ae7997cfc8e5f15adf
+Author: Carlos Corbacho <carlos@strangeworlds.co.uk>
+Date:   Sun Dec 16 22:59:30 2007 -0500
+
+    add Shadow authentication framework
+
+    Add Piter PUNK's polkit-grant-helper-shadow, and link against the
+    appropriate libraries.
+
+    For now, the Shadow framework must be explictily called - in future,
+    this could also be added as a fallback if PAM is not available.
+
+ configure.in                           |    9 ++++++++-
+ src/polkit-grant/Makefile.am           |   19 +++++++++++++++++++
+ src/polkit-grant/polkit-grant-helper.c |    7 +++++++
+ 3 files changed, 34 insertions(+), 1 deletions(-)
+
+commit 59081d0a25f6f3227ccba960fa486fd7111baeef
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Sun Dec 16 22:40:10 2007 -0500
+
+    make polkit-grant-helper-pam world readable
+
+    This is to avoid breaking various backup and IDS software - proposed
+    by Michael Biebl <mbiebl@gmail.com>.
+
+ configure.in                 |    2 +-
+ src/polkit-grant/Makefile.am |    8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+commit b5e019d783af8651db8e962c47b39942677ca6fd
+Author: Carlos Corbacho <carlos@strangeworlds.co.uk>
+Date:   Sun Dec 16 21:21:16 2007 -0500
+
+    split out authentication framework from authorisation database
+
+    As per discussions with David Zeuthen, alter the build system so
+    that we
+    can have different authentication frameworks for the authorisation
+    databases.
+
+    For now, the dummy database will only accept 'none' for the
+    authentication
+    framework (this will be autoselected if not specified, and configure
+    will
+    throw an error if any other framework than 'none' is specified
+    is passed
+    in).
+
+    For the default database, the only available framework for now is
+    'pam'
+    (as with 'none' and dummy, 'pam' will be autoselected if specified
+    as the
+    framework. If 'none' is passed as a framework, configure will
+    reject this
+    and fail).
+
+    PAM specific code is now also marked with POLKIT_AUTHFW_PAM, so
+    that it
+    can be easily compiled out if other frameworks are added in future.
+
+ configure.in                           |   51
+ ++++++++++++++++++++++++++++++-
+ data/Makefile.am                       |    2 +-
+ src/polkit-grant/Makefile.am           |   18 ++++++++++-
+ src/polkit-grant/polkit-grant-helper.c |    6 ++++
+ 4 files changed, 72 insertions(+), 5 deletions(-)
+
+commit 28dc31692a1f5e53b38f1218b86c38541997c639
+Author: Carlos Corbacho <carlos@strangeworlds.co.uk>
+Date:   Sun Dec 16 21:11:31 2007 -0500
+
+    remove unncessary PAM header inclusions
+
+    Many files are needlessly including PAM headers, when the code
+    in question
+    has no PAM dependency - remove the PAM includes from these.
+
+ src/polkit-dbus/polkit-read-auth-helper.c       |    1 -
+ src/polkit-dbus/polkit-set-default-helper.c     |    1 -
+ src/polkit-grant/polkit-explicit-grant-helper.c |    1 -
+ src/polkit-grant/polkit-revoke-helper.c         |    1 -
+ 4 files changed, 0 insertions(+), 4 deletions(-)
+
+commit cd836a754c86e7a154f1533b3400c5a5ecd18edd
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Dec 7 13:37:19 2007 -0500
+
+    make the docs show an index of new symbols in 0.8
+
+ doc/polkit-docs.xml |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+commit 2c331fe6948a5a420eaaea6ca3e6765cfaa49a37
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Dec 7 13:35:36 2007 -0500
+
+    fix typo in docs
+
+ src/polkit/polkit-authorization-constraint.h |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 1d464bda6099828cde4dc9277506767c65d7b6d3
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Dec 7 13:25:17 2007 -0500
+
+    add docs and bash completion bits for new exe and selinux_context
+    constraints
+
+ doc/man/polkit-auth.xml                      |  152
+ ++++++++++++++++++++++++--
+ src/polkit/polkit-authorization-constraint.c |    4 +-
+ tools/polkit-bash-completion.sh              |    4 +-
+ 3 files changed, 146 insertions(+), 14 deletions(-)
+
+commit 46005c49dbcdf0655e986fdf45fd869c81498d10
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Dec 7 12:00:36 2007 -0500
+
+    add additional checks when using strtoul
+
+    Pointed out by Martin Pitt <martin.pitt@ubuntu.com>.
+
+ src/polkit-dbus/polkit-read-auth-helper.c   |    2 +-
+ src/polkit-dbus/polkit-resolve-exe-helper.c |    2 +-
+ src/polkit/polkit-authorization.c           |   10 +++++-----
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+commit 5f42b40de391b2615996e1d5d6bbd0a3518a0b9e
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Dec 7 01:37:37 2007 -0500
+
+    add note about new polkit-resolve-exe-helper
+
+ configure.in |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+commit a8e46ceb39137582b0fbacb69fdfda72ae7139f8
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Dec 7 01:35:30 2007 -0500
+
+    add constraints for exe and SELinux context when granting an
+    authorization
+
+    The way it works is that added constraints now look like this
+
+    scope=always:action-id=org.pulseaudio.acquire-high-priority:when=1197004781:auth-as=0:constraint=local:constraint=active:constraint=exe%3A%2Fusr%2Fbin%2Fpulseaudio:constraint=selinux_context%3Asystem_u%3Asystem_r%3Aunconfined_t
+
+    or if not using SELinux like this
+
+    scope=always:action-id=org.freedesktop.hal.storage.mount-fixed:when=1197008218:auth-as=0:constraint=local:constraint=active:constraint=exe%3A%2Fusr%2Fbin%2Fgnome-mount
+
+    This is a bit icky to implement for mechanisms, like HAL, running as
+    an unprivileged user. The problem is that we can't resolve the symlink
+    /proc/pid/exe. On the other hands such mechanisms has the
+    authorization org.freedesktop.policykit.read already. So use that.
+
+    Note that this is what some people call snake-oil. The reason is
+    in the
+    docs for polkit_sysdeps_get_pid_for_exe(); copying it here so I
+    can point
+    people to this commit in the future
+
+      Get the name of the binary a given process was started from.
+
+      Note that this is not necessary reliable information and as such
+      shouldn't be relied on 100% to make a security decision. In fact,
+      this information is only trustworthy in situations where the given
+      binary is securely locked down meaning that 1) it can't be
+      ptrace(2)'d; 2) libc secure mode kicks in (e.g LD_PRELOAD won't
+      work); 3) there are no other attack vectors (e.g. GTK_MODULES, X11,
+      CORBA, D-Bus) to patch running code into the process.
+
+      In other words: the risk of relying on constraining an authorization
+      to the output of this function is high. Suppose that the program
+      /usr/bin/gullible obtains an authorization via authentication for
+      the action org.example.foo. We add a constraint to say that the
+      gained authorization only applies to processes for whom
+      /proc/pid/exe points to /usr/bin/gullible. Now enter
+      /usr/bin/evil. It knows that the program /usr/bin/gullible is not
+      "securely locked down" (per the definition in the above
+      paragraph). So /usr/bin/evil simply sets LD_PRELOAD and execs
+      /usr/bin/gullible and it can now run code in a process where
+      /proc/pid/exe points to /usr/bin/gullible. Thus, the recently gained
+      authorization for org.example.foo applies. Also, /usr/bin/evil could
+      use a host of other attack vectors to run it's own code under the
+      disguise of pretending to be /usr/bin/gullible.
+
+      Specifically for interpreted languages like Python and Mono it is
+      the case that /proc/pid/exe always points to /usr/bin/python
+      resp. /usr/bin/mono. Thus, it's not very useful to rely on that the
+      result for this function if you want to constrain an authorization
+      to e.g. /usr/bin/tomboy or /usr/bin/banshee.
+
+    However. Once we have a framework for running secure desktop apps this
+    will start to make sense. Such a framework includes securing X (using
+    e.g. XACE with SELinux) and making the UI toolkit secure as well. It's
+    a lot of work.
+
+    Until then these constraints at least makes it harder to for malicious
+    apps to abuse PolicyKit authorizations gained by other users.
+
+ doc/TODO                                         |    4 +
+ src/polkit-dbus/Makefile.am                      |   16 +-
+ src/polkit-dbus/polkit-resolve-exe-helper.c      |  161 ++++++++++
+ src/polkit-grant/polkit-authorization-db-write.c |    7 +-
+ src/polkit/polkit-authorization-constraint.c     |  370
+ ++++++++++++++++++++--
+ src/polkit/polkit-authorization-constraint.h     |   20 +-
+ src/polkit/polkit-private.h                      |    2 -
+ src/polkit/polkit-sysdeps.c                      |  135 ++++++++-
+ src/polkit/polkit-sysdeps.h                      |    2 +
+ tools/polkit-auth.c                              |    8 +
+ 10 files changed, 687 insertions(+), 38 deletions(-)
+
+commit 0bb7eeac757f770dfe26f05d4f303033aeedf077
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Dec 7 01:29:45 2007 -0500
+
+    add bogus Returns: to make gtk-doc happy
+
+ src/kit/kit.h |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit 5ea38976e02f7b5992e23f3c02c2f131d6fa296b
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Dec 6 19:52:07 2007 -0500
+
+    use strlen to avoid writing garbage at the end of the test auth file
+
+    While this seems like a grave bug it is not. First, this only affects
+    the test cases and the file is guaranteed to be zero terminated before
+    the garbage anyway.
+
+ src/polkit/polkit-authorization-db.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit c11ea1f0b031947a7f1a929c4a1d2acd31d888e1
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Dec 6 19:01:54 2007 -0500
+
+    post release version bump to 0.8
+
+ configure.in |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 905c4b31d7e8ace11592c8ae47d8c1f8203f85bb
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Dec 6 18:59:12 2007 -0500
+
+    be more precise about permissions in the blurb at the end of configure
+
+    Suggested by Michael Biebl <mbiebl@gmail.com>.
+
+ configure.in |    6 +++++-
+ 1 files changed, 5 insertions(+), 1 deletions(-)
+
 commit 54ad0da18ba42dadcea9349ca4c93cb8f3fb2f50
 Author: David Zeuthen <davidz@redhat.com>
 Date:   Thu Dec 6 00:07:57 2007 -0500
@@ -260,58 +991,58 @@ Date:   Wed Nov 28 16:50:50 2007 -0500
  polkitd/polkit-daemon.h                            |   28 +-
  src/kit/kit-file.c                                 |   30 +-
  src/kit/kit-file.h                                 |   30 +-
- src/kit/kit-hash.c                                 |   30 +-
+ src/kit/kit-hash.c                                 |   34 +-
  src/kit/kit-hash.h                                 |   34 +-
  src/kit/kit-list.c                                 |   30 +-
  src/kit/kit-list.h                                 |   30 +-
  src/kit/kit-memory.c                               |   30 +-
  src/kit/kit-memory.h                               |   30 +-
- src/kit/kit-message.c                              |   30 +-
+ src/kit/kit-message.c                              |   34 +-
  src/kit/kit-message.h                              |   30 +-
  src/kit/kit-spawn.c                                |   30 +-
  src/kit/kit-spawn.h                                |   30 +-
- src/kit/kit-string.c                               |   34 +-
+ src/kit/kit-string.c                               |   30 +-
  src/kit/kit-string.h                               |   30 +-
  src/kit/kit-test-main.c                            |   30 +-
- src/kit/kit-test.c                                 |   30 +-
+ src/kit/kit-test.c                                 |   34 +-
  src/kit/kit-test.h                                 |   30 +-
- src/kit/kit.h                                      |   30 +-
+ src/kit/kit.h                                      |   34 +-
  src/polkit-dbus/polkit-dbus-test.c                 |   34 +-
  src/polkit-dbus/polkit-dbus-test.h                 |   30 +-
- src/polkit-dbus/polkit-dbus.c                      |   30 +-
+ src/polkit-dbus/polkit-dbus.c                      |   34 +-
  src/polkit-dbus/polkit-dbus.h                      |   30 +-
  src/polkit-dbus/polkit-read-auth-helper.c          |   28 +-
  src/polkit-dbus/polkit-set-default-helper.c        |   28 +-
- src/polkit-dbus/polkit-simple.c                    |   30 +-
+ src/polkit-dbus/polkit-simple.c                    |   34 +-
  src/polkit-dbus/polkit-simple.h                    |   30 +-
  .../polkit-authorization-db-dummy-write.c          |   30 +-
- src/polkit-grant/polkit-authorization-db-write.c   |   34 +-
+ src/polkit-grant/polkit-authorization-db-write.c   |   30 +-
  src/polkit-grant/polkit-explicit-grant-helper.c    |   28 +-
  src/polkit-grant/polkit-grant-helper-pam.c         |   28 +-
- src/polkit-grant/polkit-grant-helper.c             |   28 +-
+ src/polkit-grant/polkit-grant-helper.c             |   32 +-
  src/polkit-grant/polkit-grant-test.c               |   34 +-
  src/polkit-grant/polkit-grant-test.h               |   30 +-
- src/polkit-grant/polkit-grant.c                    |   30 +-
+ src/polkit-grant/polkit-grant.c                    |   34 +-
  src/polkit-grant/polkit-grant.h                    |   34 +-
  src/polkit-grant/polkit-revoke-helper.c            |   28 +-
- src/polkit/polkit-action.c                         |   30 +-
+ src/polkit/polkit-action.c                         |   34 +-
  src/polkit/polkit-action.h                         |   32 +-
- src/polkit/polkit-authorization-constraint.c       |   34 +-
+ src/polkit/polkit-authorization-constraint.c       |   30 +-
  src/polkit/polkit-authorization-constraint.h       |   30 +-
  src/polkit/polkit-authorization-db-dummy.c         |   30 +-
  src/polkit/polkit-authorization-db.c               |   30 +-
  src/polkit/polkit-authorization-db.h               |   30 +-
- src/polkit/polkit-authorization.c                  |   34 +-
+ src/polkit/polkit-authorization.c                  |   30 +-
  src/polkit/polkit-authorization.h                  |   30 +-
- src/polkit/polkit-caller.c                         |   30 +-
+ src/polkit/polkit-caller.c                         |   34 +-
  src/polkit/polkit-caller.h                         |   30 +-
  src/polkit/polkit-config.c                         |   30 +-
  src/polkit/polkit-config.h                         |   30 +-
  src/polkit/polkit-context.c                        |   34 +-
- src/polkit/polkit-context.h                        |   34 +-
- src/polkit/polkit-debug.c                          |   30 +-
+ src/polkit/polkit-context.h                        |   30 +-
+ src/polkit/polkit-debug.c                          |   34 +-
  src/polkit/polkit-debug.h                          |   30 +-
- src/polkit/polkit-error.c                          |   30 +-
+ src/polkit/polkit-error.c                          |   34 +-
  src/polkit/polkit-error.h                          |   30 +-
  src/polkit/polkit-policy-cache.c                   |   30 +-
  src/polkit/polkit-policy-cache.h                   |   30 +-
@@ -320,27 +1051,27 @@ Date:   Wed Nov 28 16:50:50 2007 -0500
  src/polkit/polkit-policy-file-entry.c              |   30 +-
  src/polkit/polkit-policy-file-entry.h              |   30 +-
  src/polkit/polkit-policy-file.c                    |   30 +-
- src/polkit/polkit-policy-file.h                    |   30 +-
- src/polkit/polkit-private.h                        |   30 +-
- src/polkit/polkit-result.c                         |   30 +-
+ src/polkit/polkit-policy-file.h                    |   34 +-
+ src/polkit/polkit-private.h                        |   34 +-
+ src/polkit/polkit-result.c                         |   34 +-
  src/polkit/polkit-result.h                         |   30 +-
  src/polkit/polkit-seat.c                           |   30 +-
  src/polkit/polkit-seat.h                           |   30 +-
  src/polkit/polkit-session.c                        |   30 +-
  src/polkit/polkit-session.h                        |   30 +-
- src/polkit/polkit-sysdeps.c                        |   30 +-
+ src/polkit/polkit-sysdeps.c                        |   34 +-
  src/polkit/polkit-sysdeps.h                        |   30 +-
- src/polkit/polkit-test.c                           |   30 +-
+ src/polkit/polkit-test.c                           |   34 +-
  src/polkit/polkit-test.h                           |   30 +-
- src/polkit/polkit-types.h                          |   30 +-
- src/polkit/polkit-utils.c                          |   30 +-
+ src/polkit/polkit-types.h                          |   34 +-
+ src/polkit/polkit-utils.c                          |   34 +-
  src/polkit/polkit-utils.h                          |   30 +-
  src/polkit/polkit.h                                |   30 +-
  tools/polkit-action.c                              |   28 +-
  tools/polkit-auth.c                                |   28 +-
  tools/polkit-config-file-validate.c                |   28 +-
  tools/polkit-policy-file-validate.c                |   28 +-
- 87 files changed, 1498 insertions(+), 1674 deletions(-)
+ 87 files changed, 1526 insertions(+), 1702 deletions(-)
 
 commit cef2e2079532b966b0ff88403eb1a86b337685b7
 Author: David Zeuthen <davidz@redhat.com>
@@ -666,8 +1397,8 @@ Date:   Sun Nov 18 19:16:23 2007 -0500
  +++++++++++++++++++++++
  src/polkit-dbus/polkit-simple.h                 |   42 ++++
  src/polkit-grant/polkit-explicit-grant-helper.c |   90 +--------
- src/polkit-grant/polkit-revoke-helper.c         |  103 +---------
- 9 files changed, 328 insertions(+), 379 deletions(-)
+ src/polkit-grant/polkit-revoke-helper.c         |  101 +---------
+ 9 files changed, 327 insertions(+), 378 deletions(-)
 
 commit 4d0994f45ee4cb1b31475932a17ea8ac5288a289
 Author: David Zeuthen <davidz@redhat.com>

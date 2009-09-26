@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,16 +31,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-simple.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2677105" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2705884" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2673890" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2696992" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-sysdeps"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2677105"></a><span class="refentrytitle">System Dependencies</span>
+<a name="id2705884"></a><span class="refentrytitle">System Dependencies</span>
 </h2>
 <p>System Dependencies &#8212; Various platform specific utility functions</p>
 </td>
@@ -57,10 +57,14 @@
 int                 <a class="link" href="polkit-polkit-sysdeps.html#polkit-sysdeps-get-exe-for-pid">polkit_sysdeps_get_exe_for_pid</a>      (pid_t pid,
                                                          char *out_buf,
                                                          size_t buf_size);
+int                 <a class="link" href="polkit-polkit-sysdeps.html#polkit-sysdeps-get-exe-for-pid-with-helper">polkit_sysdeps_get_exe_for_pid_with_helper</a>
+                                                        (pid_t pid,
+                                                         char *out_buf,
+                                                         size_t buf_size);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2673890"></a><h2>Description</h2>
+<a name="id2696992"></a><h2>Description</h2>
 <p>
 Various platform specific utility functions.</p>
 <p>
@@ -68,11 +72,11 @@ Various platform specific utility functions.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2673910"></a><h2>Details</h2>
+<a name="id2697012"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2673921"></a><h3>
+<a name="id2697023"></a><h3>
 <a name="polkit-sysdeps-get-start-time-for-pid"></a>polkit_sysdeps_get_start_time_for_pid ()</h3>
-<a class="indexterm" name="id2673934"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-uint64-t">polkit_uint64_t</a>     polkit_sysdeps_get_start_time_for_pid
+<a class="indexterm" name="id2697036"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-uint64-t">polkit_uint64_t</a>     polkit_sysdeps_get_start_time_for_pid
                                                         (pid_t pid);</pre>
 <p>
 Get when a process started.</p>
@@ -100,16 +104,61 @@ Get when a process started.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2685110"></a><h3>
+<a name="id2699573"></a><h3>
 <a name="polkit-sysdeps-get-exe-for-pid"></a>polkit_sysdeps_get_exe_for_pid ()</h3>
-<a class="indexterm" name="id2685123"></a><pre class="programlisting">int                 polkit_sysdeps_get_exe_for_pid      (pid_t pid,
+<a class="indexterm" name="id2699586"></a><pre class="programlisting">int                 polkit_sysdeps_get_exe_for_pid      (pid_t pid,
                                                          char *out_buf,
                                                          size_t buf_size);</pre>
 <p>
-Get the name of the binary a given process was started from. Note
-that this is not reliable information; it should not be part of any
-security decision. If the information could not be obtained 0 is
-returned and out_buf will be set to "(unknown)".</p>
+Get the name of the binary a given process was started from.
+</p>
+<p>
+Note that this is not necessary reliable information and as such
+shouldn't be relied on 100% to make a security decision. In fact,
+this information is only trustworthy in situations where the given
+binary is securely locked down meaning that 1) it can't be
+<code class="literal">ptrace(2)</code>'d; 2) libc secure mode kicks in (e.g
+<code class="literal">LD_PRELOAD</code> won't work); 3) there are no other
+attack vectors (e.g. GTK_MODULES, X11, CORBA, D-Bus) to patch
+running code into the process.
+</p>
+<p>
+In other words: the risk of relying on constraining an
+authorization to the output of this function is high. Suppose that
+the program <code class="literal">/usr/bin/gullible</code> obtains an
+authorization via authentication for the action
+<code class="literal">org.example.foo</code>. We add a constraint to say that
+the gained authorization only applies to processes for whom
+<code class="literal">/proc/pid/exe</code> points to
+<code class="literal">/usr/bin/gullible</code>. Now enter
+<code class="literal">/usr/bin/evil</code>. It knows that the program
+<code class="literal">/usr/bin/gullible</code> is not "securely locked down"
+(per the definition in the above paragraph). So
+<code class="literal">/usr/bin/evil</code> simply sets
+<code class="literal">LD_PRELOAD</code> and execs
+<code class="literal">/usr/bin/gullible</code> and it can now run code in a
+process where <code class="literal">/proc/pid/exe</code> points to
+<code class="literal">/usr/bin/gullible</code>. Thus, the recently gained
+authorization for <code class="literal">org.example.foo</code> applies. Also,
+<code class="literal">/usr/bin/evil</code> could use a host of other attack
+vectors to run it's own code under the disguise of pretending to be
+<code class="literal">/usr/bin/gullible</code>.
+</p>
+<p>
+Specifically for interpreted languages like Python and Mono it is
+the case that <code class="literal">/proc/pid/exe</code> always points to
+<code class="literal">/usr/bin/python</code>
+resp. <code class="literal">/usr/bin/mono</code>. Thus, it's not very useful
+to rely on that the result for this function if you want to
+constrain an authorization to
+e.g. <code class="literal">/usr/bin/tomboy</code> or
+<code class="literal">/usr/bin/banshee</code>.
+</p>
+<p>
+If the information could not be obtained, such as if the given
+process is owned by another user than the caller, -1 is returned
+and out_buf will be set to "(unknown)". See also the function
+<a class="link" href="polkit-polkit-sysdeps.html#polkit-sysdeps-get-exe-for-pid-with-helper"><code class="function">polkit_sysdeps_get_exe_for_pid_with_helper()</code></a>.</p>
 <p>
 
 </p>
@@ -147,11 +196,61 @@ returned.
 <p class="since">Since  0.7
 </p>
 </div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2674318"></a><h3>
+<a name="polkit-sysdeps-get-exe-for-pid-with-helper"></a>polkit_sysdeps_get_exe_for_pid_with_helper ()</h3>
+<a class="indexterm" name="id2674334"></a><pre class="programlisting">int                 polkit_sysdeps_get_exe_for_pid_with_helper
+                                                        (pid_t pid,
+                                                         char *out_buf,
+                                                         size_t buf_size);</pre>
+<p>
+Like <a class="link" href="polkit-polkit-sysdeps.html#polkit-sysdeps-get-exe-for-pid"><code class="function">polkit_sysdeps_get_exe_for_pid()</code></a> but if the given process is
+owned by another user, a setuid root helper is used to obtain the
+information. This helper only works if 1) the caller is authorized
+for the org.freedesktop.policykit.read authorization; or 2) the
+calling user is polkituser; or 3) the calling user is setegid
+polkituser.
+</p>
+<p>
+So -1 might still be returned (the process might also have exited).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>&#160;:</span></p></td>
+<td> process id
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_buf</code></em>&#160;:</span></p></td>
+<td> buffer to store the string representation in
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf_size</code></em>&#160;:</span></p></td>
+<td> size of buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td> See <a class="link" href="polkit-polkit-sysdeps.html#polkit-sysdeps-get-exe-for-pid"><code class="function">polkit_sysdeps_get_exe_for_pid()</code></a>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2718562"></a><div class="refsect2" lang="en"><a name="id2718564"></a></div>
+<a name="id2672849"></a><div class="refsect2" lang="en"><a name="id2672850"></a></div>
 <hr>
-<div class="refsect2" lang="en"><a name="id2718565"></a></div>
+<div class="refsect2" lang="en"><a name="id2672851"></a></div>
 </div>
 </div>
 </body>

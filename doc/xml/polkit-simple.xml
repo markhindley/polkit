@@ -31,6 +31,17 @@
                                                          <link linkend="polkit-uint32-t">polkit_uint32_t</link> xid,
                                                          <link linkend="pid-t">pid_t</link> pid,
                                                          <link linkend="DBusError">DBusError</link> *error);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-dbus-error-generate">polkit_dbus_error_generate</link>          (<link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> result,
+                                                         <link linkend="DBusError">DBusError</link> *error);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-dbus-error-parse">polkit_dbus_error_parse</link>             (<link linkend="DBusError">DBusError</link> *error,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *result);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-dbus-error-parse-from-strings">polkit_dbus_error_parse_from_strings</link>
+                                                        (const <link linkend="char">char</link> *error_name,
+                                                         const <link linkend="char">char</link> *error_message,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *result);
 </synopsis>
 </refsynopsisdiv>
 
@@ -181,6 +192,118 @@ error is set
 
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-dbus-error-generate" role="function" condition="since:0.8"/>polkit_dbus_error_generate ()</title>
+<indexterm role="0.8"><primary>polkit_dbus_error_generate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_generate          (<link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> result,
+                                                         <link linkend="DBusError">DBusError</link> *error);</programlisting>
+<para>
+Convenience function to generate a <link linkend="DBusError"><type>DBusError</type></link> that encapsulates
+information that the caller is not authorized. This includes
+information such as <parameter>action</parameter> that describes what action the caller
+lacks an authorization for, as well as <parameter>result</parameter> that describes if
+the caller can obtain an authorization through authentication.
+</para>
+<para>
+Typically a privileged mechanism uses this function to generate
+errors. At the other end of the wire, the caller can use
+<link linkend="polkit-dbus-error-parse"><function>polkit_dbus_error_parse()</function></link> to extract <parameter>action</parameter> and <parameter>result</parameter>.
+</para>
+<para>
+The form of the <link linkend="DBusError"><type>DBusError</type></link> is as follows. The name is
+set to
+<literal>org.freedesktop.PolicyKit.Error.NotAuthorized</literal>
+and the message consists of two strings separated by a single
+space: the string representation of the action
+(cf. <link linkend="polkit-action-to-string-representation"><function>polkit_action_to_string_representation()</function></link>) and the string
+representation of the result
+(cf. <link linkend="polkit-result-to-string-representation"><function>polkit_result_to_string_representation()</function></link>).
+</para>
+<para>
+This function is in <literal>libpolkit-dbus</literal>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the action that the caller needs an authorization for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> the result from e.g. <link linkend="polkit-context-is-caller-authorized"><function>polkit_context_is_caller_authorized()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="DBusError"><type>DBusError</type></link> to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if <parameter>error</parameter> was set. FALSE on error or OOM.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-dbus-error-parse" role="function" condition="since:0.8"/>polkit_dbus_error_parse ()</title>
+<indexterm role="0.8"><primary>polkit_dbus_error_parse</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_parse             (<link linkend="DBusError">DBusError</link> *error,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *result);</programlisting>
+<para>
+Parse an error received over D-Bus, typically generated by
+<link linkend="polkit-dbus-error-generate"><function>polkit_dbus_error_generate()</function></link>, into what action an authorization is
+missing for and whether that authorization can be obtained.
+</para>
+<para>
+This function is in <literal>libpolkit-dbus</literal>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> error to parse; must be set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitAction"><type>PolKitAction</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitResult"><type>PolKitResult</type></link> variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE only if <parameter>error</parameter> was successfully parsed and <parameter>action</parameter>
+and <parameter>result</parameter> is set (and caller must free <parameter>action</parameter> using
+<link linkend="polkit-action-unref"><function>polkit_action_unref()</function></link>).
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-dbus-error-parse-from-strings" role="function" condition="since:0.8"/>polkit_dbus_error_parse_from_strings ()</title>
+<indexterm role="0.8"><primary>polkit_dbus_error_parse_from_strings</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_parse_from_strings
+                                                        (const <link linkend="char">char</link> *error_name,
+                                                         const <link linkend="char">char</link> *error_message,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *result);</programlisting>
+<para>
+Like <link linkend="polkit-dbus-error-parse"><function>polkit_dbus_error_parse()</function></link>, only it takes the name and message
+instead of a <link linkend="DBusError"><type>DBusError</type></link>. This is useful when usings D-Bus bindings
+(such as dbus-glib) that don't expose the <link linkend="DBusError"><type>DBusError</type></link> object
+directly.
+</para>
+<para>
+This function is in <literal>libpolkit-dbus</literal>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>error_name</parameter>&nbsp;:</term>
+<listitem><simpara> name of D-Bus error
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error_message</parameter>&nbsp;:</term>
+<listitem><simpara> message of D-Bus error
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitAction"><type>PolKitAction</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitResult"><type>PolKitResult</type></link> variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See <link linkend="polkit-dbus-error-parse"><function>polkit_dbus_error_parse()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
 </para></refsect2>
 
 </refsect1>

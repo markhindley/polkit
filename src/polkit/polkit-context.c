@@ -39,7 +39,12 @@
 #include <grp.h>
 #include <unistd.h>
 #include <errno.h>
+#ifdef HAVE_SOLARIS
+#include <port.h>
+#include <sys/stat.h>
+#else
 #include <sys/inotify.h>
+#endif
 #include <syslog.h>
 
 #include "polkit-config.h"
@@ -147,16 +152,69 @@ polkit_context_init (PolKitContext *pk_context, PolKitError **error)
         kit_return_val_if_fail (pk_context != NULL, FALSE);
 
         pk_context->policy_dir = kit_strdup (PACKAGE_DATA_DIR "/PolicyKit/policy");
-        _pk_debug ("Using policy files from directory %s", pk_context->policy_dir);
+        polkit_debug ("Using policy files from directory %s", pk_context->policy_dir);
 
         /* NOTE: we don't populate the cache until it's needed.. */
 
         /* NOTE: we don't load the configuration file until it's needed */
 
+#ifdef HAVE_SOLARIS
+        if (pk_context->io_add_watch_func != NULL) {
+                pk_context->inotify_fd = port_create ();
+                if (pk_context->inotify_fd < 0) {
+                        polkit_debug ("failed to port_create: %s", strerror (errno));
+                        /* TODO: set error */
+                        goto error;
+                }
+
+                /* Watch the /etc/PolicyKit/PolicyKit.conf file */
+                pk_context->inotify_config_wd = port_add_watch (pk_context->inotify_fd,
+                                                                   PACKAGE_SYSCONF_DIR "/PolicyKit/PolicyKit.conf",
+                                                                   FILE_MODIFIED | FILE_ATTRIB);
+                if (pk_context->inotify_config_wd < 0) {
+                        polkit_debug ("failed to add watch on file '" PACKAGE_SYSCONF_DIR "/PolicyKit/PolicyKit.conf': %s",
+                                   strerror (errno));
+                        /* TODO: set error */
+                        goto error;
+                }
+
+                /* Watch the /usr/share/PolicyKit/policy directory */
+                pk_context->inotify_policy_wd = port_add_watch (pk_context->inotify_fd,
+                                                                   PACKAGE_DATA_DIR "/PolicyKit/policy",
+                                                                   FILE_MODIFIED | FILE_ATTRIB);
+                if (pk_context->inotify_policy_wd < 0) {
+                        polkit_debug ("failed to add watch on directory '" PACKAGE_DATA_DIR "/PolicyKit/policy': %s",
+                                   strerror (errno));
+                        /* TODO: set error */
+                        goto error;
+                }
+
+#ifdef POLKIT_AUTHDB_DEFAULT
+                /* Watch the /var/lib/misc/PolicyKit.reload file */
+                pk_context->inotify_grant_perm_wd = port_add_watch (pk_context->inotify_fd,
+                                                                       PACKAGE_LOCALSTATE_DIR "/lib/misc/PolicyKit.reload",
+                                                                       FILE_MODIFIED | FILE_ATTRIB);
+                if (pk_context->inotify_grant_perm_wd < 0) {
+                        polkit_debug ("failed to add watch on file '" PACKAGE_LOCALSTATE_DIR "/lib/misc/PolicyKit.reload': %s",
+                                   strerror (errno));
+                        /* TODO: set error */
+                        goto error;
+                }
+#endif
+
+                pk_context->inotify_fd_watch_id = pk_context->io_add_watch_func (pk_context, pk_context->inotify_fd);
+                if (pk_context->inotify_fd_watch_id == 0) {
+                        polkit_debug ("failed to add io watch");
+                        /* TODO: set error */
+                        goto error;
+                }
+        }
+
+#else
         if (pk_context->io_add_watch_func != NULL) {
                 pk_context->inotify_fd = inotify_init ();
                 if (pk_context->inotify_fd < 0) {
-                        _pk_debug ("failed to initialize inotify: %s", strerror (errno));
+                        polkit_debug ("failed to initialize inotify: %s", strerror (errno));
                         /* TODO: set error */
                         goto error;
                 }
@@ -166,7 +224,7 @@ polkit_context_init (PolKitContext *pk_context, PolKitError **error)
                                                                    PACKAGE_SYSCONF_DIR "/PolicyKit/PolicyKit.conf", 
                                                                    IN_MODIFY | IN_CREATE | IN_ATTRIB);
                 if (pk_context->inotify_config_wd < 0) {
-                        _pk_debug ("failed to add watch on file '" PACKAGE_SYSCONF_DIR "/PolicyKit/PolicyKit.conf': %s",
+                        polkit_debug ("failed to add watch on file '" PACKAGE_SYSCONF_DIR "/PolicyKit/PolicyKit.conf': %s",
                                    strerror (errno));
                         /* TODO: set error */
                         goto error;
@@ -177,7 +235,7 @@ polkit_context_init (PolKitContext *pk_context, PolKitError **error)
                                                                    PACKAGE_DATA_DIR "/PolicyKit/policy", 
                                                                    IN_MODIFY | IN_CREATE | IN_DELETE | IN_ATTRIB);
                 if (pk_context->inotify_policy_wd < 0) {
-                        _pk_debug ("failed to add watch on directory '" PACKAGE_DATA_DIR "/PolicyKit/policy': %s",
+                        polkit_debug ("failed to add watch on directory '" PACKAGE_DATA_DIR "/PolicyKit/policy': %s",
                                    strerror (errno));
                         /* TODO: set error */
                         goto error;
@@ -189,7 +247,7 @@ polkit_context_init (PolKitContext *pk_context, PolKitError **error)
                                                                        PACKAGE_LOCALSTATE_DIR "/lib/misc/PolicyKit.reload", 
                                                                        IN_MODIFY | IN_CREATE | IN_ATTRIB);
                 if (pk_context->inotify_grant_perm_wd < 0) {
-                        _pk_debug ("failed to add watch on file '" PACKAGE_LOCALSTATE_DIR "/lib/misc/PolicyKit.reload': %s",
+                        polkit_debug ("failed to add watch on file '" PACKAGE_LOCALSTATE_DIR "/lib/misc/PolicyKit.reload': %s",
                                    strerror (errno));
                         /* TODO: set error */
                         goto error;
@@ -198,16 +256,82 @@ polkit_context_init (PolKitContext *pk_context, PolKitError **error)
 
                 pk_context->inotify_fd_watch_id = pk_context->io_add_watch_func (pk_context, pk_context->inotify_fd);
                 if (pk_context->inotify_fd_watch_id == 0) {
-                        _pk_debug ("failed to add io watch");
+                        polkit_debug ("failed to add io watch");
                         /* TODO: set error */
                         goto error;
                 }
         }
+#endif
 
         return TRUE;
 error:
         return FALSE;
 }
+
+#ifdef HAVE_SOLARIS
+
+struct fileportinfo {
+        struct file_obj fobj;
+        int events;
+        int port;
+};
+
+/**
+ * port_add_watch:
+ * @port: the port object
+ * @name: filename which will be added to the port
+ * @events: the event which will be watched for
+ *
+ * add file watch .
+ *
+ * Returns: the object
+ **/
+int
+port_add_watch (int port, const char *name, uint32_t events)
+{
+        struct fileportinfo *fpi;
+
+        if ( (fpi = kit_malloc (sizeof(struct fileportinfo)) ) == NULL ) {
+                polkit_debug ("Faile to kit_malloc!");
+                /* TODO: set error */
+                return -1;
+        }
+
+        fpi->fobj.fo_name = strdup (name);
+        fpi->events = events;
+        fpi->port = port;
+
+        if ( file_associate (fpi, events) < 0 ) {
+                polkit_debug ("Failed to associate with file %s: %s", fpi->fobj.fo_name, strerror (errno));
+                /* TODO: set error */
+                return -1;
+        }
+        return 0;
+}
+
+int
+file_associate (struct fileportinfo *fpinfo, int events)
+{
+        struct stat sb;
+
+        if ( stat (fpinfo->fobj.fo_name, &sb) == -1) {
+                polkit_debug ("Failed to stat file %s: %s", fpinfo->fobj.fo_name, strerror (errno));
+                /* TODO: set error */
+                return -1;
+        }
+
+        fpinfo->fobj.fo_atime = sb.st_atim;
+        fpinfo->fobj.fo_mtime = sb.st_mtim;
+        fpinfo->fobj.fo_ctime = sb.st_ctim;
+
+        if ( port_associate (fpinfo->port, PORT_SOURCE_FILE, (uintptr_t)&(fpinfo->fobj), events, (void *)fpinfo ) == -1) {
+                polkit_debug ("Failed to register file %s: %s", fpinfo->fobj.fo_name, strerror (errno));
+                /* TODO: set error */
+                return -1;
+        }
+        return 0;
+}
+#endif
 
 /**
  * polkit_context_ref:
@@ -292,10 +416,35 @@ polkit_context_io_func (PolKitContext *pk_context, int fd)
 
         kit_return_if_fail (pk_context != NULL);
 
-        _pk_debug ("polkit_context_io_func: data on fd %d", fd);
+        polkit_debug ("polkit_context_io_func: data on fd %d", fd);
 
         config_changed = FALSE;
 
+#ifdef HAVE_SOLARIS
+        if (fd == pk_context->inotify_fd) {
+                port_event_t pe;
+                struct file_obj *fobjp;
+                struct fileportinfo *fpip;
+
+                while ( !port_get (fd, &pe, NULL) ) {
+                        switch (pe.portev_source) {
+                        case PORT_SOURCE_FILE:
+                                fpip = (struct fileportinfo *)pe.portev_object;
+                                fobjp = &fpip->fobj;
+                                polkit_debug ("filename = %s, events = %d", fobjp->fo_name, pe.portev_events);
+                                config_changed = TRUE;
+                                polkit_debug ("Config changed");
+                                file_associate ((struct fileportinfo *)pe.portev_object, pe.portev_events);
+                                break;
+                        default:
+                                polkit_debug ("Event from unexpected source");
+                        }
+                        if ( config_changed )
+                                break;
+                }
+        }
+
+#else
         if (fd == pk_context->inotify_fd) {
 /* size of the event structure, not counting name */
 #define EVENT_SIZE  (sizeof (struct inotify_event))
@@ -310,7 +459,7 @@ again:
                         if (errno == EINTR) {
                                 goto again;
                         } else {
-                                _pk_debug ("read: %s", strerror (errno));
+                                polkit_debug ("read: %s", strerror (errno));
                         }
                 } else if (len > 0) {
                         /* BUF_LEN too small? */
@@ -318,15 +467,16 @@ again:
                 while (i < len) {
                         struct inotify_event *event;
                         event = (struct inotify_event *) &buf[i];
-                        _pk_debug ("wd=%d mask=%u cookie=%u len=%u",
+                        polkit_debug ("wd=%d mask=%u cookie=%u len=%u",
                                    event->wd, event->mask, event->cookie, event->len);
 
-                        _pk_debug ("config changed!");
+                        polkit_debug ("config changed!");
                         config_changed = TRUE;
 
                         i += EVENT_SIZE + event->len;
                 }
         }
+#endif
 
         if (config_changed) {
                 polkit_context_force_reload (pk_context);
@@ -355,14 +505,14 @@ polkit_context_force_reload (PolKitContext *pk_context)
         kit_return_if_fail (pk_context != NULL);
 
         /* purge existing policy files */
-        _pk_debug ("purging policy files");
+        polkit_debug ("purging policy files");
         if (pk_context->priv_cache != NULL) {
                 polkit_policy_cache_unref (pk_context->priv_cache);
                 pk_context->priv_cache = NULL;
         }
         
         /* Purge existing old config file */
-        _pk_debug ("purging configuration file");
+        polkit_debug ("purging configuration file");
         if (pk_context->config != NULL) {
                 polkit_config_unref (pk_context->config);
                 pk_context->config = NULL;
@@ -426,7 +576,7 @@ polkit_context_get_policy_cache (PolKitContext *pk_context)
         if (pk_context->priv_cache == NULL) {
                 PolKitError *error;
 
-                _pk_debug ("Populating cache from directory %s", pk_context->policy_dir);
+                polkit_debug ("Populating cache from directory %s", pk_context->policy_dir);
 
                 error = NULL;
                 pk_context->priv_cache = _polkit_policy_cache_new (pk_context->policy_dir, 
@@ -558,7 +708,7 @@ found:
                 result = POLKIT_RESULT_NO;
 
 out:
-        _pk_debug ("... result was %s", polkit_result_to_string_representation (result));
+        polkit_debug ("... result was %s", polkit_result_to_string_representation (result));
         return result;
 }
 
@@ -698,7 +848,7 @@ found:
         if (result == POLKIT_RESULT_UNKNOWN)
                 result = POLKIT_RESULT_NO;
 out:
-        _pk_debug ("... result was %s", polkit_result_to_string_representation (result));
+        polkit_debug ("... result was %s", polkit_result_to_string_representation (result));
         return result;
 }
 
@@ -744,7 +894,7 @@ polkit_context_can_caller_do_action (PolKitContext   *pk_context,
                                      PolKitAction    *action,
                                      PolKitCaller    *caller)
 {
-        return polkit_context_is_caller_authorized (pk_context, action, caller, TRUE, NULL);
+        return polkit_context_is_caller_authorized (pk_context, action, caller, FALSE, NULL);
 }
 
 /**
@@ -773,7 +923,7 @@ polkit_context_get_config (PolKitContext *pk_context, PolKitError **error)
                 else
                         pk_error = &pk_error2;
 
-                _pk_debug ("loading configuration file");
+                polkit_debug ("loading configuration file");
                 pk_context->config = polkit_config_new (PACKAGE_SYSCONF_DIR "/PolicyKit/PolicyKit.conf", pk_error);
                 /* if configuration file was bad, log it */
                 if (pk_context->config == NULL) {

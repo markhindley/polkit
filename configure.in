@@ -1,8 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT(PolicyKit, 0.7, david@fubar.dk)
-AM_INIT_AUTOMAKE(PolicyKit, 0.7)
+AC_INIT(PolicyKit, 0.8, david@fubar.dk)
+AM_INIT_AUTOMAKE(PolicyKit, 0.8)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -112,6 +112,16 @@ if test "x$GCC" = "xyes"; then
   case " $CFLAGS " in
   *[\ \	]-Wsign-compare[\ \	]*) ;;
   *) CFLAGS="$CFLAGS -Wsign-compare" ;;
+  esac
+
+  case " $CFLAGS " in
+  *[\ \	]-Wformat[\ \	]*) ;;
+  *) CFLAGS="$CFLAGS -Wformat" ;;
+  esac
+
+  case " $CFLAGS " in
+  *[\ \	]-Wformat-security[\ \	]*) ;;
+  *) CFLAGS="$CFLAGS -Wformat-security" ;;
   esac
 
   if test "x$enable_ansi" = "xyes"; then
@@ -269,12 +279,10 @@ AC_DEFINE_UNQUOTED(POLKIT_AUTHDB,"$POLKIT_AUTHDB", [Authorization Database to us
 
 case $POLKIT_AUTHDB in
   dummy)
-    need_pam=no
     AC_DEFINE(POLKIT_AUTHDB_DUMMY, 1, [If using the dummy authorization database])
     ;;
 
   default)
-    need_pam=yes
     AC_DEFINE(POLKIT_AUTHDB_DEFAULT, 1, [If using the default authorization database])
     ;;
 
@@ -285,6 +293,61 @@ esac
 
 AM_CONDITIONAL(POLKIT_AUTHDB_DUMMY, [test x$POLKIT_AUTHDB = xdummy], [Using dummy authdb])
 AM_CONDITIONAL(POLKIT_AUTHDB_DEFAULT, [test x$POLKIT_AUTHDB = xdefault], [Using default authdb])
+
+dnl ---------------------------------------------------------------------------
+dnl - Select which authentication framework to use
+dnl ---------------------------------------------------------------------------
+
+AC_ARG_WITH([authfw],
+	    AS_HELP_STRING([--with-authfw=<name>], 
+                           [Authentication framework (none/pam/shadow)]))
+if ! test -z "$with_authfw" ; then
+  if test x$with_authdb = xdummy ; then
+    if ! test x$with_authfw = xnone ; then
+      AC_MSG_ERROR([Only 'none' is a valid authentication framework for the dummy authorization database])
+    fi
+  else
+      if test x$with_authfw = xnone ; then
+        AC_MSG_ERROR(['none' is only a valid authentication framework for the dummy authorization database])
+      fi
+  fi
+  POLKIT_AUTHFW=$with_authfw
+else
+  if test x$with_authdb = xdummy ; then
+    POLKIT_AUTHFW=none
+  else
+    POLKIT_AUTHFW=pam
+  fi
+fi
+
+AC_SUBST(POLKIT_AUTHFW)
+AC_DEFINE_UNQUOTED(POLKIT_AUTHFW,"$POLKIT_AUTHFW", [Authentication Framework to use])
+
+case $POLKIT_AUTHFW in
+  none)
+    need_pam=no
+    AC_DEFINE(POLKIT_AUTHFW_NONE, 1, [If using no authentication framework])
+    ;;
+
+  pam)
+    need_pam=yes
+    AC_DEFINE(POLKIT_AUTHFW_PAM, 1, [If using the PAM authentication framework])
+    ;;
+
+  shadow)
+    need_pam=no
+    AUTH_LIBS="${AUTH_LIBS} -lcrypt"
+    AC_DEFINE(POLKIT_AUTHFW_SHADOW, 1, [If using the Shadow authentication framework])
+    ;;
+
+  *)
+    AC_MSG_ERROR([Unknown Authentication Framework: $POLKIT_AUTHFW])
+    ;;
+esac
+
+AM_CONDITIONAL(POLKIT_AUTHFW_NONE, [test x$POLKIT_AUTHFW = xnone], [Using no authfw])
+AM_CONDITIONAL(POLKIT_AUTHFW_PAM, [test x$POLKIT_AUTHFW = xpam], [Using PAM authfw])
+AM_CONDITIONAL(POLKIT_AUTHFW_SHADOW, [test x$POLKIT_AUTHFW = xshadow], [Using Shadow authfw])
 
 
 dnl ---------------------------------------------------------------------------
@@ -370,7 +433,7 @@ fi
 
 AC_SUBST(PAM_MODULE_DIR)
 
-AC_ARG_WITH(os-type,     [  --with-os-type=<os>        distribution or OS (redhat/suse/gentoo/pardus)])
+AC_ARG_WITH(os-type,     [  --with-os-type=<os>        distribution or OS (redhat/suse/gentoo/pardus/solaris)])
 
 #### Check our operating system (distro-tweaks required)
 if test "z$with_os_type" = "z"; then
@@ -395,6 +458,8 @@ if test x$with_os_type = x; then
         with_os_type=gentoo
     elif test x$operating_system = xpardus ; then
         with_os_type=pardus
+    elif test x$operating_system = xsolaris ; then
+	with_os_type=solaris
     else
         with_os_type=unknown
     fi
@@ -406,6 +471,7 @@ AM_CONDITIONAL(OS_TYPE_RED_HAT, test x$with_os_type = xredhat, [Running on Red H
 AM_CONDITIONAL(OS_TYPE_SUSE, test x$with_os_type = xsuse, [Running on SUSE OS'es])
 AM_CONDITIONAL(OS_TYPE_GENTOO, test x$with_os_type = xgentoo, [Running on Gentoo OS'es])
 AM_CONDITIONAL(OS_TYPE_PARDUS, test x$with_os_type = xpardus, [Running on Pardus OS'es])
+AM_CONDITIONAL(OS_TYPE_SALARIS, test x$with_os_type = xsolaris, [Running os Solaris OS'es])
 
 AC_ARG_WITH(pam-include, [  --with-pam-include=<file>  pam file to include])
 
@@ -420,7 +486,7 @@ elif test x$with_os_type = xredhat -o x$with_os_type = xgentoo -o x$with_os_type
    PAM_FILE_INCLUDE_ACCOUNT=system-auth
    PAM_FILE_INCLUDE_PASSWORD=system-auth
    PAM_FILE_INCLUDE_SESSION=system-auth
-elif test x$with_os_type = xsuse ; then
+elif test x$with_os_type = xsuse -o x$with_os_type = xsolaris ; then
    PAM_FILE_INCLUDE_AUTH=common-auth
    PAM_FILE_INCLUDE_ACCOUNT=common-account
    PAM_FILE_INCLUDE_PASSWORD=common-password
@@ -440,6 +506,17 @@ AC_DEFINE_UNQUOTED(PAM_FILE_INCLUDE_AUTH, "$PAM_FILE_INCLUDE_AUTH", [pam file au
 AC_DEFINE_UNQUOTED(PAM_FILE_INCLUDE_ACCOUNT, "$PAM_FILE_INCLUDE_ACCOUNT", [pam file account])
 AC_DEFINE_UNQUOTED(PAM_FILE_INCLUDE_PASSWORD, "$PAM_FILE_INCLUDE_PASSWORD", [pam file password])
 AC_DEFINE_UNQUOTED(PAM_FILE_INCLUDE_SESSION, "$PAM_FILE_INCLUDE_SESSION", [pam file session])
+
+dnl ---------------------------------------------------------------------------
+dnl - check OS 
+dnl ---------------------------------------------------------------------------
+case "$host_os" in
+  *linux*)
+	;;
+  *solaris*)
+	AC_DEFINE([HAVE_SOLARIS], 1, [Is this a Solaris system?])
+	;;
+esac
 
 # ********************
 # Internationalisation
@@ -498,6 +575,7 @@ echo "
         group for PolicyKit:        ${POLKIT_GROUP}
 
         authorization database:     ${POLKIT_AUTHDB}
+        authentication framework:   ${POLKIT_AUTHFW}
 
         Distribution/OS:            ${with_os_type}
         SELinux support:            ${have_selinux}
@@ -539,7 +617,13 @@ if test "${POLKIT_AUTHDB}" = default ; then
   echo "      owned by group ${POLKIT_GROUP} and will be mode 770."
   echo
   echo "NOTE: The directory ${localstatedir}/run/PolicyKit-public will be"
-  echo "      owned by group ${POLKIT_GROUP} and will be mode 775."
+  echo "      owned by user ${POLKIT_USER} and will be mode 755."
+  echo
+  echo "NOTE: The file ${localstatedir}/lib/misc/PolicyKit.reload will be"
+  echo "      owned by user ${POLKIT_USER} and group ${POLKIT_GROUP} and will be mode 775."
+  echo
+  echo "NOTE: ${libexecdir}/polkit-set-default-helper will be owned by"
+  echo "      user ${POLKIT_USER} and installed with mode 4755 (setuid binary)."
   echo
   echo "NOTE: ${libexecdir}/polkit-read-auth-helper will be owned by"
   echo "      group ${POLKIT_GROUP} and installed with mode 2755 (setgid binary)."
@@ -553,8 +637,13 @@ if test "${POLKIT_AUTHDB}" = default ; then
   echo "NOTE: ${libexecdir}/polkit-explicit-grant-helper will be owned by"
   echo "      group ${POLKIT_GROUP} and installed with mode 2755 (setgid binary)."
   echo
-  echo "NOTE: ${libexecdir}/polkit-grant-helper-pam will be setuid root."
-  echo
-  echo "NOTE: For packaging, remember to retain the modes and ownership."
+  echo "NOTE: ${libexecdir}/polkit-grant-helper-pam will be owned by group"
+  echo "      ${POLKIT_GROUP} and installed with mode 4754 (setuid root binary)."
   echo
 fi
+
+echo "NOTE: ${libexecdir}/polkit-resolve-exe-helper will be installed with"
+echo "      mode 4755 (setuid root binary)."
+echo
+echo "NOTE: For packaging, remember to retain the modes and ownership."
+echo

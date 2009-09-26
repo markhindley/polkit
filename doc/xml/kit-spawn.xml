@@ -28,9 +28,9 @@ enum                <link linkend="KitSpawnFlags">KitSpawnFlags</link>;
                                                          <link linkend="KitSpawnFlags">KitSpawnFlags</link> flags,
                                                          <link linkend="char">char</link> **argv,
                                                          <link linkend="char">char</link> **envp,
-                                                         <link linkend="char">char</link> *stdin,
-                                                         <link linkend="char">char</link> **stdout,
-                                                         <link linkend="char">char</link> **stderr,
+                                                         <link linkend="char">char</link> *stdinp,
+                                                         <link linkend="char">char</link> **stdoutp,
+                                                         <link linkend="char">char</link> **stderrp,
                                                          <link linkend="int">int</link> *out_exit_status);
 </synopsis>
 </refsynopsisdiv>
@@ -89,9 +89,9 @@ Flags passed to <link linkend="kit-spawn-sync"><function>kit_spawn_sync()</funct
                                                          <link linkend="KitSpawnFlags">KitSpawnFlags</link> flags,
                                                          <link linkend="char">char</link> **argv,
                                                          <link linkend="char">char</link> **envp,
-                                                         <link linkend="char">char</link> *stdin,
-                                                         <link linkend="char">char</link> **stdout,
-                                                         <link linkend="char">char</link> **stderr,
+                                                         <link linkend="char">char</link> *stdinp,
+                                                         <link linkend="char">char</link> **stdoutp,
+                                                         <link linkend="char">char</link> **stderrp,
                                                          <link linkend="int">int</link> *out_exit_status);</programlisting>
 <para>
 Executes a child process and waits for the child process to exit
@@ -114,13 +114,13 @@ evaluate the exit status.</para>
 <varlistentry><term><parameter>envp</parameter>&nbsp;:</term>
 <listitem><simpara> <link linkend="NULL:CAPS"><type>NULL</type></link> terminated environment or <link linkend="NULL:CAPS"><type>NULL</type></link> to inherit parents;
 </simpara></listitem></varlistentry>
-<varlistentry><term><parameter>stdin</parameter>&nbsp;:</term>
+<varlistentry><term><parameter>stdinp</parameter>&nbsp;:</term>
 <listitem><simpara> String to write to stdin of child or <link linkend="NULL:CAPS"><type>NULL</type></link>
 </simpara></listitem></varlistentry>
-<varlistentry><term><parameter>stdout</parameter>&nbsp;:</term>
+<varlistentry><term><parameter>stdoutp</parameter>&nbsp;:</term>
 <listitem><simpara> Return location for stdout from child or <link linkend="NULL:CAPS"><type>NULL</type></link>. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
 </simpara></listitem></varlistentry>
-<varlistentry><term><parameter>stderr</parameter>&nbsp;:</term>
+<varlistentry><term><parameter>stderrp</parameter>&nbsp;:</term>
 <listitem><simpara> Return location for stderr from child or <link linkend="NULL:CAPS"><type>NULL</type></link>. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>out_exit_status</parameter>&nbsp;:</term>

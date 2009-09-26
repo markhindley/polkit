@@ -30,6 +30,10 @@ enum                <link linkend="PolKitAuthorizationConstraintType">PolKitAuth
                                                         (void);
 <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* <link linkend="polkit-authorization-constraint-get-require-active">polkit_authorization_constraint_get_require_active</link>
                                                         (void);
+<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* <link linkend="polkit-authorization-constraint-get-require-exe">polkit_authorization_constraint_get_require_exe</link>
+                                                        (const <link linkend="char">char</link> *path);
+<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* <link linkend="polkit-authorization-constraint-get-require-selinux-context">polkit_authorization_constraint_get_require_selinux_context</link>
+                                                        (const <link linkend="char">char</link> *context);
 <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* <link linkend="polkit-authorization-constraint-ref">polkit_authorization_constraint_ref</link>
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);
 <link linkend="void">void</link>                <link linkend="polkit-authorization-constraint-unref">polkit_authorization_constraint_unref</link>
@@ -39,6 +43,10 @@ enum                <link linkend="PolKitAuthorizationConstraintType">PolKitAuth
 <link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-authorization-constraint-validate">polkit_authorization_constraint_validate</link>
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);
 <link linkend="PolKitAuthorizationConstraintType">PolKitAuthorizationConstraintType</link> <link linkend="polkit-authorization-constraint-type">polkit_authorization_constraint_type</link>
+                                                        (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);
+const <link linkend="char">char</link>*         <link linkend="polkit-authorization-constraint-get-exe">polkit_authorization_constraint_get_exe</link>
+                                                        (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);
+const <link linkend="char">char</link>*         <link linkend="polkit-authorization-constraint-get-selinux-context">polkit_authorization_constraint_get_selinux_context</link>
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);
 <link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-authorization-constraint-check-session">polkit_authorization_constraint_check_session</link>
                                                         (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc,
@@ -52,7 +60,7 @@ enum                <link linkend="PolKitAuthorizationConstraintType">PolKitAuth
                                                          <link linkend="size-t">size_t</link> buf_size);
 <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* <link linkend="polkit-authorization-constraint-from-string">polkit_authorization_constraint_from_string</link>
                                                         (const <link linkend="char">char</link> *str);
-<link linkend="size-t">size_t</link>              <link linkend="polkit-authorization-constraint-get-from-caller">polkit_authorization_constraint_get_from_caller</link>
+<link linkend="int">int</link>                 <link linkend="polkit-authorization-constraint-get-from-caller">polkit_authorization_constraint_get_from_caller</link>
                                                         (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
                                                          <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> **out_array,
                                                          <link linkend="size-t">size_t</link> array_size);
@@ -86,7 +94,9 @@ in order for an authorization to apply</para>
 <title><anchor id="PolKitAuthorizationConstraintType" role="enum"/>enum PolKitAuthorizationConstraintType</title>
 <indexterm><primary>PolKitAuthorizationConstraintType</primary></indexterm><programlisting>typedef enum {
         POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_LOCAL,
-        POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE
+        POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE,
+        POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE,
+        POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_SELINUX_CONTEXT,
 } PolKitAuthorizationConstraintType;
 </programlisting>
 <para>
@@ -104,7 +114,23 @@ caller must be local
 <varlistentry>
 <term><anchor id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-ACTIVE:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE</literal></term>
 <listitem><simpara> the session or
-caller must be in an active session
+caller must be in an active local session
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><anchor id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-EXE:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE</literal></term>
+<listitem><simpara> the caller must
+be a specific program; use
+<link linkend="polkit-authorization-constraint-get-exe"><function>polkit_authorization_constraint_get_exe()</function></link> to get the path of the
+program.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><anchor id="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-SELINUX-CONTEXT:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_SELINUX_CONTEXT</literal></term>
+<listitem><simpara> the
+caller must be in a specific security context; use
+<link linkend="polkit-authorization-constraint-get-selinux-context"><function>polkit_authorization_constraint_get_selinux_context()</function></link> to get the
+security context.
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
@@ -128,7 +154,7 @@ constraint that the session or caller must be local.</para>
 <para>
 
 </para><variablelist role="params">
-<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the constraint; the caller shall not unref this object
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the constraint
 
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
@@ -143,10 +169,46 @@ constraint that the session or caller must be active.</para>
 <para>
 
 </para><variablelist role="params">
-<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the constraint; the caller shall not unref this object
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the constraint
 
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-authorization-constraint-get-require-exe" role="function" condition="since:0.8"/>polkit_authorization_constraint_get_require_exe ()</title>
+<indexterm role="0.8"><primary>polkit_authorization_constraint_get_require_exe</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_exe
+                                                        (const <link linkend="char">char</link> *path);</programlisting>
+<para>
+Get a <link linkend="PolKitAuthorizationConstraint"><type>PolKitAuthorizationConstraint</type></link> object that represents the
+constraint that the caller must be a specific program</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> path to program
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the constraint or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-authorization-constraint-get-require-selinux-context" role="function" condition="since:0.8"/>polkit_authorization_constraint_get_require_selinux_context ()</title>
+<indexterm role="0.8"><primary>polkit_authorization_constraint_get_require_selinux_context</primary></indexterm><programlisting><link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link>* polkit_authorization_constraint_get_require_selinux_context
+                                                        (const <link linkend="char">char</link> *context);</programlisting>
+<para>
+Get a <link linkend="PolKitAuthorizationConstraint"><type>PolKitAuthorizationConstraint</type></link> object that represents the
+constraint that the caller must be in a specific SELinux context.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>context</parameter>&nbsp;:</term>
+<listitem><simpara> SELinux context
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the constraint or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
 </para></refsect2>
 <refsect2>
 <title><anchor id="polkit-authorization-constraint-ref" role="function" condition="since:0.7"/>polkit_authorization_constraint_ref ()</title>
@@ -226,10 +288,48 @@ polkit-auth(1) does).</para>
 <varlistentry><term><parameter>authc</parameter>&nbsp;:</term>
 <listitem><simpara> the object
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> type from <link linkend="PolKitAuthorizationConstraintFlags"><type>PolKitAuthorizationConstraintFlags</type></link>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> type from <link linkend="PolKitAuthorizationConstraintType"><type>PolKitAuthorizationConstraintType</type></link>
 
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-authorization-constraint-get-exe" role="function" condition="since:0.8"/>polkit_authorization_constraint_get_exe ()</title>
+<indexterm role="0.8"><primary>polkit_authorization_constraint_get_exe</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_constraint_get_exe
+                                                        (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
+<para>
+Get the exe path for the constraint.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>authc</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The exe path or <link linkend="NULL:CAPS"><type>NULL</type></link> if type isn't
+<link linkend="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-EXE:CAPS"><type>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE</type></link>. Caller shall not
+free this string.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2>
+<title><anchor id="polkit-authorization-constraint-get-selinux-context" role="function" condition="since:0.8"/>polkit_authorization_constraint_get_selinux_context ()</title>
+<indexterm role="0.8"><primary>polkit_authorization_constraint_get_selinux_context</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_constraint_get_selinux_context
+                                                        (<link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc);</programlisting>
+<para>
+Get the SELinux context for the constraint.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>authc</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The selinux context or <link linkend="NULL:CAPS"><type>NULL</type></link> if type isn't
+<link linkend="POLKIT-AUTHORIZATION-CONSTRAINT-TYPE-REQUIRE-SELINUX-CONTEXT:CAPS"><type>POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_SELINUX_CONTEXT</type></link>. Caller
+shall not free this string.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
 </para></refsect2>
 <refsect2>
 <title><anchor id="polkit-authorization-constraint-check-session" role="function" condition="since:0.7"/>polkit_authorization_constraint_check_session ()</title>
@@ -324,8 +424,8 @@ Construct a constraint from a textual representation as returned by
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
 <refsect2>
-<title><anchor id="polkit-authorization-constraint-get-from-caller" role="function"/>polkit_authorization_constraint_get_from_caller ()</title>
-<indexterm><primary>polkit_authorization_constraint_get_from_caller</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              polkit_authorization_constraint_get_from_caller
+<title><anchor id="polkit-authorization-constraint-get-from-caller" role="function" condition="since:0.7"/>polkit_authorization_constraint_get_from_caller ()</title>
+<indexterm role="0.7"><primary>polkit_authorization_constraint_get_from_caller</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_authorization_constraint_get_from_caller
                                                         (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
                                                          <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> **out_array,
                                                          <link linkend="size-t">size_t</link> array_size);</programlisting>
@@ -355,14 +455,17 @@ The caller must unref all the created objects using
 <varlistentry><term><parameter>array_size</parameter>&nbsp;:</term>
 <listitem><simpara> size of the passed array
 </simpara></listitem></varlistentry>
-<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> This function do not create more than <parameter>array_size</parameter> constraints
-(including the trailing <link linkend="NULL:CAPS"><literal>NULL</literal></link>). If the output was truncated due to
-this limit then the return value is the number of objects (not
-including the trailing <link linkend="NULL:CAPS"><literal>NULL</literal></link>) which would have been written to the
-final array if enough space had been available. Thus, a return
-value of <parameter>array_size</parameter> or more means that the output was truncated. 
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> If OOM -1 is returned. This function do not create more
+than <parameter>array_size</parameter> constraints (including the trailing <link linkend="NULL:CAPS"><literal>NULL</literal></link>). If the
+output was truncated due to this limit then the return value is the
+number of objects (not including the trailing <link linkend="NULL:CAPS"><literal>NULL</literal></link>) which would
+have been written to the final array if enough space had been
+available. Thus, a return value of <parameter>array_size</parameter> or more means that
+the output was truncated.
+
 </simpara></listitem></varlistentry>
-</variablelist></refsect2>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
 <refsect2>
 <title><anchor id="polkit-authorization-constraint-equal" role="function" condition="since:0.7"/>polkit_authorization_constraint_equal ()</title>
 <indexterm role="0.7"><primary>polkit_authorization_constraint_equal</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraint_equal

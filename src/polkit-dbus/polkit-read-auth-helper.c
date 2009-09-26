@@ -40,7 +40,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <security/pam_appl.h>
 #include <grp.h>
 #include <pwd.h>
 #include <syslog.h>
@@ -49,6 +48,10 @@
 #include <utime.h>
 #include <fcntl.h>
 #include <dirent.h>
+#ifdef HAVE_SOLARIS
+#include <limits.h>
+#define LOG_AUTHPRIV    (10<<3)
+#endif
 
 #include <polkit-dbus/polkit-dbus.h>
 #include <polkit/polkit-private.h>
@@ -182,11 +185,22 @@ dump_auths_all (const char *root)
                 char path[PATH_MAX];
                 static const char suffix[] = ".auths";
                 struct passwd *pw;
-
-                if (d->d_type != DT_REG)
-                        continue;
+                struct stat statbuf;
 
                 if (d->d_name == NULL)
+                        continue;
+
+                if (snprintf (path, sizeof (path), "%s/%s", root, d->d_name) >= (int) sizeof (path)) {
+                        fprintf (stderr, "polkit-read-auth-helper: string was truncated (1)\n");
+                        goto out;
+                }
+
+                if (stat (path, &statbuf) != 0) {
+                        fprintf (stderr, "polkit-read-auth-helper: cannot stat %s: %m\n", path);
+                        goto out;
+                }
+
+                if (!S_ISREG(statbuf.st_mode))
                         continue;
 
                 filename = d->d_name;
@@ -231,11 +245,6 @@ dump_auths_all (const char *root)
                 }
                 uid = pw->pw_uid;
                 
-                if (snprintf (path, sizeof (path), "%s/%s", root, filename) >= (int) sizeof (path)) {
-                        fprintf (stderr, "polkit-read-auth-helper: string was truncated (1)\n");
-                        goto out;
-                }
-
                 if (!dump_auths_from_file (path, uid))
                         goto out;
         }
@@ -282,8 +291,15 @@ main (int argc, char *argv[])
 
 #ifndef POLKIT_BUILD_TESTS
         /* clear the entire environment to avoid attacks using with libraries honoring environment variables */
+#ifdef HAVE_SOLARIS
+        extern char **environ;
+
+        if (environ != NULL)
+                environ[0] = NULL;
+#else
         if (clearenv () != 0)
                 goto out;
+#endif
         /* set a minimal environment */
         setenv ("PATH", "/usr/sbin:/usr/bin:/sbin:/bin", 1);
 #endif
@@ -343,7 +359,7 @@ skip_check:
         /*----------------------------------------------------------------------------------------------------*/
 
         requesting_info_for_uid = strtoul (argv[1], &endp, 10);
-        if  (*endp != '\0') {
+        if (strlen (argv[1]) == 0 || *endp != '\0') {
                 fprintf (stderr, "polkit-read-auth-helper: requesting_info_for_uid malformed (3)\n");
                 goto out;
         }

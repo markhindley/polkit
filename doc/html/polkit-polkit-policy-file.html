@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,16 +31,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-policy-file-entry.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2689419" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2697634" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2736016" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2718617" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-policy-file"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2689419"></a><span class="refentrytitle">Policy Definition Files</span>
+<a name="id2697634"></a><span class="refentrytitle">Policy Definition Files</span>
 </h2>
 <p>Policy Definition Files &#8212; Represents a set of declared actions.</p>
 </td>
@@ -67,7 +67,7 @@ void                <a class="link" href="polkit-polkit-policy-file.html#polkit-
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2736016"></a><h2>Description</h2>
+<a name="id2718617"></a><h2>Description</h2>
 <p>
 This class is used to represent a policy file.</p>
 <p>
@@ -75,11 +75,11 @@ This class is used to represent a policy file.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2736036"></a><h2>Details</h2>
+<a name="id2718637"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2736384"></a><h3>
+<a name="id2718648"></a><h3>
 <a name="PolKitPolicyFile"></a>PolKitPolicyFile</h3>
-<a class="indexterm" name="id2736396"></a><pre class="programlisting">typedef struct _PolKitPolicyFile PolKitPolicyFile;</pre>
+<a class="indexterm" name="id2718660"></a><pre class="programlisting">typedef struct _PolKitPolicyFile PolKitPolicyFile;</pre>
 <p>
 Objects of this class are used to record information about a
 policy file.</p>
@@ -89,9 +89,9 @@ policy file.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2736417"></a><h3>
+<a name="id2718375"></a><h3>
 <a name="PolKitPolicyFileEntryForeachFunc"></a>PolKitPolicyFileEntryForeachFunc ()</h3>
-<a class="indexterm" name="id2736429"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (*PolKitPolicyFileEntryForeachFunc) (<a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a> *policy_file,
+<a class="indexterm" name="id2718387"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (*PolKitPolicyFileEntryForeachFunc) (<a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a> *policy_file,
                                                          <a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry,
                                                          void *user_data);</pre>
 <p>
@@ -129,9 +129,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730956"></a><h3>
+<a name="id2718506"></a><h3>
 <a name="polkit-policy-file-new"></a>polkit_policy_file_new ()</h3>
-<a class="indexterm" name="id2730967"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a>*   polkit_policy_file_new              (const char *path,
+<a class="indexterm" name="id2718517"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a>*   polkit_policy_file_new              (const char *path,
                                                          <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> load_descriptions,
                                                          <a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error);</pre>
 <p>
@@ -160,7 +160,7 @@ Load a policy file.</p>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
 <td> The new object or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if error is set
 </td>
 </tr>
@@ -169,9 +169,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2731077"></a><h3>
+<a name="id2722676"></a><h3>
 <a name="polkit-policy-file-ref"></a>polkit_policy_file_ref ()</h3>
-<a class="indexterm" name="id2731088"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a>*   polkit_policy_file_ref              (<a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a> *policy_file);</pre>
+<a class="indexterm" name="id2722687"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a>*   polkit_policy_file_ref              (<a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a> *policy_file);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -195,9 +195,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2731148"></a><h3>
+<a name="id2722747"></a><h3>
 <a name="polkit-policy-file-unref"></a>polkit_policy_file_unref ()</h3>
-<a class="indexterm" name="id2731159"></a><pre class="programlisting">void                polkit_policy_file_unref            (<a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a> *policy_file);</pre>
+<a class="indexterm" name="id2722758"></a><pre class="programlisting">void                polkit_policy_file_unref            (<a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a> *policy_file);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -216,9 +216,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2731211"></a><h3>
+<a name="id2722810"></a><h3>
 <a name="polkit-policy-file-entry-foreach"></a>polkit_policy_file_entry_foreach ()</h3>
-<a class="indexterm" name="id2735062"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_policy_file_entry_foreach    (<a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a> *policy_file,
+<a class="indexterm" name="id2722821"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_policy_file_entry_foreach    (<a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFile">PolKitPolicyFile</a> *policy_file,
                                                          <a class="link" href="polkit-polkit-policy-file.html#PolKitPolicyFileEntryForeachFunc">PolKitPolicyFileEntryForeachFunc</a> cb,
                                                          void *user_data);</pre>
 <p>
@@ -256,9 +256,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2735172"></a><div class="refsect2" lang="en"><a name="id2735173"></a></div>
+<a name="id2723104"></a><div class="refsect2" lang="en"><a name="id2723105"></a></div>
 <hr>
-<div class="refsect2" lang="en"><a name="id2735174"></a></div>
+<div class="refsect2" lang="en"><a name="id2723106"></a></div>
 </div>
 </div>
 </body>

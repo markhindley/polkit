@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,16 +31,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-policy-default.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2713983" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2695263" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2739132" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2722991" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-policy-file-entry"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2713983"></a><span class="refentrytitle">Policy File Entry</span>
+<a name="id2695263"></a><span class="refentrytitle">Policy File Entry</span>
 </h2>
 <p>Policy File Entry &#8212; Represents a declared action in a policy file.</p>
 </td>
@@ -90,7 +90,7 @@ const char*         <a class="link" href="polkit-polkit-policy-file-entry.html#p
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2739132"></a><h2>Description</h2>
+<a name="id2722991"></a><h2>Description</h2>
 <p>
 This class is used to represent a entries in policy files.</p>
 <p>
@@ -98,11 +98,11 @@ This class is used to represent a entries in policy files.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2739152"></a><h2>Details</h2>
+<a name="id2710944"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2739163"></a><h3>
+<a name="id2710955"></a><h3>
 <a name="PolKitPolicyFileEntry"></a>PolKitPolicyFileEntry</h3>
-<a class="indexterm" name="id2739174"></a><pre class="programlisting">typedef struct _PolKitPolicyFileEntry PolKitPolicyFileEntry;</pre>
+<a class="indexterm" name="id2710966"></a><pre class="programlisting">typedef struct _PolKitPolicyFileEntry PolKitPolicyFileEntry;</pre>
 <p>
 Objects of this class are used to record information about a
 policy.</p>
@@ -112,9 +112,9 @@ policy.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2739195"></a><h3>
+<a name="id2710988"></a><h3>
 <a name="PolKitPolicyFileEntryAnnotationsForeachFunc"></a>PolKitPolicyFileEntryAnnotationsForeachFunc ()</h3>
-<a class="indexterm" name="id2739210"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (*PolKitPolicyFileEntryAnnotationsForeachFunc)
+<a class="indexterm" name="id2711001"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (*PolKitPolicyFileEntryAnnotationsForeachFunc)
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry,
                                                          const char *key,
                                                          const char *value,
@@ -159,9 +159,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2735329"></a><h3>
+<a name="id2711155"></a><h3>
 <a name="polkit-policy-file-entry-ref"></a>polkit_policy_file_entry_ref ()</h3>
-<a class="indexterm" name="id2735340"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* polkit_policy_file_entry_ref     (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<a class="indexterm" name="id2711168"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a>* polkit_policy_file_entry_ref     (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -185,9 +185,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2735398"></a><h3>
+<a name="id2724538"></a><h3>
 <a name="polkit-policy-file-entry-unref"></a>polkit_policy_file_entry_unref ()</h3>
-<a class="indexterm" name="id2735409"></a><pre class="programlisting">void                polkit_policy_file_entry_unref      (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<a class="indexterm" name="id2724551"></a><pre class="programlisting">void                polkit_policy_file_entry_unref      (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -206,9 +206,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2735460"></a><h3>
+<a name="id2724603"></a><h3>
 <a name="polkit-policy-file-entry-debug"></a>polkit_policy_file_entry_debug ()</h3>
-<a class="indexterm" name="id2735472"></a><pre class="programlisting">void                polkit_policy_file_entry_debug      (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<a class="indexterm" name="id2724616"></a><pre class="programlisting">void                polkit_policy_file_entry_debug      (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Print debug information about object</p>
 <p>
@@ -225,9 +225,9 @@ Print debug information about object</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2735521"></a><h3>
+<a name="id2724666"></a><h3>
 <a name="polkit-policy-file-entry-get-id"></a>polkit_policy_file_entry_get_id ()</h3>
-<a class="indexterm" name="id2735533"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_id     (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<a class="indexterm" name="id2724679"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_id     (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Get the action identifier.</p>
 <p>
@@ -251,9 +251,9 @@ Get the action identifier.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2735595"></a><h3>
+<a name="id2724741"></a><h3>
 <a name="polkit-policy-file-entry-get-default"></a>polkit_policy_file_entry_get_default ()</h3>
-<a class="indexterm" name="id2735608"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-default.html#PolKitPolicyDefault">PolKitPolicyDefault</a>* polkit_policy_file_entry_get_default
+<a class="indexterm" name="id2724755"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-default.html#PolKitPolicyDefault">PolKitPolicyDefault</a>* polkit_policy_file_entry_get_default
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Get the the default policy for this policy.</p>
@@ -278,9 +278,9 @@ Get the the default policy for this policy.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2744371"></a><h3>
+<a name="id2724825"></a><h3>
 <a name="polkit-policy-file-entry-get-action-description"></a>polkit_policy_file_entry_get_action_description ()</h3>
-<a class="indexterm" name="id2744384"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_description
+<a class="indexterm" name="id2724839"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_description
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Get the description of the action that this policy entry describes. This
@@ -292,7 +292,7 @@ textual string will be returned in the current locale.
 Note, if <a class="link" href="polkit-polkit-context.html#polkit-context-set-load-descriptions"><code class="function">polkit_context_set_load_descriptions()</code></a> on the
 <a class="link" href="polkit-polkit-context.html#PolKitContext"><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
 method will return <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a>.</p>
 <p>
 
@@ -308,7 +308,7 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
 <td> string or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if descriptions are not loaded - caller shall not free this string
 </td>
 </tr>
@@ -317,9 +317,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2744492"></a><h3>
+<a name="id2724953"></a><h3>
 <a name="polkit-policy-file-entry-get-action-message"></a>polkit_policy_file_entry_get_action_message ()</h3>
-<a class="indexterm" name="id2744506"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_message
+<a class="indexterm" name="id2724968"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_message
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Get the message describing the action that this policy entry
@@ -332,7 +332,7 @@ will be returned in the current locale.
 Note, if <a class="link" href="polkit-polkit-context.html#polkit-context-set-load-descriptions"><code class="function">polkit_context_set_load_descriptions()</code></a> on the
 <a class="link" href="polkit-polkit-context.html#PolKitContext"><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
 method will return <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a>.</p>
 <p>
 
@@ -348,7 +348,7 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
 <td> string or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if descriptions are not loaded - caller shall not free this string
 </td>
 </tr>
@@ -357,9 +357,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2744620"></a><h3>
+<a name="id2725082"></a><h3>
 <a name="polkit-policy-file-entry-get-action-vendor"></a>polkit_policy_file_entry_get_action_vendor ()</h3>
-<a class="indexterm" name="id2744637"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_vendor
+<a class="indexterm" name="id2725099"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_vendor
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Get the name of the vendor of this action.
@@ -368,7 +368,7 @@ Get the name of the vendor of this action.
 Note, if <a class="link" href="polkit-polkit-context.html#polkit-context-set-load-descriptions"><code class="function">polkit_context_set_load_descriptions()</code></a> on the
 <a class="link" href="polkit-polkit-context.html#PolKitContext"><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
 method will return <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a>.</p>
 <p>
 
@@ -384,7 +384,7 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
 <td> string or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if descriptions are not loaded or vendor
 tag isn't set - caller shall not free this string
 
@@ -397,9 +397,9 @@ tag isn't set - caller shall not free this string
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2744745"></a><h3>
+<a name="id2725206"></a><h3>
 <a name="polkit-policy-file-entry-get-action-vendor-url"></a>polkit_policy_file_entry_get_action_vendor_url ()</h3>
-<a class="indexterm" name="id2744761"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_vendor_url
+<a class="indexterm" name="id2725223"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_vendor_url
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Get the URL of the vendor of this action.
@@ -408,7 +408,7 @@ Get the URL of the vendor of this action.
 Note, if <a class="link" href="polkit-polkit-context.html#polkit-context-set-load-descriptions"><code class="function">polkit_context_set_load_descriptions()</code></a> on the
 <a class="link" href="polkit-polkit-context.html#PolKitContext"><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
 method will return <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a>.</p>
 <p>
 
@@ -424,7 +424,7 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
 <td> string or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if descriptions are not loaded or vendor
 url isn't set - caller shall not free this string
 
@@ -437,9 +437,9 @@ url isn't set - caller shall not free this string
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2744869"></a><h3>
+<a name="id2725331"></a><h3>
 <a name="polkit-policy-file-entry-get-action-icon-name"></a>polkit_policy_file_entry_get_action_icon_name ()</h3>
-<a class="indexterm" name="id2744886"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_icon_name
+<a class="indexterm" name="id2725347"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_action_icon_name
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Get the name of the icon that represents the action. This name
@@ -449,7 +449,7 @@ conforms to the freedesktop.org icon naming specification.
 Note, if <a class="link" href="polkit-polkit-context.html#polkit-context-set-load-descriptions"><code class="function">polkit_context_set_load_descriptions()</code></a> on the
 <a class="link" href="polkit-polkit-context.html#PolKitContext"><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
 method will return <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a>.</p>
 <p>
 
@@ -465,7 +465,7 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
 <td> string or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if descriptions are not loaded or icon
 tag isn't set - caller shall not free this string
 
@@ -478,9 +478,9 @@ tag isn't set - caller shall not free this string
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2744995"></a><h3>
+<a name="id2725457"></a><h3>
 <a name="polkit-policy-file-entry-annotations-foreach"></a>polkit_policy_file_entry_annotations_foreach ()</h3>
-<a class="indexterm" name="id2745009"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_policy_file_entry_annotations_foreach
+<a class="indexterm" name="id2725471"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_policy_file_entry_annotations_foreach
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry,
                                                          <a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntryAnnotationsForeachFunc">PolKitPolicyFileEntryAnnotationsForeachFunc</a> cb,
                                                          void *user_data);</pre>
@@ -519,9 +519,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2745124"></a><h3>
+<a name="id2725586"></a><h3>
 <a name="polkit-policy-file-entry-get-annotation"></a>polkit_policy_file_entry_get_annotation ()</h3>
-<a class="indexterm" name="id2745138"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_annotation
+<a class="indexterm" name="id2725599"></a><pre class="programlisting">const char*         polkit_policy_file_entry_get_annotation
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry,
                                                          const char *key);</pre>
 <p>
@@ -545,7 +545,7 @@ Look of the value of a given annotation.</p>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
 <td> The value of the annotation or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if not found.
 </td>
 </tr>
@@ -554,9 +554,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2745204"></a><h3>
+<a name="id2725691"></a><h3>
 <a name="polkit-policy-file-entry-get-default-factory"></a>polkit_policy_file_entry_get_default_factory ()</h3>
-<a class="indexterm" name="id2745219"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-default.html#PolKitPolicyDefault">PolKitPolicyDefault</a>* polkit_policy_file_entry_get_default_factory
+<a class="indexterm" name="id2725707"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-default.html#PolKitPolicyDefault">PolKitPolicyDefault</a>* polkit_policy_file_entry_get_default_factory
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
 <p>
 Get the factory defaults for the entry. This may be different that
@@ -587,9 +587,9 @@ defaults.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2745310"></a><h3>
+<a name="id2725806"></a><h3>
 <a name="polkit-policy-file-entry-set-default"></a>polkit_policy_file_entry_set_default ()</h3>
-<a class="indexterm" name="id2745324"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_policy_file_entry_set_default
+<a class="indexterm" name="id2725822"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_policy_file_entry_set_default
                                                         (<a class="link" href="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry">PolKitPolicyFileEntry</a> *policy_file_entry,
                                                          <a class="link" href="polkit-polkit-policy-default.html#PolKitPolicyDefault">PolKitPolicyDefault</a> *defaults,
                                                          <a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error);</pre>
@@ -622,7 +622,7 @@ fail if the caller lacks it.</p>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></p></td>
 <td> return location for error or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a>
 </td>
 </tr>
@@ -643,9 +643,9 @@ href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2745483"></a><div class="refsect2" lang="en"><a name="id2745484"></a></div>
+<a name="id2725996"></a><div class="refsect2" lang="en"><a name="id2725997"></a></div>
 <hr>
-<div class="refsect2" lang="en"><a name="id2745485"></a></div>
+<div class="refsect2" lang="en"><a name="id2725998"></a></div>
 </div>
 </div>
 </body>
