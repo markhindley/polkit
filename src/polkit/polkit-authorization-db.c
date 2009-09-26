@@ -77,7 +77,7 @@ struct _PolKitAuthorizationDB;
 /* PolKitAuthorizationDB structure is defined in polkit/polkit-private.h */
 
 static kit_bool_t
-clear_auth (KitList *list, void *data, void *user_data)
+clear_auth (void *data, void *user_data, KitList *list)
 {
         PolKitAuthorization *auth = (PolKitAuthorization *) data;
         polkit_authorization_unref (auth);
@@ -202,7 +202,7 @@ void
 polkit_authorization_db_debug (PolKitAuthorizationDB *authdb)
 {
         kit_return_if_fail (authdb != NULL);
-        _pk_debug ("PolKitAuthorizationDB: refcount=%d", authdb->refcount);
+        polkit_debug ("PolKitAuthorizationDB: refcount=%d", authdb->refcount);
 }
 
 /**
@@ -342,6 +342,8 @@ _authdb_get_auths_for_uid (PolKitAuthorizationDB *authdb,
                 goto out;
         }
 
+        //kit_warning ("standard_output='%s'", standard_output);
+
         if (standard_output != NULL) {
                 uid_t uid2;
                 len = strlen (standard_output);
@@ -448,6 +450,7 @@ _internal_foreach (PolKitAuthorizationDB       *authdb,
 {
         KitList *l;
         KitList *auths;
+        KitList *auths_copy;
         polkit_bool_t ret;
         char *action_id;
 
@@ -467,7 +470,20 @@ _internal_foreach (PolKitAuthorizationDB       *authdb,
         if (auths == NULL)
                 goto out;
 
-        for (l = auths; l != NULL; l = l->next) {
+        /* have to copy the list and ref the auths because the authdb
+         * may disappear from under us due to revoke_if_one_shot...
+         */
+        auths_copy = kit_list_copy (auths);
+        if (auths_copy == NULL) {
+                polkit_error_set_error (error,
+                                        POLKIT_ERROR_OUT_OF_MEMORY,
+                                        "No memory");
+                goto out;
+        }
+        for (l = auths_copy; l != NULL; l = l->next)
+                polkit_authorization_ref ((PolKitAuthorization *) l->data);
+
+        for (l = auths_copy; l != NULL; l = l->next) {
                 PolKitAuthorization *auth = l->data;
 
                 //kit_warning ("%d: action_id=%s uid=%d", 
@@ -483,9 +499,13 @@ _internal_foreach (PolKitAuthorizationDB       *authdb,
 
                 if (cb (authdb, auth, user_data)) {
                         ret = TRUE;
-                        goto out;
+                        break;
                 }
         }
+
+        for (l = auths_copy; l != NULL; l = l->next)
+                polkit_authorization_unref ((PolKitAuthorization *) l->data);
+        kit_list_free (auths_copy);
 
 out:
         return ret;
@@ -828,13 +848,15 @@ _check_auth_for_caller (PolKitAuthorizationDB *authdb, PolKitAuthorization *auth
                         if (cd->revoke_if_one_shot) {
                                 cd->error = NULL;
                                 if (!polkit_authorization_db_revoke_entry (authdb, auth, &(cd->error))) {
-                                        //kit_warning ("Cannot revoke one-shot auth: %s: %s", 
+                                        //kit_warning ("Cannot revoke one-shot auth: %s: %s",
                                         //           polkit_error_get_error_name (cd->error),
                                         //           polkit_error_get_error_message (cd->error));
                                         /* stop iterating */
                                         ret = TRUE;
                                         goto no_match;
                                 }
+                                /* revoked; now purge internal cache */
+                                _polkit_authorization_db_invalidate_cache (authdb);
                         }
                 }
                 break;
@@ -1227,7 +1249,7 @@ _run_test (void)
                                     test_pu2_lib, sizeof (test_pu2_lib) - 1))
                 goto out;
         if (!kit_file_set_contents (TEST_DATA_DIR "authdb-test/run/PolicyKit/user-pu3.auths", 0644, 
-                                    test_pu3_run, sizeof (test_pu3_run) - 1))
+                                    test_pu3_run, strlen (test_pu3_run)))
                 goto out;
         if (!kit_file_set_contents (TEST_DATA_DIR "authdb-test/lib/PolicyKit/user-pu3.auths", 0644, 
                                     test_pu3_lib, sizeof (test_pu3_lib) - 1))
@@ -1264,7 +1286,7 @@ _run_test (void)
                 //kit_warning ("%p: %d: %s: %s", 
                 //             error, 
                 //             polkit_error_get_error_code (error), 
-                //            polkit_error_get_error_name (error),
+                //             polkit_error_get_error_name (error),
                 //             polkit_error_get_error_message (error));
                 kit_assert (polkit_error_is_set (error) && 
                             polkit_error_get_error_code (error) == POLKIT_ERROR_OUT_OF_MEMORY);

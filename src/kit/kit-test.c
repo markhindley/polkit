@@ -27,8 +27,15 @@
  *
  **************************************************************************/
 
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef HAVE_SOLARIS
+#include <sys/types.h>
+#endif
 #include <kit/kit-test.h>
 #include <kit/kit-memory.h>
 
@@ -91,6 +98,7 @@ kit_test_run (KitTest **tests, size_t num_tests)
                 delta = _kit_memory_get_current_allocations ();
                 if (delta != 0) {
                         printf ("  Unit test leaked %d allocations\n", delta);
+                        _kit_memory_print_outstanding_allocations ();
                         ret = FALSE;
                 }
                 if (num_fd != num_fd_after) {
@@ -114,7 +122,8 @@ kit_test_run (KitTest **tests, size_t num_tests)
                         
                         delta = _kit_memory_get_current_allocations ();
                         if (delta != 0) {
-                                printf ("  Unit test leaked %d allocations\n", delta);
+                                printf ("  Unit test leaked %d allocations:\n", delta);
+                                _kit_memory_print_outstanding_allocations ();
                                 ret = FALSE;
                         }
                         if (num_fd != num_fd_after) {

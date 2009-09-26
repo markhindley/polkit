@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,16 +31,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-action.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2672627" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2615984" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2718569" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2688930" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-result"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2672627"></a><span class="refentrytitle">Results</span>
+<a name="id2615984"></a><span class="refentrytitle">Results</span>
 </h2>
 <p>Results &#8212; Definition of results of PolicyKit queries.</p>
 </td>
@@ -61,7 +61,7 @@ const char*         <a class="link" href="polkit-polkit-result.html#polkit-resul
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2718569"></a><h2>Description</h2>
+<a name="id2688930"></a><h2>Description</h2>
 <p>
 These functions are used to manipulate PolicyKit results.</p>
 <p>
@@ -69,11 +69,11 @@ These functions are used to manipulate PolicyKit results.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2718590"></a><h2>Details</h2>
+<a name="id2665460"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2718600"></a><h3>
+<a name="id2665471"></a><h3>
 <a name="PolKitResult"></a>enum PolKitResult</h3>
-<a class="indexterm" name="id2718613"></a><pre class="programlisting">typedef enum
+<a class="indexterm" name="id2665483"></a><pre class="programlisting">typedef enum
 {
         POLKIT_RESULT_UNKNOWN,
 
@@ -194,9 +194,9 @@ limitations) about one-shot authorizations.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2727469"></a><h3>
+<a name="id2709588"></a><h3>
 <a name="polkit-result-to-string-representation"></a>polkit_result_to_string_representation ()</h3>
-<a class="indexterm" name="id2727482"></a><pre class="programlisting">const char*         polkit_result_to_string_representation
+<a class="indexterm" name="id2709602"></a><pre class="programlisting">const char*         polkit_result_to_string_representation
                                                         (<a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a> result);</pre>
 <p>
 Gives a textual representation of a <a class="link" href="polkit-polkit-result.html#PolKitResult"><span class="type">PolKitResult</span></a> object. This
@@ -218,7 +218,7 @@ be converted back to a <a class="link" href="polkit-polkit-result.html#PolKitRes
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
 <td> string representing the result (do not free) or <a
-href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if the given result is invalid
 </td>
 </tr>
@@ -227,9 +227,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2727582"></a><h3>
+<a name="id2639349"></a><h3>
 <a name="polkit-result-from-string-representation"></a>polkit_result_from_string_representation ()</h3>
-<a class="indexterm" name="id2727596"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_result_from_string_representation
+<a class="indexterm" name="id2639363"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_result_from_string_representation
                                                         (const char *string,
                                                          <a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a> *out_result);</pre>
 <p>
@@ -261,9 +261,9 @@ Given a textual representation of a <a class="link" href="polkit-polkit-result.h
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2721537"></a><div class="refsect2" lang="en"><a name="id2721538"></a></div>
+<a name="id2639478"></a><div class="refsect2" lang="en"><a name="id2639480"></a></div>
 <hr>
-<div class="refsect2" lang="en"><a name="id2721539"></a></div>
+<div class="refsect2" lang="en"><a name="id2639481"></a></div>
 </div>
 </div>
 </body>

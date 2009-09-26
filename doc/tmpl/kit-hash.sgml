@@ -64,10 +64,10 @@ kit-hash
 
 </para>
 
-@hash: 
 @key: 
 @value: 
 @user_data: 
+@hash: 
 @Returns: 
 
 

@@ -37,6 +37,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
+#if HAVE_SOLARIS
+#include <sys/stat.h>
+#endif
 #include <pwd.h>
 #include <grp.h>
 #include <unistd.h>
@@ -100,6 +103,7 @@ _polkit_policy_cache_new (const char *dirname, polkit_bool_t load_descriptions, 
         DIR *dir;
         struct dirent64 *d;
         PolKitPolicyCache *pc;
+        struct stat statbuf;
 
         dir = NULL;
 
@@ -127,21 +131,31 @@ _polkit_policy_cache_new (const char *dirname, polkit_bool_t load_descriptions, 
                 char *filename;
                 static const char suffix[] = ".policy";
 
-                if (d->d_type != DT_REG)
-                        continue;
-
-                filename = d->d_name;
-                name_len = strlen (filename);
-                if (name_len < sizeof (suffix) || strcmp ((filename + name_len - sizeof (suffix) + 1), suffix) != 0)
-                        continue;
-
-                path = kit_strdup_printf ("%s/%s", dirname, filename);
+                path = kit_strdup_printf ("%s/%s", dirname, d->d_name);
                 if (path == NULL) {
                         polkit_error_set_error (error, POLKIT_ERROR_OUT_OF_MEMORY, "Out of memory");
                         goto out;
                 }
 
-                _pk_debug ("Loading %s", path);
+                if (stat (path, &statbuf) != 0)  {
+                        polkit_error_set_error (error, POLKIT_ERROR_GENERAL_ERROR, "stat()");
+                        kit_free (path);
+                        goto out;
+                }
+                
+                if (!S_ISREG (statbuf.st_mode)) {
+                        kit_free (path);
+                        continue;
+                }
+
+                filename = d->d_name;
+                name_len = strlen (filename);
+                if (name_len < sizeof (suffix) || strcmp ((filename + name_len - sizeof (suffix) + 1), suffix) != 0) {
+                        kit_free (path);
+                        continue;
+                }
+
+                polkit_debug ("Loading %s", path);
                 pk_error = NULL;
                 pf = polkit_policy_file_new (path, load_descriptions, &pk_error);
                 kit_free (path);
@@ -155,8 +169,8 @@ _polkit_policy_cache_new (const char *dirname, polkit_bool_t load_descriptions, 
                                 goto out;
                         }
 
-                        //kit_warning ("libpolkit: ignoring malformed policy file: %s", 
-                        //             polkit_error_get_error_message (pk_error));
+                        kit_warning ("libpolkit: ignoring malformed policy file: %s", 
+                                     polkit_error_get_error_message (pk_error));
                         polkit_error_free (pk_error);
                         continue;
                 }
@@ -238,9 +252,9 @@ polkit_policy_cache_debug (PolKitPolicyCache *policy_cache)
         KitList *i;
         kit_return_if_fail (policy_cache != NULL);
 
-        _pk_debug ("PolKitPolicyCache: refcount=%d num_entries=%d ...", 
-                   policy_cache->refcount,
-                   policy_cache->priv_entries == NULL ? 0 : kit_list_length (policy_cache->priv_entries));
+        polkit_debug ("PolKitPolicyCache: refcount=%d num_entries=%d ...", 
+                      policy_cache->refcount,
+                      policy_cache->priv_entries == NULL ? 0 : kit_list_length (policy_cache->priv_entries));
 
         for (i = policy_cache->priv_entries; i != NULL; i = i->next) {
                 PolKitPolicyFileEntry *pfe = i->data;

@@ -82,6 +82,36 @@ oom:
 }
 
 /**
+ * kit_list_copy:
+ * @list: existing list
+ *
+ * Makes a copy of a list. It is not a deep copy.
+ *
+ * Returns: A copy of the new list or #NULL on OOM. Free with kit_list_free().
+ **/
+KitList *
+kit_list_copy (KitList *list)
+{
+        KitList *l;
+        KitList *l2;
+        KitList *j;
+
+        l = NULL;
+        for (j = list; j != NULL; j = j->next) {
+                /* TODO: prepend, then reverse */
+                l2 = kit_list_append (l, j->data);
+                if (l2 == NULL)
+                        goto oom;
+                l = l2;
+        }
+
+        return l;
+oom:
+        kit_list_free (l);
+        return NULL;
+}
+
+/**
  * kit_list_prepend:
  * @list: existing list or #NULL to create a new list
  * @data: data to prepend to the list
@@ -202,7 +232,7 @@ kit_list_foreach (KitList *list, KitListForeachFunc func, void *user_data)
         kit_return_val_if_fail (func != NULL, FALSE);
 
         for (l = list; l != NULL; l = l->next) {
-                if (func (list, l->data, user_data))
+                if (func (l->data, user_data, list))
                         return TRUE;
         }
         
@@ -218,7 +248,7 @@ typedef struct {
 } _Closure;
 
 static kit_bool_t 
-_sum (KitList *list, void *data, void *user_data)
+_sum (void *data, void *user_data, KitList *list)
 {
         _Closure *c = (_Closure*) user_data;
 
@@ -229,7 +259,7 @@ _sum (KitList *list, void *data, void *user_data)
 }
 
 static kit_bool_t 
-_sum2 (KitList *list, void *data, void *user_data)
+_sum2 (void *data, void *user_data, KitList *list)
 {
         _Closure *c = (_Closure*) user_data;
 

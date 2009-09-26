@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,16 +31,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-sysdeps.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2674538" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2664039" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2716812" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2686854" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-types"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2674538"></a><span class="refentrytitle">Basic types</span>
+<a name="id2664039"></a><span class="refentrytitle">Basic types</span>
 </h2>
 <p>Basic types &#8212; Type definitions for common primitive types.</p>
 </td>
@@ -61,7 +61,7 @@ typedef             <a class="link" href="polkit-polkit-types.html#polkit-uint64
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2716812"></a><h2>Description</h2>
+<a name="id2686854"></a><h2>Description</h2>
 <p>
 Type definitions for common primitive types.</p>
 <p>
@@ -69,11 +69,11 @@ Type definitions for common primitive types.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2716832"></a><h2>Details</h2>
+<a name="id2683278"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2700695"></a><h3>
+<a name="id2697496"></a><h3>
 <a name="POLKIT-BEGIN-DECLS:CAPS"></a>POLKIT_BEGIN_DECLS</h3>
-<a class="indexterm" name="id2700706"></a><pre class="programlisting">#define             POLKIT_BEGIN_DECLS</pre>
+<a class="indexterm" name="id2697507"></a><pre class="programlisting">#define             POLKIT_BEGIN_DECLS</pre>
 <p>
 C++ include header guard.</p>
 <p>
@@ -82,9 +82,9 @@ C++ include header guard.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2700725"></a><h3>
+<a name="id2697526"></a><h3>
 <a name="POLKIT-END-DECLS:CAPS"></a>POLKIT_END_DECLS</h3>
-<a class="indexterm" name="id2700737"></a><pre class="programlisting">#define             POLKIT_END_DECLS</pre>
+<a class="indexterm" name="id2697538"></a><pre class="programlisting">#define             POLKIT_END_DECLS</pre>
 <p>
 C++ include header guard.</p>
 <p>
@@ -93,9 +93,9 @@ C++ include header guard.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2700756"></a><h3>
+<a name="id2697557"></a><h3>
 <a name="POLKIT-GNUC-DEPRECATED:CAPS"></a>POLKIT_GNUC_DEPRECATED</h3>
-<a class="indexterm" name="id2700767"></a><pre class="programlisting">#define             POLKIT_GNUC_DEPRECATED</pre>
+<a class="indexterm" name="id2667647"></a><pre class="programlisting">#define             POLKIT_GNUC_DEPRECATED</pre>
 <p>
 Used in front of deprecated functions.</p>
 <p>
@@ -104,9 +104,9 @@ Used in front of deprecated functions.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2700785"></a><h3>
+<a name="id2667666"></a><h3>
 <a name="polkit-bool-t"></a>polkit_bool_t</h3>
-<a class="indexterm" name="id2700798"></a><pre class="programlisting">typedef int polkit_bool_t;
+<a class="indexterm" name="id2667678"></a><pre class="programlisting">typedef int polkit_bool_t;
 </pre>
 <p>
 A boolean, valid values are <a
@@ -120,9 +120,9 @@ href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717238"></a><h3>
+<a name="id2667711"></a><h3>
 <a name="polkit-uint32-t"></a>polkit_uint32_t</h3>
-<a class="indexterm" name="id2717250"></a><pre class="programlisting">typedef unsigned int polkit_uint32_t;
+<a class="indexterm" name="id2667724"></a><pre class="programlisting">typedef unsigned int polkit_uint32_t;
 </pre>
 <p>
 Type for unsigned 32 bit integer.</p>
@@ -132,9 +132,9 @@ Type for unsigned 32 bit integer.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717269"></a><h3>
+<a name="id2667744"></a><h3>
 <a name="polkit-uint64-t"></a>polkit_uint64_t</h3>
-<a class="indexterm" name="id2717281"></a><pre class="programlisting">typedef unsigned long long polkit_uint64_t;
+<a class="indexterm" name="id2667756"></a><pre class="programlisting">typedef unsigned long long polkit_uint64_t;
 </pre>
 <p>
 Type for unsigned 64 bit integer.</p>
@@ -144,9 +144,9 @@ Type for unsigned 64 bit integer.</p>
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2717302"></a><div class="refsect2" lang="en"><a name="id2717304"></a></div>
+<a name="id2664202"></a><div class="refsect2" lang="en"><a name="id2664204"></a></div>
 <hr>
-<div class="refsect2" lang="en"><a name="id2717305"></a></div>
+<div class="refsect2" lang="en"><a name="id2664205"></a></div>
 </div>
 </div>
 </body>

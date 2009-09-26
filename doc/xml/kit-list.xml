@@ -24,9 +24,9 @@
 
 
                     <link linkend="KitList">KitList</link>;
-<link linkend="kit-bool-t">kit_bool_t</link>          (<link linkend="KitListForeachFunc">*KitListForeachFunc</link>)               (<link linkend="KitList">KitList</link> *list,
-                                                         <link linkend="void">void</link> *data,
-                                                         <link linkend="void">void</link> *user_data);
+<link linkend="kit-bool-t">kit_bool_t</link>          (<link linkend="KitListForeachFunc">*KitListForeachFunc</link>)               (<link linkend="void">void</link> *data,
+                                                         <link linkend="void">void</link> *user_data,
+                                                         <link linkend="KitList">KitList</link> *list);
 <link linkend="KitList">KitList</link>*            <link linkend="kit-list-append">kit_list_append</link>                     (<link linkend="KitList">KitList</link> *list,
                                                          <link linkend="void">void</link> *data);
 <link linkend="KitList">KitList</link>*            <link linkend="kit-list-prepend">kit_list_prepend</link>                    (<link linkend="KitList">KitList</link> *list,
@@ -91,22 +91,22 @@ Public members of the <link linkend="KitList"><type>KitList</type></link> data s
 </variablelist></refsect2>
 <refsect2>
 <title><anchor id="KitListForeachFunc" role="function"/>KitListForeachFunc ()</title>
-<indexterm><primary>KitListForeachFunc</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          (*KitListForeachFunc)               (<link linkend="KitList">KitList</link> *list,
-                                                         <link linkend="void">void</link> *data,
-                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<indexterm><primary>KitListForeachFunc</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          (*KitListForeachFunc)               (<link linkend="void">void</link> *data,
+                                                         <link linkend="void">void</link> *user_data,
+                                                         <link linkend="KitList">KitList</link> *list);</programlisting>
 <para>
 Type signature for callback function used in <link linkend="kit-list-foreach"><function>kit_list_foreach()</function></link>.</para>
 <para>
 
 </para><variablelist role="params">
-<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
-<listitem><simpara> the list
-</simpara></listitem></varlistentry>
 <varlistentry><term><parameter>data</parameter>&nbsp;:</term>
 <listitem><simpara> data of link entry
 </simpara></listitem></varlistentry>
 <varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
 <listitem><simpara> user data passed to <link linkend="kit-list-foreach"><function>kit_list_foreach()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> the list
 </simpara></listitem></varlistentry>
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Return <link linkend="TRUE:CAPS"><type>TRUE</type></link> to short-circuit, e.g. stop the iteration.
 </simpara></listitem></varlistentry>

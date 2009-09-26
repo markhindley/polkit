@@ -49,3 +49,37 @@ polkit-simple
 @Returns: 
 
 
+<!-- ##### FUNCTION polkit_dbus_error_generate ##### -->
+<para>
+
+</para>
+
+@action: 
+@result: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_dbus_error_parse ##### -->
+<para>
+
+</para>
+
+@error: 
+@action: 
+@result: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_dbus_error_parse_from_strings ##### -->
+<para>
+
+</para>
+
+@error_name: 
+@error_message: 
+@action: 
+@result: 
+@Returns: 
+
+

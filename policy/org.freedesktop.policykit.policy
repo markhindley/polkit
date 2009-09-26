@@ -18,7 +18,7 @@
 
   <action id="org.freedesktop.policykit.revoke">
     <description>Revoke authorizations from other users</description>
-    <message>Authentication is required to revoke authorizations granted by other users</message>
+    <message>Authentication is required to revoke authorizations other users</message>
     <defaults>
       <allow_any>no</allow_any>
       <allow_inactive>no</allow_inactive>

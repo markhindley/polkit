@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -31,16 +31,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-session.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2672960" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2672606" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2729672" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id2704000" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-seat"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2672960"></a><span class="refentrytitle">Seat</span>
+<a name="id2672606"></a><span class="refentrytitle">Seat</span>
 </h2>
 <p>Seat &#8212; Represents a ConsoleKit Seat.</p>
 </td>
@@ -65,7 +65,7 @@ void                <a class="link" href="polkit-polkit-seat.html#polkit-seat-de
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2729672"></a><h2>Description</h2>
+<a name="id2704000"></a><h2>Description</h2>
 <p>
 This class is used to represent a seat.</p>
 <p>
@@ -73,11 +73,11 @@ This class is used to represent a seat.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2729691"></a><h2>Details</h2>
+<a name="id2704019"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2729702"></a><h3>
+<a name="id2704259"></a><h3>
 <a name="PolKitSeat"></a>PolKitSeat</h3>
-<a class="indexterm" name="id2729714"></a><pre class="programlisting">typedef struct _PolKitSeat PolKitSeat;</pre>
+<a class="indexterm" name="id2704271"></a><pre class="programlisting">typedef struct _PolKitSeat PolKitSeat;</pre>
 <p>
 Objects of this class are used to record information about a
 seat.</p>
@@ -87,9 +87,9 @@ seat.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2729734"></a><h3>
+<a name="id2704291"></a><h3>
 <a name="polkit-seat-new"></a>polkit_seat_new ()</h3>
-<a class="indexterm" name="id2729746"></a><pre class="programlisting"><a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a>*         polkit_seat_new                     (void);</pre>
+<a class="indexterm" name="id2704303"></a><pre class="programlisting"><a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a>*         polkit_seat_new                     (void);</pre>
 <p>
 Creates a new <a class="link" href="polkit-polkit-seat.html#PolKitSeat"><span class="type">PolKitSeat</span></a> object.</p>
 <p>
@@ -106,9 +106,9 @@ Creates a new <a class="link" href="polkit-polkit-seat.html#PolKitSeat"><span cl
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2729794"></a><h3>
+<a name="id2704351"></a><h3>
 <a name="polkit-seat-ref"></a>polkit_seat_ref ()</h3>
-<a class="indexterm" name="id2729806"></a><pre class="programlisting"><a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a>*         polkit_seat_ref                     (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
+<a class="indexterm" name="id2704363"></a><pre class="programlisting"><a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a>*         polkit_seat_ref                     (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -132,9 +132,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726483"></a><h3>
+<a name="id2691744"></a><h3>
 <a name="polkit-seat-unref"></a>polkit_seat_unref ()</h3>
-<a class="indexterm" name="id2726495"></a><pre class="programlisting">void                polkit_seat_unref                   (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
+<a class="indexterm" name="id2691757"></a><pre class="programlisting">void                polkit_seat_unref                   (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -153,9 +153,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726548"></a><h3>
+<a name="id2691809"></a><h3>
 <a name="polkit-seat-set-ck-objref"></a>polkit_seat_set_ck_objref ()</h3>
-<a class="indexterm" name="id2726559"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_seat_set_ck_objref           (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat,
+<a class="indexterm" name="id2691820"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_seat_set_ck_objref           (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat,
                                                          const char *ck_objref);</pre>
 <p>
 Set the D-Bus object path to the ConsoleKit seat object.</p>
@@ -187,9 +187,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726649"></a><h3>
+<a name="id2707602"></a><h3>
 <a name="polkit-seat-get-ck-objref"></a>polkit_seat_get_ck_objref ()</h3>
-<a class="indexterm" name="id2726660"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_seat_get_ck_objref           (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat,
+<a class="indexterm" name="id2707613"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_seat_get_ck_objref           (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat,
                                                          char **out_ck_objref);</pre>
 <p>
 Get the D-Bus object path to the ConsoleKit seat object.</p>
@@ -219,9 +219,9 @@ Get the D-Bus object path to the ConsoleKit seat object.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726744"></a><h3>
+<a name="id2707697"></a><h3>
 <a name="polkit-seat-debug"></a>polkit_seat_debug ()</h3>
-<a class="indexterm" name="id2726757"></a><pre class="programlisting">void                polkit_seat_debug                   (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
+<a class="indexterm" name="id2707710"></a><pre class="programlisting">void                polkit_seat_debug                   (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
 <p>
 Print debug details</p>
 <p>
@@ -238,9 +238,9 @@ Print debug details</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726806"></a><h3>
+<a name="id2707759"></a><h3>
 <a name="polkit-seat-validate"></a>polkit_seat_validate ()</h3>
-<a class="indexterm" name="id2726817"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_seat_validate                (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
+<a class="indexterm" name="id2707770"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_seat_validate                (<a class="link" href="polkit-polkit-seat.html#PolKitSeat">PolKitSeat</a> *seat);</pre>
 <p>
 Validate the object</p>
 <p>
@@ -266,9 +266,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2726885"></a><div class="refsect2" lang="en"><a name="id2726886"></a></div>
+<a name="id2710819"></a><div class="refsect2" lang="en"><a name="id2710820"></a></div>
 <hr>
-<div class="refsect2" lang="en"><a name="id2726888"></a></div>
+<div class="refsect2" lang="en"><a name="id2710822"></a></div>
 </div>
 </div>
 </body>

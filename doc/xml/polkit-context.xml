@@ -157,7 +157,7 @@ timeframe.</para>
 <para>
 Type for function supplied by the application to integrate a watch
 on a file descriptor into the applications main loop. The
-application must call <link linkend="polkit-grant-io-func"><function>polkit_grant_io_func()</function></link> when there is data
+application must call <link linkend="polkit-context-io-func"><function>polkit_context_io_func()</function></link> when there is data
 to read from the file descriptor.
 </para>
 <para>

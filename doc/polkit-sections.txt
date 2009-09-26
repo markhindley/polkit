@@ -118,6 +118,9 @@ kit_spawn_sync
 polkit_check_auth
 polkit_check_authv
 polkit_auth_obtain
+polkit_dbus_error_generate
+polkit_dbus_error_parse
+polkit_dbus_error_parse_from_strings
 </SECTION>
 
 <SECTION>
@@ -197,11 +200,15 @@ PolKitAuthorizationConstraintType
 PolKitAuthorizationConstraint
 polkit_authorization_constraint_get_require_local
 polkit_authorization_constraint_get_require_active
+polkit_authorization_constraint_get_require_exe
+polkit_authorization_constraint_get_require_selinux_context
 polkit_authorization_constraint_ref
 polkit_authorization_constraint_unref
 polkit_authorization_constraint_debug
 polkit_authorization_constraint_validate
 polkit_authorization_constraint_type
+polkit_authorization_constraint_get_exe
+polkit_authorization_constraint_get_selinux_context
 polkit_authorization_constraint_check_session
 polkit_authorization_constraint_check_caller
 polkit_authorization_constraint_to_string
@@ -219,6 +226,7 @@ PolKitAuthorizationDB
 <FILE>polkit-sysdeps</FILE>
 polkit_sysdeps_get_start_time_for_pid
 polkit_sysdeps_get_exe_for_pid
+polkit_sysdeps_get_exe_for_pid_with_helper
 </SECTION>
 
 <SECTION>
@@ -379,6 +387,9 @@ polkit_action_get_action_id
 polkit_action_debug
 polkit_action_validate
 polkit_action_validate_id
+polkit_action_equal
+polkit_action_to_string_representation
+polkit_action_new_from_string_representation
 </SECTION>
 
 <SECTION>

@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -44,7 +44,20 @@
 <p>
       A Mechanism needs to declare what Actions it supports. This is
       achieved by dropping one or more XML files with the suffix <code class="literal">.policy</code>
-      into the <code class="literal">/usr/share/PolicyKit/policy</code> directory. An example:
+      into the <code class="literal">/usr/share/PolicyKit/policy</code> directory.
+    </p>
+<p>
+      The name of the XML file is significant. Each XML file can only
+      declare actions from the namespace of it's own name; for example
+      actions <code class="literal">org.foobar.action-a</code>, <code class="literal">org.foobar.action-b</code>
+      and <code class="literal">org.foobar.action-c</code> would all go into the
+      file <code class="literal">org.foobar.policy</code> while
+      actions <code class="literal">com.my-company.product-awesome.action-a</code>, <code class="literal">com.mycompany.product-awesome.action-b</code>
+      would go into the
+      file <code class="literal">com.mycompany.product-awesome.policy</code>.
+    </p>
+<p>
+      An example of a <code class="literal">.policy</code> file would be the following:
     </p>
 <pre class="programlisting">
       

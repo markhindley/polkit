@@ -14,12 +14,12 @@
 <link rel="chapter" href="introduction.html" title="Introduction">
 <link rel="chapter" href="model.html" title="PolicyKit Model">
 <link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
-<link rel="reference" href="ref-internal.html" title="Internal API Reference">
 <link rel="reference" href="ref-core.html" title="Core API Reference">
 <link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
 <link rel="index" href="ix01.html" title="Index of deprecated symbols">
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
-<link rel="index" href="ix03.html" title="Index">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
 <link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -40,7 +40,7 @@
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1" lang="en">
-<a name="id2704160"></a><h2>DESCRIPTION</h2>
+<a name="id2684495"></a><h2>DESCRIPTION</h2>
 <p>
       The <code class="filename">/etc/PolicyKit/PolicyKit.conf</code>
       configuration file provides a way for system administrators to
@@ -62,7 +62,7 @@
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2675643"></a><h2>FILE FORMAT</h2>
+<a name="id2693840"></a><h2>FILE FORMAT</h2>
 <p>
       The configuration file is an XML document. It must have the
       following doctype declaration:
@@ -78,7 +78,7 @@
       The following elements may be present in the configuration file:
     </p>
 <div class="refsect2" lang="en">
-<a name="id2711600"></a><h3>config</h3>
+<a name="id2669124"></a><h3>config</h3>
 <p>
         This is the root element. A single
         attribute <span class="emphasis"><em>version</em></span> must be present and
@@ -88,7 +88,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2683819"></a><h3>match</h3>
+<a name="id2667836"></a><h3>match</h3>
 <p>
         This element is for matching information related to the
         decision making process and includes values describing both
@@ -127,7 +127,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2712573"></a><h3>return</h3>
+<a name="id2677298"></a><h3>return</h3>
 <p>
         This element is for used to specify what result the PolicyKit
         library will return. It can only be embedded in
@@ -206,7 +206,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2733401"></a><h3>define_admin_auth</h3>
+<a name="id2704472"></a><h3>define_admin_auth</h3>
 <p>
         This element is used to specify the meaning of
         <span class="emphasis"><em>"authenticate as administrator"</em></span>. It
@@ -258,7 +258,7 @@
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2714954"></a><h2>EXAMPLES</h2>
+<a name="id2664888"></a><h2>EXAMPLES</h2>
 <p>
       For brevity, the standard XML and DOCTYPE headers as well as
       the top-level <span class="emphasis"><em>config</em></span> are omitted in the
@@ -268,7 +268,7 @@
       to learn about the actions available on your system.
     </p>
 <div class="refsect2" lang="en">
-<a name="id2694422"></a><h3>ALLOW EVERYTHING</h3>
+<a name="id2690554"></a><h3>ALLOW EVERYTHING</h3>
 <p>
         The users "davidz" and "bateman" are allowed to do any
         action:
@@ -283,7 +283,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2699998"></a><h3>MOUNTING FIXED DRIVES</h3>
+<a name="id2701205"></a><h3>MOUNTING FIXED DRIVES</h3>
 <p>
         Suppose the
         action <span class="emphasis"><em>org.freedesktop.hal.storage.mount-fixed</em></span>
@@ -313,7 +313,7 @@
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2717886"></a><h3>AVOIDING THE ROOT PASSWORD</h3>
+<a name="id2687045"></a><h3>AVOIDING THE ROOT PASSWORD</h3>
 <p>
         Suppose the group <span class="emphasis"><em>wheel</em></span> contains the
         users on a system who are allowed to carry out administrative
@@ -333,14 +333,14 @@
 </div>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2759569"></a><h2>AUTHOR</h2>
+<a name="id2666827"></a><h2>AUTHOR</h2>
 <p>
       Written by David Zeuthen <code class="email">&lt;<a class="email" href="mailto:david@fubar.dk">david@fubar.dk</a>&gt;</code> with
       a lot of help from many others.
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2708726"></a><h2>BUGS</h2>
+<a name="id2664547"></a><h2>BUGS</h2>
 <p>
       Please send bug reports to either the distribution or the
       hal mailing list,
@@ -349,7 +349,7 @@
     </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2689959"></a><h2>SEE ALSO</h2>
+<a name="id2681381"></a><h2>SEE ALSO</h2>
 <p>
       <span class="citerefentry"><span class="refentrytitle">PolicyKit</span>(8)</span>, 
       <span class="citerefentry"><span class="refentrytitle">polkit-config-file-validate</span>(1)</span>, 

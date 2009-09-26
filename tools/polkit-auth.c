@@ -37,6 +37,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
+#ifdef HAVE_SOLARIS
+#include <sys/wait.h>
+#endif
 #include <pwd.h>
 #include <grp.h>
 #include <unistd.h>
@@ -396,6 +399,14 @@ _print_constraint (PolKitAuthorization *auth, PolKitAuthorizationConstraint *aut
                 break;
         case POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE:
                 printf ("  Constraint:  Session must be active\n");
+                break;
+        case POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE:
+                printf ("  Constraint:  Only allowed for program %s\n", 
+                        polkit_authorization_constraint_get_exe (authc));
+                break;
+        case POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_SELINUX_CONTEXT:
+                printf ("  Constraint:  Only allowed for SELinux Context %s\n", 
+                        polkit_authorization_constraint_get_selinux_context (authc));
                 break;
         }
         return FALSE;

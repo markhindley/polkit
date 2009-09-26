@@ -54,6 +54,9 @@
 /* SELinux support */
 #undef HAVE_SELINUX
 
+/* Is this a Solaris system? */
+#undef HAVE_SOLARIS
+
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 
@@ -125,6 +128,18 @@
 
 /* If using the dummy authorization database */
 #undef POLKIT_AUTHDB_DUMMY
+
+/* Authentication Framework to use */
+#undef POLKIT_AUTHFW
+
+/* If using no authentication framework */
+#undef POLKIT_AUTHFW_NONE
+
+/* If using the PAM authentication framework */
+#undef POLKIT_AUTHFW_PAM
+
+/* If using the Shadow authentication framework */
+#undef POLKIT_AUTHFW_SHADOW
 
 /* Build test code */
 #undef POLKIT_BUILD_TESTS

@@ -94,3 +94,31 @@ polkit-action
 @Returns: 
 
 
+<!-- ##### FUNCTION polkit_action_equal ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_to_string_representation ##### -->
+<para>
+
+</para>
+
+@action: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_new_from_string_representation ##### -->
+<para>
+
+</para>
+
+@str: 
+@Returns: 
+
+

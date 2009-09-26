@@ -183,7 +183,7 @@ _parse_entry (const char *key, const char *value, void *user_data)
                 epd->cur_attr |= ATTR_PID;
 
                 auth->pid = strtoul (value, &ep, 10);
-                if (*ep != '\0')
+                if (strlen (value) == 0 || *ep != '\0')
                         goto error;
 
         } else if (strcmp (key, "pid-start-time") == 0) {
@@ -193,7 +193,7 @@ _parse_entry (const char *key, const char *value, void *user_data)
                 epd->cur_attr |= ATTR_PID_START_TIME;
 
                 auth->pid_start_time = strtoull (value, &ep, 10);
-                if (*ep != '\0')
+                if (strlen (value) == 0 || *ep != '\0')
                         goto error;
 
         } else if (strcmp (key, "session-id") == 0) {
@@ -225,7 +225,7 @@ _parse_entry (const char *key, const char *value, void *user_data)
                 epd->cur_attr |= ATTR_WHEN;
 
                 auth->when = strtoull (value, &ep, 10);
-                if (*ep != '\0')
+                if (strlen (value) == 0 || *ep != '\0')
                         goto error;
 
         } else if (strcmp (key, "auth-as") == 0) {
@@ -235,7 +235,7 @@ _parse_entry (const char *key, const char *value, void *user_data)
                 epd->cur_attr |= ATTR_AUTH_AS;
 
                 auth->authenticated_as_uid = strtoul (value, &ep, 10);
-                if (*ep != '\0')
+                if (strlen (value) == 0 || *ep != '\0')
                         goto error;
 
         } else if (strcmp (key, "granted-by") == 0) {
@@ -245,7 +245,7 @@ _parse_entry (const char *key, const char *value, void *user_data)
                 epd->cur_attr |= ATTR_GRANTED_BY;
 
                 auth->explicitly_granted_by = strtoul (value, &ep, 10);
-                if (*ep != '\0')
+                if (strlen (value) == 0 || *ep != '\0')
                         goto error;
 
         } else if (strcmp (key, "constraint") == 0) {
@@ -378,13 +378,13 @@ void
 polkit_authorization_debug (PolKitAuthorization *auth)
 {
         kit_return_if_fail (auth != NULL);
-        _pk_debug ("PolKitAuthorization: refcount=%d", auth->refcount);
-        _pk_debug (" scope          = %d",  auth->scope);
-        _pk_debug (" pid            = %d",  auth->pid);
-        _pk_debug (" pid_start_time = %Lu", auth->pid_start_time);
-        _pk_debug (" action_id      = %s",  auth->action_id);
-        _pk_debug (" when           = %Lu", (polkit_uint64_t) auth->when);
-        _pk_debug (" auth_as_uid    = %d",  auth->authenticated_as_uid);
+        polkit_debug ("PolKitAuthorization: refcount=%d", auth->refcount);
+        polkit_debug (" scope          = %d",  auth->scope);
+        polkit_debug (" pid            = %d",  auth->pid);
+        polkit_debug (" pid_start_time = %Lu", auth->pid_start_time);
+        polkit_debug (" action_id      = %s",  auth->action_id);
+        polkit_debug (" when           = %Lu", (polkit_uint64_t) auth->when);
+        polkit_debug (" auth_as_uid    = %d",  auth->authenticated_as_uid);
 }
 
 /**
