@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-context">
 <refmeta>
-<refentrytitle role="top_of_page">Context</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-context.top_of_page">Context</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-context.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
                     <link linkend="PolKitContext">PolKitContext</link>;
 <link linkend="void">void</link>                (<link linkend="PolKitContextConfigChangedCB">*PolKitContextConfigChangedCB</link>)     (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="void">void</link> *user_data);
@@ -80,7 +77,7 @@
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-context.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This class is used to represent the interface to PolicyKit - it is
@@ -108,19 +105,19 @@ sample application on how to use this in the GNOME desktop.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-context.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="PolKitContext" role="struct"/>PolKitContext</title>
-<indexterm><primary>PolKitContext</primary></indexterm><programlisting>typedef struct _PolKitContext PolKitContext;</programlisting>
+<refsect2 id="PolKitContext" role="struct">
+<title>PolKitContext</title>
+<indexterm zone="PolKitContext"><primary>PolKitContext</primary></indexterm><programlisting>typedef struct _PolKitContext PolKitContext;</programlisting>
 <para>
 Context object for users of PolicyKit.</para>
 <para>
 
 </para></refsect2>
-<refsect2>
-<title><anchor id="PolKitContextConfigChangedCB" role="function"/>PolKitContextConfigChangedCB ()</title>
-<indexterm><primary>PolKitContextConfigChangedCB</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitContextConfigChangedCB)     (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="PolKitContextConfigChangedCB" role="function">
+<title>PolKitContextConfigChangedCB ()</title>
+<indexterm zone="PolKitContextConfigChangedCB"><primary>PolKitContextConfigChangedCB</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitContextConfigChangedCB)     (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="void">void</link> *user_data);</programlisting>
 <para>
 The type of the callback function for when configuration changes.
@@ -150,9 +147,9 @@ timeframe.</para>
 <listitem><simpara> user data
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="PolKitContextAddIOWatch" role="function"/>PolKitContextAddIOWatch ()</title>
-<indexterm><primary>PolKitContextAddIOWatch</primary></indexterm><programlisting><link linkend="int">int</link>                 (*PolKitContextAddIOWatch)          (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="PolKitContextAddIOWatch" role="function">
+<title>PolKitContextAddIOWatch ()</title>
+<indexterm zone="PolKitContextAddIOWatch"><primary>PolKitContextAddIOWatch</primary></indexterm><programlisting><link linkend="int">int</link>                 (*PolKitContextAddIOWatch)          (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="int">int</link> fd);</programlisting>
 <para>
 Type for function supplied by the application to integrate a watch
@@ -206,9 +203,9 @@ out:
 identifier for the watch.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="PolKitContextRemoveIOWatch" role="function"/>PolKitContextRemoveIOWatch ()</title>
-<indexterm><primary>PolKitContextRemoveIOWatch</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitContextRemoveIOWatch)       (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="PolKitContextRemoveIOWatch" role="function">
+<title>PolKitContextRemoveIOWatch ()</title>
+<indexterm zone="PolKitContextRemoveIOWatch"><primary>PolKitContextRemoveIOWatch</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitContextRemoveIOWatch)       (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="int">int</link> watch_id);</programlisting>
 <para>
 Type for function supplied by the application to remove a watch set
@@ -236,9 +233,9 @@ io_remove_watch (PolKitContext *pk_context, int watch_id)
 of type <link linkend="PolKitContextAddIOWatch"><type>PolKitContextAddIOWatch</type></link>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-new" role="function"/>polkit_context_new ()</title>
-<indexterm><primary>polkit_context_new</primary></indexterm><programlisting><link linkend="PolKitContext">PolKitContext</link>*      polkit_context_new                  (void);</programlisting>
+<refsect2 id="polkit-context-new" role="function">
+<title>polkit_context_new ()</title>
+<indexterm zone="polkit-context-new"><primary>polkit_context_new</primary></indexterm><programlisting><link linkend="PolKitContext">PolKitContext</link>*      polkit_context_new                  (void);</programlisting>
 <para>
 Create a new context</para>
 <para>
@@ -247,9 +244,9 @@ Create a new context</para>
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-set-config-changed" role="function"/>polkit_context_set_config_changed ()</title>
-<indexterm><primary>polkit_context_set_config_changed</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_config_changed   (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="polkit-context-set-config-changed" role="function">
+<title>polkit_context_set_config_changed ()</title>
+<indexterm zone="polkit-context-set-config-changed"><primary>polkit_context_set_config_changed</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_config_changed   (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="PolKitContextConfigChangedCB">PolKitContextConfigChangedCB</link> cb,
                                                          <link linkend="void">void</link> *user_data);</programlisting>
 <para>
@@ -282,9 +279,9 @@ This method must be called before <link linkend="polkit-context-init"><function>
 <listitem><simpara> user data to pass to the callback
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-set-io-watch-functions" role="function"/>polkit_context_set_io_watch_functions ()</title>
-<indexterm><primary>polkit_context_set_io_watch_functions</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_io_watch_functions
+<refsect2 id="polkit-context-set-io-watch-functions" role="function">
+<title>polkit_context_set_io_watch_functions ()</title>
+<indexterm zone="polkit-context-set-io-watch-functions"><primary>polkit_context_set_io_watch_functions</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_io_watch_functions
                                                         (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="PolKitContextAddIOWatch">PolKitContextAddIOWatch</link> io_add_watch_func,
                                                          <link linkend="PolKitContextRemoveIOWatch">PolKitContextRemoveIOWatch</link> io_remove_watch_func);</programlisting>
@@ -306,9 +303,9 @@ This method must be called before <link linkend="polkit-context-init"><function>
 <listitem><simpara> the function that the PolicyKit library can invoke to stop watching a file descriptor
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-set-load-descriptions" role="function"/>polkit_context_set_load_descriptions ()</title>
-<indexterm><primary>polkit_context_set_load_descriptions</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_load_descriptions
+<refsect2 id="polkit-context-set-load-descriptions" role="function">
+<title>polkit_context_set_load_descriptions ()</title>
+<indexterm zone="polkit-context-set-load-descriptions"><primary>polkit_context_set_load_descriptions</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_load_descriptions
                                                         (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
 <para>
 Set whether policy descriptions should be loaded. By default these
@@ -324,9 +321,9 @@ This method must be called before <link linkend="polkit-context-init"><function>
 <listitem><simpara> the context
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-init" role="function"/>polkit_context_init ()</title>
-<indexterm><primary>polkit_context_init</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_context_init                 (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="polkit-context-init" role="function">
+<title>polkit_context_init ()</title>
+<indexterm zone="polkit-context-init"><primary>polkit_context_init</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_context_init                 (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
 <para>
 Initializes a new context; loads PolicyKit files from
@@ -343,9 +340,9 @@ Initializes a new context; loads PolicyKit files from
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="FALSE:CAPS"><type>FALSE</type></link> if <parameter>error</parameter> was set, otherwise <link linkend="TRUE:CAPS"><type>TRUE</type></link>
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-ref" role="function"/>polkit_context_ref ()</title>
-<indexterm><primary>polkit_context_ref</primary></indexterm><programlisting><link linkend="PolKitContext">PolKitContext</link>*      polkit_context_ref                  (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<refsect2 id="polkit-context-ref" role="function">
+<title>polkit_context_ref ()</title>
+<indexterm zone="polkit-context-ref"><primary>polkit_context_ref</primary></indexterm><programlisting><link linkend="PolKitContext">PolKitContext</link>*      polkit_context_ref                  (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
 <para>
 Increase reference count.</para>
 <para>
@@ -357,9 +354,9 @@ Increase reference count.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-unref" role="function"/>polkit_context_unref ()</title>
-<indexterm><primary>polkit_context_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_unref                (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<refsect2 id="polkit-context-unref" role="function">
+<title>polkit_context_unref ()</title>
+<indexterm zone="polkit-context-unref"><primary>polkit_context_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_unref                (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
 <para>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -371,9 +368,9 @@ objects are decresed by one.</para>
 <listitem><simpara> the context object
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-force-reload" role="function" condition="since:0.7"/>polkit_context_force_reload ()</title>
-<indexterm role="0.7"><primary>polkit_context_force_reload</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_force_reload         (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<refsect2 id="polkit-context-force-reload" role="function" condition="since:0.7">
+<title>polkit_context_force_reload ()</title>
+<indexterm zone="polkit-context-force-reload" role="0.7"><primary>polkit_context_force_reload</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_force_reload         (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
 <para>
 Force a reload. 
 </para>
@@ -388,9 +385,9 @@ config changed callback.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7 
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-io-func" role="function"/>polkit_context_io_func ()</title>
-<indexterm><primary>polkit_context_io_func</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_io_func              (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="polkit-context-io-func" role="function">
+<title>polkit_context_io_func ()</title>
+<indexterm zone="polkit-context-io-func"><primary>polkit_context_io_func</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_io_func              (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="int">int</link> fd);</programlisting>
 <para>
 Method that the application must call when there is data to read
@@ -406,9 +403,9 @@ type <link linkend="PolKitContextAddIOWatch"><type>PolKitContextAddIOWatch</type
 <listitem><simpara> the file descriptor passed to the supplied function of type <link linkend="PolKitContextAddIOWatch"><type>PolKitContextAddIOWatch</type></link>.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-get-policy-cache" role="function"/>polkit_context_get_policy_cache ()</title>
-<indexterm><primary>polkit_context_get_policy_cache</primary></indexterm><programlisting><link linkend="PolKitPolicyCache">PolKitPolicyCache</link>*  polkit_context_get_policy_cache     (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<refsect2 id="polkit-context-get-policy-cache" role="function">
+<title>polkit_context_get_policy_cache ()</title>
+<indexterm zone="polkit-context-get-policy-cache"><primary>polkit_context_get_policy_cache</primary></indexterm><programlisting><link linkend="PolKitPolicyCache">PolKitPolicyCache</link>*  polkit_context_get_policy_cache     (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
 <para>
 Get the <link linkend="PolKitPolicyCache"><type>PolKitPolicyCache</type></link> object that holds all the defined policies as well as their defaults.</para>
 <para>
@@ -420,9 +417,9 @@ Get the <link linkend="PolKitPolicyCache"><type>PolKitPolicyCache</type></link> 
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the <link linkend="PolKitPolicyCache"><type>PolKitPolicyCache</type></link> object. Caller shall not unref it.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-can-session-do-action" role="function" condition="deprecated:0.7: use polkit_context_is_session_authorized() instead."/>polkit_context_can_session_do_action ()</title>
-<indexterm role="deprecated"><primary>polkit_context_can_session_do_action</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_can_session_do_action
+<refsect2 id="polkit-context-can-session-do-action" role="function" condition="deprecated:0.7: use polkit_context_is_session_authorized() instead.">
+<title>polkit_context_can_session_do_action ()</title>
+<indexterm zone="polkit-context-can-session-do-action" role="deprecated"><primary>polkit_context_can_session_do_action</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_can_session_do_action
                                                         (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="PolKitAction">PolKitAction</link> *action,
                                                          <link linkend="PolKitSession">PolKitSession</link> *session);</programlisting>
@@ -450,9 +447,9 @@ This can fail with the following errors:
 
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-can-caller-do-action" role="function" condition="deprecated:0.7: use polkit_context_is_caller_authorized() instead."/>polkit_context_can_caller_do_action ()</title>
-<indexterm role="deprecated"><primary>polkit_context_can_caller_do_action</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_can_caller_do_action (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="polkit-context-can-caller-do-action" role="function" condition="deprecated:0.7: use polkit_context_is_caller_authorized() instead.">
+<title>polkit_context_can_caller_do_action ()</title>
+<indexterm zone="polkit-context-can-caller-do-action" role="deprecated"><primary>polkit_context_can_caller_do_action</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_can_caller_do_action (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="PolKitAction">PolKitAction</link> *action,
                                                          <link linkend="PolKitCaller">PolKitCaller</link> *caller);</programlisting>
 <warning><para><literal>polkit_context_can_caller_do_action</literal> has been deprecated since version 0.7 and should not be used in newly-written code. use <link linkend="polkit-context-is-caller-authorized"><function>polkit_context_is_caller_authorized()</function></link> instead.</para></warning>
@@ -475,9 +472,9 @@ do a specific action
 
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-get-config" role="function"/>polkit_context_get_config ()</title>
-<indexterm><primary>polkit_context_get_config</primary></indexterm><programlisting><link linkend="PolKitConfig">PolKitConfig</link>*       polkit_context_get_config           (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="polkit-context-get-config" role="function">
+<title>polkit_context_get_config ()</title>
+<indexterm zone="polkit-context-get-config"><primary>polkit_context_get_config</primary></indexterm><programlisting><link linkend="PolKitConfig">PolKitConfig</link>*       polkit_context_get_config           (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
 <para>
 Returns an object that provides access to the
@@ -497,9 +494,9 @@ integration with other PolicyKit components.</para>
 is malformed. Caller should not unref this object.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-is-caller-authorized" role="function" condition="since:0.7"/>polkit_context_is_caller_authorized ()</title>
-<indexterm role="0.7"><primary>polkit_context_is_caller_authorized</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_is_caller_authorized (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+<refsect2 id="polkit-context-is-caller-authorized" role="function" condition="since:0.7">
+<title>polkit_context_is_caller_authorized ()</title>
+<indexterm zone="polkit-context-is-caller-authorized" role="0.7"><primary>polkit_context_is_caller_authorized</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_is_caller_authorized (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="PolKitAction">PolKitAction</link> *action,
                                                          <link linkend="PolKitCaller">PolKitCaller</link> *caller,
                                                          <link linkend="polkit-bool-t">polkit_bool_t</link> revoke_if_one_shot,
@@ -555,9 +552,9 @@ do a specific action.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-is-session-authorized" role="function" condition="since:0.7"/>polkit_context_is_session_authorized ()</title>
-<indexterm role="0.7"><primary>polkit_context_is_session_authorized</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_is_session_authorized
+<refsect2 id="polkit-context-is-session-authorized" role="function" condition="since:0.7">
+<title>polkit_context_is_session_authorized ()</title>
+<indexterm zone="polkit-context-is-session-authorized" role="0.7"><primary>polkit_context_is_session_authorized</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_is_session_authorized
                                                         (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
                                                          <link linkend="PolKitAction">PolKitAction</link> *action,
                                                          <link linkend="PolKitSession">PolKitSession</link> *session,
@@ -586,9 +583,9 @@ do a specific action.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-context-get-authorization-db" role="function"/>polkit_context_get_authorization_db ()</title>
-<indexterm><primary>polkit_context_get_authorization_db</primary></indexterm><programlisting><link linkend="PolKitAuthorizationDB">PolKitAuthorizationDB</link>* polkit_context_get_authorization_db
+<refsect2 id="polkit-context-get-authorization-db" role="function">
+<title>polkit_context_get_authorization_db ()</title>
+<indexterm zone="polkit-context-get-authorization-db"><primary>polkit_context_get_authorization_db</primary></indexterm><programlisting><link linkend="PolKitAuthorizationDB">PolKitAuthorizationDB</link>* polkit_context_get_authorization_db
                                                         (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
 <para>
 Returns an object that provides access to the authorization
@@ -611,6 +608,4 @@ this object.
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

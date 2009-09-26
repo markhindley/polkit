@@ -99,7 +99,9 @@ am__polkit_test_SOURCES_DIST = polkit-test.h polkit-test.c
 @POLKIT_BUILD_TESTS_TRUE@am_polkit_test_OBJECTS =  \
 @POLKIT_BUILD_TESTS_TRUE@	polkit-test.$(OBJEXT)
 polkit_test_OBJECTS = $(am_polkit_test_OBJECTS)
-@POLKIT_BUILD_TESTS_TRUE@polkit_test_DEPENDENCIES = $(top_builddir)/src/polkit/libpolkit.la
+@POLKIT_BUILD_TESTS_TRUE@polkit_test_DEPENDENCIES =  \
+@POLKIT_BUILD_TESTS_TRUE@	$(top_builddir)/src/kit/libkit.la \
+@POLKIT_BUILD_TESTS_TRUE@	$(top_builddir)/src/polkit/libpolkit.la
 polkit_test_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(polkit_test_LDFLAGS) $(LDFLAGS) -o $@
@@ -151,6 +153,7 @@ DBUS_GLIB_LIBS = @DBUS_GLIB_LIBS@
 DBUS_LIBS = @DBUS_LIBS@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DSYMUTIL = @DSYMUTIL@
 ECHO = @ECHO@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
@@ -214,6 +217,7 @@ MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
 MSGFMT_OPTS = @MSGFMT_OPTS@
 MSGMERGE = @MSGMERGE@
+NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
@@ -297,6 +301,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 INCLUDES = \
@@ -351,14 +356,15 @@ libpolkit_la_SOURCES = polkit.h polkit-private.h polkit-types.h \
 	polkit-authorization-constraint.c polkit-authorization-db.h \
 	$(am__append_1) $(am__append_2)
 libpolkit_la_LIBADD = @EXPAT_LIBS@ $(top_builddir)/src/kit/libkit.la
-libpolkit_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@ \
-	               -export-dynamic -no-undefined -export-symbols-regex '(^polkit_.*|_pk_validate_unique_bus_name)'
+@POLKIT_BUILD_TESTS_FALSE@libpolkit_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@ \
+@POLKIT_BUILD_TESTS_FALSE@                       -export-dynamic -no-undefined -export-symbols-regex '(^polkit_.*|_pk_validate_unique_bus_name)'
 
+@POLKIT_BUILD_TESTS_TRUE@libpolkit_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@
 @POLKIT_BUILD_TESTS_TRUE@TESTS_ENVIRONMENT = 
 @POLKIT_BUILD_TESTS_TRUE@polkit_test_SOURCES = \
 @POLKIT_BUILD_TESTS_TRUE@	polkit-test.h		polkit-test.c
 
-@POLKIT_BUILD_TESTS_TRUE@polkit_test_LDADD = $(top_builddir)/src/polkit/libpolkit.la
+@POLKIT_BUILD_TESTS_TRUE@polkit_test_LDADD = $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la
 @POLKIT_BUILD_TESTS_TRUE@polkit_test_LDFLAGS = 
 all: all-am
 
@@ -804,7 +810,7 @@ clean-local :
 @POLKIT_AUTHDB_DEFAULT_TRUE@	mkdir -p $(DESTDIR)$(localstatedir)/lib/misc
 @POLKIT_AUTHDB_DEFAULT_TRUE@	touch $(DESTDIR)$(localstatedir)/lib/misc/PolicyKit.reload
 @POLKIT_AUTHDB_DEFAULT_TRUE@	-chown $(POLKIT_USER):$(POLKIT_GROUP) $(DESTDIR)$(localstatedir)/lib/misc/PolicyKit.reload
-@POLKIT_AUTHDB_DEFAULT_TRUE@	-chmod 775 $(DESTDIR)$(localstatedir)/lib/misc/PolicyKit.reload
+@POLKIT_AUTHDB_DEFAULT_TRUE@	-chmod 664 $(DESTDIR)$(localstatedir)/lib/misc/PolicyKit.reload
 @POLKIT_AUTHDB_DEFAULT_TRUE@	mkdir -p $(DESTDIR)$(localstatedir)/lib/PolicyKit-public
 @POLKIT_AUTHDB_DEFAULT_TRUE@	mkdir -p $(DESTDIR)$(localstatedir)/lib/PolicyKit
 @POLKIT_AUTHDB_DEFAULT_TRUE@	mkdir -p $(DESTDIR)$(localstatedir)/run/PolicyKit

@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-private">
 <refmeta>
-<refentrytitle role="top_of_page">polkit-private</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-private.top_of_page">polkit-private</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-private.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
                     <link linkend="PolKitAuthorizationDB">PolKitAuthorizationDB</link>;
 </synopsis>
 </refsynopsisdiv>
@@ -35,7 +32,7 @@
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-private.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Private symbols for libpolkit.</para>
@@ -44,11 +41,11 @@ Private symbols for libpolkit.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-private.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="PolKitAuthorizationDB" role="struct" condition="since:0.7"/>PolKitAuthorizationDB</title>
-<indexterm role="0.7"><primary>PolKitAuthorizationDB</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="PolKitAuthorizationDB" role="struct" condition="since:0.7">
+<title>PolKitAuthorizationDB</title>
+<indexterm zone="PolKitAuthorizationDB" role="0.7"><primary>PolKitAuthorizationDB</primary></indexterm><programlisting>typedef struct {
 } PolKitAuthorizationDB;
 </programlisting>
 <para>
@@ -64,6 +61,4 @@ database.</para>
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

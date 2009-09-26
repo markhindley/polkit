@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-kit-test">
 <refmeta>
-<refentrytitle role="top_of_page">Unit testing</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-kit-test.top_of_page">Unit testing</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-kit-test.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
                     <link linkend="KitTest">KitTest</link>;
 <link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-test-run">kit_test_run</link>                        (<link linkend="KitTest">KitTest</link> **tests,
                                                          <link linkend="size-t">size_t</link> num_tests);
@@ -37,7 +34,7 @@
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-kit-test.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Functions used for unit testing.</para>
@@ -46,11 +43,11 @@ Functions used for unit testing.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-kit-test.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="KitTest" role="struct"/>KitTest</title>
-<indexterm><primary>KitTest</primary></indexterm><programlisting>typedef struct {
+<refsect2 id="KitTest" role="struct">
+<title>KitTest</title>
+<indexterm zone="KitTest"><primary>KitTest</primary></indexterm><programlisting>typedef struct {
         const char *name;
         void (*setup) (void);
         void (*teardown) (void);
@@ -83,9 +80,9 @@ Test suite abstraction. See <link linkend="kit-test-run"><function>kit_test_run(
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="kit-test-run" role="function"/>kit_test_run ()</title>
-<indexterm><primary>kit_test_run</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_test_run                        (<link linkend="KitTest">KitTest</link> **tests,
+<refsect2 id="kit-test-run" role="function">
+<title>kit_test_run ()</title>
+<indexterm zone="kit-test-run"><primary>kit_test_run</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_test_run                        (<link linkend="KitTest">KitTest</link> **tests,
                                                          <link linkend="size-t">size_t</link> num_tests);</programlisting>
 <para>
 Runs a number of tests simulating Out Of Memory. Checks for both
@@ -112,6 +109,4 @@ KIT_BUILD_TESTS.</para>
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

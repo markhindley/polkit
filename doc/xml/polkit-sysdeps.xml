@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-sysdeps">
 <refmeta>
-<refentrytitle role="top_of_page">System Dependencies</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-sysdeps.top_of_page">System Dependencies</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-sysdeps.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
 <link linkend="polkit-uint64-t">polkit_uint64_t</link>     <link linkend="polkit-sysdeps-get-start-time-for-pid">polkit_sysdeps_get_start_time_for_pid</link>
                                                         (<link linkend="pid-t">pid_t</link> pid);
 <link linkend="int">int</link>                 <link linkend="polkit-sysdeps-get-exe-for-pid">polkit_sysdeps_get_exe_for_pid</link>      (<link linkend="pid-t">pid_t</link> pid,
@@ -43,7 +40,7 @@
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-sysdeps.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Various platform specific utility functions.</para>
@@ -52,11 +49,11 @@ Various platform specific utility functions.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-sysdeps.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="polkit-sysdeps-get-start-time-for-pid" role="function" condition="since:0.7"/>polkit_sysdeps_get_start_time_for_pid ()</title>
-<indexterm role="0.7"><primary>polkit_sysdeps_get_start_time_for_pid</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_sysdeps_get_start_time_for_pid
+<refsect2 id="polkit-sysdeps-get-start-time-for-pid" role="function" condition="since:0.7">
+<title>polkit_sysdeps_get_start_time_for_pid ()</title>
+<indexterm zone="polkit-sysdeps-get-start-time-for-pid" role="0.7"><primary>polkit_sysdeps_get_start_time_for_pid</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_sysdeps_get_start_time_for_pid
                                                         (<link linkend="pid-t">pid_t</link> pid);</programlisting>
 <para>
 Get when a process started.</para>
@@ -71,9 +68,9 @@ Get when a process started.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-sysdeps-get-exe-for-pid" role="function" condition="since:0.7"/>polkit_sysdeps_get_exe_for_pid ()</title>
-<indexterm role="0.7"><primary>polkit_sysdeps_get_exe_for_pid</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_sysdeps_get_exe_for_pid      (<link linkend="pid-t">pid_t</link> pid,
+<refsect2 id="polkit-sysdeps-get-exe-for-pid" role="function" condition="since:0.7">
+<title>polkit_sysdeps_get_exe_for_pid ()</title>
+<indexterm zone="polkit-sysdeps-get-exe-for-pid" role="0.7"><primary>polkit_sysdeps_get_exe_for_pid</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_sysdeps_get_exe_for_pid      (<link linkend="pid-t">pid_t</link> pid,
                                                          <link linkend="char">char</link> *out_buf,
                                                          <link linkend="size-t">size_t</link> buf_size);</programlisting>
 <para>
@@ -148,9 +145,9 @@ returned.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-sysdeps-get-exe-for-pid-with-helper" role="function" condition="since:0.8"/>polkit_sysdeps_get_exe_for_pid_with_helper ()</title>
-<indexterm role="0.8"><primary>polkit_sysdeps_get_exe_for_pid_with_helper</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_sysdeps_get_exe_for_pid_with_helper
+<refsect2 id="polkit-sysdeps-get-exe-for-pid-with-helper" role="function" condition="since:0.8">
+<title>polkit_sysdeps_get_exe_for_pid_with_helper ()</title>
+<indexterm zone="polkit-sysdeps-get-exe-for-pid-with-helper" role="0.8"><primary>polkit_sysdeps_get_exe_for_pid_with_helper</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_sysdeps_get_exe_for_pid_with_helper
                                                         (<link linkend="pid-t">pid_t</link> pid,
                                                          <link linkend="char">char</link> *out_buf,
                                                          <link linkend="size-t">size_t</link> buf_size);</programlisting>
@@ -187,6 +184,4 @@ So -1 might still be returned (the process might also have exited).</para>
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

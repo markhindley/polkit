@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Authorization Entry</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
-<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="ref-core.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-policy-cache.html" title="Policy Cache">
 <link rel="next" href="polkit-polkit-authorization-constraint.html" title="Authorization Constraints">
-<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
@@ -20,7 +20,7 @@
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
 <link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
 <link rel="index" href="ix04.html" title="Index">
-<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+<link rel="appendix" href="license.html" title="Appendix A. License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -31,65 +31,152 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-authorization-constraint.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2678782" class="shortcut">Top</a>
-                  &#160;|&#160;
-                  <a href="#id2726449" class="shortcut">Description</a></nobr></td></tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-authorization.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-authorization.description" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-authorization"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
-<h2>
-<a name="id2678782"></a><span class="refentrytitle">Authorization Entry</span>
-</h2>
-<p>Authorization Entry &#8212; An entry in the autothorization database</p>
+<h2><span class="refentrytitle"><a name="polkit-polkit-authorization.top_of_page"></a>Authorization Entry</span></h2>
+<p>Authorization Entry — An entry in the autothorization database</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
-<h2>Synopsis</h2>
+<a name="polkit-polkit-authorization.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">
-
-
-
-                    <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a>;
-<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a>* <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-ref">polkit_authorization_ref</a>           (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-void                <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-unref">polkit_authorization_unref</a>          (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-void                <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-debug">polkit_authorization_debug</a>          (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-validate">polkit_authorization_validate</a>       (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-enum                <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationScope">PolKitAuthorizationScope</a>;
-enum                <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationType">PolKitAuthorizationType</a>;
-<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationType">PolKitAuthorizationType</a> <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-type">polkit_authorization_type</a>       (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-const char*         <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-get-action-id">polkit_authorization_get_action_id</a>  (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-uid_t               <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-get-uid">polkit_authorization_get_uid</a>        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-time_t              <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-get-time-of-grant">polkit_authorization_get_time_of_grant</a>
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationScope">PolKitAuthorizationScope</a> <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-get-scope">polkit_authorization_get_scope</a> (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-scope-process-get-pid">polkit_authorization_scope_process_get_pid</a>
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+                    <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a>;
+<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a>* <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-ref"
+>polkit_authorization_ref</a>           (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+void                <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-unref"
+>polkit_authorization_unref</a>          (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+void                <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-debug"
+>polkit_authorization_debug</a>          (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-validate"
+>polkit_authorization_validate</a>       (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+enum                <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationScope"
+>PolKitAuthorizationScope</a>;
+enum                <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationType"
+>PolKitAuthorizationType</a>;
+<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationType"
+>PolKitAuthorizationType</a> <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-type"
+>polkit_authorization_type</a>       (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+const char*         <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-get-action-id"
+>polkit_authorization_get_action_id</a>  (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+uid_t               <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-get-uid"
+>polkit_authorization_get_uid</a>        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+time_t              <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-get-time-of-grant"
+>polkit_authorization_get_time_of_grant</a>
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationScope"
+>PolKitAuthorizationScope</a> <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-get-scope"
+>polkit_authorization_get_scope</a> (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-scope-process-get-pid"
+>polkit_authorization_scope_process_get_pid</a>
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          pid_t *out_pid,
-                                                         <a class="link" href="polkit-polkit-types.html#polkit-uint64-t">polkit_uint64_t</a> *out_pid_start_time);
-const char*         <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-scope-session-get-ck-objref">polkit_authorization_scope_session_get_ck_objref</a>
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-was-granted-via-defaults">polkit_authorization_was_granted_via_defaults</a>
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-uint64-t"
+>polkit_uint64_t</a> *out_pid_start_time);
+const char*         <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-scope-session-get-ck-objref"
+>polkit_authorization_scope_session_get_ck_objref</a>
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-was-granted-via-defaults"
+>polkit_authorization_was_granted_via_defaults</a>
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          uid_t *out_user_authenticated_as);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-was-granted-explicitly">polkit_authorization_was_granted_explicitly</a>
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-was-granted-explicitly"
+>polkit_authorization_was_granted_explicitly</a>
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          uid_t *out_by_whom,
-                                                         <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> *out_is_negative);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationConstraintsForeachFunc">*PolKitAuthorizationConstraintsForeachFunc</a>)
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
-                                                         <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a> *out_is_negative);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationConstraintsForeachFunc"
+>*PolKitAuthorizationConstraintsForeachFunc</a>)
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
+                                                         <a
+href="../polkit/polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint"
+>PolKitAuthorizationConstraint</a> *authc,
                                                          void *user_data);
-<a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-constraints-foreach">polkit_authorization_constraints_foreach</a>
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
-                                                         <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationConstraintsForeachFunc">PolKitAuthorizationConstraintsForeachFunc</a> cb,
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-constraints-foreach"
+>polkit_authorization_constraints_foreach</a>
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationConstraintsForeachFunc"
+>PolKitAuthorizationConstraintsForeachFunc</a> cb,
                                                          void *user_data);
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2726449"></a><h2>Description</h2>
+<a name="polkit-polkit-authorization.description"></a><h2>Description</h2>
 <p>
 This class is used to represent entries in the authorization
 database.</p>
@@ -98,11 +185,10 @@ database.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2726469"></a><h2>Details</h2>
+<a name="polkit-polkit-authorization.details"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2726480"></a><h3>
-<a name="PolKitAuthorization"></a>PolKitAuthorization</h3>
-<a class="indexterm" name="id2726495"></a><pre class="programlisting">typedef struct _PolKitAuthorization PolKitAuthorization;</pre>
+<a name="PolKitAuthorization"></a><h3>PolKitAuthorization</h3>
+<pre class="programlisting">typedef struct _PolKitAuthorization PolKitAuthorization;</pre>
 <p>
 Objects of this class are used to represent entries in the
 authorization database.</p>
@@ -114,9 +200,12 @@ authorization database.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726523"></a><h3>
-<a name="polkit-authorization-ref"></a>polkit_authorization_ref ()</h3>
-<a class="indexterm" name="id2726537"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a>* polkit_authorization_ref           (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-ref"></a><h3>polkit_authorization_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a>* polkit_authorization_ref           (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -126,12 +215,12 @@ Increase reference count.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the authorization object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the object
 
 </td>
@@ -143,9 +232,10 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726604"></a><h3>
-<a name="polkit-authorization-unref"></a>polkit_authorization_unref ()</h3>
-<a class="indexterm" name="id2726617"></a><pre class="programlisting">void                polkit_authorization_unref          (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-unref"></a><h3>polkit_authorization_unref ()</h3>
+<pre class="programlisting">void                polkit_authorization_unref          (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -156,7 +246,7 @@ objects are decresed by one.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the authorization object
 </td>
 </tr></tbody>
@@ -166,9 +256,10 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2726676"></a><h3>
-<a name="polkit-authorization-debug"></a>polkit_authorization_debug ()</h3>
-<a class="indexterm" name="id2726690"></a><pre class="programlisting">void                polkit_authorization_debug          (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-debug"></a><h3>polkit_authorization_debug ()</h3>
+<pre class="programlisting">void                polkit_authorization_debug          (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Print debug details</p>
 <p>
@@ -177,7 +268,7 @@ Print debug details</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr></tbody>
@@ -187,9 +278,12 @@ Print debug details</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2729828"></a><h3>
-<a name="polkit-authorization-validate"></a>polkit_authorization_validate ()</h3>
-<a class="indexterm" name="id2729844"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_validate       (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-validate"></a><h3>polkit_authorization_validate ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_authorization_validate       (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Validate the object</p>
 <p>
@@ -199,12 +293,12 @@ Validate the object</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a> iff the object is valid.
@@ -218,9 +312,8 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2729918"></a><h3>
-<a name="PolKitAuthorizationScope"></a>enum PolKitAuthorizationScope</h3>
-<a class="indexterm" name="id2729932"></a><pre class="programlisting">typedef enum {
+<a name="PolKitAuthorizationScope"></a><h3>enum PolKitAuthorizationScope</h3>
+<pre class="programlisting">typedef enum {
         POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT,
         POLKIT_AUTHORIZATION_SCOPE_PROCESS,
         POLKIT_AUTHORIZATION_SCOPE_SESSION,
@@ -237,25 +330,25 @@ process, a session or unlimited.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a name="POLKIT-AUTHORIZATION-SCOPE-PROCESS-ONE-SHOT:CAPS"></a><code class="literal">POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT</code></span></p></td>
+<td><p><a name="POLKIT-AUTHORIZATION-SCOPE-PROCESS-ONE-SHOT:CAPS"></a><span class="term"><code class="literal">POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT</code></span></p></td>
 <td> The authorization is
 limited for a single shot for a single process on the system
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a name="POLKIT-AUTHORIZATION-SCOPE-PROCESS:CAPS"></a><code class="literal">POLKIT_AUTHORIZATION_SCOPE_PROCESS</code></span></p></td>
+<td><p><a name="POLKIT-AUTHORIZATION-SCOPE-PROCESS:CAPS"></a><span class="term"><code class="literal">POLKIT_AUTHORIZATION_SCOPE_PROCESS</code></span></p></td>
 <td> The authorization is limited
 for a single process on the system
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a name="POLKIT-AUTHORIZATION-SCOPE-SESSION:CAPS"></a><code class="literal">POLKIT_AUTHORIZATION_SCOPE_SESSION</code></span></p></td>
+<td><p><a name="POLKIT-AUTHORIZATION-SCOPE-SESSION:CAPS"></a><span class="term"><code class="literal">POLKIT_AUTHORIZATION_SCOPE_SESSION</code></span></p></td>
 <td> The authorization is limited
 for processes originating from a given session
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><a name="POLKIT-AUTHORIZATION-SCOPE-ALWAYS:CAPS"></a><code class="literal">POLKIT_AUTHORIZATION_SCOPE_ALWAYS</code></span></p></td>
+<td><p><a name="POLKIT-AUTHORIZATION-SCOPE-ALWAYS:CAPS"></a><span class="term"><code class="literal">POLKIT_AUTHORIZATION_SCOPE_ALWAYS</code></span></p></td>
 <td> The authorization is retained
 indefinitely.
 </td>
@@ -267,9 +360,8 @@ indefinitely.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730065"></a><h3>
-<a name="PolKitAuthorizationType"></a>enum PolKitAuthorizationType</h3>
-<a class="indexterm" name="id2730079"></a><pre class="programlisting">typedef enum {
+<a name="PolKitAuthorizationType"></a><h3>enum PolKitAuthorizationType</h3>
+<pre class="programlisting">typedef enum {
         POLKIT_AUTHORIZATION_TYPE_UID,
 } PolKitAuthorizationType;
 </pre>
@@ -283,7 +375,7 @@ supported).</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><a name="POLKIT-AUTHORIZATION-TYPE-UID:CAPS"></a><code class="literal">POLKIT_AUTHORIZATION_TYPE_UID</code></span></p></td>
+<td><p><a name="POLKIT-AUTHORIZATION-TYPE-UID:CAPS"></a><span class="term"><code class="literal">POLKIT_AUTHORIZATION_TYPE_UID</code></span></p></td>
 <td> The authorization is for a UNIX user
 </td>
 </tr></tbody>
@@ -293,9 +385,12 @@ supported).</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730136"></a><h3>
-<a name="polkit-authorization-type"></a>polkit_authorization_type ()</h3>
-<a class="indexterm" name="id2730150"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationType">PolKitAuthorizationType</a> polkit_authorization_type       (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-type"></a><h3>polkit_authorization_type ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationType"
+>PolKitAuthorizationType</a> polkit_authorization_type       (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Determine the type of authorization.</p>
 <p>
@@ -305,12 +400,12 @@ Determine the type of authorization.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the authorization object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the authorization type 
 
 </td>
@@ -322,9 +417,10 @@ Determine the type of authorization.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730216"></a><h3>
-<a name="polkit-authorization-get-action-id"></a>polkit_authorization_get_action_id ()</h3>
-<a class="indexterm" name="id2730232"></a><pre class="programlisting">const char*         polkit_authorization_get_action_id  (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-get-action-id"></a><h3>polkit_authorization_get_action_id ()</h3>
+<pre class="programlisting">const char*         polkit_authorization_get_action_id  (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Get the action this authorization is for</p>
 <p>
@@ -334,12 +430,12 @@ Get the action this authorization is for</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the action id. Caller should not free this string.
 
 </td>
@@ -351,9 +447,10 @@ Get the action this authorization is for</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730302"></a><h3>
-<a name="polkit-authorization-get-uid"></a>polkit_authorization_get_uid ()</h3>
-<a class="indexterm" name="id2730318"></a><pre class="programlisting">uid_t               polkit_authorization_get_uid        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-get-uid"></a><h3>polkit_authorization_get_uid ()</h3>
+<pre class="programlisting">uid_t               polkit_authorization_get_uid        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Gets the UNIX user id for the user the authorization is confined
 to.</p>
@@ -364,12 +461,12 @@ to.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> The UNIX user id for whom the authorization is confied to
 
 </td>
@@ -381,10 +478,11 @@ to.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730388"></a><h3>
-<a name="polkit-authorization-get-time-of-grant"></a>polkit_authorization_get_time_of_grant ()</h3>
-<a class="indexterm" name="id2730404"></a><pre class="programlisting">time_t              polkit_authorization_get_time_of_grant
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-get-time-of-grant"></a><h3>polkit_authorization_get_time_of_grant ()</h3>
+<pre class="programlisting">time_t              polkit_authorization_get_time_of_grant
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Returns the point in time the authorization was granted. The value
 is UNIX time, e.g. number of seconds since the Epoch Jan 1, 1970
@@ -396,12 +494,12 @@ is UNIX time, e.g. number of seconds since the Epoch Jan 1, 1970
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> When authorization was granted
 
 </td>
@@ -413,14 +511,19 @@ is UNIX time, e.g. number of seconds since the Epoch Jan 1, 1970
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730476"></a><h3>
-<a name="polkit-authorization-get-scope"></a>polkit_authorization_get_scope ()</h3>
-<a class="indexterm" name="id2730491"></a><pre class="programlisting"><a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationScope">PolKitAuthorizationScope</a> polkit_authorization_get_scope (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-get-scope"></a><h3>polkit_authorization_get_scope ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationScope"
+>PolKitAuthorizationScope</a> polkit_authorization_get_scope (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Get the scope of the authorization; e.g. whether it's confined to a
 single process, a single session or can be retained
 indefinitely. Also keep in mind that an authorization is subject to
-constraints, see <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-constraints-foreach"><code class="function">polkit_authorization_constraints_foreach()</code></a> for
+constraints, see <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-constraints-foreach"
+><code class="function">polkit_authorization_constraints_foreach()</code></a> for
 details.</p>
 <p>
 
@@ -429,12 +532,12 @@ details.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> the scope
 
 </td>
@@ -446,15 +549,20 @@ details.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730572"></a><h3>
-<a name="polkit-authorization-scope-process-get-pid"></a>polkit_authorization_scope_process_get_pid ()</h3>
-<a class="indexterm" name="id2730589"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_scope_process_get_pid
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+<a name="polkit-authorization-scope-process-get-pid"></a><h3>polkit_authorization_scope_process_get_pid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_authorization_scope_process_get_pid
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          pid_t *out_pid,
-                                                         <a class="link" href="polkit-polkit-types.html#polkit-uint64-t">polkit_uint64_t</a> *out_pid_start_time);</pre>
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-uint64-t"
+>polkit_uint64_t</a> *out_pid_start_time);</pre>
 <p>
-If scope is <a class="link" href="polkit-polkit-authorization.html#POLKIT-AUTHORIZATION-SCOPE-PROCESS-ONE-SHOT:CAPS"><span class="type">POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT</span></a> or
-<a class="link" href="polkit-polkit-authorization.html#POLKIT-AUTHORIZATION-SCOPE-PROCESS:CAPS"><span class="type">POLKIT_AUTHORIZATION_SCOPE_PROCESS</span></a>, get information about what
+If scope is <span class="type">POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT</span> or
+<span class="type">POLKIT_AUTHORIZATION_SCOPE_PROCESS</span>, get information about what
 process the authorization is confined to. 
 </p>
 <p>
@@ -468,22 +576,22 @@ milliseconds since the system was started) is also returned.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>out_pid</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>out_pid</code></em>:</span></p></td>
 <td> return location
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>out_pid_start_time</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>out_pid_start_time</code></em>:</span></p></td>
 <td> return location
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a> if information was returned
@@ -497,10 +605,11 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730732"></a><h3>
-<a name="polkit-authorization-scope-session-get-ck-objref"></a>polkit_authorization_scope_session_get_ck_objref ()</h3>
-<a class="indexterm" name="id2730749"></a><pre class="programlisting">const char*         polkit_authorization_scope_session_get_ck_objref
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth);</pre>
+<a name="polkit-authorization-scope-session-get-ck-objref"></a><h3>polkit_authorization_scope_session_get_ck_objref ()</h3>
+<pre class="programlisting">const char*         polkit_authorization_scope_session_get_ck_objref
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth);</pre>
 <p>
 Gets the ConsoleKit object path for the session the authorization
 is confined to.</p>
@@ -511,14 +620,14 @@ is confined to.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
-href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 ><span class="type">NULL</span></a> if scope wasn't session
 
 </td>
@@ -530,10 +639,13 @@ href="../liboil/liboil-liboiljunk.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730828"></a><h3>
-<a name="polkit-authorization-was-granted-via-defaults"></a>polkit_authorization_was_granted_via_defaults ()</h3>
-<a class="indexterm" name="id2730844"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_was_granted_via_defaults
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+<a name="polkit-authorization-was-granted-via-defaults"></a><h3>polkit_authorization_was_granted_via_defaults ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_authorization_was_granted_via_defaults
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          uid_t *out_user_authenticated_as);</pre>
 <p>
 Determine if the authorization was obtained by the user by
@@ -542,7 +654,9 @@ authenticating as himself or an administrator via the the
 action (e.g.  "allow_any", "allow_inactive", "allow_active"). 
 </p>
 <p>
-Compare with <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-was-granted-explicitly"><code class="function">polkit_authorization_was_granted_explicitly()</code></a> - only
+Compare with <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-was-granted-explicitly"
+><code class="function">polkit_authorization_was_granted_explicitly()</code></a> - only
 one of these functions can return <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a>.</p>
@@ -553,17 +667,17 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>out_user_authenticated_as</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>out_user_authenticated_as</code></em>:</span></p></td>
 <td> return location
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a> if the authorization was obtained by the user
@@ -578,18 +692,25 @@ himself authenticating.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2730974"></a><h3>
-<a name="polkit-authorization-was-granted-explicitly"></a>polkit_authorization_was_granted_explicitly ()</h3>
-<a class="indexterm" name="id2730991"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_was_granted_explicitly
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
+<a name="polkit-authorization-was-granted-explicitly"></a><h3>polkit_authorization_was_granted_explicitly ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_authorization_was_granted_explicitly
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
                                                          uid_t *out_by_whom,
-                                                         <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> *out_is_negative);</pre>
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a> *out_is_negative);</pre>
 <p>
 Determine if the authorization was explicitly granted by a
 sufficiently privileged user.
 </p>
 <p>
-Compare with <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-was-granted-via-defaults"><code class="function">polkit_authorization_was_granted_via_defaults()</code></a> - only
+Compare with <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-was-granted-via-defaults"
+><code class="function">polkit_authorization_was_granted_via_defaults()</code></a> - only
 one of these functions can return <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a>.</p>
@@ -600,22 +721,22 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>out_by_whom</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>out_by_whom</code></em>:</span></p></td>
 <td> return location
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>out_is_negative</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>out_is_negative</code></em>:</span></p></td>
 <td> return location
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a> if the authorization was explicitly granted by a
@@ -636,14 +757,21 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2731174"></a><h3>
-<a name="PolKitAuthorizationConstraintsForeachFunc"></a>PolKitAuthorizationConstraintsForeachFunc ()</h3>
-<a class="indexterm" name="id2731189"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       (*PolKitAuthorizationConstraintsForeachFunc)
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
-                                                         <a class="link" href="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</a> *authc,
+<a name="PolKitAuthorizationConstraintsForeachFunc"></a><h3>PolKitAuthorizationConstraintsForeachFunc ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       (*PolKitAuthorizationConstraintsForeachFunc)
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
+                                                         <a
+href="../polkit/polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint"
+>PolKitAuthorizationConstraint</a> *authc,
                                                          void *user_data);</pre>
 <p>
-Callback function for <a class="link" href="polkit-polkit-authorization.html#polkit-authorization-constraints-foreach"><code class="function">polkit_authorization_constraints_foreach()</code></a>.</p>
+Callback function for <a
+href="../polkit/polkit-polkit-authorization.html#polkit-authorization-constraints-foreach"
+><code class="function">polkit_authorization_constraints_foreach()</code></a>.</p>
 <p>
 
 </p>
@@ -651,22 +779,22 @@ Callback function for <a class="link" href="polkit-polkit-authorization.html#pol
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> authorization
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>authc</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>authc</code></em>:</span></p></td>
 <td> authorization constraint
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
 <td> user data 
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> Pass <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><span class="type">TRUE</span></a> to short-circuit, e.g. stop the iteration
@@ -677,11 +805,16 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2731311"></a><h3>
-<a name="polkit-authorization-constraints-foreach"></a>polkit_authorization_constraints_foreach ()</h3>
-<a class="indexterm" name="id2731327"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_authorization_constraints_foreach
-                                                        (<a class="link" href="polkit-polkit-authorization.html#PolKitAuthorization">PolKitAuthorization</a> *auth,
-                                                         <a class="link" href="polkit-polkit-authorization.html#PolKitAuthorizationConstraintsForeachFunc">PolKitAuthorizationConstraintsForeachFunc</a> cb,
+<a name="polkit-authorization-constraints-foreach"></a><h3>polkit_authorization_constraints_foreach ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_authorization_constraints_foreach
+                                                        (<a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorizationConstraintsForeachFunc"
+>PolKitAuthorizationConstraintsForeachFunc</a> cb,
                                                          void *user_data);</pre>
 <p>
 Iterate over all constraints associated with an authorization.</p>
@@ -692,22 +825,22 @@ Iterate over all constraints associated with an authorization.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>auth</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
 <td> the object
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>cb</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>cb</code></em>:</span></p></td>
 <td> callback function
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></p></td>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
 <td> user data
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></p></td>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
 <td> <a
 href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 ><code class="literal">TRUE</code></a> if the caller short-circuited the iteration.
@@ -720,11 +853,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </p>
 </div>
 </div>
-<div class="refsect1" lang="en">
-<a name="id2731452"></a><div class="refsect2" lang="en"><a name="id2731454"></a></div>
+</div>
+<div class="footer">
 <hr>
-<div class="refsect2" lang="en"><a name="id2731455"></a></div>
-</div>
-</div>
+          Generated by GTK-Doc V1.10</div>
 </body>
 </html>

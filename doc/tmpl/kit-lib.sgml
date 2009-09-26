@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-polkit-debug
+kit-lib
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -17,12 +17,22 @@ polkit-debug
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### FUNCTION polkit_debug ##### -->
+<!-- ##### FUNCTION kit_getline ##### -->
 <para>
 
 </para>
 
-@format: 
-@Varargs: 
+@lineptr: 
+@n: 
+@f: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_clearenv ##### -->
+<para>
+
+</para>
+
+@Returns: 
 
 

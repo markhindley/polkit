@@ -27,14 +27,18 @@ libpolkit_dbus_la_SOURCES =                                	\
 
 libpolkit_dbus_la_LIBADD = @DBUS_LIBS@ $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la $(SELINUX_LIBS)
 
+if POLKIT_BUILD_TESTS
+libpolkit_dbus_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@
+else
 libpolkit_dbus_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@ \
-		            -export-dynamic -no-undefined -export-symbols-regex '^polkit_.*'
+                            -export-dynamic -no-undefined -export-symbols-regex '^polkit_.*'
+endif
 
 libexec_PROGRAMS = polkit-resolve-exe-helper
 
 polkit_resolve_exe_helper_SOURCES = polkit-resolve-exe-helper.c
 polkit_resolve_exe_helper_CFLAGS = @DBUS_CFLAGS@
-polkit_resolve_exe_helper_LDADD = $(top_builddir)/src/polkit/libpolkit.la libpolkit-dbus.la
+polkit_resolve_exe_helper_LDADD = $(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la libpolkit-dbus.la
 
 if POLKIT_AUTHDB_DEFAULT
 libexec_PROGRAMS += polkit-read-auth-helper polkit-set-default-helper

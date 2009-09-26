@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Theory of Operation</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
-<link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="model.html" title="PolicyKit Model">
 <link rel="prev" href="model-concepts.html" title="Concepts">
 <link rel="next" href="model-authentication-agent.html" title="Authentication Agent">
-<meta name="generator" content="GTK-Doc V1.9 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="reference" href="ref-design.html" title="Design Overview">
 <link rel="chapter" href="introduction.html" title="Introduction">
@@ -20,7 +20,7 @@
 <link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
 <link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
 <link rel="index" href="ix04.html" title="Index">
-<link rel="appendix" href="license.html" title="Appendix&#160;A.&#160;License">
+<link rel="appendix" href="license.html" title="Appendix A. License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
@@ -119,7 +119,9 @@
             The Mechanism identifies the caller, using ConsoleKit, all
             the relevant information about the caller and stores this
             information in
-            a <a class="link" href="polkit-polkit-caller.html" title="Caller">PolKitCaller</a>
+            a <a
+href="../polkit/polkit-polkit-caller.html"
+>PolKitCaller</a>
             object. This information includes
             </p>
 <div class="itemizedlist"><ul type="disc">
@@ -143,7 +145,9 @@
           </p>
 <p>
             Second, the Mechanism creates
-            a <a class="link" href="polkit-polkit-action.html" title="Actions">PolKitAction</a>
+            a <a
+href="../polkit/polkit-polkit-action.html"
+>PolKitAction</a>
             object that represents the action that the caller wants
             the Mechanism to perform on it's behalf. Specifically, for
             HAL, the D-Bus method call <code class="literal">Mount()</code> maps
@@ -154,15 +158,23 @@
             disk, HAL
             picks <code class="literal">org.freedesktop.hal.storage.mount-fixed</code>
             and constructs
-            the <a class="link" href="polkit-polkit-action.html" title="Actions">PolKitAction</a>
+            the <a
+href="../polkit/polkit-polkit-action.html"
+>PolKitAction</a>
             object.
           </p>
 <p>
             Third, HAL now calls
-            the <a class="link" href="polkit-polkit-context.html#polkit-context-can-caller-do-action">polkit_context_can_caller_do_action()</a>
+            the <a
+href="../polkit/polkit-polkit-context.html#polkit-context-can-caller-do-action"
+>polkit_context_can_caller_do_action()</a>
             function in <code class="literal">libpolkit</code> and passes
-            the <a class="link" href="polkit-polkit-action.html" title="Actions">PolKitAction</a>
-            and <a class="link" href="polkit-polkit-caller.html" title="Caller">PolKitCaller</a>
+            the <a
+href="../polkit/polkit-polkit-action.html"
+>PolKitAction</a>
+            and <a
+href="../polkit/polkit-polkit-caller.html"
+>PolKitCaller</a>
             objects as parameters. Armed with all this
             information, <code class="literal">libpolkit</code> is now in a
             position to make a decision; see
@@ -172,7 +184,9 @@
 <p>
             The result
             from <code class="literal">libpolkit</code> is of the
-            type <a class="link" href="polkit-polkit-result.html" title="Results">PolKitResult</a>
+            type <a
+href="../polkit/polkit-polkit-result.html"
+>PolKitResult</a>
             and tells whether the given caller is allowed to do the
             given action. If the result is yes
             (e.g. POLKIT_RESULT_YES), the Mechanism carries out the
@@ -225,12 +239,16 @@
             </p>
 <div class="itemizedlist"><ul type="disc">
 <li><p>
-                  The <a class="link" href="polkit-polkit-result.html" title="Results">PolKitResult</a>
+                  The <a
+href="../polkit/polkit-polkit-result.html"
+>PolKitResult</a>
                   that <code class="literal">libpolkit</code> returned to the
                   Mechanism and passed on to the File Manager.
                 </p></li>
 <li><p>
-                  The <a class="link" href="polkit-polkit-action.html" title="Actions">PolKitAction</a>
+                  The <a
+href="../polkit/polkit-polkit-action.html"
+>PolKitAction</a>
                   that <code class="literal">libpolkit</code> returned to the
                   Mechanism and passed on to the File Manager.
                 </p></li>
@@ -244,8 +262,8 @@
             it is preferable to have this done in a separate
             process. PolicyKit defines an abstract interface to
             interact with the an Authentication Agent, see the
-            <a class="link" href="model-authentication-agent.html" title="Authentication Agent">Authentication
-            Agent section</a> for details. For details on the
+            Authentication
+            Agent section for details. For details on the
             Authentication Agent for the GNOME desktop, please see
             the <a class="ulink" href="http://hal.freedesktop.org/docs/PolicyKit-gnome/ref-auth-daemon.html" target="_top">PolicyKit-gnome</a>
             documentation.
@@ -258,12 +276,20 @@
             incoming parameters to see if they are correct;
             essentially it's doing exactly the same check as the
             Mechanism was doing in step 2;
-            e.g. constructing <a class="link" href="polkit-polkit-caller.html" title="Caller">PolKitCaller</a>
-            and <a class="link" href="polkit-polkit-caller.html" title="Caller">PolKitAction</a>
+            e.g. constructing <a
+href="../polkit/polkit-polkit-caller.html"
+>PolKitCaller</a>
+            and <a
+href="../polkit/polkit-polkit-caller.html"
+>PolKitAction</a>
             objects, calling
-            into <a class="link" href="polkit-polkit-context.html#polkit-context-can-caller-do-action">polkit_context_can_caller_do_action()</a>
+            into <a
+href="../polkit/polkit-polkit-context.html#polkit-context-can-caller-do-action"
+>polkit_context_can_caller_do_action()</a>
             and examining the
-            returned <a class="link" href="polkit-polkit-result.html" title="Results">PolKitResult</a>.
+            returned <a
+href="../polkit/polkit-polkit-result.html"
+>PolKitResult</a>.
           </p>
 <p>
             If the parameters check out, the Authentication Agent now
@@ -271,7 +297,7 @@
             is required to perform the desired action. Note that the
             text to put in the dialog stems from files that are not
             under the users control (see
-            <a class="xref" href="polkit-conf.html#conf-declaring-actions" title="Declaring Actions">the section called &#8220;Declaring Actions&#8221;</a> for details) so
+            <a class="xref" href="polkit-conf.html#conf-declaring-actions" title="Declaring Actions">the section called “Declaring Actions”</a> for details) so
             there is no chance for any application to spoof the dialog
             to trick the user into agreeing to authenticate for
             something while in fact the authentication is about
@@ -280,7 +306,9 @@
 <p>
             Internally the Authentication Agent uses services provided
             by the
-            <a class="link" href="polkit-polkit-grant.html" title="Authorizations and Authentication">PolKitGrant</a>
+            <a
+href="../polkit/polkit-polkit-grant.html"
+>PolKitGrant</a>
             class and is little more than a thin layer above the PAM
             user API. The authentication itself is performed in a
             privileged helper program (e.g. running
@@ -297,12 +325,16 @@
 <p>
             As mentioned, an authorization has a notion of scope which
             is indicated in
-            the <a class="link" href="polkit-polkit-result.html" title="Results">PolKitResult</a>
+            the <a
+href="../polkit/polkit-polkit-result.html"
+>PolKitResult</a>
             value from <code class="literal">libpolkit</code>. The user, when
             authenticating, can also opt to lessen the scope
             (e.g. keep the authorization only for the remainder of his
             desktop session instead of forever)
-            (see <a class="link" href="polkit-polkit-grant.html#PolKitGrantOverrideGrantType">this
+            (see <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantOverrideGrantType"
+>this
             section</a> for details) but he can never widen it -
             this is checked and enforced by the privileged helper
             program. The way the authorization is stored is as
@@ -415,5 +447,8 @@
       <code class="literal">dialup-connect-untrusted</code>.
     </p>
 </div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
 </body>
 </html>

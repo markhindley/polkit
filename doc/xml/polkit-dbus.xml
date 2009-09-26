@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-dbus">
 <refmeta>
-<refentrytitle role="top_of_page">Caller Determination</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-dbus.top_of_page">Caller Determination</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -17,13 +17,10 @@ via D-Bus and ConsoleKit.</refpurpose>
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-dbus.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
 <link linkend="PolKitSession">PolKitSession</link>*      <link linkend="polkit-session-new-from-objpath">polkit_session_new_from_objpath</link>     (<link linkend="DBusConnection">DBusConnection</link> *con,
                                                          const <link linkend="char">char</link> *objpath,
                                                          <link linkend="uid-t">uid_t</link> uid,
@@ -72,7 +69,7 @@ via D-Bus and ConsoleKit.</refpurpose>
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-dbus.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Helper library for obtaining seat, session and caller information
@@ -93,11 +90,11 @@ These functions are in <literal>libpolkit-dbus</literal>.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-dbus.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="polkit-session-new-from-objpath" role="function"/>polkit_session_new_from_objpath ()</title>
-<indexterm><primary>polkit_session_new_from_objpath</primary></indexterm><programlisting><link linkend="PolKitSession">PolKitSession</link>*      polkit_session_new_from_objpath     (<link linkend="DBusConnection">DBusConnection</link> *con,
+<refsect2 id="polkit-session-new-from-objpath" role="function">
+<title>polkit_session_new_from_objpath ()</title>
+<indexterm zone="polkit-session-new-from-objpath"><primary>polkit_session_new_from_objpath</primary></indexterm><programlisting><link linkend="PolKitSession">PolKitSession</link>*      polkit_session_new_from_objpath     (<link linkend="DBusConnection">DBusConnection</link> *con,
                                                          const <link linkend="char">char</link> *objpath,
                                                          <link linkend="uid-t">uid_t</link> uid,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
@@ -129,9 +126,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 <parameter>error</parameter> will be set)
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-session-new-from-cookie" role="function"/>polkit_session_new_from_cookie ()</title>
-<indexterm><primary>polkit_session_new_from_cookie</primary></indexterm><programlisting><link linkend="PolKitSession">PolKitSession</link>*      polkit_session_new_from_cookie      (<link linkend="DBusConnection">DBusConnection</link> *con,
+<refsect2 id="polkit-session-new-from-cookie" role="function">
+<title>polkit_session_new_from_cookie ()</title>
+<indexterm zone="polkit-session-new-from-cookie"><primary>polkit_session_new_from_cookie</primary></indexterm><programlisting><link linkend="PolKitSession">PolKitSession</link>*      polkit_session_new_from_cookie      (<link linkend="DBusConnection">DBusConnection</link> *con,
                                                          const <link linkend="char">char</link> *cookie,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
 <para>
@@ -158,9 +155,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 <parameter>error</parameter> will be set)
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-caller-new-from-dbus-name" role="function"/>polkit_caller_new_from_dbus_name ()</title>
-<indexterm><primary>polkit_caller_new_from_dbus_name</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_caller_new_from_dbus_name    (<link linkend="DBusConnection">DBusConnection</link> *con,
+<refsect2 id="polkit-caller-new-from-dbus-name" role="function">
+<title>polkit_caller_new_from_dbus_name ()</title>
+<indexterm zone="polkit-caller-new-from-dbus-name"><primary>polkit_caller_new_from_dbus_name</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_caller_new_from_dbus_name    (<link linkend="DBusConnection">DBusConnection</link> *con,
                                                          const <link linkend="char">char</link> *dbus_name,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
 <para>
@@ -188,9 +185,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 <parameter>error</parameter> will be set)
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-caller-new-from-pid" role="function"/>polkit_caller_new_from_pid ()</title>
-<indexterm><primary>polkit_caller_new_from_pid</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_caller_new_from_pid          (<link linkend="DBusConnection">DBusConnection</link> *con,
+<refsect2 id="polkit-caller-new-from-pid" role="function">
+<title>polkit_caller_new_from_pid ()</title>
+<indexterm zone="polkit-caller-new-from-pid"><primary>polkit_caller_new_from_pid</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_caller_new_from_pid          (<link linkend="DBusConnection">DBusConnection</link> *con,
                                                          <link linkend="pid-t">pid_t</link> pid,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
 <para>
@@ -219,9 +216,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 <parameter>error</parameter> will be set)
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-is-authorization-relevant" role="function" condition="since:0.7"/>polkit_is_authorization_relevant ()</title>
-<indexterm role="0.7"><primary>polkit_is_authorization_relevant</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_is_authorization_relevant    (<link linkend="DBusConnection">DBusConnection</link> *con,
+<refsect2 id="polkit-is-authorization-relevant" role="function" condition="since:0.7">
+<title>polkit_is_authorization_relevant ()</title>
+<indexterm zone="polkit-is-authorization-relevant" role="0.7"><primary>polkit_is_authorization_relevant</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_is_authorization_relevant    (<link linkend="DBusConnection">DBusConnection</link> *con,
                                                          <link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
 <para>
@@ -258,9 +255,9 @@ This function is in <literal>libpolkit-dbus</literal>.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="PolKitTracker" role="struct"/>PolKitTracker</title>
-<indexterm><primary>PolKitTracker</primary></indexterm><programlisting>typedef struct _PolKitTracker PolKitTracker;</programlisting>
+<refsect2 id="PolKitTracker" role="struct">
+<title>PolKitTracker</title>
+<indexterm zone="PolKitTracker"><primary>PolKitTracker</primary></indexterm><programlisting>typedef struct _PolKitTracker PolKitTracker;</programlisting>
 <para>
 Instances of this class are used to cache information about
 callers; typically this is used in scenarios where the same caller
@@ -340,9 +337,9 @@ These functions are in <literal>libpolkit-dbus</literal>.</para>
 <para>
 
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-new" role="function" condition="since:0.7"/>polkit_tracker_new ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_new</primary></indexterm><programlisting><link linkend="PolKitTracker">PolKitTracker</link>*      polkit_tracker_new                  (void);</programlisting>
+<refsect2 id="polkit-tracker-new" role="function" condition="since:0.7">
+<title>polkit_tracker_new ()</title>
+<indexterm zone="polkit-tracker-new" role="0.7"><primary>polkit_tracker_new</primary></indexterm><programlisting><link linkend="PolKitTracker">PolKitTracker</link>*      polkit_tracker_new                  (void);</programlisting>
 <para>
 Creates a new <link linkend="PolKitTracker"><type>PolKitTracker</type></link> object.
 </para>
@@ -356,9 +353,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-ref" role="function" condition="since:0.7"/>polkit_tracker_ref ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_ref</primary></indexterm><programlisting><link linkend="PolKitTracker">PolKitTracker</link>*      polkit_tracker_ref                  (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker);</programlisting>
+<refsect2 id="polkit-tracker-ref" role="function" condition="since:0.7">
+<title>polkit_tracker_ref ()</title>
+<indexterm zone="polkit-tracker-ref" role="0.7"><primary>polkit_tracker_ref</primary></indexterm><programlisting><link linkend="PolKitTracker">PolKitTracker</link>*      polkit_tracker_ref                  (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker);</programlisting>
 <para>
 Increase reference count.
 </para>
@@ -375,9 +372,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-unref" role="function" condition="since:0.7"/>polkit_tracker_unref ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_tracker_unref                (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker);</programlisting>
+<refsect2 id="polkit-tracker-unref" role="function" condition="since:0.7">
+<title>polkit_tracker_unref ()</title>
+<indexterm zone="polkit-tracker-unref" role="0.7"><primary>polkit_tracker_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_tracker_unref                (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker);</programlisting>
 <para>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -393,9 +390,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-set-system-bus-connection" role="function" condition="since:0.7"/>polkit_tracker_set_system_bus_connection ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_set_system_bus_connection</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_tracker_set_system_bus_connection
+<refsect2 id="polkit-tracker-set-system-bus-connection" role="function" condition="since:0.7">
+<title>polkit_tracker_set_system_bus_connection ()</title>
+<indexterm zone="polkit-tracker-set-system-bus-connection" role="0.7"><primary>polkit_tracker_set_system_bus_connection</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_tracker_set_system_bus_connection
                                                         (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker,
                                                          <link linkend="DBusConnection">DBusConnection</link> *con);</programlisting>
 <para>
@@ -416,9 +413,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-init" role="function" condition="since:0.7"/>polkit_tracker_init ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_init</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_tracker_init                 (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker);</programlisting>
+<refsect2 id="polkit-tracker-init" role="function" condition="since:0.7">
+<title>polkit_tracker_init ()</title>
+<indexterm zone="polkit-tracker-init" role="0.7"><primary>polkit_tracker_init</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_tracker_init                 (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker);</programlisting>
 <para>
 Initialize the tracker.
 </para>
@@ -432,9 +429,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-dbus-func" role="function" condition="since:0.7"/>polkit_tracker_dbus_func ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_dbus_func</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_tracker_dbus_func            (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker,
+<refsect2 id="polkit-tracker-dbus-func" role="function" condition="since:0.7">
+<title>polkit_tracker_dbus_func ()</title>
+<indexterm zone="polkit-tracker-dbus-func" role="0.7"><primary>polkit_tracker_dbus_func</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_tracker_dbus_func            (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker,
                                                          <link linkend="DBusMessage">DBusMessage</link> *message);</programlisting>
 <para>
 The owner of the <link linkend="PolKitTracker"><type>PolKitTracker</type></link> object must pass signals from the
@@ -457,9 +454,9 @@ This function is in <literal>libpolkit-dbus</literal>.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-get-caller-from-dbus-name" role="function" condition="since:0.7"/>polkit_tracker_get_caller_from_dbus_name ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_get_caller_from_dbus_name</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_tracker_get_caller_from_dbus_name
+<refsect2 id="polkit-tracker-get-caller-from-dbus-name" role="function" condition="since:0.7">
+<title>polkit_tracker_get_caller_from_dbus_name ()</title>
+<indexterm zone="polkit-tracker-get-caller-from-dbus-name" role="0.7"><primary>polkit_tracker_get_caller_from_dbus_name</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_tracker_get_caller_from_dbus_name
                                                         (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker,
                                                          const <link linkend="char">char</link> *dbus_name,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
@@ -489,9 +486,9 @@ This function is in <literal>libpolkit-dbus</literal>.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-get-caller-from-pid" role="function" condition="since:0.7"/>polkit_tracker_get_caller_from_pid ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_get_caller_from_pid</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_tracker_get_caller_from_pid  (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker,
+<refsect2 id="polkit-tracker-get-caller-from-pid" role="function" condition="since:0.7">
+<title>polkit_tracker_get_caller_from_pid ()</title>
+<indexterm zone="polkit-tracker-get-caller-from-pid" role="0.7"><primary>polkit_tracker_get_caller_from_pid</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_tracker_get_caller_from_pid  (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker,
                                                          <link linkend="pid-t">pid_t</link> pid,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
 <para>
@@ -526,9 +523,9 @@ This function is in <literal>libpolkit-dbus</literal>.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-tracker-is-authorization-relevant" role="function" condition="since:0.7"/>polkit_tracker_is_authorization_relevant ()</title>
-<indexterm role="0.7"><primary>polkit_tracker_is_authorization_relevant</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_tracker_is_authorization_relevant
+<refsect2 id="polkit-tracker-is-authorization-relevant" role="function" condition="since:0.7">
+<title>polkit_tracker_is_authorization_relevant ()</title>
+<indexterm zone="polkit-tracker-is-authorization-relevant" role="0.7"><primary>polkit_tracker_is_authorization_relevant</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_tracker_is_authorization_relevant
                                                         (<link linkend="PolKitTracker">PolKitTracker</link> *pk_tracker,
                                                          <link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth,
                                                          <link linkend="DBusError">DBusError</link> *error);</programlisting>
@@ -570,6 +567,4 @@ This function is in <literal>libpolkit-dbus</literal>.
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

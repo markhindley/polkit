@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-policy-cache">
 <refmeta>
-<refentrytitle role="top_of_page">Policy Cache</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-policy-cache.top_of_page">Policy Cache</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-policy-cache.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
                     <link linkend="PolKitPolicyCache">PolKitPolicyCache</link>;
 <link linkend="polkit-bool-t">polkit_bool_t</link>       (<link linkend="PolKitPolicyCacheForeachFunc">*PolKitPolicyCacheForeachFunc</link>)     (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
                                                          <link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *entry,
@@ -53,7 +50,7 @@
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-policy-cache.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This class is used to hold all policy objects (stemming from policy
@@ -63,20 +60,20 @@ files) and provide look-up functions.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-policy-cache.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="PolKitPolicyCache" role="struct"/>PolKitPolicyCache</title>
-<indexterm><primary>PolKitPolicyCache</primary></indexterm><programlisting>typedef struct _PolKitPolicyCache PolKitPolicyCache;</programlisting>
+<refsect2 id="PolKitPolicyCache" role="struct">
+<title>PolKitPolicyCache</title>
+<indexterm zone="PolKitPolicyCache"><primary>PolKitPolicyCache</primary></indexterm><programlisting>typedef struct _PolKitPolicyCache PolKitPolicyCache;</programlisting>
 <para>
 Instances of this class are used to hold all policy objects
 (stemming from policy files) and provide look-up functions.</para>
 <para>
 
 </para></refsect2>
-<refsect2>
-<title><anchor id="PolKitPolicyCacheForeachFunc" role="function"/>PolKitPolicyCacheForeachFunc ()</title>
-<indexterm><primary>PolKitPolicyCacheForeachFunc</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       (*PolKitPolicyCacheForeachFunc)     (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
+<refsect2 id="PolKitPolicyCacheForeachFunc" role="function">
+<title>PolKitPolicyCacheForeachFunc ()</title>
+<indexterm zone="PolKitPolicyCacheForeachFunc"><primary>PolKitPolicyCacheForeachFunc</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       (*PolKitPolicyCacheForeachFunc)     (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
                                                          <link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *entry,
                                                          <link linkend="void">void</link> *user_data);</programlisting>
 <para>
@@ -96,9 +93,9 @@ Callback function for <link linkend="polkit-policy-cache-foreach"><function>polk
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> to short-circuit; e.g. stop the iteration
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-policy-cache-ref" role="function"/>polkit_policy_cache_ref ()</title>
-<indexterm><primary>polkit_policy_cache_ref</primary></indexterm><programlisting><link linkend="PolKitPolicyCache">PolKitPolicyCache</link>*  polkit_policy_cache_ref             (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache);</programlisting>
+<refsect2 id="polkit-policy-cache-ref" role="function">
+<title>polkit_policy_cache_ref ()</title>
+<indexterm zone="polkit-policy-cache-ref"><primary>polkit_policy_cache_ref</primary></indexterm><programlisting><link linkend="PolKitPolicyCache">PolKitPolicyCache</link>*  polkit_policy_cache_ref             (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache);</programlisting>
 <para>
 Increase reference count.</para>
 <para>
@@ -110,9 +107,9 @@ Increase reference count.</para>
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-policy-cache-unref" role="function"/>polkit_policy_cache_unref ()</title>
-<indexterm><primary>polkit_policy_cache_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_cache_unref           (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache);</programlisting>
+<refsect2 id="polkit-policy-cache-unref" role="function">
+<title>polkit_policy_cache_unref ()</title>
+<indexterm zone="polkit-policy-cache-unref"><primary>polkit_policy_cache_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_cache_unref           (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache);</programlisting>
 <para>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -124,9 +121,9 @@ objects are decresed by one.</para>
 <listitem><simpara> the policy cache object
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-policy-cache-debug" role="function"/>polkit_policy_cache_debug ()</title>
-<indexterm><primary>polkit_policy_cache_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_cache_debug           (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache);</programlisting>
+<refsect2 id="polkit-policy-cache-debug" role="function">
+<title>polkit_policy_cache_debug ()</title>
+<indexterm zone="polkit-policy-cache-debug"><primary>polkit_policy_cache_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_cache_debug           (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache);</programlisting>
 <para>
 Print debug information about object</para>
 <para>
@@ -136,9 +133,9 @@ Print debug information about object</para>
 <listitem><simpara> the cache
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-policy-cache-get-entry" role="function"/>polkit_policy_cache_get_entry ()</title>
-<indexterm><primary>polkit_policy_cache_get_entry</primary></indexterm><programlisting><link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>* polkit_policy_cache_get_entry    (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
+<refsect2 id="polkit-policy-cache-get-entry" role="function">
+<title>polkit_policy_cache_get_entry ()</title>
+<indexterm zone="polkit-policy-cache-get-entry"><primary>polkit_policy_cache_get_entry</primary></indexterm><programlisting><link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>* polkit_policy_cache_get_entry    (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
                                                          <link linkend="PolKitAction">PolKitAction</link> *action);</programlisting>
 <para>
 Given a action, find the object describing the definition of the
@@ -158,9 +155,9 @@ policy; e.g. data stemming from files in
 this object.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-policy-cache-get-entry-by-id" role="function"/>polkit_policy_cache_get_entry_by_id ()</title>
-<indexterm><primary>polkit_policy_cache_get_entry_by_id</primary></indexterm><programlisting><link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>* polkit_policy_cache_get_entry_by_id
+<refsect2 id="polkit-policy-cache-get-entry-by-id" role="function">
+<title>polkit_policy_cache_get_entry_by_id ()</title>
+<indexterm zone="polkit-policy-cache-get-entry-by-id"><primary>polkit_policy_cache_get_entry_by_id</primary></indexterm><programlisting><link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>* polkit_policy_cache_get_entry_by_id
                                                         (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
                                                          const <link linkend="char">char</link> *action_id);</programlisting>
 <para>
@@ -181,9 +178,9 @@ definition of the policy; e.g. data stemming from files in
 this object.
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-policy-cache-get-entry-by-annotation" role="function" condition="since:0.7"/>polkit_policy_cache_get_entry_by_annotation ()</title>
-<indexterm role="0.7"><primary>polkit_policy_cache_get_entry_by_annotation</primary></indexterm><programlisting><link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>* polkit_policy_cache_get_entry_by_annotation
+<refsect2 id="polkit-policy-cache-get-entry-by-annotation" role="function" condition="since:0.7">
+<title>polkit_policy_cache_get_entry_by_annotation ()</title>
+<indexterm zone="polkit-policy-cache-get-entry-by-annotation" role="0.7"><primary>polkit_policy_cache_get_entry_by_annotation</primary></indexterm><programlisting><link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link>* polkit_policy_cache_get_entry_by_annotation
                                                         (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
                                                          const <link linkend="char">char</link> *annotation_key,
                                                          const <link linkend="char">char</link> *annotation_value);</programlisting>
@@ -211,9 +208,9 @@ there are no policy file entries matching the search criteria.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-policy-cache-foreach" role="function"/>polkit_policy_cache_foreach ()</title>
-<indexterm><primary>polkit_policy_cache_foreach</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_policy_cache_foreach         (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
+<refsect2 id="polkit-policy-cache-foreach" role="function">
+<title>polkit_policy_cache_foreach ()</title>
+<indexterm zone="polkit-policy-cache-foreach"><primary>polkit_policy_cache_foreach</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_policy_cache_foreach         (<link linkend="PolKitPolicyCache">PolKitPolicyCache</link> *policy_cache,
                                                          <link linkend="PolKitPolicyCacheForeachFunc">PolKitPolicyCacheForeachFunc</link> callback,
                                                          <link linkend="void">void</link> *user_data);</programlisting>
 <para>
@@ -239,6 +236,4 @@ Visit all entries in the policy cache.</para>
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

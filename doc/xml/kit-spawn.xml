@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-kit-spawn">
 <refmeta>
-<refentrytitle role="top_of_page">Spawn utilities</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-kit-spawn.top_of_page">Spawn utilities</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-kit-spawn.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
 enum                <link linkend="KitSpawnFlags">KitSpawnFlags</link>;
 <link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-spawn-sync">kit_spawn_sync</link>                      (const <link linkend="char">char</link> *working_directory,
                                                          <link linkend="KitSpawnFlags">KitSpawnFlags</link> flags,
@@ -43,7 +40,7 @@ enum                <link linkend="KitSpawnFlags">KitSpawnFlags</link>;
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-kit-spawn.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 Various spawn utilities.</para>
@@ -52,11 +49,11 @@ Various spawn utilities.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-kit-spawn.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="KitSpawnFlags" role="enum"/>enum KitSpawnFlags</title>
-<indexterm><primary>KitSpawnFlags</primary></indexterm><programlisting>typedef enum {
+<refsect2 id="KitSpawnFlags" role="enum">
+<title>enum KitSpawnFlags</title>
+<indexterm zone="KitSpawnFlags"><primary>KitSpawnFlags</primary></indexterm><programlisting>typedef enum {
         KIT_SPAWN_CHILD_INHERITS_STDIN = 1 &lt;&lt; 0,
         KIT_SPAWN_STDOUT_TO_DEV_NULL   = 1 &lt;&lt; 1,
         KIT_SPAWN_STDERR_TO_DEV_NULL   = 1 &lt;&lt; 2,
@@ -67,25 +64,25 @@ Flags passed to <link linkend="kit-spawn-sync"><function>kit_spawn_sync()</funct
 <para>
 
 </para><variablelist role="enum">
-<varlistentry>
-<term><anchor id="KIT-SPAWN-CHILD-INHERITS-STDIN:CAPS" role="constant"/><literal>KIT_SPAWN_CHILD_INHERITS_STDIN</literal></term>
+<varlistentry id="KIT-SPAWN-CHILD-INHERITS-STDIN:CAPS" role="constant">
+<term><literal>KIT_SPAWN_CHILD_INHERITS_STDIN</literal></term>
 <listitem><simpara> If not set, child's stdin will be attached to <literal>/dev/null</literal>
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="KIT-SPAWN-STDOUT-TO-DEV-NULL:CAPS" role="constant"/><literal>KIT_SPAWN_STDOUT_TO_DEV_NULL</literal></term>
+<varlistentry id="KIT-SPAWN-STDOUT-TO-DEV-NULL:CAPS" role="constant">
+<term><literal>KIT_SPAWN_STDOUT_TO_DEV_NULL</literal></term>
 <listitem><simpara> If set childs output will be sent to <literal>/dev/null</literal>
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="KIT-SPAWN-STDERR-TO-DEV-NULL:CAPS" role="constant"/><literal>KIT_SPAWN_STDERR_TO_DEV_NULL</literal></term>
+<varlistentry id="KIT-SPAWN-STDERR-TO-DEV-NULL:CAPS" role="constant">
+<term><literal>KIT_SPAWN_STDERR_TO_DEV_NULL</literal></term>
 <listitem><simpara> If set childs error output will be sent to <literal>/dev/null</literal>
 </simpara></listitem>
 </varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="kit-spawn-sync" role="function"/>kit_spawn_sync ()</title>
-<indexterm><primary>kit_spawn_sync</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_spawn_sync                      (const <link linkend="char">char</link> *working_directory,
+<refsect2 id="kit-spawn-sync" role="function">
+<title>kit_spawn_sync ()</title>
+<indexterm zone="kit-spawn-sync"><primary>kit_spawn_sync</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_spawn_sync                      (const <link linkend="char">char</link> *working_directory,
                                                          <link linkend="KitSpawnFlags">KitSpawnFlags</link> flags,
                                                          <link linkend="char">char</link> **argv,
                                                          <link linkend="char">char</link> **envp,
@@ -136,6 +133,4 @@ occured and errno will be set.
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>

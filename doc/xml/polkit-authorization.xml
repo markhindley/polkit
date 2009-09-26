@@ -5,7 +5,7 @@
 ]>
 <refentry id="polkit-polkit-authorization">
 <refmeta>
-<refentrytitle role="top_of_page">Authorization Entry</refentrytitle>
+<refentrytitle role="top_of_page" id="polkit-polkit-authorization.top_of_page">Authorization Entry</refentrytitle>
 <manvolnum>3</manvolnum>
 <refmiscinfo>POLKIT Library</refmiscinfo>
 </refmeta>
@@ -16,13 +16,10 @@
 <!--[<xref linkend="desc" endterm="desc.title"/>]-->
 </refnamediv>
 
-<refsynopsisdiv role="synopsis">
+<refsynopsisdiv id="polkit-polkit-authorization.synopsis" role="synopsis">
 <title role="synopsis.title">Synopsis</title>
 
 <synopsis>
-
-
-
                     <link linkend="PolKitAuthorization">PolKitAuthorization</link>;
 <link linkend="PolKitAuthorization">PolKitAuthorization</link>* <link linkend="polkit-authorization-ref">polkit_authorization_ref</link>           (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);
 <link linkend="void">void</link>                <link linkend="polkit-authorization-unref">polkit_authorization_unref</link>          (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);
@@ -68,7 +65,7 @@ const <link linkend="char">char</link>*         <link linkend="polkit-authorizat
 
 
 
-<refsect1 role="desc">
+<refsect1 id="polkit-polkit-authorization.description" role="desc">
 <title role="desc.title">Description</title>
 <para>
 This class is used to represent entries in the authorization
@@ -78,11 +75,11 @@ database.</para>
 </para>
 </refsect1>
 
-<refsect1 role="details">
+<refsect1 id="polkit-polkit-authorization.details" role="details">
 <title role="details.title">Details</title>
-<refsect2>
-<title><anchor id="PolKitAuthorization" role="struct" condition="since:0.7"/>PolKitAuthorization</title>
-<indexterm role="0.7"><primary>PolKitAuthorization</primary></indexterm><programlisting>typedef struct _PolKitAuthorization PolKitAuthorization;</programlisting>
+<refsect2 id="PolKitAuthorization" role="struct" condition="since:0.7">
+<title>PolKitAuthorization</title>
+<indexterm zone="PolKitAuthorization" role="0.7"><primary>PolKitAuthorization</primary></indexterm><programlisting>typedef struct _PolKitAuthorization PolKitAuthorization;</programlisting>
 <para>
 Objects of this class are used to represent entries in the
 authorization database.</para>
@@ -90,9 +87,9 @@ authorization database.</para>
 
 </para><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-ref" role="function" condition="since:0.7"/>polkit_authorization_ref ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_ref</primary></indexterm><programlisting><link linkend="PolKitAuthorization">PolKitAuthorization</link>* polkit_authorization_ref           (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
+<refsect2 id="polkit-authorization-ref" role="function" condition="since:0.7">
+<title>polkit_authorization_ref ()</title>
+<indexterm zone="polkit-authorization-ref" role="0.7"><primary>polkit_authorization_ref</primary></indexterm><programlisting><link linkend="PolKitAuthorization">PolKitAuthorization</link>* polkit_authorization_ref           (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Increase reference count.</para>
 <para>
@@ -106,9 +103,9 @@ Increase reference count.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-unref" role="function" condition="since:0.7"/>polkit_authorization_unref ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_authorization_unref          (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
+<refsect2 id="polkit-authorization-unref" role="function" condition="since:0.7">
+<title>polkit_authorization_unref ()</title>
+<indexterm zone="polkit-authorization-unref" role="0.7"><primary>polkit_authorization_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_authorization_unref          (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -121,9 +118,9 @@ objects are decresed by one.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-debug" role="function" condition="since:0.7"/>polkit_authorization_debug ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_authorization_debug          (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
+<refsect2 id="polkit-authorization-debug" role="function" condition="since:0.7">
+<title>polkit_authorization_debug ()</title>
+<indexterm zone="polkit-authorization-debug" role="0.7"><primary>polkit_authorization_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_authorization_debug          (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Print debug details</para>
 <para>
@@ -134,9 +131,9 @@ Print debug details</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-validate" role="function" condition="since:0.7"/>polkit_authorization_validate ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_validate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_validate       (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
+<refsect2 id="polkit-authorization-validate" role="function" condition="since:0.7">
+<title>polkit_authorization_validate ()</title>
+<indexterm zone="polkit-authorization-validate" role="0.7"><primary>polkit_authorization_validate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_validate       (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Validate the object</para>
 <para>
@@ -150,9 +147,9 @@ Validate the object</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="PolKitAuthorizationScope" role="enum" condition="since:0.7"/>enum PolKitAuthorizationScope</title>
-<indexterm role="0.7"><primary>PolKitAuthorizationScope</primary></indexterm><programlisting>typedef enum {
+<refsect2 id="PolKitAuthorizationScope" role="enum" condition="since:0.7">
+<title>enum PolKitAuthorizationScope</title>
+<indexterm zone="PolKitAuthorizationScope" role="0.7"><primary>PolKitAuthorizationScope</primary></indexterm><programlisting>typedef enum {
         POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT,
         POLKIT_AUTHORIZATION_SCOPE_PROCESS,
         POLKIT_AUTHORIZATION_SCOPE_SESSION,
@@ -165,35 +162,35 @@ process, a session or unlimited.</para>
 <para>
 
 </para><variablelist role="enum">
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-SCOPE-PROCESS-ONE-SHOT:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-SCOPE-PROCESS-ONE-SHOT:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT</literal></term>
 <listitem><simpara> The authorization is
 limited for a single shot for a single process on the system
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-SCOPE-PROCESS:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_SCOPE_PROCESS</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-SCOPE-PROCESS:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_SCOPE_PROCESS</literal></term>
 <listitem><simpara> The authorization is limited
 for a single process on the system
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-SCOPE-SESSION:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_SCOPE_SESSION</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-SCOPE-SESSION:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_SCOPE_SESSION</literal></term>
 <listitem><simpara> The authorization is limited
 for processes originating from a given session
 </simpara></listitem>
 </varlistentry>
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-SCOPE-ALWAYS:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_SCOPE_ALWAYS</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-SCOPE-ALWAYS:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_SCOPE_ALWAYS</literal></term>
 <listitem><simpara> The authorization is retained
 indefinitely.
 </simpara></listitem>
 </varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="PolKitAuthorizationType" role="enum" condition="since:0.7"/>enum PolKitAuthorizationType</title>
-<indexterm role="0.7"><primary>PolKitAuthorizationType</primary></indexterm><programlisting>typedef enum {
+<refsect2 id="PolKitAuthorizationType" role="enum" condition="since:0.7">
+<title>enum PolKitAuthorizationType</title>
+<indexterm zone="PolKitAuthorizationType" role="0.7"><primary>PolKitAuthorizationType</primary></indexterm><programlisting>typedef enum {
         POLKIT_AUTHORIZATION_TYPE_UID,
 } PolKitAuthorizationType;
 </programlisting>
@@ -204,16 +201,16 @@ supported).</para>
 <para>
 
 </para><variablelist role="enum">
-<varlistentry>
-<term><anchor id="POLKIT-AUTHORIZATION-TYPE-UID:CAPS" role="constant"/><literal>POLKIT_AUTHORIZATION_TYPE_UID</literal></term>
+<varlistentry id="POLKIT-AUTHORIZATION-TYPE-UID:CAPS" role="constant">
+<term><literal>POLKIT_AUTHORIZATION_TYPE_UID</literal></term>
 <listitem><simpara> The authorization is for a UNIX user
 </simpara></listitem>
 </varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-type" role="function" condition="since:0.7"/>polkit_authorization_type ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_type</primary></indexterm><programlisting><link linkend="PolKitAuthorizationType">PolKitAuthorizationType</link> polkit_authorization_type       (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
+<refsect2 id="polkit-authorization-type" role="function" condition="since:0.7">
+<title>polkit_authorization_type ()</title>
+<indexterm zone="polkit-authorization-type" role="0.7"><primary>polkit_authorization_type</primary></indexterm><programlisting><link linkend="PolKitAuthorizationType">PolKitAuthorizationType</link> polkit_authorization_type       (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Determine the type of authorization.</para>
 <para>
@@ -227,9 +224,9 @@ Determine the type of authorization.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-get-action-id" role="function" condition="since:0.7"/>polkit_authorization_get_action_id ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_get_action_id</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_get_action_id  (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
+<refsect2 id="polkit-authorization-get-action-id" role="function" condition="since:0.7">
+<title>polkit_authorization_get_action_id ()</title>
+<indexterm zone="polkit-authorization-get-action-id" role="0.7"><primary>polkit_authorization_get_action_id</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_get_action_id  (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Get the action this authorization is for</para>
 <para>
@@ -243,9 +240,9 @@ Get the action this authorization is for</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-get-uid" role="function" condition="since:0.7"/>polkit_authorization_get_uid ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_get_uid</primary></indexterm><programlisting><link linkend="uid-t">uid_t</link>               polkit_authorization_get_uid        (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
+<refsect2 id="polkit-authorization-get-uid" role="function" condition="since:0.7">
+<title>polkit_authorization_get_uid ()</title>
+<indexterm zone="polkit-authorization-get-uid" role="0.7"><primary>polkit_authorization_get_uid</primary></indexterm><programlisting><link linkend="uid-t">uid_t</link>               polkit_authorization_get_uid        (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Gets the UNIX user id for the user the authorization is confined
 to.</para>
@@ -260,9 +257,9 @@ to.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-get-time-of-grant" role="function" condition="since:0.7"/>polkit_authorization_get_time_of_grant ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_get_time_of_grant</primary></indexterm><programlisting><link linkend="time-t">time_t</link>              polkit_authorization_get_time_of_grant
+<refsect2 id="polkit-authorization-get-time-of-grant" role="function" condition="since:0.7">
+<title>polkit_authorization_get_time_of_grant ()</title>
+<indexterm zone="polkit-authorization-get-time-of-grant" role="0.7"><primary>polkit_authorization_get_time_of_grant</primary></indexterm><programlisting><link linkend="time-t">time_t</link>              polkit_authorization_get_time_of_grant
                                                         (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Returns the point in time the authorization was granted. The value
@@ -279,9 +276,9 @@ is UNIX time, e.g. number of seconds since the Epoch Jan 1, 1970
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-get-scope" role="function" condition="since:0.7"/>polkit_authorization_get_scope ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_get_scope</primary></indexterm><programlisting><link linkend="PolKitAuthorizationScope">PolKitAuthorizationScope</link> polkit_authorization_get_scope (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
+<refsect2 id="polkit-authorization-get-scope" role="function" condition="since:0.7">
+<title>polkit_authorization_get_scope ()</title>
+<indexterm zone="polkit-authorization-get-scope" role="0.7"><primary>polkit_authorization_get_scope</primary></indexterm><programlisting><link linkend="PolKitAuthorizationScope">PolKitAuthorizationScope</link> polkit_authorization_get_scope (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Get the scope of the authorization; e.g. whether it's confined to a
 single process, a single session or can be retained
@@ -299,9 +296,9 @@ details.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-scope-process-get-pid" role="function" condition="since:0.7"/>polkit_authorization_scope_process_get_pid ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_scope_process_get_pid</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_scope_process_get_pid
+<refsect2 id="polkit-authorization-scope-process-get-pid" role="function" condition="since:0.7">
+<title>polkit_authorization_scope_process_get_pid ()</title>
+<indexterm zone="polkit-authorization-scope-process-get-pid" role="0.7"><primary>polkit_authorization_scope_process_get_pid</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_scope_process_get_pid
                                                         (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth,
                                                          <link linkend="pid-t">pid_t</link> *out_pid,
                                                          <link linkend="polkit-uint64-t">polkit_uint64_t</link> *out_pid_start_time);</programlisting>
@@ -331,9 +328,9 @@ milliseconds since the system was started) is also returned.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-scope-session-get-ck-objref" role="function" condition="since:0.7"/>polkit_authorization_scope_session_get_ck_objref ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_scope_session_get_ck_objref</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_scope_session_get_ck_objref
+<refsect2 id="polkit-authorization-scope-session-get-ck-objref" role="function" condition="since:0.7">
+<title>polkit_authorization_scope_session_get_ck_objref ()</title>
+<indexterm zone="polkit-authorization-scope-session-get-ck-objref" role="0.7"><primary>polkit_authorization_scope_session_get_ck_objref</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_authorization_scope_session_get_ck_objref
                                                         (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth);</programlisting>
 <para>
 Gets the ConsoleKit object path for the session the authorization
@@ -349,9 +346,9 @@ is confined to.</para>
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-was-granted-via-defaults" role="function" condition="since:0.7"/>polkit_authorization_was_granted_via_defaults ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_was_granted_via_defaults</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_was_granted_via_defaults
+<refsect2 id="polkit-authorization-was-granted-via-defaults" role="function" condition="since:0.7">
+<title>polkit_authorization_was_granted_via_defaults ()</title>
+<indexterm zone="polkit-authorization-was-granted-via-defaults" role="0.7"><primary>polkit_authorization_was_granted_via_defaults</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_was_granted_via_defaults
                                                         (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth,
                                                          <link linkend="uid-t">uid_t</link> *out_user_authenticated_as);</programlisting>
 <para>
@@ -378,9 +375,9 @@ himself authenticating.
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-was-granted-explicitly" role="function" condition="since:0.7"/>polkit_authorization_was_granted_explicitly ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_was_granted_explicitly</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_was_granted_explicitly
+<refsect2 id="polkit-authorization-was-granted-explicitly" role="function" condition="since:0.7">
+<title>polkit_authorization_was_granted_explicitly ()</title>
+<indexterm zone="polkit-authorization-was-granted-explicitly" role="0.7"><primary>polkit_authorization_was_granted_explicitly</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_was_granted_explicitly
                                                         (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth,
                                                          <link linkend="uid-t">uid_t</link> *out_by_whom,
                                                          <link linkend="polkit-bool-t">polkit_bool_t</link> *out_is_negative);</programlisting>
@@ -411,9 +408,9 @@ negative, <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> is returned i
 </simpara></listitem></varlistentry>
 </variablelist><para role="since">Since  0.7
 </para></refsect2>
-<refsect2>
-<title><anchor id="PolKitAuthorizationConstraintsForeachFunc" role="function"/>PolKitAuthorizationConstraintsForeachFunc ()</title>
-<indexterm><primary>PolKitAuthorizationConstraintsForeachFunc</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       (*PolKitAuthorizationConstraintsForeachFunc)
+<refsect2 id="PolKitAuthorizationConstraintsForeachFunc" role="function">
+<title>PolKitAuthorizationConstraintsForeachFunc ()</title>
+<indexterm zone="PolKitAuthorizationConstraintsForeachFunc"><primary>PolKitAuthorizationConstraintsForeachFunc</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       (*PolKitAuthorizationConstraintsForeachFunc)
                                                         (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth,
                                                          <link linkend="PolKitAuthorizationConstraint">PolKitAuthorizationConstraint</link> *authc,
                                                          <link linkend="void">void</link> *user_data);</programlisting>
@@ -434,9 +431,9 @@ Callback function for <link linkend="polkit-authorization-constraints-foreach"><
 <varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Pass <link linkend="TRUE:CAPS"><type>TRUE</type></link> to short-circuit, e.g. stop the iteration
 </simpara></listitem></varlistentry>
 </variablelist></refsect2>
-<refsect2>
-<title><anchor id="polkit-authorization-constraints-foreach" role="function" condition="since:0.7"/>polkit_authorization_constraints_foreach ()</title>
-<indexterm role="0.7"><primary>polkit_authorization_constraints_foreach</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraints_foreach
+<refsect2 id="polkit-authorization-constraints-foreach" role="function" condition="since:0.7">
+<title>polkit_authorization_constraints_foreach ()</title>
+<indexterm zone="polkit-authorization-constraints-foreach" role="0.7"><primary>polkit_authorization_constraints_foreach</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_authorization_constraints_foreach
                                                         (<link linkend="PolKitAuthorization">PolKitAuthorization</link> *auth,
                                                          <link linkend="PolKitAuthorizationConstraintsForeachFunc">PolKitAuthorizationConstraintsForeachFunc</link> cb,
                                                          <link linkend="void">void</link> *user_data);</programlisting>
@@ -465,6 +462,4 @@ Iterate over all constraints associated with an authorization.</para>
 
 
 
-
-<refsect1><refsect2 /><refsect2 /></refsect1>
 </refentry>
