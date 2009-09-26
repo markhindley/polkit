@@ -1,156 +1,163 @@
-## Process this file with automake to produce Makefile.in
+NULL =
 
-INCLUDES = \
-	-I$(top_builddir)/src -I$(top_srcdir)/src \
-	-DPACKAGE_LIBEXEC_DIR=\""$(libexecdir)"\" \
-	-DPACKAGE_SYSCONF_DIR=\""$(sysconfdir)"\" \
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-	-DPACKAGE_BIN_DIR=\""$(bindir)"\" \
-	-DPACKAGE_LOCALSTATE_DIR=\""$(localstatedir)"\" \
-	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\" \
-	-DPACKAGE_LIB_DIR=\""$(libdir)"\" \
-	-D_POSIX_PTHREAD_SEMANTICS -D_REENTRANT	\
-	-DPOLKIT_COMPILATION \
-	-DTEST_DATA_DIR=\"$(top_srcdir)/test/\" \
-	-DTEST_BUILD_DIR=\"$(top_builddir)\"
+INCLUDES =                                                      \
+        -I$(top_builddir)/src                                   \
+        -I$(top_srcdir)/src                                     \
+        -DPACKAGE_LIBEXEC_DIR=\""$(libexecdir)"\"               \
+        -DPACKAGE_SYSCONF_DIR=\""$(sysconfdir)"\"               \
+        -DPACKAGE_DATA_DIR=\""$(datadir)"\"                     \
+        -DPACKAGE_BIN_DIR=\""$(bindir)"\"                       \
+        -DPACKAGE_LOCALSTATE_DIR=\""$(localstatedir)"\"         \
+        -DPACKAGE_LOCALE_DIR=\""$(localedir)"\"                 \
+        -DPACKAGE_LIB_DIR=\""$(libdir)"\"                       \
+        -D_POSIX_PTHREAD_SEMANTICS                              \
+        -D_REENTRANT                                            \
+	-DEGG_DBUS_I_KNOW_API_IS_SUBJECT_TO_CHANGE		\
+        $(NULL)
 
-lib_LTLIBRARIES=libpolkit.la
+BUILT_SOURCES = 						\
+	polkit-built-sources.stamp				\
+	polkitenumtypes.c		polkitenumtypes.h	\
+	$(NULL)
 
-libpolkitincludedir=$(includedir)/PolicyKit/polkit
+enum_headers = polkitcheckauthorizationflags.h polkiterror.h polkitimplicitauthorization.h
 
-libpolkitinclude_HEADERS =              		\
-	polkit.h					\
-	polkit-sysdeps.h				\
-	polkit-types.h					\
-	polkit-error.h					\
-	polkit-result.h					\
-	polkit-context.h				\
-	polkit-action.h					\
-	polkit-seat.h					\
-	polkit-session.h				\
-	polkit-caller.h					\
-	polkit-policy-file-entry.h			\
-	polkit-policy-file.h				\
-	polkit-policy-cache.h				\
-	polkit-policy-default.h				\
-	polkit-config.h					\
-	polkit-authorization.h				\
-	polkit-authorization-constraint.h		\
-	polkit-authorization-db.h
+polkitenumtypes.h: $(enum_headers) polkitenumtypes.h.template
+	( top_builddir=`cd $(top_builddir) && pwd`; \
+	 cd $(srcdir) && glib-mkenums --template polkitenumtypes.h.template $(enum_headers)) > \
+	   polkitenumtypes.h.tmp && mv polkitenumtypes.h.tmp polkitenumtypes.h
 
-libpolkit_la_SOURCES =                                					\
-	polkit.h									\
-	polkit-private.h								\
-	polkit-types.h									\
-	polkit-sysdeps.h			polkit-sysdeps.c			\
-	polkit-error.h				polkit-error.c				\
-	polkit-result.h				polkit-result.c				\
-	polkit-context.h			polkit-context.c			\
-	polkit-action.h				polkit-action.c				\
-	polkit-seat.h				polkit-seat.c				\
-	polkit-session.h			polkit-session.c			\
-	polkit-caller.h				polkit-caller.c				\
-	polkit-policy-file-entry.h		polkit-policy-file-entry.c		\
-	polkit-policy-file.h			polkit-policy-file.c			\
-	polkit-policy-cache.h			polkit-policy-cache.c			\
-	polkit-policy-default.h			polkit-policy-default.c			\
-	polkit-debug.h				polkit-debug.c				\
-	polkit-utils.h				polkit-utils.c				\
-	polkit-config.h				polkit-config.c				\
-	polkit-authorization.h			polkit-authorization.c			\
-	polkit-authorization-constraint.h	polkit-authorization-constraint.c	\
-	polkit-authorization-db.h
+polkitenumtypes.c: $(enum_headers) polkitenumtypes.c.template
+	( top_builddir=`cd $(top_builddir) && pwd`; \
+	 cd $(srcdir) && glib-mkenums --template polkitenumtypes.c.template $(enum_headers)) > \
+	   polkitenumtypes.c.tmp && mv polkitenumtypes.c.tmp polkitenumtypes.c
 
-if POLKIT_AUTHDB_DUMMY
-libpolkit_la_SOURCES +=                                					\
-						polkit-authorization-db-dummy.c
-endif
+# Build all the PolicyKit D-Bus code here, even the code we
+# only in the daemon for agent interaction
+#
+polkit-built-sources.stamp : Makefile.am $(top_srcdir)/data/org.freedesktop.PolicyKit1.Authority.xml $(top_srcdir)/data/org.freedesktop.PolicyKit1.AuthenticationAgent.xml
+	eggdbus-binding-tool											\
+		--namespace "_Polkit"										\
+		--dbus-namespace "org.freedesktop.PolicyKit1"							\
+		--introspection-xml $(top_srcdir)/data/org.freedesktop.PolicyKit1.Authority.xml 		\
+		--introspection-xml $(top_srcdir)/data/org.freedesktop.PolicyKit1.AuthenticationAgent.xml	\
+		--stamp-file polkit-built-sources.stamp								\
+	$(NULL)
 
-if POLKIT_AUTHDB_DEFAULT
-libpolkit_la_SOURCES +=                                					\
-						polkit-authorization-db.c
-endif
+# keep in sync with contents of polkit-built-sources.stamp (Thanks autotools)
+#
+polkit_built_sources = _polkitactiondescription.c _polkitactiondescription.h _polkitauthenticationagent.c _polkitauthenticationagent.h _polkitauthority.c _polkitauthority.h _polkitauthorizationresult.c _polkitauthorizationresult.h _polkitbindings.c _polkitbindings.h _polkitbindingsmarshal.c _polkitbindingsmarshal.h _polkitbindingstypes.h _polkitcheckauthorizationflags.c _polkitcheckauthorizationflags.h _polkiterror.c _polkiterror.h _polkitidentity.c _polkitidentity.h _polkitimplicitauthorization.c _polkitimplicitauthorization.h _polkitsubject.c _polkitsubject.h _polkittemporaryauthorization.c _polkittemporaryauthorization.h docbook-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.xml docbook-interface-org.freedesktop.PolicyKit1.Authority.xml _polkitbindingsmarshal.list
 
-libpolkit_la_LIBADD = @EXPAT_LIBS@ $(top_builddir)/src/kit/libkit.la
+lib_LTLIBRARIES=libpolkit-gobject-1.la
 
-if POLKIT_BUILD_TESTS
-libpolkit_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@
-else
-libpolkit_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) @R_DYNAMIC_LDFLAG@ \
-                       -export-dynamic -no-undefined -export-symbols-regex '(^polkit_.*|_pk_validate_unique_bus_name)'
-endif
+libpolkit_gobject_1includedir=$(includedir)/polkit-1/polkit
 
-## note that TESTS has special meaning (stuff to use in make check)
-## so if adding tests not to be run in make check, don't add them to 
-## TESTS
-if POLKIT_BUILD_TESTS
-TESTS_ENVIRONMENT=
-TESTS=polkit-test
+libpolkit_gobject_1include_HEADERS =                        				\
+        polkit.h									\
+        polkitprivate.h									\
+        polkittypes.h									\
+	polkitenumtypes.h								\
+	polkitactiondescription.h							\
+	polkitdetails.h									\
+	polkitauthority.h								\
+	polkiterror.h									\
+	polkitsubject.h									\
+	polkitunixprocess.h								\
+	polkitunixsession.h								\
+	polkitsystembusname.h								\
+	polkitidentity.h								\
+	polkitunixuser.h								\
+	polkitunixgroup.h								\
+	polkitauthorizationresult.h							\
+	polkitcheckauthorizationflags.h							\
+	polkitimplicitauthorization.h							\
+	polkittemporaryauthorization.h							\
+        $(NULL)
 
-check_PROGRAMS=$(TESTS)
+libpolkit_gobject_1_la_SOURCES =                                   			\
+	$(BUILT_SOURCES)								\
+	$(polkit_built_sources)								\
+        polkit.h									\
+	polkitactiondescription.c		polkitactiondescription.h		\
+	polkitdetails.c				polkitdetails.h				\
+	polkitauthority.c			polkitauthority.h			\
+	polkiterror.c				polkiterror.h				\
+	polkitsubject.c				polkitsubject.h				\
+	polkitunixprocess.c			polkitunixprocess.h			\
+	polkitunixsession.c			polkitunixsession.h			\
+	polkitsystembusname.c			polkitsystembusname.h			\
+	polkitidentity.c			polkitidentity.h			\
+	polkitunixuser.c			polkitunixuser.h			\
+	polkitunixgroup.c			polkitunixgroup.h			\
+	polkitauthorizationresult.c		polkitauthorizationresult.h		\
+	polkitcheckauthorizationflags.c		polkitcheckauthorizationflags.h		\
+	polkitimplicitauthorization.c		polkitimplicitauthorization.h		\
+	polkittemporaryauthorization.c		polkittemporaryauthorization.h		\
+        $(NULL)
 
-polkit_test_SOURCES=				\
-	polkit-test.h		polkit-test.c
+libpolkit_gobject_1_la_CFLAGS =                                        	\
+        -D_POLKIT_COMPILATION                                  		\
+        $(GLIB_CFLAGS)							\
+        $(EGG_DBUS_CFLAGS)						\
+        $(NULL)
 
-polkit_test_LDADD=$(top_builddir)/src/kit/libkit.la $(top_builddir)/src/polkit/libpolkit.la
-polkit_test_LDFLAGS=
+libpolkit_gobject_1_la_LIBADD =                               		\
+        $(GLIB_LIBS)							\
+        $(EGG_DBUS_LIBS)						\
+        $(NULL)
 
-if POLKIT_GCOV_ENABLED
-clean-gcov:
-	rm -f *.gcov .libs/*.gcda *.gcda
+if ENABLE_INTROSPECTION
+girdir = $(GIRDIR)
+gir_DATA = Polkit-1.0.gir
 
-.PHONY: coverage-report.txt covered-files.txt
+typelibsdir = $(GIRTYPELIBDIR)
+typelibs_DATA = Polkit-1.0.typelib
 
-covered-files.txt :
-	echo $(addprefix src/polkit/,$(filter %.c,$(libpolkit_la_SOURCES))) > covered-files.txt
+Polkit-1.0.gir: libpolkit-gobject-1.la $(G_IR_SCANNER) Makefile.am
+	$(G_IR_SCANNER) -v 					\
+		--namespace Polkit 				\
+		--nsversion=1.0 				\
+		--include=Gio-2.0 				\
+		--library=polkit-gobject-1 			\
+		--output $@ 					\
+		--pkg=glib-2.0 					\
+		--pkg=gobject-2.0 				\
+		--pkg=gio-2.0 					\
+	        $(EGG_DBUS_CFLAGS)				\
+                -I$(top_srcdir)/src	 			\
+	        -D_POLKIT_COMPILATION                   	\
+		-DEGG_DBUS_I_KNOW_API_IS_SUBJECT_TO_CHANGE	\
+		$(srcdir)/polkit.h 				\
+		$(srcdir)/polkittypes.h 			\
+		$(srcdir)/polkitactiondescription.h 		\
+		$(srcdir)/polkitauthority.h 			\
+		$(srcdir)/polkitauthorizationresult.h 		\
+		$(srcdir)/polkitcheckauthorizationflags.h 	\
+		$(srcdir)/polkitdetails.h 			\
+		$(builddir)/polkitenumtypes.h 			\
+		$(srcdir)/polkiterror.h 			\
+		$(srcdir)/polkitidentity.h 			\
+		$(srcdir)/polkitimplicitauthorization.h 	\
+		$(srcdir)/polkitsubject.h 			\
+		$(srcdir)/polkitsystembusname.h 		\
+		$(srcdir)/polkittemporaryauthorization.h 	\
+		$(srcdir)/polkitunixgroup.h 			\
+		$(srcdir)/polkitunixprocess.h 			\
+		$(srcdir)/polkitunixsession.h 			\
+		$(srcdir)/polkitunixuser.h 			\
+		$(NULL)
 
-coverage-report.txt : covered-files.txt clean-gcov all check
-	gcov $(filter %.c,$(libpolkit_la_SOURCES)) -o .libs/ > /dev/null
-	$(top_srcdir)/test/create-coverage-report.sh "module polkit" `cat covered-files.txt` > coverage-report.txt
+Polkit-1.0.typelib: Polkit-1.0.gir $(G_IR_COMPILER)
+	$(G_IR_COMPILER) $< -o $@
 
-check-coverage : coverage-report.txt
-	cat coverage-report.txt
-else
-coverage-report.txt:
-	@echo "Need to reconfigure with --enable-gcov"
+endif # ENABLE_INTROSPECTION
 
-check-coverage:
-	@echo "Need to reconfigure with --enable-gcov"
-endif
+EXTRA_DIST = Polkit-1.0.gir polkitenumtypes.h.template polkitenumtypes.c.template
+CLEANFILES = $(gir_DATA) $(typelibs_DATA)
 
-else
-TESTS=
-endif
+dist-hook :
+	(for i in $(polkit_built_sources) $(BUILT_SOURCES) ; do rm -f $(distdir)/$$i ; done)
 
 clean-local :
-	rm -f *~ $(BUILT_SOURCES) *.bb *.bbg *.da *.gcov .libs/*.da .libs/*.bbg 
+	rm -f *~ $(polkit_built_sources) $(BUILT_SOURCES)
 
-if POLKIT_AUTHDB_DEFAULT
-# The directories /var/lib/PolicyKit and /var/run/PolicyKit is where
-# authorizations are stored. They must not be world readable (the
-# polkit-auth-read-helper is used to read it) and the $POLKIT_GROUP
-# group needs to be able to write files there.
-#
-# The directory /var/lib/PolicyKit-public is used for storing world-readable
-# information. Only $POLKIT_USER may write to it.
-#
-# The /var/lib/misc/PolicyKit.reload file is used for triggering that
-# authorizations have changed; it needs to be world readable and
-# writeable for user $POLKIT_USER and group $POLKIT_GROUP (FHS 2.3 suggests
-# that location)
-#
-install-data-local:
-	mkdir -p $(DESTDIR)$(localstatedir)/lib/misc
-	touch $(DESTDIR)$(localstatedir)/lib/misc/PolicyKit.reload
-	-chown $(POLKIT_USER):$(POLKIT_GROUP) $(DESTDIR)$(localstatedir)/lib/misc/PolicyKit.reload
-	-chmod 664 $(DESTDIR)$(localstatedir)/lib/misc/PolicyKit.reload
-	mkdir -p $(DESTDIR)$(localstatedir)/lib/PolicyKit-public
-	mkdir -p $(DESTDIR)$(localstatedir)/lib/PolicyKit
-	mkdir -p $(DESTDIR)$(localstatedir)/run/PolicyKit
-	-chown $(POLKIT_USER) $(DESTDIR)$(localstatedir)/lib/PolicyKit-public
-	-chgrp $(POLKIT_GROUP) $(DESTDIR)$(localstatedir)/lib/PolicyKit
-	-chgrp $(POLKIT_GROUP) $(DESTDIR)$(localstatedir)/run/PolicyKit
-	-chmod 755 $(DESTDIR)$(localstatedir)/lib/PolicyKit-public
-	-chmod 770 $(DESTDIR)$(localstatedir)/lib/PolicyKit
-	-chmod 770 $(DESTDIR)$(localstatedir)/run/PolicyKit
-endif

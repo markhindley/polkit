@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>The PolicyKit Project</vendor>
+  <vendor_url>http://hal.freedesktop.org/docs/PolicyKit/</vendor_url>
+
+  <action id="org.freedesktop.policykit.read">
+    <description>Read authorizations of other users</description>
+    <description xml:lang="da">Læs andre brugers autoriseringer</description>
+    <message>Authentication is required to read authorizations of other users</message>
+    <message xml:lang="da">Autorisering er påkrævet for at læse andre brugers autoriseringer</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.freedesktop.policykit.revoke">
+    <description>Revoke authorizations from other users</description>
+    <description xml:lang="da">Fjern autorisering fra en anden bruger</description>
+    <message>Authentication is required to revoke authorizations other users</message>
+    <message xml:lang="da">Autorisering er påkrævet for at fjerne en autosering fra en anden bruger</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.freedesktop.policykit.grant">
+    <description>Grant authorizations to other users</description>
+    <description xml:lang="da">Autoriser en anden bruger</description>
+    <message>Authentication is required to grant authorizations to other users</message>
+    <message xml:lang="da">Autorisering er påkrævet for at autorisere andre brugere</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.freedesktop.policykit.modify-defaults">
+    <description>Modify defaults for implicit authorizations</description>
+    <description xml:lang="da">Konfigurer implicit autorisering</description>
+    <message>Authentication is required to modify the defaults for implicit authorizations</message>
+    <message xml:lang="da">Autorisering er påkrævet for ændre implicit autorisering</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.freedesktop.policykit.exec">
+    <description>Run programs as another user</description>
+    <description xml:lang="da">Kør et program som en anden bruger</description>
+    <message>Authentication is required to run a program as another user</message>
+    <message xml:lang="da">Autorisering er påkrævet for at afvikle et program som en anden bruger</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin</allow_active>
+    </defaults>
+  </action>
+</policyconfig>
