@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Error reporting</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="rn02.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-types.html" title="Basic types">
@@ -30,16 +30,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-result.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2875333" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3137445" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2825934" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id3117882" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-error"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2875333"></a><span class="refentrytitle">Error reporting</span>
+<a name="id3137445"></a><span class="refentrytitle">Error reporting</span>
 </h2>
 <p>Error reporting &#8212; Representation of recoverable errors.</p>
 </td>
@@ -63,7 +63,7 @@ void                <a class="link" href="polkit-polkit-error.html#polkit-error-
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2825934"></a><h2>Description</h2>
+<a name="id3117882"></a><h2>Description</h2>
 <p>
 Error codes from PolicyKit.</p>
 <p>
@@ -71,11 +71,11 @@ Error codes from PolicyKit.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2825953"></a><h2>Details</h2>
+<a name="id3117902"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2825964"></a><h3>
+<a name="id3117912"></a><h3>
 <a name="PolKitErrorCode"></a>enum PolKitErrorCode</h3>
-<a class="indexterm" name="id2825976"></a><pre class="programlisting">typedef enum
+<a class="indexterm" name="id3117925"></a><pre class="programlisting">typedef enum
 {      
         POLKIT_ERROR_OUT_OF_MEMORY,
         POLKIT_ERROR_POLICY_FILE_INVALID
@@ -104,9 +104,9 @@ Error codes returned by PolicyKit</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2896575"></a><h3>
+<a name="id3133496"></a><h3>
 <a name="PolKitError"></a>PolKitError</h3>
-<a class="indexterm" name="id2896587"></a><pre class="programlisting">typedef struct _PolKitError PolKitError;</pre>
+<a class="indexterm" name="id3133508"></a><pre class="programlisting">typedef struct _PolKitError PolKitError;</pre>
 <p>
 Objects of this class are used for error reporting.</p>
 <p>
@@ -115,9 +115,9 @@ Objects of this class are used for error reporting.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2896607"></a><h3>
+<a name="id3133528"></a><h3>
 <a name="polkit-error-get-error-code"></a>polkit_error_get_error_code ()</h3>
-<a class="indexterm" name="id2896618"></a><pre class="programlisting"><a class="link" href="polkit-polkit-error.html#PolKitErrorCode">PolKitErrorCode</a>     polkit_error_get_error_code         (<a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> *error);</pre>
+<a class="indexterm" name="id3133539"></a><pre class="programlisting"><a class="link" href="polkit-polkit-error.html#PolKitErrorCode">PolKitErrorCode</a>     polkit_error_get_error_code         (<a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> *error);</pre>
 <p>
 Returns the error code.</p>
 <p>
@@ -141,9 +141,9 @@ Returns the error code.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2896685"></a><h3>
+<a name="id3133606"></a><h3>
 <a name="polkit-error-get-error-message"></a>polkit_error_get_error_message ()</h3>
-<a class="indexterm" name="id2875719"></a><pre class="programlisting">const char*         polkit_error_get_error_message      (<a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> *error);</pre>
+<a class="indexterm" name="id3057842"></a><pre class="programlisting">const char*         polkit_error_get_error_message      (<a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> *error);</pre>
 <p>
 Get the error message.</p>
 <p>
@@ -167,9 +167,9 @@ Get the error message.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2875780"></a><h3>
+<a name="id3057904"></a><h3>
 <a name="polkit-error-free"></a>polkit_error_free ()</h3>
-<a class="indexterm" name="id2875793"></a><pre class="programlisting">void                polkit_error_free                   (<a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> *error);</pre>
+<a class="indexterm" name="id3057916"></a><pre class="programlisting">void                polkit_error_free                   (<a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> *error);</pre>
 <p>
 Free an error.</p>
 <p>
@@ -186,9 +186,9 @@ Free an error.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2875842"></a><h3>
+<a name="id3057966"></a><h3>
 <a name="polkit-error-set-error"></a>polkit_error_set_error ()</h3>
-<a class="indexterm" name="id2875854"></a><pre class="programlisting">void                polkit_error_set_error              (<a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error,
+<a class="indexterm" name="id3057977"></a><pre class="programlisting">void                polkit_error_set_error              (<a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error,
                                                          <a class="link" href="polkit-polkit-error.html#PolKitErrorCode">PolKitErrorCode</a> error_code,
                                                          const char *format,
                                                          ...);</pre>

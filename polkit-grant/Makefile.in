@@ -530,12 +530,13 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local \
-	install-libpolkit_grantincludeHEADERS
+install-data-am: install-libpolkit_grantincludeHEADERS
 
 install-dvi: install-dvi-am
 
 install-exec-am: install-libLTLIBRARIES install-libexecPROGRAMS
+	@$(NORMAL_INSTALL)
+	$(MAKE) $(AM_MAKEFLAGS) install-exec-hook
 
 install-html: install-html-am
 
@@ -570,15 +571,15 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libexecPROGRAMS \
 	uninstall-libpolkit_grantincludeHEADERS
 
-.MAKE: install-am install-strip
+.MAKE: install-am install-exec-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
 	clean-libLTLIBRARIES clean-libexecPROGRAMS clean-libtool \
 	clean-local ctags distclean distclean-compile \
 	distclean-generic distclean-libtool distclean-tags distdir dvi \
 	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-exec-hook install-html \
 	install-html-am install-info install-info-am \
 	install-libLTLIBRARIES install-libexecPROGRAMS \
 	install-libpolkit_grantincludeHEADERS install-man install-pdf \
@@ -603,10 +604,10 @@ clean-local :
 # we make it owned by the polkitiuser group and non-readable / 
 # non-executable to the world
 #
-install-data-local:
-	-chown :$(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-grant-helper
+install-exec-hook:
+	-chgrp $(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-grant-helper
 	-chmod 2755 $(DESTDIR)$(libexecdir)/polkit-grant-helper
-	-chown :$(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-grant-helper-pam
+	-chgrp $(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-grant-helper-pam
 	-chmod 4750 $(DESTDIR)$(libexecdir)/polkit-grant-helper-pam
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

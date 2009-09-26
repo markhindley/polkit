@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Results</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="rn02.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-error.html" title="Error reporting">
@@ -30,16 +30,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-action.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2883548" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3120962" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2897949" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id3123187" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-result"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2883548"></a><span class="refentrytitle">Results</span>
+<a name="id3120962"></a><span class="refentrytitle">Results</span>
 </h2>
 <p>Results &#8212; Definition of results of PolicyKit queries.</p>
 </td>
@@ -60,7 +60,7 @@ const char*         <a class="link" href="polkit-polkit-result.html#polkit-resul
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2897949"></a><h2>Description</h2>
+<a name="id3123187"></a><h2>Description</h2>
 <p>
 These functions are used to manipulate PolicyKit results.</p>
 <p>
@@ -68,11 +68,11 @@ These functions are used to manipulate PolicyKit results.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2897969"></a><h2>Details</h2>
+<a name="id3123207"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2897980"></a><h3>
+<a name="id3123218"></a><h3>
 <a name="PolKitResult"></a>enum PolKitResult</h3>
-<a class="indexterm" name="id2897992"></a><pre class="programlisting">typedef enum
+<a class="indexterm" name="id3123230"></a><pre class="programlisting">typedef enum
 {
         POLKIT_RESULT_UNKNOWN,
 
@@ -170,9 +170,9 @@ resource in the future.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2884064"></a><h3>
+<a name="id3140851"></a><h3>
 <a name="polkit-result-to-string-representation"></a>polkit_result_to_string_representation ()</h3>
-<a class="indexterm" name="id2884077"></a><pre class="programlisting">const char*         polkit_result_to_string_representation
+<a class="indexterm" name="id3140864"></a><pre class="programlisting">const char*         polkit_result_to_string_representation
                                                         (<a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a> result);</pre>
 <p>
 Gives a textual representation of a <a class="link" href="polkit-polkit-result.html#PolKitResult"><span class="type">PolKitResult</span></a> object. This
@@ -203,9 +203,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2884177"></a><h3>
+<a name="id3140964"></a><h3>
 <a name="polkit-result-from-string-representation"></a>polkit_result_from_string_representation ()</h3>
-<a class="indexterm" name="id2884190"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_result_from_string_representation
+<a class="indexterm" name="id3140977"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_result_from_string_representation
                                                         (const char *string,
                                                          <a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a> *out_result);</pre>
 <p>

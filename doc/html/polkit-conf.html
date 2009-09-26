@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>PolicyKit configuration</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="rn01.html" title="Design Overview">
 <link rel="prev" href="ch02s03.html" title="Theory of Operation">
@@ -33,13 +33,13 @@
 <div class="titlepage"><div><div><h2 class="title">
 <a name="polkit-conf"></a>PolicyKit configuration</h2></div></div></div>
 <div class="toc"><dl>
-<dt><span class="sect1"><a href="polkit-conf.html#id2901856">Declaring Actions</a></span></dt>
-<dd><dl><dt><span class="sect2"><a href="polkit-conf.html#id2827259">Annotations</a></span></dt></dl></dd>
+<dt><span class="sect1"><a href="polkit-conf.html#id3131512">Declaring Actions</a></span></dt>
+<dd><dl><dt><span class="sect2"><a href="polkit-conf.html#id3125880">Annotations</a></span></dt></dl></dd>
 <dt><span class="sect1"><a href="beyond-defaults.html">Beyond the Defaults</a></span></dt>
 </dl></div>
 <div class="sect1" lang="en">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="id2901856"></a>Declaring Actions</h2></div></div></div>
+<a name="id3131512"></a>Declaring Actions</h2></div></div></div>
 <p>
       A Mechanism needs to declare what Actions it supports. This is
       achieved by dropping one or more XML files with the suffix <code class="literal">.policy</code>
@@ -61,6 +61,7 @@
     &lt;message xml:lang="da"&gt;System indstillinger forhindrer PolicyKit-gnome eksempel hj&#230;lper i at Frobnikere!&lt;/message&gt;
     &lt;message xml:lang="en_CA"&gt;System policy prevents the PolicyKit-gnome example helper from Frobnicating, Aye!&lt;/message&gt;
     &lt;defaults&gt;
+      &lt;allow_any&gt;no&lt;/allow_any&gt;
       &lt;allow_inactive&gt;no&lt;/allow_inactive&gt;
       &lt;allow_active&gt;auth_self&lt;/allow_active&gt;
     &lt;/defaults&gt;
@@ -74,6 +75,7 @@
     &lt;message xml:lang="da"&gt;System indstillinger forhindrer PolicyKit-gnome eksempel hj&#230;lper i at Tv&#230;kke!&lt;/message&gt;
     &lt;message xml:lang="en_CA"&gt;System policy prevents the PolicyKit-gnome example helper from Tweaking, Aye!&lt;/message&gt;
     &lt;defaults&gt;
+      &lt;allow_any&gt;no&lt;/allow_any&gt;
       &lt;allow_inactive&gt;no&lt;/allow_inactive&gt;
       &lt;allow_active&gt;auth_admin&lt;/allow_active&gt;
     &lt;/defaults&gt;
@@ -110,11 +112,14 @@
 </li>
 <li><p>
             <span class="emphasis"><em>Defaults:</em></span>
-            The <code class="literal">allow_inactive</code>
-            and <code class="literal">allow_active</code> specify the default
-            answer that <code class="literal">libpolkit</code> will return for
-            respectively inactive and active sessions. See below for
-            valid values and their meaning.
+            The <code class="literal">allow_any</code>, <code class="literal">allow_inactive</code>
+            and <code class="literal">allow_active</code> tags specify the
+            default answer that <code class="literal">libpolkit</code> will
+            return for respectively any, inactive and active
+            sessions. See below for valid values and their
+            meaning. Any of these elements, including the
+            enclosing <code class="literal">defaults</code> elements may be
+            omitted.
           </p></li>
 <li><p>
             <span class="emphasis"><em>Textual descriptions:</em></span> Simply included
@@ -176,7 +181,7 @@
     </p>
 <div class="sect2" lang="en">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="id2827259"></a>Annotations</h3></div></div></div>
+<a name="id3125880"></a>Annotations</h3></div></div></div>
 <p>
         When declaring an Action, one can also annotate it with one or
         more key/value pairs: 

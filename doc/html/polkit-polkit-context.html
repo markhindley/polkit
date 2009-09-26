@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Context</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="rn02.html" title="Core API Reference">
 <link rel="prev" href="polkit-polkit-caller.html" title="Caller">
@@ -30,16 +30,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="polkit-polkit-config.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2905185" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3126246" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2910836" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id3147123" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-context"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2905185"></a><span class="refentrytitle">Context</span>
+<a name="id3126246"></a><span class="refentrytitle">Context</span>
 </h2>
 <p>Context &#8212; The main interface used to query PolicyKit.</p>
 </td>
@@ -87,7 +87,7 @@ void                <a class="link" href="polkit-polkit-context.html#polkit-cont
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2910836"></a><h2>Description</h2>
+<a name="id3147123"></a><h2>Description</h2>
 <p>
 This class is used to represent the interface to PolicyKit - it is
 used by Mechanisms that use PolicyKit for making
@@ -116,11 +116,11 @@ sample application on how to use this in the GNOME desktop.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2921681"></a><h2>Details</h2>
+<a name="id3152827"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2921692"></a><h3>
+<a name="id3152838"></a><h3>
 <a name="PolKitContext"></a>PolKitContext</h3>
-<a class="indexterm" name="id2921704"></a><pre class="programlisting">typedef struct _PolKitContext PolKitContext;</pre>
+<a class="indexterm" name="id3152850"></a><pre class="programlisting">typedef struct _PolKitContext PolKitContext;</pre>
 <p>
 Context object for users of PolicyKit.</p>
 <p>
@@ -129,9 +129,9 @@ Context object for users of PolicyKit.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2921725"></a><h3>
+<a name="id3152871"></a><h3>
 <a name="PolKitContextConfigChangedCB"></a>PolKitContextConfigChangedCB ()</h3>
-<a class="indexterm" name="id2909091"></a><pre class="programlisting">void                (*PolKitContextConfigChangedCB)     (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
+<a class="indexterm" name="id3148072"></a><pre class="programlisting">void                (*PolKitContextConfigChangedCB)     (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          void *user_data);</pre>
 <p>
 The type of the callback function for when configuration changes.
@@ -172,9 +172,9 @@ timeframe.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2909190"></a><h3>
+<a name="id3148170"></a><h3>
 <a name="PolKitContextAddIOWatch"></a>PolKitContextAddIOWatch ()</h3>
-<a class="indexterm" name="id2909201"></a><pre class="programlisting">int                 (*PolKitContextAddIOWatch)          (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
+<a class="indexterm" name="id3148181"></a><pre class="programlisting">int                 (*PolKitContextAddIOWatch)          (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          int fd);</pre>
 <p>
 Type for function supplied by the application to integrate a watch
@@ -243,9 +243,9 @@ identifier for the watch.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2909285"></a><h3>
+<a name="id3148267"></a><h3>
 <a name="PolKitContextRemoveIOWatch"></a>PolKitContextRemoveIOWatch ()</h3>
-<a class="indexterm" name="id2909296"></a><pre class="programlisting">void                (*PolKitContextRemoveIOWatch)       (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
+<a class="indexterm" name="id3148278"></a><pre class="programlisting">void                (*PolKitContextRemoveIOWatch)       (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          int watch_id);</pre>
 <p>
 Type for function supplied by the application to remove a watch set
@@ -285,9 +285,9 @@ of type <a class="link" href="polkit-polkit-context.html#PolKitContextAddIOWatch
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923172"></a><h3>
+<a name="id3154319"></a><h3>
 <a name="polkit-context-new"></a>polkit_context_new ()</h3>
-<a class="indexterm" name="id2923182"></a><pre class="programlisting"><a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a>*      polkit_context_new                  (void);</pre>
+<a class="indexterm" name="id3154329"></a><pre class="programlisting"><a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a>*      polkit_context_new                  (void);</pre>
 <p>
 Create a new context</p>
 <p>
@@ -304,9 +304,9 @@ Create a new context</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923218"></a><h3>
+<a name="id3154365"></a><h3>
 <a name="polkit-context-set-config-changed"></a>polkit_context_set_config_changed ()</h3>
-<a class="indexterm" name="id2923230"></a><pre class="programlisting">void                polkit_context_set_config_changed   (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
+<a class="indexterm" name="id3154378"></a><pre class="programlisting">void                polkit_context_set_config_changed   (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          <a class="link" href="polkit-polkit-context.html#PolKitContextConfigChangedCB">PolKitContextConfigChangedCB</a> cb,
                                                          void *user_data);</pre>
 <p>
@@ -352,9 +352,9 @@ This method must be called before <a class="link" href="polkit-polkit-context.ht
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923340"></a><h3>
+<a name="id3154488"></a><h3>
 <a name="polkit-context-set-io-watch-functions"></a>polkit_context_set_io_watch_functions ()</h3>
-<a class="indexterm" name="id2923353"></a><pre class="programlisting">void                polkit_context_set_io_watch_functions
+<a class="indexterm" name="id3154501"></a><pre class="programlisting">void                polkit_context_set_io_watch_functions
                                                         (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          <a class="link" href="polkit-polkit-context.html#PolKitContextAddIOWatch">PolKitContextAddIOWatch</a> io_add_watch_func,
                                                          <a class="link" href="polkit-polkit-context.html#PolKitContextRemoveIOWatch">PolKitContextRemoveIOWatch</a> io_remove_watch_func);</pre>
@@ -389,9 +389,9 @@ This method must be called before <a class="link" href="polkit-polkit-context.ht
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923454"></a><h3>
+<a name="id3154602"></a><h3>
 <a name="polkit-context-set-load-descriptions"></a>polkit_context_set_load_descriptions ()</h3>
-<a class="indexterm" name="id2923467"></a><pre class="programlisting">void                polkit_context_set_load_descriptions
+<a class="indexterm" name="id3154615"></a><pre class="programlisting">void                polkit_context_set_load_descriptions
                                                         (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context);</pre>
 <p>
 Set whether policy descriptions should be loaded. By default these
@@ -414,9 +414,9 @@ This method must be called before <a class="link" href="polkit-polkit-context.ht
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923528"></a><h3>
+<a name="id3154675"></a><h3>
 <a name="polkit-context-init"></a>polkit_context_init ()</h3>
-<a class="indexterm" name="id2923538"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_context_init                 (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
+<a class="indexterm" name="id3154686"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_context_init                 (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          <a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error);</pre>
 <p>
 Initializes a new context; loads PolicyKit files from
@@ -452,9 +452,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923631"></a><h3>
+<a name="id3154779"></a><h3>
 <a name="polkit-context-ref"></a>polkit_context_ref ()</h3>
-<a class="indexterm" name="id2923642"></a><pre class="programlisting"><a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a>*      polkit_context_ref                  (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context);</pre>
+<a class="indexterm" name="id3154789"></a><pre class="programlisting"><a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a>*      polkit_context_ref                  (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -478,9 +478,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923695"></a><h3>
+<a name="id3154843"></a><h3>
 <a name="polkit-context-unref"></a>polkit_context_unref ()</h3>
-<a class="indexterm" name="id2923705"></a><pre class="programlisting">void                polkit_context_unref                (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context);</pre>
+<a class="indexterm" name="id3154853"></a><pre class="programlisting">void                polkit_context_unref                (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -499,9 +499,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923752"></a><h3>
+<a name="id3154900"></a><h3>
 <a name="polkit-context-io-func"></a>polkit_context_io_func ()</h3>
-<a class="indexterm" name="id2923763"></a><pre class="programlisting">void                polkit_context_io_func              (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
+<a class="indexterm" name="id3154910"></a><pre class="programlisting">void                polkit_context_io_func              (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          int fd);</pre>
 <p>
 Method that the application must call when there is data to read
@@ -528,9 +528,9 @@ type <a class="link" href="polkit-polkit-context.html#PolKitContextAddIOWatch"><
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923842"></a><h3>
+<a name="id3154990"></a><h3>
 <a name="polkit-context-get-policy-cache"></a>polkit_context_get_policy_cache ()</h3>
-<a class="indexterm" name="id2923854"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a>*  polkit_context_get_policy_cache     (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context);</pre>
+<a class="indexterm" name="id3155002"></a><pre class="programlisting"><a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache">PolKitPolicyCache</a>*  polkit_context_get_policy_cache     (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context);</pre>
 <p>
 Get the <a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache"><span class="type">PolKitPolicyCache</span></a> object that holds all the defined policies as well as their defaults.</p>
 <p>
@@ -554,9 +554,9 @@ Get the <a class="link" href="polkit-polkit-policy-cache.html#PolKitPolicyCache"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2923923"></a><h3>
+<a name="id3155071"></a><h3>
 <a name="polkit-context-can-session-do-action"></a>polkit_context_can_session_do_action ()</h3>
-<a class="indexterm" name="id2923936"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        polkit_context_can_session_do_action
+<a class="indexterm" name="id3155084"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        polkit_context_can_session_do_action
                                                         (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a> *session);</pre>
@@ -594,9 +594,9 @@ Determine if a given session can do a given action.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2924050"></a><h3>
+<a name="id3155198"></a><h3>
 <a name="polkit-context-can-caller-do-action"></a>polkit_context_can_caller_do_action ()</h3>
-<a class="indexterm" name="id2924063"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        polkit_context_can_caller_do_action (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
+<a class="indexterm" name="id3155211"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        polkit_context_can_caller_do_action (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
 <p>
@@ -633,9 +633,9 @@ do a specific action
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2924164"></a><h3>
+<a name="id3155312"></a><h3>
 <a name="polkit-context-get-config"></a>polkit_context_get_config ()</h3>
-<a class="indexterm" name="id2924175"></a><pre class="programlisting"><a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a>*       polkit_context_get_config           (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
+<a class="indexterm" name="id3155323"></a><pre class="programlisting"><a class="link" href="polkit-polkit-config.html#PolKitConfig">PolKitConfig</a>*       polkit_context_get_config           (<a class="link" href="polkit-polkit-context.html#PolKitContext">PolKitContext</a> *pk_context,
                                                          <a class="link" href="polkit-polkit-error.html#PolKitError">PolKitError</a> **error);</pre>
 <p>
 Returns an object that provides access to the

@@ -1,3 +1,151 @@
+commit a11166bdbecc85995a1aef58fcb7635091049708
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Oct 11 17:50:30 2007 -0400
+
+    update NEWS
+
+ NEWS |   29 +++++++++++++++++++++++++++++
+ 1 files changed, 29 insertions(+), 0 deletions(-)
+
+commit 5b60edc135496fa4bdc9f1623a7b22501adb77a9
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Sep 27 13:46:29 2007 -0400
+
+    make polkit-list-actions print information about <allow_any>
+
+ tools/polkit-list-actions.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit b420cc512b3277cac57c2c2231adf80cefd7e764
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Sep 27 13:36:11 2007 -0400
+
+    don't fail on unknown XML tags, just skip them
+
+    This change will futureproof libpolkit for extensions; e.g. if there's
+    an OS upgrade where
+
+     a) the PolicyKit package is upgraded to a version where support for a
+        new tag <allow_foo> is added; and
+
+     b) another package, using PolicyKit, is upgraded dropping a .policy
+        file using the new <allow_foo> tag; then
+
+    existing running processes using libpolkit will not fail. They will,
+    however, not honor the new tags until the daemon process itself is
+    restarted using e.g. condrestart.
+
+    We also log to the system logger whenever we encouter unknown tags.
+
+ doc/TODO                    |    4 ---
+ polkit/polkit-config.c      |   32 +++++++++++++++++-----
+ polkit/polkit-policy-file.c |   63
+ +++++++++++++++++++------------------------
+ 3 files changed, 53 insertions(+), 46 deletions(-)
+
+commit 4714fe721988d533a912ac62df5088f24f5bc699
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Thu Sep 27 12:08:19 2007 -0400
+
+    implement <allow_any> to specify default answer for any user
+
+    This is useful in instances where the OS vendor wants to allow any
+    user, even remote users logging in via ssh etc., but recognize that
+    some sites may want to lock this down to a limited set of users.
+
+    Suggested by Daniel P. Berrange <berrange@redhat.com>:
+
+    <danpb>  my specific use case is that in libvirt we don't mind
+    any user
+             querying for VM status info by default
+    <danpb>  but some admins may wish to lock that ability down
+    <danpb>  so only designated users can query VM status
+    <davidz> right
+    <davidz> it makes sense
+    <davidz> without having giving it too much thought; adding another
+    stanza to
+             the .policy file might make sense
+    <davidz> <allow_non_session>yes</allow_non_session>
+    <davidz> danpb: would that work?
+    <danpb>  yeah, that'd do the trick
+    <davidz> cool
+    <davidz> I'll add it then
+
+ doc/spec/polkit-spec-configuration.xml |   15 ++++++++++-----
+ polkit/polkit-policy-default.c         |   29
+ +++++++++++++++++++++++++++--
+ polkit/polkit-policy-default.h         |    1 +
+ polkit/polkit-policy-file-entry.c      |    8 ++++++--
+ polkit/polkit-policy-file.c            |   20 ++++++++++++++++++--
+ 5 files changed, 62 insertions(+), 11 deletions(-)
+
+commit 60d85b947457940978a9c153a59a80c87d46ab4e
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Wed Sep 26 15:49:31 2007 -0400
+
+    add TODO item detailing how to handle upgrades
+
+ doc/TODO |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit 24973905a6cefbcb13a718218ac561fbece7fd9f
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Tue Sep 25 16:38:32 2007 -0400
+
+    add specifics for the Pardus distro
+
+    Patch from S.Çağlar Onur <caglar@pardus.org.tr>. Thanks.
+
+ configure.in |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+commit a8ab4c970363996890c22ffdb2b1eb48b6ac0f6e
+Author: Doug Goldstein <cardoe@gentoo.org>
+Date:   Thu Sep 6 23:53:53 2007 -0400
+
+    use chgrp instead of chown with group only
+
+    Change to use chgrp instead of chown when only changing a group
+
+ polkit-grant/Makefile.am |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 3a8a84ec380aed65e98c2c28e1c558d3827915db
+Author: Doug Goldstein <cardoe@gentoo.org>
+Date:   Thu Sep 6 16:14:24 2007 -0400
+
+    install hook for setuid/setgid
+
+    Current installation uses a local rule which isn't guarenteed to
+    be run
+    after the automake'd rule, as such it will not always setuid/setgid
+    properly.
+    This patch switches that to a hook which is guarenteed to run
+    afterwards.
+
+ polkit-grant/Makefile.am |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 3406f9f20826473dbf2de8c0dbd71f0b5bb8c8e7
+Author: Doug Goldstein <cardoe@gentoo.org>
+Date:   Thu Sep 6 12:07:20 2007 -0400
+
+    gentoo OS type support
+
+    Adds Gentoo as a valid OS type
+
+ configure.in |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 1b8d31e1fef50dd4ff3ddc5bee539175dc93daa5
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Fri Aug 31 15:59:59 2007 -0400
+
+    post-release version bump
+
+ configure.in |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
 commit aef7a201260133535c035ba7183f8e96bd25954f
 Author: David Zeuthen <davidz@redhat.com>
 Date:   Fri Aug 31 15:56:07 2007 -0400

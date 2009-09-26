@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Caller Determination</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="rn03.html" title="Convenience API Reference">
 <link rel="prev" href="rn03.html" title="Convenience API Reference">
@@ -30,16 +30,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="rn04.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2878174" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3135391" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2924916" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id3155950" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-dbus"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2878174"></a><span class="refentrytitle">Caller Determination</span>
+<a name="id3135391"></a><span class="refentrytitle">Caller Determination</span>
 </h2>
 <p>Caller Determination &#8212; Obtaining seat, session and caller information
 via D-Bus and ConsoleKit.</p>
@@ -68,7 +68,7 @@ via D-Bus and ConsoleKit.</p>
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2924916"></a><h2>Description</h2>
+<a name="id3155950"></a><h2>Description</h2>
 <p>
 Helper library for obtaining seat, session and caller information
 via D-Bus and ConsoleKit. This library is only useful when writing
@@ -82,11 +82,11 @@ example of this, see the hald sources on how this can be done).</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2925315"></a><h2>Details</h2>
+<a name="id3156362"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2925326"></a><h3>
+<a name="id3156373"></a><h3>
 <a name="polkit-session-new-from-objpath"></a>polkit_session_new_from_objpath ()</h3>
-<a class="indexterm" name="id2925337"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new_from_objpath     (DBusConnection *con,
+<a class="indexterm" name="id3156384"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new_from_objpath     (DBusConnection *con,
                                                          const char *objpath,
                                                          uid_t uid,
                                                          DBusError *error);</pre>
@@ -135,9 +135,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2928701"></a><h3>
+<a name="id3159846"></a><h3>
 <a name="polkit-session-new-from-cookie"></a>polkit_session_new_from_cookie ()</h3>
-<a class="indexterm" name="id2928712"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new_from_cookie      (DBusConnection *con,
+<a class="indexterm" name="id3159857"></a><pre class="programlisting"><a class="link" href="polkit-polkit-session.html#PolKitSession">PolKitSession</a>*      polkit_session_new_from_cookie      (DBusConnection *con,
                                                          const char *cookie,
                                                          DBusError *error);</pre>
 <p>
@@ -179,9 +179,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2928840"></a><h3>
+<a name="id3159983"></a><h3>
 <a name="polkit-caller-new-from-dbus-name"></a>polkit_caller_new_from_dbus_name ()</h3>
-<a class="indexterm" name="id2928853"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new_from_dbus_name    (DBusConnection *con,
+<a class="indexterm" name="id3159996"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new_from_dbus_name    (DBusConnection *con,
                                                          const char *dbus_name,
                                                          DBusError *error);</pre>
 <p>
@@ -224,9 +224,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2925630"></a><h3>
+<a name="id3156676"></a><h3>
 <a name="polkit-caller-new-from-pid"></a>polkit_caller_new_from_pid ()</h3>
-<a class="indexterm" name="id2925641"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new_from_pid          (DBusConnection *con,
+<a class="indexterm" name="id3156687"></a><pre class="programlisting"><a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a>*       polkit_caller_new_from_pid          (DBusConnection *con,
                                                          pid_t pid,
                                                          DBusError *error);</pre>
 <p>

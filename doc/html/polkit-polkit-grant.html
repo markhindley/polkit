@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>PolKitGrant</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.73.0">
+<meta name="generator" content="DocBook XSL Stylesheets V1.73.2">
 <link rel="start" href="index.html" title="PolicyKit Library Reference Manual">
 <link rel="up" href="rn04.html" title="Authorization and privilege granting API Reference">
 <link rel="prev" href="rn04.html" title="Authorization and privilege granting API Reference">
@@ -30,16 +30,16 @@
 <th width="100%" align="center">PolicyKit Library Reference Manual</th>
 <td><a accesskey="n" href="rn05.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
-<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2898164" class="shortcut">Top</a>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id3126130" class="shortcut">Top</a>
                   &#160;|&#160;
-                  <a href="#id2926833" class="shortcut">Description</a></nobr></td></tr>
+                  <a href="#id3157975" class="shortcut">Description</a></nobr></td></tr>
 </table>
 <div class="refentry" lang="en">
 <a name="polkit-polkit-grant"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2>
-<a name="id2898164"></a><span class="refentrytitle">PolKitGrant</span>
+<a name="id3126130"></a><span class="refentrytitle">PolKitGrant</span>
 </h2>
 <p>PolKitGrant &#8212; A class used for obtain privileges through
 authentication.</p>
@@ -115,7 +115,7 @@ void                <a class="link" href="polkit-polkit-grant.html#polkit-grant-
 </pre>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2926833"></a><h2>Description</h2>
+<a name="id3157975"></a><h2>Description</h2>
 <p>
 These functions are used to obtain privileges for a user that is
 able to successfully authenticate. It is only useful for people
@@ -125,11 +125,11 @@ writing user interfaces that interfaces with the end user.</p>
 </p>
 </div>
 <div class="refsect1" lang="en">
-<a name="id2926855"></a><h2>Details</h2>
+<a name="id3157998"></a><h2>Details</h2>
 <div class="refsect2" lang="en">
-<a name="id2926866"></a><h3>
+<a name="id3158009"></a><h3>
 <a name="PolKitGrant"></a>PolKitGrant</h3>
-<a class="indexterm" name="id2926878"></a><pre class="programlisting">typedef struct _PolKitGrant PolKitGrant;</pre>
+<a class="indexterm" name="id3158021"></a><pre class="programlisting">typedef struct _PolKitGrant PolKitGrant;</pre>
 <p>
 Objects of this class are used to obtain privileges for a user that
 is able to successfully authenticate. It is only useful for people
@@ -140,9 +140,9 @@ writing user interfaces that interfaces with the end user.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2926901"></a><h3>
+<a name="id3158044"></a><h3>
 <a name="PolKitGrantType"></a>PolKitGrantType ()</h3>
-<a class="indexterm" name="id2926913"></a><pre class="programlisting">void                (*PolKitGrantType)                  (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3158056"></a><pre class="programlisting">void                (*PolKitGrantType)                  (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          <a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a> grant_type,
                                                          void *user_data);</pre>
 <p>
@@ -180,9 +180,9 @@ of user interfaces one should put up depending on the value of
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2927037"></a><h3>
+<a name="id3158181"></a><h3>
 <a name="PolKitGrantSelectAdminUser"></a>PolKitGrantSelectAdminUser ()</h3>
-<a class="indexterm" name="id2927049"></a><pre class="programlisting">char*               (*PolKitGrantSelectAdminUser)       (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3158193"></a><pre class="programlisting">char*               (*PolKitGrantSelectAdminUser)       (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          char **admin_users,
                                                          void *user_data);</pre>
 <p>
@@ -222,9 +222,9 @@ be freed by the <a class="link" href="polkit-polkit-grant.html#PolKitGrant"><spa
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2932655"></a><h3>
+<a name="id3163805"></a><h3>
 <a name="PolKitGrantConversationPromptEchoOff"></a>PolKitGrantConversationPromptEchoOff ()</h3>
-<a class="indexterm" name="id2932668"></a><pre class="programlisting">char*               (*PolKitGrantConversationPromptEchoOff)
+<a class="indexterm" name="id3163818"></a><pre class="programlisting">char*               (*PolKitGrantConversationPromptEchoOff)
                                                         (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          const char *prompt,
                                                          void *user_data);</pre>
@@ -264,9 +264,9 @@ malloc(3) and will be freed by the <a class="link" href="polkit-polkit-grant.htm
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2932789"></a><h3>
+<a name="id3163940"></a><h3>
 <a name="PolKitGrantConversationPromptEchoOn"></a>PolKitGrantConversationPromptEchoOn ()</h3>
-<a class="indexterm" name="id2932803"></a><pre class="programlisting">char*               (*PolKitGrantConversationPromptEchoOn)
+<a class="indexterm" name="id3163954"></a><pre class="programlisting">char*               (*PolKitGrantConversationPromptEchoOn)
                                                         (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          const char *prompt,
                                                          void *user_data);</pre>
@@ -306,9 +306,9 @@ malloc(3) and will be freed by the <a class="link" href="polkit-polkit-grant.htm
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2932929"></a><h3>
+<a name="id3164081"></a><h3>
 <a name="PolKitGrantConversationErrorMessage"></a>PolKitGrantConversationErrorMessage ()</h3>
-<a class="indexterm" name="id2932943"></a><pre class="programlisting">void                (*PolKitGrantConversationErrorMessage)
+<a class="indexterm" name="id3164095"></a><pre class="programlisting">void                (*PolKitGrantConversationErrorMessage)
                                                         (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          const char *error_message,
                                                          void *user_data);</pre>
@@ -341,9 +341,9 @@ layer produces an error message that should be displayed in the UI.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2933050"></a><h3>
+<a name="id3164201"></a><h3>
 <a name="PolKitGrantConversationTextInfo"></a>PolKitGrantConversationTextInfo ()</h3>
-<a class="indexterm" name="id2933063"></a><pre class="programlisting">void                (*PolKitGrantConversationTextInfo)  (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3164215"></a><pre class="programlisting">void                (*PolKitGrantConversationTextInfo)  (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          const char *text_info,
                                                          void *user_data);</pre>
 <p>
@@ -376,9 +376,9 @@ the UI.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2933170"></a><h3>
+<a name="id3164321"></a><h3>
 <a name="PolKitGrantOverrideGrantType"></a>PolKitGrantOverrideGrantType ()</h3>
-<a class="indexterm" name="id2933183"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        (*PolKitGrantOverrideGrantType)     (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3164334"></a><pre class="programlisting"><a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a>        (*PolKitGrantOverrideGrantType)     (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          <a class="link" href="polkit-polkit-result.html#PolKitResult">PolKitResult</a> grant_type,
                                                          void *user_data);</pre>
 <p>
@@ -496,9 +496,9 @@ setgid granting helper mentioned in
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2933446"></a><h3>
+<a name="id3164601"></a><h3>
 <a name="PolKitGrantDone"></a>PolKitGrantDone ()</h3>
-<a class="indexterm" name="id2933457"></a><pre class="programlisting">void                (*PolKitGrantDone)                  (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3164611"></a><pre class="programlisting">void                (*PolKitGrantDone)                  (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> gained_privilege,
                                                          <a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a> invalid_data,
                                                          void *user_data);</pre>
@@ -537,9 +537,9 @@ e.g. <a class="link" href="polkit-polkit-grant.html#polkit-grant-cancel-auth"><c
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2933580"></a><h3>
+<a name="id3164735"></a><h3>
 <a name="PolKitGrantAddChildWatch"></a>PolKitGrantAddChildWatch ()</h3>
-<a class="indexterm" name="id2933591"></a><pre class="programlisting">int                 (*PolKitGrantAddChildWatch)         (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3164745"></a><pre class="programlisting">int                 (*PolKitGrantAddChildWatch)         (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          pid_t pid);</pre>
 <p>
 Type for function supplied by the application to integrate a watch
@@ -595,9 +595,9 @@ identifier for the watch.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2933694"></a><h3>
+<a name="id3164848"></a><h3>
 <a name="PolKitGrantAddIOWatch"></a>PolKitGrantAddIOWatch ()</h3>
-<a class="indexterm" name="id2933704"></a><pre class="programlisting">int                 (*PolKitGrantAddIOWatch)            (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3164859"></a><pre class="programlisting">int                 (*PolKitGrantAddIOWatch)            (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          int fd);</pre>
 <p>
 Type for function supplied by the application to integrate a watch
@@ -666,9 +666,9 @@ identifier for the watch.
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2933816"></a><h3>
+<a name="id3164970"></a><h3>
 <a name="PolKitGrantRemoveWatch"></a>PolKitGrantRemoveWatch ()</h3>
-<a class="indexterm" name="id2933826"></a><pre class="programlisting">void                (*PolKitGrantRemoveWatch)           (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3164980"></a><pre class="programlisting">void                (*PolKitGrantRemoveWatch)           (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          int watch_id);</pre>
 <p>
 Type for function supplied by the application to remove a watch set
@@ -709,9 +709,9 @@ of type <a class="link" href="polkit-polkit-grant.html#PolKitGrantAddIOWatch"><s
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2933931"></a><h3>
+<a name="id3165085"></a><h3>
 <a name="polkit-grant-new"></a>polkit_grant_new ()</h3>
-<a class="indexterm" name="id2933941"></a><pre class="programlisting"><a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a>*        polkit_grant_new                    (void);</pre>
+<a class="indexterm" name="id3165096"></a><pre class="programlisting"><a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a>*        polkit_grant_new                    (void);</pre>
 <p>
 Creates a <a class="link" href="polkit-polkit-grant.html#PolKitGrant"><span class="type">PolKitGrant</span></a> object.</p>
 <p>
@@ -730,9 +730,9 @@ href="../glib/glib-Standard-Macros.html#NULL:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2933990"></a><h3>
+<a name="id3165144"></a><h3>
 <a name="polkit-grant-ref"></a>polkit_grant_ref ()</h3>
-<a class="indexterm" name="id2934000"></a><pre class="programlisting"><a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a>*        polkit_grant_ref                    (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant);</pre>
+<a class="indexterm" name="id3165154"></a><pre class="programlisting"><a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a>*        polkit_grant_ref                    (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant);</pre>
 <p>
 Increase reference count.</p>
 <p>
@@ -756,9 +756,9 @@ Increase reference count.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2934054"></a><h3>
+<a name="id3165208"></a><h3>
 <a name="polkit-grant-unref"></a>polkit_grant_unref ()</h3>
-<a class="indexterm" name="id2934064"></a><pre class="programlisting">void                polkit_grant_unref                  (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant);</pre>
+<a class="indexterm" name="id3165218"></a><pre class="programlisting">void                polkit_grant_unref                  (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant);</pre>
 <p>
 Decreases the reference count of the object. If it becomes zero,
 the object is freed. Before freeing, reference counts on embedded
@@ -777,9 +777,9 @@ objects are decresed by one.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2934111"></a><h3>
+<a name="id3165265"></a><h3>
 <a name="polkit-grant-set-functions"></a>polkit_grant_set_functions ()</h3>
-<a class="indexterm" name="id2934122"></a><pre class="programlisting">void                polkit_grant_set_functions          (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3165276"></a><pre class="programlisting">void                polkit_grant_set_functions          (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          <a class="link" href="polkit-polkit-grant.html#PolKitGrantAddIOWatch">PolKitGrantAddIOWatch</a> func_add_io_watch,
                                                          <a class="link" href="polkit-polkit-grant.html#PolKitGrantAddChildWatch">PolKitGrantAddChildWatch</a> func_add_child_watch,
                                                          <a class="link" href="polkit-polkit-grant.html#PolKitGrantRemoveWatch">PolKitGrantRemoveWatch</a> func_remove_watch,
@@ -870,9 +870,9 @@ Set callback functions used for authentication.</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2934406"></a><h3>
+<a name="id3165561"></a><h3>
 <a name="polkit-grant-initiate-auth"></a>polkit_grant_initiate_auth ()</h3>
-<a class="indexterm" name="id2934417"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_grant_initiate_auth          (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3165572"></a><pre class="programlisting"><a class="link" href="polkit-polkit-types.html#polkit-bool-t">polkit_bool_t</a>       polkit_grant_initiate_auth          (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          <a class="link" href="polkit-polkit-action.html#PolKitAction">PolKitAction</a> *action,
                                                          <a class="link" href="polkit-polkit-caller.html#PolKitCaller">PolKitCaller</a> *caller);</pre>
 <p>
@@ -923,9 +923,9 @@ href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2934558"></a><h3>
+<a name="id3165712"></a><h3>
 <a name="polkit-grant-cancel-auth"></a>polkit_grant_cancel_auth ()</h3>
-<a class="indexterm" name="id2934568"></a><pre class="programlisting">void                polkit_grant_cancel_auth            (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant);</pre>
+<a class="indexterm" name="id3165723"></a><pre class="programlisting">void                polkit_grant_cancel_auth            (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant);</pre>
 <p>
 Cancel an authentication in progress</p>
 <p>
@@ -942,9 +942,9 @@ Cancel an authentication in progress</p>
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2934613"></a><h3>
+<a name="id3165767"></a><h3>
 <a name="polkit-grant-io-func"></a>polkit_grant_io_func ()</h3>
-<a class="indexterm" name="id2934623"></a><pre class="programlisting">void                polkit_grant_io_func                (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3165778"></a><pre class="programlisting">void                polkit_grant_io_func                (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          int fd);</pre>
 <p>
 Method that the application must call when there is data to read
@@ -971,9 +971,9 @@ type <a class="link" href="polkit-polkit-grant.html#PolKitGrantAddIOWatch"><span
 </div>
 <hr>
 <div class="refsect2" lang="en">
-<a name="id2934703"></a><h3>
+<a name="id3165857"></a><h3>
 <a name="polkit-grant-child-func"></a>polkit_grant_child_func ()</h3>
-<a class="indexterm" name="id2934713"></a><pre class="programlisting">void                polkit_grant_child_func             (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
+<a class="indexterm" name="id3165868"></a><pre class="programlisting">void                polkit_grant_child_func             (<a class="link" href="polkit-polkit-grant.html#PolKitGrant">PolKitGrant</a> *polkit_grant,
                                                          pid_t pid,
                                                          int exit_code);</pre>
 <p>

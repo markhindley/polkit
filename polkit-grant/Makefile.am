@@ -46,8 +46,8 @@ clean-local :
 # we make it owned by the polkitiuser group and non-readable / 
 # non-executable to the world
 #
-install-data-local:
-	-chown :$(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-grant-helper
+install-exec-hook:
+	-chgrp $(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-grant-helper
 	-chmod 2755 $(DESTDIR)$(libexecdir)/polkit-grant-helper
-	-chown :$(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-grant-helper-pam
+	-chgrp $(POLKIT_GROUP) $(DESTDIR)$(libexecdir)/polkit-grant-helper-pam
 	-chmod 4750 $(DESTDIR)$(libexecdir)/polkit-grant-helper-pam
