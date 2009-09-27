@@ -11,6 +11,8 @@ policykit-1 (0.94-1) UNRELEASED; urgency=low
       + Bump libglib2-dev dependency to (>= 2.21.4).
     - Update list of binary packages and their package descriptions.
     - Drop dependency on adduser.
+    - Bump Standards-Version to 3.8.3.
+      + Add README.source which refers to the quilt documentation.
   * Update shared library structure: libpolkit-{,dbus,grant} →
     libpolkit-{agent,backend,gobject}-1.
   * Rename policykit, policykit-doc → policykit-1, policykit-1-doc.
