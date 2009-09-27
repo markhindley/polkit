@@ -17,8 +17,8 @@ Build-Depends: cdbs,
  quilt,
  lsb-release
 Standards-Version: 3.8.3
-Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/unstable/policykit
-Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/unstable/policykit
+Vcs-Git: git://git.debian.org/git/pkg-utopia/policykit.git
+Vcs-Browser: http://git.debian.org/?p=pkg-utopia/policykit.git;a=summary
 Homepage: http://hal.freedesktop.org/docs/PolicyKit/
 
 Package: policykit-1
