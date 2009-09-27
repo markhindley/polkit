@@ -1,7 +1,5 @@
-diff --git a/data/polkit.in b/data/polkit.in
-index 142dadd..f923207 100644
---- a/data/polkit.in
-+++ b/data/polkit.in
+--- a/data/polkit-1.in
++++ b/data/polkit-1.in
 @@ -1,6 +1,6 @@
  #%PAM-1.0
  

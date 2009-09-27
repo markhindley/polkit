@@ -4,6 +4,7 @@ policykit-1 (0.94-1) UNRELEASED; urgency=low
     the project to make it installable in parallel with policykit 0.9, until
     all programs are ported to the new API.
   * Drop all patches except 01_pam_polkit.patch.
+  * Refresh debian/patches/01_pam_polkit.patch.
   * debian/control
     - Update Build-Depends
       + Drop libdbus-1-dev, libdbus-glib-1-dev.
