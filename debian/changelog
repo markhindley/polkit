@@ -37,6 +37,9 @@ policykit-1 (0.94-1) UNRELEASED; urgency=low
     - When building for Ubuntu, install a localauthority.conf.d configuration
       file which considers "admin" group users as administrators.
     - Don't install example application.
+  * debian/copyright
+    - Update copyright holder.
+    - License was changed to LGPL 2.1+.
 
  -- Michael Biebl <biebl@debian.org>  Sun, 27 Sep 2009 01:41:32 +0200
 
