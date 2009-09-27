@@ -1,0 +1,104 @@
+diff --git a/src/polkit/Makefile.am b/src/polkit/Makefile.am
+index 436054b..f4d8a23 100644
+--- a/src/polkit/Makefile.am
++++ b/src/polkit/Makefile.am
+@@ -48,6 +48,21 @@ polkit-built-sources.stamp : Makefile.am $(top_srcdir)/data/org.freedesktop.Poli
+ #
+ polkit_built_sources = _polkitactiondescription.c _polkitactiondescription.h _polkitauthenticationagent.c _polkitauthenticationagent.h _polkitauthority.c _polkitauthority.h _polkitauthorizationresult.c _polkitauthorizationresult.h _polkitbindings.c _polkitbindings.h _polkitbindingsmarshal.c _polkitbindingsmarshal.h _polkitbindingstypes.h _polkitcheckauthorizationflags.c _polkitcheckauthorizationflags.h _polkiterror.c _polkiterror.h _polkitidentity.c _polkitidentity.h _polkitimplicitauthorization.c _polkitimplicitauthorization.h _polkitsubject.c _polkitsubject.h _polkittemporaryauthorization.c _polkittemporaryauthorization.h docbook-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.xml docbook-interface-org.freedesktop.PolicyKit1.Authority.xml _polkitbindingsmarshal.list
+ 
++noinst_LTLIBRARIES = libpolkit-private.la
++
++libpolkit_private_la_SOURCES = $(polkit_built_sources)
++
++libpolkit_private_la_CFLAGS =						\
++	-D_POLKIT_COMPILATION						\
++	$(GLIB_CFLAGS)							\
++	$(EGG_DBUS_CFLAGS)						\
++	$(NULL)
++
++libpolkit_private_la_LIBADD =						\
++	$(GLIB_LIBS)							\
++	$(EGG_DBUS_LIBS)						\
++	$(NULL)
++
+ lib_LTLIBRARIES=libpolkit-gobject-1.la
+ 
+ libpolkit_gobject_1includedir=$(includedir)/polkit-1/polkit
+@@ -76,7 +91,6 @@ libpolkit_gobject_1include_HEADERS =                        				\
+ 
+ libpolkit_gobject_1_la_SOURCES =                                   			\
+ 	$(BUILT_SOURCES)								\
+-	$(polkit_built_sources)								\
+         polkit.h									\
+ 	polkitactiondescription.c		polkitactiondescription.h		\
+ 	polkitdetails.c				polkitdetails.h				\
+@@ -104,8 +118,11 @@ libpolkit_gobject_1_la_CFLAGS =                                        	\
+ libpolkit_gobject_1_la_LIBADD =                               		\
+         $(GLIB_LIBS)							\
+         $(EGG_DBUS_LIBS)						\
++	libpolkit-private.la						\
+         $(NULL)
+ 
++libpolkit_gobject_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
++
+ if ENABLE_INTROSPECTION
+ girdir = $(GIRDIR)
+ gir_DATA = Polkit-1.0.gir
+diff --git a/src/polkitagent/Makefile.am b/src/polkitagent/Makefile.am
+index e64077d..3f38329 100644
+--- a/src/polkitagent/Makefile.am
++++ b/src/polkitagent/Makefile.am
+@@ -22,8 +22,8 @@ BUILT_SOURCES = 						\
+ 	$(NULL)
+ 
+ marshal.stamp : Makefile.am $(srcdir)/polkitagentmarshal.list
+-	glib-genmarshal --prefix=polkit_agent_marshal $(srcdir)/polkitagentmarshal.list --header > polkitagentmarshal.h.tmp && mv polkitagentmarshal.h.tmp polkitagentmarshal.h
+-	(echo "#include \"polkitagentmarshal.h\""; glib-genmarshal --prefix=polkit_agent_marshal $(srcdir)/polkitagentmarshal.list --body) > polkitagentmarshal.c.tmp && mv polkitagentmarshal.c.tmp polkitagentmarshal.c
++	glib-genmarshal --prefix=_polkit_agent_marshal $(srcdir)/polkitagentmarshal.list --header > polkitagentmarshal.h.tmp && mv polkitagentmarshal.h.tmp polkitagentmarshal.h
++	(echo "#include \"polkitagentmarshal.h\""; glib-genmarshal --prefix=_polkit_agent_marshal $(srcdir)/polkitagentmarshal.list --body) > polkitagentmarshal.c.tmp && mv polkitagentmarshal.c.tmp polkitagentmarshal.c
+ 	touch marshal.stamp
+ 
+ marshal_built_sources = polkitagentmarshal.h polkitagentmarshal.c
+@@ -59,9 +59,12 @@ libpolkit_agent_1_la_LIBADD =                               		\
+         $(GLIB_LIBS)							\
+         $(EGG_DBUS_LIBS)						\
+ 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
++	$(top_builddir)/src/polkit/libpolkit-private.la			\
+ 	$(EXPAT_LIBS)							\
+         $(NULL)
+ 
++libpolkit_agent_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
++
+ libexec_PROGRAMS = polkit-agent-helper-1
+ 
+ polkit_agent_helper_1_SOURCES = 					\
+diff --git a/src/polkitagent/polkitagentsession.c b/src/polkitagent/polkitagentsession.c
+index 4327b4b..b919e0a 100644
+--- a/src/polkitagent/polkitagentsession.c
++++ b/src/polkitagent/polkitagentsession.c
+@@ -156,7 +156,7 @@ polkit_agent_session_class_init (PolkitAgentSessionClass *klass)
+                                           0,                      /* class offset     */
+                                           NULL,                   /* accumulator      */
+                                           NULL,                   /* accumulator data */
+-                                          polkit_agent_marshal_VOID__STRING_BOOLEAN,
++                                          _polkit_agent_marshal_VOID__STRING_BOOLEAN,
+                                           G_TYPE_NONE,
+                                           2,
+                                           G_TYPE_STRING,
+diff --git a/src/polkitbackend/Makefile.am b/src/polkitbackend/Makefile.am
+index 6addc5a..48695d2 100644
+--- a/src/polkitbackend/Makefile.am
++++ b/src/polkitbackend/Makefile.am
+@@ -77,9 +77,12 @@ libpolkit_backend_1_la_LIBADD =                               		\
+         $(GLIB_LIBS)							\
+         $(EGG_DBUS_LIBS)						\
+ 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
++	$(top_builddir)/src/polkit/libpolkit-private.la			\
+ 	$(EXPAT_LIBS)							\
+         $(NULL)
+ 
++libpolkit_backend_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
++
+ CLEANFILES = $(BUILT_SOURCES)
+ 
+ localauthorityconfigdir = $(sysconfdir)/polkit-1/localauthority.conf.d

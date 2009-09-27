@@ -22,6 +22,13 @@ policykit-1 (0.94-1) UNRELEASED; urgency=low
   * debian/policykit-1.postinst: Don't create "polkituser" system user, it's
     not used any more.
   * Update watch file.
+  * debian/patches/02_dont_export_private_symbols.patch
+    - Don't export private symbols in the libraries.
+  * debian/patches/99_autoreconf.patch
+    - Update the autotools files as the previous patch also touches the build
+      system.
+  * Add symbols files for libpolkit-{agent,backend,gobject}-1 for improved
+    shlibs dependencies.
 
  -- Michael Biebl <biebl@debian.org>  Sun, 27 Sep 2009 01:41:32 +0200
 

@@ -1,1 +1,3 @@
 01_pam_polkit.patch
+02_dont_export_private_symbols.patch
+99_autoreconf.patch
