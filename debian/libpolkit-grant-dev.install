@@ -1,3 +1,0 @@
-debian/tmp/usr/lib/libpolkit-grant.{so,a}
-debian/tmp/usr/lib/pkgconfig/polkit-grant.pc
-debian/tmp/usr/include/PolicyKit/polkit-grant/

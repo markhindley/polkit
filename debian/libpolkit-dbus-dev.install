@@ -1,3 +1,0 @@
-debian/tmp/usr/lib/libpolkit-dbus.{so,a}
-debian/tmp/usr/lib/pkgconfig/polkit-dbus.pc
-debian/tmp/usr/include/PolicyKit/polkit-dbus/

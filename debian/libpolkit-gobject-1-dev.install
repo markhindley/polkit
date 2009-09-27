@@ -1,0 +1,3 @@
+usr/lib/libpolkit-gobject*.{so,a}
+usr/lib/pkgconfig/polkit-gobject*.pc
+usr/include/polkit-1/polkit/

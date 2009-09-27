@@ -30,26 +30,9 @@ set_perms() {
 
 case "$1" in
     configure)
-    	adduser --system \
-	        --quiet \
-		--disabled-password \
-		--home /var/run/PolicyKit \
-		--no-create-home \
-		--gecos "PolicyKit" \
-		--group polkituser
-	
-	libexec=/usr/lib/policykit
-	set_perms root       polkituser  770 /var/lib/PolicyKit
-	set_perms polkituser root        755 /var/lib/PolicyKit-public
-	set_perms polkituser polkituser  664 /var/lib/misc/PolicyKit.reload
-	set_perms root       polkituser 2755 $libexec/polkit-read-auth-helper
-	set_perms root       polkituser 2755 $libexec/polkit-revoke-helper
-	set_perms root       polkituser 2755 $libexec/polkit-grant-helper
-	set_perms root       polkituser 2755 $libexec/polkit-explicit-grant-helper
-	set_perms polkituser root       4755 $libexec/polkit-set-default-helper
-	set_perms root       root       4755 $libexec/polkit-resolve-exe-helper
-	set_perms root       polkituser 4754 $libexec/polkit-grant-helper-pam
-	
+	set_perms root root 700 /var/lib/polkit-1
+	set_perms root root 4755 /usr/lib/policykit-1/polkit-agent-helper-1
+	set_perms root root 4755 /usr/bin/pkexec
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
