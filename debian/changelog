@@ -1,4 +1,4 @@
-policykit-1 (0.94-1) UNRELEASED; urgency=low
+policykit-1 (0.94-1) unstable; urgency=low
 
   * Rename package to policykit-1. Upstream (at least temporarily) forked
     the project to make it installable in parallel with policykit 0.9, until
@@ -41,7 +41,7 @@ policykit-1 (0.94-1) UNRELEASED; urgency=low
     - Update copyright holder.
     - License was changed to LGPL 2.1+.
 
- -- Michael Biebl <biebl@debian.org>  Sun, 27 Sep 2009 01:41:32 +0200
+ -- Michael Biebl <biebl@debian.org>  Sun, 27 Sep 2009 21:35:18 +0200
 
 policykit (0.9-4) unstable; urgency=low
 
