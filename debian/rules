@@ -6,5 +6,17 @@ include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
+DEB_DH_MAKESHLIBS_ARGS_policykit-1 := -Xusr/lib/polkit-1/
+
 DEB_CONFIGURE_EXTRA_FLAGS := --enable-gtk-doc \
-                             --enable-man-pages
+                             --enable-man-pages \
+                             --enable-introspection=no
+
+binary-install/policykit-1::
+	# when building for Ubuntu, allow the admin group
+	if [ "`lsb_release -is 2>/dev/null`" = "Ubuntu" ]; then \
+	    /bin/echo -e "[Configuration]\nAdminIdentities=unix-group:admin" > debian/policykit-1/etc/polkit-1/localauthority.conf.d/51-ubuntu-admin.conf; \
+	fi
+	# don't install example application
+	rm -f debian/policykit-1/usr/bin/pk-example-frobnicate
+	rm -f debian/policykit-1/usr/share/polkit-1/actions/org.freedesktop.policykit.examples.pkexec.policy

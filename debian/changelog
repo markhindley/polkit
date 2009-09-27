@@ -29,6 +29,11 @@ policykit-1 (0.94-1) UNRELEASED; urgency=low
       system.
   * Add symbols files for libpolkit-{agent,backend,gobject}-1 for improved
     shlibs dependencies.
+  * debian/rules
+    - Disable introspection support.
+    - When building for Ubuntu, install a localauthority.conf.d configuration
+      file which considers "admin" group users as administrators.
+    - Don't install example application.
 
  -- Michael Biebl <biebl@debian.org>  Sun, 27 Sep 2009 01:41:32 +0200
 
