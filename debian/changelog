@@ -19,6 +19,7 @@ policykit-1 (0.94-1) UNRELEASED; urgency=low
     /var/run any more.
   * debian/policykit-1.postinst: Don't create "polkituser" system user, it's
     not used any more.
+  * Update watch file.
 
  -- Michael Biebl <biebl@debian.org>  Sun, 27 Sep 2009 01:41:32 +0200
 
