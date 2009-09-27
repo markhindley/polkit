@@ -16,7 +16,7 @@ policykit-1 (0.94-1) unstable; urgency=low
       + Add README.source which refers to the quilt documentation.
     - Update Vcs-* fields. Package is now managed using Git and hosted on
       git.debian.org.
-  * Update shared library structure: libpolkit-{,dbus,grant} →
+  * Update shared library structure: libpolkit-{dbus,grant} →
     libpolkit-{agent,backend,gobject}-1.
   * Rename policykit, policykit-doc → policykit-1, policykit-1-doc.
   * Update and revise all *.install files.
