@@ -1,10 +1,10 @@
-policykit-1 (0.94-2) UNRELEASED; urgency=low
+policykit-1 (0.94-2) unstable; urgency=low
 
   * Fix build failures on kfreebsd. Add Build-Depends on libfreebsd-dev and
     link against -lfreebsd for sysctlnametomib.
     When glibc 2.10 enters unstable this workaround can be removed again.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 13 Oct 2009 00:21:32 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 13 Oct 2009 00:29:47 +0200
 
 policykit-1 (0.94-1) unstable; urgency=low
 
