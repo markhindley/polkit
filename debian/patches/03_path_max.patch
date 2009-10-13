@@ -1,0 +1,41 @@
+Description: policykit-1 currently FTBFS on hurd-i386 because of unconditional use of
+ PATH_MAX, which hurd-i386 doesn't define since it doesn't have such
+ arbitrary limitation.  The attached patch fixes it by just using
+ glibc's get_current_dir_name() extension when available.
+Author: Samuel Thibault <sthibault@debian.org>
+Bug: http://bugs.freedesktop.org/show_bug.cgi?id=24495
+Bug-Debian: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=550800
+--- policykit-1-0.94.orig/src/examples/frobnicate.c
++++ policykit-1-0.94/src/examples/frobnicate.c
+@@ -31,13 +31,21 @@
+   gchar **env;
+   guint n;
+   int ret;
++#ifdef __GLIBC__
++  gchar *cwd = NULL;
++#else
+   gchar cwd[PATH_MAX];
++#endif
+ 
+   ret = 1;
+   args = NULL;
+   env = NULL;
+ 
++#ifdef __GLIBC__
++  if ((cwd = get_current_dir_name ()))
++#else
+   if (getcwd (cwd, sizeof cwd) == NULL)
++#endif
+     {
+       g_printerr ("Error getting cwd: %s", g_strerror (errno));
+       goto out;
+@@ -62,6 +70,9 @@
+ 
+  out:
+ 
++#ifdef __GLIBC__
++  free (cwd);
++#endif
+   g_free (args);
+   g_strfreev (env);
+ 
