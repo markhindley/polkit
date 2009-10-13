@@ -33,6 +33,10 @@ case "$1" in
 	set_perms root root 700 /var/lib/polkit-1
 	set_perms root root 4755 /usr/lib/policykit-1/polkit-agent-helper-1
 	set_perms root root 4755 /usr/bin/pkexec
+
+	# Kill the old polkitd daemon on upgrade, to ensure that the new
+	# version will be used at the next occasion.
+	kill `pidof /usr/lib/policykit-1/polkitd` 2>/dev/null || true
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

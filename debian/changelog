@@ -3,6 +3,9 @@ policykit-1 (0.94-3) UNRELEASED; urgency=low
   * debian/patches/03_path_max.patch
     - Fix FTBFS on hurd-i386 where PATH_MAX is not defined. (Closes:#550800)
       Thanks to Samuel Thibault for the patch.
+  * debian/policykit-1.postinst:
+    - Kill the old polkitd daemon on upgrade, to ensure that the new version
+      will be used at the next occasion.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 13 Oct 2009 14:15:46 +0200
 
