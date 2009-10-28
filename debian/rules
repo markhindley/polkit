@@ -12,10 +12,6 @@ DEB_CONFIGURE_EXTRA_FLAGS := --enable-gtk-doc \
                              --enable-man-pages \
                              --enable-introspection=no
 
-ifeq ($(DEB_HOST_ARCH_OS),kfreebsd)
-DEB_CONFIGURE_EXTRA_FLAGS += LIBS=-lfreebsd
-endif
-
 binary-install/policykit-1::
 	# when building for Ubuntu, allow the admin group
 	if [ "`lsb_release -is 2>/dev/null`" = "Ubuntu" ]; then \
