@@ -36,7 +36,7 @@ case "$1" in
 
 	# Kill the old polkitd daemon on upgrade, to ensure that the new
 	# version will be used at the next occasion.
-	kill `pidof /usr/lib/policykit-1/polkitd` 2>/dev/null || true
+	start-stop-daemon --stop --quiet --oknodo --exec /usr/lib/policykit-1/polkitd
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

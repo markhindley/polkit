@@ -1,3 +1,11 @@
+policykit-1 (0.94-6) UNRELEASED; urgency=low
+
+  * debian/policykit-1.postinst
+    - Use start-stop-daemon instead of kill+pidof to stop the running polkitd
+      daemon on upgrades.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 28 Oct 2009 23:34:09 +0100
+
 policykit-1 (0.94-5) unstable; urgency=low
 
   * Add debian/patches/04-ref-authority.patch: Ref the instance returned by
