@@ -2,4 +2,5 @@
 02_dont_export_private_symbols.patch
 03_path_max.patch
 04-ref-authority.patch
+05-pkexec-env.patch
 99_autoreconf.patch

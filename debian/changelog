@@ -4,6 +4,8 @@ policykit-1 (0.94-5) UNRELEASED; urgency=low
     polkit_authority_get(), since the documentation says that it needs to be
     unref'ed after usage. This fixes crashes in NetworkManager and probably
     other programs, too. (LP: #438574, #432452, fd.o #24566)
+  * Add debian/patches/05-pkexec-env.patch: Add missing comma so that pkexec
+    saves both LANG and LANGUAGE, not LANGLANGUAGE. (Cherrypicked from trunk)
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 03 Nov 2009 11:55:30 +0100
 
