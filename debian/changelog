@@ -1,4 +1,4 @@
-policykit-1 (0.94-5) UNRELEASED; urgency=low
+policykit-1 (0.94-5) unstable; urgency=low
 
   * Add debian/patches/04-ref-authority.patch: Ref the instance returned by
     polkit_authority_get(), since the documentation says that it needs to be
@@ -8,7 +8,7 @@ policykit-1 (0.94-5) UNRELEASED; urgency=low
     saves both LANG and LANGUAGE, not LANGLANGUAGE. (Cherrypicked from trunk)
   * Add myself to Uploaders: with Michael's consent.
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 03 Nov 2009 11:55:30 +0100
+ -- Martin Pitt <mpitt@debian.org>  Tue, 03 Nov 2009 12:28:09 +0100
 
 policykit-1 (0.94-4) unstable; urgency=low
 
