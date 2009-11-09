@@ -1,4 +1,4 @@
-policykit-1 (0.94-6) UNRELEASED; urgency=low
+policykit-1 (0.94-6) unstable; urgency=low
 
   * debian/policykit-1.postinst
     - Use start-stop-daemon instead of kill+pidof to stop the running polkitd
@@ -6,7 +6,7 @@ policykit-1 (0.94-6) UNRELEASED; urgency=low
   * Remove our workaround for kfreebsd again now that eglibc 2.10 has entered
     unstable. (Closes: #552605)
 
- -- Michael Biebl <biebl@debian.org>  Wed, 28 Oct 2009 23:34:09 +0100
+ -- Michael Biebl <biebl@debian.org>  Mon, 09 Nov 2009 01:09:07 +0100
 
 policykit-1 (0.94-5) unstable; urgency=low
 
