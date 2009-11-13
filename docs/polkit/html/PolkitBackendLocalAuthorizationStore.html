@@ -79,7 +79,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
                                                          <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
                                                          <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> *out_result_any,
                                                          <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> *out_result_inactive,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> *out_result_active);
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> *out_result_active,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *out_details);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -184,7 +185,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
                                                          <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
                                                          <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> *out_result_any,
                                                          <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> *out_result_inactive,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> *out_result_active);</pre>
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> *out_result_active,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *out_details);</pre>
 <p>
 Checks if an authorization entry from <em class="parameter"><code>store</code></em> matches <em class="parameter"><code>identity</code></em>, <em class="parameter"><code>action_id</code></em> and <em class="parameter"><code>details</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -223,6 +225,13 @@ Checks if an authorization entry from <em class="parameter"><code>store</code></
 <tr>
 <td><p><span class="term"><em class="parameter"><code>out_result_active</code></em> :</span></p></td>
 <td> Return location for the result for subjects in local active sessions if the look up matched.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_details</code></em> :</span></p></td>
+<td> <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> or a <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="type">PolkitDetails</span></a> object to append key/value pairs to on a positive match.
 </td>
 </tr>
 <tr>

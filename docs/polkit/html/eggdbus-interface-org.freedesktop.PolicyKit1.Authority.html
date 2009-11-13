@@ -40,6 +40,8 @@
                  | 
                 <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.description" class="shortcut">Description</a>
                  | 
+                <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.properties" class="shortcut">Properties</a>
+                 | 
                 <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.signals" class="shortcut">Signals</a>
 </td></tr>
 </table>
@@ -58,6 +60,7 @@
 Flags        <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-enum-CheckAuthorizationFlags" title="The CheckAuthorizationFlags Flags">CheckAuthorizationFlags</a>
 Enumeration  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-enum-ImplicitAuthorization" title="The ImplicitAuthorization Enumeration">ImplicitAuthorization</a>
 ErrorDomain  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-errordomain-org.freedesktop.PolicyKit1.Error." title="The org.freedesktop.PolicyKit1.Error.* Error Domain">org.freedesktop.PolicyKit1.Error.*</a>
+Flags        <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-enum-AuthorityFeatures" title="The AuthorityFeatures Flags">AuthorityFeatures</a>
 Structure    <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>
 Structure    <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity" title="The Identity Structure">Identity</a>
 Structure    <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-ActionDescription" title="The ActionDescription Structure">ActionDescription</a>
@@ -84,12 +87,22 @@ Structure    <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.
                                   OUT Array&lt;<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-TemporaryAuthorization" title="The TemporaryAuthorization Structure">TemporaryAuthorization</a>&gt;  temporary_authorizations)
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RevokeTemporaryAuthorizations" title="RevokeTemporaryAuthorizations ()">RevokeTemporaryAuthorizations</a>    (IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>                        subject)
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RevokeTemporaryAuthorizationById" title="RevokeTemporaryAuthorizationById ()">RevokeTemporaryAuthorizationById</a> (IN  String                         id)
+<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction" title="AddLockdownForAction ()">AddLockdownForAction</a>             (IN  String                         action_id)
+<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction" title="RemoveLockdownForAction ()">RemoveLockdownForAction</a>          (IN  String                         action_id)
     </pre>
 </div>
 <div class="refsect1" title="Signals">
 <a name="eggdbus-if-signals-org.freedesktop.PolicyKit1.Authority"></a><h2>Signals</h2>
 <pre class="synopsis">
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-signal-org.freedesktop.PolicyKit1.Authority::Changed" title='The "Changed" signal'>Changed</a> ()
+    </pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="eggdbus-if-properties-org.freedesktop.PolicyKit1.Authority"></a><h2>Properties</h2>
+<pre class="synopsis">
+<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendName" title='The "BackendName" property'>BackendName</a>         readable     String
+<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendVersion" title='The "BackendVersion" property'>BackendVersion</a>      readable     String
+<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendFeatures" title='The "BackendFeatures" property'>BackendFeatures</a>     readable     <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-enum-AuthorityFeatures" title="The AuthorityFeatures Flags">AuthorityFeatures</a>
     </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -255,6 +268,51 @@ You are not authorized to perform the requested operation.
 <td><p><a name="eggdbus-constant-Error.org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique"></a><span class="term"><code class="literal">org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique</code></span></p></td>
 <td><p>
 The passed <em class="parameter"><code>cancellation_id</code></em> is already in use.
+      </p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+        </p>
+</div>
+<hr>
+<div class="refsect2" title="The AuthorityFeatures Flags">
+<a name="eggdbus-enum-AuthorityFeatures"></a><h3>The AuthorityFeatures Flags</h3>
+<p>
+          </p>
+<pre class="programlisting">
+{
+  None                   = 0x00000000,
+  TemporaryAuthorization = 0x00000001,
+  Lockdown               = 0x00000002
+}
+          </pre>
+<p>
+          </p>
+<p>
+Flags describing features supported by the Authority implementation.
+          </p>
+<p>
+          </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="eggdbus-constant-AuthorityFeatures.None"></a><span class="term"><code class="literal">None</code></span></p></td>
+<td><p>
+No flags set.
+      </p></td>
+</tr>
+<tr>
+<td><p><a name="eggdbus-constant-AuthorityFeatures.TemporaryAuthorization"></a><span class="term"><code class="literal">TemporaryAuthorization</code></span></p></td>
+<td><p>
+The authority supports temporary authorizations that can be obtained through authentication.
+      </p></td>
+</tr>
+<tr>
+<td><p><a name="eggdbus-constant-AuthorityFeatures.Lockdown"></a><span class="term"><code class="literal">Lockdown</code></span></p></td>
+<td><p>
+The authority supports the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction" title="AddLockdownForAction ()">AddLockdownForAction()</a> and <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction" title="RemoveLockdownForAction ()">RemoveLockdownForAction()</a> methods.
       </p></td>
 </tr>
 </tbody>
@@ -487,7 +545,7 @@ TRUE if the given <a class="link" href="eggdbus-interface-org.freedesktop.Policy
 <tr>
 <td><p><span class="term"><code class="literal">Dict&lt;String,String&gt; <em class="structfield"><code>details</code></em></code></span></p></td>
 <td><p>
-Details for the result or empty if not authorized. Known key/value-pairs include <code class="literal">polkit.temporary_authorization_id</code> (if the authorization is temporary, this is set to the opaque temporary authorization id) and <code class="literal">polkit.retains_authorization_after_challenge</code> (Set to a non-empty string if the authorization will be retained after authentication (if is_challenge is TRUE)).
+Details for the result or empty if not authorized. Known key/value-pairs include <code class="literal">polkit.temporary_authorization_id</code> (if the authorization is temporary, this is set to the opaque temporary authorization id), <code class="literal">polkit.retains_authorization_after_challenge</code> (Set to a non-empty string if the authorization will be retained after authentication (if is_challenge is TRUE)) and <code class="literal">polkit.lockdown</code> (set to a non-empty string if the action is locked down).
       </p></td>
 </tr>
 </tbody>
@@ -599,6 +657,7 @@ CheckAuthorization (IN  <a class="link" href="eggdbus-interface-org.freedesktop.
 </p>
 <p>Checks if <em class="parameter"><code>subject</code></em> is authorized to perform the action with identifier <em class="parameter"><code>action_id</code></em>.</p>
 <p>If <em class="parameter"><code>cancellation_id</code></em> is non-empty and already in use for the caller, the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-constant-Error.org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique">org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique</a> error is returned.</p>
+<p>Note that <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-constant-CheckAuthorizationFlags.AllowUserInteraction">CheckAuthorizationFlags.AllowUserInteraction</a> SHOULD be passed ONLY if the event that triggered the authorization check is stemming from an user action, e.g. the user pressing a button or attaching a device.</p>
 <p>
     </p>
 <div class="variablelist"><table border="0">
@@ -822,6 +881,44 @@ The opaque identifier of the temporary authorization.
 </tr></tbody>
 </table></div>
 </div>
+<hr>
+<div class="refsect2" title="AddLockdownForAction ()">
+<a name="eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction"></a><h3>AddLockdownForAction ()</h3>
+<pre class="programlisting">
+AddLockdownForAction (IN  String  action_id)
+    </pre>
+<p>
+Locks down an action so administrator authentication is always needed to obtain a temporary authorization for the action.
+    </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>action_id</code></em></code>:</span></p></td>
+<td><p>
+Identifier for the action.
+      </p></td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="RemoveLockdownForAction ()">
+<a name="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction"></a><h3>RemoveLockdownForAction ()</h3>
+<pre class="programlisting">
+RemoveLockdownForAction (IN  String  action_id)
+    </pre>
+<p>
+Removes the effect of a previous <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction" title="AddLockdownForAction ()">AddLockdownForAction()</a> call.
+    </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>action_id</code></em></code>:</span></p></td>
+<td><p>
+Identifier for the action.
+      </p></td>
+</tr></tbody>
+</table></div>
+</div>
 </div>
 <div class="refsect1" title="Signal Details">
 <a name="eggdbus-if-signal-details-org.freedesktop.PolicyKit1.Authority"></a><h2>Signal Details</h2>
@@ -837,6 +934,38 @@ This signal is emitted when actions and/or authorizations change
 <col align="left" valign="top">
 <tbody></tbody>
 </table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="eggdbus-if-property-details-org.freedesktop.PolicyKit1.Authority"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "BackendName" property'>
+<a name="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendName"></a><h3>The "BackendName" property</h3>
+<pre class="programlisting">
+BackendName     readable     String
+    </pre>
+<p>
+The name of the currently used Authority backend.
+    </p>
+</div>
+<hr>
+<div class="refsect2" title='The "BackendVersion" property'>
+<a name="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendVersion"></a><h3>The "BackendVersion" property</h3>
+<pre class="programlisting">
+BackendVersion     readable     String
+    </pre>
+<p>
+The version of the currently used Authority backend.
+    </p>
+</div>
+<hr>
+<div class="refsect2" title='The "BackendFeatures" property'>
+<a name="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendFeatures"></a><h3>The "BackendFeatures" property</h3>
+<pre class="programlisting">
+BackendFeatures     readable     <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-enum-AuthorityFeatures" title="The AuthorityFeatures Flags">AuthorityFeatures</a>
+    </pre>
+<p>
+The features supported by the currently used Authority backend.
+    </p>
 </div>
 </div>
 </div>

@@ -70,6 +70,14 @@ void                <a class="link" href="polkit-1-polkitsystembusname.html#polk
                                                          const <a
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a> *name);
+<a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *     <a class="link" href="polkit-1-polkitsystembusname.html#polkit-system-bus-name-get-process-sync" title="polkit_system_bus_name_get_process_sync ()">polkit_system_bus_name_get_process_sync</a>
+                                                        (<a class="link" href="polkit-1-polkitsystembusname.html#PolkitSystemBusName">PolkitSystemBusName</a> *system_bus_name,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **error);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -177,6 +185,53 @@ Sets the unique system bus name for <em class="parameter"><code>system_bus_name<
 <tr>
 <td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
 <td> A unique system bus name.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="polkit_system_bus_name_get_process_sync ()">
+<a name="polkit-system-bus-name-get-process-sync"></a><h3>polkit_system_bus_name_get_process_sync ()</h3>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *     polkit_system_bus_name_get_process_sync
+                                                        (<a class="link" href="polkit-1-polkitsystembusname.html#PolkitSystemBusName">PolkitSystemBusName</a> *system_bus_name,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **error);</pre>
+<p>
+Synchronously gets a <a class="link" href="polkit-1-polkitunixprocess.html#PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> object for <em class="parameter"><code>system_bus_name</code></em>.</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>system_bus_name</code></em> :</span></p></td>
+<td> A <a class="link" href="polkit-1-polkitsystembusname.html#PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+><span class="type">GCancellable</span></a> or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td> Return location for error or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A <a class="link" href="polkit-1-polkitunixprocess.html#PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> object or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>

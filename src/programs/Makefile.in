@@ -80,48 +80,64 @@ am_libpkexec_action_lookup_la_OBJECTS =  \
 	$(am__objects_1)
 libpkexec_action_lookup_la_OBJECTS =  \
 	$(am_libpkexec_action_lookup_la_OBJECTS)
-libpkexec_action_lookup_la_LINK = $(LIBTOOL) --tag=CC \
+AM_V_lt = $(am__v_lt_$(V))
+am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+am__v_lt_0 = --silent
+libpkexec_action_lookup_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libpkexec_action_lookup_la_CFLAGS) $(CFLAGS) \
 	$(libpkexec_action_lookup_la_LDFLAGS) $(LDFLAGS) -o $@
 PROGRAMS = $(bin_PROGRAMS)
 am_pkaction_OBJECTS = pkaction-pkaction.$(OBJEXT)
 pkaction_OBJECTS = $(am_pkaction_OBJECTS)
-pkaction_DEPENDENCIES =  \
+pkaction_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
 	$(am__DEPENDENCIES_1)
-pkaction_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(pkaction_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+pkaction_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pkaction_CFLAGS) \
+	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 am_pkcheck_OBJECTS = pkcheck-pkcheck.$(OBJEXT)
 pkcheck_OBJECTS = $(am_pkcheck_OBJECTS)
-pkcheck_DEPENDENCIES =  \
+pkcheck_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
 	$(am__DEPENDENCIES_1)
-pkcheck_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(pkcheck_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+pkcheck_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pkcheck_CFLAGS) \
+	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 am_pkexec_OBJECTS = pkexec-pkexec.$(OBJEXT)
 pkexec_OBJECTS = $(am_pkexec_OBJECTS)
-pkexec_DEPENDENCIES =  \
+pkexec_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
 	$(am__DEPENDENCIES_1)
-pkexec_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(pkexec_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+pkexec_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pkexec_CFLAGS) $(CFLAGS) \
+	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
+	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
+	$(AM_CFLAGS) $(CFLAGS)
+AM_V_CC = $(am__v_CC_$(V))
+am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
+am__v_CC_0 = @echo "  CC    " $@;
+AM_V_at = $(am__v_at_$(V))
+am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
+am__v_at_0 = @
 CCLD = $(CC)
-LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+AM_V_CCLD = $(am__v_CCLD_$(V))
+am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
+am__v_CCLD_0 = @echo "  CCLD  " $@;
+AM_V_GEN = $(am__v_GEN_$(V))
+am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
+am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(libpkexec_action_lookup_la_SOURCES) $(pkaction_SOURCES) \
 	$(pkcheck_SOURCES) $(pkexec_SOURCES)
 DIST_SOURCES = $(libpkexec_action_lookup_la_SOURCES) \
@@ -132,6 +148,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
+AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AR = @AR@
 AUTH_LIBS = @AUTH_LIBS@
 AUTOCONF = @AUTOCONF@
@@ -227,7 +244,6 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
 POFILES = @POFILES@
 POLKIT_AUTHFW = @POLKIT_AUTHFW@
-POLKIT_USER = @POLKIT_USER@
 POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
 PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
@@ -315,7 +331,7 @@ pkexec_CFLAGS = \
 	$(NULL)
 
 pkexec_LDADD = \
-	$(GLIB_LDADD)							\
+	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(NULL)
 
@@ -348,7 +364,7 @@ pkcheck_CFLAGS = \
 	$(NULL)
 
 pkcheck_LDADD = \
-	$(GLIB_LDADD)							\
+	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(NULL)
 
@@ -360,7 +376,7 @@ pkaction_CFLAGS = \
 	$(NULL)
 
 pkaction_LDADD = \
-	$(GLIB_LDADD)							\
+	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(NULL)
 
@@ -430,7 +446,7 @@ clean-polkitmodulesLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libpkexec-action-lookup.la: $(libpkexec_action_lookup_la_OBJECTS) $(libpkexec_action_lookup_la_DEPENDENCIES) 
-	$(libpkexec_action_lookup_la_LINK) -rpath $(polkitmodulesdir) $(libpkexec_action_lookup_la_OBJECTS) $(libpkexec_action_lookup_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(libpkexec_action_lookup_la_LINK) -rpath $(polkitmodulesdir) $(libpkexec_action_lookup_la_OBJECTS) $(libpkexec_action_lookup_la_LIBADD) $(LIBS)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -476,13 +492,13 @@ clean-binPROGRAMS:
 	rm -f $$list
 pkaction$(EXEEXT): $(pkaction_OBJECTS) $(pkaction_DEPENDENCIES) 
 	@rm -f pkaction$(EXEEXT)
-	$(pkaction_LINK) $(pkaction_OBJECTS) $(pkaction_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(pkaction_LINK) $(pkaction_OBJECTS) $(pkaction_LDADD) $(LIBS)
 pkcheck$(EXEEXT): $(pkcheck_OBJECTS) $(pkcheck_DEPENDENCIES) 
 	@rm -f pkcheck$(EXEEXT)
-	$(pkcheck_LINK) $(pkcheck_OBJECTS) $(pkcheck_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(pkcheck_LINK) $(pkcheck_OBJECTS) $(pkcheck_LDADD) $(LIBS)
 pkexec$(EXEEXT): $(pkexec_OBJECTS) $(pkexec_DEPENDENCIES) 
 	@rm -f pkexec$(EXEEXT)
-	$(pkexec_LINK) $(pkexec_OBJECTS) $(pkexec_LDADD) $(LIBS)
+	$(AM_V_CCLD)$(pkexec_LINK) $(pkexec_OBJECTS) $(pkexec_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -496,71 +512,81 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pkexec-pkexec.Po@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(COMPILE) -c $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libpkexec_action_lookup_la-pkexec-action-lookup.lo: pkexec-action-lookup.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpkexec_action_lookup_la_CFLAGS) $(CFLAGS) -MT libpkexec_action_lookup_la-pkexec-action-lookup.lo -MD -MP -MF $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Tpo -c -o libpkexec_action_lookup_la-pkexec-action-lookup.lo `test -f 'pkexec-action-lookup.c' || echo '$(srcdir)/'`pkexec-action-lookup.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Tpo $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpkexec_action_lookup_la_CFLAGS) $(CFLAGS) -MT libpkexec_action_lookup_la-pkexec-action-lookup.lo -MD -MP -MF $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Tpo -c -o libpkexec_action_lookup_la-pkexec-action-lookup.lo `test -f 'pkexec-action-lookup.c' || echo '$(srcdir)/'`pkexec-action-lookup.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Tpo $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pkexec-action-lookup.c' object='libpkexec_action_lookup_la-pkexec-action-lookup.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpkexec_action_lookup_la_CFLAGS) $(CFLAGS) -c -o libpkexec_action_lookup_la-pkexec-action-lookup.lo `test -f 'pkexec-action-lookup.c' || echo '$(srcdir)/'`pkexec-action-lookup.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpkexec_action_lookup_la_CFLAGS) $(CFLAGS) -c -o libpkexec_action_lookup_la-pkexec-action-lookup.lo `test -f 'pkexec-action-lookup.c' || echo '$(srcdir)/'`pkexec-action-lookup.c
 
 pkaction-pkaction.o: pkaction.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkaction_CFLAGS) $(CFLAGS) -MT pkaction-pkaction.o -MD -MP -MF $(DEPDIR)/pkaction-pkaction.Tpo -c -o pkaction-pkaction.o `test -f 'pkaction.c' || echo '$(srcdir)/'`pkaction.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkaction-pkaction.Tpo $(DEPDIR)/pkaction-pkaction.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkaction_CFLAGS) $(CFLAGS) -MT pkaction-pkaction.o -MD -MP -MF $(DEPDIR)/pkaction-pkaction.Tpo -c -o pkaction-pkaction.o `test -f 'pkaction.c' || echo '$(srcdir)/'`pkaction.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pkaction-pkaction.Tpo $(DEPDIR)/pkaction-pkaction.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pkaction.c' object='pkaction-pkaction.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkaction_CFLAGS) $(CFLAGS) -c -o pkaction-pkaction.o `test -f 'pkaction.c' || echo '$(srcdir)/'`pkaction.c
 
 pkaction-pkaction.obj: pkaction.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkaction_CFLAGS) $(CFLAGS) -MT pkaction-pkaction.obj -MD -MP -MF $(DEPDIR)/pkaction-pkaction.Tpo -c -o pkaction-pkaction.obj `if test -f 'pkaction.c'; then $(CYGPATH_W) 'pkaction.c'; else $(CYGPATH_W) '$(srcdir)/pkaction.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkaction-pkaction.Tpo $(DEPDIR)/pkaction-pkaction.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkaction_CFLAGS) $(CFLAGS) -MT pkaction-pkaction.obj -MD -MP -MF $(DEPDIR)/pkaction-pkaction.Tpo -c -o pkaction-pkaction.obj `if test -f 'pkaction.c'; then $(CYGPATH_W) 'pkaction.c'; else $(CYGPATH_W) '$(srcdir)/pkaction.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pkaction-pkaction.Tpo $(DEPDIR)/pkaction-pkaction.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pkaction.c' object='pkaction-pkaction.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkaction_CFLAGS) $(CFLAGS) -c -o pkaction-pkaction.obj `if test -f 'pkaction.c'; then $(CYGPATH_W) 'pkaction.c'; else $(CYGPATH_W) '$(srcdir)/pkaction.c'; fi`
 
 pkcheck-pkcheck.o: pkcheck.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkcheck_CFLAGS) $(CFLAGS) -MT pkcheck-pkcheck.o -MD -MP -MF $(DEPDIR)/pkcheck-pkcheck.Tpo -c -o pkcheck-pkcheck.o `test -f 'pkcheck.c' || echo '$(srcdir)/'`pkcheck.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkcheck-pkcheck.Tpo $(DEPDIR)/pkcheck-pkcheck.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkcheck_CFLAGS) $(CFLAGS) -MT pkcheck-pkcheck.o -MD -MP -MF $(DEPDIR)/pkcheck-pkcheck.Tpo -c -o pkcheck-pkcheck.o `test -f 'pkcheck.c' || echo '$(srcdir)/'`pkcheck.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pkcheck-pkcheck.Tpo $(DEPDIR)/pkcheck-pkcheck.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pkcheck.c' object='pkcheck-pkcheck.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkcheck_CFLAGS) $(CFLAGS) -c -o pkcheck-pkcheck.o `test -f 'pkcheck.c' || echo '$(srcdir)/'`pkcheck.c
 
 pkcheck-pkcheck.obj: pkcheck.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkcheck_CFLAGS) $(CFLAGS) -MT pkcheck-pkcheck.obj -MD -MP -MF $(DEPDIR)/pkcheck-pkcheck.Tpo -c -o pkcheck-pkcheck.obj `if test -f 'pkcheck.c'; then $(CYGPATH_W) 'pkcheck.c'; else $(CYGPATH_W) '$(srcdir)/pkcheck.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkcheck-pkcheck.Tpo $(DEPDIR)/pkcheck-pkcheck.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkcheck_CFLAGS) $(CFLAGS) -MT pkcheck-pkcheck.obj -MD -MP -MF $(DEPDIR)/pkcheck-pkcheck.Tpo -c -o pkcheck-pkcheck.obj `if test -f 'pkcheck.c'; then $(CYGPATH_W) 'pkcheck.c'; else $(CYGPATH_W) '$(srcdir)/pkcheck.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pkcheck-pkcheck.Tpo $(DEPDIR)/pkcheck-pkcheck.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pkcheck.c' object='pkcheck-pkcheck.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkcheck_CFLAGS) $(CFLAGS) -c -o pkcheck-pkcheck.obj `if test -f 'pkcheck.c'; then $(CYGPATH_W) 'pkcheck.c'; else $(CYGPATH_W) '$(srcdir)/pkcheck.c'; fi`
 
 pkexec-pkexec.o: pkexec.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkexec_CFLAGS) $(CFLAGS) -MT pkexec-pkexec.o -MD -MP -MF $(DEPDIR)/pkexec-pkexec.Tpo -c -o pkexec-pkexec.o `test -f 'pkexec.c' || echo '$(srcdir)/'`pkexec.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkexec-pkexec.Tpo $(DEPDIR)/pkexec-pkexec.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkexec_CFLAGS) $(CFLAGS) -MT pkexec-pkexec.o -MD -MP -MF $(DEPDIR)/pkexec-pkexec.Tpo -c -o pkexec-pkexec.o `test -f 'pkexec.c' || echo '$(srcdir)/'`pkexec.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pkexec-pkexec.Tpo $(DEPDIR)/pkexec-pkexec.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pkexec.c' object='pkexec-pkexec.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkexec_CFLAGS) $(CFLAGS) -c -o pkexec-pkexec.o `test -f 'pkexec.c' || echo '$(srcdir)/'`pkexec.c
 
 pkexec-pkexec.obj: pkexec.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkexec_CFLAGS) $(CFLAGS) -MT pkexec-pkexec.obj -MD -MP -MF $(DEPDIR)/pkexec-pkexec.Tpo -c -o pkexec-pkexec.obj `if test -f 'pkexec.c'; then $(CYGPATH_W) 'pkexec.c'; else $(CYGPATH_W) '$(srcdir)/pkexec.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkexec-pkexec.Tpo $(DEPDIR)/pkexec-pkexec.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkexec_CFLAGS) $(CFLAGS) -MT pkexec-pkexec.obj -MD -MP -MF $(DEPDIR)/pkexec-pkexec.Tpo -c -o pkexec-pkexec.obj `if test -f 'pkexec.c'; then $(CYGPATH_W) 'pkexec.c'; else $(CYGPATH_W) '$(srcdir)/pkexec.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/pkexec-pkexec.Tpo $(DEPDIR)/pkexec-pkexec.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pkexec.c' object='pkexec-pkexec.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkexec_CFLAGS) $(CFLAGS) -c -o pkexec-pkexec.obj `if test -f 'pkexec.c'; then $(CYGPATH_W) 'pkexec.c'; else $(CYGPATH_W) '$(srcdir)/pkexec.c'; fi`

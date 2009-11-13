@@ -15,6 +15,7 @@
 Flags        <link linkend="eggdbus-enum-CheckAuthorizationFlags">CheckAuthorizationFlags</link>
 Enumeration  <link linkend="eggdbus-enum-ImplicitAuthorization">ImplicitAuthorization</link>
 ErrorDomain  <link linkend="eggdbus-errordomain-org.freedesktop.PolicyKit1.Error.">org.freedesktop.PolicyKit1.Error.*</link>
+Flags        <link linkend="eggdbus-enum-AuthorityFeatures">AuthorityFeatures</link>
 Structure    <link linkend="eggdbus-struct-Subject">Subject</link>
 Structure    <link linkend="eggdbus-struct-Identity">Identity</link>
 Structure    <link linkend="eggdbus-struct-ActionDescription">ActionDescription</link>
@@ -41,12 +42,22 @@ Structure    <link linkend="eggdbus-struct-TemporaryAuthorization">TemporaryAuth
                                   OUT Array&lt;<link linkend="eggdbus-struct-TemporaryAuthorization">TemporaryAuthorization</link>&gt;  temporary_authorizations)
 <link linkend="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RevokeTemporaryAuthorizations">RevokeTemporaryAuthorizations</link>    (IN  <link linkend="eggdbus-struct-Subject">Subject</link>                        subject)
 <link linkend="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RevokeTemporaryAuthorizationById">RevokeTemporaryAuthorizationById</link> (IN  String                         id)
+<link linkend="eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction">AddLockdownForAction</link>             (IN  String                         action_id)
+<link linkend="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction">RemoveLockdownForAction</link>          (IN  String                         action_id)
     </synopsis>
   </refsynopsisdiv>
   <refsect1 role="signal_proto" id="eggdbus-if-signals-org.freedesktop.PolicyKit1.Authority">
     <title role="signal_proto.title">Signals</title>
     <synopsis>
 <link linkend="eggdbus-signal-org.freedesktop.PolicyKit1.Authority::Changed">Changed</link> ()
+    </synopsis>
+  </refsect1>
+  <refsect1 role="properties" id="eggdbus-if-properties-org.freedesktop.PolicyKit1.Authority">
+    <title role="properties.title">Properties</title>
+    <synopsis>
+<link linkend="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendName">BackendName</link>         readable     String
+<link linkend="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendVersion">BackendVersion</link>      readable     String
+<link linkend="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendFeatures">BackendFeatures</link>     readable     <link linkend="eggdbus-enum-AuthorityFeatures">AuthorityFeatures</link>
     </synopsis>
   </refsect1>
   <refsect1 role="desc" id="eggdbus-if-description-org.freedesktop.PolicyKit1.Authority">
@@ -209,6 +220,47 @@ You are not authorized to perform the requested operation.
     <listitem>
       <para>
 The passed <parameter>cancellation_id</parameter> is already in use.
+      </para>
+    </listitem>
+  </varlistentry>
+          </variablelist>
+        </para>
+    </refsect2>
+    <refsect2 role="enum" id="eggdbus-enum-AuthorityFeatures">
+      <title>The AuthorityFeatures Flags</title>
+        <para>
+          <programlisting>
+{
+  None                   = 0x00000000,
+  TemporaryAuthorization = 0x00000001,
+  Lockdown               = 0x00000002
+}
+          </programlisting>
+          <para>
+Flags describing features supported by the Authority implementation.
+          </para>
+          <variablelist role="constant">
+  <varlistentry id="eggdbus-constant-AuthorityFeatures.None" role="constant">
+    <term><literal>None</literal></term>
+    <listitem>
+      <para>
+No flags set.
+      </para>
+    </listitem>
+  </varlistentry>
+  <varlistentry id="eggdbus-constant-AuthorityFeatures.TemporaryAuthorization" role="constant">
+    <term><literal>TemporaryAuthorization</literal></term>
+    <listitem>
+      <para>
+The authority supports temporary authorizations that can be obtained through authentication.
+      </para>
+    </listitem>
+  </varlistentry>
+  <varlistentry id="eggdbus-constant-AuthorityFeatures.Lockdown" role="constant">
+    <term><literal>Lockdown</literal></term>
+    <listitem>
+      <para>
+The authority supports the <link linkend="eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction">AddLockdownForAction()</link> and <link linkend="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction">RemoveLockdownForAction()</link> methods.
       </para>
     </listitem>
   </varlistentry>
@@ -420,7 +472,7 @@ TRUE if the given <link linkend="eggdbus-struct-Subject">Subject</link> could be
     <term><literal>Dict&lt;String,String&gt; <structfield>details</structfield></literal></term>
     <listitem>
       <para>
-Details for the result or empty if not authorized. Known key/value-pairs include <literal>polkit.temporary_authorization_id</literal> (if the authorization is temporary, this is set to the opaque temporary authorization id) and <literal>polkit.retains_authorization_after_challenge</literal> (Set to a non-empty string if the authorization will be retained after authentication (if is_challenge is TRUE)).
+Details for the result or empty if not authorized. Known key/value-pairs include <literal>polkit.temporary_authorization_id</literal> (if the authorization is temporary, this is set to the opaque temporary authorization id), <literal>polkit.retains_authorization_after_challenge</literal> (Set to a non-empty string if the authorization will be retained after authentication (if is_challenge is TRUE)) and <literal>polkit.lockdown</literal> (set to a non-empty string if the action is locked down).
       </para>
     </listitem>
   </varlistentry>
@@ -528,7 +580,7 @@ CheckAuthorization (IN  <link linkend="eggdbus-struct-Subject">Subject</link>   
                     OUT <link linkend="eggdbus-struct-AuthorizationResult">AuthorizationResult</link>      result)
     </programlisting>
     <para>
-<para>Checks if <parameter>subject</parameter> is authorized to perform the action with identifier <parameter>action_id</parameter>.</para><para>If <parameter>cancellation_id</parameter> is non-empty and already in use for the caller, the <link linkend="eggdbus-constant-Error.org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique">org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique</link> error is returned.</para>
+<para>Checks if <parameter>subject</parameter> is authorized to perform the action with identifier <parameter>action_id</parameter>.</para><para>If <parameter>cancellation_id</parameter> is non-empty and already in use for the caller, the <link linkend="eggdbus-constant-Error.org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique">org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique</link> error is returned.</para><para>Note that <link linkend="eggdbus-constant-CheckAuthorizationFlags.AllowUserInteraction">CheckAuthorizationFlags.AllowUserInteraction</link> SHOULD be passed ONLY if the event that triggered the authorization check is stemming from an user action, e.g. the user pressing a button or attaching a device.</para>
     </para>
 <variablelist role="params">
   <varlistentry>
@@ -759,6 +811,44 @@ The opaque identifier of the temporary authorization.
   </varlistentry>
 </variablelist>
     </refsect2>
+    <refsect2 role="function" id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction">
+      <title>AddLockdownForAction ()</title>
+    <programlisting>
+AddLockdownForAction (IN  String  action_id)
+    </programlisting>
+    <para>
+Locks down an action so administrator authentication is always needed to obtain a temporary authorization for the action.
+    </para>
+<variablelist role="params">
+  <varlistentry>
+    <term><literal>IN  String <parameter>action_id</parameter></literal>:</term>
+    <listitem>
+      <para>
+Identifier for the action.
+      </para>
+    </listitem>
+  </varlistentry>
+</variablelist>
+    </refsect2>
+    <refsect2 role="function" id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction">
+      <title>RemoveLockdownForAction ()</title>
+    <programlisting>
+RemoveLockdownForAction (IN  String  action_id)
+    </programlisting>
+    <para>
+Removes the effect of a previous <link linkend="eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction">AddLockdownForAction()</link> call.
+    </para>
+<variablelist role="params">
+  <varlistentry>
+    <term><literal>IN  String <parameter>action_id</parameter></literal>:</term>
+    <listitem>
+      <para>
+Identifier for the action.
+      </para>
+    </listitem>
+  </varlistentry>
+</variablelist>
+    </refsect2>
   </refsect1>
   <refsect1 role="signals" id="eggdbus-if-signal-details-org.freedesktop.PolicyKit1.Authority">
     <title role="signals.title">Signal Details</title>
@@ -772,6 +862,36 @@ This signal is emitted when actions and/or authorizations change
     </para>
 <variablelist role="params">
 </variablelist>
+    </refsect2>
+  </refsect1>
+  <refsect1 role="property_details" id="eggdbus-if-property-details-org.freedesktop.PolicyKit1.Authority">
+    <title role="property_details.title">Property Details</title>
+    <refsect2 role="property" id="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendName">
+      <title>The "BackendName" property</title>
+    <programlisting>
+BackendName     readable     String
+    </programlisting>
+    <para>
+The name of the currently used Authority backend.
+    </para>
+    </refsect2>
+    <refsect2 role="property" id="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendVersion">
+      <title>The "BackendVersion" property</title>
+    <programlisting>
+BackendVersion     readable     String
+    </programlisting>
+    <para>
+The version of the currently used Authority backend.
+    </para>
+    </refsect2>
+    <refsect2 role="property" id="eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendFeatures">
+      <title>The "BackendFeatures" property</title>
+    <programlisting>
+BackendFeatures     readable     <link linkend="eggdbus-enum-AuthorityFeatures">AuthorityFeatures</link>
+    </programlisting>
+    <para>
+The features supported by the currently used Authority backend.
+    </para>
     </refsect2>
   </refsect1>
 </refentry>

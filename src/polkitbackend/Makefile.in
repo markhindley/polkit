@@ -76,6 +76,7 @@ am__DEPENDENCIES_1 =
 libpolkit_backend_1_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
+	$(top_builddir)/src/polkit/libpolkit-private.la \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__objects_1 = libpolkit_backend_1_la-ckbindingsmarshal.lo \
 	libpolkit_backend_1_la-ckbindings.lo \
@@ -97,23 +98,39 @@ am_libpolkit_backend_1_la_OBJECTS = $(am__objects_1) $(am__objects_3) \
 	libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo \
 	$(am__objects_2)
 libpolkit_backend_1_la_OBJECTS = $(am_libpolkit_backend_1_la_OBJECTS)
-libpolkit_backend_1_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+AM_V_lt = $(am__v_lt_$(V))
+am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+am__v_lt_0 = --silent
+libpolkit_backend_1_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) \
+	$(libpolkit_backend_1_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
+	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
+	$(AM_CFLAGS) $(CFLAGS)
+AM_V_CC = $(am__v_CC_$(V))
+am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
+am__v_CC_0 = @echo "  CC    " $@;
+AM_V_at = $(am__v_at_$(V))
+am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
+am__v_at_0 = @
 CCLD = $(CC)
-LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+AM_V_CCLD = $(am__v_CCLD_$(V))
+am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
+am__v_CCLD_0 = @echo "  CCLD  " $@;
+AM_V_GEN = $(am__v_GEN_$(V))
+am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
+am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(libpolkit_backend_1_la_SOURCES)
 DIST_SOURCES = $(libpolkit_backend_1_la_SOURCES)
 DATA = $(localauthorityconfig_DATA)
@@ -124,6 +141,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
+AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AR = @AR@
 AUTH_LIBS = @AUTH_LIBS@
 AUTOCONF = @AUTOCONF@
@@ -219,7 +237,6 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
 POFILES = @POFILES@
 POLKIT_AUTHFW = @POLKIT_AUTHFW@
-POLKIT_USER = @POLKIT_USER@
 POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
 PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
@@ -352,9 +369,11 @@ libpolkit_backend_1_la_LIBADD = \
         $(GLIB_LIBS)							\
         $(EGG_DBUS_LIBS)						\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
+	$(top_builddir)/src/polkit/libpolkit-private.la			\
 	$(EXPAT_LIBS)							\
         $(NULL)
 
+libpolkit_backend_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
 CLEANFILES = $(BUILT_SOURCES)
 localauthorityconfigdir = $(sysconfdir)/polkit-1/localauthority.conf.d
 localauthorityconfig_DATA = 50-localauthority.conf
@@ -430,7 +449,7 @@ clean-libLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libpolkit-backend-1.la: $(libpolkit_backend_1_la_OBJECTS) $(libpolkit_backend_1_la_DEPENDENCIES) 
-	$(libpolkit_backend_1_la_LINK) -rpath $(libdir) $(libpolkit_backend_1_la_OBJECTS) $(libpolkit_backend_1_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(libpolkit_backend_1_la_LINK) -rpath $(libdir) $(libpolkit_backend_1_la_OBJECTS) $(libpolkit_backend_1_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -455,130 +474,148 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Plo@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(COMPILE) -c $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
 
 .c.lo:
-@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 libpolkit_backend_1_la-ckbindingsmarshal.lo: ckbindingsmarshal.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckbindingsmarshal.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckbindingsmarshal.Tpo -c -o libpolkit_backend_1_la-ckbindingsmarshal.lo `test -f 'ckbindingsmarshal.c' || echo '$(srcdir)/'`ckbindingsmarshal.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckbindingsmarshal.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckbindingsmarshal.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckbindingsmarshal.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckbindingsmarshal.Tpo -c -o libpolkit_backend_1_la-ckbindingsmarshal.lo `test -f 'ckbindingsmarshal.c' || echo '$(srcdir)/'`ckbindingsmarshal.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckbindingsmarshal.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckbindingsmarshal.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ckbindingsmarshal.c' object='libpolkit_backend_1_la-ckbindingsmarshal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckbindingsmarshal.lo `test -f 'ckbindingsmarshal.c' || echo '$(srcdir)/'`ckbindingsmarshal.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckbindingsmarshal.lo `test -f 'ckbindingsmarshal.c' || echo '$(srcdir)/'`ckbindingsmarshal.c
 
 libpolkit_backend_1_la-ckbindings.lo: ckbindings.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckbindings.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckbindings.Tpo -c -o libpolkit_backend_1_la-ckbindings.lo `test -f 'ckbindings.c' || echo '$(srcdir)/'`ckbindings.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckbindings.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckbindings.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckbindings.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckbindings.Tpo -c -o libpolkit_backend_1_la-ckbindings.lo `test -f 'ckbindings.c' || echo '$(srcdir)/'`ckbindings.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckbindings.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckbindings.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ckbindings.c' object='libpolkit_backend_1_la-ckbindings.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckbindings.lo `test -f 'ckbindings.c' || echo '$(srcdir)/'`ckbindings.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckbindings.lo `test -f 'ckbindings.c' || echo '$(srcdir)/'`ckbindings.c
 
 libpolkit_backend_1_la-cksession.lo: cksession.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-cksession.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-cksession.Tpo -c -o libpolkit_backend_1_la-cksession.lo `test -f 'cksession.c' || echo '$(srcdir)/'`cksession.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-cksession.Tpo $(DEPDIR)/libpolkit_backend_1_la-cksession.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-cksession.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-cksession.Tpo -c -o libpolkit_backend_1_la-cksession.lo `test -f 'cksession.c' || echo '$(srcdir)/'`cksession.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-cksession.Tpo $(DEPDIR)/libpolkit_backend_1_la-cksession.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='cksession.c' object='libpolkit_backend_1_la-cksession.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-cksession.lo `test -f 'cksession.c' || echo '$(srcdir)/'`cksession.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-cksession.lo `test -f 'cksession.c' || echo '$(srcdir)/'`cksession.c
 
 libpolkit_backend_1_la-ckseat.lo: ckseat.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckseat.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckseat.Tpo -c -o libpolkit_backend_1_la-ckseat.lo `test -f 'ckseat.c' || echo '$(srcdir)/'`ckseat.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckseat.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckseat.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckseat.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckseat.Tpo -c -o libpolkit_backend_1_la-ckseat.lo `test -f 'ckseat.c' || echo '$(srcdir)/'`ckseat.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckseat.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckseat.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ckseat.c' object='libpolkit_backend_1_la-ckseat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckseat.lo `test -f 'ckseat.c' || echo '$(srcdir)/'`ckseat.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckseat.lo `test -f 'ckseat.c' || echo '$(srcdir)/'`ckseat.c
 
 libpolkit_backend_1_la-ckmanager.lo: ckmanager.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckmanager.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckmanager.Tpo -c -o libpolkit_backend_1_la-ckmanager.lo `test -f 'ckmanager.c' || echo '$(srcdir)/'`ckmanager.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckmanager.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckmanager.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckmanager.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckmanager.Tpo -c -o libpolkit_backend_1_la-ckmanager.lo `test -f 'ckmanager.c' || echo '$(srcdir)/'`ckmanager.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckmanager.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckmanager.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ckmanager.c' object='libpolkit_backend_1_la-ckmanager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckmanager.lo `test -f 'ckmanager.c' || echo '$(srcdir)/'`ckmanager.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckmanager.lo `test -f 'ckmanager.c' || echo '$(srcdir)/'`ckmanager.c
 
 libpolkit_backend_1_la-ckerror.lo: ckerror.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckerror.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckerror.Tpo -c -o libpolkit_backend_1_la-ckerror.lo `test -f 'ckerror.c' || echo '$(srcdir)/'`ckerror.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckerror.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckerror.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckerror.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckerror.Tpo -c -o libpolkit_backend_1_la-ckerror.lo `test -f 'ckerror.c' || echo '$(srcdir)/'`ckerror.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckerror.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckerror.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ckerror.c' object='libpolkit_backend_1_la-ckerror.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckerror.lo `test -f 'ckerror.c' || echo '$(srcdir)/'`ckerror.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckerror.lo `test -f 'ckerror.c' || echo '$(srcdir)/'`ckerror.c
 
 libpolkit_backend_1_la-ckdevice.lo: ckdevice.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckdevice.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckdevice.Tpo -c -o libpolkit_backend_1_la-ckdevice.lo `test -f 'ckdevice.c' || echo '$(srcdir)/'`ckdevice.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckdevice.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckdevice.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-ckdevice.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-ckdevice.Tpo -c -o libpolkit_backend_1_la-ckdevice.lo `test -f 'ckdevice.c' || echo '$(srcdir)/'`ckdevice.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-ckdevice.Tpo $(DEPDIR)/libpolkit_backend_1_la-ckdevice.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='ckdevice.c' object='libpolkit_backend_1_la-ckdevice.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckdevice.lo `test -f 'ckdevice.c' || echo '$(srcdir)/'`ckdevice.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-ckdevice.lo `test -f 'ckdevice.c' || echo '$(srcdir)/'`ckdevice.c
 
 libpolkit_backend_1_la-polkitbackendauthority.lo: polkitbackendauthority.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendauthority.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendauthority.Tpo -c -o libpolkit_backend_1_la-polkitbackendauthority.lo `test -f 'polkitbackendauthority.c' || echo '$(srcdir)/'`polkitbackendauthority.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendauthority.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendauthority.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendauthority.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendauthority.Tpo -c -o libpolkit_backend_1_la-polkitbackendauthority.lo `test -f 'polkitbackendauthority.c' || echo '$(srcdir)/'`polkitbackendauthority.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendauthority.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendauthority.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendauthority.c' object='libpolkit_backend_1_la-polkitbackendauthority.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendauthority.lo `test -f 'polkitbackendauthority.c' || echo '$(srcdir)/'`polkitbackendauthority.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendauthority.lo `test -f 'polkitbackendauthority.c' || echo '$(srcdir)/'`polkitbackendauthority.c
 
 libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo: polkitbackendinteractiveauthority.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendinteractiveauthority.Tpo -c -o libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo `test -f 'polkitbackendinteractiveauthority.c' || echo '$(srcdir)/'`polkitbackendinteractiveauthority.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendinteractiveauthority.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendinteractiveauthority.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendinteractiveauthority.Tpo -c -o libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo `test -f 'polkitbackendinteractiveauthority.c' || echo '$(srcdir)/'`polkitbackendinteractiveauthority.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendinteractiveauthority.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendinteractiveauthority.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendinteractiveauthority.c' object='libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo `test -f 'polkitbackendinteractiveauthority.c' || echo '$(srcdir)/'`polkitbackendinteractiveauthority.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo `test -f 'polkitbackendinteractiveauthority.c' || echo '$(srcdir)/'`polkitbackendinteractiveauthority.c
 
 libpolkit_backend_1_la-polkitbackendlocalauthority.lo: polkitbackendlocalauthority.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendlocalauthority.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthority.Tpo -c -o libpolkit_backend_1_la-polkitbackendlocalauthority.lo `test -f 'polkitbackendlocalauthority.c' || echo '$(srcdir)/'`polkitbackendlocalauthority.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthority.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthority.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendlocalauthority.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthority.Tpo -c -o libpolkit_backend_1_la-polkitbackendlocalauthority.lo `test -f 'polkitbackendlocalauthority.c' || echo '$(srcdir)/'`polkitbackendlocalauthority.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthority.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthority.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendlocalauthority.c' object='libpolkit_backend_1_la-polkitbackendlocalauthority.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendlocalauthority.lo `test -f 'polkitbackendlocalauthority.c' || echo '$(srcdir)/'`polkitbackendlocalauthority.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendlocalauthority.lo `test -f 'polkitbackendlocalauthority.c' || echo '$(srcdir)/'`polkitbackendlocalauthority.c
 
 libpolkit_backend_1_la-polkitbackendactionpool.lo: polkitbackendactionpool.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendactionpool.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionpool.Tpo -c -o libpolkit_backend_1_la-polkitbackendactionpool.lo `test -f 'polkitbackendactionpool.c' || echo '$(srcdir)/'`polkitbackendactionpool.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionpool.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionpool.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendactionpool.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionpool.Tpo -c -o libpolkit_backend_1_la-polkitbackendactionpool.lo `test -f 'polkitbackendactionpool.c' || echo '$(srcdir)/'`polkitbackendactionpool.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionpool.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionpool.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendactionpool.c' object='libpolkit_backend_1_la-polkitbackendactionpool.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendactionpool.lo `test -f 'polkitbackendactionpool.c' || echo '$(srcdir)/'`polkitbackendactionpool.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendactionpool.lo `test -f 'polkitbackendactionpool.c' || echo '$(srcdir)/'`polkitbackendactionpool.c
 
 libpolkit_backend_1_la-polkitbackendsessionmonitor.lo: polkitbackendsessionmonitor.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendsessionmonitor.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Tpo -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor.lo `test -f 'polkitbackendsessionmonitor.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendsessionmonitor.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Tpo -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor.lo `test -f 'polkitbackendsessionmonitor.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendsessionmonitor.c' object='libpolkit_backend_1_la-polkitbackendsessionmonitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor.lo `test -f 'polkitbackendsessionmonitor.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor.lo `test -f 'polkitbackendsessionmonitor.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor.c
 
 libpolkit_backend_1_la-polkitbackendconfigsource.lo: polkitbackendconfigsource.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendconfigsource.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Tpo -c -o libpolkit_backend_1_la-polkitbackendconfigsource.lo `test -f 'polkitbackendconfigsource.c' || echo '$(srcdir)/'`polkitbackendconfigsource.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendconfigsource.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Tpo -c -o libpolkit_backend_1_la-polkitbackendconfigsource.lo `test -f 'polkitbackendconfigsource.c' || echo '$(srcdir)/'`polkitbackendconfigsource.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendconfigsource.c' object='libpolkit_backend_1_la-polkitbackendconfigsource.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendconfigsource.lo `test -f 'polkitbackendconfigsource.c' || echo '$(srcdir)/'`polkitbackendconfigsource.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendconfigsource.lo `test -f 'polkitbackendconfigsource.c' || echo '$(srcdir)/'`polkitbackendconfigsource.c
 
 libpolkit_backend_1_la-polkitbackendactionlookup.lo: polkitbackendactionlookup.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendactionlookup.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionlookup.Tpo -c -o libpolkit_backend_1_la-polkitbackendactionlookup.lo `test -f 'polkitbackendactionlookup.c' || echo '$(srcdir)/'`polkitbackendactionlookup.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionlookup.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionlookup.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendactionlookup.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionlookup.Tpo -c -o libpolkit_backend_1_la-polkitbackendactionlookup.lo `test -f 'polkitbackendactionlookup.c' || echo '$(srcdir)/'`polkitbackendactionlookup.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionlookup.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendactionlookup.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendactionlookup.c' object='libpolkit_backend_1_la-polkitbackendactionlookup.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendactionlookup.lo `test -f 'polkitbackendactionlookup.c' || echo '$(srcdir)/'`polkitbackendactionlookup.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendactionlookup.lo `test -f 'polkitbackendactionlookup.c' || echo '$(srcdir)/'`polkitbackendactionlookup.c
 
 libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo: polkitbackendlocalauthorizationstore.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.Tpo -c -o libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo `test -f 'polkitbackendlocalauthorizationstore.c' || echo '$(srcdir)/'`polkitbackendlocalauthorizationstore.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.Plo
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.Tpo -c -o libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo `test -f 'polkitbackendlocalauthorizationstore.c' || echo '$(srcdir)/'`polkitbackendlocalauthorizationstore.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendlocalauthorizationstore.c' object='libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo `test -f 'polkitbackendlocalauthorizationstore.c' || echo '$(srcdir)/'`polkitbackendlocalauthorizationstore.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo `test -f 'polkitbackendlocalauthorizationstore.c' || echo '$(srcdir)/'`polkitbackendlocalauthorizationstore.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
