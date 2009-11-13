@@ -1,6 +1,12 @@
 policykit-1 (0.95-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Remove patches
+    - debian/patches/02_dont_export_private_symbols.patch (merged upstream)
+    - debian/patches/03_path_max.patch (merged upstream)
+    - debian/patches/04-ref-authority.patch (merged upstream)
+    - debian/patches/05-pkexec-env.patch (merged upstream)
+    - debian/patches/99_autoreconf.patch (obsolete)
 
  -- Michael Biebl <biebl@debian.org>  Fri, 13 Nov 2009 23:37:52 +0100
 
