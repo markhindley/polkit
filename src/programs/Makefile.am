@@ -28,7 +28,7 @@ pkexec_CFLAGS =                             				\
 	$(NULL)
 
 pkexec_LDADD =  	                      				\
-	$(GLIB_LDADD)							\
+	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(NULL)
 
@@ -63,7 +63,7 @@ pkcheck_CFLAGS =                             				\
 	$(NULL)
 
 pkcheck_LDADD =  	                      				\
-	$(GLIB_LDADD)							\
+	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(NULL)
 
@@ -76,7 +76,7 @@ pkaction_CFLAGS =                             				\
 	$(NULL)
 
 pkaction_LDADD =  	                      				\
-	$(GLIB_LDADD)							\
+	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(NULL)
 

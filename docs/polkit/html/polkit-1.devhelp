@@ -48,10 +48,10 @@
     <sub name="Manual Pages" link="manpages.html">
       <sub name="polkit" link="polkit.8.html"/>
       <sub name="polkitd" link="polkitd.8.html"/>
-      <sub name="pklocalauthority" link="pklocalauthority.8.html"/>
       <sub name="pkcheck" link="pkcheck.1.html"/>
       <sub name="pkaction" link="pkaction.1.html"/>
       <sub name="pkexec" link="pkexec.1.html"/>
+      <sub name="pklocalauthority" link="pklocalauthority.8.html"/>
     </sub>
     <sub name="Object Hierarchy" link="polkit-hierarchy.html"/>
     <sub name="Index" link="polit-index.html"/>
@@ -61,6 +61,7 @@
     <function name="The CheckAuthorizationFlags Flags" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-enum-CheckAuthorizationFlags"/>
     <function name="The ImplicitAuthorization Enumeration" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-enum-ImplicitAuthorization"/>
     <function name="The org.freedesktop.PolicyKit1.Error.* Error Domain" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-errordomain-org.freedesktop.PolicyKit1.Error."/>
+    <function name="The AuthorityFeatures Flags" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-enum-AuthorityFeatures"/>
     <function name="The Subject Structure" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject"/>
     <function name="The Identity Structure" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity"/>
     <function name="The ActionDescription Structure" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-ActionDescription"/>
@@ -75,12 +76,21 @@
     <function name="EnumerateTemporaryAuthorizations ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.EnumerateTemporaryAuthorizations"/>
     <function name="RevokeTemporaryAuthorizations ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RevokeTemporaryAuthorizations"/>
     <function name="RevokeTemporaryAuthorizationById ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RevokeTemporaryAuthorizationById"/>
+    <function name="AddLockdownForAction ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction"/>
+    <function name="RemoveLockdownForAction ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction"/>
     <function name="The &quot;Changed&quot; signal" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-signal-org.freedesktop.PolicyKit1.Authority::Changed"/>
+    <function name="The &quot;BackendName&quot; property" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendName"/>
+    <function name="The &quot;BackendVersion&quot; property" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendVersion"/>
+    <function name="The &quot;BackendFeatures&quot; property" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-property-org.freedesktop.PolicyKit1.Authority:BackendFeatures"/>
     <function name="BeginAuthentication ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html#eggdbus-method-org.freedesktop.PolicyKit1.AuthenticationAgent.BeginAuthentication"/>
     <function name="CancelAuthentication ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html#eggdbus-method-org.freedesktop.PolicyKit1.AuthenticationAgent.CancelAuthentication"/>
     <function name="PolkitAuthority" link="polkit-1-polkitauthority.html#PolkitAuthority-struct"/>
+    <function name="enum PolkitAuthorityFeatures" link="polkit-1-polkitauthority.html#PolkitAuthorityFeatures"/>
     <function name="enum PolkitCheckAuthorizationFlags" link="polkit-1-polkitauthority.html#PolkitCheckAuthorizationFlags"/>
     <function name="polkit_authority_get ()" link="polkit-1-polkitauthority.html#polkit-authority-get"/>
+    <function name="polkit_authority_get_backend_name ()" link="polkit-1-polkitauthority.html#polkit-authority-get-backend-name"/>
+    <function name="polkit_authority_get_backend_version ()" link="polkit-1-polkitauthority.html#polkit-authority-get-backend-version"/>
+    <function name="polkit_authority_get_backend_features ()" link="polkit-1-polkitauthority.html#polkit-authority-get-backend-features"/>
     <function name="polkit_authority_check_authorization ()" link="polkit-1-polkitauthority.html#polkit-authority-check-authorization"/>
     <function name="polkit_authority_check_authorization_finish ()" link="polkit-1-polkitauthority.html#polkit-authority-check-authorization-finish"/>
     <function name="polkit_authority_enumerate_actions ()" link="polkit-1-polkitauthority.html#polkit-authority-enumerate-actions"/>
@@ -97,6 +107,10 @@
     <function name="polkit_authority_revoke_temporary_authorizations_finish ()" link="polkit-1-polkitauthority.html#polkit-authority-revoke-temporary-authorizations-finish"/>
     <function name="polkit_authority_revoke_temporary_authorization_by_id ()" link="polkit-1-polkitauthority.html#polkit-authority-revoke-temporary-authorization-by-id"/>
     <function name="polkit_authority_revoke_temporary_authorization_by_id_finish ()" link="polkit-1-polkitauthority.html#polkit-authority-revoke-temporary-authorization-by-id-finish"/>
+    <function name="polkit_authority_add_lockdown_for_action ()" link="polkit-1-polkitauthority.html#polkit-authority-add-lockdown-for-action"/>
+    <function name="polkit_authority_add_lockdown_for_action_finish ()" link="polkit-1-polkitauthority.html#polkit-authority-add-lockdown-for-action-finish"/>
+    <function name="polkit_authority_remove_lockdown_for_action ()" link="polkit-1-polkitauthority.html#polkit-authority-remove-lockdown-for-action"/>
+    <function name="polkit_authority_remove_lockdown_for_action_finish ()" link="polkit-1-polkitauthority.html#polkit-authority-remove-lockdown-for-action-finish"/>
     <function name="polkit_authority_check_authorization_sync ()" link="polkit-1-polkitauthority.html#polkit-authority-check-authorization-sync"/>
     <function name="polkit_authority_enumerate_actions_sync ()" link="polkit-1-polkitauthority.html#polkit-authority-enumerate-actions-sync"/>
     <function name="polkit_authority_register_authentication_agent_sync ()" link="polkit-1-polkitauthority.html#polkit-authority-register-authentication-agent-sync"/>
@@ -105,6 +119,11 @@
     <function name="polkit_authority_enumerate_temporary_authorizations_sync ()" link="polkit-1-polkitauthority.html#polkit-authority-enumerate-temporary-authorizations-sync"/>
     <function name="polkit_authority_revoke_temporary_authorizations_sync ()" link="polkit-1-polkitauthority.html#polkit-authority-revoke-temporary-authorizations-sync"/>
     <function name="polkit_authority_revoke_temporary_authorization_by_id_sync ()" link="polkit-1-polkitauthority.html#polkit-authority-revoke-temporary-authorization-by-id-sync"/>
+    <function name="polkit_authority_add_lockdown_for_action_sync ()" link="polkit-1-polkitauthority.html#polkit-authority-add-lockdown-for-action-sync"/>
+    <function name="polkit_authority_remove_lockdown_for_action_sync ()" link="polkit-1-polkitauthority.html#polkit-authority-remove-lockdown-for-action-sync"/>
+    <function name="The &quot;backend-features&quot; property" link="polkit-1-polkitauthority.html#PolkitAuthority--backend-features"/>
+    <function name="The &quot;backend-name&quot; property" link="polkit-1-polkitauthority.html#PolkitAuthority--backend-name"/>
+    <function name="The &quot;backend-version&quot; property" link="polkit-1-polkitauthority.html#PolkitAuthority--backend-version"/>
     <function name="The &quot;changed&quot; signal" link="polkit-1-polkitauthority.html#PolkitAuthority-changed"/>
     <function name="PolkitAuthorizationResult" link="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult-struct"/>
     <function name="polkit_authorization_result_new ()" link="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-new"/>
@@ -112,6 +131,7 @@
     <function name="polkit_authorization_result_get_is_challenge ()" link="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-is-challenge"/>
     <function name="polkit_authorization_result_get_retains_authorization ()" link="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-retains-authorization"/>
     <function name="polkit_authorization_result_get_temporary_authorization_id ()" link="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-temporary-authorization-id"/>
+    <function name="polkit_authorization_result_get_locked_down ()" link="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-locked-down"/>
     <function name="polkit_authorization_result_get_details ()" link="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-details"/>
     <function name="PolkitDetails" link="polkit-1-polkitdetails.html#PolkitDetails-struct"/>
     <function name="polkit_details_new ()" link="polkit-1-polkitdetails.html#polkit-details-new"/>
@@ -169,6 +189,7 @@
     <function name="polkit_system_bus_name_new ()" link="polkit-1-polkitsystembusname.html#polkit-system-bus-name-new"/>
     <function name="polkit_system_bus_name_get_name ()" link="polkit-1-polkitsystembusname.html#polkit-system-bus-name-get-name"/>
     <function name="polkit_system_bus_name_set_name ()" link="polkit-1-polkitsystembusname.html#polkit-system-bus-name-set-name"/>
+    <function name="polkit_system_bus_name_get_process_sync ()" link="polkit-1-polkitsystembusname.html#polkit-system-bus-name-get-process-sync"/>
     <function name="The &quot;name&quot; property" link="polkit-1-polkitsystembusname.html#PolkitSystemBusName--name"/>
     <function name="PolkitIdentity" link="polkit-1-polkitidentity.html#PolkitIdentity-struct"/>
     <function name="PolkitIdentityIface" link="polkit-1-polkitidentity.html#PolkitIdentityIface"/>
@@ -191,6 +212,9 @@
     <function name="POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME" link="PolkitBackendAuthority.html#POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME--CAPS"/>
     <function name="PolkitBackendAuthority" link="PolkitBackendAuthority.html#PolkitBackendAuthority-struct"/>
     <function name="PolkitBackendAuthorityClass" link="PolkitBackendAuthority.html#PolkitBackendAuthorityClass"/>
+    <function name="polkit_backend_authority_get_name ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-name"/>
+    <function name="polkit_backend_authority_get_version ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-version"/>
+    <function name="polkit_backend_authority_get_features ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-features"/>
     <function name="polkit_backend_authority_check_authorization ()" link="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization"/>
     <function name="polkit_backend_authority_check_authorization_finish ()" link="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization-finish"/>
     <function name="polkit_backend_authority_register_authentication_agent ()" link="PolkitBackendAuthority.html#polkit-backend-authority-register-authentication-agent"/>
@@ -200,6 +224,10 @@
     <function name="polkit_backend_authority_system_bus_name_owner_changed ()" link="PolkitBackendAuthority.html#polkit-backend-authority-system-bus-name-owner-changed"/>
     <function name="polkit_backend_authority_enumerate_temporary_authorizations ()" link="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-temporary-authorizations"/>
     <function name="polkit_backend_authority_revoke_temporary_authorizations ()" link="PolkitBackendAuthority.html#polkit-backend-authority-revoke-temporary-authorizations"/>
+    <function name="polkit_backend_authority_add_lockdown_for_action ()" link="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action"/>
+    <function name="polkit_backend_authority_add_lockdown_for_action_finish ()" link="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action-finish"/>
+    <function name="polkit_backend_authority_remove_lockdown_for_action ()" link="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action"/>
+    <function name="polkit_backend_authority_remove_lockdown_for_action_finish ()" link="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action-finish"/>
     <function name="polkit_backend_authority_get ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get"/>
     <function name="polkit_backend_register_authority ()" link="PolkitBackendAuthority.html#polkit-backend-register-authority"/>
     <function name="The &quot;changed&quot; signal" link="PolkitBackendAuthority.html#PolkitBackendAuthority-changed"/>

@@ -1,10 +1,12 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT(polkit, 0.94, http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
-AM_INIT_AUTOMAKE(polkit, 0.94)
+AC_INIT(polkit, 0.95, http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
+AM_INIT_AUTOMAKE(polkit, 0.95)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
+
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 # libtool versioning - this applies to all libraries in this package
 #
@@ -122,7 +124,7 @@ PKG_CHECK_MODULES(GLIB, [glib-2.0 >= 2.21.4 gio-2.0 >= 2.21.4])
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
-PKG_CHECK_MODULES(EGG_DBUS, [eggdbus-1 >= 0.5])
+PKG_CHECK_MODULES(EGG_DBUS, [eggdbus-1 >= 0.6])
 AC_SUBST(EGG_DBUS_CFLAGS)
 AC_SUBST(EGG_DBUS_LIBS)
 
@@ -145,19 +147,6 @@ AC_CHECK_FUNCS(clearenv)
 if test "x$GCC" = "xyes"; then
   LDFLAGS="-Wl,--as-needed $LDFLAGS"
 fi
-
-dnl ---------------------------------------------------------------------------
-dnl - User
-dnl ---------------------------------------------------------------------------
-
-AC_ARG_WITH(polkit_user,[  --with-polkit-user=<user>  user for PolicyKit])
-if test -z "$with_polkit_user" ; then
-    POLKIT_USER=polkituser
-else
-    POLKIT_USER=$with_polkit_user
-fi
-AC_SUBST(POLKIT_USER)
-AC_DEFINE_UNQUOTED(POLKIT_USER, "$POLKIT_USER", [User for PolicyKit])
 
 dnl ---------------------------------------------------------------------------
 dnl - Select which authentication framework to use
@@ -414,6 +403,11 @@ if test "x$enable_introspection" = xyes; then
 fi
 AM_CONDITIONAL([ENABLE_INTROSPECTION], [test "x$enable_introspection" = xyes])
 
+AC_ARG_ENABLE([examples],
+              AS_HELP_STRING([--enable-examples], [Build the example programs]),,
+              [enable_examples=no])
+
+AM_CONDITIONAL(BUILD_EXAMPLES, test "x$enable_examples" = "xyes")
 
 # ********************
 # Internationalization
@@ -471,7 +465,6 @@ echo "
 	introspection:		    ${enable_introspection}
 
         Distribution/OS:            ${with_os_type}
-        user for PolicyKit:         ${POLKIT_USER}
         authentication framework:   ${POLKIT_AUTHFW}
         PAM support:                ${have_pam}"
 

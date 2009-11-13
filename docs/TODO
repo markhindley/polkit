@@ -5,19 +5,7 @@ Needed for 1.0
  - check that all public but unstable API is properly guard off with
    I_KNOW_THIS_API_IS_SUBJECT_TO_CHANGE_ETC
 
- - rethink actions shipped with PolicyKit; we probably just want something
-   very simple that only applies to the local authority backend
-   - some mechanisms don't run as root - how should they convey that
-     they are authorized to check authorizations?
-
  - man page review / section review
-
- - review/restrict symbol visibility in shared libraries
-
- - check / validate all incoming arguments
-   - includes all D-Bus interfaces and public library API
-   - validate D-Bus object paths everywhere
-   - ...and other security/paranoia stuff
 
  - make sure library API is reasonably MT-safe
 

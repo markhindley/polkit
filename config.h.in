@@ -130,9 +130,6 @@
 /* If using the Shadow authentication framework */
 #undef POLKIT_AUTHFW_SHADOW
 
-/* User for PolicyKit */
-#undef POLKIT_USER
-
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
 

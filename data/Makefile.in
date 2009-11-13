@@ -48,6 +48,12 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES = polkit-1 polkit-gobject-1.pc polkit-backend-1.pc \
 	polkit-agent-1.pc
 CONFIG_CLEAN_VPATH_FILES =
+AM_V_GEN = $(am__v_GEN_$(V))
+am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
+am__v_GEN_0 = @echo "  GEN   " $@;
+AM_V_at = $(am__v_at_$(V))
+am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
+am__v_at_0 = @
 SOURCES =
 DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -78,6 +84,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
 AMTAR = @AMTAR@
+AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AR = @AR@
 AUTH_LIBS = @AUTH_LIBS@
 AUTOCONF = @AUTOCONF@
@@ -173,7 +180,6 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
 POFILES = @POFILES@
 POLKIT_AUTHFW = @POLKIT_AUTHFW@
-POLKIT_USER = @POLKIT_USER@
 POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
 PO_IN_DATADIR_TRUE = @PO_IN_DATADIR_TRUE@
@@ -243,8 +249,7 @@ servicedir = $(datadir)/dbus-1/system-services
 service_in_files = org.freedesktop.PolicyKit1.service.in
 service_DATA = $(service_in_files:.service.in=.service)
 dbusconfdir = $(sysconfdir)/dbus-1/system.d
-dbusconf_in_files = org.freedesktop.PolicyKit1.conf.in
-dbusconf_DATA = $(dbusconf_in_files:.conf.in=.conf)
+dbusconf_DATA = org.freedesktop.PolicyKit1.conf
 @POLKIT_AUTHFW_PAM_TRUE@pamdir = $(sysconfdir)/pam.d
 @POLKIT_AUTHFW_PAM_TRUE@pam_DATA = polkit-1
 pkgconfigdir = $(libdir)/pkgconfig
@@ -254,11 +259,7 @@ EXTRA_DIST = \
 	org.freedesktop.PolicyKit1.Authority.xml 		\
 	org.freedesktop.PolicyKit1.AuthenticationAgent.xml 	\
 	$(service_in_files) 					\
-	$(dbusconf_in_files) 					\
-	polkit-1.in						\
-	polkit-gobject-1.pc.in 					\
-	polkit-backend-1.pc.in 					\
-	polkit-agent-1.pc.in					\
+	$(dbusconf_DATA) 					\
 	$(NULL)
 
 all: all-am
@@ -547,11 +548,8 @@ uninstall-am: uninstall-dbusconfDATA uninstall-pamDATA \
 $(service_DATA): $(service_in_files) Makefile
 	@sed -e "s|\@libexecdir\@|$(libexecdir)|" $< > $@
 
-$(dbusconf_DATA): $(dbusconf_in_files) Makefile
-	@sed -e "s|\@polkituser\@|$(POLKIT_USER)|" $< > $@
-
 clean-local :
-	rm -f *~ $(service_DATA) $(dbusconf_DATA)
+	rm -f *~ $(service_DATA)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

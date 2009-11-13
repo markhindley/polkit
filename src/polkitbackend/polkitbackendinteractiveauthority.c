@@ -276,6 +276,24 @@ polkit_backend_interactive_authority_finalize (GObject *object)
   G_OBJECT_CLASS (polkit_backend_interactive_authority_parent_class)->finalize (object);
 }
 
+static const gchar *
+polkit_backend_interactive_authority_get_name (PolkitBackendAuthority *authority)
+{
+  return "interactive";
+}
+
+static const gchar *
+polkit_backend_interactive_authority_get_version (PolkitBackendAuthority *authority)
+{
+  return PACKAGE_VERSION;
+}
+
+static PolkitAuthorityFeatures
+polkit_backend_interactive_authority_get_features (PolkitBackendAuthority *authority)
+{
+  return POLKIT_AUTHORITY_FEATURES_TEMPORARY_AUTHORIZATION;
+}
+
 static void
 polkit_backend_interactive_authority_class_init (PolkitBackendInteractiveAuthorityClass *klass)
 {
@@ -287,6 +305,9 @@ polkit_backend_interactive_authority_class_init (PolkitBackendInteractiveAuthori
 
   gobject_class->finalize = polkit_backend_interactive_authority_finalize;
 
+  authority_class->get_name                        = polkit_backend_interactive_authority_get_name;
+  authority_class->get_version                     = polkit_backend_interactive_authority_get_version;
+  authority_class->get_features                    = polkit_backend_interactive_authority_get_features;
   authority_class->system_bus_name_owner_changed   = polkit_backend_interactive_authority_system_bus_name_owner_changed;
   authority_class->enumerate_actions               = polkit_backend_interactive_authority_enumerate_actions;
   authority_class->check_authorization             = polkit_backend_interactive_authority_check_authorization;
@@ -459,6 +480,15 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
                                       callback,
                                       user_data,
                                       polkit_backend_interactive_authority_check_authorization);
+
+  /* handle being called from ourselves */
+  if (caller == NULL)
+    {
+      EggDBusConnection *system_bus;
+      system_bus = egg_dbus_connection_get_for_bus (EGG_DBUS_BUS_TYPE_SYSTEM);
+      caller = polkit_system_bus_name_new (egg_dbus_connection_get_unique_name (system_bus));
+      g_object_unref (system_bus);
+    }
 
   caller_str = polkit_subject_to_string (caller);
   subject_str = polkit_subject_to_string (subject);
@@ -715,7 +745,8 @@ check_authorization_sync (PolkitBackendAuthority         *authority,
                                                                                           session_is_active,
                                                                                           action_id,
                                                                                           details,
-                                                                                          implicit_authorization);
+                                                                                          implicit_authorization,
+                                                                                          result_details);
 
   /* first see if there's an implicit authorization for subject available */
   if (implicit_authorization == POLKIT_IMPLICIT_AUTHORIZATION_AUTHORIZED)
@@ -844,9 +875,12 @@ polkit_backend_interactive_authority_get_admin_identities (PolkitBackendInteract
  * @action_id: The action we are checking an authorization for.
  * @details: Details about the action.
  * @implicit: A #PolkitImplicitAuthorization value computed from the policy file and @subject.
+ * @out_details: A #PolkitDetails object that will be return to @caller.
  *
  * Checks whether @subject is authorized to perform the action
- * specified by @action_id and @details.
+ * specified by @action_id and @details. The implementation may
+ * append key/value pairs to @out_details to return extra information
+ * to @caller.
  *
  * The default implementation of this method simply returns @implicit.
  *
@@ -862,7 +896,8 @@ polkit_backend_interactive_authority_check_authorization_sync (PolkitBackendInte
                                                                gboolean                           subject_is_active,
                                                                const gchar                       *action_id,
                                                                PolkitDetails                     *details,
-                                                               PolkitImplicitAuthorization        implicit)
+                                                               PolkitImplicitAuthorization        implicit,
+                                                               PolkitDetails                     *out_details)
 {
   PolkitBackendInteractiveAuthorityClass *klass;
   PolkitImplicitAuthorization ret;
@@ -883,7 +918,8 @@ polkit_backend_interactive_authority_check_authorization_sync (PolkitBackendInte
                                              subject_is_active,
                                              action_id,
                                              details,
-                                             implicit);
+                                             implicit,
+                                             out_details);
     }
 
   return ret;
@@ -1959,10 +1995,33 @@ temporary_authorization_store_has_authorization (TemporaryAuthorizationStore *st
 {
   GList *l;
   gboolean ret;
+  PolkitSubject *subject_to_use;
 
   g_return_val_if_fail (store != NULL, FALSE);
   g_return_val_if_fail (POLKIT_IS_SUBJECT (subject), FALSE);
   g_return_val_if_fail (action_id != NULL, FALSE);
+
+  /* XXX: for now, prefer to store the process */
+  if (POLKIT_IS_SYSTEM_BUS_NAME (subject))
+    {
+      GError *error;
+      error = NULL;
+      subject_to_use = polkit_system_bus_name_get_process_sync (POLKIT_SYSTEM_BUS_NAME (subject),
+                                                                NULL,
+                                                                &error);
+      if (subject_to_use == NULL)
+        {
+          g_warning ("Error getting process for system bus name `%s': %s",
+                     polkit_system_bus_name_get_name (POLKIT_SYSTEM_BUS_NAME (subject)),
+                     error->message);
+          g_error_free (error);
+          subject_to_use = g_object_ref (subject);
+        }
+    }
+  else
+    {
+      subject_to_use = g_object_ref (subject);
+    }
 
   ret = FALSE;
 
@@ -1970,7 +2029,7 @@ temporary_authorization_store_has_authorization (TemporaryAuthorizationStore *st
     TemporaryAuthorization *authorization = l->data;
 
     if (strcmp (action_id, authorization->action_id) == 0 &&
-        polkit_subject_equal (subject, authorization->subject))
+        polkit_subject_equal (subject_to_use, authorization->subject))
       {
         ret = TRUE;
         if (out_tmp_authz_id != NULL)
@@ -1980,6 +2039,7 @@ temporary_authorization_store_has_authorization (TemporaryAuthorizationStore *st
   }
 
  out:
+  g_object_unref (subject_to_use);
   return ret;
 }
 
@@ -2095,11 +2155,34 @@ temporary_authorization_store_add_authorization (TemporaryAuthorizationStore *st
 {
   TemporaryAuthorization *authorization;
   guint expiration_seconds;
+  PolkitSubject *subject_to_use;
 
   g_return_val_if_fail (store != NULL, NULL);
   g_return_val_if_fail (POLKIT_IS_SUBJECT (subject), NULL);
   g_return_val_if_fail (action_id != NULL, NULL);
   g_return_val_if_fail (!temporary_authorization_store_has_authorization (store, subject, action_id, NULL), NULL);
+
+  /* XXX: for now, prefer to store the process */
+  if (POLKIT_IS_SYSTEM_BUS_NAME (subject))
+    {
+      GError *error;
+      error = NULL;
+      subject_to_use = polkit_system_bus_name_get_process_sync (POLKIT_SYSTEM_BUS_NAME (subject),
+                                                                NULL,
+                                                                &error);
+      if (subject_to_use == NULL)
+        {
+          g_warning ("Error getting process for system bus name `%s': %s",
+                     polkit_system_bus_name_get_name (POLKIT_SYSTEM_BUS_NAME (subject)),
+                     error->message);
+          g_error_free (error);
+          subject_to_use = g_object_ref (subject);
+        }
+    }
+  else
+    {
+      subject_to_use = g_object_ref (subject);
+    }
 
   /* TODO: right now the time the temporary authorization is kept is hard-coded - we
    *       could make it a propery on the PolkitBackendInteractiveAuthority class (so
@@ -2111,7 +2194,7 @@ temporary_authorization_store_add_authorization (TemporaryAuthorizationStore *st
   authorization = g_new0 (TemporaryAuthorization, 1);
   authorization->id = g_strdup_printf ("tmpauthz%" G_GUINT64_FORMAT, store->serial++);
   authorization->store = store;
-  authorization->subject = g_object_ref (subject);
+  authorization->subject = g_object_ref (subject_to_use);
   authorization->session = g_object_ref (session);
   authorization->action_id = g_strdup (action_id);
   authorization->time_granted = time (NULL);
@@ -2151,6 +2234,8 @@ temporary_authorization_store_add_authorization (TemporaryAuthorizationStore *st
 
 
   store->authorizations = g_list_prepend (store->authorizations, authorization);
+
+  g_object_unref (subject_to_use);
 
   return authorization->id;
 }

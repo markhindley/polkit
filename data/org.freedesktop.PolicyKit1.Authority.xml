@@ -129,7 +129,7 @@
       </annotation>
 
       <annotation name="org.gtk.EggDBus.Struct.Member"  value="Dict<String,String>:details">
-        <annotation name="org.gtk.EggDBus.DocString" value="Details for the result or empty if not authorized. Known key/value-pairs include <literal>polkit.temporary_authorization_id</literal> (if the authorization is temporary, this is set to the opaque temporary authorization id) and <literal>polkit.retains_authorization_after_challenge</literal> (Set to a non-empty string if the authorization will be retained after authentication (if is_challenge is TRUE))."/>
+        <annotation name="org.gtk.EggDBus.DocString" value="Details for the result or empty if not authorized. Known key/value-pairs include <literal>polkit.temporary_authorization_id</literal> (if the authorization is temporary, this is set to the opaque temporary authorization id), <literal>polkit.retains_authorization_after_challenge</literal> (Set to a non-empty string if the authorization will be retained after authentication (if is_challenge is TRUE)) and <literal>polkit.lockdown</literal> (set to a non-empty string if the action is locked down)."/>
       </annotation>
     </annotation>
 
@@ -195,6 +195,37 @@
 
     <!-- ---------------------------------------------------------------------------------------------------- -->
 
+    <!-- Flags describing what features the Authority implementation supports -->
+    <annotation name="org.gtk.EggDBus.DeclareFlags" value="AuthorityFeatures">
+      <annotation name="org.gtk.EggDBus.DocString.Summary" value="Authority Features"/>
+      <annotation name="org.gtk.EggDBus.DocString" value="Flags describing features supported by the Authority implementation."/>
+
+      <annotation name="org.gtk.EggDBus.Flags.Member" value="TemporaryAuthorization">
+        <annotation name="org.gtk.EggDBus.DocString" value="The authority supports temporary authorizations that can be obtained through authentication."/>
+      </annotation>
+
+      <annotation name="org.gtk.EggDBus.Flags.Member" value="Lockdown">
+        <annotation name="org.gtk.EggDBus.DocString" value="The authority supports the org.freedesktop.PolicyKit1.Authority.AddLockdownForAction() and org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction() methods."/>
+      </annotation>
+    </annotation>
+
+    <!-- ---------------------------------------------------------------------------------------------------- -->
+
+    <property name="BackendName" type="s" access="read">
+      <annotation name="org.gtk.EggDBus.DocString" value="The name of the currently used Authority backend."/>
+    </property>
+
+    <property name="BackendVersion" type="s" access="read">
+      <annotation name="org.gtk.EggDBus.DocString" value="The version of the currently used Authority backend."/>
+    </property>
+
+    <property name="BackendFeatures" type="u" access="read">
+      <annotation name="org.gtk.EggDBus.Type" value="AuthorityFeatures"/>
+      <annotation name="org.gtk.EggDBus.DocString" value="The features supported by the currently used Authority backend."/>
+    </property>
+
+    <!-- ---------------------------------------------------------------------------------------------------- -->
+
     <method name="EnumerateActions">
       <annotation name="org.gtk.EggDBus.DocString" value="Enumerates all registered PolicyKit actions."/>
 
@@ -211,7 +242,7 @@
     <!-- ---------------------------------------------------------------------------------------------------- -->
 
     <method name="CheckAuthorization">
-      <annotation name="org.gtk.EggDBus.DocString" value="<para>Checks if @subject is authorized to perform the action with identifier @action_id.</para><para>If @cancellation_id is non-empty and already in use for the caller, the %org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique error is returned.</para>"/>
+      <annotation name="org.gtk.EggDBus.DocString" value="<para>Checks if @subject is authorized to perform the action with identifier @action_id.</para><para>If @cancellation_id is non-empty and already in use for the caller, the %org.freedesktop.PolicyKit1.Error.CancellationIdNotUnique error is returned.</para><para>Note that %CheckAuthorizationFlags.AllowUserInteraction SHOULD be passed ONLY if the event that triggered the authorization check is stemming from an user action, e.g. the user pressing a button or attaching a device.</para>"/>
 
       <arg name="subject" direction="in" type="(sa{sv})">
         <annotation name="org.gtk.EggDBus.DocString" value="A #Subject struct."/>
@@ -353,6 +384,22 @@
 
       <arg name="id" direction="in" type="s">
         <annotation name="org.gtk.EggDBus.DocString" value="The opaque identifier of the temporary authorization."/>
+      </arg>
+    </method>
+
+    <!-- ---------------------------------------------------------------------------------------------------- -->
+
+    <method name="AddLockdownForAction">
+      <annotation name="org.gtk.EggDBus.DocString" value="Locks down an action so administrator authentication is always needed to obtain a temporary authorization for the action."/>
+      <arg name="action_id" direction="in" type="s">
+        <annotation name="org.gtk.EggDBus.DocString" value="Identifier for the action."/>
+      </arg>
+    </method>
+
+    <method name="RemoveLockdownForAction">
+      <annotation name="org.gtk.EggDBus.DocString" value="Removes the effect of a previous org.freedesktop.PolicyKit1.Authority.AddLockdownForAction() call."/>
+      <arg name="action_id" direction="in" type="s">
+        <annotation name="org.gtk.EggDBus.DocString" value="Identifier for the action."/>
       </arg>
     </method>
 

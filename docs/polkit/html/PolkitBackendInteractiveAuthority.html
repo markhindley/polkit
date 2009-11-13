@@ -87,7 +87,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a> *action_id,
                                                          <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> implicit);
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> implicit,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *out_details);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -137,7 +138,8 @@ The <a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitB
                                                            gboolean                           subject_is_active,
                                                            const gchar                       *action_id,
                                                            PolkitDetails                     *details,
-                                                           PolkitImplicitAuthorization        implicit);
+                                                           PolkitImplicitAuthorization        implicit,
+                                                           PolkitDetails                     *out_details);
 } PolkitBackendInteractiveAuthorityClass;
 </pre>
 <p>
@@ -252,10 +254,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolea
 href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 >gchar</a> *action_id,
                                                          <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> implicit);</pre>
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> implicit,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *out_details);</pre>
 <p>
 Checks whether <em class="parameter"><code>subject</code></em> is authorized to perform the action
-specified by <em class="parameter"><code>action_id</code></em> and <em class="parameter"><code>details</code></em>.
+specified by <em class="parameter"><code>action_id</code></em> and <em class="parameter"><code>details</code></em>. The implementation may
+append key/value pairs to <em class="parameter"><code>out_details</code></em> to return extra information
+to <em class="parameter"><code>caller</code></em>.
 </p>
 <p>
 The default implementation of this method simply returns <em class="parameter"><code>implicit</code></em>.</p>
@@ -309,6 +314,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 <tr>
 <td><p><span class="term"><em class="parameter"><code>implicit</code></em> :</span></p></td>
 <td> A <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization"><span class="type">PolkitImplicitAuthorization</span></a> value computed from the policy file and <em class="parameter"><code>subject</code></em>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_details</code></em> :</span></p></td>
+<td> A <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="type">PolkitDetails</span></a> object that will be return to <em class="parameter"><code>caller</code></em>.
 </td>
 </tr>
 <tr>

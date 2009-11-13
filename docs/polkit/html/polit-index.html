@@ -95,6 +95,20 @@
 </dt>
 <dt>PolkitAuthority::changed, <a class="indexterm" href="polkit-1-polkitauthority.html#PolkitAuthority-changed">The "changed" signal</a>
 </dt>
+<dt>PolkitAuthority:backend-features, <a class="indexterm" href="polkit-1-polkitauthority.html#PolkitAuthority--backend-features">The "backend-features" property</a>
+</dt>
+<dt>PolkitAuthority:backend-name, <a class="indexterm" href="polkit-1-polkitauthority.html#PolkitAuthority--backend-name">The "backend-name" property</a>
+</dt>
+<dt>PolkitAuthority:backend-version, <a class="indexterm" href="polkit-1-polkitauthority.html#PolkitAuthority--backend-version">The "backend-version" property</a>
+</dt>
+<dt>PolkitAuthorityFeatures, <a class="indexterm" href="polkit-1-polkitauthority.html#PolkitAuthorityFeatures">enum PolkitAuthorityFeatures</a>
+</dt>
+<dt>polkit_authority_add_lockdown_for_action, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-add-lockdown-for-action">polkit_authority_add_lockdown_for_action ()</a>
+</dt>
+<dt>polkit_authority_add_lockdown_for_action_finish, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-add-lockdown-for-action-finish">polkit_authority_add_lockdown_for_action_finish ()</a>
+</dt>
+<dt>polkit_authority_add_lockdown_for_action_sync, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-add-lockdown-for-action-sync">polkit_authority_add_lockdown_for_action_sync ()</a>
+</dt>
 <dt>polkit_authority_authentication_agent_response, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-authentication-agent-response">polkit_authority_authentication_agent_response ()</a>
 </dt>
 <dt>polkit_authority_authentication_agent_response_finish, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-authentication-agent-response-finish">polkit_authority_authentication_agent_response_finish ()</a>
@@ -121,11 +135,23 @@
 </dt>
 <dt>polkit_authority_get, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-get">polkit_authority_get ()</a>
 </dt>
+<dt>polkit_authority_get_backend_features, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-get-backend-features">polkit_authority_get_backend_features ()</a>
+</dt>
+<dt>polkit_authority_get_backend_name, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-get-backend-name">polkit_authority_get_backend_name ()</a>
+</dt>
+<dt>polkit_authority_get_backend_version, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-get-backend-version">polkit_authority_get_backend_version ()</a>
+</dt>
 <dt>polkit_authority_register_authentication_agent, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-register-authentication-agent">polkit_authority_register_authentication_agent ()</a>
 </dt>
 <dt>polkit_authority_register_authentication_agent_finish, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-register-authentication-agent-finish">polkit_authority_register_authentication_agent_finish ()</a>
 </dt>
 <dt>polkit_authority_register_authentication_agent_sync, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-register-authentication-agent-sync">polkit_authority_register_authentication_agent_sync ()</a>
+</dt>
+<dt>polkit_authority_remove_lockdown_for_action, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-remove-lockdown-for-action">polkit_authority_remove_lockdown_for_action ()</a>
+</dt>
+<dt>polkit_authority_remove_lockdown_for_action_finish, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-remove-lockdown-for-action-finish">polkit_authority_remove_lockdown_for_action_finish ()</a>
+</dt>
+<dt>polkit_authority_remove_lockdown_for_action_sync, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-remove-lockdown-for-action-sync">polkit_authority_remove_lockdown_for_action_sync ()</a>
 </dt>
 <dt>polkit_authority_revoke_temporary_authorizations, <a class="indexterm" href="polkit-1-polkitauthority.html#polkit-authority-revoke-temporary-authorizations">polkit_authority_revoke_temporary_authorizations ()</a>
 </dt>
@@ -152,6 +178,8 @@
 <dt>polkit_authorization_result_get_is_authorized, <a class="indexterm" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-is-authorized">polkit_authorization_result_get_is_authorized ()</a>
 </dt>
 <dt>polkit_authorization_result_get_is_challenge, <a class="indexterm" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-is-challenge">polkit_authorization_result_get_is_challenge ()</a>
+</dt>
+<dt>polkit_authorization_result_get_locked_down, <a class="indexterm" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-locked-down">polkit_authorization_result_get_locked_down ()</a>
 </dt>
 <dt>polkit_authorization_result_get_retains_authorization, <a class="indexterm" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-retains-authorization">polkit_authorization_result_get_retains_authorization ()</a>
 </dt>
@@ -222,6 +250,10 @@
 </dt>
 <dt>polkit_backend_action_pool_new, <a class="indexterm" href="PolkitBackendActionPool.html#polkit-backend-action-pool-new">polkit_backend_action_pool_new ()</a>
 </dt>
+<dt>polkit_backend_authority_add_lockdown_for_action, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action">polkit_backend_authority_add_lockdown_for_action ()</a>
+</dt>
+<dt>polkit_backend_authority_add_lockdown_for_action_finish, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action-finish">polkit_backend_authority_add_lockdown_for_action_finish ()</a>
+</dt>
 <dt>polkit_backend_authority_authentication_agent_response, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-authentication-agent-response">polkit_backend_authority_authentication_agent_response ()</a>
 </dt>
 <dt>polkit_backend_authority_check_authorization, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization">polkit_backend_authority_check_authorization ()</a>
@@ -236,7 +268,17 @@
 </dt>
 <dt>polkit_backend_authority_get, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-get">polkit_backend_authority_get ()</a>
 </dt>
+<dt>polkit_backend_authority_get_features, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-get-features">polkit_backend_authority_get_features ()</a>
+</dt>
+<dt>polkit_backend_authority_get_name, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-get-name">polkit_backend_authority_get_name ()</a>
+</dt>
+<dt>polkit_backend_authority_get_version, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-get-version">polkit_backend_authority_get_version ()</a>
+</dt>
 <dt>polkit_backend_authority_register_authentication_agent, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-register-authentication-agent">polkit_backend_authority_register_authentication_agent ()</a>
+</dt>
+<dt>polkit_backend_authority_remove_lockdown_for_action, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action">polkit_backend_authority_remove_lockdown_for_action ()</a>
+</dt>
+<dt>polkit_backend_authority_remove_lockdown_for_action_finish, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action-finish">polkit_backend_authority_remove_lockdown_for_action_finish ()</a>
 </dt>
 <dt>polkit_backend_authority_revoke_temporary_authorizations, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-revoke-temporary-authorizations">polkit_backend_authority_revoke_temporary_authorizations ()</a>
 </dt>
@@ -354,6 +396,8 @@
 <dt>PolkitSystemBusName:name, <a class="indexterm" href="polkit-1-polkitsystembusname.html#PolkitSystemBusName--name">The "name" property</a>
 </dt>
 <dt>polkit_system_bus_name_get_name, <a class="indexterm" href="polkit-1-polkitsystembusname.html#polkit-system-bus-name-get-name">polkit_system_bus_name_get_name ()</a>
+</dt>
+<dt>polkit_system_bus_name_get_process_sync, <a class="indexterm" href="polkit-1-polkitsystembusname.html#polkit-system-bus-name-get-process-sync">polkit_system_bus_name_get_process_sync ()</a>
 </dt>
 <dt>polkit_system_bus_name_new, <a class="indexterm" href="polkit-1-polkitsystembusname.html#polkit-system-bus-name-new">polkit_system_bus_name_new ()</a>
 </dt>
