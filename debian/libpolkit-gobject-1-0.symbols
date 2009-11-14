@@ -13,6 +13,9 @@ libpolkit-gobject-1.so.0 libpolkit-gobject-1-0 #MINVER#
  polkit_action_description_get_vendor_name@Base 0.94
  polkit_action_description_get_vendor_url@Base 0.94
  polkit_action_description_new_for_real@Base 0.94
+ polkit_authority_add_lockdown_for_action@Base 0.95
+ polkit_authority_add_lockdown_for_action_finish@Base 0.95
+ polkit_authority_add_lockdown_for_action_sync@Base 0.95
  polkit_authority_authentication_agent_response@Base 0.94
  polkit_authority_authentication_agent_response_finish@Base 0.94
  polkit_authority_authentication_agent_response_sync@Base 0.94
@@ -25,11 +28,18 @@ libpolkit-gobject-1.so.0 libpolkit-gobject-1-0 #MINVER#
  polkit_authority_enumerate_temporary_authorizations@Base 0.94
  polkit_authority_enumerate_temporary_authorizations_finish@Base 0.94
  polkit_authority_enumerate_temporary_authorizations_sync@Base 0.94
+ polkit_authority_features_get_type@Base 0.95
  polkit_authority_get@Base 0.94
+ polkit_authority_get_backend_features@Base 0.95
+ polkit_authority_get_backend_name@Base 0.95
+ polkit_authority_get_backend_version@Base 0.95
  polkit_authority_get_type@Base 0.94
  polkit_authority_register_authentication_agent@Base 0.94
  polkit_authority_register_authentication_agent_finish@Base 0.94
  polkit_authority_register_authentication_agent_sync@Base 0.94
+ polkit_authority_remove_lockdown_for_action@Base 0.95
+ polkit_authority_remove_lockdown_for_action_finish@Base 0.95
+ polkit_authority_remove_lockdown_for_action_sync@Base 0.95
  polkit_authority_revoke_temporary_authorization_by_id@Base 0.94
  polkit_authority_revoke_temporary_authorization_by_id_finish@Base 0.94
  polkit_authority_revoke_temporary_authorization_by_id_sync@Base 0.94
@@ -42,6 +52,7 @@ libpolkit-gobject-1.so.0 libpolkit-gobject-1-0 #MINVER#
  polkit_authorization_result_get_details@Base 0.94
  polkit_authorization_result_get_is_authorized@Base 0.94
  polkit_authorization_result_get_is_challenge@Base 0.94
+ polkit_authorization_result_get_locked_down@Base 0.95
  polkit_authorization_result_get_real@Base 0.94
  polkit_authorization_result_get_retains_authorization@Base 0.94
  polkit_authorization_result_get_temporary_authorization_id@Base 0.94
@@ -79,6 +90,7 @@ libpolkit-gobject-1.so.0 libpolkit-gobject-1-0 #MINVER#
  polkit_subject_new_for_real@Base 0.94
  polkit_subject_to_string@Base 0.94
  polkit_system_bus_name_get_name@Base 0.94
+ polkit_system_bus_name_get_process_sync@Base 0.95
  polkit_system_bus_name_get_type@Base 0.94
  polkit_system_bus_name_new@Base 0.94
  polkit_system_bus_name_set_name@Base 0.94

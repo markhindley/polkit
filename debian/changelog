@@ -12,6 +12,8 @@ policykit-1 (0.95-1) UNRELEASED; urgency=low
   * debian/rules
     - The example application is no longer built by default so we don't need
       to manually remove it anymore.
+  * debian/libpolkit-{backend,gobject}-1-0.symbols
+    - Update for new API additions.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 13 Nov 2009 23:37:52 +0100
 
