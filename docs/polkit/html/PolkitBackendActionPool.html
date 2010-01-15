@@ -8,7 +8,7 @@
 <link rel="up" href="ref-backend-api.html" title="Part IV. Backend API Reference">
 <link rel="prev" href="PolkitBackendLocalAuthorizationStore.html" title="PolkitBackendLocalAuthorizationStore">
 <link rel="next" href="polkit-1-polkitbackendsessionmonitor.html" title="PolkitBackendSessionMonitor">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -37,14 +37,14 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#PolkitBackendActionPool.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#PolkitBackendActionPool.description" class="shortcut">Description</a>
-                 | 
-                <a href="#PolkitBackendActionPool.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                 | 
-                <a href="#PolkitBackendActionPool.properties" class="shortcut">Properties</a>
-                 | 
-                <a href="#PolkitBackendActionPool.signals" class="shortcut">Signals</a>
+                   | 
+                  <a href="#PolkitBackendActionPool.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#PolkitBackendActionPool.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#PolkitBackendActionPool.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#PolkitBackendActionPool.signals" class="shortcut">Signals</a>
 </td></tr>
 </table>
 <div class="refentry" title="PolkitBackendActionPool">
@@ -58,44 +58,29 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="PolkitBackendActionPool.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-                    <a class="link" href="PolkitBackendActionPool.html#PolkitBackendActionPool-struct" title="PolkitBackendActionPool">PolkitBackendActionPool</a>;
-<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">PolkitBackendActionPool</a> * <a class="link" href="PolkitBackendActionPool.html#polkit-backend-action-pool-new" title="polkit_backend_action_pool_new ()">polkit_backend_action_pool_new</a>
-                                                        (<a
-href="http://library.gnome.org/devel/gio/unstable/GFile.html"
->GFile</a> *directory);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="PolkitBackendActionPool.html#polkit-backend-action-pool-get-all-actions" title="polkit_backend_action_pool_get_all_actions ()">polkit_backend_action_pool_get_all_actions</a>
-                                                        (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">PolkitBackendActionPool</a> *pool,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *locale);
-<a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a> * <a class="link" href="PolkitBackendActionPool.html#polkit-backend-action-pool-get-action" title="polkit_backend_action_pool_get_action ()">polkit_backend_action_pool_get_action</a>
-                                                        (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">PolkitBackendActionPool</a> *pool,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *locale);
+<pre class="synopsis">                    <a class="link" href="PolkitBackendActionPool.html#PolkitBackendActionPool-struct" title="PolkitBackendActionPool">PolkitBackendActionPool</a>;
+<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="returnvalue">PolkitBackendActionPool</span></a> * <a class="link" href="PolkitBackendActionPool.html#polkit-backend-action-pool-new" title="polkit_backend_action_pool_new ()">polkit_backend_action_pool_new</a>
+                                                        (<a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="returnvalue">GFile</span></a> *directory);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitBackendActionPool.html#polkit-backend-action-pool-get-all-actions" title="polkit_backend_action_pool_get_all_actions ()">polkit_backend_action_pool_get_all_actions</a>
+                                                        (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="returnvalue">PolkitBackendActionPool</span></a> *pool,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *locale);
+<a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="returnvalue">PolkitActionDescription</span></a> * <a class="link" href="PolkitBackendActionPool.html#polkit-backend-action-pool-get-action" title="polkit_backend_action_pool_get_action ()">polkit_backend_action_pool_get_action</a>
+                                                        (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="returnvalue">PolkitBackendActionPool</span></a> *pool,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *locale);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="PolkitBackendActionPool.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitBackendActionPool
 </pre>
 </div>
 <div class="refsect1" title="Properties">
 <a name="PolkitBackendActionPool.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="PolkitBackendActionPool.html#PolkitBackendActionPool--directory" title='The "directory" property'>directory</a>"                <a
-href="http://library.gnome.org/devel/gio/unstable/GFile.html"
->GFile</a>*                : Read / Write / Construct Only
+  "<a class="link" href="PolkitBackendActionPool.html#PolkitBackendActionPool--directory" title='The "directory" property'>directory</a>"                <a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="type">GFile</span></a>*                : Read / Write / Construct Only
 </pre>
 </div>
 <div class="refsect1" title="Signals">
@@ -118,10 +103,8 @@ The <a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActi
 <hr>
 <div class="refsect2" title="polkit_backend_action_pool_new ()">
 <a name="polkit-backend-action-pool-new"></a><h3>polkit_backend_action_pool_new ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">PolkitBackendActionPool</a> * polkit_backend_action_pool_new
-                                                        (<a
-href="http://library.gnome.org/devel/gio/unstable/GFile.html"
->GFile</a> *directory);</pre>
+<pre class="programlisting"><a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="returnvalue">PolkitBackendActionPool</span></a> * polkit_backend_action_pool_new
+                                                        (<a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="returnvalue">GFile</span></a> *directory);</pre>
 <p>
 Creates a new <span class="type">PolkitBackendPool</span> that can be used for looking up <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> objects.</p>
 <div class="variablelist"><table border="0">
@@ -129,16 +112,12 @@ Creates a new <span class="type">PolkitBackendPool</span> that can be used for l
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>directory</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/gio/unstable/GFile.html"
-><span class="type">GFile</span></a> for the directory holding PolicyKit action description files.
+<td> A <a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="type">GFile</span></a> for the directory holding PolicyKit action description files.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="type">PolkitBackendActionPool</span></a>. Free with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="type">PolkitBackendActionPool</span></a>. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -147,13 +126,9 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_backend_action_pool_get_all_actions ()">
 <a name="polkit-backend-action-pool-get-all-actions"></a><h3>polkit_backend_action_pool_get_all_actions ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             polkit_backend_action_pool_get_all_actions
-                                                        (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">PolkitBackendActionPool</a> *pool,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *locale);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_backend_action_pool_get_all_actions
+                                                        (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="returnvalue">PolkitBackendActionPool</span></a> *pool,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *locale);</pre>
 <p>
 Gets all registered PolicyKit action descriptions from <em class="parameter"><code>pool</code></em> with strings for <em class="parameter"><code>locale</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -166,22 +141,14 @@ Gets all registered PolicyKit action descriptions from <em class="parameter"><co
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>locale</code></em> :</span></p></td>
-<td> The locale to get descriptions for or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> for system locale.
+<td> The locale to get descriptions for or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for system locale.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
-><span class="type">GList</span></a> of <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> objects. This list
-         should be freed with <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"
-><code class="function">g_list_free()</code></a> after each element have
-         been unreffed with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> objects. This list
+         should be freed with <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a> after each element have
+         been unreffed with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -190,14 +157,10 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_backend_action_pool_get_action ()">
 <a name="polkit-backend-action-pool-get-action"></a><h3>polkit_backend_action_pool_get_action ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a> * polkit_backend_action_pool_get_action
-                                                        (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">PolkitBackendActionPool</a> *pool,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *locale);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="returnvalue">PolkitActionDescription</span></a> * polkit_backend_action_pool_get_action
+                                                        (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="returnvalue">PolkitBackendActionPool</span></a> *pool,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *locale);</pre>
 <p>
 Gets a <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> object describing the action with identifier <em class="parameter"><code>action_id</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -215,18 +178,12 @@ Gets a <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionD
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>locale</code></em> :</span></p></td>
-<td> The locale to get descriptions for or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> for system locale.
+<td> The locale to get descriptions for or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for system locale.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> (free with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>) or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>
+<td> A <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> (free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>) or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>
          if <em class="parameter"><code>action_id</code></em> isn't registered or valid.
 </td>
 </tr>
@@ -238,9 +195,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 <a name="PolkitBackendActionPool.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" title='The "directory" property'>
 <a name="PolkitBackendActionPool--directory"></a><h3>The <code class="literal">"directory"</code> property</h3>
-<pre class="programlisting">  "directory"                <a
-href="http://library.gnome.org/devel/gio/unstable/GFile.html"
->GFile</a>*                : Read / Write / Construct Only</pre>
+<pre class="programlisting">  "directory"                <a href="http://library.gnome.org/devel/gio/unstable/GFile.html"><span class="type">GFile</span></a>*                : Read / Write / Construct Only</pre>
 <p>
 The directory to load action description files from.</p>
 </div>
@@ -249,10 +204,8 @@ The directory to load action description files from.</p>
 <a name="PolkitBackendActionPool.signal-details"></a><h2>Signal Details</h2>
 <div class="refsect2" title='The "changed" signal'>
 <a name="PolkitBackendActionPool-changed"></a><h3>The <code class="literal">"changed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">PolkitBackendActionPool</a> *action_pool,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>                 user_data)        : Run Last</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool"><span class="type">PolkitBackendActionPool</span></a> *action_pool,
+                                                        <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>                 user_data)        : Run Last</pre>
 <p>
 Emitted when action files in the supplied directory changes.</p>
 <div class="variablelist"><table border="0">
@@ -274,6 +227,6 @@ Emitted when action files in the supplied directory changes.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

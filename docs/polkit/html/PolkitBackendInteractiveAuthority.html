@@ -8,7 +8,7 @@
 <link rel="up" href="ref-backend-api.html" title="Part IV. Backend API Reference">
 <link rel="prev" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">
 <link rel="next" href="PolkitBackendLocalAuthority.html" title="PolkitBackendLocalAuthority">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -37,10 +37,10 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#PolkitBackendInteractiveAuthority.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#PolkitBackendInteractiveAuthority.description" class="shortcut">Description</a>
-                 | 
-                <a href="#PolkitBackendInteractiveAuthority.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#PolkitBackendInteractiveAuthority.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#PolkitBackendInteractiveAuthority.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" title="PolkitBackendInteractiveAuthority">
@@ -58,45 +58,32 @@ Unstable, unless otherwise indicated
 </div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="PolkitBackendInteractiveAuthority.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-                    <a class="link" href="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthority-struct" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a>;
+<pre class="synopsis">                    <a class="link" href="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthority-struct" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a>;
                     <a class="link" href="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthorityClass" title="PolkitBackendInteractiveAuthorityClass">PolkitBackendInteractiveAuthorityClass</a>;
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-get-admin-identities" title="polkit_backend_interactive_authority_get_admin_identities ()">polkit_backend_interactive_authority_get_admin_identities</a>
-                                                        (<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *user_for_subject,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details);
-<a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a>  <a class="link" href="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-check-authorization-sync" title="polkit_backend_interactive_authority_check_authorization_sync ()">polkit_backend_interactive_authority_check_authorization_sync</a>
-                                                        (<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *user_for_subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> subject_is_local,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> subject_is_active,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> implicit,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *out_details);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-get-admin-identities" title="polkit_backend_interactive_authority_get_admin_identities ()">polkit_backend_interactive_authority_get_admin_identities</a>
+                                                        (<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority"><span class="returnvalue">PolkitBackendInteractiveAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *user_for_subject,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details);
+<a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a>  <a class="link" href="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-check-authorization-sync" title="polkit_backend_interactive_authority_check_authorization_sync ()">polkit_backend_interactive_authority_check_authorization_sync</a>
+                                                        (<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority"><span class="returnvalue">PolkitBackendInteractiveAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *user_for_subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> subject_is_local,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> subject_is_active,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a> implicit,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *out_details);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="PolkitBackendInteractiveAuthority.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a>
          +----PolkitBackendInteractiveAuthority
                +----<a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackendLocalAuthority">PolkitBackendLocalAuthority</a>
@@ -148,23 +135,19 @@ Class structure for <a class="link" href="PolkitBackendInteractiveAuthority.html
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a class="link" href="PolkitBackendAuthority.html#PolkitBackendAuthorityClass" title="PolkitBackendAuthorityClass">PolkitBackendAuthorityClass</a> <em class="structfield"><code>parent_class</code></em>;</span></p></td>
+<td><p><span class="term"><a class="link" href="PolkitBackendAuthority.html#PolkitBackendAuthorityClass" title="PolkitBackendAuthorityClass"><span class="type">PolkitBackendAuthorityClass</span></a> <em class="structfield"><code><a name="PolkitBackendInteractiveAuthorityClass.parent-class"></a>parent_class</code></em>;</span></p></td>
 <td> The parent class.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>get_admin_identities</code></em> ()</span></p></td>
-<td> Returns list of identities for administrator authentication or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> to use the default
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendInteractiveAuthorityClass.get-admin-identities"></a>get_admin_identities</code></em> ()</span></p></td>
+<td> Returns list of identities for administrator authentication or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to use the default
   implementation. See <a class="link" href="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-get-admin-identities" title="polkit_backend_interactive_authority_get_admin_identities ()"><code class="function">polkit_backend_interactive_authority_get_admin_identities()</code></a> for details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>check_authorization_sync</code></em> ()</span></p></td>
-<td> Checks for an authorization or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> to use the default implementation.
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendInteractiveAuthorityClass.check-authorization-sync"></a>check_authorization_sync</code></em> ()</span></p></td>
+<td> Checks for an authorization or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to use the default implementation.
  See <a class="link" href="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-check-authorization-sync" title="polkit_backend_interactive_authority_check_authorization_sync ()"><code class="function">polkit_backend_interactive_authority_check_authorization_sync()</code></a> for details.
 </td>
 </tr>
@@ -174,17 +157,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 <hr>
 <div class="refsect2" title="polkit_backend_interactive_authority_get_admin_identities ()">
 <a name="polkit-backend-interactive-authority-get-admin-identities"></a><h3>polkit_backend_interactive_authority_get_admin_identities ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             polkit_backend_interactive_authority_get_admin_identities
-                                                        (<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *user_for_subject,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_backend_interactive_authority_get_admin_identities
+                                                        (<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority"><span class="returnvalue">PolkitBackendInteractiveAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *user_for_subject,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details);</pre>
 <p>
 Gets a list of identities to use for administrator authentication.
 </p>
@@ -226,11 +205,7 @@ The default implementation returns a list with a single element for the super us
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td> A list of <span class="type">PolkitIdentities</span>. Free each element
-    <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>, then free the list with <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"
-><code class="function">g_list_free()</code></a>.
+    <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>, then free the list with <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -239,23 +214,17 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html
 <hr>
 <div class="refsect2" title="polkit_backend_interactive_authority_check_authorization_sync ()">
 <a name="polkit-backend-interactive-authority-check-authorization-sync"></a><h3>polkit_backend_interactive_authority_check_authorization_sync ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a>  polkit_backend_interactive_authority_check_authorization_sync
-                                                        (<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *user_for_subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> subject_is_local,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> subject_is_active,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a> implicit,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *out_details);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a>  polkit_backend_interactive_authority_check_authorization_sync
+                                                        (<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority"><span class="returnvalue">PolkitBackendInteractiveAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *user_for_subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> subject_is_local,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> subject_is_active,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization" title="enum PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a> implicit,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *out_details);</pre>
 <p>
 Checks whether <em class="parameter"><code>subject</code></em> is authorized to perform the action
 specified by <em class="parameter"><code>action_id</code></em> and <em class="parameter"><code>details</code></em>. The implementation may
@@ -289,16 +258,12 @@ The default implementation of this method simply returns <em class="parameter"><
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>subject_is_local</code></em> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the session for <em class="parameter"><code>subject</code></em> is local.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the session for <em class="parameter"><code>subject</code></em> is local.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>subject_is_active</code></em> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the session for <em class="parameter"><code>subject</code></em> is active.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the session for <em class="parameter"><code>subject</code></em> is active.
 </td>
 </tr>
 <tr>
@@ -334,6 +299,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

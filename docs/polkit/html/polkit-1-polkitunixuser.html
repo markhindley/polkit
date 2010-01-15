@@ -8,7 +8,7 @@
 <link rel="up" href="Identities.html" title="Identities">
 <link rel="prev" href="polkit-1-polkitidentity.html" title="PolkitIdentity">
 <link rel="next" href="polkit-1-polkitunixgroup.html" title="PolkitUnixGroup">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -37,14 +37,14 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#polkit-1-polkitunixuser.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#polkit-1-polkitunixuser.description" class="shortcut">Description</a>
-                 | 
-                <a href="#polkit-1-polkitunixuser.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                 | 
-                <a href="#polkit-1-polkitunixuser.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
-                 | 
-                <a href="#polkit-1-polkitunixuser.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#polkit-1-polkitunixuser.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#polkit-1-polkitunixuser.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#polkit-1-polkitunixuser.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#polkit-1-polkitunixuser.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
 <div class="refentry" title="PolkitUnixUser">
@@ -58,32 +58,19 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="polkit-1-polkitunixuser.synopsis"></a><h2>Synopsis</h2>
-<a name="PolkitUnixUser"></a><pre class="synopsis">
-                    <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser-struct" title="PolkitUnixUser">PolkitUnixUser</a>;
-<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *    <a class="link" href="polkit-1-polkitunixuser.html#polkit-unix-user-new" title="polkit_unix_user_new ()">polkit_unix_user_new</a>                (<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a> uid);
-<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *    <a class="link" href="polkit-1-polkitunixuser.html#polkit-unix-user-new-for-name" title="polkit_unix_user_new_for_name ()">polkit_unix_user_new_for_name</a>       (const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *name,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                <a class="link" href="polkit-1-polkitunixuser.html#polkit-unix-user-get-uid" title="polkit_unix_user_get_uid ()">polkit_unix_user_get_uid</a>            (<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser">PolkitUnixUser</a> *user);
-void                <a class="link" href="polkit-1-polkitunixuser.html#polkit-unix-user-set-uid" title="polkit_unix_user_set_uid ()">polkit_unix_user_set_uid</a>            (<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser">PolkitUnixUser</a> *user,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a> uid);
+<a name="PolkitUnixUser"></a><pre class="synopsis">                    <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser-struct" title="PolkitUnixUser">PolkitUnixUser</a>;
+<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *    <a class="link" href="polkit-1-polkitunixuser.html#polkit-unix-user-new" title="polkit_unix_user_new ()">polkit_unix_user_new</a>                (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a> uid);
+<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *    <a class="link" href="polkit-1-polkitunixuser.html#polkit-unix-user-new-for-name" title="polkit_unix_user_new_for_name ()">polkit_unix_user_new_for_name</a>       (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *name,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="polkit-1-polkitunixuser.html#polkit-unix-user-get-uid" title="polkit_unix_user_get_uid ()">polkit_unix_user_get_uid</a>            (<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="returnvalue">PolkitUnixUser</span></a> *user);
+<span class="returnvalue">void</span>                <a class="link" href="polkit-1-polkitunixuser.html#polkit-unix-user-set-uid" title="polkit_unix_user_set_uid ()">polkit_unix_user_set_uid</a>            (<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="returnvalue">PolkitUnixUser</span></a> *user,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a> uid);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="polkit-1-polkitunixuser.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitUnixUser
 </pre>
 </div>
@@ -96,9 +83,7 @@ PolkitUnixUser implements
 <div class="refsect1" title="Properties">
 <a name="polkit-1-polkitunixuser.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser--uid" title='The "uid" property'>uid</a>"                      <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                  : Read / Write / Construct
+  "<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser--uid" title='The "uid" property'>uid</a>"                      <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Read / Write / Construct
 </pre>
 </div>
 <div class="refsect1" title="Description">
@@ -117,9 +102,7 @@ The <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span cla
 <hr>
 <div class="refsect2" title="polkit_unix_user_new ()">
 <a name="polkit-unix-user-new"></a><h3>polkit_unix_user_new ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *    polkit_unix_user_new                (<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a> uid);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *    polkit_unix_user_new                (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a> uid);</pre>
 <p>
 Creates a new <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> object for <em class="parameter"><code>uid</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -132,9 +115,7 @@ Creates a new <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> object. Free with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> object. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -143,12 +124,8 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_unix_user_new_for_name ()">
 <a name="polkit-unix-user-new-for-name"></a><h3>polkit_unix_user_new_for_name ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *    polkit_unix_user_new_for_name       (const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *name,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *    polkit_unix_user_new_for_name       (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *name,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Creates a new <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> object for a user with the user name
 <em class="parameter"><code>name</code></em>.</p>
@@ -167,9 +144,7 @@ Creates a new <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> object or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set.
+<td> A <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> object or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>
@@ -178,9 +153,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 <hr>
 <div class="refsect2" title="polkit_unix_user_get_uid ()">
 <a name="polkit-unix-user-get-uid"></a><h3>polkit_unix_user_get_uid ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                polkit_unix_user_get_uid            (<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser">PolkitUnixUser</a> *user);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                polkit_unix_user_get_uid            (<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="returnvalue">PolkitUnixUser</span></a> *user);</pre>
 <p>
 Gets the UNIX user id for <em class="parameter"><code>user</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -202,10 +175,8 @@ Gets the UNIX user id for <em class="parameter"><code>user</code></em>.</p>
 <hr>
 <div class="refsect2" title="polkit_unix_user_set_uid ()">
 <a name="polkit-unix-user-set-uid"></a><h3>polkit_unix_user_set_uid ()</h3>
-<pre class="programlisting">void                polkit_unix_user_set_uid            (<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser">PolkitUnixUser</a> *user,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a> uid);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                polkit_unix_user_set_uid            (<a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser"><span class="returnvalue">PolkitUnixUser</span></a> *user,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a> uid);</pre>
 <p>
 Sets <em class="parameter"><code>uid</code></em> for <em class="parameter"><code>user</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -229,9 +200,7 @@ Sets <em class="parameter"><code>uid</code></em> for <em class="parameter"><code
 <a name="polkit-1-polkitunixuser.property-details"></a><h2>Property Details</h2>
 <div class="refsect2" title='The "uid" property'>
 <a name="PolkitUnixUser--uid"></a><h3>The <code class="literal">"uid"</code> property</h3>
-<pre class="programlisting">  "uid"                      <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
->gint</a>                  : Read / Write / Construct</pre>
+<pre class="programlisting">  "uid"                      <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Read / Write / Construct</pre>
 <p>
 The UNIX user id.</p>
 <p>Allowed values: &gt;= 0</p>
@@ -241,6 +210,6 @@ The UNIX user id.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

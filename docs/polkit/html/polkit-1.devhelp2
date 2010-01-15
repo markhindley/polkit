@@ -138,7 +138,7 @@
     <keyword type="function" name="polkit_details_lookup ()" link="polkit-1-polkitdetails.html#polkit-details-lookup"/>
     <keyword type="function" name="polkit_details_insert ()" link="polkit-1-polkitdetails.html#polkit-details-insert"/>
     <keyword type="function" name="polkit_details_get_keys ()" link="polkit-1-polkitdetails.html#polkit-details-get-keys"/>
-    <keyword type="macro" name="POLKIT_ERROR" link="polkit-1-polkiterror.html#POLKIT-ERROR--CAPS"/>
+    <keyword type="macro" name="POLKIT_ERROR" link="polkit-1-polkiterror.html#POLKIT-ERROR:CAPS"/>
     <keyword type="enum" name="enum PolkitError" link="polkit-1-polkiterror.html#PolkitError"/>
     <keyword type="struct" name="PolkitActionDescription" link="polkit-1-polkitactiondescription.html#PolkitActionDescription-struct"/>
     <keyword type="enum" name="enum PolkitImplicitAuthorization" link="polkit-1-polkitactiondescription.html#PolkitImplicitAuthorization"/>
@@ -209,7 +209,7 @@
     <keyword type="function" name="polkit_unix_group_get_gid ()" link="polkit-1-polkitunixgroup.html#polkit-unix-group-get-gid"/>
     <keyword type="function" name="polkit_unix_group_set_gid ()" link="polkit-1-polkitunixgroup.html#polkit-unix-group-set-gid"/>
     <keyword type="property" name="The &quot;gid&quot; property" link="polkit-1-polkitunixgroup.html#PolkitUnixGroup--gid"/>
-    <keyword type="macro" name="POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME" link="PolkitBackendAuthority.html#POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME--CAPS"/>
+    <keyword type="macro" name="POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME" link="PolkitBackendAuthority.html#POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME:CAPS"/>
     <keyword type="struct" name="PolkitBackendAuthority" link="PolkitBackendAuthority.html#PolkitBackendAuthority-struct"/>
     <keyword type="struct" name="PolkitBackendAuthorityClass" link="PolkitBackendAuthority.html#PolkitBackendAuthorityClass"/>
     <keyword type="function" name="polkit_backend_authority_get_name ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-name"/>
@@ -267,7 +267,7 @@
     <keyword type="function" name="polkit_backend_config_source_get_string_list ()" link="polkit-1-polkitbackendconfigsource.html#polkit-backend-config-source-get-string-list"/>
     <keyword type="property" name="The &quot;directory&quot; property" link="polkit-1-polkitbackendconfigsource.html#PolkitBackendConfigSource--directory"/>
     <keyword type="signal" name="The &quot;changed&quot; signal" link="polkit-1-polkitbackendconfigsource.html#PolkitBackendConfigSource-changed"/>
-    <keyword type="macro" name="POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME" link="PolkitBackendActionLookup.html#POLKIT-BACKEND-ACTION-LOOKUP-EXTENSION-POINT-NAME--CAPS"/>
+    <keyword type="macro" name="POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME" link="PolkitBackendActionLookup.html#POLKIT-BACKEND-ACTION-LOOKUP-EXTENSION-POINT-NAME:CAPS"/>
     <keyword type="struct" name="PolkitBackendActionLookup" link="PolkitBackendActionLookup.html#PolkitBackendActionLookup-struct"/>
     <keyword type="struct" name="PolkitBackendActionLookupIface" link="PolkitBackendActionLookup.html#PolkitBackendActionLookupIface"/>
     <keyword type="function" name="polkit_backend_action_lookup_get_message ()" link="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-message"/>
@@ -287,21 +287,21 @@
     <keyword type="signal" name="The &quot;request&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-request"/>
     <keyword type="signal" name="The &quot;show-error&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-error"/>
     <keyword type="signal" name="The &quot;show-info&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-info"/>
-    <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_NONE" link="polkit-1-polkitauthority.html#POLKIT-AUTHORITY-FEATURES-NONE--CAPS"/>
-    <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_TEMPORARY_AUTHORIZATION" link="polkit-1-polkitauthority.html#POLKIT-AUTHORITY-FEATURES-TEMPORARY-AUTHORIZATION--CAPS"/>
-    <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_LOCKDOWN" link="polkit-1-polkitauthority.html#POLKIT-AUTHORITY-FEATURES-LOCKDOWN--CAPS"/>
-    <keyword type="constant" name="POLKIT_CHECK_AUTHORIZATION_FLAGS_NONE" link="polkit-1-polkitauthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-NONE--CAPS"/>
-    <keyword type="constant" name="POLKIT_CHECK_AUTHORIZATION_FLAGS_ALLOW_USER_INTERACTION" link="polkit-1-polkitauthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-ALLOW-USER-INTERACTION--CAPS"/>
-    <keyword type="constant" name="POLKIT_ERROR_FAILED" link="polkit-1-polkiterror.html#POLKIT-ERROR-FAILED--CAPS"/>
-    <keyword type="constant" name="POLKIT_ERROR_CANCELLED" link="polkit-1-polkiterror.html#POLKIT-ERROR-CANCELLED--CAPS"/>
-    <keyword type="constant" name="POLKIT_ERROR_NOT_SUPPORTED" link="polkit-1-polkiterror.html#POLKIT-ERROR-NOT-SUPPORTED--CAPS"/>
-    <keyword type="constant" name="POLKIT_ERROR_NOT_AUTHORIZED" link="polkit-1-polkiterror.html#POLKIT-ERROR-NOT-AUTHORIZED--CAPS"/>
-    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_UNKNOWN" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-UNKNOWN--CAPS"/>
-    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_NOT_AUTHORIZED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-NOT-AUTHORIZED--CAPS"/>
-    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_AUTHENTICATION_REQUIRED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-AUTHENTICATION-REQUIRED--CAPS"/>
-    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_ADMINISTRATOR_AUTHENTICATION_REQUIRED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-ADMINISTRATOR-AUTHENTICATION-REQUIRED--CAPS"/>
-    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_AUTHENTICATION_REQUIRED_RETAINED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-AUTHENTICATION-REQUIRED-RETAINED--CAPS"/>
-    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_ADMINISTRATOR_AUTHENTICATION_REQUIRED_RETAINED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-ADMINISTRATOR-AUTHENTICATION-REQUIRED-RETAINED--CAPS"/>
-    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_AUTHORIZED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-AUTHORIZED--CAPS"/>
+    <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_NONE" link="polkit-1-polkitauthority.html#POLKIT-AUTHORITY-FEATURES-NONE:CAPS"/>
+    <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_TEMPORARY_AUTHORIZATION" link="polkit-1-polkitauthority.html#POLKIT-AUTHORITY-FEATURES-TEMPORARY-AUTHORIZATION:CAPS"/>
+    <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_LOCKDOWN" link="polkit-1-polkitauthority.html#POLKIT-AUTHORITY-FEATURES-LOCKDOWN:CAPS"/>
+    <keyword type="constant" name="POLKIT_CHECK_AUTHORIZATION_FLAGS_NONE" link="polkit-1-polkitauthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-NONE:CAPS"/>
+    <keyword type="constant" name="POLKIT_CHECK_AUTHORIZATION_FLAGS_ALLOW_USER_INTERACTION" link="polkit-1-polkitauthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-ALLOW-USER-INTERACTION:CAPS"/>
+    <keyword type="constant" name="POLKIT_ERROR_FAILED" link="polkit-1-polkiterror.html#POLKIT-ERROR-FAILED:CAPS"/>
+    <keyword type="constant" name="POLKIT_ERROR_CANCELLED" link="polkit-1-polkiterror.html#POLKIT-ERROR-CANCELLED:CAPS"/>
+    <keyword type="constant" name="POLKIT_ERROR_NOT_SUPPORTED" link="polkit-1-polkiterror.html#POLKIT-ERROR-NOT-SUPPORTED:CAPS"/>
+    <keyword type="constant" name="POLKIT_ERROR_NOT_AUTHORIZED" link="polkit-1-polkiterror.html#POLKIT-ERROR-NOT-AUTHORIZED:CAPS"/>
+    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_UNKNOWN" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-UNKNOWN:CAPS"/>
+    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_NOT_AUTHORIZED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-NOT-AUTHORIZED:CAPS"/>
+    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_AUTHENTICATION_REQUIRED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-AUTHENTICATION-REQUIRED:CAPS"/>
+    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_ADMINISTRATOR_AUTHENTICATION_REQUIRED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-ADMINISTRATOR-AUTHENTICATION-REQUIRED:CAPS"/>
+    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_AUTHENTICATION_REQUIRED_RETAINED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-AUTHENTICATION-REQUIRED-RETAINED:CAPS"/>
+    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_ADMINISTRATOR_AUTHENTICATION_REQUIRED_RETAINED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-ADMINISTRATOR-AUTHENTICATION-REQUIRED-RETAINED:CAPS"/>
+    <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_AUTHORIZED" link="polkit-1-polkitactiondescription.html#POLKIT-IMPLICIT-AUTHORIZATION-AUTHORIZED:CAPS"/>
   </functions>
 </book>

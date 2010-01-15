@@ -1,8 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT(polkit, 0.95, http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
-AM_INIT_AUTOMAKE(polkit, 0.95)
+AC_INIT(polkit, 0.96, http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
+AM_INIT_AUTOMAKE(polkit, 0.96)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -483,6 +483,10 @@ echo "
         Building man pages:         ${enable_man_pages}
 
 "
+
+echo "NOTE: The directory ${sysconfdir}/polkit-1/localauthority must be owned"
+echo "      by root and have mode 700"
+echo
 
 echo "NOTE: The directory ${localstatedir}/lib/polkit-1 must be owned"
 echo "      by root and have mode 700"

@@ -8,7 +8,7 @@
 <link rel="up" href="Identities.html" title="Identities">
 <link rel="prev" href="Identities.html" title="Identities">
 <link rel="next" href="polkit-1-polkitunixuser.html" title="PolkitUnixUser">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -37,14 +37,14 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#polkit-1-polkitidentity.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#polkit-1-polkitidentity.description" class="shortcut">Description</a>
-                 | 
-                <a href="#polkit-1-polkitidentity.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                 | 
-                <a href="#polkit-1-polkitidentity.prerequisites" class="shortcut">Prerequisites</a>
-                 | 
-                <a href="#polkit-1-polkitidentity.implementations" class="shortcut">Known Implementations</a>
+                   | 
+                  <a href="#polkit-1-polkitidentity.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#polkit-1-polkitidentity.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#polkit-1-polkitidentity.prerequisites" class="shortcut">Prerequisites</a>
+                   | 
+                  <a href="#polkit-1-polkitidentity.implementations" class="shortcut">Known Implementations</a>
 </td></tr>
 </table>
 <div class="refentry" title="PolkitIdentity">
@@ -58,25 +58,14 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="polkit-1-polkitidentity.synopsis"></a><h2>Synopsis</h2>
-<a name="PolkitIdentity"></a><pre class="synopsis">
-                    <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity-struct" title="PolkitIdentity">PolkitIdentity</a>;
+<a name="PolkitIdentity"></a><pre class="synopsis">                    <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity-struct" title="PolkitIdentity">PolkitIdentity</a>;
                     <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentityIface" title="PolkitIdentityIface">PolkitIdentityIface</a>;
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-hash" title="polkit_identity_hash ()">polkit_identity_hash</a>                (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *a);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-equal" title="polkit_identity_equal ()">polkit_identity_equal</a>               (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *a,
-                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *b);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *             <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-to-string" title="polkit_identity_to_string ()">polkit_identity_to_string</a>           (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *identity);
-<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *    <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-from-string" title="polkit_identity_from_string ()">polkit_identity_from_string</a>         (const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *str,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-hash" title="polkit_identity_hash ()">polkit_identity_hash</a>                (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *a);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-equal" title="polkit_identity_equal ()">polkit_identity_equal</a>               (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *a,
+                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *b);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-to-string" title="polkit_identity_to_string ()">polkit_identity_to_string</a>           (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *identity);
+<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *    <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-from-string" title="polkit_identity_from_string ()">polkit_identity_from_string</a>         (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *str,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -90,9 +79,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GEr
 <a name="polkit-1-polkitidentity.prerequisites"></a><h2>Prerequisites</h2>
 <p>
 PolkitIdentity requires
- <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>.</p>
+ <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>.</p>
 </div>
 <div class="refsect1" title="Known Implementations">
 <a name="polkit-1-polkitidentity.implementations"></a><h2>Known Implementations</h2>
@@ -134,24 +121,22 @@ An interface for identities.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GTypeInterface"
->GTypeInterface</a> <em class="structfield"><code>parent_iface</code></em>;</span></p></td>
+<td><p><span class="term"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="PolkitIdentityIface.parent-iface"></a>parent_iface</code></em>;</span></p></td>
 <td> The parent interface.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>hash</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitIdentityIface.hash"></a>hash</code></em> ()</span></p></td>
 <td> Gets a hash value for a <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="type">PolkitIdentity</span></a>.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>equal</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitIdentityIface.equal"></a>equal</code></em> ()</span></p></td>
 <td> Checks if two <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="type">PolkitIdentity</span></a>s are equal.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>to_string</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitIdentityIface.to-string"></a>to_string</code></em> ()</span></p></td>
 <td> Serializes a <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="type">PolkitIdentity</span></a> to a string that can be
 used in <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-from-string" title="polkit_identity_from_string ()"><code class="function">polkit_identity_from_string()</code></a>.
 </td>
@@ -162,13 +147,9 @@ used in <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-from-
 <hr>
 <div class="refsect2" title="polkit_identity_hash ()">
 <a name="polkit-identity-hash"></a><h3>polkit_identity_hash ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"
->guint</a>               polkit_identity_hash                (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *a);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>               polkit_identity_hash                (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *a);</pre>
 <p>
-Gets a hash code for <em class="parameter"><code>identity</code></em> that can be used with e.g. <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#g-hash-table-new"
-><code class="function">g_hash_table_new()</code></a>.</p>
+Gets a hash code for <em class="parameter"><code>identity</code></em> that can be used with e.g. <a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#g-hash-table-new"><code class="function">g_hash_table_new()</code></a>.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -188,17 +169,13 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#g-hash-
 <hr>
 <div class="refsect2" title="polkit_identity_equal ()">
 <a name="polkit-identity-equal"></a><h3>polkit_identity_equal ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_identity_equal               (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *a,
-                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *b);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_identity_equal               (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *a,
+                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *b);</pre>
 <p>
 Checks if <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are equal, ie. represent the same identity.
 </p>
 <p>
-This function can be used in e.g. <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#g-hash-table-new"
-><code class="function">g_hash_table_new()</code></a>.</p>
+This function can be used in e.g. <a href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#g-hash-table-new"><code class="function">g_hash_table_new()</code></a>.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -214,11 +191,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Hash-Tables.html#g-hash-
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are equal, <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
-><code class="literal">FALSE</code></a> otherwise.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are equal, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.
 </td>
 </tr>
 </tbody>
@@ -227,9 +200,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FAL
 <hr>
 <div class="refsect2" title="polkit_identity_to_string ()">
 <a name="polkit-identity-to-string"></a><h3>polkit_identity_to_string ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *             polkit_identity_to_string           (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *identity);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             polkit_identity_to_string           (<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *identity);</pre>
 <p>
 Serializes <em class="parameter"><code>identity</code></em> to a string that can be used in
 <a class="link" href="polkit-1-polkitidentity.html#polkit-identity-from-string" title="polkit_identity_from_string ()"><code class="function">polkit_identity_from_string()</code></a>.</p>
@@ -243,9 +214,7 @@ Serializes <em class="parameter"><code>identity</code></em> to a string that can
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A string representing <em class="parameter"><code>identity</code></em>. Free with <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"
-><code class="function">g_free()</code></a>.
+<td> A string representing <em class="parameter"><code>identity</code></em>. Free with <a href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -254,12 +223,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g
 <hr>
 <div class="refsect2" title="polkit_identity_from_string ()">
 <a name="polkit-identity-from-string"></a><h3>polkit_identity_from_string ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *    polkit_identity_from_string         (const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *str,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *    polkit_identity_from_string         (const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *str,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Creates an object from <em class="parameter"><code>str</code></em> that implements the <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="type">PolkitIdentity</span></a>
 interface.</p>
@@ -278,12 +243,8 @@ interface.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="type">PolkitIdentity</span></a> or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. Free with
-<a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="type">PolkitIdentity</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. Free with
+<a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -293,6 +254,6 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>
