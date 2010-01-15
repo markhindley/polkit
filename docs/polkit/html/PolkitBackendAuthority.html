@@ -8,7 +8,7 @@
 <link rel="up" href="ref-backend-api.html" title="Part IV. Backend API Reference">
 <link rel="prev" href="ref-backend-api.html" title="Part IV. Backend API Reference">
 <link rel="next" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -37,12 +37,12 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#PolkitBackendAuthority.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#PolkitBackendAuthority.description" class="shortcut">Description</a>
-                 | 
-                <a href="#PolkitBackendAuthority.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                 | 
-                <a href="#PolkitBackendAuthority.signals" class="shortcut">Signals</a>
+                   | 
+                  <a href="#PolkitBackendAuthority.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#PolkitBackendAuthority.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#PolkitBackendAuthority.signals" class="shortcut">Signals</a>
 </td></tr>
 </table>
 <div class="refentry" title="PolkitBackendAuthority">
@@ -60,189 +60,98 @@ Unstable, unless otherwise indicated
 </div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="PolkitBackendAuthority.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#define             <a class="link" href="PolkitBackendAuthority.html#POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME--CAPS" title="POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME">POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME</a>
+<pre class="synopsis">#define             <a class="link" href="PolkitBackendAuthority.html#POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME:CAPS" title="POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME">POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME</a>
                     <a class="link" href="PolkitBackendAuthority.html#PolkitBackendAuthority-struct" title="PolkitBackendAuthority">PolkitBackendAuthority</a>;
                     <a class="link" href="PolkitBackendAuthority.html#PolkitBackendAuthorityClass" title="PolkitBackendAuthorityClass">PolkitBackendAuthorityClass</a>;
-const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *       <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-name" title="polkit_backend_authority_get_name ()">polkit_backend_authority_get_name</a>   (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority);
-const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *       <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-version" title="polkit_backend_authority_get_version ()">polkit_backend_authority_get_version</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority);
-<a class="link" href="polkit-1-polkitauthority.html#PolkitAuthorityFeatures" title="enum PolkitAuthorityFeatures">PolkitAuthorityFeatures</a>  <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-features" title="polkit_backend_authority_get_features ()">polkit_backend_authority_get_features</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority);
-void                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization" title="polkit_backend_authority_check_authorization ()">polkit_backend_authority_check_authorization</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitauthority.html#PolkitCheckAuthorizationFlags" title="enum PolkitCheckAuthorizationFlags">PolkitCheckAuthorizationFlags</a> flags,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
->GCancellable</a> *cancellable,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
->GAsyncReadyCallback</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> * <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization-finish" title="polkit_backend_authority_check_authorization_finish ()">polkit_backend_authority_check_authorization_finish</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
->GAsyncResult</a> *res,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-register-authentication-agent" title="polkit_backend_authority_register_authentication_agent ()">polkit_backend_authority_register_authentication_agent</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *locale,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-unregister-authentication-agent" title="polkit_backend_authority_unregister_authentication_agent ()">polkit_backend_authority_unregister_authentication_agent</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-authentication-agent-response" title="polkit_backend_authority_authentication_agent_response ()">polkit_backend_authority_authentication_agent_response</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *cookie,
-                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *identity,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-actions" title="polkit_backend_authority_enumerate_actions ()">polkit_backend_authority_enumerate_actions</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *locale,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-void                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-system-bus-name-owner-changed" title="polkit_backend_authority_system_bus_name_owner_changed ()">polkit_backend_authority_system_bus_name_owner_changed</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *name,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *old_owner,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *new_owner);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-temporary-authorizations" title="polkit_backend_authority_enumerate_temporary_authorizations ()">polkit_backend_authority_enumerate_temporary_authorizations</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-revoke-temporary-authorizations" title="polkit_backend_authority_revoke_temporary_authorizations ()">polkit_backend_authority_revoke_temporary_authorizations</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-void                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action" title="polkit_backend_authority_add_lockdown_for_action ()">polkit_backend_authority_add_lockdown_for_action</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
->GAsyncReadyCallback</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action-finish" title="polkit_backend_authority_add_lockdown_for_action_finish ()">polkit_backend_authority_add_lockdown_for_action_finish</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
->GAsyncResult</a> *res,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-void                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action" title="polkit_backend_authority_remove_lockdown_for_action ()">polkit_backend_authority_remove_lockdown_for_action</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
->GAsyncReadyCallback</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action-finish" title="polkit_backend_authority_remove_lockdown_for_action_finish ()">polkit_backend_authority_remove_lockdown_for_action_finish</a>
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
->GAsyncResult</a> *res,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> * <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get" title="polkit_backend_authority_get ()">polkit_backend_authority_get</a>   (void);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-register-authority" title="polkit_backend_register_authority ()">polkit_backend_register_authority</a>   (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *well_known_name,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
+const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-name" title="polkit_backend_authority_get_name ()">polkit_backend_authority_get_name</a>   (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority);
+const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-version" title="polkit_backend_authority_get_version ()">polkit_backend_authority_get_version</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority);
+<a class="link" href="polkit-1-polkitauthority.html#PolkitAuthorityFeatures" title="enum PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a>  <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-features" title="polkit_backend_authority_get_features ()">polkit_backend_authority_get_features</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority);
+<span class="returnvalue">void</span>                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization" title="polkit_backend_authority_check_authorization ()">polkit_backend_authority_check_authorization</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitauthority.html#PolkitCheckAuthorizationFlags" title="enum PolkitCheckAuthorizationFlags"><span class="returnvalue">PolkitCheckAuthorizationFlags</span></a> flags,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="returnvalue">GCancellable</span></a> *cancellable,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="returnvalue">GAsyncReadyCallback</span></a> callback,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);
+<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization-finish" title="polkit_backend_authority_check_authorization_finish ()">polkit_backend_authority_check_authorization_finish</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="returnvalue">GAsyncResult</span></a> *res,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-register-authentication-agent" title="polkit_backend_authority_register_authentication_agent ()">polkit_backend_authority_register_authentication_agent</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *locale,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *object_path,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-unregister-authentication-agent" title="polkit_backend_authority_unregister_authentication_agent ()">polkit_backend_authority_unregister_authentication_agent</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *object_path,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-authentication-agent-response" title="polkit_backend_authority_authentication_agent_response ()">polkit_backend_authority_authentication_agent_response</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *cookie,
+                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *identity,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-actions" title="polkit_backend_authority_enumerate_actions ()">polkit_backend_authority_enumerate_actions</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *locale,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<span class="returnvalue">void</span>                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-system-bus-name-owner-changed" title="polkit_backend_authority_system_bus_name_owner_changed ()">polkit_backend_authority_system_bus_name_owner_changed</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *name,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *old_owner,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *new_owner);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-temporary-authorizations" title="polkit_backend_authority_enumerate_temporary_authorizations ()">polkit_backend_authority_enumerate_temporary_authorizations</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-revoke-temporary-authorizations" title="polkit_backend_authority_revoke_temporary_authorizations ()">polkit_backend_authority_revoke_temporary_authorizations</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<span class="returnvalue">void</span>                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action" title="polkit_backend_authority_add_lockdown_for_action ()">polkit_backend_authority_add_lockdown_for_action</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="returnvalue">GAsyncReadyCallback</span></a> callback,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action-finish" title="polkit_backend_authority_add_lockdown_for_action_finish ()">polkit_backend_authority_add_lockdown_for_action_finish</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="returnvalue">GAsyncResult</span></a> *res,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<span class="returnvalue">void</span>                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action" title="polkit_backend_authority_remove_lockdown_for_action ()">polkit_backend_authority_remove_lockdown_for_action</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="returnvalue">GAsyncReadyCallback</span></a> callback,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action-finish" title="polkit_backend_authority_remove_lockdown_for_action_finish ()">polkit_backend_authority_remove_lockdown_for_action_finish</a>
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="returnvalue">GAsyncResult</span></a> *res,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> * <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get" title="polkit_backend_authority_get ()">polkit_backend_authority_get</a>   (void);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitBackendAuthority.html#polkit-backend-register-authority" title="polkit_backend_register_authority ()">polkit_backend_register_authority</a>   (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *well_known_name,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *object_path,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="PolkitBackendAuthority.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitBackendAuthority
          +----<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a>
 </pre>
@@ -262,7 +171,7 @@ and implement the required VFuncs.</p>
 <div class="refsect1" title="Details">
 <a name="PolkitBackendAuthority.details"></a><h2>Details</h2>
 <div class="refsect2" title="POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME">
-<a name="POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME--CAPS"></a><h3>POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME</h3>
+<a name="POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME:CAPS"></a><h3>POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME</h3>
 <pre class="programlisting">#define POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME "polkit-backend-authority-1"
 </pre>
 <p>
@@ -376,143 +285,121 @@ VFuncs that authority backends need to implement.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObjectClass"
->GObjectClass</a> <em class="structfield"><code>parent_class</code></em>;</span></p></td>
+<td><p><span class="term"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="PolkitBackendAuthorityClass.parent-class"></a>parent_class</code></em>;</span></p></td>
 <td> The parent class.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>changed</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.changed"></a>changed</code></em> ()</span></p></td>
 <td> Function pointer for <span class="type">"changed"</span> signal.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>get_name</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.get-name"></a>get_name</code></em> ()</span></p></td>
 <td></td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>get_version</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.get-version"></a>get_version</code></em> ()</span></p></td>
 <td></td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>get_features</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.get-features"></a>get_features</code></em> ()</span></p></td>
 <td></td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>enumerate_actions</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.enumerate-actions"></a>enumerate_actions</code></em> ()</span></p></td>
 <td> Enumerates registered actions on the
 system. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-actions" title="polkit_backend_authority_enumerate_actions ()"><code class="function">polkit_backend_authority_enumerate_actions()</code></a> for
 details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>check_authorization</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.check-authorization"></a>check_authorization</code></em> ()</span></p></td>
 <td> Called to initiate an asynchronous
 authorization check. See
 <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization" title="polkit_backend_authority_check_authorization ()"><code class="function">polkit_backend_authority_check_authorization()</code></a> for details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>check_authorization_finish</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.check-authorization-finish"></a>check_authorization_finish</code></em> ()</span></p></td>
 <td> Called when finishing an authorization
 check. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization-finish" title="polkit_backend_authority_check_authorization_finish ()"><code class="function">polkit_backend_authority_check_authorization_finish()</code></a>
 for details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>register_authentication_agent</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.register-authentication-agent"></a>register_authentication_agent</code></em> ()</span></p></td>
 <td> Called when an authentication agent
-is attempting to register or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if the backend doesn't support
+is attempting to register or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the backend doesn't support
 the operation. See
 <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-register-authentication-agent" title="polkit_backend_authority_register_authentication_agent ()"><code class="function">polkit_backend_authority_register_authentication_agent()</code></a> for
 details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>unregister_authentication_agent</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.unregister-authentication-agent"></a>unregister_authentication_agent</code></em> ()</span></p></td>
 <td> Called when an authentication
-agent is attempting to unregister or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if the backend doesn't
+agent is attempting to unregister or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the backend doesn't
 support the operation. See
 <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-unregister-authentication-agent" title="polkit_backend_authority_unregister_authentication_agent ()"><code class="function">polkit_backend_authority_unregister_authentication_agent()</code></a> for
 details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>authentication_agent_response</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.authentication-agent-response"></a>authentication_agent_response</code></em> ()</span></p></td>
 <td> Called by an authentication agent
-when the user successfully authenticates or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if the backend
+when the user successfully authenticates or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the backend
 doesn't support the operation. See
 <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-authentication-agent-response" title="polkit_backend_authority_authentication_agent_response ()"><code class="function">polkit_backend_authority_authentication_agent_response()</code></a> for
 details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>enumerate_temporary_authorizations</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.enumerate-temporary-authorizations"></a>enumerate_temporary_authorizations</code></em> ()</span></p></td>
 <td> Called to enumerate temporary
-authorizations or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if the backend doesn't support the operation.
+authorizations or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the backend doesn't support the operation.
 See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-temporary-authorizations" title="polkit_backend_authority_enumerate_temporary_authorizations ()"><code class="function">polkit_backend_authority_enumerate_temporary_authorizations()</code></a>
 for details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>revoke_temporary_authorizations</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.revoke-temporary-authorizations"></a>revoke_temporary_authorizations</code></em> ()</span></p></td>
 <td> Called to revoke temporary
-authorizations or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if the backend doesn't support the operation.
+authorizations or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the backend doesn't support the operation.
 See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-revoke-temporary-authorizations" title="polkit_backend_authority_revoke_temporary_authorizations ()"><code class="function">polkit_backend_authority_revoke_temporary_authorizations()</code></a>
 for details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>revoke_temporary_authorization_by_id</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.revoke-temporary-authorization-by-id"></a>revoke_temporary_authorization_by_id</code></em> ()</span></p></td>
 <td> Called to revoke a temporary
-authorization identified by id or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if the backend doesn't support
+authorization identified by id or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if the backend doesn't support
 the operation. See <code class="function">polkit_backend_authority_revoke_temporary_authorization_by_id()</code>
 for details.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>add_lockdown_for_action</code></em> ()</span></p></td>
-<td> Called to add lock down for an action. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action" title="polkit_backend_authority_add_lockdown_for_action ()"><code class="function">polkit_backend_authority_add_lockdown_for_action()</code></a> for details. Can be <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if not supported by the backend.
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.add-lockdown-for-action"></a>add_lockdown_for_action</code></em> ()</span></p></td>
+<td> Called to add lock down for an action. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action" title="polkit_backend_authority_add_lockdown_for_action ()"><code class="function">polkit_backend_authority_add_lockdown_for_action()</code></a> for details. Can be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not supported by the backend.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>add_lockdown_for_action_finish</code></em> ()</span></p></td>
-<td> Called to finish adding lock down for an an action. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action-finish" title="polkit_backend_authority_add_lockdown_for_action_finish ()"><code class="function">polkit_backend_authority_add_lockdown_for_action_finish()</code></a> for details. Can be <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if not supported by the backend.
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.add-lockdown-for-action-finish"></a>add_lockdown_for_action_finish</code></em> ()</span></p></td>
+<td> Called to finish adding lock down for an an action. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-add-lockdown-for-action-finish" title="polkit_backend_authority_add_lockdown_for_action_finish ()"><code class="function">polkit_backend_authority_add_lockdown_for_action_finish()</code></a> for details. Can be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not supported by the backend.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>remove_lockdown_for_action</code></em> ()</span></p></td>
-<td> Called when removing lock down for an action. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action" title="polkit_backend_authority_remove_lockdown_for_action ()"><code class="function">polkit_backend_authority_remove_lockdown_for_action()</code></a> for details. Can be <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if not supported by the backend.
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.remove-lockdown-for-action"></a>remove_lockdown_for_action</code></em> ()</span></p></td>
+<td> Called when removing lock down for an action. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action" title="polkit_backend_authority_remove_lockdown_for_action ()"><code class="function">polkit_backend_authority_remove_lockdown_for_action()</code></a> for details. Can be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not supported by the backend.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>remove_lockdown_for_action_finish</code></em> ()</span></p></td>
-<td> Called to finish removing lock down for an action. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action-finish" title="polkit_backend_authority_remove_lockdown_for_action_finish ()"><code class="function">polkit_backend_authority_remove_lockdown_for_action_finish()</code></a> for details. Can be <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if not supported by the backend.
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.remove-lockdown-for-action-finish"></a>remove_lockdown_for_action_finish</code></em> ()</span></p></td>
+<td> Called to finish removing lock down for an action. See <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-remove-lockdown-for-action-finish" title="polkit_backend_authority_remove_lockdown_for_action_finish ()"><code class="function">polkit_backend_authority_remove_lockdown_for_action_finish()</code></a> for details. Can be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not supported by the backend.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>system_bus_name_owner_changed</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendAuthorityClass.system-bus-name-owner-changed"></a>system_bus_name_owner_changed</code></em> ()</span></p></td>
 <td> temporary VFunc, to be removed before API is declared stable.
 </td>
 </tr>
@@ -522,9 +409,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 <hr>
 <div class="refsect2" title="polkit_backend_authority_get_name ()">
 <a name="polkit-backend-authority-get-name"></a><h3>polkit_backend_authority_get_name ()</h3>
-<pre class="programlisting">const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *       polkit_backend_authority_get_name   (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority);</pre>
+<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_backend_authority_get_name   (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority);</pre>
 <p>
 Gets the name of the authority backend.</p>
 <div class="variablelist"><table border="0">
@@ -546,10 +431,8 @@ Gets the name of the authority backend.</p>
 <hr>
 <div class="refsect2" title="polkit_backend_authority_get_version ()">
 <a name="polkit-backend-authority-get-version"></a><h3>polkit_backend_authority_get_version ()</h3>
-<pre class="programlisting">const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *       polkit_backend_authority_get_version
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority);</pre>
+<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_backend_authority_get_version
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority);</pre>
 <p>
 Gets the version of the authority backend.</p>
 <div class="variablelist"><table border="0">
@@ -571,8 +454,8 @@ Gets the version of the authority backend.</p>
 <hr>
 <div class="refsect2" title="polkit_backend_authority_get_features ()">
 <a name="polkit-backend-authority-get-features"></a><h3>polkit_backend_authority_get_features ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitauthority.html#PolkitAuthorityFeatures" title="enum PolkitAuthorityFeatures">PolkitAuthorityFeatures</a>  polkit_backend_authority_get_features
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitauthority.html#PolkitAuthorityFeatures" title="enum PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a>  polkit_backend_authority_get_features
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority);</pre>
 <p>
 Gets the features supported by the authority backend.</p>
 <div class="variablelist"><table border="0">
@@ -594,24 +477,16 @@ Gets the features supported by the authority backend.</p>
 <hr>
 <div class="refsect2" title="polkit_backend_authority_check_authorization ()">
 <a name="polkit-backend-authority-check-authorization"></a><h3>polkit_backend_authority_check_authorization ()</h3>
-<pre class="programlisting">void                polkit_backend_authority_check_authorization
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitauthority.html#PolkitCheckAuthorizationFlags" title="enum PolkitCheckAuthorizationFlags">PolkitCheckAuthorizationFlags</a> flags,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
->GCancellable</a> *cancellable,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
->GAsyncReadyCallback</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                polkit_backend_authority_check_authorization
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitauthority.html#PolkitCheckAuthorizationFlags" title="enum PolkitCheckAuthorizationFlags"><span class="returnvalue">PolkitCheckAuthorizationFlags</span></a> flags,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="returnvalue">GCancellable</span></a> *cancellable,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="returnvalue">GAsyncReadyCallback</span></a> callback,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);</pre>
 <p>
 Asynchronously checks if <em class="parameter"><code>subject</code></em> is authorized to perform the action represented
 by <em class="parameter"><code>action_id</code></em>.
@@ -645,9 +520,7 @@ the operation.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
-<td> Details about the action or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>.
+<td> Details about the action or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </td>
 </tr>
 <tr>
@@ -657,16 +530,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
-><span class="type">GCancellable</span></a>.
+<td> A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
-><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.
+<td> A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.
 </td>
 </tr>
 <tr>
@@ -680,14 +549,10 @@ href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyC
 <hr>
 <div class="refsect2" title="polkit_backend_authority_check_authorization_finish ()">
 <a name="polkit-backend-authority-check-authorization-finish"></a><h3>polkit_backend_authority_check_authorization_finish ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> * polkit_backend_authority_check_authorization_finish
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
->GAsyncResult</a> *res,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * polkit_backend_authority_check_authorization_finish
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="returnvalue">GAsyncResult</span></a> *res,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Finishes checking if a subject is authorized for an action.</p>
 <div class="variablelist"><table border="0">
@@ -700,25 +565,17 @@ Finishes checking if a subject is authorized for an action.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
-><span class="type">GAsyncResult</span></a> obtained from the callback.
+<td> A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>.
+<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. Free with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -727,21 +584,13 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_backend_authority_register_authentication_agent ()">
 <a name="polkit-backend-authority-register-authentication-agent"></a><h3>polkit_backend_authority_register_authentication_agent ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_authority_register_authentication_agent
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *locale,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_authority_register_authentication_agent
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *locale,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *object_path,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Registers an authentication agent.</p>
 <div class="variablelist"><table border="0">
@@ -774,18 +623,12 @@ Registers an authentication agent.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>.
+<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the authentication agent was successfully registered, <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
-><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication agent was successfully registered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>
@@ -794,18 +637,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FAL
 <hr>
 <div class="refsect2" title="polkit_backend_authority_unregister_authentication_agent ()">
 <a name="polkit-backend-authority-unregister-authentication-agent"></a><h3>polkit_backend_authority_unregister_authentication_agent ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_authority_unregister_authentication_agent
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_authority_unregister_authentication_agent
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *object_path,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Unregisters an authentication agent.</p>
 <div class="variablelist"><table border="0">
@@ -833,18 +670,12 @@ Unregisters an authentication agent.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>.
+<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the authentication agent was successfully unregistered, <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
-><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication agent was successfully unregistered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>
@@ -853,18 +684,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FAL
 <hr>
 <div class="refsect2" title="polkit_backend_authority_authentication_agent_response ()">
 <a name="polkit-backend-authority-authentication-agent-response"></a><h3>polkit_backend_authority_authentication_agent_response ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_authority_authentication_agent_response
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *cookie,
-                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *identity,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_authority_authentication_agent_response
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *cookie,
+                                                         <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *identity,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Provide response that <em class="parameter"><code>identity</code></em> successfully authenticated for the
 authentication request identified by <em class="parameter"><code>cookie</code></em>.</p>
@@ -893,18 +718,12 @@ authentication request identified by <em class="parameter"><code>cookie</code></
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>.
+<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if <em class="parameter"><code>authority</code></em> acknowledged the call, <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
-><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>authority</code></em> acknowledged the call, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>
@@ -913,17 +732,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FAL
 <hr>
 <div class="refsect2" title="polkit_backend_authority_enumerate_actions ()">
 <a name="polkit-backend-authority-enumerate-actions"></a><h3>polkit_backend_authority_enumerate_actions ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             polkit_backend_authority_enumerate_actions
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *locale,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_backend_authority_enumerate_actions
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *locale,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Retrieves all registered actions.</p>
 <div class="variablelist"><table border="0">
@@ -946,21 +759,13 @@ Retrieves all registered actions.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>.
+<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A list of <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> objects or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. The returned list
-should be freed with <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"
-><code class="function">g_list_free()</code></a> after each element have been freed with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A list of <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> objects or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. The returned list
+should be freed with <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a> after each element have been freed with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -969,30 +774,20 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_backend_authority_system_bus_name_owner_changed ()">
 <a name="polkit-backend-authority-system-bus-name-owner-changed"></a><h3>polkit_backend_authority_system_bus_name_owner_changed ()</h3>
-<pre class="programlisting">void                polkit_backend_authority_system_bus_name_owner_changed
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *name,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *old_owner,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *new_owner);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                polkit_backend_authority_system_bus_name_owner_changed
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *name,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *old_owner,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *new_owner);</pre>
 </div>
 <hr>
 <div class="refsect2" title="polkit_backend_authority_enumerate_temporary_authorizations ()">
 <a name="polkit-backend-authority-enumerate-temporary-authorizations"></a><h3>polkit_backend_authority_enumerate_temporary_authorizations ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             polkit_backend_authority_enumerate_temporary_authorizations
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_backend_authority_enumerate_temporary_authorizations
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Gets temporary authorizations for <em class="parameter"><code>subject</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -1020,14 +815,8 @@ Gets temporary authorizations for <em class="parameter"><code>subject</code></em
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A list of <a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> objects or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. The returned list
-should be freed with <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"
-><code class="function">g_list_free()</code></a> after each element have been freed with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A list of <a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> objects or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. The returned list
+should be freed with <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a> after each element have been freed with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -1036,15 +825,11 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_backend_authority_revoke_temporary_authorizations ()">
 <a name="polkit-backend-authority-revoke-temporary-authorizations"></a><h3>polkit_backend_authority_revoke_temporary_authorizations ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_authority_revoke_temporary_authorizations
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_authority_revoke_temporary_authorizations
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Revokes temporary authorizations for <em class="parameter"><code>subject</code></em>.</p>
 <div class="variablelist"><table border="0">
@@ -1072,11 +857,7 @@ Revokes temporary authorizations for <em class="parameter"><code>subject</code><
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the operation succeeded, <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
-><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the operation succeeded, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>
@@ -1085,18 +866,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FAL
 <hr>
 <div class="refsect2" title="polkit_backend_authority_add_lockdown_for_action ()">
 <a name="polkit-backend-authority-add-lockdown-for-action"></a><h3>polkit_backend_authority_add_lockdown_for_action ()</h3>
-<pre class="programlisting">void                polkit_backend_authority_add_lockdown_for_action
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
->GAsyncReadyCallback</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                polkit_backend_authority_add_lockdown_for_action
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="returnvalue">GAsyncReadyCallback</span></a> callback,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);</pre>
 <p>
 Asynchronously add locks down for <em class="parameter"><code>action_id</code></em>.
 </p>
@@ -1124,9 +899,7 @@ to get the result of the operation.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
-><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.
+<td> A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.
 </td>
 </tr>
 <tr>
@@ -1140,16 +913,10 @@ href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyC
 <hr>
 <div class="refsect2" title="polkit_backend_authority_add_lockdown_for_action_finish ()">
 <a name="polkit-backend-authority-add-lockdown-for-action-finish"></a><h3>polkit_backend_authority_add_lockdown_for_action_finish ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_authority_add_lockdown_for_action_finish
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
->GAsyncResult</a> *res,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_authority_add_lockdown_for_action_finish
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="returnvalue">GAsyncResult</span></a> *res,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Finishes adding lock down for an action.</p>
 <div class="variablelist"><table border="0">
@@ -1162,23 +929,17 @@ Finishes adding lock down for an action.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
-><span class="type">GAsyncResult</span></a> obtained from the callback.
+<td> A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>.
+<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the operation succeeded or, <code class="literal">FALE</code> if <em class="parameter"><code>error</code></em> is set.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the operation succeeded or, <code class="literal">FALE</code> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>
@@ -1187,18 +948,12 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 <hr>
 <div class="refsect2" title="polkit_backend_authority_remove_lockdown_for_action ()">
 <a name="polkit-backend-authority-remove-lockdown-for-action"></a><h3>polkit_backend_authority_remove_lockdown_for_action ()</h3>
-<pre class="programlisting">void                polkit_backend_authority_remove_lockdown_for_action
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *caller,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
->GAsyncReadyCallback</a> callback,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a> user_data);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                polkit_backend_authority_remove_lockdown_for_action
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *caller,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="returnvalue">GAsyncReadyCallback</span></a> callback,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a> user_data);</pre>
 <p>
 Asynchronously remove locks down for <em class="parameter"><code>action_id</code></em>.
 </p>
@@ -1226,9 +981,7 @@ to get the result of the operation.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
-><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.
+<td> A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.
 </td>
 </tr>
 <tr>
@@ -1242,16 +995,10 @@ href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyC
 <hr>
 <div class="refsect2" title="polkit_backend_authority_remove_lockdown_for_action_finish ()">
 <a name="polkit-backend-authority-remove-lockdown-for-action-finish"></a><h3>polkit_backend_authority_remove_lockdown_for_action_finish ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_authority_remove_lockdown_for_action_finish
-                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
->GAsyncResult</a> *res,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_authority_remove_lockdown_for_action_finish
+                                                        (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="returnvalue">GAsyncResult</span></a> *res,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Finishes removing lock down for an action.</p>
 <div class="variablelist"><table border="0">
@@ -1264,23 +1011,17 @@ Finishes removing lock down for an action.</p>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td> A <a
-href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
-><span class="type">GAsyncResult</span></a> obtained from the callback.
+<td> A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>.
+<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the operation succeeded or, <code class="literal">FALE</code> if <em class="parameter"><code>error</code></em> is set.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the operation succeeded or, <code class="literal">FALE</code> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>
@@ -1289,20 +1030,16 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 <hr>
 <div class="refsect2" title="polkit_backend_authority_get ()">
 <a name="polkit-backend-authority-get"></a><h3>polkit_backend_authority_get ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> * polkit_backend_authority_get   (void);</pre>
+<pre class="programlisting"><a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> * polkit_backend_authority_get   (void);</pre>
 <p>
-Loads all <a
-href="http://library.gnome.org/devel/gio/unstable/GIOModule.html"
-><span class="type">GIOModule</span></a>s from <code class="filename">$(libdir)/polkit-1/extensions</code> to determine
+Loads all <a href="http://library.gnome.org/devel/gio/unstable/GIOModule.html"><span class="type">GIOModule</span></a>s from <code class="filename">$(libdir)/polkit-1/extensions</code> to determine
 what implementation of <a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> to use. Then instantiates an object of the
 implementation with the highest priority and unloads all other modules.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a>. Free with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a>. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr></tbody>
 </table></div>
@@ -1310,18 +1047,10 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_backend_register_authority ()">
 <a name="polkit-backend-register-authority"></a><h3>polkit_backend_register_authority ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_register_authority   (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *well_known_name,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *object_path,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_register_authority   (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="returnvalue">PolkitBackendAuthority</span></a> *authority,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *well_known_name,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *object_path,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
 Registers <em class="parameter"><code>authority</code></em> on the system message bus.</p>
 <div class="variablelist"><table border="0">
@@ -1334,9 +1063,7 @@ Registers <em class="parameter"><code>authority</code></em> on the system messag
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>well_known_name</code></em> :</span></p></td>
-<td> Well-known name to claim on the system bus or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> to not claim a well-known name.
+<td> Well-known name to claim on the system bus or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> to not claim a well-known name.
 </td>
 </tr>
 <tr>
@@ -1351,11 +1078,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if <em class="parameter"><code>authority</code></em> was registered, <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
-><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>authority</code></em> was registered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
 </td>
 </tr>
 </tbody>
@@ -1366,10 +1089,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FAL
 <a name="PolkitBackendAuthority.signal-details"></a><h2>Signal Details</h2>
 <div class="refsect2" title='The "changed" signal'>
 <a name="PolkitBackendAuthority-changed"></a><h3>The <code class="literal">"changed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a> *authority,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>                user_data)      : Run Last</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> *authority,
+                                                        <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>                user_data)      : Run Last</pre>
 <p>
 Emitted when actions and/or authorizations change.</p>
 <div class="variablelist"><table border="0">
@@ -1395,6 +1116,6 @@ PolkitBackendLocalAuthority
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

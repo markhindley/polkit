@@ -8,7 +8,7 @@
 <link rel="up" href="ref-backend-api.html" title="Part IV. Backend API Reference">
 <link rel="prev" href="polkit-1-polkitbackendconfigsource.html" title="PolkitBackendConfigSource">
 <link rel="next" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -37,12 +37,12 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#PolkitBackendActionLookup.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#PolkitBackendActionLookup.description" class="shortcut">Description</a>
-                 | 
-                <a href="#PolkitBackendActionLookup.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                 | 
-                <a href="#PolkitBackendActionLookup.prerequisites" class="shortcut">Prerequisites</a>
+                   | 
+                  <a href="#PolkitBackendActionLookup.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#PolkitBackendActionLookup.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#PolkitBackendActionLookup.prerequisites" class="shortcut">Prerequisites</a>
 </td></tr>
 </table>
 <div class="refentry" title="PolkitBackendActionLookup">
@@ -60,35 +60,24 @@ Unstable, unless otherwise indicated
 </div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="PolkitBackendActionLookup.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">
-#define             <a class="link" href="PolkitBackendActionLookup.html#POLKIT-BACKEND-ACTION-LOOKUP-EXTENSION-POINT-NAME--CAPS" title="POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME">POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME</a>
+<pre class="synopsis">#define             <a class="link" href="PolkitBackendActionLookup.html#POLKIT-BACKEND-ACTION-LOOKUP-EXTENSION-POINT-NAME:CAPS" title="POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME">POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME</a>
                     <a class="link" href="PolkitBackendActionLookup.html#PolkitBackendActionLookup-struct" title="PolkitBackendActionLookup">PolkitBackendActionLookup</a>;
                     <a class="link" href="PolkitBackendActionLookup.html#PolkitBackendActionLookupIface" title="PolkitBackendActionLookupIface">PolkitBackendActionLookupIface</a>;
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *             <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-message" title="polkit_backend_action_lookup_get_message ()">polkit_backend_action_lookup_get_message</a>
-                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">PolkitBackendActionLookup</a> *lookup,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a> *action_description);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *             <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-icon-name" title="polkit_backend_action_lookup_get_icon_name ()">polkit_backend_action_lookup_get_icon_name</a>
-                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">PolkitBackendActionLookup</a> *lookup,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a> *action_description);
-<a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *     <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-details" title="polkit_backend_action_lookup_get_details ()">polkit_backend_action_lookup_get_details</a>
-                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">PolkitBackendActionLookup</a> *lookup,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a> *action_description);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-message" title="polkit_backend_action_lookup_get_message ()">polkit_backend_action_lookup_get_message</a>
+                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup"><span class="returnvalue">PolkitBackendActionLookup</span></a> *lookup,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="returnvalue">PolkitActionDescription</span></a> *action_description);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-icon-name" title="polkit_backend_action_lookup_get_icon_name ()">polkit_backend_action_lookup_get_icon_name</a>
+                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup"><span class="returnvalue">PolkitBackendActionLookup</span></a> *lookup,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="returnvalue">PolkitActionDescription</span></a> *action_description);
+<a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *     <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-details" title="polkit_backend_action_lookup_get_details ()">polkit_backend_action_lookup_get_details</a>
+                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup"><span class="returnvalue">PolkitBackendActionLookup</span></a> *lookup,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="returnvalue">PolkitActionDescription</span></a> *action_description);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
@@ -102,9 +91,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
 <a name="PolkitBackendActionLookup.prerequisites"></a><h2>Prerequisites</h2>
 <p>
 PolkitBackendActionLookup requires
- <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>.</p>
+ <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>.</p>
 </div>
 <div class="refsect1" title="Description">
 <a name="PolkitBackendActionLookup.description"></a><h2>Description</h2>
@@ -114,9 +101,7 @@ shown in authentication dialogs.
 </p>
 <p>
 This inteface is intended for mechanisms to customize the message
-to show - a mechanism can provide a <a
-href="http://library.gnome.org/devel/gio/unstable/GIOModule.html"
-><span class="type">GIOModule</span></a> that registers one
+to show - a mechanism can provide a <a href="http://library.gnome.org/devel/gio/unstable/GIOModule.html"><span class="type">GIOModule</span></a> that registers one
 or more extensions that implement this interface. Every time an
 authentication dialog is shown, the registered extensions are
 consulted in priority order.
@@ -136,20 +121,16 @@ part of the <em class="parameter"><code>details</code></em> object when doing th
 interface can use that information to return localized data.
 </p>
 <p>
-Note that <a
-href="http://library.gnome.org/devel/glib/unstable/glib-running.html#setlocale"
-><code class="function">setlocale()</code></a> and the <code class="literal">LANG</code> environment
+Note that <a href="http://library.gnome.org/devel/glib/unstable/glib-running.html#setlocale"><code class="function">setlocale()</code></a> and the <code class="literal">LANG</code> environment
 variable will be set up to match the locale of the authentication
 agent that is the receiver of the information. This means that code
-implementing this interface can use <a
-href="/usr/share/gtk-doc/html/camel/camel-camel-i18n.html#dgettext"
-><code class="function">dgettext()</code></a> or similar machinery
+implementing this interface can use <a href="/usr/share/gtk-doc/html/camel/camel-camel-i18n.html#dgettext"><code class="function">dgettext()</code></a> or similar machinery
 to look up translations.</p>
 </div>
 <div class="refsect1" title="Details">
 <a name="PolkitBackendActionLookup.details"></a><h2>Details</h2>
 <div class="refsect2" title="POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME">
-<a name="POLKIT-BACKEND-ACTION-LOOKUP-EXTENSION-POINT-NAME--CAPS"></a><h3>POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME</h3>
+<a name="POLKIT-BACKEND-ACTION-LOOKUP-EXTENSION-POINT-NAME:CAPS"></a><h3>POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME</h3>
 <pre class="programlisting">#define POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME "polkit-backend-action-lookup-1"
 </pre>
 <p>
@@ -191,17 +172,17 @@ in authentication dialogs.</p>
 <col align="left" valign="top">
 <tbody>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>get_message</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendActionLookupIface.get-message"></a>get_message</code></em> ()</span></p></td>
 <td> See <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-message" title="polkit_backend_action_lookup_get_message ()"><code class="function">polkit_backend_action_lookup_get_message()</code></a>.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>get_icon_name</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendActionLookupIface.get-icon-name"></a>get_icon_name</code></em> ()</span></p></td>
 <td> See <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-icon-name" title="polkit_backend_action_lookup_get_icon_name ()"><code class="function">polkit_backend_action_lookup_get_icon_name()</code></a>.
 </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="structfield"><code>get_details</code></em> ()</span></p></td>
+<td><p><span class="term"><em class="structfield"><code><a name="PolkitBackendActionLookupIface.get-details"></a>get_details</code></em> ()</span></p></td>
 <td> See <a class="link" href="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-details" title="polkit_backend_action_lookup_get_details ()"><code class="function">polkit_backend_action_lookup_get_details()</code></a>.
 </td>
 </tr>
@@ -211,15 +192,11 @@ in authentication dialogs.</p>
 <hr>
 <div class="refsect2" title="polkit_backend_action_lookup_get_message ()">
 <a name="polkit-backend-action-lookup-get-message"></a><h3>polkit_backend_action_lookup_get_message ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *             polkit_backend_action_lookup_get_message
-                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">PolkitBackendActionLookup</a> *lookup,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a> *action_description);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             polkit_backend_action_lookup_get_message
+                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup"><span class="returnvalue">PolkitBackendActionLookup</span></a> *lookup,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="returnvalue">PolkitActionDescription</span></a> *action_description);</pre>
 <p>
 Computes a message to show in an authentication dialog for
 <em class="parameter"><code>action_id</code></em> and <em class="parameter"><code>details</code></em>.</p>
@@ -248,9 +225,7 @@ Computes a message to show in an authentication dialog for
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A localized string to show in the authentication dialog or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>. Caller must free this string.
+<td> A localized string to show in the authentication dialog or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. Caller must free this string.
 </td>
 </tr>
 </tbody>
@@ -259,15 +234,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 <hr>
 <div class="refsect2" title="polkit_backend_action_lookup_get_icon_name ()">
 <a name="polkit-backend-action-lookup-get-icon-name"></a><h3>polkit_backend_action_lookup_get_icon_name ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *             polkit_backend_action_lookup_get_icon_name
-                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">PolkitBackendActionLookup</a> *lookup,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a> *action_description);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             polkit_backend_action_lookup_get_icon_name
+                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup"><span class="returnvalue">PolkitBackendActionLookup</span></a> *lookup,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="returnvalue">PolkitActionDescription</span></a> *action_description);</pre>
 <p>
 Computes a themed icon name to show in an authentication dialog for
 <em class="parameter"><code>action_id</code></em> and <em class="parameter"><code>details</code></em>.</p>
@@ -296,9 +267,7 @@ Computes a themed icon name to show in an authentication dialog for
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A themed icon name or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>. Caller must free this string.
+<td> A themed icon name or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. Caller must free this string.
 </td>
 </tr>
 </tbody>
@@ -307,13 +276,11 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 <hr>
 <div class="refsect2" title="polkit_backend_action_lookup_get_details ()">
 <a name="polkit-backend-action-lookup-get-details"></a><h3>polkit_backend_action_lookup_get_details ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *     polkit_backend_action_lookup_get_details
-                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">PolkitBackendActionLookup</a> *lookup,
-                                                         const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *action_id,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details,
-                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a> *action_description);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *     polkit_backend_action_lookup_get_details
+                                                        (<a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup"><span class="returnvalue">PolkitBackendActionLookup</span></a> *lookup,
+                                                         const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *action_id,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details,
+                                                         <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription"><span class="returnvalue">PolkitActionDescription</span></a> *action_description);</pre>
 <p>
 Computes localized details to show in an authentication dialog for
 <em class="parameter"><code>action_id</code></em> and <em class="parameter"><code>details</code></em>.</p>
@@ -342,9 +309,7 @@ Computes localized details to show in an authentication dialog for
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="type">PolkitDetails</span></a> object with localized details or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a>. Caller must free the result.
+<td> A <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="type">PolkitDetails</span></a> object with localized details or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. Caller must free the result.
 </td>
 </tr>
 </tbody>
@@ -354,6 +319,6 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

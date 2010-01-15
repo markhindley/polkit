@@ -8,7 +8,7 @@
 <link rel="up" href="ref-api.html" title="Part III. Client API Reference">
 <link rel="prev" href="polkit-1-polkitauthority.html" title="PolkitAuthority">
 <link rel="next" href="polkit-1-polkitdetails.html" title="PolkitDetails">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -37,10 +37,10 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#polkit-1-polkitauthorizationresult.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#polkit-1-polkitauthorizationresult.description" class="shortcut">Description</a>
-                 | 
-                <a href="#polkit-1-polkitauthorizationresult.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#polkit-1-polkitauthorizationresult.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#polkit-1-polkitauthorizationresult.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
 <div class="refentry" title="PolkitAuthorizationResult">
@@ -58,46 +58,29 @@ Stable, unless otherwise indicated
 </div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="polkit-1-polkitauthorizationresult.synopsis"></a><h2>Synopsis</h2>
-<a name="PolkitAuthorizationResult"></a><pre class="synopsis">
-                    <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult-struct" title="PolkitAuthorizationResult">PolkitAuthorizationResult</a>;
-<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> * <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-new" title="polkit_authorization_result_new ()">polkit_authorization_result_new</a>
-                                                        (<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> is_authorized,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> is_challenge,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-is-authorized" title="polkit_authorization_result_get_is_authorized ()">polkit_authorization_result_get_is_authorized</a>
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-is-challenge" title="polkit_authorization_result_get_is_challenge ()">polkit_authorization_result_get_is_challenge</a>
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-retains-authorization" title="polkit_authorization_result_get_retains_authorization ()">polkit_authorization_result_get_retains_authorization</a>
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);
-const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *       <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-temporary-authorization-id" title="polkit_authorization_result_get_temporary_authorization_id ()">polkit_authorization_result_get_temporary_authorization_id</a>
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-locked-down" title="polkit_authorization_result_get_locked_down ()">polkit_authorization_result_get_locked_down</a>
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);
-<a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *     <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-details" title="polkit_authorization_result_get_details ()">polkit_authorization_result_get_details</a>
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);
+<a name="PolkitAuthorizationResult"></a><pre class="synopsis">                    <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult-struct" title="PolkitAuthorizationResult">PolkitAuthorizationResult</a>;
+<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-new" title="polkit_authorization_result_new ()">polkit_authorization_result_new</a>
+                                                        (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> is_authorized,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> is_challenge,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-is-authorized" title="polkit_authorization_result_get_is_authorized ()">polkit_authorization_result_get_is_authorized</a>
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-is-challenge" title="polkit_authorization_result_get_is_challenge ()">polkit_authorization_result_get_is_challenge</a>
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-retains-authorization" title="polkit_authorization_result_get_retains_authorization ()">polkit_authorization_result_get_retains_authorization</a>
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);
+const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-temporary-authorization-id" title="polkit_authorization_result_get_temporary_authorization_id ()">polkit_authorization_result_get_temporary_authorization_id</a>
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-locked-down" title="polkit_authorization_result_get_locked_down ()">polkit_authorization_result_get_locked_down</a>
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);
+<a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *     <a class="link" href="polkit-1-polkitauthorizationresult.html#polkit-authorization-result-get-details" title="polkit_authorization_result_get_details ()">polkit_authorization_result_get_details</a>
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="polkit-1-polkitauthorizationresult.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitAuthorizationResult
 </pre>
 </div>
@@ -117,14 +100,10 @@ The <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthoriz
 <hr>
 <div class="refsect2" title="polkit_authorization_result_new ()">
 <a name="polkit-authorization-result-new"></a><h3>polkit_authorization_result_new ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> * polkit_authorization_result_new
-                                                        (<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> is_authorized,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a> is_challenge,
-                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *details);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * polkit_authorization_result_new
+                                                        (<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> is_authorized,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a> is_challenge,
+                                                         <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *details);</pre>
 <p>
 Creates a new <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object.</p>
 <div class="variablelist"><table border="0">
@@ -138,28 +117,18 @@ Creates a new <a class="link" href="polkit-1-polkitauthorizationresult.html#Polk
 <tr>
 <td><p><span class="term"><em class="parameter"><code>is_challenge</code></em> :</span></p></td>
 <td> Whether the subject is authorized if more
-information is provided. Must be <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE--CAPS"
-><code class="literal">FALSE</code></a> unless <em class="parameter"><code>is_authorized</code></em> is
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a>.
+information is provided. Must be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> unless <em class="parameter"><code>is_authorized</code></em> is
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>.
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
-<td> Must be <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> unless <em class="parameter"><code>is_authorized</code></em> is <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a>
+<td> Must be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> unless <em class="parameter"><code>is_authorized</code></em> is <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object. Free with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> A <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -168,10 +137,8 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_authorization_result_get_is_authorized ()">
 <a name="polkit-authorization-result-get-is-authorized"></a><h3>polkit_authorization_result_get_is_authorized ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_authorization_result_get_is_authorized
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authorization_result_get_is_authorized
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);</pre>
 <p>
 Gets whether the subject is authorized.
 </p>
@@ -197,10 +164,8 @@ to get the opaque identifier for the temporary authorization.</p>
 <hr>
 <div class="refsect2" title="polkit_authorization_result_get_is_challenge ()">
 <a name="polkit-authorization-result-get-is-challenge"></a><h3>polkit_authorization_result_get_is_challenge ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_authorization_result_get_is_challenge
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authorization_result_get_is_challenge
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);</pre>
 <p>
 Gets whether the subject is authorized if more information is provided.</p>
 <div class="variablelist"><table border="0">
@@ -222,10 +187,8 @@ Gets whether the subject is authorized if more information is provided.</p>
 <hr>
 <div class="refsect2" title="polkit_authorization_result_get_retains_authorization ()">
 <a name="polkit-authorization-result-get-retains-authorization"></a><h3>polkit_authorization_result_get_retains_authorization ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_authorization_result_get_retains_authorization
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authorization_result_get_retains_authorization
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);</pre>
 <p>
 Gets whether authorization is retained if obtained via authentication. This can only be the case
 if <em class="parameter"><code>result</code></em> indicates that the subject can obtain authorization after challenge (cf.
@@ -249,9 +212,7 @@ key <code class="literal">polkit.retains_authorization_after_challenge</code>.</
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the authorization is or will be temporary.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authorization is or will be temporary.
 </td>
 </tr>
 </tbody>
@@ -260,10 +221,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 <hr>
 <div class="refsect2" title="polkit_authorization_result_get_temporary_authorization_id ()">
 <a name="polkit-authorization-result-get-temporary-authorization-id"></a><h3>polkit_authorization_result_get_temporary_authorization_id ()</h3>
-<pre class="programlisting">const <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
->gchar</a> *       polkit_authorization_result_get_temporary_authorization_id
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);</pre>
+<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_authorization_result_get_temporary_authorization_id
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);</pre>
 <p>
 Gets the opaque temporary authorization id for <em class="parameter"><code>result</code></em> if <em class="parameter"><code>result</code></em> indicates the
 subject is authorized and the authorization is temporary rather than one-shot or
@@ -292,9 +251,7 @@ key <code class="literal">polkit.temporary_authorization_id</code>.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> The opaque temporary authorization id for <em class="parameter"><code>result</code></em> or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if not
+<td> The opaque temporary authorization id for <em class="parameter"><code>result</code></em> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not
    available. Do not free this string, it is owned by <em class="parameter"><code>result</code></em>.
 </td>
 </tr>
@@ -304,10 +261,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 <hr>
 <div class="refsect2" title="polkit_authorization_result_get_locked_down ()">
 <a name="polkit-authorization-result-get-locked-down"></a><h3>polkit_authorization_result_get_locked_down ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_authorization_result_get_locked_down
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authorization_result_get_locked_down
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);</pre>
 <p>
 Gets whether the action is locked down via
 e.g. <a class="link" href="polkit-1-polkitauthority.html#polkit-authority-add-lockdown-for-action" title="polkit_authority_add_lockdown_for_action ()"><code class="function">polkit_authority_add_lockdown_for_action()</code></a>.
@@ -325,9 +280,7 @@ key <code class="literal">polkit.lockdown</code>.</p>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE--CAPS"
-><code class="literal">TRUE</code></a> if the authorization is or will be temporary.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the action for the authorization is locked down.
 </td>
 </tr>
 </tbody>
@@ -336,8 +289,8 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRU
 <hr>
 <div class="refsect2" title="polkit_authorization_result_get_details ()">
 <a name="polkit-authorization-result-get-details"></a><h3>polkit_authorization_result_get_details ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a> *     polkit_authorization_result_get_details
-                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a> *result);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitdetails.html#PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *     polkit_authorization_result_get_details
+                                                        (<a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *result);</pre>
 <p>
 Gets the details about the result.</p>
 <div class="variablelist"><table border="0">
@@ -361,6 +314,6 @@ and should not be freed by the caller.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

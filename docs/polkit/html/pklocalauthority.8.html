@@ -8,7 +8,7 @@
 <link rel="up" href="manpages.html" title="Part VI. Manual Pages">
 <link rel="prev" href="pkexec.1.html" title="pkexec">
 <link rel="next" href="polkit-hierarchy.html" title="Object Hierarchy">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -111,7 +111,22 @@
 <a name="pklocalauthority-directory-structure"></a><h2>DIRECTORY STRUCTURE</h2>
 <p>
       The Local Authority reads files with <code class="filename">.pkla</code>
-      extension from the following directories
+      extension from all directories located inside the
+      <code class="filename">/etc/polkit-1/localauthority</code>
+      and <code class="filename">/var/lib/polkit-1/localauthority</code>
+      directories. By default, the following sub-directories are installed.
+    </p>
+<pre class="programlisting">
+/etc/polkit-1/
+`-- localauthority
+    |-- 10-vendor.d
+    |-- 20-org.d
+    |-- 30-site.d
+    |-- 50-local.d
+    `-- 90-mandatory.d
+    </pre>
+<p>
+      and
     </p>
 <pre class="programlisting">
 /var/lib/polkit-1/
@@ -122,6 +137,12 @@
     |-- 50-local.d
     `-- 90-mandatory.d
     </pre>
+<p>
+      The <code class="filename">/etc/polkit-1/localauthority</code> hierarchy
+      is inteded for local configuration and
+      the <code class="filename">/var/lib/polkit-1/localauthority</code> is
+      intended for 3rd party packages.
+    </p>
 <p>
       Each <code class="filename">.pkla</code> file contains one or more
       authorization entries. If the underlying filesystem supports
@@ -138,39 +159,43 @@
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>10-vendor.d</em></span></span></p></td>
 <td><p>
-            Reserved for the Operating System vendor.
+            Intended for use by the OS vendor.
           </p></td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>20-org.d</em></span></span></p></td>
 <td><p>
-            Reserved for the organization deploying the system.
+            Intended for the organization deploying the OS.
           </p></td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>30-site.d</em></span></span></p></td>
 <td><p>
-            Reserved for site deploying the system.
+            Intended for the site deploying the system.
           </p></td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>50-local.d</em></span></span></p></td>
 <td><p>
-            Reserved for local usage.
+            Intended for local usage.
           </p></td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>90-mandatory.d</em></span></span></p></td>
 <td><p>
-            Reserved for the organization deploying the system.
+            Intended for the organization deploying the OS.
           </p></td>
 </tr>
 </tbody>
 </table></div>
 <p>
-      Each <code class="filename">.pkla</code> file is a standard <span class="emphasis"><em>key
-      file</em></span> and contains key/value pairs in one or more
-      groups with each group representing an authorization entry.
+      and new directories can be added/removed as needed.
+    </p>
+<p>
+      As to regards to the content, each <code class="filename">.pkla</code>
+      file is a standard <span class="emphasis"><em>key file</em></span> and contains
+      key/value pairs in one or more groups with each group
+      representing an authorization entry.
       A <code class="filename">.pkla</code> file MUST be named by using a
       scheme to ensure that the name is unique, e.g. reverse DNS
       notation or similar. For example, if the organization is
@@ -263,13 +288,70 @@
       following algorithm.
     </p>
 <p>
-      First, the user of the Subject is determined and the groups that
-      the user belongs are looked up. For each group identity, the
-      authorization entries are consulted in the lexigraphical order
-      (using standard lexicographical sorting (using the standard C
-      locale) of file names and appearance of each group in each
-      file). If the authorization check matches the data from the
-      authorization check, then the authorization result
+      The authorization entries from all .pkla files are ordered using
+      the following rules. First all the basename of all
+      sub-directories (e.g. <span class="emphasis"><em>30-site.d</em></span>) from both
+      the <code class="filename">/etc/polkit-1/localauthority</code>
+      and <code class="filename">/var/lib/polkit-1/localauthority</code>
+      directories are enumerated and sorted (using the C locale). If a
+      name exists in both <code class="filename">/etc</code>
+      and <code class="filename">/var</code>, the one
+      in <code class="filename">/etc</code> takes precedence. Then
+      all <code class="filename">.pkla</code> files are read in order from this
+      list of sub-directories. For each <code class="filename">.pkla</code>
+      file, authorizations from each file are appended in order resulting
+      in an ordered list of authorization entries.
+    </p>
+<p>
+      For example, given the following files
+    </p>
+<pre class="programlisting">
+/var/lib/polkit-1
+└── localauthority
+    ├── 10-vendor.d
+    │   └── 10-desktop-policy.pkla
+    ├── 20-org.d
+    ├── 30-site.d
+    ├── 50-local.d
+    ├── 55-org.my.company.d
+    │   └── 10-org.my.company.product.pkla
+    └── 90-mandatory.d
+
+/etc/polkit-1
+└── localauthority
+    ├── 10-vendor.d
+    │   └── 01-some-changes-from-a-subvendor.pkla
+    ├── 20-org.d
+    ├── 30-site.d
+    ├── 50-local.d
+    ├── 55-org.my.company.d
+    │   └── 10-org.my.company.product.pkla
+    └── 90-mandatory.d
+    </pre>
+<p>
+      the evaluation order of the <code class="filename">.pkla</code> files is:
+    </p>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem"><p>
+          <code class="filename">10-desktop-policy.pkla</code>
+        </p></li>
+<li class="listitem"><p>
+          <code class="filename">01-some-changes-from-a-subvendor.pkla</code>
+        </p></li>
+<li class="listitem"><p>
+          <code class="filename">10-org.my.company.product.pkla</code> (the <code class="filename">/var</code> one)
+        </p></li>
+<li class="listitem"><p>
+          <code class="filename">10-org.my.company.product.pkla</code> (the <code class="filename">/etc</code> one)
+        </p></li>
+</ol></div>
+<p>
+      When the list of authorization entries has been calculated, the
+      authorization check can be made. First, the user of the Subject
+      is determined and the groups that the user belongs are looked
+      up. For each group identity, the authorization entries are
+      consulted in order. If the authorization check matches the data
+      from the authorization check, then the authorization result
       from <span class="emphasis"><em>RequireAny</em></span>, <span class="emphasis"><em>RequireInactive</em></span>
       or <span class="emphasis"><em>RequireActive</em></span> is used
       and <span class="emphasis"><em>ReturnValue</em></span> is added to the
@@ -375,6 +457,6 @@ ResultActive=auth_admin
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

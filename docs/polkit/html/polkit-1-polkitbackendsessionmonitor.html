@@ -8,7 +8,7 @@
 <link rel="up" href="ref-backend-api.html" title="Part IV. Backend API Reference">
 <link rel="prev" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">
 <link rel="next" href="polkit-1-polkitbackendconfigsource.html" title="PolkitBackendConfigSource">
-<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 <link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
 <link rel="chapter" href="polkit-intro.html" title="Introduction">
@@ -37,12 +37,12 @@
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#polkit-1-polkitbackendsessionmonitor.synopsis" class="shortcut">Top</a>
-                 | 
-                <a href="#polkit-1-polkitbackendsessionmonitor.description" class="shortcut">Description</a>
-                 | 
-                <a href="#polkit-1-polkitbackendsessionmonitor.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                 | 
-                <a href="#polkit-1-polkitbackendsessionmonitor.signals" class="shortcut">Signals</a>
+                   | 
+                  <a href="#polkit-1-polkitbackendsessionmonitor.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#polkit-1-polkitbackendsessionmonitor.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#polkit-1-polkitbackendsessionmonitor.signals" class="shortcut">Signals</a>
 </td></tr>
 </table>
 <div class="refentry" title="PolkitBackendSessionMonitor">
@@ -56,44 +56,31 @@
 </tr></table></div>
 <div class="refsynopsisdiv" title="Synopsis">
 <a name="polkit-1-polkitbackendsessionmonitor.synopsis"></a><h2>Synopsis</h2>
-<a name="PolkitBackendSessionMonitor"></a><pre class="synopsis">
-                    <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor-struct" title="PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a>;
-<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> * <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-new" title="polkit_backend_session_monitor_new ()">polkit_backend_session_monitor_new</a>
+<a name="PolkitBackendSessionMonitor"></a><pre class="synopsis">                    <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor-struct" title="PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a>;
+<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> * <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-new" title="polkit_backend_session_monitor_new ()">polkit_backend_session_monitor_new</a>
                                                         (void);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-get-sessions" title="polkit_backend_session_monitor_get_sessions ()">polkit_backend_session_monitor_get_sessions</a>
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor);
-<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *    <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-get-user-for-subject" title="polkit_backend_session_monitor_get_user_for_subject ()">polkit_backend_session_monitor_get_user_for_subject</a>
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *     <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-get-session-for-subject" title="polkit_backend_session_monitor_get_session_for_subject ()">polkit_backend_session_monitor_get_session_for_subject</a>
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-is-session-local" title="polkit_backend_session_monitor_is_session_local ()">polkit_backend_session_monitor_is_session_local</a>
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *session);
-<a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-is-session-active" title="polkit_backend_session_monitor_is_session_active ()">polkit_backend_session_monitor_is_session_active</a>
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *session);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-get-sessions" title="polkit_backend_session_monitor_get_sessions ()">polkit_backend_session_monitor_get_sessions</a>
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor);
+<a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *    <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-get-user-for-subject" title="polkit_backend_session_monitor_get_user_for_subject ()">polkit_backend_session_monitor_get_user_for_subject</a>
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-get-session-for-subject" title="polkit_backend_session_monitor_get_session_for_subject ()">polkit_backend_session_monitor_get_session_for_subject</a>
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-is-session-local" title="polkit_backend_session_monitor_is_session_local ()">polkit_backend_session_monitor_is_session_local</a>
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *session);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#polkit-backend-session-monitor-is-session-active" title="polkit_backend_session_monitor_is_session_active ()">polkit_backend_session_monitor_is_session_active</a>
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *session);
 </pre>
 </div>
 <div class="refsect1" title="Object Hierarchy">
 <a name="polkit-1-polkitbackendsessionmonitor.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
->GObject</a>
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitBackendSessionMonitor
 </pre>
 </div>
@@ -117,40 +104,32 @@ The <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBacken
 <hr>
 <div class="refsect2" title="polkit_backend_session_monitor_new ()">
 <a name="polkit-backend-session-monitor-new"></a><h3>polkit_backend_session_monitor_new ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> * polkit_backend_session_monitor_new
+<pre class="programlisting"><a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> * polkit_backend_session_monitor_new
                                                         (void);</pre>
 </div>
 <hr>
 <div class="refsect2" title="polkit_backend_session_monitor_get_sessions ()">
 <a name="polkit-backend-session-monitor-get-sessions"></a><h3>polkit_backend_session_monitor_get_sessions ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
->GList</a> *             polkit_backend_session_monitor_get_sessions
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_backend_session_monitor_get_sessions
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor);</pre>
 </div>
 <hr>
 <div class="refsect2" title="polkit_backend_session_monitor_get_user_for_subject ()">
 <a name="polkit-backend-session-monitor-get-user-for-subject"></a><h3>polkit_backend_session_monitor_get_user_for_subject ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a> *    polkit_backend_session_monitor_get_user_for_subject
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *    polkit_backend_session_monitor_get_user_for_subject
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 </div>
 <hr>
 <div class="refsect2" title="polkit_backend_session_monitor_get_session_for_subject ()">
 <a name="polkit-backend-session-monitor-get-session-for-subject"></a><h3>polkit_backend_session_monitor_get_session_for_subject ()</h3>
-<pre class="programlisting"><a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *     polkit_backend_session_monitor_get_session_for_subject
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *subject,
-                                                         <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
->GError</a> **error);</pre>
+<pre class="programlisting"><a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_backend_session_monitor_get_session_for_subject
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *subject,
+                                                         <a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="returnvalue">GError</span></a> **error);</pre>
 <p>
-Gets the session corresponding to <em class="parameter"><code>subject</code></em> or <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if no session exists.</p>
+Gets the session corresponding to <em class="parameter"><code>subject</code></em> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if no session exists.</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody>
@@ -171,11 +150,7 @@ href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NUL
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
-><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set otherwise a <a class="link" href="polkit-1-polkitunixsession.html#PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> that should be freed with <a
-href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"
-><code class="function">g_object_unref()</code></a>.
+<td> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set otherwise a <a class="link" href="polkit-1-polkitunixsession.html#PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> that should be freed with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.
 </td>
 </tr>
 </tbody>
@@ -184,30 +159,24 @@ href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Ty
 <hr>
 <div class="refsect2" title="polkit_backend_session_monitor_is_session_local ()">
 <a name="polkit-backend-session-monitor-is-session-local"></a><h3>polkit_backend_session_monitor_is_session_local ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_session_monitor_is_session_local
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *session);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_session_monitor_is_session_local
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *session);</pre>
 </div>
 <hr>
 <div class="refsect2" title="polkit_backend_session_monitor_is_session_active ()">
 <a name="polkit-backend-session-monitor-is-session-active"></a><h3>polkit_backend_session_monitor_is_session_active ()</h3>
-<pre class="programlisting"><a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
->gboolean</a>            polkit_backend_session_monitor_is_session_active
-                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a> *session);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_backend_session_monitor_is_session_active
+                                                        (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="returnvalue">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                         <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *session);</pre>
 </div>
 </div>
 <div class="refsect1" title="Signal Details">
 <a name="polkit-1-polkitbackendsessionmonitor.signal-details"></a><h2>Signal Details</h2>
 <div class="refsect2" title='The "changed" signal'>
 <a name="PolkitBackendSessionMonitor-changed"></a><h3>The <code class="literal">"changed"</code> signal</h3>
-<pre class="programlisting">void                user_function                      (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a> *monitor,
-                                                        <a
-href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
->gpointer</a>                     user_data)      : Run Last</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor"><span class="type">PolkitBackendSessionMonitor</span></a> *monitor,
+                                                        <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>                     user_data)      : Run Last</pre>
 <p>
 Emitted when something changes.</p>
 <div class="variablelist"><table border="0">
@@ -229,6 +198,6 @@ Emitted when something changes.</p>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.11</div>
+          Generated by GTK-Doc V1.13</div>
 </body>
 </html>

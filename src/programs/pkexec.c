@@ -23,6 +23,8 @@
 #  include "config.h"
 #endif
 
+#define _GNU_SOURCE
+
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -32,8 +34,16 @@
 #include <grp.h>
 #include <pwd.h>
 #include <errno.h>
+#include <security/pam_appl.h>
+#include <syslog.h>
+#include <stdarg.h>
 
 #include <polkit/polkit.h>
+
+static gchar *original_user_name = NULL;
+static gchar *original_cwd = NULL;
+static gchar *command_line = NULL;
+static struct passwd *pw;
 
 #ifndef HAVE_CLEARENV
 extern char **environ;
@@ -55,6 +65,107 @@ usage (int argc, char *argv[])
               "       [--user username] PROGRAM [ARGUMENTS...]\n"
               "\n"
               "See the pkexec manual page for more details.\n");
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static void
+log_message (gint     level,
+             gboolean print_to_stderr,
+             const    gchar *format,
+             ...)
+{
+  static gboolean is_log_open = FALSE;
+  va_list var_args;
+  gchar *s;
+  const gchar *tty;
+
+  if (!is_log_open)
+    {
+      openlog ("pkexec",
+               LOG_PID,
+               LOG_AUTHPRIV); /* security/authorization messages (private) */
+      is_log_open = TRUE;
+    }
+
+  va_start (var_args, format);
+  s = g_strdup_vprintf (format, var_args);
+  va_end (var_args);
+
+  tty = ttyname (0);
+  if (tty == NULL)
+    tty = "unknown";
+
+  /* first complain to syslog */
+  syslog (level,
+          "%s: %s [USER=%s] [TTY=%s] [CWD=%s] [COMMAND=%s]",
+          original_user_name,
+          s,
+          pw->pw_name,
+          tty,
+          original_cwd,
+          command_line);
+
+  /* and then on stderr */
+  if (print_to_stderr)
+    g_printerr ("%s\n", s);
+
+  g_free (s);
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+static int
+pam_conversation_function (int n,
+                           const struct pam_message **msg,
+                           struct pam_response **resp,
+                           void *data)
+{
+  g_assert_not_reached ();
+  return PAM_CONV_ERR;
+}
+
+static gboolean
+open_session (const gchar *user_to_auth)
+{
+  gboolean ret;
+  gint rc;
+  pam_handle_t *pam_h;
+  struct pam_conv conversation;
+
+  ret = FALSE;
+
+  pam_h = NULL;
+
+  conversation.conv        = pam_conversation_function;
+  conversation.appdata_ptr = NULL;
+
+  /* start the pam stack */
+  rc = pam_start ("polkit-1",
+                  user_to_auth,
+                  &conversation,
+                  &pam_h);
+  if (rc != PAM_SUCCESS)
+    {
+      g_printerr ("pam_start() failed: %s\n", pam_strerror (pam_h, rc));
+      goto out;
+    }
+
+  /* open a session */
+  rc = pam_open_session (pam_h,
+                         0); /* flags */
+  if (rc != PAM_SUCCESS)
+    {
+      g_printerr ("pam_open_session() failed: %s\n", pam_strerror (pam_h, rc));
+      goto out;
+    }
+
+  ret = TRUE;
+
+out:
+  if (pam_h != NULL)
+    pam_end (pam_h, rc);
+  return ret;
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -152,12 +263,106 @@ find_action_for_path (PolkitAuthority *authority,
   return action_id;
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+
+static gboolean
+is_valid_shell (const gchar *shell)
+{
+  gboolean ret;
+  gchar *contents;
+  gchar **shells;
+  GError *error;
+  guint n;
+
+  ret = FALSE;
+
+  contents = NULL;
+  shells = NULL;
+
+  error = NULL;
+  if (!g_file_get_contents ("/etc/shells",
+                            &contents,
+                            NULL, /* gsize *length */
+                            &error))
+    {
+      g_printerr ("Error getting contents of /etc/shells: %s\n", error->message);
+      g_error_free (error);
+      goto out;
+    }
+
+  shells = g_strsplit (contents, "\n", 0);
+  for (n = 0; shells != NULL && shells[n] != NULL; n++)
+    {
+      if (g_strcmp0 (shell, shells[n]) == 0)
+        {
+          ret = TRUE;
+          goto out;
+        }
+    }
+
+ out:
+  g_free (contents);
+  g_strfreev (shells);
+  return ret;
+}
+
+static gboolean
+validate_environment_variable (const gchar *key,
+                               const gchar *value)
+{
+  gboolean ret;
+
+  /* Generally we bail if any environment variable value contains
+   *
+   *   - '/' characters
+   *   - '%' characters
+   *   - '..' substrings
+   */
+
+  g_return_val_if_fail (key != NULL, FALSE);
+  g_return_val_if_fail (value != NULL, FALSE);
+
+  ret = FALSE;
+
+  /* special case $SHELL */
+  if (g_strcmp0 (key, "SHELL") == 0)
+    {
+      /* check if it's in /etc/shells */
+      if (!is_valid_shell (value))
+        {
+          log_message (LOG_CRIT, TRUE,
+                       "The value for the SHELL variable was not found the /etc/shells file");
+          g_printerr ("\n"
+                      "This incident has been reported.\n");
+          goto out;
+        }
+    }
+  else if (strstr (value, "/") != NULL ||
+           strstr (value, "%") != NULL ||
+           strstr (value, "..") != NULL)
+    {
+      log_message (LOG_CRIT, TRUE,
+                   "The value for environment variable %s contains suscipious content",
+                   key);
+      g_printerr ("\n"
+                  "This incident has been reported.\n");
+      goto out;
+    }
+
+  ret = TRUE;
+
+ out:
+  return ret;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
 
 int
 main (int argc, char *argv[])
 {
   guint n;
   guint ret;
+  gint rc;
   gboolean opt_show_help;
   gboolean opt_show_version;
   PolkitAuthority *authority;
@@ -166,20 +371,25 @@ main (int argc, char *argv[])
   PolkitDetails *details;
   GError *error;
   gchar *action_id;
-  gchar *command_line;
   gchar **exec_argv;
   gchar *path;
   struct passwd pwstruct;
-  struct passwd *pw;
   gchar pwbuf[8192];
   gchar *s;
   const gchar *environment_variables_to_save[] = {
-    "LANG",
-    "LANGUAGE",
-    "LC_ALL",
-    "LC_MESSAGES",
     "SHELL",
+    "LANG",
+    "LINGUAS",
+    "LANGUAGE",
+    "LC_COLLATE",
+    "LC_CTYPE",
+    "LC_MESSAGES",
+    "LC_MONETARY",
+    "LC_NUMERIC",
+    "LC_TIME",
+    "LC_ALL",
     "TERM",
+    "COLORTERM",
 
     /* For now, avoiding pretend that running X11 apps as another user in the same session
      * will ever work... See
@@ -217,7 +427,21 @@ main (int argc, char *argv[])
   /* check for correct invocation */
   if (geteuid () != 0)
     {
-      g_print ("pkexec must be setuid root\n");
+      g_printerr ("pkexec must be setuid root\n");
+      goto out;
+    }
+
+  original_user_name = g_strdup (g_get_user_name ());
+  if (original_user_name == NULL)
+    {
+      g_printerr ("Error getting user name.\n");
+      goto out;
+    }
+
+  original_cwd = g_strdup (get_current_dir_name ());
+  if (original_cwd == NULL)
+    {
+      g_printerr ("Error getting cwd.\n");
       goto out;
     }
 
@@ -304,6 +528,21 @@ main (int argc, char *argv[])
   command_line = g_strjoinv (" ", argv + n);
   exec_argv = argv + n;
 
+  /* Look up information about the user we care about - yes, the return
+   * value of this function is a bit funky
+   */
+  rc = getpwnam_r (opt_user, &pwstruct, pwbuf, sizeof pwbuf, &pw);
+  if (rc == 0 && pw == NULL)
+    {
+      g_printerr ("User `%s' does not exist.\n", opt_user);
+      goto out;
+    }
+  else if (pw == NULL)
+    {
+      g_printerr ("Error getting information for user `%s': %s\n", opt_user, g_strerror (rc));
+      goto out;
+    }
+
   /* now save the environment variables we care about */
   saved_env = g_ptr_array_new ();
   for (n = 0; environment_variables_to_save[n] != NULL; n++)
@@ -315,6 +554,13 @@ main (int argc, char *argv[])
       if (value == NULL)
         continue;
 
+      /* To qualify for the paranoia goldstar - we validate the value of each
+       * environment variable passed through - this is to attempt to avoid
+       * exploits in (potentially broken) programs launched via pkexec(1).
+       */
+      if (!validate_environment_variable (key, value))
+        goto out;
+
       g_ptr_array_add (saved_env, g_strdup (key));
       g_ptr_array_add (saved_env, g_strdup (value));
     }
@@ -325,13 +571,6 @@ main (int argc, char *argv[])
   if (clearenv () != 0)
     {
       g_printerr ("Error clearing environment: %s\n", g_strerror (errno));
-      goto out;
-    }
-
-  /* Look up information about the user we care about */
-  if (getpwnam_r (opt_user, &pwstruct, pwbuf, sizeof pwbuf, &pw) != 0)
-    {
-      g_printerr ("Error getting information for user %s: %s\n", opt_user, g_strerror (errno));
       goto out;
     }
 
@@ -413,12 +652,15 @@ main (int argc, char *argv[])
     }
   else if (polkit_authorization_result_get_is_challenge (result))
     {
-      g_printerr ("Authorization requires authentication but no authentication was found.\n");
+      g_printerr ("Error executing command as another user: No authentication agent was found.\n");
       goto out;
     }
   else
     {
-      g_printerr ("Not authorized.\n");
+      log_message (LOG_WARNING, TRUE,
+                   "Error executing command as another user: Not authorized");
+      g_printerr ("\n"
+                  "This incident has been reported.\n");
       goto out;
     }
 
@@ -464,7 +706,7 @@ main (int argc, char *argv[])
     }
 
   /* if not changing to uid 0, become uid 0 before changing to the user */
-  if (pw->pw_uid)
+  if (pw->pw_uid != 0)
     {
       setreuid (0, 0);
       if ((geteuid () != 0) || (getuid () != 0))
@@ -472,6 +714,37 @@ main (int argc, char *argv[])
           g_printerr ("Error becoming uid 0: %s\n", g_strerror (errno));
           goto out;
         }
+    }
+
+  /* open session - with PAM enabled, this runs the open_session() part of the PAM
+   * stack - this includes applying limits via pam_limits.so but also other things
+   * requested via the current PAM configuration.
+   *
+   * NOTE NOTE NOTE: pam_limits.so doesn't seem to clear existing limits - e.g.
+   *
+   *  $ ulimit -t
+   *  unlimited
+   *
+   *  $ su -
+   *  Password:
+   *  # ulimit -t
+   *  unlimited
+   *  # logout
+   *
+   *  $ ulimit -t 1000
+   *  $ ulimit -t
+   *  1000
+   *  $ su -
+   *  Password:
+   *  # ulimit -t
+   *  1000
+   *
+   * TODO: The question here is whether we should clear the limits before applying them?
+   * As evident above, neither su(1) (and, for that matter, nor sudo(8)) does this.
+   */
+  if (!open_session (pw->pw_name))
+    {
+      goto out;
     }
 
   /* become the user */
@@ -500,6 +773,9 @@ main (int argc, char *argv[])
       g_printerr ("Error changing to home directory %s: %s\n", pw->pw_dir, g_strerror (errno));
       goto out;
     }
+
+  /* Log the fact that we're executing a command */
+  log_message (LOG_NOTICE, FALSE, "Executing command");
 
   /* exec the program */
   if (execv (path, exec_argv) != 0)
@@ -535,6 +811,8 @@ main (int argc, char *argv[])
   g_free (path);
   g_free (command_line);
   g_free (opt_user);
+  g_free (original_user_name);
+  g_free (original_cwd);
 
   return ret;
 }
