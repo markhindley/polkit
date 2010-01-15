@@ -19,6 +19,7 @@ libpolkit-backend-1.so.0 libpolkit-backend-1-0 #MINVER#
  polkit_backend_authority_get_name@Base 0.95
  polkit_backend_authority_get_type@Base 0.94
  polkit_backend_authority_get_version@Base 0.95
+ polkit_backend_authority_log@Base 0.96
  polkit_backend_authority_register_authentication_agent@Base 0.94
  polkit_backend_authority_remove_lockdown_for_action@Base 0.95
  polkit_backend_authority_remove_lockdown_for_action_finish@Base 0.95
