@@ -1,0 +1,32 @@
+From 4c5763334e546615a8f03a80c340b288e1975e91 Mon Sep 17 00:00:00 2001
+From: Martin Pitt <martin.pitt@ubuntu.com>
+Date: Fri, 9 Apr 2010 11:48:45 +0200
+Subject: [PATCH 2/2] =?UTF-8?q?Bug=2027159=20=E2=80=94=20polkitd=20crashes=20when=20calling=20pkcheck=20on=20a=20wrong=20PID?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Do not free an error which we are passing to our caller. This fixes a NULL
+pointer crash when doing CheckAuthorization() on an invalid PID.
+
+Bug: https://bugs.freedesktop.org/show_bug.cgi?id=27159
+Bug-Ubuntu: https://launchpad.net/bugs/540464
+---
+ src/polkitbackend/polkitbackendsessionmonitor.c |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+diff --git a/src/polkitbackend/polkitbackendsessionmonitor.c b/src/polkitbackend/polkitbackendsessionmonitor.c
+index 2028250..2a72435 100644
+--- a/src/polkitbackend/polkitbackendsessionmonitor.c
++++ b/src/polkitbackend/polkitbackendsessionmonitor.c
+@@ -425,7 +425,6 @@ polkit_backend_session_monitor_get_user_for_subject (PolkitBackendSessionMonitor
+       if (local_error != NULL)
+         {
+           g_propagate_error (error, local_error);
+-          g_error_free (local_error);
+           goto out;
+         }
+       user = polkit_unix_user_new (uid);
+-- 
+1.7.0
+

@@ -3,6 +3,8 @@ policykit-1 (0.96-2) UNRELEASED; urgency=low
   * Add 00git-pkexec-information-disclosure.patch: Fix information disclosure
     vulnerability that allows an attacker to verify whether or not arbitrary
     files exist, violating directory permissions.
+  * 00git-fix-error-freeing.patch: Fix crash when calling CheckAuthorization()
+    with an invalid PID. (LP: #540464)
 
  -- Martin Pitt <mpitt@debian.org>  Fri, 09 Apr 2010 11:55:45 +0200
 
