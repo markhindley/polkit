@@ -7,7 +7,7 @@ policykit-1 (0.96-3) UNRELEASED; urgency=low
     - Query D-Bus to find out the correct pid of the process claiming
       org.freedesktop.PolicyKit1. This way we do not accidentally kill the
       wrong process when being installed in a chroot. (Closes: #595030)
-  * debian/policykit-1.postinst
+  * debian/policykit-1.prerm
     - Stop polkitd on remove. (Closes: #595031)
 
  -- Michael Biebl <biebl@debian.org>  Thu, 16 Sep 2010 22:39:40 +0200
