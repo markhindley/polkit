@@ -8,6 +8,11 @@ policykit-1 (0.99-1) UNRELEASED; urgency=low
   * debian/control
     - Drop Build-Depends on libeggdbus-1-dev.
     - Bump Build-Depends on libglib2.0-dev to (>= 2.25.12) for GDBus.
+  * Switch to source format 3.0 (quilt).
+    - Add debian/source/format.
+    - Drop Build-Depends on quilt.
+    - Remove /usr/share/cdbs/1/rules/patchsys-quilt.mk from debian/rules.
+    - Remove debian/README.source.
 
  -- Michael Biebl <biebl@debian.org>  Thu, 16 Sep 2010 23:44:59 +0200
 

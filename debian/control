@@ -13,7 +13,6 @@ Build-Depends: cdbs,
  libselinux1-dev [linux-any],
  gtk-doc-tools,
  xsltproc,
- quilt,
  lsb-release
 Standards-Version: 3.9.1
 Vcs-Git: git://git.debian.org/git/pkg-utopia/policykit.git
