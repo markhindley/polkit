@@ -3,6 +3,8 @@ policykit-1 (0.99-1) UNRELEASED; urgency=low
   * New upstream release.
   * debian/patches/00git-fix-error-freeing.patch
     - Remove, fixed upstream.
+  * debian/patches/00git-pkexec-information-disclosure.patch
+    - Remove, merged upstream.
 
  -- Michael Biebl <biebl@debian.org>  Thu, 16 Sep 2010 23:44:59 +0200
 
