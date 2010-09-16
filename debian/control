@@ -45,6 +45,7 @@ Package: libpolkit-gobject-1-0
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Breaks: policykit-1 (<< 0.99), libpolkit-gtk-1-0 (<< 0.99), libpolkit-agent-1-0 (<< 0.99), libpolkit-backend-1-0 (<< 0.99)
 Description: PolicyKit Authorization API
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -87,6 +88,7 @@ Package: libpolkit-backend-1-0
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Breaks: policykit-1 (<< 0.99)
 Description: PolicyKit backend API
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
