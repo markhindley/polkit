@@ -7,8 +7,6 @@ libpolkit-backend-1.so.0 libpolkit-backend-1-0 #MINVER#
  polkit_backend_action_pool_get_all_actions@Base 0.94
  polkit_backend_action_pool_get_type@Base 0.94
  polkit_backend_action_pool_new@Base 0.94
- polkit_backend_authority_add_lockdown_for_action@Base 0.95
- polkit_backend_authority_add_lockdown_for_action_finish@Base 0.95
  polkit_backend_authority_authentication_agent_response@Base 0.94
  polkit_backend_authority_check_authorization@Base 0.94
  polkit_backend_authority_check_authorization_finish@Base 0.94
@@ -20,12 +18,11 @@ libpolkit-backend-1.so.0 libpolkit-backend-1-0 #MINVER#
  polkit_backend_authority_get_type@Base 0.94
  polkit_backend_authority_get_version@Base 0.95
  polkit_backend_authority_log@Base 0.96
+ polkit_backend_authority_register@Base 0.99
  polkit_backend_authority_register_authentication_agent@Base 0.94
- polkit_backend_authority_remove_lockdown_for_action@Base 0.95
- polkit_backend_authority_remove_lockdown_for_action_finish@Base 0.95
  polkit_backend_authority_revoke_temporary_authorization_by_id@Base 0.94
  polkit_backend_authority_revoke_temporary_authorizations@Base 0.94
- polkit_backend_authority_system_bus_name_owner_changed@Base 0.94
+ polkit_backend_authority_unregister@Base 0.99
  polkit_backend_authority_unregister_authentication_agent@Base 0.94
  polkit_backend_config_source_get_boolean@Base 0.94
  polkit_backend_config_source_get_double@Base 0.94
@@ -41,7 +38,6 @@ libpolkit-backend-1.so.0 libpolkit-backend-1-0 #MINVER#
  polkit_backend_local_authorization_store_get_type@Base 0.94
  polkit_backend_local_authorization_store_lookup@Base 0.94
  polkit_backend_local_authorization_store_new@Base 0.94
- polkit_backend_register_authority@Base 0.94
  polkit_backend_session_monitor_get_session_for_subject@Base 0.94
  polkit_backend_session_monitor_get_sessions@Base 0.94
  polkit_backend_session_monitor_get_type@Base 0.94
