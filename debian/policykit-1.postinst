@@ -28,6 +28,15 @@ set_perms() {
 	fi
 }
 
+get_pid() {
+    [ -n "$1" ] || return
+    [ -S /var/run/dbus/system_bus_socket ] || return
+
+    dbus-send --system --dest=org.freedesktop.DBus --print-reply \
+              /org/freedesktop/DBus org.freedesktop.DBus.GetConnectionUnixProcessID \
+              string:$1 2>/dev/null | awk '/uint32/ {print $2}'
+}
+
 case "$1" in
     configure)
 	set_perms root root 700 /var/lib/polkit-1
@@ -36,7 +45,7 @@ case "$1" in
 
 	# Kill the old polkitd daemon on upgrade, to ensure that the new
 	# version will be used at the next occasion.
-	start-stop-daemon --stop --quiet --oknodo --exec /usr/lib/policykit-1/polkitd
+	kill $(get_pid org.freedesktop.PolicyKit1) 2>/dev/null || true
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
