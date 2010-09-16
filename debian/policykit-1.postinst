@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for policykit
+# postinst script for policykit-1
 #
 # see: dh_installdeb(1)
 
