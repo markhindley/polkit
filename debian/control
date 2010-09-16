@@ -11,12 +11,12 @@ Build-Depends: cdbs,
  libeggdbus-1-dev (>= 0.6),
  libexpat1-dev,
  libpam0g-dev,
- libselinux1-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64],
+ libselinux1-dev [linux-any],
  gtk-doc-tools,
  xsltproc,
  quilt,
  lsb-release
-Standards-Version: 3.8.3
+Standards-Version: 3.9.1
 Vcs-Git: git://git.debian.org/git/pkg-utopia/policykit.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/policykit.git;a=summary
 Homepage: http://hal.freedesktop.org/docs/PolicyKit/

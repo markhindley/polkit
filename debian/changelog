@@ -1,3 +1,11 @@
+policykit-1 (0.96-3) UNRELEASED; urgency=low
+
+  * debian/control
+    - Use architecture wildcard linux-any for libselinux1-dev.
+    - Bump Standards-Version to 3.9.1.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 16 Sep 2010 22:39:40 +0200
+
 policykit-1 (0.96-2) unstable; urgency=medium
 
   * Urgency medium, just two small, but important bug fixes.
