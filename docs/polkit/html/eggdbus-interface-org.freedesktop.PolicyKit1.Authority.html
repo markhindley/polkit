@@ -8,23 +8,8 @@
 <link rel="up" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="prev" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="next" href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html" title="org.freedesktop.PolicyKit1.AuthenticationAgent Interface">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
-<link rel="chapter" href="polkit-intro.html" title="Introduction">
-<link rel="chapter" href="polkit-apps.html" title="Writing PolicyKit applications">
-<link rel="chapter" href="polkit-agents.html" title="Writing PolicyKit Authentication Agents">
-<link rel="chapter" href="polkit-extending.html" title="Extending PolicyKit">
-<link rel="part" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
-<link rel="part" href="ref-api.html" title="Part III. Client API Reference">
-<link rel="chapter" href="subjects.html" title="Subjects">
-<link rel="chapter" href="Identities.html" title="Identities">
-<link rel="part" href="ref-backend-api.html" title="Part IV. Backend API Reference">
-<link rel="part" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
-<link rel="part" href="manpages.html" title="Part VI. Manual Pages">
-<link rel="chapter" href="polkit-hierarchy.html" title="Object Hierarchy">
-<link rel="index" href="polit-index.html" title="Index">
-<link rel="appendix" href="license.html" title="Appendix A. License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -87,8 +72,6 @@ Structure    <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.
                                   OUT Array&lt;<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-TemporaryAuthorization" title="The TemporaryAuthorization Structure">TemporaryAuthorization</a>&gt;  temporary_authorizations)
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RevokeTemporaryAuthorizations" title="RevokeTemporaryAuthorizations ()">RevokeTemporaryAuthorizations</a>    (IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>                        subject)
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RevokeTemporaryAuthorizationById" title="RevokeTemporaryAuthorizationById ()">RevokeTemporaryAuthorizationById</a> (IN  String                         id)
-<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction" title="AddLockdownForAction ()">AddLockdownForAction</a>             (IN  String                         action_id)
-<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction" title="RemoveLockdownForAction ()">RemoveLockdownForAction</a>          (IN  String                         action_id)
     </pre>
 </div>
 <div class="refsect1" title="Signals">
@@ -283,8 +266,7 @@ The passed <em class="parameter"><code>cancellation_id</code></em> is already in
 <pre class="programlisting">
 {
   None                   = 0x00000000,
-  TemporaryAuthorization = 0x00000001,
-  Lockdown               = 0x00000002
+  TemporaryAuthorization = 0x00000001
 }
           </pre>
 <p>
@@ -307,12 +289,6 @@ No flags set.
 <td><p><a name="eggdbus-constant-AuthorityFeatures.TemporaryAuthorization"></a><span class="term"><code class="literal">TemporaryAuthorization</code></span></p></td>
 <td><p>
 The authority supports temporary authorizations that can be obtained through authentication.
-      </p></td>
-</tr>
-<tr>
-<td><p><a name="eggdbus-constant-AuthorityFeatures.Lockdown"></a><span class="term"><code class="literal">Lockdown</code></span></p></td>
-<td><p>
-The authority supports the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction" title="AddLockdownForAction ()">AddLockdownForAction()</a> and <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction" title="RemoveLockdownForAction ()">RemoveLockdownForAction()</a> methods.
       </p></td>
 </tr>
 </tbody>
@@ -545,7 +521,7 @@ TRUE if the given <a class="link" href="eggdbus-interface-org.freedesktop.Policy
 <tr>
 <td><p><span class="term"><code class="literal">Dict&lt;String,String&gt; <em class="structfield"><code>details</code></em></code></span></p></td>
 <td><p>
-Details for the result or empty if not authorized. Known key/value-pairs include <code class="literal">polkit.temporary_authorization_id</code> (if the authorization is temporary, this is set to the opaque temporary authorization id), <code class="literal">polkit.retains_authorization_after_challenge</code> (Set to a non-empty string if the authorization will be retained after authentication (if is_challenge is TRUE)) and <code class="literal">polkit.lockdown</code> (set to a non-empty string if the action is locked down).
+Details for the result or empty if not authorized. Known key/value-pairs include <code class="literal">polkit.temporary_authorization_id</code> (if the authorization is temporary, this is set to the opaque temporary authorization id), <code class="literal">polkit.retains_authorization_after_challenge</code> (Set to a non-empty string if the authorization will be retained after authentication (if is_challenge is TRUE)).
       </p></td>
 </tr>
 </tbody>
@@ -881,44 +857,6 @@ The opaque identifier of the temporary authorization.
 </tr></tbody>
 </table></div>
 </div>
-<hr>
-<div class="refsect2" title="AddLockdownForAction ()">
-<a name="eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction"></a><h3>AddLockdownForAction ()</h3>
-<pre class="programlisting">
-AddLockdownForAction (IN  String  action_id)
-    </pre>
-<p>
-Locks down an action so administrator authentication is always needed to obtain a temporary authorization for the action.
-    </p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody><tr>
-<td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>action_id</code></em></code>:</span></p></td>
-<td><p>
-Identifier for the action.
-      </p></td>
-</tr></tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2" title="RemoveLockdownForAction ()">
-<a name="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RemoveLockdownForAction"></a><h3>RemoveLockdownForAction ()</h3>
-<pre class="programlisting">
-RemoveLockdownForAction (IN  String  action_id)
-    </pre>
-<p>
-Removes the effect of a previous <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AddLockdownForAction" title="AddLockdownForAction ()">AddLockdownForAction()</a> call.
-    </p>
-<div class="variablelist"><table border="0">
-<col align="left" valign="top">
-<tbody><tr>
-<td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>action_id</code></em></code>:</span></p></td>
-<td><p>
-Identifier for the action.
-      </p></td>
-</tr></tbody>
-</table></div>
-</div>
 </div>
 <div class="refsect1" title="Signal Details">
 <a name="eggdbus-if-signal-details-org.freedesktop.PolicyKit1.Authority"></a><h2>Signal Details</h2>
@@ -971,6 +909,6 @@ The features supported by the currently used Authority backend.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.15</div>
 </body>
 </html>

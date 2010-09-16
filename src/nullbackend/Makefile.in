@@ -141,8 +141,6 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
-EGG_DBUS_CFLAGS = @EGG_DBUS_CFLAGS@
-EGG_DBUS_LIBS = @EGG_DBUS_LIBS@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
@@ -295,6 +293,7 @@ INCLUDES = \
 	-DPACKAGE_LIB_DIR=\""$(libdir)"\"               	\
 	-D_POSIX_PTHREAD_SEMANTICS                      	\
 	-D_REENTRANT	                                	\
+	-D_POLKIT_BACKEND_COMPILATION				\
 	$(NULL)
 
 polkitmodulesdir = $(libdir)/polkit-1/extensions

@@ -36,13 +36,9 @@ G_BEGIN_DECLS
  * Error domain for errors when using PolicyKit. Errors in this domain will be from the #PolkitError
  * enumeration. See #GError for information on error domains
  */
-#define POLKIT_ERROR polkit_error_quark()
+#define POLKIT_ERROR (polkit_error_quark())
 
 GQuark polkit_error_quark (void);
-
-GType polkit_error_get_type (void) G_GNUC_CONST;
-
-#define POLKIT_TYPE_ERROR (polkit_error_get_type ())
 
 /**
  * PolkitError:

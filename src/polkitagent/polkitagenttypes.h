@@ -33,6 +33,9 @@ G_BEGIN_DECLS
 struct _PolkitAgentListener;
 typedef struct _PolkitAgentListener PolkitAgentListener;
 
+struct _PolkitAgentTextListener;
+typedef struct _PolkitAgentTextListener PolkitAgentTextListener;
+
 struct _PolkitAgentSession;
 typedef struct _PolkitAgentSession PolkitAgentSession;
 

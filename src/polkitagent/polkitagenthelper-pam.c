@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 Red Hat, Inc.
+ * Copyright (C) 2008, 2010 Red Hat, Inc.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,8 @@
  */
 
 #include "config.h"
+#include "polkitagenthelperprivate.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,31 +32,6 @@
 #include <security/pam_appl.h>
 
 #include <polkit/polkit.h>
-
-#ifdef HAVE_SOLARIS
-#  define LOG_AUTHPRIV    (10<<3)
-#endif
-
-#ifndef HAVE_CLEARENV
-extern char **environ;
-
-static int
-clearenv (void)
-{
-	if (environ != NULL)
-		environ[0] = NULL;
-	return 0;
-}
-#endif
-
-/* Development aid: define PAH_DEBUG to get debugging output. Do _NOT_
- * enable this in production builds; it may leak passwords and other
- * sensitive information.
- */
-#undef PAH_DEBUG
-// #define PAH_DEBUG
-
-static gboolean send_dbus_message (const char *cookie, const char *user);
 
 static int conversation_function (int n, const struct pam_message **msg, struct pam_response **resp, void *data);
 
@@ -72,7 +49,7 @@ main (int argc, char *argv[])
   pam_h = NULL;
 
   /* clear the entire environment to avoid attacks using with libraries honoring environment variables */
-  if (clearenv () != 0)
+  if (_polkit_clearenv () != 0)
     goto error;
 
   /* set a minimal environment */
@@ -193,9 +170,7 @@ main (int argc, char *argv[])
 #endif /* PAH_DEBUG */
 
   fprintf (stdout, "SUCCESS\n");
-  fflush (stdout);
-  fflush (stderr);
-  usleep (10 * 1000); /* since fflush(3) seems buggy */
+  flush_and_wait();
   return 0;
 
 error:
@@ -203,9 +178,7 @@ error:
     pam_end (pam_h, rc);
 
   fprintf (stdout, "FAILURE\n");
-  fflush (stdout);
-  fflush (stderr);
-  usleep (10 * 1000); /* since fflush(3) seems buggy */
+  flush_and_wait();
   return 1;
 }
 
@@ -231,15 +204,32 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
         {
 
         case PAM_PROMPT_ECHO_OFF:
+#ifdef PAH_DEBUG
+          fprintf (stderr, "polkit-agent-helper-1: writing `PAM_PROMPT_ECHO_OFF ' to stdout\n");
+#endif /* PAH_DEBUG */
           fprintf (stdout, "PAM_PROMPT_ECHO_OFF ");
           goto conv1;
 
         case PAM_PROMPT_ECHO_ON:
+#ifdef PAH_DEBUG
+          fprintf (stderr, "polkit-agent-helper-1: writing `PAM_PROMPT_ECHO_ON ' to stdout\n");
+#endif /* PAH_DEBUG */
           fprintf (stdout, "PAM_PROMPT_ECHO_ON ");
         conv1:
+#ifdef PAH_DEBUG
+          fprintf (stderr, "polkit-agent-helper-1: writing `%s' to stdout\n", msg[i]->msg);
+#endif /* PAH_DEBUG */
           fputs (msg[i]->msg, stdout);
           if (strlen (msg[i]->msg) > 0 && msg[i]->msg[strlen (msg[i]->msg) - 1] != '\n')
-            fputc ('\n', stdout);
+            {
+#ifdef PAH_DEBUG
+              fprintf (stderr, "polkit-agent-helper-1: writing newline to stdout\n");
+#endif /* PAH_DEBUG */
+              fputc ('\n', stdout);
+            }
+#ifdef PAH_DEBUG
+          fprintf (stderr, "polkit-agent-helper-1: flushing stdout\n");
+#endif /* PAH_DEBUG */
           fflush (stdout);
 
           if (fgets (buf, sizeof buf, stdin) == NULL)
@@ -288,52 +278,4 @@ error:
   memset (aresp, 0, n * sizeof *aresp);
   *resp = NULL;
   return PAM_CONV_ERR;
-}
-
-static gboolean
-send_dbus_message (const char *cookie, const char *user)
-{
-  PolkitAuthority *authority;
-  PolkitIdentity *identity;
-  GError *error;
-  gboolean ret;
-
-  ret = FALSE;
-
-  error = NULL;
-
-  g_type_init ();
-
-  authority = polkit_authority_get ();
-
-  identity = polkit_unix_user_new_for_name (user, &error);
-  if (identity == NULL)
-    {
-      g_printerr ("Error constructing identity: %s\n", error->message);
-      g_error_free (error);
-      goto out;
-    }
-
-  if (!polkit_authority_authentication_agent_response_sync (authority,
-                                                            cookie,
-                                                            identity,
-                                                            NULL,
-                                                            &error))
-    {
-      g_printerr ("polkit-agent-helper-1: error response to PolicyKit daemon: %s\n", error->message);
-      g_error_free (error);
-      goto out;
-    }
-
-  ret = TRUE;
-
- out:
-
-  if (identity != NULL)
-    g_object_unref (identity);
-
-  if (authority != NULL)
-    g_object_unref (authority);
-
-  return ret;
 }

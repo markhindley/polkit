@@ -153,6 +153,7 @@ polkit_unix_group_class_init (PolkitUnixGroupClass *klass)
 gint
 polkit_unix_group_get_gid (PolkitUnixGroup *group)
 {
+  g_return_val_if_fail (POLKIT_IS_UNIX_GROUP (group), -1);
   return group->gid;
 }
 
@@ -167,6 +168,7 @@ void
 polkit_unix_group_set_gid (PolkitUnixGroup *group,
                           gint gid)
 {
+  g_return_if_fail (POLKIT_IS_UNIX_GROUP (group));
   group->gid = gid;
 }
 
@@ -194,7 +196,8 @@ polkit_unix_group_new (gint gid)
  * Creates a new #PolkitUnixGroup object for a group with the group name
  * @name.
  *
- * Returns: A #PolkitUnixGroup object or %NULL if @error is set.
+ * Returns: (allow-none): A #PolkitUnixGroup object or %NULL if @error
+ * is set.
  */
 PolkitIdentity *
 polkit_unix_group_new_for_name (const gchar    *name,
@@ -202,6 +205,9 @@ polkit_unix_group_new_for_name (const gchar    *name,
 {
   struct group *group;
   PolkitIdentity *identity;
+
+  g_return_val_if_fail (name != NULL, NULL);
+  g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
   identity = NULL;
 

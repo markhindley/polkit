@@ -48,7 +48,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(libexecdir)"
 PROGRAMS = $(libexec_PROGRAMS)
 am__objects_1 =
-am_polkitd_OBJECTS = polkitd-main.$(OBJEXT) $(am__objects_1)
+am_polkitd_OBJECTS = polkitd-main.$(OBJEXT) \
+	polkitd-gposixsignal.$(OBJEXT) $(am__objects_1)
 polkitd_OBJECTS = $(am_polkitd_OBJECTS)
 am__DEPENDENCIES_1 =
 polkitd_DEPENDENCIES = $(am__DEPENDENCIES_1) \
@@ -118,8 +119,6 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
-EGG_DBUS_CFLAGS = @EGG_DBUS_CFLAGS@
-EGG_DBUS_LIBS = @EGG_DBUS_LIBS@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
@@ -274,7 +273,8 @@ INCLUDES = \
 	$(NULL)
 
 polkitd_SOURCES = \
-	main.c								\
+					main.c				\
+	gposixsignal.h			gposixsignal.c			\
 	$(NULL)
 
 polkitd_CFLAGS = \
@@ -378,6 +378,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkitd-gposixsignal.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkitd-main.Po@am__quote@
 
 .c.o:
@@ -419,6 +420,22 @@ polkitd-main.obj: main.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='main.c' object='polkitd-main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkitd_CFLAGS) $(CFLAGS) -c -o polkitd-main.obj `if test -f 'main.c'; then $(CYGPATH_W) 'main.c'; else $(CYGPATH_W) '$(srcdir)/main.c'; fi`
+
+polkitd-gposixsignal.o: gposixsignal.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkitd_CFLAGS) $(CFLAGS) -MT polkitd-gposixsignal.o -MD -MP -MF $(DEPDIR)/polkitd-gposixsignal.Tpo -c -o polkitd-gposixsignal.o `test -f 'gposixsignal.c' || echo '$(srcdir)/'`gposixsignal.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkitd-gposixsignal.Tpo $(DEPDIR)/polkitd-gposixsignal.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gposixsignal.c' object='polkitd-gposixsignal.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkitd_CFLAGS) $(CFLAGS) -c -o polkitd-gposixsignal.o `test -f 'gposixsignal.c' || echo '$(srcdir)/'`gposixsignal.c
+
+polkitd-gposixsignal.obj: gposixsignal.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkitd_CFLAGS) $(CFLAGS) -MT polkitd-gposixsignal.obj -MD -MP -MF $(DEPDIR)/polkitd-gposixsignal.Tpo -c -o polkitd-gposixsignal.obj `if test -f 'gposixsignal.c'; then $(CYGPATH_W) 'gposixsignal.c'; else $(CYGPATH_W) '$(srcdir)/gposixsignal.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkitd-gposixsignal.Tpo $(DEPDIR)/polkitd-gposixsignal.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='gposixsignal.c' object='polkitd-gposixsignal.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkitd_CFLAGS) $(CFLAGS) -c -o polkitd-gposixsignal.obj `if test -f 'gposixsignal.c'; then $(CYGPATH_W) 'gposixsignal.c'; else $(CYGPATH_W) '$(srcdir)/gposixsignal.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

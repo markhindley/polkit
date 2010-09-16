@@ -25,7 +25,7 @@
 #include <polkit/polkit.h>
 #include "polkitbackendlocalauthorizationstore.h"
 
-/**
+/* <internal>
  * SECTION:polkitbackendlocalauthorizationstore
  * @title: PolkitBackendLocalAuthorizationStore
  * @short_description: Watches a directory for authorization files
@@ -640,6 +640,8 @@ polkit_backend_local_authorization_store_ensure (PolkitBackendLocalAuthorization
 
       g_free (filename);
     }
+
+  store->priv->has_data = TRUE;
 
  out:
   g_list_foreach (files, (GFunc) g_object_unref, NULL);

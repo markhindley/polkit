@@ -14,12 +14,24 @@ INCLUDES =                                                      \
         -DPACKAGE_LIB_DIR=\""$(libdir)"\"                       \
         -D_POSIX_PTHREAD_SEMANTICS                              \
         -D_REENTRANT                                            \
-	-DEGG_DBUS_I_KNOW_API_IS_SUBJECT_TO_CHANGE		\
         $(NULL)
 
 BUILT_SOURCES = 						\
 	marshal.stamp						\
+	polkitagentenumtypes.c		polkitagentenumtypes.h	\
 	$(NULL)
+
+enum_headers = polkitagentlistener.h
+
+polkitagentenumtypes.h: $(enum_headers) polkitagentenumtypes.h.template
+	( top_builddir=`cd $(top_builddir) && pwd`; \
+	 cd $(srcdir) && glib-mkenums --template polkitagentenumtypes.h.template $(enum_headers)) > \
+	   polkitagentenumtypes.h.tmp && mv polkitagentenumtypes.h.tmp polkitagentenumtypes.h
+
+polkitagentenumtypes.c: $(enum_headers) polkitagentenumtypes.c.template
+	( top_builddir=`cd $(top_builddir) && pwd`; \
+	 cd $(srcdir) && glib-mkenums --template polkitagentenumtypes.c.template $(enum_headers)) > \
+	   polkitagentenumtypes.c.tmp && mv polkitagentenumtypes.c.tmp polkitagentenumtypes.c
 
 marshal.stamp : Makefile.am $(srcdir)/polkitagentmarshal.list
 	glib-genmarshal --prefix=_polkit_agent_marshal $(srcdir)/polkitagentmarshal.list --header > polkitagentmarshal.h.tmp && mv polkitagentmarshal.h.tmp polkitagentmarshal.h
@@ -34,9 +46,11 @@ libpolkit_agent_1includedir=$(includedir)/polkit-1/polkitagent
 
 libpolkit_agent_1include_HEADERS =                        				\
 	polkitagent.h									\
+	polkitagentenumtypes.h								\
 	polkitagenttypes.h								\
 	polkitagentsession.h								\
 	polkitagentlistener.h								\
+	polkitagenttextlistener.h							\
         $(NULL)
 
 libpolkit_agent_1_la_SOURCES =                                   			\
@@ -46,20 +60,18 @@ libpolkit_agent_1_la_SOURCES =                                   			\
 	polkitagenttypes.h								\
 	polkitagentsession.h			polkitagentsession.c			\
 	polkitagentlistener.h			polkitagentlistener.c			\
+	polkitagenttextlistener.h		polkitagenttextlistener.c		\
         $(NULL)
 
 libpolkit_agent_1_la_CFLAGS =                                        	\
         -D_POLKIT_COMPILATION                                  		\
 	-D_POLKIT_AGENT_COMPILATION					\
         $(GLIB_CFLAGS)							\
-        $(EGG_DBUS_CFLAGS)						\
         $(NULL)
 
 libpolkit_agent_1_la_LIBADD =                               		\
         $(GLIB_LIBS)							\
-        $(EGG_DBUS_LIBS)						\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
-	$(top_builddir)/src/polkit/libpolkit-private.la			\
 	$(EXPAT_LIBS)							\
         $(NULL)
 
@@ -68,8 +80,15 @@ libpolkit_agent_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
 libexec_PROGRAMS = polkit-agent-helper-1
 
 polkit_agent_helper_1_SOURCES = 					\
-	polkitagenthelper.c						\
+	polkitagenthelperprivate.c polkitagenthelperprivate.h		\
 	$(NULL)
+
+if POLKIT_AUTHFW_PAM
+polkit_agent_helper_1_SOURCES += polkitagenthelper-pam.c
+endif
+if POLKIT_AUTHFW_SHADOW
+polkit_agent_helper_1_SOURCES += polkitagenthelper-shadow.c
+endif
 
 polkit_agent_helper_1_CFLAGS  = 					\
         -D_POLKIT_COMPILATION                                  		\
@@ -89,7 +108,7 @@ install-exec-hook:
 	-chown root $(DESTDIR)$(libexecdir)/polkit-agent-helper-1
 	-chmod 4755 $(DESTDIR)$(libexecdir)/polkit-agent-helper-1
 
-EXTRA_DIST = polkitagentmarshal.list
+EXTRA_DIST = polkitagentmarshal.list polkitagentenumtypes.h.template polkitagentenumtypes.c.template
 
 dist-hook :
 	(for i in $(marshal_built_sources) $(BUILT_SOURCES) ; do rm -f $(distdir)/$$i ; done)

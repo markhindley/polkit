@@ -37,6 +37,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 libexec_PROGRAMS = polkit-agent-helper-1$(EXEEXT)
+@POLKIT_AUTHFW_PAM_TRUE@am__append_1 = polkitagenthelper-pam.c
+@POLKIT_AUTHFW_SHADOW_TRUE@am__append_2 = polkitagenthelper-shadow.c
 subdir = src/polkitagent
 DIST_COMMON = $(libpolkit_agent_1include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -74,16 +76,17 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libexecdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libpolkit_agent_1_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
-	$(top_builddir)/src/polkit/libpolkit-private.la \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__objects_1 =
-am__objects_2 = $(am__objects_1)
+am__objects_2 = libpolkit_agent_1_la-polkitagentenumtypes.lo \
+	$(am__objects_1)
 am__objects_3 = libpolkit_agent_1_la-polkitagentmarshal.lo
 am_libpolkit_agent_1_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	libpolkit_agent_1_la-polkitagentsession.lo \
-	libpolkit_agent_1_la-polkitagentlistener.lo $(am__objects_1)
+	libpolkit_agent_1_la-polkitagentlistener.lo \
+	libpolkit_agent_1_la-polkitagenttextlistener.lo \
+	$(am__objects_1)
 libpolkit_agent_1_la_OBJECTS = $(am_libpolkit_agent_1_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -93,9 +96,14 @@ libpolkit_agent_1_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(libpolkit_agent_1_la_CFLAGS) $(CFLAGS) \
 	$(libpolkit_agent_1_la_LDFLAGS) $(LDFLAGS) -o $@
 PROGRAMS = $(libexec_PROGRAMS)
+am__polkit_agent_helper_1_SOURCES_DIST = polkitagenthelperprivate.c \
+	polkitagenthelperprivate.h polkitagenthelper-pam.c \
+	polkitagenthelper-shadow.c
+@POLKIT_AUTHFW_PAM_TRUE@am__objects_4 = polkit_agent_helper_1-polkitagenthelper-pam.$(OBJEXT)
+@POLKIT_AUTHFW_SHADOW_TRUE@am__objects_5 = polkit_agent_helper_1-polkitagenthelper-shadow.$(OBJEXT)
 am_polkit_agent_helper_1_OBJECTS =  \
-	polkit_agent_helper_1-polkitagenthelper.$(OBJEXT) \
-	$(am__objects_1)
+	polkit_agent_helper_1-polkitagenthelperprivate.$(OBJEXT) \
+	$(am__objects_1) $(am__objects_4) $(am__objects_5)
 polkit_agent_helper_1_OBJECTS = $(am_polkit_agent_helper_1_OBJECTS)
 polkit_agent_helper_1_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
@@ -133,7 +141,7 @@ am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(libpolkit_agent_1_la_SOURCES) \
 	$(polkit_agent_helper_1_SOURCES)
 DIST_SOURCES = $(libpolkit_agent_1_la_SOURCES) \
-	$(polkit_agent_helper_1_SOURCES)
+	$(am__polkit_agent_helper_1_SOURCES_DIST)
 HEADERS = $(libpolkit_agent_1include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -164,8 +172,6 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
-EGG_DBUS_CFLAGS = @EGG_DBUS_CFLAGS@
-EGG_DBUS_LIBS = @EGG_DBUS_LIBS@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
@@ -319,21 +325,24 @@ INCLUDES = \
         -DPACKAGE_LIB_DIR=\""$(libdir)"\"                       \
         -D_POSIX_PTHREAD_SEMANTICS                              \
         -D_REENTRANT                                            \
-	-DEGG_DBUS_I_KNOW_API_IS_SUBJECT_TO_CHANGE		\
         $(NULL)
 
 BUILT_SOURCES = \
 	marshal.stamp						\
+	polkitagentenumtypes.c		polkitagentenumtypes.h	\
 	$(NULL)
 
+enum_headers = polkitagentlistener.h
 marshal_built_sources = polkitagentmarshal.h polkitagentmarshal.c
 lib_LTLIBRARIES = libpolkit-agent-1.la
 libpolkit_agent_1includedir = $(includedir)/polkit-1/polkitagent
 libpolkit_agent_1include_HEADERS = \
 	polkitagent.h									\
+	polkitagentenumtypes.h								\
 	polkitagenttypes.h								\
 	polkitagentsession.h								\
 	polkitagentlistener.h								\
+	polkitagenttextlistener.h							\
         $(NULL)
 
 libpolkit_agent_1_la_SOURCES = \
@@ -343,28 +352,25 @@ libpolkit_agent_1_la_SOURCES = \
 	polkitagenttypes.h								\
 	polkitagentsession.h			polkitagentsession.c			\
 	polkitagentlistener.h			polkitagentlistener.c			\
+	polkitagenttextlistener.h		polkitagenttextlistener.c		\
         $(NULL)
 
 libpolkit_agent_1_la_CFLAGS = \
         -D_POLKIT_COMPILATION                                  		\
 	-D_POLKIT_AGENT_COMPILATION					\
         $(GLIB_CFLAGS)							\
-        $(EGG_DBUS_CFLAGS)						\
         $(NULL)
 
 libpolkit_agent_1_la_LIBADD = \
         $(GLIB_LIBS)							\
-        $(EGG_DBUS_LIBS)						\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
-	$(top_builddir)/src/polkit/libpolkit-private.la			\
 	$(EXPAT_LIBS)							\
         $(NULL)
 
 libpolkit_agent_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
-polkit_agent_helper_1_SOURCES = \
-	polkitagenthelper.c						\
-	$(NULL)
-
+polkit_agent_helper_1_SOURCES = polkitagenthelperprivate.c \
+	polkitagenthelperprivate.h $(NULL) $(am__append_1) \
+	$(am__append_2)
 polkit_agent_helper_1_CFLAGS = \
         -D_POLKIT_COMPILATION                                  		\
 	$(GLIB_CFLAGS)							\
@@ -375,7 +381,7 @@ polkit_agent_helper_1_LDADD = \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(NULL)
 
-EXTRA_DIST = polkitagentmarshal.list
+EXTRA_DIST = polkitagentmarshal.list polkitagentenumtypes.h.template polkitagentenumtypes.c.template
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -497,10 +503,14 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_agent_1_la-polkitagentenumtypes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_agent_1_la-polkitagentlistener.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_agent_1_la-polkitagentmarshal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_agent_1_la-polkitagentsession.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit_agent_helper_1-polkitagenthelper.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_agent_1_la-polkitagenttextlistener.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-pam.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-shadow.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/polkit_agent_helper_1-polkitagenthelperprivate.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -526,6 +536,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
+libpolkit_agent_1_la-polkitagentenumtypes.lo: polkitagentenumtypes.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_agent_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_agent_1_la-polkitagentenumtypes.lo -MD -MP -MF $(DEPDIR)/libpolkit_agent_1_la-polkitagentenumtypes.Tpo -c -o libpolkit_agent_1_la-polkitagentenumtypes.lo `test -f 'polkitagentenumtypes.c' || echo '$(srcdir)/'`polkitagentenumtypes.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_agent_1_la-polkitagentenumtypes.Tpo $(DEPDIR)/libpolkit_agent_1_la-polkitagentenumtypes.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagentenumtypes.c' object='libpolkit_agent_1_la-polkitagentenumtypes.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_agent_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_agent_1_la-polkitagentenumtypes.lo `test -f 'polkitagentenumtypes.c' || echo '$(srcdir)/'`polkitagentenumtypes.c
+
 libpolkit_agent_1_la-polkitagentmarshal.lo: polkitagentmarshal.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_agent_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_agent_1_la-polkitagentmarshal.lo -MD -MP -MF $(DEPDIR)/libpolkit_agent_1_la-polkitagentmarshal.Tpo -c -o libpolkit_agent_1_la-polkitagentmarshal.lo `test -f 'polkitagentmarshal.c' || echo '$(srcdir)/'`polkitagentmarshal.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_agent_1_la-polkitagentmarshal.Tpo $(DEPDIR)/libpolkit_agent_1_la-polkitagentmarshal.Plo
@@ -550,21 +568,61 @@ libpolkit_agent_1_la-polkitagentlistener.lo: polkitagentlistener.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_agent_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_agent_1_la-polkitagentlistener.lo `test -f 'polkitagentlistener.c' || echo '$(srcdir)/'`polkitagentlistener.c
 
-polkit_agent_helper_1-polkitagenthelper.o: polkitagenthelper.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -MT polkit_agent_helper_1-polkitagenthelper.o -MD -MP -MF $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper.Tpo -c -o polkit_agent_helper_1-polkitagenthelper.o `test -f 'polkitagenthelper.c' || echo '$(srcdir)/'`polkitagenthelper.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper.Tpo $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper.Po
+libpolkit_agent_1_la-polkitagenttextlistener.lo: polkitagenttextlistener.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_agent_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_agent_1_la-polkitagenttextlistener.lo -MD -MP -MF $(DEPDIR)/libpolkit_agent_1_la-polkitagenttextlistener.Tpo -c -o libpolkit_agent_1_la-polkitagenttextlistener.lo `test -f 'polkitagenttextlistener.c' || echo '$(srcdir)/'`polkitagenttextlistener.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_agent_1_la-polkitagenttextlistener.Tpo $(DEPDIR)/libpolkit_agent_1_la-polkitagenttextlistener.Plo
 @am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenthelper.c' object='polkit_agent_helper_1-polkitagenthelper.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenttextlistener.c' object='libpolkit_agent_1_la-polkitagenttextlistener.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -c -o polkit_agent_helper_1-polkitagenthelper.o `test -f 'polkitagenthelper.c' || echo '$(srcdir)/'`polkitagenthelper.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_agent_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_agent_1_la-polkitagenttextlistener.lo `test -f 'polkitagenttextlistener.c' || echo '$(srcdir)/'`polkitagenttextlistener.c
 
-polkit_agent_helper_1-polkitagenthelper.obj: polkitagenthelper.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -MT polkit_agent_helper_1-polkitagenthelper.obj -MD -MP -MF $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper.Tpo -c -o polkit_agent_helper_1-polkitagenthelper.obj `if test -f 'polkitagenthelper.c'; then $(CYGPATH_W) 'polkitagenthelper.c'; else $(CYGPATH_W) '$(srcdir)/polkitagenthelper.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper.Tpo $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper.Po
+polkit_agent_helper_1-polkitagenthelperprivate.o: polkitagenthelperprivate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -MT polkit_agent_helper_1-polkitagenthelperprivate.o -MD -MP -MF $(DEPDIR)/polkit_agent_helper_1-polkitagenthelperprivate.Tpo -c -o polkit_agent_helper_1-polkitagenthelperprivate.o `test -f 'polkitagenthelperprivate.c' || echo '$(srcdir)/'`polkitagenthelperprivate.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkit_agent_helper_1-polkitagenthelperprivate.Tpo $(DEPDIR)/polkit_agent_helper_1-polkitagenthelperprivate.Po
 @am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenthelper.c' object='polkit_agent_helper_1-polkitagenthelper.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenthelperprivate.c' object='polkit_agent_helper_1-polkitagenthelperprivate.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -c -o polkit_agent_helper_1-polkitagenthelper.obj `if test -f 'polkitagenthelper.c'; then $(CYGPATH_W) 'polkitagenthelper.c'; else $(CYGPATH_W) '$(srcdir)/polkitagenthelper.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -c -o polkit_agent_helper_1-polkitagenthelperprivate.o `test -f 'polkitagenthelperprivate.c' || echo '$(srcdir)/'`polkitagenthelperprivate.c
+
+polkit_agent_helper_1-polkitagenthelperprivate.obj: polkitagenthelperprivate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -MT polkit_agent_helper_1-polkitagenthelperprivate.obj -MD -MP -MF $(DEPDIR)/polkit_agent_helper_1-polkitagenthelperprivate.Tpo -c -o polkit_agent_helper_1-polkitagenthelperprivate.obj `if test -f 'polkitagenthelperprivate.c'; then $(CYGPATH_W) 'polkitagenthelperprivate.c'; else $(CYGPATH_W) '$(srcdir)/polkitagenthelperprivate.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkit_agent_helper_1-polkitagenthelperprivate.Tpo $(DEPDIR)/polkit_agent_helper_1-polkitagenthelperprivate.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenthelperprivate.c' object='polkit_agent_helper_1-polkitagenthelperprivate.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -c -o polkit_agent_helper_1-polkitagenthelperprivate.obj `if test -f 'polkitagenthelperprivate.c'; then $(CYGPATH_W) 'polkitagenthelperprivate.c'; else $(CYGPATH_W) '$(srcdir)/polkitagenthelperprivate.c'; fi`
+
+polkit_agent_helper_1-polkitagenthelper-pam.o: polkitagenthelper-pam.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -MT polkit_agent_helper_1-polkitagenthelper-pam.o -MD -MP -MF $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-pam.Tpo -c -o polkit_agent_helper_1-polkitagenthelper-pam.o `test -f 'polkitagenthelper-pam.c' || echo '$(srcdir)/'`polkitagenthelper-pam.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-pam.Tpo $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-pam.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenthelper-pam.c' object='polkit_agent_helper_1-polkitagenthelper-pam.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -c -o polkit_agent_helper_1-polkitagenthelper-pam.o `test -f 'polkitagenthelper-pam.c' || echo '$(srcdir)/'`polkitagenthelper-pam.c
+
+polkit_agent_helper_1-polkitagenthelper-pam.obj: polkitagenthelper-pam.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -MT polkit_agent_helper_1-polkitagenthelper-pam.obj -MD -MP -MF $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-pam.Tpo -c -o polkit_agent_helper_1-polkitagenthelper-pam.obj `if test -f 'polkitagenthelper-pam.c'; then $(CYGPATH_W) 'polkitagenthelper-pam.c'; else $(CYGPATH_W) '$(srcdir)/polkitagenthelper-pam.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-pam.Tpo $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-pam.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenthelper-pam.c' object='polkit_agent_helper_1-polkitagenthelper-pam.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -c -o polkit_agent_helper_1-polkitagenthelper-pam.obj `if test -f 'polkitagenthelper-pam.c'; then $(CYGPATH_W) 'polkitagenthelper-pam.c'; else $(CYGPATH_W) '$(srcdir)/polkitagenthelper-pam.c'; fi`
+
+polkit_agent_helper_1-polkitagenthelper-shadow.o: polkitagenthelper-shadow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -MT polkit_agent_helper_1-polkitagenthelper-shadow.o -MD -MP -MF $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-shadow.Tpo -c -o polkit_agent_helper_1-polkitagenthelper-shadow.o `test -f 'polkitagenthelper-shadow.c' || echo '$(srcdir)/'`polkitagenthelper-shadow.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-shadow.Tpo $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-shadow.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenthelper-shadow.c' object='polkit_agent_helper_1-polkitagenthelper-shadow.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -c -o polkit_agent_helper_1-polkitagenthelper-shadow.o `test -f 'polkitagenthelper-shadow.c' || echo '$(srcdir)/'`polkitagenthelper-shadow.c
+
+polkit_agent_helper_1-polkitagenthelper-shadow.obj: polkitagenthelper-shadow.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -MT polkit_agent_helper_1-polkitagenthelper-shadow.obj -MD -MP -MF $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-shadow.Tpo -c -o polkit_agent_helper_1-polkitagenthelper-shadow.obj `if test -f 'polkitagenthelper-shadow.c'; then $(CYGPATH_W) 'polkitagenthelper-shadow.c'; else $(CYGPATH_W) '$(srcdir)/polkitagenthelper-shadow.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-shadow.Tpo $(DEPDIR)/polkit_agent_helper_1-polkitagenthelper-shadow.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitagenthelper-shadow.c' object='polkit_agent_helper_1-polkitagenthelper-shadow.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(polkit_agent_helper_1_CFLAGS) $(CFLAGS) -c -o polkit_agent_helper_1-polkitagenthelper-shadow.obj `if test -f 'polkitagenthelper-shadow.c'; then $(CYGPATH_W) 'polkitagenthelper-shadow.c'; else $(CYGPATH_W) '$(srcdir)/polkitagenthelper-shadow.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -805,6 +863,16 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libexecPROGRAMS \
 	uninstall-libLTLIBRARIES uninstall-libexecPROGRAMS \
 	uninstall-libpolkit_agent_1includeHEADERS
 
+
+polkitagentenumtypes.h: $(enum_headers) polkitagentenumtypes.h.template
+	( top_builddir=`cd $(top_builddir) && pwd`; \
+	 cd $(srcdir) && glib-mkenums --template polkitagentenumtypes.h.template $(enum_headers)) > \
+	   polkitagentenumtypes.h.tmp && mv polkitagentenumtypes.h.tmp polkitagentenumtypes.h
+
+polkitagentenumtypes.c: $(enum_headers) polkitagentenumtypes.c.template
+	( top_builddir=`cd $(top_builddir) && pwd`; \
+	 cd $(srcdir) && glib-mkenums --template polkitagentenumtypes.c.template $(enum_headers)) > \
+	   polkitagentenumtypes.c.tmp && mv polkitagentenumtypes.c.tmp polkitagentenumtypes.c
 
 marshal.stamp : Makefile.am $(srcdir)/polkitagentmarshal.list
 	glib-genmarshal --prefix=_polkit_agent_marshal $(srcdir)/polkitagentmarshal.list --header > polkitagentmarshal.h.tmp && mv polkitagentmarshal.h.tmp polkitagentmarshal.h

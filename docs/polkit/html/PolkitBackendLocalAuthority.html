@@ -7,24 +7,9 @@
 <link rel="home" href="index.html" title="PolicyKit Reference Manual">
 <link rel="up" href="ref-backend-api.html" title="Part IV. Backend API Reference">
 <link rel="prev" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">
-<link rel="next" href="PolkitBackendLocalAuthorizationStore.html" title="PolkitBackendLocalAuthorizationStore">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<link rel="next" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">
+<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
-<link rel="chapter" href="polkit-intro.html" title="Introduction">
-<link rel="chapter" href="polkit-apps.html" title="Writing PolicyKit applications">
-<link rel="chapter" href="polkit-agents.html" title="Writing PolicyKit Authentication Agents">
-<link rel="chapter" href="polkit-extending.html" title="Extending PolicyKit">
-<link rel="part" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
-<link rel="part" href="ref-api.html" title="Part III. Client API Reference">
-<link rel="chapter" href="subjects.html" title="Subjects">
-<link rel="chapter" href="Identities.html" title="Identities">
-<link rel="part" href="ref-backend-api.html" title="Part IV. Backend API Reference">
-<link rel="part" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
-<link rel="part" href="manpages.html" title="Part VI. Manual Pages">
-<link rel="chapter" href="polkit-hierarchy.html" title="Object Hierarchy">
-<link rel="index" href="polit-index.html" title="Index">
-<link rel="appendix" href="license.html" title="Appendix A. License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
@@ -33,7 +18,7 @@
 <td><a accesskey="u" href="ref-backend-api.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">PolicyKit Reference Manual</th>
-<td><a accesskey="n" href="PolkitBackendLocalAuthorizationStore.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="PolkitBackendActionLookup.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#PolkitBackendLocalAuthority.synopsis" class="shortcut">Top</a>
@@ -77,8 +62,8 @@ Unstable, unless otherwise indicated
 An implementation of <a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> that stores
 authorizations on the local file system, supports interaction with
 authentication agents (virtue of being based on
-<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority"><span class="type">PolkitBackendInteractiveAuthority</span></a>), and implements support for
-lock down.</p>
+<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority"><span class="type">PolkitBackendInteractiveAuthority</span></a>).
+</p>
 </div>
 <div class="refsect1" title="Details">
 <a name="PolkitBackendLocalAuthority.details"></a><h2>Details</h2>
@@ -86,7 +71,8 @@ lock down.</p>
 <a name="PolkitBackendLocalAuthority-struct"></a><h3>PolkitBackendLocalAuthority</h3>
 <pre class="programlisting">typedef struct _PolkitBackendLocalAuthority PolkitBackendLocalAuthority;</pre>
 <p>
-The <a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackendLocalAuthority"><span class="type">PolkitBackendLocalAuthority</span></a> struct should not be accessed directly.</p>
+The <a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackendLocalAuthority"><span class="type">PolkitBackendLocalAuthority</span></a> struct should not be accessed directly.
+</p>
 </div>
 <hr>
 <div class="refsect2" title="PolkitBackendLocalAuthorityClass">
@@ -96,12 +82,13 @@ The <a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackend
 } PolkitBackendLocalAuthorityClass;
 </pre>
 <p>
-Class structure for <a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackendLocalAuthority"><span class="type">PolkitBackendLocalAuthority</span></a>.</p>
+Class structure for <a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackendLocalAuthority"><span class="type">PolkitBackendLocalAuthority</span></a>.
+</p>
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
 <td><p><span class="term"><a class="link" href="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthorityClass" title="PolkitBackendInteractiveAuthorityClass"><span class="type">PolkitBackendInteractiveAuthorityClass</span></a> <em class="structfield"><code><a name="PolkitBackendLocalAuthorityClass.parent-class"></a>parent_class</code></em>;</span></p></td>
-<td> The parent class.
+<td>The parent class.
 </td>
 </tr></tbody>
 </table></div>
@@ -110,6 +97,6 @@ Class structure for <a class="link" href="PolkitBackendLocalAuthority.html" titl
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.15</div>
 </body>
 </html>
