@@ -71,10 +71,9 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" \
 	"$(DESTDIR)$(typelibsdir)" \
 	"$(DESTDIR)$(libpolkit_gobject_1includedir)"
-LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
+LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libpolkit_gobject_1_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) libpolkit-private.la \
 	$(am__DEPENDENCIES_1)
 am__objects_1 =
 am__objects_2 = libpolkit_gobject_1_la-polkitenumtypes.lo \
@@ -96,7 +95,7 @@ am_libpolkit_gobject_1_la_OBJECTS = $(am__objects_2) \
 	libpolkit_gobject_1_la-polkitcheckauthorizationflags.lo \
 	libpolkit_gobject_1_la-polkitimplicitauthorization.lo \
 	libpolkit_gobject_1_la-polkittemporaryauthorization.lo \
-	$(am__objects_1)
+	libpolkit_gobject_1_la-polkitpermission.lo $(am__objects_1)
 libpolkit_gobject_1_la_OBJECTS = $(am_libpolkit_gobject_1_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -105,27 +104,6 @@ libpolkit_gobject_1_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) \
 	$(libpolkit_gobject_1_la_LDFLAGS) $(LDFLAGS) -o $@
-libpolkit_private_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
-am__objects_3 = libpolkit_private_la-_polkitactiondescription.lo \
-	libpolkit_private_la-_polkitauthenticationagent.lo \
-	libpolkit_private_la-_polkitauthority.lo \
-	libpolkit_private_la-_polkitauthorizationresult.lo \
-	libpolkit_private_la-_polkitbindings.lo \
-	libpolkit_private_la-_polkitbindingsmarshal.lo \
-	libpolkit_private_la-_polkitcheckauthorizationflags.lo \
-	libpolkit_private_la-_polkiterror.lo \
-	libpolkit_private_la-_polkitidentity.lo \
-	libpolkit_private_la-_polkitimplicitauthorization.lo \
-	libpolkit_private_la-_polkitsubject.lo \
-	libpolkit_private_la-_polkittemporaryauthorization.lo \
-	libpolkit_private_la-_polkitauthorityfeatures.lo
-am_libpolkit_private_la_OBJECTS = $(am__objects_3)
-libpolkit_private_la_OBJECTS = $(am_libpolkit_private_la_OBJECTS)
-libpolkit_private_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libpolkit_private_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -152,10 +130,8 @@ am__v_CCLD_0 = @echo "  CCLD  " $@;
 AM_V_GEN = $(am__v_GEN_$(V))
 am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
 am__v_GEN_0 = @echo "  GEN   " $@;
-SOURCES = $(libpolkit_gobject_1_la_SOURCES) \
-	$(libpolkit_private_la_SOURCES)
-DIST_SOURCES = $(libpolkit_gobject_1_la_SOURCES) \
-	$(libpolkit_private_la_SOURCES)
+SOURCES = $(libpolkit_gobject_1_la_SOURCES)
+DIST_SOURCES = $(libpolkit_gobject_1_la_SOURCES)
 DATA = $(gir_DATA) $(typelibs_DATA)
 HEADERS = $(libpolkit_gobject_1include_HEADERS)
 ETAGS = etags
@@ -187,8 +163,6 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
-EGG_DBUS_CFLAGS = @EGG_DBUS_CFLAGS@
-EGG_DBUS_LIBS = @EGG_DBUS_LIBS@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
@@ -340,32 +314,13 @@ INCLUDES = \
         -DPACKAGE_LIB_DIR=\""$(libdir)"\"                       \
         -D_POSIX_PTHREAD_SEMANTICS                              \
         -D_REENTRANT                                            \
-	-DEGG_DBUS_I_KNOW_API_IS_SUBJECT_TO_CHANGE		\
         $(NULL)
 
 BUILT_SOURCES = \
-	polkit-built-sources.stamp				\
 	polkitenumtypes.c		polkitenumtypes.h	\
 	$(NULL)
 
 enum_headers = polkitcheckauthorizationflags.h polkiterror.h polkitimplicitauthorization.h polkitauthorityfeatures.h
-
-# keep in sync with contents of polkit-built-sources.stamp (Thanks autotools)
-#
-polkit_built_sources = _polkitactiondescription.c _polkitactiondescription.h _polkitauthenticationagent.c _polkitauthenticationagent.h _polkitauthority.c _polkitauthority.h _polkitauthorizationresult.c _polkitauthorizationresult.h _polkitbindings.c _polkitbindings.h _polkitbindingsmarshal.c _polkitbindingsmarshal.h _polkitbindingstypes.h _polkitcheckauthorizationflags.c _polkitcheckauthorizationflags.h _polkiterror.c _polkiterror.h _polkitidentity.c _polkitidentity.h _polkitimplicitauthorization.c _polkitimplicitauthorization.h _polkitsubject.c _polkitsubject.h _polkittemporaryauthorization.c _polkittemporaryauthorization.h docbook-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.xml docbook-interface-org.freedesktop.PolicyKit1.Authority.xml _polkitbindingsmarshal.list _polkitauthorityfeatures.h _polkitauthorityfeatures.c
-noinst_LTLIBRARIES = libpolkit-private.la
-libpolkit_private_la_SOURCES = $(polkit_built_sources)
-libpolkit_private_la_CFLAGS = \
-	-D_POLKIT_COMPILATION						\
-	$(GLIB_CFLAGS)							\
-	$(EGG_DBUS_CFLAGS)						\
-	$(NULL)
-
-libpolkit_private_la_LIBADD = \
-	$(GLIB_LIBS)							\
-	$(EGG_DBUS_LIBS)						\
-	$(NULL)
-
 lib_LTLIBRARIES = libpolkit-gobject-1.la
 libpolkit_gobject_1includedir = $(includedir)/polkit-1/polkit
 libpolkit_gobject_1include_HEADERS = \
@@ -389,6 +344,7 @@ libpolkit_gobject_1include_HEADERS = \
 	polkitcheckauthorizationflags.h							\
 	polkitimplicitauthorization.h							\
 	polkittemporaryauthorization.h							\
+	polkitpermission.h								\
         $(NULL)
 
 libpolkit_gobject_1_la_SOURCES = \
@@ -410,18 +366,16 @@ libpolkit_gobject_1_la_SOURCES = \
 	polkitcheckauthorizationflags.c		polkitcheckauthorizationflags.h		\
 	polkitimplicitauthorization.c		polkitimplicitauthorization.h		\
 	polkittemporaryauthorization.c		polkittemporaryauthorization.h		\
+	polkitpermission.c			polkitpermission.h			\
         $(NULL)
 
 libpolkit_gobject_1_la_CFLAGS = \
         -D_POLKIT_COMPILATION                                  		\
         $(GLIB_CFLAGS)							\
-        $(EGG_DBUS_CFLAGS)						\
         $(NULL)
 
 libpolkit_gobject_1_la_LIBADD = \
         $(GLIB_LIBS)							\
-        $(EGG_DBUS_LIBS)						\
-	libpolkit-private.la						\
         $(NULL)
 
 libpolkit_gobject_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
@@ -497,19 +451,8 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-
-clean-noinstLTLIBRARIES:
-	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
-	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
-	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
-	  test "$$dir" != "$$p" || dir=.; \
-	  echo "rm -f \"$${dir}/so_locations\""; \
-	  rm -f "$${dir}/so_locations"; \
-	done
 libpolkit-gobject-1.la: $(libpolkit_gobject_1_la_OBJECTS) $(libpolkit_gobject_1_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libpolkit_gobject_1_la_LINK) -rpath $(libdir) $(libpolkit_gobject_1_la_OBJECTS) $(libpolkit_gobject_1_la_LIBADD) $(LIBS)
-libpolkit-private.la: $(libpolkit_private_la_OBJECTS) $(libpolkit_private_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libpolkit_private_la_LINK)  $(libpolkit_private_la_OBJECTS) $(libpolkit_private_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -527,6 +470,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkiterror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitidentity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitimplicitauthorization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitpermission.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitsubject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitsystembusname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkittemporaryauthorization.Plo@am__quote@
@@ -534,19 +478,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixprocess.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixuser.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitactiondescription.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitauthenticationagent.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitauthority.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitauthorityfeatures.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitauthorizationresult.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitbindings.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitbindingsmarshal.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitcheckauthorizationflags.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkiterror.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitidentity.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitimplicitauthorization.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkitsubject.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_private_la-_polkittemporaryauthorization.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -708,109 +639,13 @@ libpolkit_gobject_1_la-polkittemporaryauthorization.lo: polkittemporaryauthoriza
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkittemporaryauthorization.lo `test -f 'polkittemporaryauthorization.c' || echo '$(srcdir)/'`polkittemporaryauthorization.c
 
-libpolkit_private_la-_polkitactiondescription.lo: _polkitactiondescription.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitactiondescription.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitactiondescription.Tpo -c -o libpolkit_private_la-_polkitactiondescription.lo `test -f '_polkitactiondescription.c' || echo '$(srcdir)/'`_polkitactiondescription.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitactiondescription.Tpo $(DEPDIR)/libpolkit_private_la-_polkitactiondescription.Plo
+libpolkit_gobject_1_la-polkitpermission.lo: polkitpermission.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_gobject_1_la-polkitpermission.lo -MD -MP -MF $(DEPDIR)/libpolkit_gobject_1_la-polkitpermission.Tpo -c -o libpolkit_gobject_1_la-polkitpermission.lo `test -f 'polkitpermission.c' || echo '$(srcdir)/'`polkitpermission.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_gobject_1_la-polkitpermission.Tpo $(DEPDIR)/libpolkit_gobject_1_la-polkitpermission.Plo
 @am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitactiondescription.c' object='libpolkit_private_la-_polkitactiondescription.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitpermission.c' object='libpolkit_gobject_1_la-polkitpermission.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitactiondescription.lo `test -f '_polkitactiondescription.c' || echo '$(srcdir)/'`_polkitactiondescription.c
-
-libpolkit_private_la-_polkitauthenticationagent.lo: _polkitauthenticationagent.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitauthenticationagent.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitauthenticationagent.Tpo -c -o libpolkit_private_la-_polkitauthenticationagent.lo `test -f '_polkitauthenticationagent.c' || echo '$(srcdir)/'`_polkitauthenticationagent.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitauthenticationagent.Tpo $(DEPDIR)/libpolkit_private_la-_polkitauthenticationagent.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitauthenticationagent.c' object='libpolkit_private_la-_polkitauthenticationagent.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitauthenticationagent.lo `test -f '_polkitauthenticationagent.c' || echo '$(srcdir)/'`_polkitauthenticationagent.c
-
-libpolkit_private_la-_polkitauthority.lo: _polkitauthority.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitauthority.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitauthority.Tpo -c -o libpolkit_private_la-_polkitauthority.lo `test -f '_polkitauthority.c' || echo '$(srcdir)/'`_polkitauthority.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitauthority.Tpo $(DEPDIR)/libpolkit_private_la-_polkitauthority.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitauthority.c' object='libpolkit_private_la-_polkitauthority.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitauthority.lo `test -f '_polkitauthority.c' || echo '$(srcdir)/'`_polkitauthority.c
-
-libpolkit_private_la-_polkitauthorizationresult.lo: _polkitauthorizationresult.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitauthorizationresult.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitauthorizationresult.Tpo -c -o libpolkit_private_la-_polkitauthorizationresult.lo `test -f '_polkitauthorizationresult.c' || echo '$(srcdir)/'`_polkitauthorizationresult.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitauthorizationresult.Tpo $(DEPDIR)/libpolkit_private_la-_polkitauthorizationresult.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitauthorizationresult.c' object='libpolkit_private_la-_polkitauthorizationresult.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitauthorizationresult.lo `test -f '_polkitauthorizationresult.c' || echo '$(srcdir)/'`_polkitauthorizationresult.c
-
-libpolkit_private_la-_polkitbindings.lo: _polkitbindings.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitbindings.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitbindings.Tpo -c -o libpolkit_private_la-_polkitbindings.lo `test -f '_polkitbindings.c' || echo '$(srcdir)/'`_polkitbindings.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitbindings.Tpo $(DEPDIR)/libpolkit_private_la-_polkitbindings.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitbindings.c' object='libpolkit_private_la-_polkitbindings.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitbindings.lo `test -f '_polkitbindings.c' || echo '$(srcdir)/'`_polkitbindings.c
-
-libpolkit_private_la-_polkitbindingsmarshal.lo: _polkitbindingsmarshal.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitbindingsmarshal.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitbindingsmarshal.Tpo -c -o libpolkit_private_la-_polkitbindingsmarshal.lo `test -f '_polkitbindingsmarshal.c' || echo '$(srcdir)/'`_polkitbindingsmarshal.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitbindingsmarshal.Tpo $(DEPDIR)/libpolkit_private_la-_polkitbindingsmarshal.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitbindingsmarshal.c' object='libpolkit_private_la-_polkitbindingsmarshal.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitbindingsmarshal.lo `test -f '_polkitbindingsmarshal.c' || echo '$(srcdir)/'`_polkitbindingsmarshal.c
-
-libpolkit_private_la-_polkitcheckauthorizationflags.lo: _polkitcheckauthorizationflags.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitcheckauthorizationflags.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitcheckauthorizationflags.Tpo -c -o libpolkit_private_la-_polkitcheckauthorizationflags.lo `test -f '_polkitcheckauthorizationflags.c' || echo '$(srcdir)/'`_polkitcheckauthorizationflags.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitcheckauthorizationflags.Tpo $(DEPDIR)/libpolkit_private_la-_polkitcheckauthorizationflags.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitcheckauthorizationflags.c' object='libpolkit_private_la-_polkitcheckauthorizationflags.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitcheckauthorizationflags.lo `test -f '_polkitcheckauthorizationflags.c' || echo '$(srcdir)/'`_polkitcheckauthorizationflags.c
-
-libpolkit_private_la-_polkiterror.lo: _polkiterror.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkiterror.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkiterror.Tpo -c -o libpolkit_private_la-_polkiterror.lo `test -f '_polkiterror.c' || echo '$(srcdir)/'`_polkiterror.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkiterror.Tpo $(DEPDIR)/libpolkit_private_la-_polkiterror.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkiterror.c' object='libpolkit_private_la-_polkiterror.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkiterror.lo `test -f '_polkiterror.c' || echo '$(srcdir)/'`_polkiterror.c
-
-libpolkit_private_la-_polkitidentity.lo: _polkitidentity.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitidentity.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitidentity.Tpo -c -o libpolkit_private_la-_polkitidentity.lo `test -f '_polkitidentity.c' || echo '$(srcdir)/'`_polkitidentity.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitidentity.Tpo $(DEPDIR)/libpolkit_private_la-_polkitidentity.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitidentity.c' object='libpolkit_private_la-_polkitidentity.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitidentity.lo `test -f '_polkitidentity.c' || echo '$(srcdir)/'`_polkitidentity.c
-
-libpolkit_private_la-_polkitimplicitauthorization.lo: _polkitimplicitauthorization.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitimplicitauthorization.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitimplicitauthorization.Tpo -c -o libpolkit_private_la-_polkitimplicitauthorization.lo `test -f '_polkitimplicitauthorization.c' || echo '$(srcdir)/'`_polkitimplicitauthorization.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitimplicitauthorization.Tpo $(DEPDIR)/libpolkit_private_la-_polkitimplicitauthorization.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitimplicitauthorization.c' object='libpolkit_private_la-_polkitimplicitauthorization.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitimplicitauthorization.lo `test -f '_polkitimplicitauthorization.c' || echo '$(srcdir)/'`_polkitimplicitauthorization.c
-
-libpolkit_private_la-_polkitsubject.lo: _polkitsubject.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitsubject.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitsubject.Tpo -c -o libpolkit_private_la-_polkitsubject.lo `test -f '_polkitsubject.c' || echo '$(srcdir)/'`_polkitsubject.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitsubject.Tpo $(DEPDIR)/libpolkit_private_la-_polkitsubject.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitsubject.c' object='libpolkit_private_la-_polkitsubject.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitsubject.lo `test -f '_polkitsubject.c' || echo '$(srcdir)/'`_polkitsubject.c
-
-libpolkit_private_la-_polkittemporaryauthorization.lo: _polkittemporaryauthorization.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkittemporaryauthorization.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkittemporaryauthorization.Tpo -c -o libpolkit_private_la-_polkittemporaryauthorization.lo `test -f '_polkittemporaryauthorization.c' || echo '$(srcdir)/'`_polkittemporaryauthorization.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkittemporaryauthorization.Tpo $(DEPDIR)/libpolkit_private_la-_polkittemporaryauthorization.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkittemporaryauthorization.c' object='libpolkit_private_la-_polkittemporaryauthorization.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkittemporaryauthorization.lo `test -f '_polkittemporaryauthorization.c' || echo '$(srcdir)/'`_polkittemporaryauthorization.c
-
-libpolkit_private_la-_polkitauthorityfeatures.lo: _polkitauthorityfeatures.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -MT libpolkit_private_la-_polkitauthorityfeatures.lo -MD -MP -MF $(DEPDIR)/libpolkit_private_la-_polkitauthorityfeatures.Tpo -c -o libpolkit_private_la-_polkitauthorityfeatures.lo `test -f '_polkitauthorityfeatures.c' || echo '$(srcdir)/'`_polkitauthorityfeatures.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_private_la-_polkitauthorityfeatures.Tpo $(DEPDIR)/libpolkit_private_la-_polkitauthorityfeatures.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='_polkitauthorityfeatures.c' object='libpolkit_private_la-_polkitauthorityfeatures.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_private_la_CFLAGS) $(CFLAGS) -c -o libpolkit_private_la-_polkitauthorityfeatures.lo `test -f '_polkitauthorityfeatures.c' || echo '$(srcdir)/'`_polkitauthorityfeatures.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkitpermission.lo `test -f 'polkitpermission.c' || echo '$(srcdir)/'`polkitpermission.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1002,7 +837,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool clean-local \
-	clean-noinstLTLIBRARIES mostlyclean-am
+	mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1076,14 +911,13 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 .MAKE: all check install install-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libLTLIBRARIES clean-libtool clean-local \
-	clean-noinstLTLIBRARIES ctags dist-hook distclean \
-	distclean-compile distclean-generic distclean-libtool \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-girDATA \
-	install-html install-html-am install-info install-info-am \
-	install-libLTLIBRARIES \
+	clean-libLTLIBRARIES clean-libtool clean-local ctags dist-hook \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-tags distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-dvi install-dvi-am install-exec \
+	install-exec-am install-girDATA install-html install-html-am \
+	install-info install-info-am install-libLTLIBRARIES \
 	install-libpolkit_gobject_1includeHEADERS install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip install-typelibsDATA installcheck \
@@ -1106,18 +940,6 @@ polkitenumtypes.c: $(enum_headers) polkitenumtypes.c.template
 	 cd $(srcdir) && glib-mkenums --template polkitenumtypes.c.template $(enum_headers)) > \
 	   polkitenumtypes.c.tmp && mv polkitenumtypes.c.tmp polkitenumtypes.c
 
-# Build all the PolicyKit D-Bus code here, even the code we
-# only in the daemon for agent interaction
-#
-polkit-built-sources.stamp : Makefile.am $(top_srcdir)/data/org.freedesktop.PolicyKit1.Authority.xml $(top_srcdir)/data/org.freedesktop.PolicyKit1.AuthenticationAgent.xml
-	eggdbus-binding-tool											\
-		--namespace "_Polkit"										\
-		--dbus-namespace "org.freedesktop.PolicyKit1"							\
-		--introspection-xml $(top_srcdir)/data/org.freedesktop.PolicyKit1.Authority.xml 		\
-		--introspection-xml $(top_srcdir)/data/org.freedesktop.PolicyKit1.AuthenticationAgent.xml	\
-		--stamp-file polkit-built-sources.stamp								\
-	$(NULL)
-
 @ENABLE_INTROSPECTION_TRUE@Polkit-1.0.gir: libpolkit-gobject-1.la $(G_IR_SCANNER) Makefile.am
 @ENABLE_INTROSPECTION_TRUE@	$(G_IR_SCANNER) -v 					\
 @ENABLE_INTROSPECTION_TRUE@		--namespace Polkit 				\
@@ -1129,10 +951,8 @@ polkit-built-sources.stamp : Makefile.am $(top_srcdir)/data/org.freedesktop.Poli
 @ENABLE_INTROSPECTION_TRUE@		--pkg=gobject-2.0 				\
 @ENABLE_INTROSPECTION_TRUE@		--pkg=gio-2.0 					\
 @ENABLE_INTROSPECTION_TRUE@		--libtool=$(top_builddir)/libtool		\
-@ENABLE_INTROSPECTION_TRUE@	        $(EGG_DBUS_CFLAGS)				\
 @ENABLE_INTROSPECTION_TRUE@                -I$(top_srcdir)/src	 			\
 @ENABLE_INTROSPECTION_TRUE@	        -D_POLKIT_COMPILATION                   	\
-@ENABLE_INTROSPECTION_TRUE@		-DEGG_DBUS_I_KNOW_API_IS_SUBJECT_TO_CHANGE	\
 @ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkit.h 				\
 @ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkittypes.h 			\
 @ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitactiondescription.h 		\
@@ -1151,6 +971,7 @@ polkit-built-sources.stamp : Makefile.am $(top_srcdir)/data/org.freedesktop.Poli
 @ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitunixprocess.h 			\
 @ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitunixsession.h 			\
 @ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitunixuser.h 			\
+@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitpermission.h 			\
 @ENABLE_INTROSPECTION_TRUE@		$(NULL)
 
 @ENABLE_INTROSPECTION_TRUE@Polkit-1.0.typelib: Polkit-1.0.gir $(G_IR_COMPILER)

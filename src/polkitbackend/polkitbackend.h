@@ -24,7 +24,7 @@
 
 #include <polkit/polkit.h>
 
-#if !defined (POLKIT_BACKEND_I_KNOW_API_IS_SUBJECT_TO_CHANGE) && !defined (POLKIT_BACKEND_COMPILATION)
+#if !defined (POLKIT_BACKEND_I_KNOW_API_IS_SUBJECT_TO_CHANGE) && !defined (_POLKIT_BACKEND_COMPILATION)
 #error "libpolkitbackend is unstable API and subject to change. You must define POLKIT_BACKEND_I_KNOW_API_IS_SUBJECT_TO_CHANGE to acknowledge this."
 #endif
 
@@ -33,11 +33,7 @@
 #include <polkitbackend/polkitbackendauthority.h>
 #include <polkitbackend/polkitbackendinteractiveauthority.h>
 #include <polkitbackend/polkitbackendlocalauthority.h>
-#include <polkitbackend/polkitbackendactionpool.h>
-#include <polkitbackend/polkitbackendsessionmonitor.h>
-#include <polkitbackend/polkitbackendconfigsource.h>
 #include <polkitbackend/polkitbackendactionlookup.h>
-#include <polkitbackend/polkitbackendlocalauthorizationstore.h>
 #undef _POLKIT_BACKEND_INSIDE_POLKIT_BACKEND_H
 
 #endif /* __POLKIT_BACKEND_H */

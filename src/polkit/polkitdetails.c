@@ -102,7 +102,7 @@ polkit_details_new (void)
 }
 
 /* private */
-PolkitDetails *
+static PolkitDetails *
 polkit_details_new_for_hash (GHashTable *hash)
 {
   PolkitDetails *details;
@@ -114,13 +114,6 @@ polkit_details_new_for_hash (GHashTable *hash)
   return details;
 }
 
-/* private */
-GHashTable *
-polkit_details_get_hash (PolkitDetails *details)
-{
-  return details->hash;
-}
-
 /**
  * polkit_details_lookup:
  * @details: A #PolkitDetails.
@@ -128,12 +121,14 @@ polkit_details_get_hash (PolkitDetails *details)
  *
  * Gets the value for @key on @details.
  *
- * Returns: %NULL if there is no value for @key, otherwise a string owned by @details.
+ * Returns: (allow-none): %NULL if there is no value for @key, otherwise a string owned by @details.
  */
 const gchar *
 polkit_details_lookup (PolkitDetails *details,
                        const gchar   *key)
 {
+  g_return_val_if_fail (POLKIT_IS_DETAILS (details), NULL);
+  g_return_val_if_fail (key != NULL, NULL);
   if (details->hash == NULL)
     return NULL;
   else
@@ -144,7 +139,7 @@ polkit_details_lookup (PolkitDetails *details,
  * polkit_details_insert:
  * @details: A #PolkitDetails.
  * @key: A key.
- * @value: A value.
+ * @value: (allow-none): A value.
  *
  * Inserts a copy of @key and @value on @details.
  */
@@ -153,6 +148,8 @@ polkit_details_insert (PolkitDetails *details,
                        const gchar   *key,
                        const gchar   *value)
 {
+  g_return_if_fail (POLKIT_IS_DETAILS (details));
+  g_return_if_fail (key != NULL);
   if (details->hash == NULL)
     details->hash = g_hash_table_new_full (g_str_hash,
                                            g_str_equal,
@@ -167,7 +164,8 @@ polkit_details_insert (PolkitDetails *details,
  *
  * Gets a list of all keys on @details.
  *
- * Returns: An array of strings that should be freed with g_strfreev().
+ * Returns: (allow-none): %NULL if there are no keys otherwise an
+ * array of strings that should be freed with g_strfreev().
  */
 gchar **
 polkit_details_get_keys (PolkitDetails *details)
@@ -175,6 +173,8 @@ polkit_details_get_keys (PolkitDetails *details)
   GList *keys, *l;
   gchar **ret;
   guint n;
+
+  g_return_val_if_fail (POLKIT_IS_DETAILS (details), NULL);
 
   if (details->hash == NULL)
     return NULL;
@@ -188,3 +188,43 @@ polkit_details_get_keys (PolkitDetails *details)
 
   return ret;
 }
+
+GVariant *
+polkit_details_to_gvariant (PolkitDetails *details)
+{
+  GVariant *ret;
+  GVariantBuilder builder;
+
+  g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{ss}"));
+  if (details != NULL && details->hash != NULL)
+    {
+      GHashTableIter hash_iter;
+      const gchar *key;
+      const gchar *value;
+
+      g_hash_table_iter_init (&hash_iter, details->hash);
+      while (g_hash_table_iter_next (&hash_iter, (gpointer) &key, (gpointer) &value))
+        g_variant_builder_add (&builder, "{ss}", key, value);
+    }
+  ret = g_variant_builder_end (&builder);
+  return ret;
+}
+
+PolkitDetails *
+polkit_details_new_for_gvariant (GVariant *value)
+{
+  PolkitDetails *ret;
+  GHashTable *hash;
+  GVariantIter iter;
+  gchar *hash_key;
+  gchar *hash_value;
+
+  hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+  g_variant_iter_init (&iter, value);
+  while (g_variant_iter_next (&iter, "{ss}", &hash_key, &hash_value))
+    g_hash_table_insert (hash, hash_key, hash_value);
+  ret = polkit_details_new_for_hash (hash);
+  g_hash_table_unref (hash);
+  return ret;
+}
+

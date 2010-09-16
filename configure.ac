@@ -1,8 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT(polkit, 0.96, http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
-AM_INIT_AUTOMAKE(polkit, 0.96)
+AC_INIT(polkit, 0.99, http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
+AM_INIT_AUTOMAKE(polkit, 0.99)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -120,13 +120,9 @@ if test "x$GCC" = "xyes"; then
   changequote([,])dnl
 fi
 
-PKG_CHECK_MODULES(GLIB, [glib-2.0 >= 2.21.4 gio-2.0 >= 2.21.4])
+PKG_CHECK_MODULES(GLIB, [gio-2.0 >= 2.25.12])
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
-
-PKG_CHECK_MODULES(EGG_DBUS, [eggdbus-1 >= 0.6])
-AC_SUBST(EGG_DBUS_CFLAGS)
-AC_SUBST(EGG_DBUS_LIBS)
 
 EXPAT_LIB=""
 AC_ARG_WITH(expat, [  --with-expat=<dir>      Use expat from here],

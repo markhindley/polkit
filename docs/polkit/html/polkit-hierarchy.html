@@ -8,23 +8,8 @@
 <link rel="up" href="index.html" title="PolicyKit Reference Manual">
 <link rel="prev" href="pklocalauthority.8.html" title="pklocalauthority">
 <link rel="next" href="polit-index.html" title="Index">
-<meta name="generator" content="GTK-Doc V1.13 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
-<link rel="part" href="overview.html" title="Part I. PolicyKit Overview">
-<link rel="chapter" href="polkit-intro.html" title="Introduction">
-<link rel="chapter" href="polkit-apps.html" title="Writing PolicyKit applications">
-<link rel="chapter" href="polkit-agents.html" title="Writing PolicyKit Authentication Agents">
-<link rel="chapter" href="polkit-extending.html" title="Extending PolicyKit">
-<link rel="part" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
-<link rel="part" href="ref-api.html" title="Part III. Client API Reference">
-<link rel="chapter" href="subjects.html" title="Subjects">
-<link rel="chapter" href="Identities.html" title="Identities">
-<link rel="part" href="ref-backend-api.html" title="Part IV. Backend API Reference">
-<link rel="part" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
-<link rel="part" href="manpages.html" title="Part VI. Manual Pages">
-<link rel="chapter" href="polkit-hierarchy.html" title="Object Hierarchy">
-<link rel="index" href="polit-index.html" title="Index">
-<link rel="appendix" href="license.html" title="Appendix A. License">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
@@ -39,33 +24,32 @@
 <a name="polkit-hierarchy"></a>Object Hierarchy</h2></div></div></div>
 <pre class="screen">
     <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-        <a class="link" href="polkit-1-polkitauthority.html#PolkitAuthority">PolkitAuthority</a>
-        <a class="link" href="polkit-1-polkitactiondescription.html#PolkitActionDescription">PolkitActionDescription</a>
-        <a class="link" href="polkit-1-polkitdetails.html#PolkitDetails">PolkitDetails</a>
-        <a class="link" href="polkit-1-polkitunixuser.html#PolkitUnixUser">PolkitUnixUser</a>
-        <a class="link" href="polkit-1-polkitunixgroup.html#PolkitUnixGroup">PolkitUnixGroup</a>
-        <a class="link" href="polkit-1-polkitunixprocess.html#PolkitUnixProcess">PolkitUnixProcess</a>
-        <a class="link" href="polkit-1-polkitunixsession.html#PolkitUnixSession">PolkitUnixSession</a>
-        <a class="link" href="polkit-1-polkitsystembusname.html#PolkitSystemBusName">PolkitSystemBusName</a>
-        <a class="link" href="polkit-1-polkitauthorizationresult.html#PolkitAuthorizationResult">PolkitAuthorizationResult</a>
+        <a class="link" href="PolkitAuthority.html" title="PolkitAuthority">PolkitAuthority</a>
+        <a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription">PolkitActionDescription</a>
+        <a class="link" href="PolkitDetails.html" title="PolkitDetails">PolkitDetails</a>
+        <a class="link" href="PolkitUnixUser.html" title="PolkitUnixUser">PolkitUnixUser</a>
+        <a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup">PolkitUnixGroup</a>
+        <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess">PolkitUnixProcess</a>
+        <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession">PolkitUnixSession</a>
+        <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName">PolkitSystemBusName</a>
+        <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult">PolkitAuthorizationResult</a>
         <a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization">PolkitTemporaryAuthorization</a>
+        <a href="http://library.gnome.org/devel/gio/unstable/GPermission.html">GPermission</a>
+            <a class="link" href="PolkitPermission.html" title="PolkitPermission">PolkitPermission</a>
         <a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a>
             <a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a>
                 <a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackendLocalAuthority">PolkitBackendLocalAuthority</a>
-        <a class="link" href="PolkitBackendActionPool.html" title="PolkitBackendActionPool">PolkitBackendActionPool</a>
-        <a class="link" href="polkit-1-polkitbackendsessionmonitor.html#PolkitBackendSessionMonitor">PolkitBackendSessionMonitor</a>
-        <a class="link" href="polkit-1-polkitbackendconfigsource.html#PolkitBackendConfigSource">PolkitBackendConfigSource</a>
-        <a class="link" href="PolkitBackendLocalAuthorizationStore.html" title="PolkitBackendLocalAuthorizationStore">PolkitBackendLocalAuthorizationStore</a>
         <a class="link" href="PolkitAgentSession.html" title="PolkitAgentSession">PolkitAgentSession</a>
         <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a>
+            <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener">PolkitAgentTextListener</a>
     GInterface
-        <a class="link" href="polkit-1-polkitidentity.html#PolkitIdentity">PolkitIdentity</a>
-        <a class="link" href="polkit-1-polkitsubject.html#PolkitSubject">PolkitSubject</a>
+        <a class="link" href="PolkitIdentity.html" title="PolkitIdentity">PolkitIdentity</a>
+        <a class="link" href="PolkitSubject.html" title="PolkitSubject">PolkitSubject</a>
         <a class="link" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">PolkitBackendActionLookup</a>
 </pre>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.13</div>
+          Generated by GTK-Doc V1.15</div>
 </body>
 </html>

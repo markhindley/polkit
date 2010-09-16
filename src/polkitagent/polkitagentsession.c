@@ -78,8 +78,8 @@ struct _PolkitAgentSession
   int child_stdout;
   GPid child_pid;
 
-  int child_watch_id;
-  int child_stdout_watch_id;
+  GSource *child_watch_source;
+  GSource *child_stdout_watch_source;
   GIOChannel *child_stdout_channel;
 
   gboolean success;
@@ -243,6 +243,9 @@ polkit_agent_session_new (PolkitIdentity *identity,
 {
   PolkitAgentSession *session;
 
+  g_return_val_if_fail (POLKIT_IS_IDENTITY (identity), NULL);
+  g_return_val_if_fail (cookie != NULL, NULL);
+
   session = POLKIT_AGENT_SESSION (g_object_new (POLKIT_AGENT_TYPE_SESSION, NULL));
 
   session->identity = g_object_ref (identity);
@@ -266,16 +269,18 @@ kill_helper (PolkitAgentSession *session)
       session->child_pid = 0;
     }
 
-  if (session->child_watch_id > 0)
+  if (session->child_watch_source != NULL)
     {
-      g_source_remove (session->child_watch_id);
-      session->child_watch_id = 0;
+      g_source_destroy (session->child_watch_source);
+      g_source_unref (session->child_watch_source);
+      session->child_watch_source = NULL;
     }
 
-  if (session->child_stdout_watch_id > 0)
+  if (session->child_stdout_watch_source != NULL)
     {
-      g_source_remove (session->child_stdout_watch_id);
-      session->child_stdout_watch_id = 0;
+      g_source_destroy (session->child_stdout_watch_source);
+      g_source_unref (session->child_stdout_watch_source);
+      session->child_stdout_watch_source = NULL;
     }
 
   if (session->child_stdout_channel != NULL)
@@ -408,6 +413,7 @@ polkit_agent_session_response (PolkitAgentSession *session,
   size_t response_len;
   const char newline[] = "\n";
 
+  g_return_if_fail (POLKIT_AGENT_IS_SESSION (session));
   g_return_if_fail (response != NULL);
 
   response_len = strlen (response);
@@ -423,7 +429,11 @@ polkit_agent_session_response (PolkitAgentSession *session,
  * polkit_agent_session_initiate:
  * @session: A #PolkitAgentSession.
  *
- * Initiates the authentication session.
+ * Initiates the authentication session. Before calling this method,
+ * make sure to connect to the various signals. The signals will be
+ * emitted in the <link
+ * linkend="g-main-context-push-thread-default">thread-default main
+ * loop</link> that this method is invoked from.
  *
  * Use polkit_agent_session_cancel() to cancel the session.
  **/
@@ -435,6 +445,8 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
   gchar *helper_argv[4];
   gboolean ret;
   struct passwd *passwd;
+
+  g_return_if_fail (POLKIT_AGENT_IS_SESSION (session));
 
   ret = FALSE;
 
@@ -481,9 +493,15 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
       goto error;
     }
 
-  session->child_watch_id = g_child_watch_add (session->child_pid, child_watch_func, session);
+  session->child_watch_source = g_child_watch_source_new (session->child_pid);
+  g_source_set_callback (session->child_watch_source, (GSourceFunc) child_watch_func, session, NULL);
+  g_source_attach (session->child_watch_source, g_main_context_get_thread_default ());
+
   session->child_stdout_channel = g_io_channel_unix_new (session->child_stdout);
-  session->child_stdout_watch_id = g_io_add_watch (session->child_stdout_channel, G_IO_IN, io_watch_have_data, session);
+  session->child_stdout_watch_source = g_io_create_watch (session->child_stdout_channel, G_IO_IN);
+  g_source_set_callback (session->child_stdout_watch_source, (GSourceFunc) io_watch_have_data, session, NULL);
+  g_source_attach (session->child_stdout_watch_source, g_main_context_get_thread_default ());
+
 
   session->success = FALSE;
 
@@ -506,5 +524,6 @@ error:
 void
 polkit_agent_session_cancel (PolkitAgentSession *session)
 {
+  g_return_if_fail (POLKIT_AGENT_IS_SESSION (session));
   complete_session (session, FALSE);
 }

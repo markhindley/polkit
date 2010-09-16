@@ -61,8 +61,8 @@
 
   <part id="ref-dbus-api">
     <title>D-Bus API Reference</title>
-    <xi:include href="../../src/polkit/docbook-interface-org.freedesktop.PolicyKit1.Authority.xml"/>
-    <xi:include href="../../src/polkit/docbook-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.xml"/>
+    <xi:include href="docbook-interface-org.freedesktop.PolicyKit1.Authority.xml"/>
+    <xi:include href="docbook-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.xml"/>
   </part>
 
   <part id="ref-api">
@@ -73,6 +73,7 @@
     <xi:include href="xml/polkiterror.xml"/>
     <xi:include href="xml/polkitactiondescription.xml"/>
     <xi:include href="xml/polkittemporaryauthorization.xml"/>
+    <xi:include href="xml/polkitpermission.xml"/>
     <chapter id="subjects">
       <title>Subjects</title>
       <xi:include href="xml/polkitsubject.xml"/>
@@ -93,16 +94,13 @@
     <xi:include href="xml/polkitbackendauthority.xml"/>
     <xi:include href="xml/polkitbackendinteractiveauthority.xml"/>
     <xi:include href="xml/polkitbackendlocalauthority.xml"/>
-    <xi:include href="xml/polkitbackendlocalauthorizationstore.xml"/>
-    <xi:include href="xml/polkitbackendactionpool.xml"/>
-    <xi:include href="xml/polkitbackendsessionmonitor.xml"/>
-    <xi:include href="xml/polkitbackendconfigsource.xml"/>
     <xi:include href="xml/polkitbackendactionlookup.xml"/>
   </part>
 
   <part id="ref-authentication-agent-api">
     <title>Authentication Agent API Reference</title>
     <xi:include href="xml/polkitagentlistener.xml"/>
+    <xi:include href="xml/polkitagenttextlistener.xml"/>
     <xi:include href="xml/polkitagentsession.xml"/>
   </part>
 

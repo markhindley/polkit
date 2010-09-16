@@ -26,7 +26,6 @@
 #include <string.h>
 #include "polkitimplicitauthorization.h"
 #include "polkittemporaryauthorization.h"
-#include "_polkittemporaryauthorization.h"
 
 #include "polkitprivate.h"
 
@@ -47,9 +46,11 @@ struct _PolkitTemporaryAuthorization
 {
   GObject parent_instance;
 
-  _PolkitTemporaryAuthorization *real;
-
-  gchar **annotation_keys;
+  gchar *id;
+  gchar *action_id;
+  PolkitSubject *subject;
+  guint64 time_obtained;
+  guint64 time_expires;
 };
 
 struct _PolkitTemporaryAuthorizationClass
@@ -67,11 +68,11 @@ polkit_temporary_authorization_init (PolkitTemporaryAuthorization *authorization
 static void
 polkit_temporary_authorization_finalize (GObject *object)
 {
-  PolkitTemporaryAuthorization *authorization;
+  PolkitTemporaryAuthorization *authorization = POLKIT_TEMPORARY_AUTHORIZATION (object);
 
-  authorization = POLKIT_TEMPORARY_AUTHORIZATION (object);
-
-  g_object_unref (authorization->real);
+  g_free (authorization->id);
+  g_free (authorization->action_id);
+  g_object_unref (authorization->subject);
 
   if (G_OBJECT_CLASS (polkit_temporary_authorization_parent_class)->finalize != NULL)
     G_OBJECT_CLASS (polkit_temporary_authorization_parent_class)->finalize (object);
@@ -85,18 +86,6 @@ polkit_temporary_authorization_class_init (PolkitTemporaryAuthorizationClass *kl
   gobject_class->finalize = polkit_temporary_authorization_finalize;
 }
 
-/**
- * polkit_temporary_authorization_new:
- * @id: Id for temporary authorization
- * @action_id: An action id.
- * @subject: A #PolkitSubject.
- * @time_obtained: Time obtained, since the Epoch Jan 1, 1970 0:00 UTC.
- * @time_expires: Time the temporary authorization will expire, since the Epoch Jan 1, 1970 0:00 UTC.
- *
- * Creates a new temporary authorization.
- *
- * Returns: A #PolkitTemporaryAuthorization, free with g_object_unref()
- **/
 PolkitTemporaryAuthorization *
 polkit_temporary_authorization_new (const gchar                  *id,
                                     const gchar                  *action_id,
@@ -104,40 +93,14 @@ polkit_temporary_authorization_new (const gchar                  *id,
                                     guint64                       time_obtained,
                                     guint64                       time_expires)
 {
-  PolkitTemporaryAuthorization *ret;
-  _PolkitTemporaryAuthorization *real;
-  _PolkitSubject *real_subject;
-
-  real_subject = polkit_subject_get_real (subject);
-  real = _polkit_temporary_authorization_new (id,
-                                              action_id,
-                                              real_subject,
-                                              time_obtained,
-                                              time_expires);
-  g_object_unref (real_subject);
-
-  ret = polkit_temporary_authorization_new_for_real (real);
-  g_object_unref (real);
-
-  return ret;
-}
-
-
-PolkitTemporaryAuthorization *
-polkit_temporary_authorization_new_for_real (_PolkitTemporaryAuthorization *real)
-{
   PolkitTemporaryAuthorization *authorization;
-
   authorization = POLKIT_TEMPORARY_AUTHORIZATION (g_object_new (POLKIT_TYPE_TEMPORARY_AUTHORIZATION, NULL));
-  authorization->real = g_object_ref (real);
-
+  authorization->id = g_strdup (id);
+  authorization->action_id = g_strdup (action_id);
+  authorization->subject = g_object_ref (subject);
+  authorization->time_obtained = time_obtained;
+  authorization->time_expires = time_expires;
   return authorization;
-}
-
-_PolkitTemporaryAuthorization *
-polkit_temporary_authorization_get_real (PolkitTemporaryAuthorization *authorization)
-{
-  return g_object_ref (authorization->real);
 }
 
 /**
@@ -151,7 +114,8 @@ polkit_temporary_authorization_get_real (PolkitTemporaryAuthorization *authoriza
 const gchar *
 polkit_temporary_authorization_get_id (PolkitTemporaryAuthorization *authorization)
 {
-  return _polkit_temporary_authorization_get_id (authorization->real);
+  g_return_val_if_fail (POLKIT_IS_TEMPORARY_AUTHORIZATION (authorization), NULL);
+  return authorization->id;
 }
 
 /**
@@ -165,7 +129,8 @@ polkit_temporary_authorization_get_id (PolkitTemporaryAuthorization *authorizati
 const gchar *
 polkit_temporary_authorization_get_action_id (PolkitTemporaryAuthorization *authorization)
 {
-  return _polkit_temporary_authorization_get_action_id (authorization->real);
+  g_return_val_if_fail (POLKIT_IS_TEMPORARY_AUTHORIZATION (authorization), NULL);
+  return authorization->action_id;
 }
 
 /**
@@ -174,12 +139,13 @@ polkit_temporary_authorization_get_action_id (PolkitTemporaryAuthorization *auth
  *
  * Gets the subject that @authorization is for.
  *
- * Returns: A #PolkitSubject, free with g_object_unref().
+ * Returns: (transfer full): A #PolkitSubject, free with g_object_unref().
  **/
 PolkitSubject *
 polkit_temporary_authorization_get_subject (PolkitTemporaryAuthorization *authorization)
 {
-  return polkit_subject_new_for_real (_polkit_temporary_authorization_get_subject (authorization->real));
+  g_return_val_if_fail (POLKIT_IS_TEMPORARY_AUTHORIZATION (authorization), NULL);
+  return g_object_ref (authorization->subject);
 }
 
 /**
@@ -193,7 +159,8 @@ polkit_temporary_authorization_get_subject (PolkitTemporaryAuthorization *author
 guint64
 polkit_temporary_authorization_get_time_obtained (PolkitTemporaryAuthorization *authorization)
 {
-  return _polkit_temporary_authorization_get_time_obtained (authorization->real);
+  g_return_val_if_fail (POLKIT_IS_TEMPORARY_AUTHORIZATION (authorization), 0);
+  return authorization->time_obtained;
 }
 
 /**
@@ -207,5 +174,54 @@ polkit_temporary_authorization_get_time_obtained (PolkitTemporaryAuthorization *
 guint64
 polkit_temporary_authorization_get_time_expires (PolkitTemporaryAuthorization *authorization)
 {
-  return _polkit_temporary_authorization_get_time_expires (authorization->real);
+  g_return_val_if_fail (POLKIT_IS_TEMPORARY_AUTHORIZATION (authorization), 0);
+  return authorization->time_expires;
 }
+
+PolkitTemporaryAuthorization *
+polkit_temporary_authorization_new_for_gvariant (GVariant  *value,
+                                                 GError   **error)
+{
+  PolkitTemporaryAuthorization *authorization;
+  GVariant *subject_gvariant;
+
+  authorization = POLKIT_TEMPORARY_AUTHORIZATION (g_object_new (POLKIT_TYPE_TEMPORARY_AUTHORIZATION, NULL));
+  g_variant_get (value,
+                 "(ss@(sa{sv})tt)",
+                 &authorization->id,
+                 &authorization->action_id,
+                 &subject_gvariant,
+                 &authorization->time_obtained,
+                 &authorization->time_expires);
+  authorization->subject = polkit_subject_new_for_gvariant (subject_gvariant, error);
+  if (authorization->subject == NULL)
+    {
+      g_object_unref (authorization);
+      authorization = NULL;
+      goto out;
+    }
+
+ out:
+  g_variant_unref (subject_gvariant);
+  return authorization;
+}
+
+GVariant *
+polkit_temporary_authorization_to_gvariant (PolkitTemporaryAuthorization *authorization)
+{
+  GVariant *ret;
+  GVariant *subject_gvariant;
+
+  subject_gvariant = polkit_subject_to_gvariant (authorization->subject);
+  g_variant_ref_sink (subject_gvariant);
+  ret = g_variant_new ("(ss@(sa{sv})tt)",
+                       authorization->id,
+                       authorization->action_id,
+                       subject_gvariant,
+                       authorization->time_obtained,
+                       authorization->time_expires);
+  g_variant_unref (subject_gvariant);
+
+  return ret;
+}
+

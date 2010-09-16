@@ -100,6 +100,7 @@ am_pkcheck_OBJECTS = pkcheck-pkcheck.$(OBJEXT)
 pkcheck_OBJECTS = $(am_pkcheck_OBJECTS)
 pkcheck_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
+	$(top_builddir)/src/polkitagent/libpolkit-agent-1.la \
 	$(am__DEPENDENCIES_1)
 pkcheck_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pkcheck_CFLAGS) \
@@ -108,6 +109,7 @@ am_pkexec_OBJECTS = pkexec-pkexec.$(OBJEXT)
 pkexec_OBJECTS = $(am_pkexec_OBJECTS)
 pkexec_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
+	$(top_builddir)/src/polkitagent/libpolkit-agent-1.la \
 	$(am__DEPENDENCIES_1)
 pkexec_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pkexec_CFLAGS) $(CFLAGS) \
@@ -171,8 +173,6 @@ DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
-EGG_DBUS_CFLAGS = @EGG_DBUS_CFLAGS@
-EGG_DBUS_LIBS = @EGG_DBUS_LIBS@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
@@ -337,6 +337,7 @@ pkexec_CFLAGS = \
 pkexec_LDADD = \
 	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
+	$(top_builddir)/src/polkitagent/libpolkit-agent-1.la		\
 	$(NULL)
 
 polkitmodulesdir = $(libdir)/polkit-1/extensions
@@ -370,6 +371,7 @@ pkcheck_CFLAGS = \
 pkcheck_LDADD = \
 	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
+	$(top_builddir)/src/polkitagent/libpolkit-agent-1.la		\
 	$(NULL)
 
 

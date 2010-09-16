@@ -34,11 +34,17 @@
 #include <grp.h>
 #include <pwd.h>
 #include <errno.h>
+
+#ifdef POLKIT_AUTHFW_PAM
 #include <security/pam_appl.h>
+#endif /* POLKIT_AUTHFW_PAM */
+
 #include <syslog.h>
 #include <stdarg.h>
 
 #include <polkit/polkit.h>
+#define POLKIT_AGENT_I_KNOW_API_IS_SUBJECT_TO_CHANGE
+#include <polkitagent/polkitagent.h>
 
 static gchar *original_user_name = NULL;
 static gchar *original_cwd = NULL;
@@ -62,6 +68,7 @@ usage (int argc, char *argv[])
 {
   g_printerr ("pkexec --version |\n"
               "       --help |\n"
+              "       --disable-internal-agent |\n"
               "       [--user username] PROGRAM [ARGUMENTS...]\n"
               "\n"
               "See the pkexec manual page for more details.\n");
@@ -115,6 +122,7 @@ log_message (gint     level,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
+#ifdef POLKIT_AUTHFW_PAM
 static int
 pam_conversation_function (int n,
                            const struct pam_message **msg,
@@ -167,6 +175,7 @@ out:
     pam_end (pam_h, rc);
   return ret;
 }
+#endif /* POLKIT_AUTHFW_PAM */
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -355,6 +364,7 @@ validate_environment_variable (const gchar *key,
   return ret;
 }
 
+
 /* ---------------------------------------------------------------------------------------------------- */
 
 int
@@ -365,6 +375,7 @@ main (int argc, char *argv[])
   gint rc;
   gboolean opt_show_help;
   gboolean opt_show_version;
+  gboolean opt_disable_internal_agent;
   PolkitAuthority *authority;
   PolkitAuthorizationResult *result;
   PolkitSubject *subject;
@@ -411,7 +422,7 @@ main (int argc, char *argv[])
   gchar *opt_user;
   pid_t pid_of_caller;
   uid_t uid_of_caller;
-  struct stat statbuf;
+  gpointer local_agent_handle;
 
   ret = 127;
   authority = NULL;
@@ -423,6 +434,7 @@ main (int argc, char *argv[])
   path = NULL;
   command_line = NULL;
   opt_user = NULL;
+  local_agent_handle = NULL;
 
   /* check for correct invocation */
   if (geteuid () != 0)
@@ -450,6 +462,7 @@ main (int argc, char *argv[])
    */
   opt_show_help = FALSE;
   opt_show_version = FALSE;
+  opt_disable_internal_agent = FALSE;
   for (n = 1; n < (guint) argc; n++)
     {
       if (strcmp (argv[n], "--help") == 0)
@@ -470,6 +483,10 @@ main (int argc, char *argv[])
             }
 
           opt_user = g_strdup (argv[n]);
+        }
+      else if (strcmp (argv[n], "--disable-internal-agent") == 0)
+        {
+          opt_disable_internal_agent = TRUE;
         }
       else
         {
@@ -520,9 +537,9 @@ main (int argc, char *argv[])
       g_free (path);
       argv[n] = path = s;
     }
-  if (stat (path, &statbuf) != 0)
+  if (access (path, F_OK) != 0)
     {
-      g_printerr ("Error getting information about %s: %s\n", path, g_strerror (errno));
+      g_printerr ("Error accessing %s: %s\n", path, g_strerror (errno));
       goto out;
     }
   command_line = g_strjoinv (" ", argv + n);
@@ -614,7 +631,14 @@ main (int argc, char *argv[])
       goto out;
     }
 
-  authority = polkit_authority_get ();
+  error = NULL;
+  authority = polkit_authority_get_sync (NULL /* GCancellable* */, &error);
+  if (authority == NULL)
+    {
+      g_printerr ("Error getting authority: %s\n", error->message);
+      g_error_free (error);
+      goto out;
+    }
 
   details = polkit_details_new ();
 
@@ -630,6 +654,7 @@ main (int argc, char *argv[])
   action_id = find_action_for_path (authority, path);
   g_assert (action_id != NULL);
 
+ try_again:
   error = NULL;
   result = polkit_authority_check_authorization_sync (authority,
                                                       subject,
@@ -652,8 +677,40 @@ main (int argc, char *argv[])
     }
   else if (polkit_authorization_result_get_is_challenge (result))
     {
-      g_printerr ("Error executing command as another user: No authentication agent was found.\n");
-      goto out;
+      if (local_agent_handle == NULL && !opt_disable_internal_agent)
+        {
+          PolkitAgentListener *listener;
+          error = NULL;
+          /* this will fail if we can't find a controlling terminal */
+          listener = polkit_agent_text_listener_new (NULL, &error);
+          if (listener == NULL)
+            {
+              g_printerr ("Error creating textual authentication agent: %s\n", error->message);
+              g_error_free (error);
+              goto out;
+            }
+          local_agent_handle = polkit_agent_listener_register (listener,
+                                                               POLKIT_AGENT_REGISTER_FLAGS_RUN_IN_THREAD,
+                                                               subject,
+                                                               NULL, /* object_path */
+                                                               NULL, /* GCancellable */
+                                                               &error);
+          g_object_unref (listener);
+          if (local_agent_handle == NULL)
+            {
+              g_printerr ("Error registering local authentication agent: %s\n", error->message);
+              g_error_free (error);
+              goto out;
+            }
+          g_object_unref (result);
+          result = NULL;
+          goto try_again;
+        }
+      else
+        {
+          g_printerr ("Error executing command as another user: No authentication agent found.\n");
+          goto out;
+        }
     }
   else
     {
@@ -742,10 +799,12 @@ main (int argc, char *argv[])
    * TODO: The question here is whether we should clear the limits before applying them?
    * As evident above, neither su(1) (and, for that matter, nor sudo(8)) does this.
    */
+#ifdef POLKIT_AUTHFW_PAM
   if (!open_session (pw->pw_name))
     {
       goto out;
     }
+#endif /* POLKIT_AUTHFW_PAM */
 
   /* become the user */
   if (setgroups (0, NULL) != 0)
@@ -788,6 +847,10 @@ main (int argc, char *argv[])
   g_assert_not_reached ();
 
  out:
+  /* if applicable, nuke the local authentication agent */
+  if (local_agent_handle != NULL)
+    polkit_agent_listener_unregister (local_agent_handle);
+
   if (result != NULL)
     g_object_unref (result);
 
