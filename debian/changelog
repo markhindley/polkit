@@ -1,4 +1,4 @@
-policykit-1 (0.99-1) UNRELEASED; urgency=low
+policykit-1 (0.99-1) experimental; urgency=low
 
   [ Michael Biebl ]
   * New upstream release.
@@ -27,7 +27,7 @@ policykit-1 (0.99-1) UNRELEASED; urgency=low
   * debian/rules: Set DPKG_GENSYMBOLS_CHECK_LEVEL to 4 to point out outdated
     .symbols files more strongly.
 
- -- Michael Biebl <biebl@debian.org>  Thu, 16 Sep 2010 23:44:59 +0200
+ -- Michael Biebl <biebl@debian.org>  Thu, 04 Nov 2010 17:27:09 -0400
 
 policykit-1 (0.96-3) unstable; urgency=low
 
