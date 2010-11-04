@@ -19,6 +19,10 @@ policykit-1 (0.99-1) UNRELEASED; urgency=low
   * Add debian/patches/02_gettext.patch: Use gettext for translations in
     .policy files if they specify a gettext domain.
 
+  [ James Westby ]
+  * Add debian/patches/03_complete_session.patch: Fix the race that leads to
+    the password box disappearing, but the dialog remaining.
+
  -- Michael Biebl <biebl@debian.org>  Thu, 16 Sep 2010 23:44:59 +0200
 
 policykit-1 (0.96-3) unstable; urgency=low
