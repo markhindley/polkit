@@ -1,3 +1,9 @@
+policykit-1 (0.99-2) UNRELEASED; urgency=low
+
+  * Merge sudo group changes from unstable branch.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 16 Nov 2010 23:32:52 +0100
+
 policykit-1 (0.99-1) experimental; urgency=low
 
   [ Michael Biebl ]
@@ -28,6 +34,15 @@ policykit-1 (0.99-1) experimental; urgency=low
     .symbols files more strongly.
 
  -- Michael Biebl <biebl@debian.org>  Thu, 04 Nov 2010 17:27:09 -0400
+
+policykit-1 (0.96-4) unstable; urgency=low
+
+  * debian/rules
+    - When building for Debian, install a localauthority.conf.d configuration
+      file which considers "sudo" group users as administrators.
+      (Closes: #532499)
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 16 Nov 2010 23:21:50 +0100
 
 policykit-1 (0.96-3) unstable; urgency=low
 
