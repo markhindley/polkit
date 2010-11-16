@@ -1,11 +1,11 @@
-policykit-1 (0.96-4) UNRELEASED; urgency=low
+policykit-1 (0.96-4) unstable; urgency=low
 
   * debian/rules
     - When building for Debian, install a localauthority.conf.d configuration
       file which considers "sudo" group users as administrators.
       (Closes: #532499)
 
- -- Michael Biebl <biebl@debian.org>  Tue, 16 Nov 2010 23:14:20 +0100
+ -- Michael Biebl <biebl@debian.org>  Tue, 16 Nov 2010 23:21:50 +0100
 
 policykit-1 (0.96-3) unstable; urgency=low
 
