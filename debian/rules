@@ -12,8 +12,12 @@ DEB_CONFIGURE_EXTRA_FLAGS := --enable-gtk-doc \
                              --enable-man-pages \
                              --enable-introspection=no
 
+DISTRO := $(shell lsb_release -is 2>/dev/null)
+
 binary-install/policykit-1::
-	# when building for Ubuntu, allow the admin group
-	if [ "`lsb_release -is 2>/dev/null`" = "Ubuntu" ]; then \
+	# when building for Ubuntu, allow the admin group, on Debian use sudo group
+	if [ "$(DISTRO)" = "Ubuntu" ]; then \
 	    /bin/echo -e "[Configuration]\nAdminIdentities=unix-group:admin" > debian/policykit-1/etc/polkit-1/localauthority.conf.d/51-ubuntu-admin.conf; \
+	elif [ "$(DISTRO)" = "Debian" ]; then \
+	    /bin/echo -e "[Configuration]\nAdminIdentities=unix-group:sudo" > debian/policykit-1/etc/polkit-1/localauthority.conf.d/51-debian-sudo.conf; \
 	fi
