@@ -1,6 +1,11 @@
 policykit-1 (0.99-2) UNRELEASED; urgency=low
 
+  [ Michael Biebl ]
   * Merge sudo group changes from unstable branch.
+
+  [ Martin Pitt ]
+  * debian/rules: Use dpkg-vendor instead of lsb_release. Drop lsb-release
+    build dependency.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 16 Nov 2010 23:32:52 +0100
 

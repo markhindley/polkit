@@ -14,12 +14,10 @@ DEB_CONFIGURE_EXTRA_FLAGS := --enable-gtk-doc \
 DPKG_GENSYMBOLS_CHECK_LEVEL=4
 export DPKG_GENSYMBOLS_CHECK_LEVEL
 
-DISTRO := $(shell lsb_release -is 2>/dev/null)
-
 binary-install/policykit-1::
 	# when building for Ubuntu, allow the admin group, on Debian use sudo group
-	if [ "$(DISTRO)" = "Ubuntu" ]; then \
+	if dpkg-vendor --is ubuntu; then \
 	    /bin/echo -e "[Configuration]\nAdminIdentities=unix-group:admin" > debian/policykit-1/etc/polkit-1/localauthority.conf.d/51-ubuntu-admin.conf; \
-	elif [ "$(DISTRO)" = "Debian" ]; then \
+	elif dpkg-vendor --is debian; then \
 	    /bin/echo -e "[Configuration]\nAdminIdentities=unix-group:sudo" > debian/policykit-1/etc/polkit-1/localauthority.conf.d/51-debian-sudo.conf; \
 	fi
