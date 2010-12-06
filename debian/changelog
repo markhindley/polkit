@@ -8,6 +8,7 @@ policykit-1 (0.99-2) UNRELEASED; urgency=low
     build dependency.
   * Add 04_test_signalfd.patch: Allow building on Non-Linux platforms without
     signalfd(). (Closes: #602476)
+  * Add 99_autoreconf.patch: Pick up autoreconf changes from previous patch.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 16 Nov 2010 23:32:52 +0100
 

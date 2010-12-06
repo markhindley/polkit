@@ -1,0 +1,34 @@
+Index: policykit/config.h.in
+===================================================================
+--- policykit.orig/config.h.in	2010-12-06 16:23:04.106391651 +0100
++++ policykit/config.h.in	2010-12-06 16:22:53.556391651 +0100
+@@ -54,6 +54,9 @@
+ /* "Have pam_vsyslog" */
+ #undef HAVE_PAM_VSYSLOG
+ 
++/* "Have sys/signalfd.h" */
++#undef HAVE_SIGNALFD_H
++
+ /* Is this a Solaris system? */
+ #undef HAVE_SOLARIS
+ 
+Index: policykit/configure
+===================================================================
+--- policykit.orig/configure	2010-12-06 16:23:03.986391651 +0100
++++ policykit/configure	2010-12-06 16:22:53.046391651 +0100
+@@ -13435,6 +13453,15 @@
+ fi
+ 
+ 
++ac_fn_c_check_header_mongrel "$LINENO" "sys/signalfd.h" "ac_cv_header_sys_signalfd_h" "$ac_includes_default"
++if test "x$ac_cv_header_sys_signalfd_h" = x""yes; then :
++
++$as_echo "#define HAVE_SIGNALFD_H /**/" >>confdefs.h
++
++fi
++
++
++
+ #### Check our operating system (distro-tweaks required)
+ if test "z$with_os_type" = "z"; then
+ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for /etc/redhat-release" >&5
