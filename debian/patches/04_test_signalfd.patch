@@ -1,0 +1,80 @@
+From 2d28fd4c5a87204b7b41470062c807d96817ad18 Mon Sep 17 00:00:00 2001
+From: Martin Pitt <martin.pitt@ubuntu.com>
+Date: Mon, 6 Dec 2010 11:48:06 +0100
+Subject: [PATCH 2/2] Allow building on Non-Linux platforms without signalfd()
+
+signalfd() is Linux specific and does not exist on e. g. FreeBSD kernels. Check
+for its availability in configure and make gposixsignal deal with it
+gracefully. This will cause the on_sigint() handler not to be called on
+non-Linux platforms, but first the daemon will still terminate properly, and
+second on_sigint() does not do anything important right now anyway.
+
+Bug: https://bugs.freedesktop.org/show_bug.cgi?id=31963
+Bug-Debian: http://bugs.debian.org/602476
+---
+ configure.ac               |    5 +++++
+ src/polkitd/gposixsignal.c |   10 ++++++++++
+ 2 files changed, 15 insertions(+), 0 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 3e3ae84..3003ce4 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -289,6 +289,11 @@ AC_SUBST(PAM_MODULE_DIR)
+ 
+ AC_ARG_WITH(os-type,     [  --with-os-type=<os>        distribution or OS (redhat/suse/gentoo/pardus/solaris)])
+ 
++dnl ---------------------------------------------------------------------------
++dnl - Check for signalfd() (which is Linux only)
++dnl ---------------------------------------------------------------------------
++AC_CHECK_HEADER(sys/signalfd.h, [AC_DEFINE(HAVE_SIGNALFD_H, [], "Have sys/signalfd.h")])
++
+ #### Check our operating system (distro-tweaks required)
+ if test "z$with_os_type" = "z"; then
+ 	AC_CHECK_FILE(/etc/redhat-release,distro_type="redhat")
+diff --git a/src/polkitd/gposixsignal.c b/src/polkitd/gposixsignal.c
+index 8e9bb65..80eae43 100644
+--- a/src/polkitd/gposixsignal.c
++++ b/src/polkitd/gposixsignal.c
+@@ -23,7 +23,9 @@
+ #include "config.h"
+ 
+ #include <unistd.h>
++#ifdef HAVE_SIGNALFD_H
+ #include <sys/signalfd.h>
++#endif
+ #include <signal.h>
+ 
+ #include "gposixsignal.h"
+@@ -79,6 +81,7 @@ static GSourceFuncs _g_posix_signal_source_funcs =
+ GSource *
+ _g_posix_signal_source_new (gint signum)
+ {
++#ifdef HAVE_SIGNALFD_H
+   sigset_t sigset;
+   gint fd;
+   GSource *_source;
+@@ -103,6 +106,10 @@ _g_posix_signal_source_new (gint signum)
+ 
+   source->signum = signum;
+   return _source;
++#else
++  g_warning ("_g_posix_signal_source_new(): This operating system does not support signalfd()");
++  return NULL;
++#endif
+ }
+ 
+ guint
+@@ -118,6 +125,9 @@ _g_posix_signal_watch_add (gint                   signum,
+   g_return_val_if_fail (function != NULL, 0);
+ 
+   source = _g_posix_signal_source_new (signum);
++  if (source == NULL)
++    return 0;
++
+   if (priority != G_PRIORITY_DEFAULT_IDLE)
+     g_source_set_priority (source, priority);
+   g_source_set_callback (source, (GSourceFunc) function, user_data, notify);
+-- 
+1.7.2.3
+
