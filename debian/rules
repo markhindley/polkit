@@ -1,20 +1,23 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/autotools.mk
-include /usr/share/cdbs/1/rules/utils.mk
-
-DEB_DH_MAKESHLIBS_ARGS_policykit-1 := -Xusr/lib/polkit-1/
-
-DEB_CONFIGURE_EXTRA_FLAGS := --enable-gtk-doc \
-                             --enable-man-pages \
-                             --enable-introspection=no
+%:
+	dh $@
 
 DPKG_GENSYMBOLS_CHECK_LEVEL=4
 export DPKG_GENSYMBOLS_CHECK_LEVEL
 
-binary-install/policykit-1::
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--enable-gtk-doc \
+		--enable-man-pages \
+		--enable-introspection=no
+
+override_dh_makeshlibs:
+	dh_makeshlibs -Xusr/lib/polkit-1/
+
+override_dh_install:
+	dh_install
 	# when building for Ubuntu, allow the admin group, on Debian use sudo group
 	if dpkg-vendor --is ubuntu; then \
 	    /bin/echo -e "[Configuration]\nAdminIdentities=unix-group:admin" > debian/policykit-1/etc/polkit-1/localauthority.conf.d/51-ubuntu-admin.conf; \
