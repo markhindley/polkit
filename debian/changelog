@@ -1,4 +1,4 @@
-policykit-1 (0.100-1) UNRELEASED; urgency=low
+policykit-1 (0.100-1) experimental; urgency=low
 
   * New upstream release.
   * Refresh debian/patches/03_complete_session.patch.
@@ -15,7 +15,7 @@ policykit-1 (0.100-1) UNRELEASED; urgency=low
       libpolkit-gobject-1-dev.install.
     - Call dh_girepository in debian/rules.
 
- -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 12:28:09 +0100
+ -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 19:51:17 +0100
 
 policykit-1 (0.99-3) unstable; urgency=low
 
