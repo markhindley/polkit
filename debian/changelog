@@ -1,10 +1,11 @@
-policykit-1 (0.99-4) UNRELEASED; urgency=low
+policykit-1 (0.100-1) UNRELEASED; urgency=low
 
+  * New upstream release.
   * Switch from cdbs to dh.
   * Bump debhelper compatibility level to 8.
   * Install documentation using debian/policykit-1.docs.
 
- -- Michael Biebl <biebl@debian.org>  Sat, 12 Feb 2011 17:57:08 +0100
+ -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 12:28:09 +0100
 
 policykit-1 (0.99-3) unstable; urgency=low
 
