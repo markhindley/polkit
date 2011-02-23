@@ -60,6 +60,20 @@
 #include "polkitagentmarshal.h"
 #include "polkitagentsession.h"
 
+static gboolean
+_show_debug (void)
+{
+  static volatile gsize has_show_debug = 0;
+  static gboolean show_debug_value = FALSE;
+
+  if (g_once_init_enter (&has_show_debug))
+    {
+      show_debug_value = (g_getenv ("POLKIT_DEBUG") != NULL);
+      g_once_init_leave (&has_show_debug, 1);
+    }
+  return show_debug_value;
+}
+
 /**
  * PolkitAgentSession:
  *
@@ -84,12 +98,20 @@ struct _PolkitAgentSession
 
   gboolean success;
   gboolean helper_is_running;
+  gboolean have_emitted_completed;
 };
 
 struct _PolkitAgentSessionClass
 {
   GObjectClass parent_class;
 
+};
+
+enum
+{
+  PROP_0,
+  PROP_IDENTITY,
+  PROP_COOKIE
 };
 
 enum
@@ -131,6 +153,54 @@ polkit_agent_session_finalize (GObject *object)
 }
 
 static void
+polkit_agent_session_get_property (GObject     *object,
+                                   guint        prop_id,
+                                   GValue      *value,
+                                   GParamSpec  *pspec)
+{
+  PolkitAgentSession *session = POLKIT_AGENT_SESSION (object);
+
+  switch (prop_id)
+    {
+    case PROP_IDENTITY:
+      g_value_set_object (value, session->identity);
+      break;
+
+    case PROP_COOKIE:
+      g_value_set_string (value, session->cookie);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
+
+static void
+polkit_agent_session_set_property (GObject      *object,
+                                   guint         prop_id,
+                                   const GValue *value,
+                                   GParamSpec   *pspec)
+{
+  PolkitAgentSession *session = POLKIT_AGENT_SESSION (object);
+
+  switch (prop_id)
+    {
+    case PROP_IDENTITY:
+      session->identity = g_value_dup_object (value);
+      break;
+
+    case PROP_COOKIE:
+      session->cookie = g_value_dup_string (value);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
+
+static void
 polkit_agent_session_class_init (PolkitAgentSessionClass *klass)
 {
   GObjectClass *gobject_class;
@@ -138,6 +208,42 @@ polkit_agent_session_class_init (PolkitAgentSessionClass *klass)
   gobject_class = G_OBJECT_CLASS (klass);
 
   gobject_class->finalize = polkit_agent_session_finalize;
+  gobject_class->get_property = polkit_agent_session_get_property;
+  gobject_class->set_property = polkit_agent_session_set_property;
+
+  /**
+   * PolkitAgentSession:identity:
+   *
+   * The identity to authenticate.
+   */
+  g_object_class_install_property (gobject_class,
+                                   PROP_IDENTITY,
+                                   g_param_spec_object ("identity",
+                                                        "Identity",
+                                                        "The identity to authenticate",
+                                                        POLKIT_TYPE_IDENTITY,
+                                                        G_PARAM_CONSTRUCT_ONLY |
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_NAME |
+                                                        G_PARAM_STATIC_BLURB |
+                                                        G_PARAM_STATIC_NICK));
+
+  /**
+   * PolkitAgentSession:cookie:
+   *
+   * The cookie obtained from the PolicyKit daemon
+   */
+  g_object_class_install_property (gobject_class,
+                                   PROP_COOKIE,
+                                   g_param_spec_string ("cookie",
+                                                        "Cookie",
+                                                        "The cookie obtained from the PolicyKit daemon",
+                                                        NULL,
+                                                        G_PARAM_CONSTRUCT_ONLY |
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_NAME |
+                                                        G_PARAM_STATIC_BLURB |
+                                                        G_PARAM_STATIC_NICK));
 
   /**
    * PolkitAgentSession::request:
@@ -246,10 +352,10 @@ polkit_agent_session_new (PolkitIdentity *identity,
   g_return_val_if_fail (POLKIT_IS_IDENTITY (identity), NULL);
   g_return_val_if_fail (cookie != NULL, NULL);
 
-  session = POLKIT_AGENT_SESSION (g_object_new (POLKIT_AGENT_TYPE_SESSION, NULL));
-
-  session->identity = g_object_ref (identity);
-  session->cookie = g_strdup (cookie);
+  session = POLKIT_AGENT_SESSION (g_object_new (POLKIT_AGENT_TYPE_SESSION,
+                                                "identity", identity,
+                                                "cookie", cookie,
+                                                NULL));
 
   return session;
 }
@@ -300,7 +406,13 @@ complete_session (PolkitAgentSession *session,
                   gboolean            result)
 {
   kill_helper (session);
-  g_signal_emit_by_name (session, "completed", result);
+  if (!session->have_emitted_completed)
+    {
+      if (G_UNLIKELY (_show_debug ()))
+        g_print ("PolkitAgentSession: emitting ::completed(%s)\n", result ? "TRUE" : "FALSE");
+      g_signal_emit_by_name (session, "completed", result);
+      session->have_emitted_completed = TRUE;
+    }
 }
 
 static void
@@ -310,9 +422,17 @@ child_watch_func (GPid     pid,
 {
   PolkitAgentSession *session = POLKIT_AGENT_SESSION (user_data);
 
+  if (G_UNLIKELY (_show_debug ()))
+    {
+      g_print ("PolkitAgentSession: in child_watch_func for pid %d (WIFEXITED=%d WEXITSTATUS=%d)\n",
+               (gint) pid,
+               WIFEXITED(status),
+               WEXITSTATUS(status));
+    }
+
   /* kill all the watches we have set up, except for the child since it has exited already */
   session->child_pid = 0;
-  kill_helper (session);
+  complete_session (session, FALSE);
 }
 
 static gboolean
@@ -353,27 +473,36 @@ io_watch_have_data (GIOChannel    *channel,
   if (strlen (line) > 0 && line[strlen (line) - 1] == '\n')
     line[strlen (line) - 1] = '\0';
 
-  //g_debug ("Got '%s' from helper", line);
+  if (G_UNLIKELY (_show_debug ()))
+    g_print ("PolkitAgentSession: read `%s' from helper\n", line);
 
   if (g_str_has_prefix (line, "PAM_PROMPT_ECHO_OFF "))
     {
-      g_signal_emit_by_name (session, "request", line + sizeof "PAM_PROMPT_ECHO_OFF " - 1, FALSE);
+      const gchar *s = line + sizeof "PAM_PROMPT_ECHO_OFF " - 1;
+      if (G_UNLIKELY (_show_debug ()))
+        g_print ("PolkitAgentSession: emitting ::request('%s', FALSE)\n", s);
+      g_signal_emit_by_name (session, "request", s, FALSE);
     }
   else if (g_str_has_prefix (line, "PAM_PROMPT_ECHO_ON "))
     {
-      g_signal_emit_by_name (session, "request", line + sizeof "PAM_PROMPT_ECHO_ON " - 1, TRUE);
+      const gchar *s = line + sizeof "PAM_PROMPT_ECHO_ON " - 1;
+      if (G_UNLIKELY (_show_debug ()))
+        g_print ("PolkitAgentSession: emitting ::request('%s', TRUE)\n", s);
+      g_signal_emit_by_name (session, "request", s, TRUE);
     }
   else if (g_str_has_prefix (line, "PAM_ERROR_MSG "))
     {
-      g_signal_emit_by_name (session, "show-error", line + sizeof "PAM_ERROR_MSG " - 1);
+      const gchar *s = line + sizeof "PAM_ERROR_MSG " - 1;
+      if (G_UNLIKELY (_show_debug ()))
+        g_print ("PolkitAgentSession: emitting ::show-error('%s')\n", s);
+      g_signal_emit_by_name (session, "show-error", s);
     }
   else if (g_str_has_prefix (line, "PAM_TEXT_INFO "))
     {
-      g_signal_emit_by_name (session, "show-info", line + sizeof "PAM_TEXT_INFO " - 1);
-    }
-  else if (g_str_has_prefix (line, "PAM_TEXT_INFO "))
-    {
-      g_signal_emit_by_name (session, "show-info", line + sizeof "PAM_TEXT_INFO " - 1);
+      const gchar *s = line + sizeof "PAM_TEXT_INFO " - 1;
+      if (G_UNLIKELY (_show_debug ()))
+        g_print ("PolkitAgentSession: emitting ::show-info('%s')\n", s);
+      g_signal_emit_by_name (session, "show-info", s);
     }
   else if (g_str_has_prefix (line, "SUCCESS"))
     {
@@ -450,6 +579,16 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
 
   ret = FALSE;
 
+  if (G_UNLIKELY (_show_debug ()))
+    {
+      gchar *s;
+      s = polkit_identity_to_string (session->identity);
+      g_print ("PolkitAgentSession: initiating authentication for identity `%s', cookie %s\n",
+               s,
+               session->cookie);
+      g_free (s);
+    }
+
   /* TODO: also support authorization for other kinds of identities */
   if (!POLKIT_IS_UNIX_USER (session->identity))
     {
@@ -493,6 +632,9 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
       goto error;
     }
 
+  if (G_UNLIKELY (_show_debug ()))
+    g_print ("PolkitAgentSession: spawned helper with pid %d\n", (gint) session->child_pid);
+
   session->child_watch_source = g_child_watch_source_new (session->child_pid);
   g_source_set_callback (session->child_watch_source, (GSourceFunc) child_watch_func, session, NULL);
   g_source_attach (session->child_watch_source, g_main_context_get_thread_default ());
@@ -525,5 +667,9 @@ void
 polkit_agent_session_cancel (PolkitAgentSession *session)
 {
   g_return_if_fail (POLKIT_AGENT_IS_SESSION (session));
+
+  if (G_UNLIKELY (_show_debug ()))
+    g_print ("PolkitAgentSession: canceling authentication\n");
+
   complete_session (session, FALSE);
 }
