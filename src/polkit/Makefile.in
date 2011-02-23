@@ -235,6 +235,8 @@ PAM_MODULE_DIR = @PAM_MODULE_DIR@
 PAM_PREFIX = @PAM_PREFIX@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 POFILES = @POFILES@
 POLKIT_AUTHFW = @POLKIT_AUTHFW@
 POSUB = @POSUB@
@@ -285,7 +287,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -942,6 +943,7 @@ polkitenumtypes.c: $(enum_headers) polkitenumtypes.c.template
 
 @ENABLE_INTROSPECTION_TRUE@Polkit-1.0.gir: libpolkit-gobject-1.la $(G_IR_SCANNER) Makefile.am
 @ENABLE_INTROSPECTION_TRUE@	$(G_IR_SCANNER) -v 					\
+@ENABLE_INTROSPECTION_TRUE@		--warn-all					\
 @ENABLE_INTROSPECTION_TRUE@		--namespace Polkit 				\
 @ENABLE_INTROSPECTION_TRUE@		--nsversion=1.0 				\
 @ENABLE_INTROSPECTION_TRUE@		--include=Gio-2.0 				\
@@ -953,25 +955,7 @@ polkitenumtypes.c: $(enum_headers) polkitenumtypes.c.template
 @ENABLE_INTROSPECTION_TRUE@		--libtool=$(top_builddir)/libtool		\
 @ENABLE_INTROSPECTION_TRUE@                -I$(top_srcdir)/src	 			\
 @ENABLE_INTROSPECTION_TRUE@	        -D_POLKIT_COMPILATION                   	\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkit.h 				\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkittypes.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitactiondescription.h 		\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitauthority.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitauthorizationresult.h 		\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitcheckauthorizationflags.h 	\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitdetails.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(builddir)/polkitenumtypes.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkiterror.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitidentity.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitimplicitauthorization.h 	\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitsubject.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitsystembusname.h 		\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkittemporaryauthorization.h 	\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitunixgroup.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitunixprocess.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitunixsession.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitunixuser.h 			\
-@ENABLE_INTROSPECTION_TRUE@		$(srcdir)/polkitpermission.h 			\
+@ENABLE_INTROSPECTION_TRUE@		$(libpolkit_gobject_1_la_SOURCES)		\
 @ENABLE_INTROSPECTION_TRUE@		$(NULL)
 
 @ENABLE_INTROSPECTION_TRUE@Polkit-1.0.typelib: Polkit-1.0.gir $(G_IR_COMPILER)

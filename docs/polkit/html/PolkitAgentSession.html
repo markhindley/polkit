@@ -27,6 +27,8 @@
                    | 
                   <a href="#PolkitAgentSession.object-hierarchy" class="shortcut">Object Hierarchy</a>
                    | 
+                  <a href="#PolkitAgentSession.properties" class="shortcut">Properties</a>
+                   | 
                   <a href="#PolkitAgentSession.signals" class="shortcut">Signals</a>
 </td></tr>
 </table>
@@ -59,6 +61,13 @@ Unstable, unless otherwise indicated
 <pre class="synopsis">
   <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitAgentSession
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="PolkitAgentSession.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="PolkitAgentSession.html#PolkitAgentSession--cookie" title='The "cookie" property'>cookie</a>"                   <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="PolkitAgentSession.html#PolkitAgentSession--identity" title='The "identity" property'>identity</a>"                 <a class="link" href="PolkitIdentity.html" title="PolkitIdentity"><span class="type">PolkitIdentity</span></a>*       : Read / Write / Construct Only
 </pre>
 </div>
 <div class="refsect1" title="Signals">
@@ -209,6 +218,25 @@ signal.
 </td>
 </tr></tbody>
 </table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="PolkitAgentSession.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "cookie" property'>
+<a name="PolkitAgentSession--cookie"></a><h3>The <code class="literal">"cookie"</code> property</h3>
+<pre class="programlisting">  "cookie"                   <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>
+The cookie obtained from the PolicyKit daemon
+</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" title='The "identity" property'>
+<a name="PolkitAgentSession--identity"></a><h3>The <code class="literal">"identity"</code> property</h3>
+<pre class="programlisting">  "identity"                 <a class="link" href="PolkitIdentity.html" title="PolkitIdentity"><span class="type">PolkitIdentity</span></a>*       : Read / Write / Construct Only</pre>
+<p>
+The identity to authenticate.
+</p>
 </div>
 </div>
 <div class="refsect1" title="Signal Details">

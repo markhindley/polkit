@@ -255,6 +255,8 @@
     <function name="polkit_agent_session_initiate ()" link="PolkitAgentSession.html#polkit-agent-session-initiate"/>
     <function name="polkit_agent_session_response ()" link="PolkitAgentSession.html#polkit-agent-session-response"/>
     <function name="polkit_agent_session_cancel ()" link="PolkitAgentSession.html#polkit-agent-session-cancel"/>
+    <function name="The &quot;cookie&quot; property" link="PolkitAgentSession.html#PolkitAgentSession--cookie"/>
+    <function name="The &quot;identity&quot; property" link="PolkitAgentSession.html#PolkitAgentSession--identity"/>
     <function name="The &quot;completed&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-completed"/>
     <function name="The &quot;request&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-request"/>
     <function name="The &quot;show-error&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-error"/>

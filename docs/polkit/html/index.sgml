@@ -381,6 +381,7 @@
 <ANCHOR id="PolkitAgentSession.stability-level" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.stability-level">
 <ANCHOR id="PolkitAgentSession.synopsis" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.synopsis">
 <ANCHOR id="PolkitAgentSession.object-hierarchy" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.object-hierarchy">
+<ANCHOR id="PolkitAgentSession.properties" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.properties">
 <ANCHOR id="PolkitAgentSession.signals" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.signals">
 <ANCHOR id="PolkitAgentSession.description" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.description">
 <ANCHOR id="PolkitAgentSession.details" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.details">
@@ -389,6 +390,9 @@
 <ANCHOR id="polkit-agent-session-initiate" href="polkit-1/PolkitAgentSession.html#polkit-agent-session-initiate">
 <ANCHOR id="polkit-agent-session-response" href="polkit-1/PolkitAgentSession.html#polkit-agent-session-response">
 <ANCHOR id="polkit-agent-session-cancel" href="polkit-1/PolkitAgentSession.html#polkit-agent-session-cancel">
+<ANCHOR id="PolkitAgentSession.property-details" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.property-details">
+<ANCHOR id="PolkitAgentSession--cookie" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession--cookie">
+<ANCHOR id="PolkitAgentSession--identity" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession--identity">
 <ANCHOR id="PolkitAgentSession.signal-details" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession.signal-details">
 <ANCHOR id="PolkitAgentSession-completed" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession-completed">
 <ANCHOR id="PolkitAgentSession-request" href="polkit-1/PolkitAgentSession.html#PolkitAgentSession-request">
