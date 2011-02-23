@@ -2,4 +2,3 @@
 02_gettext.patch
 03_complete_session.patch
 04_test_signalfd.patch
-99_autoreconf.patch

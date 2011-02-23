@@ -1,80 +1,72 @@
-From 2d28fd4c5a87204b7b41470062c807d96817ad18 Mon Sep 17 00:00:00 2001
-From: Martin Pitt <martin.pitt@ubuntu.com>
-Date: Mon, 6 Dec 2010 11:48:06 +0100
-Subject: [PATCH 2/2] Allow building on Non-Linux platforms without signalfd()
+commit 02155a23eb27715d5d1d73c8ed1af417d1579bf5
+Author: David Zeuthen <davidz@redhat.com>
+Date:   Wed Feb 23 09:16:00 2011 -0500
 
-signalfd() is Linux specific and does not exist on e. g. FreeBSD kernels. Check
-for its availability in configure and make gposixsignal deal with it
-gracefully. This will cause the on_sigint() handler not to be called on
-non-Linux platforms, but first the daemon will still terminate properly, and
-second on_sigint() does not do anything important right now anyway.
+    Bug 30438 – PolicyKit fails to build on AIX
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=30438
+    
+    Signed-off-by: David Zeuthen <davidz@redhat.com>
 
-Bug: https://bugs.freedesktop.org/show_bug.cgi?id=31963
-Bug-Debian: http://bugs.debian.org/602476
----
- configure.ac               |    5 +++++
- src/polkitd/gposixsignal.c |   10 ++++++++++
- 2 files changed, 15 insertions(+), 0 deletions(-)
-
-diff --git a/configure.ac b/configure.ac
-index 3e3ae84..3003ce4 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -289,6 +289,11 @@ AC_SUBST(PAM_MODULE_DIR)
- 
- AC_ARG_WITH(os-type,     [  --with-os-type=<os>        distribution or OS (redhat/suse/gentoo/pardus/solaris)])
- 
-+dnl ---------------------------------------------------------------------------
-+dnl - Check for signalfd() (which is Linux only)
-+dnl ---------------------------------------------------------------------------
-+AC_CHECK_HEADER(sys/signalfd.h, [AC_DEFINE(HAVE_SIGNALFD_H, [], "Have sys/signalfd.h")])
-+
- #### Check our operating system (distro-tweaks required)
- if test "z$with_os_type" = "z"; then
- 	AC_CHECK_FILE(/etc/redhat-release,distro_type="redhat")
 diff --git a/src/polkitd/gposixsignal.c b/src/polkitd/gposixsignal.c
-index 8e9bb65..80eae43 100644
+index 8e9bb65..0dbd8e8 100644
 --- a/src/polkitd/gposixsignal.c
 +++ b/src/polkitd/gposixsignal.c
-@@ -23,7 +23,9 @@
+@@ -1,5 +1,5 @@
+ /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
+-/* 
++/*
+  * Copyright (C) 2010 Red Hat, Inc.
+  *
+  * This library is free software; you can redistribute it and/or
+@@ -22,12 +22,13 @@
+ 
  #include "config.h"
  
++#include "gposixsignal.h"
++
++#if defined(__linux__)
  #include <unistd.h>
-+#ifdef HAVE_SIGNALFD_H
  #include <sys/signalfd.h>
-+#endif
  #include <signal.h>
  
- #include "gposixsignal.h"
-@@ -79,6 +81,7 @@ static GSourceFuncs _g_posix_signal_source_funcs =
- GSource *
- _g_posix_signal_source_new (gint signum)
+-#include "gposixsignal.h"
+-
+ typedef struct
  {
-+#ifdef HAVE_SIGNALFD_H
-   sigset_t sigset;
-   gint fd;
-   GSource *_source;
-@@ -103,6 +106,10 @@ _g_posix_signal_source_new (gint signum)
+   GSource source;
+@@ -126,3 +127,22 @@ _g_posix_signal_watch_add (gint                   signum,
  
-   source->signum = signum;
-   return _source;
-+#else
-+  g_warning ("_g_posix_signal_source_new(): This operating system does not support signalfd()");
-+  return NULL;
-+#endif
+   return id;
  }
- 
- guint
-@@ -118,6 +125,9 @@ _g_posix_signal_watch_add (gint                   signum,
-   g_return_val_if_fail (function != NULL, 0);
- 
-   source = _g_posix_signal_source_new (signum);
-+  if (source == NULL)
-+    return 0;
++#else  /* __linux__ */
 +
-   if (priority != G_PRIORITY_DEFAULT_IDLE)
-     g_source_set_priority (source, priority);
-   g_source_set_callback (source, (GSourceFunc) function, user_data, notify);
--- 
-1.7.2.3
-
++GSource *
++_g_posix_signal_source_new (gint signum)
++{
++  return NULL;
++}
++
++guint
++_g_posix_signal_watch_add (gint                   signum,
++                           gint                   priority,
++                           _GPosixSignalWatchFunc function,
++                           gpointer               user_data,
++                           GDestroyNotify         notify)
++{
++  return 0;
++}
++
++#endif /* __linux__ */
+diff --git a/src/polkitd/main.c b/src/polkitd/main.c
+index 4b1967a..33ea511 100644
+--- a/src/polkitd/main.c
++++ b/src/polkitd/main.c
+@@ -90,6 +90,7 @@ on_sigint (gpointer user_data)
+   g_main_loop_quit (loop);
+   return FALSE;
+ }
++
+ int
+ main (int    argc,
+       char **argv)

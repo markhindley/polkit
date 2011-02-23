@@ -1,6 +1,9 @@
 policykit-1 (0.100-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Refresh debian/patches/03_complete_session.patch.
+  * Replace debian/patches/04_test_signalfd.patch with a patch that was merged
+    upstream. This also allows to drop debian/patches/99_autoreconf.patch.
   * Switch from cdbs to dh.
   * Bump debhelper compatibility level to 8.
   * Install documentation using debian/policykit-1.docs.
