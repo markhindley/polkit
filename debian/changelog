@@ -7,6 +7,13 @@ policykit-1 (0.100-1) UNRELEASED; urgency=low
   * Switch from cdbs to dh.
   * Bump debhelper compatibility level to 8.
   * Install documentation using debian/policykit-1.docs.
+  * Enable gobject introspection support.
+    - Add Build-Depends on libgirepository1.0-dev (>= 0.9.12),
+      gobject-introspection (>= 0.9.12-4~) and gir1.2-glib-2.0.
+    - Add package gir1.2-polkit-1.0 containing the typelib files.
+    - Install gir files in libpolkit-agent-1-dev.install and
+      libpolkit-gobject-1-dev.install.
+    - Call dh_girepository in debian/rules.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 12:28:09 +0100
 
