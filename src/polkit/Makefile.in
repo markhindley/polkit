@@ -158,6 +158,7 @@ CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -168,8 +169,6 @@ EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
 FGREP = @FGREP@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
-GIRDIR = @GIRDIR@
-GIRTYPELIBDIR = @GIRTYPELIBDIR@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
 GMOFILES = @GMOFILES@
@@ -178,9 +177,6 @@ GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
-G_IR_COMPILER = @G_IR_COMPILER@
-G_IR_GENERATE = @G_IR_GENERATE@
-G_IR_SCANNER = @G_IR_SCANNER@
 HAVE_PAM = @HAVE_PAM@
 HTML_DIR = @HTML_DIR@
 INSTALL = @INSTALL@
@@ -195,7 +191,13 @@ INTLTOOL_MERGE = @INTLTOOL_MERGE@
 INTLTOOL_PERL = @INTLTOOL_PERL@
 INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
 INTROSPECTION_CFLAGS = @INTROSPECTION_CFLAGS@
+INTROSPECTION_COMPILER = @INTROSPECTION_COMPILER@
+INTROSPECTION_GENERATE = @INTROSPECTION_GENERATE@
+INTROSPECTION_GIRDIR = @INTROSPECTION_GIRDIR@
 INTROSPECTION_LIBS = @INTROSPECTION_LIBS@
+INTROSPECTION_MAKEFILE = @INTROSPECTION_MAKEFILE@
+INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
+INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -209,6 +211,7 @@ LT_CURRENT = @LT_CURRENT@
 LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
@@ -255,6 +258,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -380,10 +384,10 @@ libpolkit_gobject_1_la_LIBADD = \
         $(NULL)
 
 libpolkit_gobject_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
-@ENABLE_INTROSPECTION_TRUE@girdir = $(GIRDIR)
-@ENABLE_INTROSPECTION_TRUE@gir_DATA = Polkit-1.0.gir
-@ENABLE_INTROSPECTION_TRUE@typelibsdir = $(GIRTYPELIBDIR)
-@ENABLE_INTROSPECTION_TRUE@typelibs_DATA = Polkit-1.0.typelib
+@HAVE_INTROSPECTION_TRUE@girdir = $(INTROSPECTION_GIRDIR)
+@HAVE_INTROSPECTION_TRUE@gir_DATA = Polkit-1.0.gir
+@HAVE_INTROSPECTION_TRUE@typelibsdir = $(INTROSPECTION_TYPELIBDIR)
+@HAVE_INTROSPECTION_TRUE@typelibs_DATA = Polkit-1.0.typelib
 EXTRA_DIST = polkitenumtypes.h.template polkitenumtypes.c.template
 CLEANFILES = $(gir_DATA) $(typelibs_DATA)
 all: $(BUILT_SOURCES)
@@ -941,25 +945,25 @@ polkitenumtypes.c: $(enum_headers) polkitenumtypes.c.template
 	 cd $(srcdir) && glib-mkenums --template polkitenumtypes.c.template $(enum_headers)) > \
 	   polkitenumtypes.c.tmp && mv polkitenumtypes.c.tmp polkitenumtypes.c
 
-@ENABLE_INTROSPECTION_TRUE@Polkit-1.0.gir: libpolkit-gobject-1.la $(G_IR_SCANNER) Makefile.am
-@ENABLE_INTROSPECTION_TRUE@	$(G_IR_SCANNER) -v 					\
-@ENABLE_INTROSPECTION_TRUE@		--warn-all					\
-@ENABLE_INTROSPECTION_TRUE@		--namespace Polkit 				\
-@ENABLE_INTROSPECTION_TRUE@		--nsversion=1.0 				\
-@ENABLE_INTROSPECTION_TRUE@		--include=Gio-2.0 				\
-@ENABLE_INTROSPECTION_TRUE@		--library=polkit-gobject-1 			\
-@ENABLE_INTROSPECTION_TRUE@		--output $@ 					\
-@ENABLE_INTROSPECTION_TRUE@		--pkg=glib-2.0 					\
-@ENABLE_INTROSPECTION_TRUE@		--pkg=gobject-2.0 				\
-@ENABLE_INTROSPECTION_TRUE@		--pkg=gio-2.0 					\
-@ENABLE_INTROSPECTION_TRUE@		--libtool=$(top_builddir)/libtool		\
-@ENABLE_INTROSPECTION_TRUE@                -I$(top_srcdir)/src	 			\
-@ENABLE_INTROSPECTION_TRUE@	        -D_POLKIT_COMPILATION                   	\
-@ENABLE_INTROSPECTION_TRUE@		$(libpolkit_gobject_1_la_SOURCES)		\
-@ENABLE_INTROSPECTION_TRUE@		$(NULL)
+@HAVE_INTROSPECTION_TRUE@Polkit-1.0.gir: libpolkit-gobject-1.la $(INTROSPECTION_SCANNER) Makefile.am
+@HAVE_INTROSPECTION_TRUE@	$(INTROSPECTION_SCANNER) -v 				\
+@HAVE_INTROSPECTION_TRUE@		--warn-all					\
+@HAVE_INTROSPECTION_TRUE@		--namespace Polkit 				\
+@HAVE_INTROSPECTION_TRUE@		--nsversion=1.0 				\
+@HAVE_INTROSPECTION_TRUE@		--include=Gio-2.0 				\
+@HAVE_INTROSPECTION_TRUE@		--library=polkit-gobject-1 			\
+@HAVE_INTROSPECTION_TRUE@		--output $@ 					\
+@HAVE_INTROSPECTION_TRUE@		--pkg=glib-2.0 					\
+@HAVE_INTROSPECTION_TRUE@		--pkg=gobject-2.0 				\
+@HAVE_INTROSPECTION_TRUE@		--pkg=gio-2.0 					\
+@HAVE_INTROSPECTION_TRUE@		--libtool=$(top_builddir)/libtool		\
+@HAVE_INTROSPECTION_TRUE@                -I$(top_srcdir)/src	 			\
+@HAVE_INTROSPECTION_TRUE@	        -D_POLKIT_COMPILATION                   	\
+@HAVE_INTROSPECTION_TRUE@		$(libpolkit_gobject_1_la_SOURCES)		\
+@HAVE_INTROSPECTION_TRUE@		$(NULL)
 
-@ENABLE_INTROSPECTION_TRUE@Polkit-1.0.typelib: Polkit-1.0.gir $(G_IR_COMPILER)
-@ENABLE_INTROSPECTION_TRUE@	$(G_IR_COMPILER) $< -o $@
+@HAVE_INTROSPECTION_TRUE@Polkit-1.0.typelib: Polkit-1.0.gir $(INTROSPECTION_COMPILER)
+@HAVE_INTROSPECTION_TRUE@	$(INTROSPECTION_COMPILER) $< -o $@
 
 dist-hook :
 	(for i in $(polkit_built_sources) $(BUILT_SOURCES) ; do rm -f $(distdir)/$$i ; done)

@@ -30,6 +30,16 @@
 
     <cmdsynopsis>
       <command>pkcheck</command>
+      <arg><option>--list-temp</option></arg>
+    </cmdsynopsis>
+
+    <cmdsynopsis>
+      <command>pkcheck</command>
+      <arg><option>--revoke-temp</option></arg>
+    </cmdsynopsis>
+
+    <cmdsynopsis>
+      <command>pkcheck</command>
       <arg choice="plain">
         <option>--action-id</option>
         <replaceable>action</replaceable>
@@ -87,6 +97,12 @@
       while waiting for authentication.
     </para>
     <para>
+      The invocation <command>pkcheck --list-temp</command> will list
+      all temporary authorizations for the current session and
+      <command>pkcheck --revoke-temp</command> will revoke all
+      temporary authorizations for the current session.
+    </para>
+    <para>
       This command is a simple wrapper around the PolicyKit D-Bus interface; see the
       D-Bus interface documentation for details.
     </para>
@@ -123,6 +139,13 @@ KEY3=VALUE3
       <option>--allow-user-interaction</option> wasn't passed, <command>pkcheck</command>
       exits with a return value of 2 and a diagnostic message is printed on standard error.
       Details are printed on standard output.
+    </para>
+    <para>
+      If the specificied process is not authorized because the
+      authentication dialog / request was dismissed by the user,
+      <command>pkcheck</command> exits with a return value of 3 and a
+      diagnostic message is printed on standard error.  Details are
+      printed on standard output.
     </para>
     <para>
       If an error occured while checking for authorization, <command>pkcheck</command> exits

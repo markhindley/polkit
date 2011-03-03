@@ -519,7 +519,7 @@ ensure_all_files (PolkitBackendActionPool *pool)
 
   error = NULL;
   e = g_file_enumerate_children (priv->directory,
-                                 "standard::*",
+                                 "standard::name",
                                  G_FILE_QUERY_INFO_NONE,
                                  NULL,
                                  &error);
@@ -1043,11 +1043,8 @@ process_policy_file (PolkitBackendActionPool *pool,
                      const gchar *xml,
                      GError **error)
 {
-  gboolean ret;
   ParserData pd;
   int xml_res;
-
-  ret = FALSE;
 
   /* clear parser data */
   memset (&pd, 0, sizeof (ParserData));

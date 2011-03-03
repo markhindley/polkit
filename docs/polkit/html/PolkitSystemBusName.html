@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitSystemBusName</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="index.html" title="PolicyKit Reference Manual">
 <link rel="up" href="subjects.html" title="Subjects">
 <link rel="prev" href="PolkitUnixSession.html" title="PolkitUnixSession">
 <link rel="next" href="Identities.html" title="Identities">
-<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.16 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -32,7 +32,7 @@
                   <a href="#PolkitSystemBusName.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" title="PolkitSystemBusName">
+<div class="refentry">
 <a name="PolkitSystemBusName"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -41,7 +41,7 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv" title="Synopsis">
+<div class="refsynopsisdiv">
 <a name="PolkitSystemBusName.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="PolkitSystemBusName.html#PolkitSystemBusName-struct" title="PolkitSystemBusName">PolkitSystemBusName</a>;
 <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitSystemBusName.html#polkit-system-bus-name-new" title="polkit_system_bus_name_new ()">polkit_system_bus_name_new</a>          (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);
@@ -54,39 +54,39 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
-<div class="refsect1" title="Object Hierarchy">
+<div class="refsect1">
 <a name="PolkitSystemBusName.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitSystemBusName
 </pre>
 </div>
-<div class="refsect1" title="Implemented Interfaces">
+<div class="refsect1">
 <a name="PolkitSystemBusName.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 PolkitSystemBusName implements
  <a class="link" href="PolkitSubject.html" title="PolkitSubject">PolkitSubject</a>.</p>
 </div>
-<div class="refsect1" title="Properties">
+<div class="refsect1">
 <a name="PolkitSystemBusName.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
   "<a class="link" href="PolkitSystemBusName.html#PolkitSystemBusName--name" title='The "name" property'>name</a>"                     <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct
 </pre>
 </div>
-<div class="refsect1" title="Description">
+<div class="refsect1">
 <a name="PolkitSystemBusName.description"></a><h2>Description</h2>
 <p>
 An object that represents a process owning a unique name on the system bus.
 </p>
 </div>
-<div class="refsect1" title="Details">
+<div class="refsect1">
 <a name="PolkitSystemBusName.details"></a><h2>Details</h2>
-<div class="refsect2" title="PolkitSystemBusName">
+<div class="refsect2">
 <a name="PolkitSystemBusName-struct"></a><h3>PolkitSystemBusName</h3>
 <pre class="programlisting">typedef struct _PolkitSystemBusName PolkitSystemBusName;</pre>
 </div>
 <hr>
-<div class="refsect2" title="polkit_system_bus_name_new ()">
+<div class="refsect2">
 <a name="polkit-system-bus-name-new"></a><h3>polkit_system_bus_name_new ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_system_bus_name_new          (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);</pre>
 <p>
@@ -97,19 +97,18 @@ Creates a new <a class="link" href="PolkitSystemBusName.html" title="PolkitSyste
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
-<td>A unique system bus name.
-</td>
+<td>A unique system bus name.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="polkit_system_bus_name_get_name ()">
+<div class="refsect2">
 <a name="polkit-system-bus-name-get-name"></a><h3>polkit_system_bus_name_get_name ()</h3>
 <pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_system_bus_name_get_name     (<em class="parameter"><code><a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a> *system_bus_name</code></em>);</pre>
 <p>
@@ -120,20 +119,18 @@ Gets the unique system bus name for <em class="parameter"><code>system_bus_name<
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>system_bus_name</code></em> :</span></p></td>
-<td>A <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>.
-</td>
+<td>A <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> The unique system bus name for <em class="parameter"><code>system_bus_name</code></em>. Do not
-free, this string is owned by <em class="parameter"><code>system_bus_name</code></em>.
-</td>
+<td>The unique system bus name for <em class="parameter"><code>system_bus_name</code></em>. Do not
+free, this string is owned by <em class="parameter"><code>system_bus_name</code></em>.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="polkit_system_bus_name_set_name ()">
+<div class="refsect2">
 <a name="polkit-system-bus-name-set-name"></a><h3>polkit_system_bus_name_set_name ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_system_bus_name_set_name     (<em class="parameter"><code><a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a> *system_bus_name</code></em>,
                                                          <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);</pre>
@@ -145,19 +142,17 @@ Sets the unique system bus name for <em class="parameter"><code>system_bus_name<
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>system_bus_name</code></em> :</span></p></td>
-<td>A <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>.
-</td>
+<td>A <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
-<td>A unique system bus name.
-</td>
+<td>A unique system bus name.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="polkit_system_bus_name_get_process_sync ()">
+<div class="refsect2">
 <a name="polkit-system-bus-name-get-process-sync"></a><h3>polkit_system_bus_name_get_process_sync ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_system_bus_name_get_process_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a> *system_bus_name</code></em>,
@@ -172,31 +167,30 @@ Synchronously gets a <a class="link" href="PolkitUnixProcess.html" title="Polkit
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>system_bus_name</code></em> :</span></p></td>
-<td>A <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>.
-</td>
+<td>A <a class="link" href="PolkitSystemBusName.html" title="PolkitSystemBusName"><span class="type">PolkitSystemBusName</span></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> object or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>][<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> object or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>][<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 </div>
-<div class="refsect1" title="Property Details">
+<div class="refsect1">
 <a name="PolkitSystemBusName.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" title='The "name" property'>
+<div class="refsect2">
 <a name="PolkitSystemBusName--name"></a><h3>The <code class="literal">"name"</code> property</h3>
 <pre class="programlisting">  "name"                     <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct</pre>
 <p>
@@ -208,6 +202,6 @@ The unique name on the system message bus.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.15</div>
+          Generated by GTK-Doc V1.16</div>
 </body>
 </html>

@@ -32,7 +32,6 @@
 #include "polkitbackendactionpool.h"
 #include "polkitbackendsessionmonitor.h"
 #include "polkitbackendconfigsource.h"
-#include "polkitbackendactionlookup.h"
 
 #include <polkit/polkitprivate.h>
 
@@ -82,6 +81,7 @@ typedef void (*AuthenticationAgentCallback) (AuthenticationAgent         *agent,
                                              const gchar                 *action_id,
                                              PolkitImplicitAuthorization  implicit_authorization,
                                              gboolean                     authentication_success,
+                                             gboolean                     was_dismissed,
                                              PolkitIdentity              *authenticated_identity,
                                              gpointer                     user_data);
 
@@ -274,6 +274,10 @@ polkit_backend_interactive_authority_init (PolkitBackendInteractiveAuthority *au
   PolkitBackendInteractiveAuthorityPrivate *priv;
   GFile *directory;
   GError *error;
+  static volatile GQuark domain = 0;
+
+  /* Force registering error domain */
+  domain = POLKIT_ERROR; domain;
 
   priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (authority);
 
@@ -435,6 +439,7 @@ struct AuthenticationAgent
 };
 
 /* TODO: should probably move to PolkitSubject
+ * (also see copy in src/programs/pkcheck.c)
  *
  * Also, can't really trust the cmdline... but might be useful in the logs anyway.
  */
@@ -479,7 +484,7 @@ _polkit_subject_get_cmdline (PolkitSubject *subject)
     }
   else
     {
-      g_warning ("Unknown subject type passed to guess_program_name()");
+      g_warning ("Unknown subject type passed to _polkit_subject_get_cmdline()");
       goto out;
     }
 
@@ -499,15 +504,21 @@ _polkit_subject_get_cmdline (PolkitSubject *subject)
       goto out;
     }
 
-  /* The kernel uses '\0' to separate arguments - replace those with a space. */
-  for (n = 0; n < contents_len - 1; n++)
+  if (contents == NULL || contents_len == 0)
     {
-      if (contents[n] == '\0')
-        contents[n] = ' ';
+      goto out;
     }
-
-  ret = g_strdup (contents);
-  g_strstrip (ret);
+  else
+    {
+      /* The kernel uses '\0' to separate arguments - replace those with a space. */
+      for (n = 0; n < contents_len - 1; n++)
+        {
+          if (contents[n] == '\0')
+            contents[n] = ' ';
+        }
+      ret = g_strdup (contents);
+      g_strstrip (ret);
+    }
 
  out:
   g_free (filename);
@@ -582,6 +593,7 @@ check_authorization_challenge_cb (AuthenticationAgent         *agent,
                                   const gchar                 *action_id,
                                   PolkitImplicitAuthorization  implicit_authorization,
                                   gboolean                     authentication_success,
+                                  gboolean                     was_dismissed,
                                   PolkitIdentity              *authenticated_identity,
                                   gpointer                     user_data)
 {
@@ -594,6 +606,7 @@ check_authorization_challenge_cb (AuthenticationAgent         *agent,
   gchar *authenticated_identity_str;
   gchar *subject_cmdline;
   gboolean is_temp;
+  PolkitDetails *details;
 
   priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (authority);
 
@@ -613,18 +626,21 @@ check_authorization_challenge_cb (AuthenticationAgent         *agent,
   g_debug ("In check_authorization_challenge_cb\n"
            "  subject                %s\n"
            "  action_id              %s\n"
+           "  was_dismissed          %d\n"
            "  authentication_success %d\n",
            subject_str,
            action_id,
+           was_dismissed,
            authentication_success);
+
+  details = polkit_details_new ();
+  if (implicit_authorization == POLKIT_IMPLICIT_AUTHORIZATION_AUTHENTICATION_REQUIRED_RETAINED ||
+      implicit_authorization == POLKIT_IMPLICIT_AUTHORIZATION_ADMINISTRATOR_AUTHENTICATION_REQUIRED_RETAINED)
+    polkit_details_insert (details, "polkit.retains_authorization_after_challenge", "true");
 
   is_temp = FALSE;
   if (authentication_success)
     {
-      PolkitDetails *details;
-
-      details = polkit_details_new ();
-
       /* store temporary authorization depending on value of implicit_authorization */
       if (implicit_authorization == POLKIT_IMPLICIT_AUTHORIZATION_AUTHENTICATION_REQUIRED_RETAINED ||
           implicit_authorization == POLKIT_IMPLICIT_AUTHORIZATION_ADMINISTRATOR_AUTHENTICATION_REQUIRED_RETAINED)
@@ -643,14 +659,14 @@ check_authorization_challenge_cb (AuthenticationAgent         *agent,
           /* we've added a temporary authorization, let the user know */
           g_signal_emit_by_name (authority, "changed");
         }
-
       result = polkit_authorization_result_new (TRUE, FALSE, details);
-      g_object_unref (details);
     }
   else
     {
       /* TODO: maybe return set is_challenge? */
-      result = polkit_authorization_result_new (FALSE, FALSE, NULL);
+      if (was_dismissed)
+        polkit_details_insert (details, "polkit.dismissed", "true");
+      result = polkit_authorization_result_new (FALSE, FALSE, details);
     }
 
   /* Log the event */
@@ -695,6 +711,7 @@ check_authorization_challenge_cb (AuthenticationAgent         *agent,
 
   /* log_result (authority, action_id, subject, caller, result); */
 
+  g_object_unref (details);
   g_simple_async_result_set_op_res_gpointer (simple,
                                              result,
                                              g_object_unref);
@@ -1633,16 +1650,24 @@ authentication_agent_begin_cb (GDBusProxy   *proxy,
 {
   AuthenticationSession *session = user_data;
   gboolean gained_authorization;
+  gboolean was_dismissed;
   GError *error;
+
+  was_dismissed = FALSE;
+  gained_authorization = FALSE;
 
   error = NULL;
   if (!g_dbus_proxy_call_finish (proxy,
                                  res,
                                  &error))
     {
-      g_printerr ("Error performing authentication: %s\n", error->message);
+      g_printerr ("Error performing authentication: %s (%s %d)\n",
+                  error->message,
+                  g_quark_to_string (error->domain),
+                  error->code);
+      if (error->domain == POLKIT_ERROR && error->code == POLKIT_ERROR_CANCELLED)
+        was_dismissed = TRUE;
       g_error_free (error);
-      gained_authorization = FALSE;
     }
   else
     {
@@ -1660,41 +1685,88 @@ authentication_agent_begin_cb (GDBusProxy   *proxy,
                      session->action_id,
                      session->implicit_authorization,
                      gained_authorization,
+                     was_dismissed,
                      session->authenticated_identity,
                      session->user_data);
 
   authentication_session_free (session);
 }
 
-static GList *
-get_action_lookup_list (void)
+static void
+append_property (GString *dest,
+                 PolkitDetails *details,
+                 const gchar *key,
+                 PolkitBackendInteractiveAuthority *authority,
+                 const gchar *message,
+                 const gchar *action_id)
 {
-  GList *extensions;
-  GList *l;
-  GIOExtensionPoint *action_lookup_ep;
-  static GList *action_lookup_list = NULL;
-  static gboolean have_looked_up_extensions = FALSE;
+  const gchar *value;
 
-  if (have_looked_up_extensions)
-    goto out;
-
-  action_lookup_ep = g_io_extension_point_lookup (POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME);
-  g_assert (action_lookup_ep != NULL);
-
-  extensions = g_io_extension_point_get_extensions (action_lookup_ep);
-  for (l = extensions; l != NULL; l = l->next)
+  value = polkit_details_lookup (details, key);
+  if (value != NULL)
     {
-      GIOExtension *extension = l->data;
-      PolkitBackendActionLookup *lookup;
-
-      lookup = g_object_new (g_io_extension_get_type (extension), NULL);
-      action_lookup_list = g_list_prepend (action_lookup_list, lookup);
+      g_string_append (dest, value);
     }
-  action_lookup_list = g_list_reverse (action_lookup_list);
+  else
+    {
+      polkit_backend_authority_log (POLKIT_BACKEND_AUTHORITY (authority),
+                                    "Error substituting value for property $(%s) when preparing message `%s' for action-id %s",
+                                    key,
+                                    message,
+                                    action_id);
+      g_string_append (dest, "$(");
+      g_string_append (dest, key);
+      g_string_append (dest, ")");
+    }
+}
 
- out:
-  have_looked_up_extensions = TRUE;
-  return action_lookup_list;
+static gchar *
+expand_properties (const gchar *message,
+                   PolkitDetails *details,
+                   PolkitBackendInteractiveAuthority *authority,
+                   const gchar *action_id)
+{
+  GString *ret;
+  GString *var;
+  guint n;
+  gboolean in_resolve;
+
+  ret = g_string_new (NULL);
+  var = g_string_new (NULL);
+
+  in_resolve = FALSE;
+  for (n = 0; message[n] != '\0'; n++)
+    {
+      gint c = message[n];
+      if (c == '$' && message[n+1] == '(')
+        {
+          in_resolve = TRUE;
+          n += 1;
+        }
+      else
+        {
+          if (in_resolve)
+            {
+              if (c == ')')
+                {
+                  append_property (ret, details, var->str, authority, message, action_id);
+                  g_string_set_size (var, 0);
+                  in_resolve = FALSE;
+                }
+              else
+                {
+                  g_string_append_c (var, c);
+                }
+            }
+          else
+            {
+              g_string_append_c (ret, c);
+            }
+        }
+    }
+  g_string_free (var, TRUE);
+
+  return g_string_free (ret, FALSE);
 }
 
 static void
@@ -1711,11 +1783,12 @@ get_localized_data_for_challenge (PolkitBackendInteractiveAuthority *authority,
 {
   PolkitBackendInteractiveAuthorityPrivate *priv;
   PolkitActionDescription *action_desc;
-  GList *action_lookup_list;
-  GList *l;
   gchar *message;
   gchar *icon_name;
   PolkitDetails *localized_details;
+  const gchar *message_to_use;
+  const gchar *gettext_domain;
+  gchar *s;
 
   priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (authority);
 
@@ -1734,44 +1807,21 @@ get_localized_data_for_challenge (PolkitBackendInteractiveAuthority *authority,
   if (action_desc == NULL)
     goto out;
 
-  /* Set LANG and locale so gettext() + friends work when running the code in the extensions */
+  /* Set LANG and locale so g_dgettext() + friends work below */
   if (setlocale (LC_ALL, locale) == NULL)
     {
       g_printerr ("Invalid locale '%s'\n", locale);
     }
   g_setenv ("LANG", locale, TRUE);
 
-  /* call into extension points to get localized auth dialog data - the list is sorted by priority */
-  action_lookup_list = get_action_lookup_list ();
-  for (l = action_lookup_list; l != NULL; l = l->next)
+  gettext_domain = polkit_details_lookup (details, "polkit.gettext_domain");
+  message_to_use = polkit_details_lookup (details, "polkit.message");
+  if (message_to_use != NULL)
     {
-      PolkitBackendActionLookup *lookup = POLKIT_BACKEND_ACTION_LOOKUP (l->data);
-
-      if (message != NULL && icon_name != NULL && localized_details != NULL)
-        break;
-
-      if (message == NULL)
-        message = polkit_backend_action_lookup_get_message (lookup,
-                                                            action_id,
-                                                            details,
-                                                            action_desc);
-
-      if (icon_name == NULL)
-        icon_name = polkit_backend_action_lookup_get_icon_name (lookup,
-                                                                action_id,
-                                                                details,
-                                                                action_desc);
-
-      if (localized_details == NULL)
-        localized_details = polkit_backend_action_lookup_get_details (lookup,
-                                                                      action_id,
-                                                                      details,
-                                                                      action_desc);
+      message = g_strdup (g_dgettext (gettext_domain, message_to_use));
+      /* g_print ("locale=%s, domain=%s, msg=`%s' -> `%s'\n", locale, gettext_domain, message_to_use, message); */
     }
-
-  /* Back to C! */
-  setlocale (LC_ALL, "C");
-  g_setenv ("LANG", "C", TRUE);
+  icon_name = g_strdup (polkit_details_lookup (details, "polkit.icon_name"));
 
   /* fall back to action description */
   if (message == NULL)
@@ -1782,6 +1832,15 @@ get_localized_data_for_challenge (PolkitBackendInteractiveAuthority *authority,
     {
       icon_name = g_strdup (polkit_action_description_get_icon_name (action_desc));
     }
+
+  /* replace $(property) with values */
+  s = message;
+  message = expand_properties (message, details, authority, action_id);
+  g_free (s);
+
+  /* Back to C! */
+  setlocale (LC_ALL, "C");
+  g_setenv ("LANG", "C", TRUE);
 
  out:
   if (message == NULL)
@@ -1920,6 +1979,8 @@ authentication_agent_initiate_challenge (AuthenticationAgent         *agent,
 
   agent->active_sessions = g_list_prepend (agent->active_sessions, session);
 
+  if (localized_details == NULL)
+    localized_details = polkit_details_new ();
   add_pid (localized_details, caller, "polkit.caller-pid");
   add_pid (localized_details, subject, "polkit.subject-pid");
 
@@ -2491,8 +2552,11 @@ struct TemporaryAuthorization
   PolkitSubject *scope;
   gchar *id;
   gchar *action_id;
-  guint64 time_granted;
-  guint64 time_expires;
+  /* both of these are obtained using g_get_monotonic_time(),
+   * so the resolution is usec
+   */
+  gint64 time_granted;
+  gint64 time_expires;
   guint expiration_timeout_id;
   guint check_vanished_timeout_id;
 };
@@ -2741,8 +2805,10 @@ temporary_authorization_store_add_authorization (TemporaryAuthorizationStore *st
   authorization->subject = g_object_ref (subject_to_use);
   authorization->scope = g_object_ref (scope);
   authorization->action_id = g_strdup (action_id);
-  authorization->time_granted = time (NULL);
-  authorization->time_expires = authorization->time_granted + expiration_seconds;
+  /* store monotonic time and convert to secs-since-epoch when returning TemporaryAuthorization structs */
+  authorization->time_granted = g_get_monotonic_time ();
+  authorization->time_expires = authorization->time_granted + expiration_seconds * G_USEC_PER_SEC;
+  /* g_timeout_add() is using monotonic time since 2.28 */
   authorization->expiration_timeout_id = g_timeout_add (expiration_seconds * 1000,
                                                         on_expiration_timeout,
                                                         authorization);
@@ -2797,6 +2863,8 @@ polkit_backend_interactive_authority_enumerate_temporary_authorizations (PolkitB
   PolkitSubject *session_for_caller;
   GList *ret;
   GList *l;
+  gint64 monotonic_now;
+  GTimeVal real_now;
 
   interactive_authority = POLKIT_BACKEND_INTERACTIVE_AUTHORITY (authority);
   priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (interactive_authority);
@@ -2834,19 +2902,27 @@ polkit_backend_interactive_authority_enumerate_temporary_authorizations (PolkitB
       goto out;
     }
 
+  monotonic_now = g_get_monotonic_time ();
+  g_get_current_time (&real_now);
+
   for (l = priv->temporary_authorization_store->authorizations; l != NULL; l = l->next)
     {
       TemporaryAuthorization *ta = l->data;
       PolkitTemporaryAuthorization *tmp_authz;
+      guint64 real_granted;
+      guint64 real_expires;
 
       if (!polkit_subject_equal (ta->scope, subject))
         continue;
 
+      real_granted = (ta->time_granted - monotonic_now) / G_USEC_PER_SEC + real_now.tv_sec;
+      real_expires = (ta->time_expires - monotonic_now) / G_USEC_PER_SEC + real_now.tv_sec;
+
       tmp_authz = polkit_temporary_authorization_new (ta->id,
                                                       ta->action_id,
                                                       ta->subject,
-                                                      ta->time_granted,
-                                                      ta->time_expires);
+                                                      real_granted,
+                                                      real_expires);
 
       ret = g_list_prepend (ret, tmp_authz);
     }

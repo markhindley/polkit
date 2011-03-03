@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitPermission</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="index.html" title="PolicyKit Reference Manual">
 <link rel="up" href="ref-api.html" title="Part III. Client API Reference">
 <link rel="prev" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization">
 <link rel="next" href="subjects.html" title="Subjects">
-<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.16 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -32,7 +32,7 @@
                   <a href="#PolkitPermission.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
-<div class="refentry" title="PolkitPermission">
+<div class="refentry">
 <a name="PolkitPermission"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -41,11 +41,11 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" title="Stability Level">
+<div class="refsect1">
 <a name="PolkitPermission.stability-level"></a><h2>Stability Level</h2>
 Stable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv" title="Synopsis">
+<div class="refsynopsisdiv">
 <a name="PolkitPermission.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="PolkitPermission.html#PolkitPermission-struct" title="PolkitPermission">PolkitPermission</a>;
 <span class="returnvalue">void</span>                <a class="link" href="PolkitPermission.html#polkit-permission-new" title="polkit_permission_new ()">polkit_permission_new</a>               (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
@@ -63,7 +63,7 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitPermission.html#polkit-permission-get-subject" title="polkit_permission_get_subject ()">polkit_permission_get_subject</a>       (<em class="parameter"><code><a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a> *permission</code></em>);
 </pre>
 </div>
-<div class="refsect1" title="Object Hierarchy">
+<div class="refsect1">
 <a name="PolkitPermission.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
@@ -71,20 +71,20 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
          +----PolkitPermission
 </pre>
 </div>
-<div class="refsect1" title="Implemented Interfaces">
+<div class="refsect1">
 <a name="PolkitPermission.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 PolkitPermission implements
  <a href="http://library.gnome.org/devel/gio/unstable/GInitable.html">GInitable</a> and  <a href="http://library.gnome.org/devel/gio/unstable/GAsyncInitable.html">GAsyncInitable</a>.</p>
 </div>
-<div class="refsect1" title="Properties">
+<div class="refsect1">
 <a name="PolkitPermission.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
   "<a class="link" href="PolkitPermission.html#PolkitPermission--action-id" title='The "action-id" property'>action-id</a>"                <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
   "<a class="link" href="PolkitPermission.html#PolkitPermission--subject" title='The "subject" property'>subject</a>"                  <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>*        : Read / Write / Construct Only
 </pre>
 </div>
-<div class="refsect1" title="Description">
+<div class="refsect1">
 <a name="PolkitPermission.description"></a><h2>Description</h2>
 <p>
 <a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a> is a <a href="http://library.gnome.org/devel/gio/unstable/GPermission.html"><span class="type">GPermission</span></a> implementation. It can be used
@@ -92,9 +92,9 @@ with e.g. <span class="type">GtkLockButton</span>. See the <a href="http://libra
 more information.
 </p>
 </div>
-<div class="refsect1" title="Details">
+<div class="refsect1">
 <a name="PolkitPermission.details"></a><h2>Details</h2>
-<div class="refsect2" title="PolkitPermission">
+<div class="refsect2">
 <a name="PolkitPermission-struct"></a><h3>PolkitPermission</h3>
 <pre class="programlisting">typedef struct _PolkitPermission PolkitPermission;</pre>
 <p>
@@ -102,7 +102,7 @@ The <a class="link" href="PolkitPermission.html" title="PolkitPermission"><span 
 </p>
 </div>
 <hr>
-<div class="refsect2" title="polkit_permission_new ()">
+<div class="refsect2">
 <a name="polkit-permission-new"></a><h3>polkit_permission_new ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_permission_new               (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
@@ -127,34 +127,31 @@ This is a asynchronous failable constructor. See
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>action_id</code></em> :</span></p></td>
-<td>The PolicyKit action identifier.
-</td>
+<td>The PolicyKit action identifier.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>subject</code></em> :</span></p></td>
-<td> A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the current process. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the current process. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.
-</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
-<td>The data to pass to <em class="parameter"><code>callback</code></em>.
-</td>
+<td>The data to pass to <em class="parameter"><code>callback</code></em>.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="polkit_permission_new_finish ()">
+<div class="refsect2">
 <a name="polkit-permission-new-finish"></a><h3>polkit_permission_new_finish ()</h3>
 <pre class="programlisting"><a href="http://library.gnome.org/devel/gio/unstable/GPermission.html"><span class="returnvalue">GPermission</span></a> *       polkit_permission_new_finish        (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
@@ -166,24 +163,22 @@ Finishes an operation started with <a class="link" href="PolkitPermission.html#p
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> passed to <a class="link" href="PolkitPermission.html#polkit-permission-new" title="polkit_permission_new ()"><code class="function">polkit_permission_new()</code></a>.
-</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> passed to <a class="link" href="PolkitPermission.html#polkit-permission-new" title="polkit_permission_new ()"><code class="function">polkit_permission_new()</code></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a href="http://library.gnome.org/devel/gio/unstable/GPermission.html"><span class="type">GPermission</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set.
-</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GPermission.html"><span class="type">GPermission</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="polkit_permission_new_sync ()">
+<div class="refsect2">
 <a name="polkit-permission-new-sync"></a><h3>polkit_permission_new_sync ()</h3>
 <pre class="programlisting"><a href="http://library.gnome.org/devel/gio/unstable/GPermission.html"><span class="returnvalue">GPermission</span></a> *       polkit_permission_new_sync          (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
@@ -202,34 +197,32 @@ This is a synchronous failable constructor. See
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>action_id</code></em> :</span></p></td>
-<td>The PolicyKit action identifier.
-</td>
+<td>The PolicyKit action identifier.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>subject</code></em> :</span></p></td>
-<td> A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the current process. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the current process. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td> A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td> Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A <a href="http://library.gnome.org/devel/gio/unstable/GPermission.html"><span class="type">GPermission</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set.
-</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GPermission.html"><span class="type">GPermission</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="polkit_permission_get_action_id ()">
+<div class="refsect2">
 <a name="polkit-permission-get-action-id"></a><h3>polkit_permission_get_action_id ()</h3>
 <pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_permission_get_action_id     (<em class="parameter"><code><a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a> *permission</code></em>);</pre>
 <p>
@@ -240,19 +233,17 @@ Gets the PolicyKit action identifier used for <em class="parameter"><code>permis
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>permission</code></em> :</span></p></td>
-<td>A <a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a>.
-</td>
+<td>A <a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> A string owned by <em class="parameter"><code>permission</code></em>. Do not free.
-</td>
+<td>A string owned by <em class="parameter"><code>permission</code></em>. Do not free.</td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="polkit_permission_get_subject ()">
+<div class="refsect2">
 <a name="polkit-permission-get-subject"></a><h3>polkit_permission_get_subject ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_permission_get_subject       (<em class="parameter"><code><a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a> *permission</code></em>);</pre>
 <p>
@@ -263,21 +254,20 @@ Gets the subject used for <em class="parameter"><code>permission</code></em>.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>permission</code></em> :</span></p></td>
-<td>A <a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a>.
-</td>
+<td>A <a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td> An object owned by <em class="parameter"><code>permission</code></em>. Do not free. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+<td>An object owned by <em class="parameter"><code>permission</code></em>. Do not free. <span class="annotation">[<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 </div>
-<div class="refsect1" title="Property Details">
+<div class="refsect1">
 <a name="PolkitPermission.property-details"></a><h2>Property Details</h2>
-<div class="refsect2" title='The "action-id" property'>
+<div class="refsect2">
 <a name="PolkitPermission--action-id"></a><h3>The <code class="literal">"action-id"</code> property</h3>
 <pre class="programlisting">  "action-id"                <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
 <p>
@@ -286,7 +276,7 @@ The action identifier to use for the permission.
 <p>Default value: NULL</p>
 </div>
 <hr>
-<div class="refsect2" title='The "subject" property'>
+<div class="refsect2">
 <a name="PolkitPermission--subject"></a><h3>The <code class="literal">"subject"</code> property</h3>
 <pre class="programlisting">  "subject"                  <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>*        : Read / Write / Construct Only</pre>
 <p>
@@ -298,6 +288,6 @@ construction, it will be set to match the current process.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.15</div>
+          Generated by GTK-Doc V1.16</div>
 </body>
 </html>

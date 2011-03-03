@@ -35,6 +35,8 @@
 #include <pwd.h>
 #include <errno.h>
 
+#include <glib/gi18n.h>
+
 #ifdef POLKIT_AUTHFW_PAM
 #include <security/pam_appl.h>
 #endif /* POLKIT_AUTHFW_PAM */
@@ -47,7 +49,7 @@
 #include <polkitagent/polkitagent.h>
 
 static gchar *original_user_name = NULL;
-static gchar *original_cwd = NULL;
+static gchar original_cwd[PATH_MAX];
 static gchar *command_line = NULL;
 static struct passwd *pw;
 
@@ -450,10 +452,10 @@ main (int argc, char *argv[])
       goto out;
     }
 
-  original_cwd = g_strdup (get_current_dir_name ());
-  if (original_cwd == NULL)
+  if (getcwd (original_cwd, sizeof (original_cwd)) == NULL)
     {
-      g_printerr ("Error getting cwd.\n");
+      g_printerr ("Error getting cwd: %s\n",
+                  g_strerror (errno));
       goto out;
     }
 
@@ -640,19 +642,41 @@ main (int argc, char *argv[])
       goto out;
     }
 
-  details = polkit_details_new ();
-
-  polkit_details_insert (details, "command-line", command_line);
-  s = g_strdup_printf ("%s (%s)", pw->pw_gecos, pw->pw_name);
-  polkit_details_insert (details, "user", s);
-  g_free (s);
-  s = g_strdup_printf ("%d", (gint) pw->pw_uid);
-  polkit_details_insert (details, "uid", s);
-  g_free (s);
-  polkit_details_insert (details, "program", path);
-
   action_id = find_action_for_path (authority, path);
   g_assert (action_id != NULL);
+
+  details = polkit_details_new ();
+  if (pw->pw_gecos != NULL && strlen (pw->pw_gecos) > 0)
+    s = g_strdup_printf ("%s (%s)", pw->pw_gecos, pw->pw_name);
+  else
+    s = g_strdup_printf ("%s", pw->pw_name);
+  polkit_details_insert (details, "user", s);
+  g_free (s);
+  polkit_details_insert (details, "program", path);
+  polkit_details_insert (details, "command_line", command_line);
+  if (g_strcmp0 (action_id, "org.freedesktop.policykit.exec") == 0)
+    {
+      if (pw->pw_uid == 0)
+        {
+          polkit_details_insert (details, "polkit.message",
+                                 /* Translators: message shown when trying to run a program as root. Do not
+                                  * translate the $(program) fragment - it will be expanded to the path
+                                  * of the program e.g.  /bin/bash.
+                                  */
+                                 N_("Authentication is needed to run `$(program)' as the super user"));
+        }
+      else
+        {
+          polkit_details_insert (details, "polkit.message",
+                                 /* Translators: message shown when trying to run a program as another user.
+                                  * Do not translate the $(program) or $(user) fragments - the former will
+                                  * be expanded to the path of the program e.g. "/bin/bash" and the latter
+                                  * to the user e.g. "John Doe (johndoe)" or "johndoe".
+                                  */
+                                 N_("Authentication is needed to run `$(program)' as user $(user)"));
+        }
+    }
+  polkit_details_insert (details, "polkit.gettext_domain", GETTEXT_PACKAGE);
 
  try_again:
   error = NULL;
@@ -714,10 +738,19 @@ main (int argc, char *argv[])
     }
   else
     {
-      log_message (LOG_WARNING, TRUE,
-                   "Error executing command as another user: Not authorized");
-      g_printerr ("\n"
-                  "This incident has been reported.\n");
+      if (polkit_authorization_result_get_dismissed (result))
+        {
+          log_message (LOG_WARNING, TRUE,
+                       "Error executing command as another user: Request dismissed");
+          ret = 126;
+        }
+      else
+        {
+          log_message (LOG_WARNING, TRUE,
+                       "Error executing command as another user: Not authorized");
+          g_printerr ("\n"
+                      "This incident has been reported.\n");
+        }
       goto out;
     }
 
@@ -875,7 +908,6 @@ main (int argc, char *argv[])
   g_free (command_line);
   g_free (opt_user);
   g_free (original_user_name);
-  g_free (original_cwd);
 
   return ret;
 }

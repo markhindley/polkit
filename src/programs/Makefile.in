@@ -15,7 +15,6 @@
 
 @SET_MAKE@
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -46,53 +45,17 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
-am__vpath_adj = case $$p in \
-    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
-    *) f=$$p;; \
-  esac;
-am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
-am__install_max = 40
-am__nobase_strip_setup = \
-  srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*|]/\\\\&/g'`
-am__nobase_strip = \
-  for p in $$list; do echo "$$p"; done | sed -e "s|$$srcdirstrip/||"
-am__nobase_list = $(am__nobase_strip_setup); \
-  for p in $$list; do echo "$$p $$p"; done | \
-  sed "s| $$srcdirstrip/| |;"' / .*\//!s/ .*/ ./; s,\( .*\)/[^/]*$$,\1,' | \
-  $(AWK) 'BEGIN { files["."] = "" } { files[$$2] = files[$$2] " " $$1; \
-    if (++n[$$2] == $(am__install_max)) \
-      { print $$2, files[$$2]; n[$$2] = 0; files[$$2] = "" } } \
-    END { for (dir in files) print dir, files[dir] }'
-am__base_list = \
-  sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
-  sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__installdirs = "$(DESTDIR)$(polkitmodulesdir)" \
-	"$(DESTDIR)$(bindir)"
-LTLIBRARIES = $(polkitmodules_LTLIBRARIES)
-am__DEPENDENCIES_1 =
-libpkexec_action_lookup_la_DEPENDENCIES =  \
-	$(top_builddir)/src/polkitbackend/libpolkit-backend-1.la \
-	$(am__DEPENDENCIES_1)
-am__objects_1 =
-am_libpkexec_action_lookup_la_OBJECTS =  \
-	libpkexec_action_lookup_la-pkexec-action-lookup.lo \
-	$(am__objects_1)
-libpkexec_action_lookup_la_OBJECTS =  \
-	$(am_libpkexec_action_lookup_la_OBJECTS)
-AM_V_lt = $(am__v_lt_$(V))
-am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
-am__v_lt_0 = --silent
-libpkexec_action_lookup_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libpkexec_action_lookup_la_CFLAGS) $(CFLAGS) \
-	$(libpkexec_action_lookup_la_LDFLAGS) $(LDFLAGS) -o $@
+am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_pkaction_OBJECTS = pkaction-pkaction.$(OBJEXT)
 pkaction_OBJECTS = $(am_pkaction_OBJECTS)
+am__DEPENDENCIES_1 =
 pkaction_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
 	$(am__DEPENDENCIES_1)
+AM_V_lt = $(am__v_lt_$(V))
+am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+am__v_lt_0 = --silent
 pkaction_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pkaction_CFLAGS) \
 	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
@@ -140,10 +103,9 @@ am__v_CCLD_0 = @echo "  CCLD  " $@;
 AM_V_GEN = $(am__v_GEN_$(V))
 am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
 am__v_GEN_0 = @echo "  GEN   " $@;
-SOURCES = $(libpkexec_action_lookup_la_SOURCES) $(pkaction_SOURCES) \
-	$(pkcheck_SOURCES) $(pkexec_SOURCES)
-DIST_SOURCES = $(libpkexec_action_lookup_la_SOURCES) \
-	$(pkaction_SOURCES) $(pkcheck_SOURCES) $(pkexec_SOURCES)
+SOURCES = $(pkaction_SOURCES) $(pkcheck_SOURCES) $(pkexec_SOURCES)
+DIST_SOURCES = $(pkaction_SOURCES) $(pkcheck_SOURCES) \
+	$(pkexec_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -168,6 +130,7 @@ CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
 ECHO_C = @ECHO_C@
@@ -178,8 +141,6 @@ EXEEXT = @EXEEXT@
 EXPAT_LIBS = @EXPAT_LIBS@
 FGREP = @FGREP@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
-GIRDIR = @GIRDIR@
-GIRTYPELIBDIR = @GIRTYPELIBDIR@
 GLIB_CFLAGS = @GLIB_CFLAGS@
 GLIB_LIBS = @GLIB_LIBS@
 GMOFILES = @GMOFILES@
@@ -188,9 +149,6 @@ GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
-G_IR_COMPILER = @G_IR_COMPILER@
-G_IR_GENERATE = @G_IR_GENERATE@
-G_IR_SCANNER = @G_IR_SCANNER@
 HAVE_PAM = @HAVE_PAM@
 HTML_DIR = @HTML_DIR@
 INSTALL = @INSTALL@
@@ -205,7 +163,13 @@ INTLTOOL_MERGE = @INTLTOOL_MERGE@
 INTLTOOL_PERL = @INTLTOOL_PERL@
 INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
 INTROSPECTION_CFLAGS = @INTROSPECTION_CFLAGS@
+INTROSPECTION_COMPILER = @INTROSPECTION_COMPILER@
+INTROSPECTION_GENERATE = @INTROSPECTION_GENERATE@
+INTROSPECTION_GIRDIR = @INTROSPECTION_GIRDIR@
 INTROSPECTION_LIBS = @INTROSPECTION_LIBS@
+INTROSPECTION_MAKEFILE = @INTROSPECTION_MAKEFILE@
+INTROSPECTION_SCANNER = @INTROSPECTION_SCANNER@
+INTROSPECTION_TYPELIBDIR = @INTROSPECTION_TYPELIBDIR@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
@@ -219,6 +183,7 @@ LT_CURRENT = @LT_CURRENT@
 LT_REVISION = @LT_REVISION@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MKDIR_P = @MKDIR_P@
 MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGFMT = @MSGFMT@
@@ -265,6 +230,7 @@ abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
+ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
@@ -341,27 +307,6 @@ pkexec_LDADD = \
 	$(top_builddir)/src/polkitagent/libpolkit-agent-1.la		\
 	$(NULL)
 
-polkitmodulesdir = $(libdir)/polkit-1/extensions
-polkitmodules_LTLIBRARIES = libpkexec-action-lookup.la
-libpkexec_action_lookup_la_SOURCES = \
-	pkexec-action-lookup.c                             		\
-        $(NULL)
-
-libpkexec_action_lookup_la_CFLAGS = \
-        -DPOLKIT_BACKEND_I_KNOW_API_IS_SUBJECT_TO_CHANGE    		\
-        -DG_LOG_DOMAIN=\"pkexec-action-lookup\"        			\
-	$(GLIB_CFLAGS)							\
-        $(NULL)
-
-libpkexec_action_lookup_la_LDFLAGS = \
-	-export_dynamic -avoid-version -module -no-undefined 		\
-	-export-symbols-regex '^g_io_module_(load|unload)' 		\
-        $(NULL)
-
-libpkexec_action_lookup_la_LIBADD = \
-	$(top_builddir)/src/polkitbackend/libpolkit-backend-1.la	\
-        $(NULL)
-
 
 # ----------------------------------------------------------------------------------------------------
 pkcheck_SOURCES = pkcheck.c
@@ -421,39 +366,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-install-polkitmodulesLTLIBRARIES: $(polkitmodules_LTLIBRARIES)
-	@$(NORMAL_INSTALL)
-	test -z "$(polkitmodulesdir)" || $(MKDIR_P) "$(DESTDIR)$(polkitmodulesdir)"
-	@list='$(polkitmodules_LTLIBRARIES)'; test -n "$(polkitmodulesdir)" || list=; \
-	list2=; for p in $$list; do \
-	  if test -f $$p; then \
-	    list2="$$list2 $$p"; \
-	  else :; fi; \
-	done; \
-	test -z "$$list2" || { \
-	  echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$list2 '$(DESTDIR)$(polkitmodulesdir)'"; \
-	  $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL) $(INSTALL_STRIP_FLAG) $$list2 "$(DESTDIR)$(polkitmodulesdir)"; \
-	}
-
-uninstall-polkitmodulesLTLIBRARIES:
-	@$(NORMAL_UNINSTALL)
-	@list='$(polkitmodules_LTLIBRARIES)'; test -n "$(polkitmodulesdir)" || list=; \
-	for p in $$list; do \
-	  $(am__strip_dir) \
-	  echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f '$(DESTDIR)$(polkitmodulesdir)/$$f'"; \
-	  $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f "$(DESTDIR)$(polkitmodulesdir)/$$f"; \
-	done
-
-clean-polkitmodulesLTLIBRARIES:
-	-test -z "$(polkitmodules_LTLIBRARIES)" || rm -f $(polkitmodules_LTLIBRARIES)
-	@list='$(polkitmodules_LTLIBRARIES)'; for p in $$list; do \
-	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
-	  test "$$dir" != "$$p" || dir=.; \
-	  echo "rm -f \"$${dir}/so_locations\""; \
-	  rm -f "$${dir}/so_locations"; \
-	done
-libpkexec-action-lookup.la: $(libpkexec_action_lookup_la_OBJECTS) $(libpkexec_action_lookup_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libpkexec_action_lookup_la_LINK) -rpath $(polkitmodulesdir) $(libpkexec_action_lookup_la_OBJECTS) $(libpkexec_action_lookup_la_LIBADD) $(LIBS)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
@@ -513,7 +425,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pkaction-pkaction.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pkcheck-pkcheck.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pkexec-pkexec.Po@am__quote@
@@ -541,14 +452,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libpkexec_action_lookup_la-pkexec-action-lookup.lo: pkexec-action-lookup.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpkexec_action_lookup_la_CFLAGS) $(CFLAGS) -MT libpkexec_action_lookup_la-pkexec-action-lookup.lo -MD -MP -MF $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Tpo -c -o libpkexec_action_lookup_la-pkexec-action-lookup.lo `test -f 'pkexec-action-lookup.c' || echo '$(srcdir)/'`pkexec-action-lookup.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Tpo $(DEPDIR)/libpkexec_action_lookup_la-pkexec-action-lookup.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pkexec-action-lookup.c' object='libpkexec_action_lookup_la-pkexec-action-lookup.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpkexec_action_lookup_la_CFLAGS) $(CFLAGS) -c -o libpkexec_action_lookup_la-pkexec-action-lookup.lo `test -f 'pkexec-action-lookup.c' || echo '$(srcdir)/'`pkexec-action-lookup.c
 
 pkaction-pkaction.o: pkaction.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pkaction_CFLAGS) $(CFLAGS) -MT pkaction-pkaction.o -MD -MP -MF $(DEPDIR)/pkaction-pkaction.Tpo -c -o pkaction-pkaction.o `test -f 'pkaction.c' || echo '$(srcdir)/'`pkaction.c
@@ -688,9 +591,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(PROGRAMS)
+all-am: Makefile $(PROGRAMS)
 installdirs:
-	for dir in "$(DESTDIR)$(polkitmodulesdir)" "$(DESTDIR)$(bindir)"; do \
+	for dir in "$(DESTDIR)$(bindir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -721,7 +624,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-binPROGRAMS clean-generic clean-libtool clean-local \
-	clean-polkitmodulesLTLIBRARIES mostlyclean-am
+	mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -741,7 +644,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-polkitmodulesLTLIBRARIES
+install-data-am:
 
 install-dvi: install-dvi-am
 
@@ -788,26 +691,23 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-polkitmodulesLTLIBRARIES
+uninstall-am: uninstall-binPROGRAMS
 
 .MAKE: install-am install-exec-am install-strip
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-binPROGRAMS \
-	clean-generic clean-libtool clean-local \
-	clean-polkitmodulesLTLIBRARIES ctags distclean \
+	clean-generic clean-libtool clean-local ctags distclean \
 	distclean-compile distclean-generic distclean-libtool \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-binPROGRAMS install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-exec-hook install-html install-html-am \
 	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-polkitmodulesLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-binPROGRAMS \
-	uninstall-polkitmodulesLTLIBRARIES
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-binPROGRAMS
 
 
 # ----------------------------------------------------------------------------------------------------
