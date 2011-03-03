@@ -6,6 +6,8 @@ policykit-1 (0.101-1) UNRELEASED; urgency=low
     - Refresh other patches to apply cleanly.
   * debian/libpolkit-gobject-1-0.symbols
     - Add polkit_authorization_result_get_dismissed.
+  * debian/control
+    - Bump Build-Depends on libglib2.0-dev to (>= 2.28.0).
 
  -- Michael Biebl <biebl@debian.org>  Thu, 03 Mar 2011 23:40:02 +0100
 
