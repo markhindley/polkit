@@ -8,6 +8,8 @@ policykit-1 (0.101-1) UNRELEASED; urgency=low
     - Add polkit_authorization_result_get_dismissed.
   * debian/control
     - Bump Build-Depends on libglib2.0-dev to (>= 2.28.0).
+  * debian/rules
+    - Don't build example programs.
 
  -- Michael Biebl <biebl@debian.org>  Thu, 03 Mar 2011 23:40:02 +0100
 
