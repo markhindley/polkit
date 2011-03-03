@@ -49,6 +49,7 @@ libpolkit-gobject-1.so.0 libpolkit-gobject-1-0 #MINVER#
  polkit_authority_unregister_authentication_agent_finish@Base 0.94
  polkit_authority_unregister_authentication_agent_sync@Base 0.94
  polkit_authorization_result_get_details@Base 0.94
+ polkit_authorization_result_get_dismissed@Base 0.101
  polkit_authorization_result_get_is_authorized@Base 0.94
  polkit_authorization_result_get_is_challenge@Base 0.94
  polkit_authorization_result_get_retains_authorization@Base 0.94
