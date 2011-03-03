@@ -1,4 +1,4 @@
-policykit-1 (0.101-1) UNRELEASED; urgency=low
+policykit-1 (0.101-1) experimental; urgency=low
 
   * New upstream release.
   * Update patches
@@ -11,7 +11,7 @@ policykit-1 (0.101-1) UNRELEASED; urgency=low
   * debian/rules
     - Don't build example programs.
 
- -- Michael Biebl <biebl@debian.org>  Thu, 03 Mar 2011 23:40:02 +0100
+ -- Michael Biebl <biebl@debian.org>  Thu, 03 Mar 2011 23:50:17 +0100
 
 policykit-1 (0.100-1) experimental; urgency=low
 
