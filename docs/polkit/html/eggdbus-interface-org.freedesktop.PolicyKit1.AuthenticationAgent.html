@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>org.freedesktop.PolicyKit1.AuthenticationAgent Interface</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="index.html" title="PolicyKit Reference Manual">
 <link rel="up" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="prev" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html" title="org.freedesktop.PolicyKit1.Authority Interface">
 <link rel="next" href="ref-api.html" title="Part III. Client API Reference">
-<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.16 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -26,7 +26,7 @@
                   <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.description" class="shortcut">Description</a>
 </td></tr>
 </table>
-<div class="refentry" title="org.freedesktop.PolicyKit1.AuthenticationAgent Interface">
+<div class="refentry">
 <a name="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -35,7 +35,7 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv" title="Methods">
+<div class="refsynopsisdiv">
 <h2>Methods</h2>
 <pre class="synopsis">
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html#eggdbus-method-org.freedesktop.PolicyKit1.AuthenticationAgent.BeginAuthentication" title="BeginAuthentication ()">BeginAuthentication</a>  (IN  String               action_id,
@@ -47,7 +47,7 @@
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html#eggdbus-method-org.freedesktop.PolicyKit1.AuthenticationAgent.CancelAuthentication" title="CancelAuthentication ()">CancelAuthentication</a> (IN  String               cookie)
     </pre>
 </div>
-<div class="refsect1" title="Description">
+<div class="refsect1">
 <a name="eggdbus-if-description-org.freedesktop.PolicyKit1.AuthenticationAgent"></a><h2>Description</h2>
 <p>
 </p>
@@ -56,9 +56,9 @@
 <p>
       </p>
 </div>
-<div class="refsect1" title="Method Details">
+<div class="refsect1">
 <a name="eggdbus-if-method-details-org.freedesktop.PolicyKit1.AuthenticationAgent"></a><h2>Method Details</h2>
-<div class="refsect2" title="BeginAuthentication ()">
+<div class="refsect2">
 <a name="eggdbus-method-org.freedesktop.PolicyKit1.AuthenticationAgent.BeginAuthentication"></a><h3>BeginAuthentication ()</h3>
 <pre class="programlisting">
 BeginAuthentication (IN  String               action_id,
@@ -69,10 +69,24 @@ BeginAuthentication (IN  String               action_id,
                      IN  Array&lt;<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity" title="The Identity Structure">Identity</a>&gt;      identities)
     </pre>
 <p>
-</p>
-<p>Called by the PolicyKit daemon when the authentication agent needs the user to authenticate as one of the identities in <em class="parameter"><code>identities</code></em> for the action with the identifier <em class="parameter"><code>action_id</code></em>.</p>
-<p>Upon succesful authentication, the authentication agent must invoke the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse" title="AuthenticationAgentResponse ()">AuthenticationAgentResponse()</a> method on the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html" title="org.freedesktop.PolicyKit1.Authority Interface">org.freedesktop.PolicyKit1.Authority</a> interface of the PolicyKit daemon before returning.</p>
-<p>If the user dismisses the authentication dialog, the authentication agent should return an error.</p>
+      </p>
+<p>
+        Called by the PolicyKit daemon when the authentication agent
+        needs the user to authenticate as one of the identities in
+        <em class="parameter"><code>identities</code></em> for the action with the
+        identifier <em class="parameter"><code>action_id</code></em>.</p>
+<p>Upon
+        succesful authentication, the authentication agent must invoke
+        the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse" title="AuthenticationAgentResponse ()">AuthenticationAgentResponse()</a>
+        method on the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html" title="org.freedesktop.PolicyKit1.Authority Interface">org.freedesktop.PolicyKit1.Authority</a>
+        interface of the PolicyKit daemon before returning.
+      </p>
+<p>
+      </p>
+<p>
+        The authentication agent should not return until after authentication is complete.
+        If the user dismisses the authentication dialog, the authentication agent should return the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-constant-Error.org.freedesktop.PolicyKit1.Error.Cancelled">org.freedesktop.PolicyKit1.Error.Cancelled</a> error.
+      </p>
 <p>
     </p>
 <div class="variablelist"><table border="0">
@@ -99,9 +113,13 @@ The themed icon describing the action or the empty string if no icon is set.
 <tr>
 <td><p><span class="term"><code class="literal">IN  Dict&lt;String,String&gt; <em class="parameter"><code>details</code></em></code>:</span></p></td>
 <td><p>
-Details about the authentication request. This is a dictionary of key/value pairs where both key and value are strings. These strings are translated into the locale passed when registering the authentication agent using <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgent" title="RegisterAuthenticationAgent ()">RegisterAuthenticationAgent().</a>.
-Keys starting with <code class="literal">polkit.</code> are reserved for internal use and should never be displayed in the UI.
-Known key/value-pairs include <code class="literal">polkit.caller-pid</code> (the process id of the mechanism making the authorization check) and <code class="literal">polkit.subject-pid</code> (the process id of the subject the check is for).
+        Details about the authentication request. This is a dictionary
+        of key/value pairs where both key and value are strings.
+        Known key/value-pairs include
+        <code class="literal">polkit.caller-pid</code> (the process id of the
+        mechanism making the authorization check) and
+        <code class="literal">polkit.subject-pid</code> (the process id of the
+        subject the check is for).
       </p></td>
 </tr>
 <tr>
@@ -120,7 +138,7 @@ An array of <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.A
 </table></div>
 </div>
 <hr>
-<div class="refsect2" title="CancelAuthentication ()">
+<div class="refsect2">
 <a name="eggdbus-method-org.freedesktop.PolicyKit1.AuthenticationAgent.CancelAuthentication"></a><h3>CancelAuthentication ()</h3>
 <pre class="programlisting">
 CancelAuthentication (IN  String  cookie)
@@ -142,6 +160,6 @@ The cookie identifying the authentication request.
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.15</div>
+          Generated by GTK-Doc V1.16</div>
 </body>
 </html>

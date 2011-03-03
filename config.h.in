@@ -1,8 +1,5 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* enable GObject introspection support */
-#undef ENABLE_INTROSPECTION
-
 /* always defined to indicate that i18n is enabled */
 #undef ENABLE_NLS
 

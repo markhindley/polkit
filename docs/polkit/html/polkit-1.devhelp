@@ -16,7 +16,7 @@
       <sub name="PolkitAuthority" link="PolkitAuthority.html"/>
       <sub name="PolkitAuthorizationResult" link="PolkitAuthorizationResult.html"/>
       <sub name="PolkitDetails" link="PolkitDetails.html"/>
-      <sub name="PolkitError" link="polkit-1-PolkitError.html"/>
+      <sub name="PolkitError" link="PolkitError.html"/>
       <sub name="PolkitActionDescription" link="PolkitActionDescription.html"/>
       <sub name="PolkitTemporaryAuthorization" link="PolkitTemporaryAuthorization.html"/>
       <sub name="PolkitPermission" link="PolkitPermission.html"/>
@@ -36,7 +36,6 @@
       <sub name="PolkitBackendAuthority" link="PolkitBackendAuthority.html"/>
       <sub name="PolkitBackendInteractiveAuthority" link="PolkitBackendInteractiveAuthority.html"/>
       <sub name="PolkitBackendLocalAuthority" link="PolkitBackendLocalAuthority.html"/>
-      <sub name="PolkitBackendActionLookup" link="PolkitBackendActionLookup.html"/>
     </sub>
     <sub name="Authentication Agent API Reference" link="ref-authentication-agent-api.html">
       <sub name="PolkitAgentListener" link="PolkitAgentListener.html"/>
@@ -125,14 +124,15 @@
     <function name="polkit_authorization_result_get_is_challenge ()" link="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-challenge"/>
     <function name="polkit_authorization_result_get_retains_authorization ()" link="PolkitAuthorizationResult.html#polkit-authorization-result-get-retains-authorization"/>
     <function name="polkit_authorization_result_get_temporary_authorization_id ()" link="PolkitAuthorizationResult.html#polkit-authorization-result-get-temporary-authorization-id"/>
+    <function name="polkit_authorization_result_get_dismissed ()" link="PolkitAuthorizationResult.html#polkit-authorization-result-get-dismissed"/>
     <function name="polkit_authorization_result_get_details ()" link="PolkitAuthorizationResult.html#polkit-authorization-result-get-details"/>
     <function name="PolkitDetails" link="PolkitDetails.html#PolkitDetails-struct"/>
     <function name="polkit_details_new ()" link="PolkitDetails.html#polkit-details-new"/>
     <function name="polkit_details_lookup ()" link="PolkitDetails.html#polkit-details-lookup"/>
     <function name="polkit_details_insert ()" link="PolkitDetails.html#polkit-details-insert"/>
     <function name="polkit_details_get_keys ()" link="PolkitDetails.html#polkit-details-get-keys"/>
-    <function name="POLKIT_ERROR" link="polkit-1-PolkitError.html#POLKIT-ERROR:CAPS"/>
-    <function name="enum PolkitError" link="polkit-1-PolkitError.html#PolkitError"/>
+    <function name="POLKIT_ERROR" link="PolkitError.html#POLKIT-ERROR:CAPS"/>
+    <function name="enum PolkitError" link="PolkitError.html#PolkitError"/>
     <function name="PolkitActionDescription" link="PolkitActionDescription.html#PolkitActionDescription-struct"/>
     <function name="enum PolkitImplicitAuthorization" link="PolkitActionDescription.html#PolkitImplicitAuthorization"/>
     <function name="polkit_action_description_get_action_id ()" link="PolkitActionDescription.html#polkit-action-description-get-action-id"/>
@@ -160,7 +160,7 @@
     <function name="The &quot;action-id&quot; property" link="PolkitPermission.html#PolkitPermission--action-id"/>
     <function name="The &quot;subject&quot; property" link="PolkitPermission.html#PolkitPermission--subject"/>
     <function name="PolkitSubject" link="PolkitSubject.html#PolkitSubject-struct"/>
-    <function name="PolkitSubjectIface" link="PolkitSubject.html#PolkitSubjectIface"/>
+    <function name="struct PolkitSubjectIface" link="PolkitSubject.html#PolkitSubjectIface"/>
     <function name="polkit_subject_hash ()" link="PolkitSubject.html#polkit-subject-hash"/>
     <function name="polkit_subject_equal ()" link="PolkitSubject.html#polkit-subject-equal"/>
     <function name="polkit_subject_exists ()" link="PolkitSubject.html#polkit-subject-exists"/>
@@ -193,7 +193,7 @@
     <function name="polkit_system_bus_name_get_process_sync ()" link="PolkitSystemBusName.html#polkit-system-bus-name-get-process-sync"/>
     <function name="The &quot;name&quot; property" link="PolkitSystemBusName.html#PolkitSystemBusName--name"/>
     <function name="PolkitIdentity" link="PolkitIdentity.html#PolkitIdentity-struct"/>
-    <function name="PolkitIdentityIface" link="PolkitIdentity.html#PolkitIdentityIface"/>
+    <function name="struct PolkitIdentityIface" link="PolkitIdentity.html#PolkitIdentityIface"/>
     <function name="polkit_identity_hash ()" link="PolkitIdentity.html#polkit-identity-hash"/>
     <function name="polkit_identity_equal ()" link="PolkitIdentity.html#polkit-identity-equal"/>
     <function name="polkit_identity_to_string ()" link="PolkitIdentity.html#polkit-identity-to-string"/>
@@ -212,7 +212,7 @@
     <function name="The &quot;gid&quot; property" link="PolkitUnixGroup.html#PolkitUnixGroup--gid"/>
     <function name="POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME" link="PolkitBackendAuthority.html#POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME:CAPS"/>
     <function name="PolkitBackendAuthority" link="PolkitBackendAuthority.html#PolkitBackendAuthority-struct"/>
-    <function name="PolkitBackendAuthorityClass" link="PolkitBackendAuthority.html#PolkitBackendAuthorityClass"/>
+    <function name="struct PolkitBackendAuthorityClass" link="PolkitBackendAuthority.html#PolkitBackendAuthorityClass"/>
     <function name="polkit_backend_authority_get_name ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-name"/>
     <function name="polkit_backend_authority_get_version ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-version"/>
     <function name="polkit_backend_authority_get_features ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-features"/>
@@ -230,19 +230,13 @@
     <function name="polkit_backend_authority_unregister ()" link="PolkitBackendAuthority.html#polkit-backend-authority-unregister"/>
     <function name="The &quot;changed&quot; signal" link="PolkitBackendAuthority.html#PolkitBackendAuthority-changed"/>
     <function name="PolkitBackendInteractiveAuthority" link="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthority-struct"/>
-    <function name="PolkitBackendInteractiveAuthorityClass" link="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthorityClass"/>
+    <function name="struct PolkitBackendInteractiveAuthorityClass" link="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthorityClass"/>
     <function name="polkit_backend_interactive_authority_get_admin_identities ()" link="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-get-admin-identities"/>
     <function name="polkit_backend_interactive_authority_check_authorization_sync ()" link="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-check-authorization-sync"/>
     <function name="PolkitBackendLocalAuthority" link="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority-struct"/>
-    <function name="PolkitBackendLocalAuthorityClass" link="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthorityClass"/>
-    <function name="POLKIT_BACKEND_ACTION_LOOKUP_EXTENSION_POINT_NAME" link="PolkitBackendActionLookup.html#POLKIT-BACKEND-ACTION-LOOKUP-EXTENSION-POINT-NAME:CAPS"/>
-    <function name="PolkitBackendActionLookup" link="PolkitBackendActionLookup.html#PolkitBackendActionLookup-struct"/>
-    <function name="PolkitBackendActionLookupIface" link="PolkitBackendActionLookup.html#PolkitBackendActionLookupIface"/>
-    <function name="polkit_backend_action_lookup_get_message ()" link="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-message"/>
-    <function name="polkit_backend_action_lookup_get_icon_name ()" link="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-icon-name"/>
-    <function name="polkit_backend_action_lookup_get_details ()" link="PolkitBackendActionLookup.html#polkit-backend-action-lookup-get-details"/>
+    <function name="struct PolkitBackendLocalAuthorityClass" link="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthorityClass"/>
     <function name="PolkitAgentListener" link="PolkitAgentListener.html#PolkitAgentListener-struct"/>
-    <function name="PolkitAgentListenerClass" link="PolkitAgentListener.html#PolkitAgentListenerClass"/>
+    <function name="struct PolkitAgentListenerClass" link="PolkitAgentListener.html#PolkitAgentListenerClass"/>
     <function name="polkit_agent_listener_initiate_authentication ()" link="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication"/>
     <function name="polkit_agent_listener_initiate_authentication_finish ()" link="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication-finish"/>
     <function name="enum PolkitAgentRegisterFlags" link="PolkitAgentListener.html#PolkitAgentRegisterFlags"/>

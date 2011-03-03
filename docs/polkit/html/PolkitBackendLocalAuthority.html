@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitBackendLocalAuthority</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
 <link rel="home" href="index.html" title="PolicyKit Reference Manual">
 <link rel="up" href="ref-backend-api.html" title="Part IV. Backend API Reference">
 <link rel="prev" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">
-<link rel="next" href="PolkitBackendActionLookup.html" title="PolkitBackendActionLookup">
-<meta name="generator" content="GTK-Doc V1.15 (XML mode)">
+<link rel="next" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
+<meta name="generator" content="GTK-Doc V1.16 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -18,7 +18,7 @@
 <td><a accesskey="u" href="ref-backend-api.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
 <th width="100%" align="center">PolicyKit Reference Manual</th>
-<td><a accesskey="n" href="PolkitBackendActionLookup.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="ref-authentication-agent-api.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
 <a href="#PolkitBackendLocalAuthority.synopsis" class="shortcut">Top</a>
@@ -28,7 +28,7 @@
                   <a href="#PolkitBackendLocalAuthority.object-hierarchy" class="shortcut">Object Hierarchy</a>
 </td></tr>
 </table>
-<div class="refentry" title="PolkitBackendLocalAuthority">
+<div class="refentry">
 <a name="PolkitBackendLocalAuthority"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
@@ -37,17 +37,17 @@
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsect1" title="Stability Level">
+<div class="refsect1">
 <a name="PolkitBackendLocalAuthority.stability-level"></a><h2>Stability Level</h2>
 Unstable, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv" title="Synopsis">
+<div class="refsynopsisdiv">
 <a name="PolkitBackendLocalAuthority.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority-struct" title="PolkitBackendLocalAuthority">PolkitBackendLocalAuthority</a>;
-                    <a class="link" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthorityClass" title="PolkitBackendLocalAuthorityClass">PolkitBackendLocalAuthorityClass</a>;
+struct              <a class="link" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthorityClass" title="struct PolkitBackendLocalAuthorityClass">PolkitBackendLocalAuthorityClass</a>;
 </pre>
 </div>
-<div class="refsect1" title="Object Hierarchy">
+<div class="refsect1">
 <a name="PolkitBackendLocalAuthority.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
   <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
@@ -56,7 +56,7 @@ Unstable, unless otherwise indicated
                +----PolkitBackendLocalAuthority
 </pre>
 </div>
-<div class="refsect1" title="Description">
+<div class="refsect1">
 <a name="PolkitBackendLocalAuthority.description"></a><h2>Description</h2>
 <p>
 An implementation of <a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> that stores
@@ -65,9 +65,9 @@ authentication agents (virtue of being based on
 <a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority"><span class="type">PolkitBackendInteractiveAuthority</span></a>).
 </p>
 </div>
-<div class="refsect1" title="Details">
+<div class="refsect1">
 <a name="PolkitBackendLocalAuthority.details"></a><h2>Details</h2>
-<div class="refsect2" title="PolkitBackendLocalAuthority">
+<div class="refsect2">
 <a name="PolkitBackendLocalAuthority-struct"></a><h3>PolkitBackendLocalAuthority</h3>
 <pre class="programlisting">typedef struct _PolkitBackendLocalAuthority PolkitBackendLocalAuthority;</pre>
 <p>
@@ -75,11 +75,11 @@ The <a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackend
 </p>
 </div>
 <hr>
-<div class="refsect2" title="PolkitBackendLocalAuthorityClass">
-<a name="PolkitBackendLocalAuthorityClass"></a><h3>PolkitBackendLocalAuthorityClass</h3>
-<pre class="programlisting">typedef struct {
+<div class="refsect2">
+<a name="PolkitBackendLocalAuthorityClass"></a><h3>struct PolkitBackendLocalAuthorityClass</h3>
+<pre class="programlisting">struct PolkitBackendLocalAuthorityClass {
   PolkitBackendInteractiveAuthorityClass parent_class;
-} PolkitBackendLocalAuthorityClass;
+};
 </pre>
 <p>
 Class structure for <a class="link" href="PolkitBackendLocalAuthority.html" title="PolkitBackendLocalAuthority"><span class="type">PolkitBackendLocalAuthority</span></a>.
@@ -87,9 +87,8 @@ Class structure for <a class="link" href="PolkitBackendLocalAuthority.html" titl
 <div class="variablelist"><table border="0">
 <col align="left" valign="top">
 <tbody><tr>
-<td><p><span class="term"><a class="link" href="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthorityClass" title="PolkitBackendInteractiveAuthorityClass"><span class="type">PolkitBackendInteractiveAuthorityClass</span></a> <em class="structfield"><code><a name="PolkitBackendLocalAuthorityClass.parent-class"></a>parent_class</code></em>;</span></p></td>
-<td>The parent class.
-</td>
+<td><p><span class="term"><a class="link" href="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthorityClass" title="struct PolkitBackendInteractiveAuthorityClass"><span class="type">PolkitBackendInteractiveAuthorityClass</span></a> <em class="structfield"><code><a name="PolkitBackendLocalAuthorityClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class.</td>
 </tr></tbody>
 </table></div>
 </div>
@@ -97,6 +96,6 @@ Class structure for <a class="link" href="PolkitBackendLocalAuthority.html" titl
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.15</div>
+          Generated by GTK-Doc V1.16</div>
 </body>
 </html>
