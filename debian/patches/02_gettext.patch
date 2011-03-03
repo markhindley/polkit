@@ -9,10 +9,10 @@ Bug-Ubuntu: https://launchpad.net/bugs/619632
  src/polkitbackend/polkitbackendactionpool.c |   48 +++++++++++++++++++++++++++
  1 files changed, 48 insertions(+), 0 deletions(-)
 
-Index: polkit-0.99/src/polkitbackend/polkitbackendactionpool.c
+Index: policykit-1/src/polkitbackend/polkitbackendactionpool.c
 ===================================================================
---- polkit-0.99.orig/src/polkitbackend/polkitbackendactionpool.c	2010-08-21 01:22:15.000000000 +1000
-+++ polkit-0.99/src/polkitbackend/polkitbackendactionpool.c	2010-11-02 17:36:11.632591001 +1100
+--- policykit-1.orig/src/polkitbackend/polkitbackendactionpool.c	2011-03-03 23:21:50.827981036 +0100
++++ policykit-1/src/polkitbackend/polkitbackendactionpool.c	2011-03-03 23:29:52.191981035 +0100
 @@ -24,6 +24,7 @@
  #include <pwd.h>
  #include <string.h>
@@ -157,7 +157,7 @@ Index: polkit-0.99/src/polkitbackend/polkitbackendactionpool.c
  
          action->localized_description = pd->policy_descriptions;
          action->localized_message     = pd->policy_messages;
-@@ -1098,6 +1131,7 @@
+@@ -1095,6 +1128,7 @@
   * _localize:
   * @translations: a mapping from xml:lang to the value, e.g. 'da' -> 'Smadre', 'en_CA' -> 'Punch, Aye!'
   * @untranslated: the untranslated value, e.g. 'Punch'
@@ -165,7 +165,7 @@ Index: polkit-0.99/src/polkitbackend/polkitbackendactionpool.c
   * @lang: the locale we're interested in, e.g. 'da_DK', 'da', 'en_CA', 'en_US'; basically just $LANG
   * with the encoding cut off. Maybe be NULL.
   *
-@@ -1108,11 +1142,25 @@
+@@ -1105,11 +1139,25 @@
  static const gchar *
  _localize (GHashTable *translations,
             const gchar *untranslated,

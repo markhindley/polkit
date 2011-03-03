@@ -7,8 +7,8 @@ Bug-Ubuntu: https://launchpad.net/bugs/445303
 
 Index: policykit-1/src/polkitagent/polkitagentsession.c
 ===================================================================
---- policykit-1.orig/src/polkitagent/polkitagentsession.c	2011-02-23 12:28:06.000000000 +0100
-+++ policykit-1/src/polkitagent/polkitagentsession.c	2011-02-23 19:08:24.429323423 +0100
+--- policykit-1.orig/src/polkitagent/polkitagentsession.c	2011-03-03 23:21:50.827981036 +0100
++++ policykit-1/src/polkitagent/polkitagentsession.c	2011-03-03 23:30:01.335981036 +0100
 @@ -421,6 +421,7 @@
                    gpointer user_data)
  {
@@ -29,7 +29,7 @@ Index: policykit-1/src/polkitagent/polkitagentsession.c
    complete_session (session, FALSE);
  }
  
-@@ -635,15 +641,15 @@
+@@ -632,15 +638,15 @@
    if (G_UNLIKELY (_show_debug ()))
      g_print ("PolkitAgentSession: spawned helper with pid %d\n", (gint) session->child_pid);
  

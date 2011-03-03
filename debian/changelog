@@ -1,8 +1,11 @@
 policykit-1 (0.101-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Update patches
+    - Drop debian/patches/04_test_signalfd.patch, merged upstream.
+    - Refresh other patches to apply cleanly.
 
- -- Michael Biebl <biebl@debian.org>  Thu, 03 Mar 2011 23:22:15 +0100
+ -- Michael Biebl <biebl@debian.org>  Thu, 03 Mar 2011 23:31:16 +0100
 
 policykit-1 (0.100-1) experimental; urgency=low
 
