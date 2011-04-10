@@ -1,4 +1,4 @@
-policykit-1 (0.101-3) UNRELEASED; urgency=low
+policykit-1 (0.101-3) unstable; urgency=low
 
   * debian/control
     - Add Depends on gir1.2-polkit-1.0 (= ${binary:Version}) to
@@ -6,7 +6,7 @@ policykit-1 (0.101-3) UNRELEASED; urgency=low
       updated GObject introspection policy.
     - Bump Standards-Version to 3.9.2. No further changes.
 
- -- Michael Biebl <biebl@debian.org>  Sun, 10 Apr 2011 19:15:51 +0200
+ -- Michael Biebl <biebl@debian.org>  Sun, 10 Apr 2011 20:34:03 +0200
 
 policykit-1 (0.101-2) unstable; urgency=low
 
