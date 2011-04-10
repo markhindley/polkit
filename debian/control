@@ -56,7 +56,7 @@ Description: PolicyKit Authorization API
 Package: libpolkit-gobject-1-dev
 Architecture: any
 Section: libdevel
-Depends: libpolkit-gobject-1-0 (= ${binary:Version}), ${misc:Depends}, libglib2.0-dev
+Depends: libpolkit-gobject-1-0 (= ${binary:Version}), ${misc:Depends}, libglib2.0-dev, gir1.2-polkit-1.0 (= ${binary:Version})
 Description: PolicyKit Authorization API - development files
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -77,7 +77,7 @@ Description: PolicyKit Authentication Agent API
 Package: libpolkit-agent-1-dev
 Architecture: any
 Section: libdevel
-Depends: libpolkit-agent-1-0 (= ${binary:Version}), ${misc:Depends}, libpolkit-gobject-1-dev
+Depends: libpolkit-agent-1-0 (= ${binary:Version}), ${misc:Depends}, libpolkit-gobject-1-dev, gir1.2-polkit-1.0 (= ${binary:Version})
 Description: PolicyKit Authentication Agent API - development files
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
