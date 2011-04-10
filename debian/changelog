@@ -4,6 +4,7 @@ policykit-1 (0.101-3) UNRELEASED; urgency=low
     - Add Depends on gir1.2-polkit-1.0 (= ${binary:Version}) to
       libpolkit-gobject-1-dev and libpolkit-agent-1-dev to comply with the
       updated GObject introspection policy.
+    - Bump Standards-Version to 3.9.2. No further changes.
 
  -- Michael Biebl <biebl@debian.org>  Sun, 10 Apr 2011 19:15:51 +0200
 
