@@ -1,4 +1,6 @@
-policykit-1 (0.101-4) UNRELEASED; urgency=low
+policykit-1 (0.101-4) unstable; urgency=high
+
+  Urgency high due to security fix.
 
   * Add 00git_fix_proc_race.patch: Avoid /proc race conditions when checking
     privileges for pkexec. Patch taken from
@@ -9,7 +11,7 @@ policykit-1 (0.101-4) UNRELEASED; urgency=low
     failures if quilt patches change files with translatable strings. Thanks
     to Kees Cook for the patch!
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 20 Apr 2011 11:38:47 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 20 Apr 2011 12:11:38 +0200
 
 policykit-1 (0.101-3) unstable; urgency=low
 
