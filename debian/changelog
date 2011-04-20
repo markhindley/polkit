@@ -1,3 +1,13 @@
+policykit-1 (0.101-4) UNRELEASED; urgency=low
+
+  * Add 00git_fix_proc_race.patch: Avoid /proc race conditions when checking
+    privileges for pkexec. Patch taken from
+    https://bugzilla.redhat.com/show_bug.cgi?id=692922, now also landed in
+    upstream git. [CVE-2011-1485]
+  * debian/libpolkit-gobject-1-0.symbols: Update for new symbols.
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 20 Apr 2011 11:38:47 +0200
+
 policykit-1 (0.101-3) unstable; urgency=low
 
   * debian/control

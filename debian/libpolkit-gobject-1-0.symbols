@@ -117,9 +117,13 @@ libpolkit-gobject-1.so.0 libpolkit-gobject-1-0 #MINVER#
  polkit_unix_process_get_pid@Base 0.94
  polkit_unix_process_get_start_time@Base 0.94
  polkit_unix_process_get_type@Base 0.94
+ polkit_unix_process_get_uid@Base 0.101
  polkit_unix_process_new@Base 0.94
+ polkit_unix_process_new_for_owner@Base 0.101
  polkit_unix_process_new_full@Base 0.94
  polkit_unix_process_set_pid@Base 0.94
+ polkit_unix_process_set_start_time@Base 0.101
+ polkit_unix_process_set_uid@Base 0.101
  polkit_unix_session_get_session_id@Base 0.94
  polkit_unix_session_get_type@Base 0.94
  polkit_unix_session_new@Base 0.94
