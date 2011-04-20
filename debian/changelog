@@ -5,6 +5,9 @@ policykit-1 (0.101-4) UNRELEASED; urgency=low
     https://bugzilla.redhat.com/show_bug.cgi?id=692922, now also landed in
     upstream git. [CVE-2011-1485]
   * debian/libpolkit-gobject-1-0.symbols: Update for new symbols.
+  * Add 04_ignore_quilt_po.patch: Ignore .po/ for intltool. This avoids build
+    failures if quilt patches change files with translatable strings. Thanks
+    to Kees Cook for the patch!
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 20 Apr 2011 11:38:47 +0200
 

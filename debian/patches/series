@@ -2,3 +2,4 @@
 01_pam_polkit.patch
 02_gettext.patch
 03_complete_session.patch
+04_ignore_quilt_po.patch
