@@ -28,8 +28,8 @@ Description: framework for managing administrative policies and privileges
  that allows unprivileged processes to speak to privileged processes.
  .
  It is a framework for centralizing the decision making process with respect to
- granting access to privileged operations (like calling the HAL Mount() method)
- for unprivileged (desktop) applications.
+ granting access to privileged operations for unprivileged (desktop)
+ applications.
 
 Package: policykit-1-doc
 Architecture: all
