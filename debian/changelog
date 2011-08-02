@@ -1,4 +1,4 @@
-policykit-1 (0.102-1) UNRELEASED; urgency=low
+policykit-1 (0.102-1) unstable; urgency=low
 
   * New upstream release.
   * debian/patches/00git_fix_proc_race.patch: Removed, merged upstream.
@@ -8,7 +8,7 @@ policykit-1 (0.102-1) UNRELEASED; urgency=low
     current working directory. This fixes another PATH_MAX related FTBFS on
     hurd. Thanks Emilio Pozuelo Monfort for the patch. (Closes: #623017)
 
- -- Michael Biebl <biebl@debian.org>  Tue, 02 Aug 2011 02:56:15 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 02 Aug 2011 03:17:20 +0200
 
 policykit-1 (0.101-4) unstable; urgency=high
 
