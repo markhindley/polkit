@@ -171,12 +171,16 @@
     <function name="PolkitUnixProcess" link="PolkitUnixProcess.html#PolkitUnixProcess-struct"/>
     <function name="polkit_unix_process_new ()" link="PolkitUnixProcess.html#polkit-unix-process-new"/>
     <function name="polkit_unix_process_new_full ()" link="PolkitUnixProcess.html#polkit-unix-process-new-full"/>
-    <function name="polkit_unix_process_get_pid ()" link="PolkitUnixProcess.html#polkit-unix-process-get-pid"/>
-    <function name="polkit_unix_process_get_start_time ()" link="PolkitUnixProcess.html#polkit-unix-process-get-start-time"/>
+    <function name="polkit_unix_process_new_for_owner ()" link="PolkitUnixProcess.html#polkit-unix-process-new-for-owner"/>
     <function name="polkit_unix_process_set_pid ()" link="PolkitUnixProcess.html#polkit-unix-process-set-pid"/>
-    <function name="polkit_unix_process_get_owner ()" link="PolkitUnixProcess.html#polkit-unix-process-get-owner"/>
+    <function name="polkit_unix_process_get_pid ()" link="PolkitUnixProcess.html#polkit-unix-process-get-pid"/>
+    <function name="polkit_unix_process_set_start_time ()" link="PolkitUnixProcess.html#polkit-unix-process-set-start-time"/>
+    <function name="polkit_unix_process_get_start_time ()" link="PolkitUnixProcess.html#polkit-unix-process-get-start-time"/>
+    <function name="polkit_unix_process_set_uid ()" link="PolkitUnixProcess.html#polkit-unix-process-set-uid"/>
+    <function name="polkit_unix_process_get_uid ()" link="PolkitUnixProcess.html#polkit-unix-process-get-uid"/>
     <function name="The &quot;pid&quot; property" link="PolkitUnixProcess.html#PolkitUnixProcess--pid"/>
     <function name="The &quot;start-time&quot; property" link="PolkitUnixProcess.html#PolkitUnixProcess--start-time"/>
+    <function name="The &quot;uid&quot; property" link="PolkitUnixProcess.html#PolkitUnixProcess--uid"/>
     <function name="PolkitUnixSession" link="PolkitUnixSession.html#PolkitUnixSession-struct"/>
     <function name="polkit_unix_session_new ()" link="PolkitUnixSession.html#polkit-unix-session-new"/>
     <function name="polkit_unix_session_new_for_process ()" link="PolkitUnixSession.html#polkit-unix-session-new-for-process"/>

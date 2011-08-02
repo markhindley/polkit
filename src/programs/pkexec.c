@@ -35,6 +35,10 @@
 #include <pwd.h>
 #include <errno.h>
 
+#ifdef __linux__
+#include <sys/prctl.h>
+#endif
+
 #include <glib/gi18n.h>
 
 #ifdef POLKIT_AUTHFW_PAM
@@ -225,7 +229,8 @@ fdwalk (FdCallback callback,
 
 static gchar *
 find_action_for_path (PolkitAuthority *authority,
-                      const gchar     *path)
+                      const gchar     *path,
+                      gboolean        *allow_gui)
 {
   GList *l;
   GList *actions;
@@ -235,6 +240,7 @@ find_action_for_path (PolkitAuthority *authority,
   actions = NULL;
   action_id = NULL;
   error = NULL;
+  *allow_gui = FALSE;
 
   actions = polkit_authority_enumerate_actions_sync (authority,
                                                      NULL,
@@ -250,6 +256,7 @@ find_action_for_path (PolkitAuthority *authority,
     {
       PolkitActionDescription *action_desc = POLKIT_ACTION_DESCRIPTION (l->data);
       const gchar *path_for_action;
+      const gchar *allow_gui_annotation;
 
       path_for_action = polkit_action_description_get_annotation (action_desc, "org.freedesktop.policykit.exec.path");
       if (path_for_action == NULL)
@@ -258,6 +265,12 @@ find_action_for_path (PolkitAuthority *authority,
       if (g_strcmp0 (path_for_action, path) == 0)
         {
           action_id = g_strdup (polkit_action_description_get_action_id (action_desc));
+
+          allow_gui_annotation = polkit_action_description_get_annotation (action_desc, "org.freedesktop.policykit.exec.allow_gui");
+
+          if (allow_gui_annotation != NULL && strlen (allow_gui_annotation) > 0)
+            *allow_gui = TRUE;
+
           goto out;
         }
     }
@@ -348,7 +361,7 @@ validate_environment_variable (const gchar *key,
           goto out;
         }
     }
-  else if (strstr (value, "/") != NULL ||
+  else if ((g_strcmp0 (key, "XAUTHORITY") != 0 && strstr (value, "/") != NULL) ||
            strstr (value, "%") != NULL ||
            strstr (value, "..") != NULL)
     {
@@ -384,6 +397,7 @@ main (int argc, char *argv[])
   PolkitDetails *details;
   GError *error;
   gchar *action_id;
+  gboolean allow_gui;
   gchar **exec_argv;
   gchar *path;
   struct passwd pwstruct;
@@ -404,26 +418,25 @@ main (int argc, char *argv[])
     "TERM",
     "COLORTERM",
 
-    /* For now, avoiding pretend that running X11 apps as another user in the same session
-     * will ever work... See
+    /* By default we don't allow running X11 apps, as it does not work in the
+     * general case. See
      *
      *  https://bugs.freedesktop.org/show_bug.cgi?id=17970#c26
      *
      * and surrounding comments for a lot of discussion about this.
+     *
+     * However, it can be enabled for some selected and tested legacy programs
+     * which previously used e. g. gksu, by setting the
+     * org.freedesktop.policykit.exec.allow_gui annotation to a nonempty value.
+     * See https://bugs.freedesktop.org/show_bug.cgi?id=38769 for details.
      */
-#if 0
-    "DESKTOP_STARTUP_ID",
     "DISPLAY",
     "XAUTHORITY",
-    "DBUS_SESSION_BUS_ADDRESS",
-    "ORBIT_SOCKETDIR",
-#endif
     NULL
   };
   GPtrArray *saved_env;
   gchar *opt_user;
   pid_t pid_of_caller;
-  uid_t uid_of_caller;
   gpointer local_agent_handle;
 
   ret = 127;
@@ -598,40 +611,49 @@ main (int argc, char *argv[])
    */
   g_type_init ();
 
-  /* now check if the program that invoked us is authorized */
+  /* make sure we are nuked if the parent process dies */
+#ifdef __linux__
+  if (prctl (PR_SET_PDEATHSIG, SIGTERM) != 0)
+    {
+      g_printerr ("prctl(PR_SET_PDEATHSIG, SIGTERM) failed: %s\n", g_strerror (errno));
+      goto out;
+    }
+#else
+#warning "Please add OS specific code to catch when the parent dies"
+#endif
+
+  /* Figure out the parent process */
   pid_of_caller = getppid ();
   if (pid_of_caller == 1)
     {
       /* getppid() can return 1 if the parent died (meaning that we are reaped
-       * by /sbin/init); get process group leader instead - for example, this
-       * happens when launching via gnome-panel (alt+f2, then 'pkexec gedit').
+       * by /sbin/init); In that case we simpy bail.
        */
-      pid_of_caller = getpgrp ();
-    }
-
-  subject = polkit_unix_process_new (pid_of_caller);
-  if (subject == NULL)
-    {
-      g_printerr ("No such process for pid %d: %s\n", (gint) pid_of_caller, error->message);
-      g_error_free (error);
+      g_printerr ("Refusing to render service to dead parents.\n");
       goto out;
     }
 
-  /* paranoia: check that the uid of pid_of_caller matches getuid() */
-  error = NULL;
-  uid_of_caller = polkit_unix_process_get_owner (POLKIT_UNIX_PROCESS (subject),
-                                                 &error);
-  if (error != NULL)
-    {
-      g_printerr ("Error determing pid of caller (pid %d): %s\n", (gint) pid_of_caller, error->message);
-      g_error_free (error);
-      goto out;
-    }
-  if (uid_of_caller != getuid ())
-    {
-      g_printerr ("User of caller (%d) does not match our uid (%d)\n", uid_of_caller, getuid ());
-      goto out;
-    }
+  /* This process we want to check an authorization for is the process
+   * that launched us - our parent process.
+   *
+   * At the time the parent process fork()'ed and exec()'ed us, the
+   * process had the same real-uid that we have now. So we use this
+   * real-uid instead of of looking it up to avoid TOCTTOU issues
+   * (consider the parent process exec()'ing a setuid helper).
+   *
+   * On the other hand, the monotonic process start-time is guaranteed
+   * to never change so it's safe to look that up given only the PID
+   * since we are guaranteed to be nuked if the parent goes away
+   * (cf. the prctl(2) call above).
+   */
+  subject = polkit_unix_process_new_for_owner (pid_of_caller,
+                                               0, /* 0 means "look up start-time in /proc" */
+                                               getuid ());
+  /* really double-check the invariants guaranteed by the PolkitUnixProcess class */
+  g_assert (subject != NULL);
+  g_assert (polkit_unix_process_get_pid (POLKIT_UNIX_PROCESS (subject)) == pid_of_caller);
+  g_assert (polkit_unix_process_get_uid (POLKIT_UNIX_PROCESS (subject)) >= 0);
+  g_assert (polkit_unix_process_get_start_time (POLKIT_UNIX_PROCESS (subject)) > 0);
 
   error = NULL;
   authority = polkit_authority_get_sync (NULL /* GCancellable* */, &error);
@@ -642,7 +664,7 @@ main (int argc, char *argv[])
       goto out;
     }
 
-  action_id = find_action_for_path (authority, path);
+  action_id = find_action_for_path (authority, path, &allow_gui);
   g_assert (action_id != NULL);
 
   details = polkit_details_new ();
@@ -777,6 +799,11 @@ main (int argc, char *argv[])
     {
       const gchar *key = saved_env->pdata[n];
       const gchar *value = saved_env->pdata[n + 1];
+
+      /* Only set $DISPLAY and $XAUTHORITY when explicitly allowed in the .policy */
+      if (!allow_gui &&
+              (strcmp (key, "DISPLAY") == 0 || strcmp (key, "XAUTHORITY") == 0))
+          continue;
 
       if (!g_setenv (key, value, TRUE))
         {

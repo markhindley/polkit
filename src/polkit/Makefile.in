@@ -956,7 +956,9 @@ polkitenumtypes.c: $(enum_headers) polkitenumtypes.c.template
 @HAVE_INTROSPECTION_TRUE@		--pkg=glib-2.0 					\
 @HAVE_INTROSPECTION_TRUE@		--pkg=gobject-2.0 				\
 @HAVE_INTROSPECTION_TRUE@		--pkg=gio-2.0 					\
+@HAVE_INTROSPECTION_TRUE@		--pkg-export=polkit-gobject-1			\
 @HAVE_INTROSPECTION_TRUE@		--libtool=$(top_builddir)/libtool		\
+@HAVE_INTROSPECTION_TRUE@		--c-include='polkit/polkit.h'			\
 @HAVE_INTROSPECTION_TRUE@                -I$(top_srcdir)/src	 			\
 @HAVE_INTROSPECTION_TRUE@	        -D_POLKIT_COMPILATION                   	\
 @HAVE_INTROSPECTION_TRUE@		$(libpolkit_gobject_1_la_SOURCES)		\

@@ -109,7 +109,9 @@ Polkit-1.0.gir: libpolkit-gobject-1.la $(INTROSPECTION_SCANNER) Makefile.am
 		--pkg=glib-2.0 					\
 		--pkg=gobject-2.0 				\
 		--pkg=gio-2.0 					\
+		--pkg-export=polkit-gobject-1			\
 		--libtool=$(top_builddir)/libtool		\
+		--c-include='polkit/polkit.h'			\
                 -I$(top_srcdir)/src	 			\
 	        -D_POLKIT_COMPILATION                   	\
 		$(libpolkit_gobject_1_la_SOURCES)		\

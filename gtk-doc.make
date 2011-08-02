@@ -23,12 +23,14 @@ GPATH = $(srcdir)
 
 TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)
 
-EXTRA_DIST = 				\
+SETUP_FILES = \
 	$(content_files)		\
-	$(HTML_IMAGES)			\
 	$(DOC_MAIN_SGML_FILE)		\
 	$(DOC_MODULE)-sections.txt	\
 	$(DOC_MODULE)-overrides.txt
+
+EXTRA_DIST = 				\
+	$(SETUP_FILES)
 
 DOC_STAMPS=setup-build.stamp scan-build.stamp sgml-build.stamp \
 	html-build.stamp pdf-build.stamp \
@@ -71,17 +73,18 @@ $(REPORT_FILES): sgml-build.stamp
 
 #### setup ####
 
-setup-build.stamp::
+setup-build.stamp:
 	-@if test "$(abs_srcdir)" != "$(abs_builddir)" ; then \
-	   cp -a $(abs_srcdir)/$(DOC_MAIN_SGML_FILE) $(abs_builddir)/; \
-	   cp -a $(abs_srcdir)/$(DOC_MODULE)* $(abs_builddir)/; \
-	   if test "x$(content_files)" != "x" ; then \
-	       for file in $(content_files) ; do \
-	           test -f $(abs_srcdir)/$$file || \
-	               cp -a $(abs_srcdir)/$$file $(abs_builddir)/; \
+	   echo 'gtk-doc: Preparing build'; \
+	   files=`echo $(SETUP_FILES) $(expand_content_files) $(DOC_MODULE).types`; \
+	   if test "x$$files" != "x" ; then \
+	       for file in $$files ; do \
+	           test -f $(abs_srcdir)/$$file && \
+	               cp -p $(abs_srcdir)/$$file $(abs_builddir)/; \
 	       done \
 	   fi \
 	fi
+	@touch setup-build.stamp
 
 
 setup.stamp: setup-build.stamp
@@ -111,13 +114,13 @@ $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)
 
 #### xml ####
 
-sgml-build.stamp: setup-build.stamp $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)-overrides.txt $(expand_content_files)
+sgml-build.stamp: setup.stamp $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)-overrides.txt $(expand_content_files)
 	@echo 'gtk-doc: Building XML'
 	@_source_dir='' ; \
 	for i in $(DOC_SOURCE_DIR) ; do \
 	    _source_dir="$${_source_dir} --source-dir=$$i" ; \
 	done ; \
-	gtkdoc-mkdb --module=$(DOC_MODULE) --output-format=xml --expand-content-files="$(expand_content_files)" --main-sgml-file=$(DOC_MAIN_SGML_FILE) $${_source_dir} $(MKDB_OPTIONS)  
+	gtkdoc-mkdb --module=$(DOC_MODULE) --output-format=xml --expand-content-files="$(expand_content_files)" --main-sgml-file=$(DOC_MAIN_SGML_FILE) $${_source_dir} $(MKDB_OPTIONS)
 	@touch sgml-build.stamp
 
 sgml.stamp: sgml-build.stamp
@@ -135,7 +138,15 @@ html-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files)
 	  mkhtml_options=--path="$(abs_srcdir)"; \
 	fi; \
 	cd html && gtkdoc-mkhtml $$mkhtml_options $(MKHTML_OPTIONS) $(DOC_MODULE) ../$(DOC_MAIN_SGML_FILE)
-	@test "x$(HTML_IMAGES)" = "x" || ( cd $(srcdir) && cp $(HTML_IMAGES) $(abs_builddir)/html )
+	-@test "x$(HTML_IMAGES)" = "x" || \
+	for file in $(HTML_IMAGES) ; do \
+	  if test -f $(abs_srcdir)/$$file ; then \
+	    cp $(abs_srcdir)/$$file $(abs_builddir)/html; \
+	  fi; \
+	  if test -f $(abs_builddir)/$$file ; then \
+	    cp $(abs_builddir)/$$file $(abs_builddir)/html; \
+	  fi; \
+	done;
 	@echo 'gtk-doc: Fixing cross-references'
 	@gtkdoc-fixxref --module=$(DOC_MODULE) --module-dir=html --html-dir=$(HTML_DIR) $(FIXXREF_OPTIONS)
 	@touch html-build.stamp
@@ -168,11 +179,11 @@ distclean-local:
 	rm -rf xml html $(REPORT_FILES) $(DOC_MODULE).pdf \
 	    $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt
 	if test "$(abs_srcdir)" != "$(abs_builddir)" ; then \
-	    rm -f $(DOC_MAIN_SGML_FILE) $(DOC_MODULE)*; \
+	    rm -f $(SETUP_FILES) $(expand_content_files) $(DOC_MODULE).types; \
 	fi
 
 maintainer-clean-local: clean
-	rm -rf html
+	rm -rf xml html
 
 install-data-local:
 	@installfiles=`echo $(builddir)/html/*`; \
