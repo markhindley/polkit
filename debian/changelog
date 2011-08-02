@@ -4,6 +4,9 @@ policykit-1 (0.102-1) UNRELEASED; urgency=low
   * debian/patches/00git_fix_proc_race.patch: Removed, merged upstream.
   * debian/patches/04_ignore_quilt_po.patch: Removed, merged upstream.
   * debian/patches/03_complete_session.patch: Refreshed.
+  * debian/patches/04_get_cwd.patch: Use g_get_current_dir() to determine the
+    current working directory. This fixes another PATH_MAX related FTBFS on
+    hurd. Thanks Emilio Pozuelo Monfort for the patch. (Closes: #623017)
 
  -- Michael Biebl <biebl@debian.org>  Tue, 02 Aug 2011 02:56:15 +0200
 
