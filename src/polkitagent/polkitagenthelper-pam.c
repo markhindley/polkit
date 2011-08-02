@@ -151,7 +151,6 @@ main (int argc, char *argv[])
       const char *err;
       err = pam_strerror (pam_h, rc);
       fprintf (stderr, "polkit-agent-helper-1: pam_authenticate failed: %s\n", err);
-      send_to_helper ("PAM_ERROR_MSG ", err);
       goto error;
     }
 
@@ -162,7 +161,6 @@ main (int argc, char *argv[])
       const char *err;
       err = pam_strerror (pam_h, rc);
       fprintf (stderr, "polkit-agent-helper-1: pam_acct_mgmt failed: %s\n", err);
-      send_to_helper ("PAM_ERROR_MSG ", err);
       goto error;
     }
 
@@ -173,7 +171,6 @@ main (int argc, char *argv[])
       const char *err;
       err = pam_strerror (pam_h, rc);
       fprintf (stderr, "polkit-agent-helper-1: pam_get_item failed: %s\n", err);
-      send_to_helper ("PAM_ERROR_MSG ", err);
       goto error;
     }
 
@@ -181,7 +178,6 @@ main (int argc, char *argv[])
     {
       fprintf (stderr, "polkit-agent-helper-1: Tried to auth user '%s' but we got auth for user '%s' instead",
                user_to_auth, (const char *) authed_user);
-      send_to_helper ("PAM_ERROR_MSG ", "Authenticated the wrong user");
       goto error;
     }
 
@@ -230,6 +226,7 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
   struct pam_response *aresp;
   char buf[PAM_MAX_RESP_SIZE];
   int i;
+  gchar *escaped = NULL;
 
   data = data;
   if (n <= 0 || n > PAM_MAX_NUM_MSG)
@@ -261,14 +258,15 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
 #ifdef PAH_DEBUG
           fprintf (stderr, "polkit-agent-helper-1: writing `%s' to stdout\n", msg[i]->msg);
 #endif /* PAH_DEBUG */
-          fputs (msg[i]->msg, stdout);
-          if (strlen (msg[i]->msg) > 0 && msg[i]->msg[strlen (msg[i]->msg) - 1] != '\n')
-            {
+          if (strlen (msg[i]->msg) > 0 && msg[i]->msg[strlen (msg[i]->msg) - 1] == '\n')
+            msg[i]->msg[strlen (msg[i]->msg) - 1] == '\0';
+          escaped = g_strescape (msg[i]->msg, NULL);
+          fputs (escaped, stdout);
+          g_free (escaped);
 #ifdef PAH_DEBUG
-              fprintf (stderr, "polkit-agent-helper-1: writing newline to stdout\n");
+          fprintf (stderr, "polkit-agent-helper-1: writing newline to stdout\n");
 #endif /* PAH_DEBUG */
-              fputc ('\n', stdout);
-            }
+          fputc ('\n', stdout);
 #ifdef PAH_DEBUG
           fprintf (stderr, "polkit-agent-helper-1: flushing stdout\n");
 #endif /* PAH_DEBUG */
