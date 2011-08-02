@@ -1,6 +1,9 @@
 policykit-1 (0.102-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * debian/patches/00git_fix_proc_race.patch: Removed, merged upstream.
+  * debian/patches/04_ignore_quilt_po.patch: Removed, merged upstream.
+  * debian/patches/03_complete_session.patch: Refreshed.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 02 Aug 2011 02:56:15 +0200
 
