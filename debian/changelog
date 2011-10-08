@@ -1,3 +1,13 @@
+policykit-1 (0.96-4+squeeze1) UNRELEASED; urgency=low
+
+  * debian/patches/02_proc_pid_race.patch
+    - Fix race condition when reading from /proc which allows local users to
+      gain root privileges by executing a setuid program from pkexec.
+      (Closes: #644500)
+    - SECURITY - CVE-2011-1485
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 08 Oct 2011 04:27:59 +0200
+
 policykit-1 (0.96-4) unstable; urgency=low
 
   * debian/rules
