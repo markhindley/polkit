@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
 Uploaders: Michael Biebl <biebl@debian.org>, Martin Pitt <mpitt@debian.org>
-Build-Depends: debhelper (>= 8),
+Build-Depends: debhelper (>= 8.1.3),
  autotools-dev,
  pkg-config,
  libglib2.0-dev (>= 2.28.0),
@@ -23,6 +23,7 @@ Homepage: http://hal.freedesktop.org/docs/PolicyKit/
 Package: policykit-1
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, consolekit, dbus
+Multi-Arch: foreign
 Description: framework for managing administrative policies and privileges
  PolicyKit is an application-level toolkit for defining and handling the policy
  that allows unprivileged processes to speak to privileged processes.
@@ -45,7 +46,9 @@ Description: documentation for PolicyKit-1
 Package: libpolkit-gobject-1-0
 Architecture: any
 Section: libs
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
 Breaks: policykit-1 (<< 0.99), libpolkit-gtk-1-0 (<< 0.99), libpolkit-agent-1-0 (<< 0.99), libpolkit-backend-1-0 (<< 0.99)
 Description: PolicyKit Authorization API
  PolicyKit is a toolkit for defining and handling the policy that
@@ -67,7 +70,9 @@ Description: PolicyKit Authorization API - development files
 Package: libpolkit-agent-1-0
 Architecture: any
 Section: libs
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
 Description: PolicyKit Authentication Agent API
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -88,7 +93,9 @@ Description: PolicyKit Authentication Agent API - development files
 Package: libpolkit-backend-1-0
 Architecture: any
 Section: libs
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
 Breaks: policykit-1 (<< 0.99)
 Description: PolicyKit backend API
  PolicyKit is a toolkit for defining and handling the policy that

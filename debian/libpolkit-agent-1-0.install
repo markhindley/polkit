@@ -1,1 +1,1 @@
-usr/lib/libpolkit-agent-1.so.*
+usr/lib/*/libpolkit-agent-1.so.*
