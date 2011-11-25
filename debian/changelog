@@ -2,6 +2,9 @@ policykit-1 (0.102-2) UNRELEASED; urgency=low
 
   * 02_gettext.patch: Explicitly #include <locale.h> to fix non-optimized
     build. Thanks Ivan Krasilnikov for pointing this out.
+  * debian/rules: When building on Ubuntu, also consider the "sudo" group as
+    administrator, for compatibility with Debian and sudo itself. Keep "admin"
+    for existing systems. (LP: #893842)
 
  -- Martin Pitt <mpitt@debian.org>  Mon, 08 Aug 2011 14:14:58 +0200
 
