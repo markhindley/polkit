@@ -259,6 +259,7 @@
     <keyword type="signal" name="The &quot;request&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-request"/>
     <keyword type="signal" name="The &quot;show-error&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-error"/>
     <keyword type="signal" name="The &quot;show-info&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-info"/>
+    <keyword type="" name="Known annotations" link="polkit.8.html#id558055"/>
     <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_NONE" link="PolkitAuthority.html#POLKIT-AUTHORITY-FEATURES-NONE:CAPS"/>
     <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_TEMPORARY_AUTHORIZATION" link="PolkitAuthority.html#POLKIT-AUTHORITY-FEATURES-TEMPORARY-AUTHORIZATION:CAPS"/>
     <keyword type="constant" name="POLKIT_CHECK_AUTHORIZATION_FLAGS_NONE" link="PolkitAuthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-NONE:CAPS"/>
