@@ -148,6 +148,7 @@ static PolkitAuthorizationResult *check_authorization_sync (PolkitBackendAuthori
                                                             PolkitDetails                  *details,
                                                             PolkitCheckAuthorizationFlags   flags,
                                                             PolkitImplicitAuthorization    *out_implicit_authorization,
+                                                            gboolean                        checking_imply,
                                                             GError                        **error);
 
 static gboolean polkit_backend_interactive_authority_register_authentication_agent (PolkitBackendAuthority   *authority,
@@ -748,6 +749,62 @@ polkit_backend_interactive_authority_check_authorization_finish (PolkitBackendAu
   return result;
 }
 
+static gboolean
+may_identity_check_authorization (PolkitBackendInteractiveAuthority   *interactive_authority,
+                                  const gchar                         *action_id,
+                                  PolkitIdentity                      *identity)
+{
+  PolkitBackendInteractiveAuthorityPrivate *priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (interactive_authority);
+  gboolean ret = FALSE;
+  PolkitActionDescription *action_desc = NULL;
+  const gchar *owners = NULL;
+  gchar **tokens = NULL;
+  guint n;
+
+  /* uid 0 may check anything */
+  if (POLKIT_IS_UNIX_USER (identity) && polkit_unix_user_get_uid (POLKIT_UNIX_USER (identity)) == 0)
+    {
+      ret = TRUE;
+      goto out;
+    }
+
+  action_desc = polkit_backend_action_pool_get_action (priv->action_pool, action_id, NULL);
+  if (action_desc == NULL)
+    goto out;
+
+  owners = polkit_action_description_get_annotation (action_desc, "org.freedesktop.policykit.owner");
+  if (owners == NULL)
+    goto out;
+
+  tokens = g_strsplit (owners, " ", 0);
+  for (n = 0; tokens != NULL && tokens[n] != NULL; n++)
+    {
+      PolkitIdentity *owner_identity;
+      GError *error = NULL;
+      owner_identity = polkit_identity_from_string (tokens[n], &error);
+      if (owner_identity == NULL)
+        {
+          g_warning ("Error parsing owner identity %d of action_id %s: %s (%s, %d)",
+                     n, action_id, error->message, g_quark_to_string (error->domain), error->code);
+          g_error_free (error);
+          continue;
+        }
+      if (polkit_identity_equal (identity, owner_identity))
+        {
+          ret = TRUE;
+          g_object_unref (owner_identity);
+          goto out;
+        }
+      g_object_unref (owner_identity);
+    }
+
+ out:
+  g_clear_object (&action_desc);
+  g_strfreev (tokens);
+
+  return ret;
+}
+
 static void
 polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority         *authority,
                                                           PolkitSubject                  *caller,
@@ -850,22 +907,29 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
           g_strfreev (detail_keys);
         }
     }
+
+  /* Not anyone is allowed to check that process XYZ is allowed to do ABC.
+   * We only allow this if, and only if,
+   *
+   *  - processes may check for another process owned by the *same* user but not
+   *    if details are passed (otherwise you'd be able to spoof the dialog)
+   *
+   *  - processes running as uid 0 may check anything and pass any details
+   *
+   *  - if the action_id has the "org.freedesktop.policykit.owner" annotation
+   *    then any uid referenced by that annotation is also allowed to check
+   *    to check anything and pass any details
+   */
   if (!polkit_identity_equal (user_of_caller, user_of_subject) || has_details)
     {
-      /* we only allow trusted callers (uid 0 + others) to check authorizations for subjects
-       * they don't own - and only if there are no details passed (to avoid spoofing dialogs).
-       *
-       * TODO: allow other uids like 'haldaemon'?
-       */
-      if (!POLKIT_IS_UNIX_USER (user_of_caller) ||
-          polkit_unix_user_get_uid (POLKIT_UNIX_USER (user_of_caller)) != 0)
+      if (!may_identity_check_authorization (interactive_authority, action_id, user_of_caller))
         {
           if (has_details)
             {
               g_simple_async_result_set_error (simple,
                                                POLKIT_ERROR,
                                                POLKIT_ERROR_NOT_AUTHORIZED,
-                                               "Only trusted callers (e.g. uid 0) can use CheckAuthorization() and "
+                                               "Only trusted callers (e.g. uid 0 or an action owner) can use CheckAuthorization() and "
                                                "pass details");
             }
           else
@@ -873,7 +937,7 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
               g_simple_async_result_set_error (simple,
                                                POLKIT_ERROR,
                                                POLKIT_ERROR_NOT_AUTHORIZED,
-                                               "Only trusted callers (e.g. uid 0) can use CheckAuthorization() for "
+                                               "Only trusted callers (e.g. uid 0 or an action owner) can use CheckAuthorization() for "
                                                "subjects belonging to other identities");
             }
           g_simple_async_result_complete (simple);
@@ -890,6 +954,7 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
                                      details,
                                      flags,
                                      &implicit_authorization,
+                                     FALSE, /* checking_imply */
                                      &error);
   if (error != NULL)
     {
@@ -964,6 +1029,7 @@ check_authorization_sync (PolkitBackendAuthority         *authority,
                           PolkitDetails                  *details,
                           PolkitCheckAuthorizationFlags   flags,
                           PolkitImplicitAuthorization    *out_implicit_authorization,
+                          gboolean                        checking_imply,
                           GError                        **error)
 {
   PolkitBackendInteractiveAuthority *interactive_authority;
@@ -979,12 +1045,15 @@ check_authorization_sync (PolkitBackendAuthority         *authority,
   PolkitImplicitAuthorization implicit_authorization;
   const gchar *tmp_authz_id;
   PolkitDetails *result_details;
+  GList *actions;
+  GList *l;
 
   interactive_authority = POLKIT_BACKEND_INTERACTIVE_AUTHORITY (authority);
   priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (interactive_authority);
 
   result = NULL;
 
+  actions = NULL;
   user_of_subject = NULL;
   groups_of_user = NULL;
   subject_str = NULL;
@@ -1095,6 +1164,64 @@ check_authorization_sync (PolkitBackendAuthority         *authority,
       goto out;
     }
 
+  /* then see if implied by another action that the subject is authorized for
+   * (but only one level deep to avoid infinite recursion)
+   *
+   * TODO: if this is slow, we can maintain a hash table for looking up what
+   * actions implies a given action
+   */
+  if (!checking_imply)
+    {
+      actions = polkit_backend_action_pool_get_all_actions (priv->action_pool, NULL);
+      for (l = actions; l != NULL; l = l->next)
+        {
+          PolkitActionDescription *imply_ad = POLKIT_ACTION_DESCRIPTION (l->data);
+          const gchar *imply;
+          imply = polkit_action_description_get_annotation (imply_ad, "org.freedesktop.policykit.imply");
+          if (imply != NULL)
+            {
+              gchar **tokens;
+              guint n;
+              tokens = g_strsplit (imply, " ", 0);
+              for (n = 0; tokens[n] != NULL; n++)
+                {
+                  if (g_strcmp0 (tokens[n], action_id) == 0)
+                    {
+                      PolkitAuthorizationResult *implied_result = NULL;
+                      PolkitImplicitAuthorization implied_implicit_authorization;
+                      GError *implied_error = NULL;
+                      const gchar *imply_action_id;
+
+                      imply_action_id = polkit_action_description_get_action_id (imply_ad);
+
+                      /* g_debug ("%s is implied by %s, checking", action_id, imply_action_id); */
+                      implied_result = check_authorization_sync (authority, caller, subject,
+                                                                 imply_action_id,
+                                                                 details, flags,
+                                                                 &implied_implicit_authorization, TRUE,
+                                                                 &implied_error);
+                      if (implied_result != NULL)
+                        {
+                          if (polkit_authorization_result_get_is_authorized (implied_result))
+                            {
+                              g_debug (" is authorized (implied by %s)", imply_action_id);
+                              result = implied_result;
+                              /* cleanup */
+                              g_object_unref (result_details);
+                              g_strfreev (tokens);
+                              goto out;
+                            }
+                          g_object_unref (implied_result);
+                        }
+                      if (implied_error != NULL)
+                        g_error_free (implied_error);
+                    }
+                }
+              g_strfreev (tokens);
+            }
+        }
+    }
+
   if (implicit_authorization != POLKIT_IMPLICIT_AUTHORIZATION_NOT_AUTHORIZED)
     {
       if (implicit_authorization == POLKIT_IMPLICIT_AUTHORIZATION_AUTHENTICATION_REQUIRED_RETAINED ||
@@ -1118,6 +1245,9 @@ check_authorization_sync (PolkitBackendAuthority         *authority,
       g_debug (" not authorized");
     }
  out:
+  g_list_foreach (actions, (GFunc) g_object_unref, NULL);
+  g_list_free (actions);
+
   g_free (subject_str);
 
   g_list_foreach (groups_of_user, (GFunc) g_object_unref, NULL);
