@@ -2,6 +2,9 @@ policykit-1 (0.103-1) UNRELEASED; urgency=low
 
   * New upstream release.
   * debian/control: Change section of gir1.2-polkit-1.0 to introspection.
+  * 05_revert-admin-identities-unix-group-wheel.patch: Revert upstream change
+    to make group wheel the default admin identity since we already use group
+    sudo resp. group admin for that.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 07 Dec 2011 07:34:05 +0100
 
