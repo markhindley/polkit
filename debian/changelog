@@ -1,6 +1,7 @@
 policykit-1 (0.103-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * debian/control: Change section of gir1.2-polkit-1.0 to introspection.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 07 Dec 2011 07:34:05 +0100
 
