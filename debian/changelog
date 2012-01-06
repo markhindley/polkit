@@ -5,6 +5,8 @@ policykit-1 (0.104-1) UNRELEASED; urgency=low
   * debian/rules: Disable systemd support, continue to work with ConsokeKit.
   * 05_revert-admin-identities-unix-group-wheel.patch: Refresh to apply
     cleanly.
+  * debian/libpolkit-gobject-1-0.symbols: Add new symbols from this new
+    release.
 
  -- Martin Pitt <mpitt@debian.org>  Fri, 06 Jan 2012 10:36:58 +0100
 
