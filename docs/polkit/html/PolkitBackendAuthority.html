@@ -51,7 +51,7 @@ struct              <a class="link" href="PolkitBackendAuthority.html#PolkitBack
 const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-name" title="polkit_backend_authority_get_name ()">polkit_backend_authority_get_name</a>   (<em class="parameter"><code><a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> *authority</code></em>);
 const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-version" title="polkit_backend_authority_get_version ()">polkit_backend_authority_get_version</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> *authority</code></em>);
-<a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a>  <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-features" title="polkit_backend_authority_get_features ()">polkit_backend_authority_get_features</a>
+<a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a> <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-get-features" title="polkit_backend_authority_get_features ()">polkit_backend_authority_get_features</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> *authority</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization" title="polkit_backend_authority_check_authorization ()">polkit_backend_authority_check_authorization</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> *authority</code></em>,
@@ -360,7 +360,7 @@ Gets the version of the authority backend.
 <hr>
 <div class="refsect2">
 <a name="polkit-backend-authority-get-features"></a><h3>polkit_backend_authority_get_features ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a>  polkit_backend_authority_get_features
+<pre class="programlisting"><a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a> polkit_backend_authority_get_features
                                                         (<em class="parameter"><code><a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority"><span class="type">PolkitBackendAuthority</span></a> *authority</code></em>);</pre>
 <p>
 Gets the features supported by the authority backend.

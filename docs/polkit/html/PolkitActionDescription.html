@@ -40,7 +40,7 @@
 <div class="refsynopsisdiv">
 <a name="PolkitActionDescription.synopsis"></a><h2>Synopsis</h2>
 <a name="PolkitImplicitAuthorization"></a><pre class="synopsis">                    <a class="link" href="PolkitActionDescription.html#PolkitActionDescription-struct" title="PolkitActionDescription">PolkitActionDescription</a>;
-enum                <a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization">PolkitImplicitAuthorization</a>;
+enum                <a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization-enum" title="enum PolkitImplicitAuthorization">PolkitImplicitAuthorization</a>;
 const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-action-id" title="polkit_action_description_get_action_id ()">polkit_action_description_get_action_id</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);
 const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-description" title="polkit_action_description_get_description ()">polkit_action_description_get_description</a>
@@ -53,11 +53,11 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);
 const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-icon-name" title="polkit_action_description_get_icon_name ()">polkit_action_description_get_icon_name</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);
-<a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a>  <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-implicit-any" title="polkit_action_description_get_implicit_any ()">polkit_action_description_get_implicit_any</a>
+<a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a> <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-implicit-any" title="polkit_action_description_get_implicit_any ()">polkit_action_description_get_implicit_any</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);
-<a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a>  <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-implicit-inactive" title="polkit_action_description_get_implicit_inactive ()">polkit_action_description_get_implicit_inactive</a>
+<a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a> <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-implicit-inactive" title="polkit_action_description_get_implicit_inactive ()">polkit_action_description_get_implicit_inactive</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);
-<a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a>  <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-implicit-active" title="polkit_action_description_get_implicit_active ()">polkit_action_description_get_implicit_active</a>
+<a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a> <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-implicit-active" title="polkit_action_description_get_implicit_active ()">polkit_action_description_get_implicit_active</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);
 const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitActionDescription.html#polkit-action-description-get-annotation" title="polkit_action_description_get_annotation ()">polkit_action_description_get_annotation</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>,
@@ -92,9 +92,8 @@ The <a class="link" href="PolkitActionDescription.html" title="PolkitActionDescr
 </div>
 <hr>
 <div class="refsect2">
-<a name="PolkitImplicitAuthorization"></a><h3>enum PolkitImplicitAuthorization</h3>
-<pre class="programlisting">typedef enum
-{
+<a name="PolkitImplicitAuthorization-enum"></a><h3>enum PolkitImplicitAuthorization</h3>
+<pre class="programlisting">typedef enum {
   POLKIT_IMPLICIT_AUTHORIZATION_UNKNOWN = -1,
   POLKIT_IMPLICIT_AUTHORIZATION_NOT_AUTHORIZED = 0,
   POLKIT_IMPLICIT_AUTHORIZATION_AUTHENTICATION_REQUIRED = 1,
@@ -283,7 +282,7 @@ Gets the icon name for <em class="parameter"><code>action_description</code></em
 <hr>
 <div class="refsect2">
 <a name="polkit-action-description-get-implicit-any"></a><h3>polkit_action_description_get_implicit_any ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a>  polkit_action_description_get_implicit_any
+<pre class="programlisting"><a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a> polkit_action_description_get_implicit_any
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);</pre>
 <p>
 Gets the implicit authorization for <em class="parameter"><code>action_description</code></em> used for
@@ -306,7 +305,7 @@ any subject.
 <hr>
 <div class="refsect2">
 <a name="polkit-action-description-get-implicit-inactive"></a><h3>polkit_action_description_get_implicit_inactive ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a>  polkit_action_description_get_implicit_inactive
+<pre class="programlisting"><a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a> polkit_action_description_get_implicit_inactive
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);</pre>
 <p>
 Gets the implicit authorization for <em class="parameter"><code>action_description</code></em> used for
@@ -329,7 +328,7 @@ subjects in inactive sessions on a local console.
 <hr>
 <div class="refsect2">
 <a name="polkit-action-description-get-implicit-active"></a><h3>polkit_action_description_get_implicit_active ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a>  polkit_action_description_get_implicit_active
+<pre class="programlisting"><a class="link" href="PolkitActionDescription.html#PolkitImplicitAuthorization"><span class="returnvalue">PolkitImplicitAuthorization</span></a> polkit_action_description_get_implicit_active
                                                         (<em class="parameter"><code><a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> *action_description</code></em>);</pre>
 <p>
 Gets the implicit authorization for <em class="parameter"><code>action_description</code></em> used for

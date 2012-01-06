@@ -36,6 +36,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@HAVE_SYSTEMD_TRUE@am__append_1 = \
+@HAVE_SYSTEMD_TRUE@	polkitbackendsessionmonitor.h		polkitbackendsessionmonitor-systemd.c
+
+@HAVE_SYSTEMD_FALSE@am__append_2 = \
+@HAVE_SYSTEMD_FALSE@	polkitbackendsessionmonitor.h		polkitbackendsessionmonitor.c
+
 subdir = src/polkitbackend
 DIST_COMMON = $(libpolkit_backend_1include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -74,19 +80,35 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libpolkit_backend_1_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+am__libpolkit_backend_1_la_SOURCES_DIST = polkitbackend.h \
+	polkitbackendtypes.h polkitbackendprivate.h \
+	polkitbackendauthority.h polkitbackendauthority.c \
+	polkitbackendinteractiveauthority.h \
+	polkitbackendinteractiveauthority.c \
+	polkitbackendlocalauthority.h polkitbackendlocalauthority.c \
+	polkitbackendactionpool.h polkitbackendactionpool.c \
+	polkitbackendconfigsource.h polkitbackendconfigsource.c \
+	polkitbackendactionlookup.h polkitbackendactionlookup.c \
+	polkitbackendlocalauthorizationstore.h \
+	polkitbackendlocalauthorizationstore.c \
+	polkitbackendsessionmonitor.h \
+	polkitbackendsessionmonitor-systemd.c \
+	polkitbackendsessionmonitor.c
 am__objects_1 =
+@HAVE_SYSTEMD_TRUE@am__objects_2 = libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.lo
+@HAVE_SYSTEMD_FALSE@am__objects_3 = libpolkit_backend_1_la-polkitbackendsessionmonitor.lo
 am_libpolkit_backend_1_la_OBJECTS =  \
 	libpolkit_backend_1_la-polkitbackendauthority.lo \
 	libpolkit_backend_1_la-polkitbackendinteractiveauthority.lo \
 	libpolkit_backend_1_la-polkitbackendlocalauthority.lo \
 	libpolkit_backend_1_la-polkitbackendactionpool.lo \
-	libpolkit_backend_1_la-polkitbackendsessionmonitor.lo \
 	libpolkit_backend_1_la-polkitbackendconfigsource.lo \
 	libpolkit_backend_1_la-polkitbackendactionlookup.lo \
 	libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo \
-	$(am__objects_1)
+	$(am__objects_1) $(am__objects_2) $(am__objects_3)
 libpolkit_backend_1_la_OBJECTS = $(am_libpolkit_backend_1_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -122,7 +144,7 @@ AM_V_GEN = $(am__v_GEN_$(V))
 am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
 am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(libpolkit_backend_1_la_SOURCES)
-DIST_SOURCES = $(libpolkit_backend_1_la_SOURCES)
+DIST_SOURCES = $(am__libpolkit_backend_1_la_SOURCES_DIST)
 DATA = $(localauthorityconfig_DATA)
 HEADERS = $(libpolkit_backend_1include_HEADERS)
 ETAGS = etags
@@ -166,6 +188,8 @@ GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
+GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
+GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
 HAVE_PAM = @HAVE_PAM@
@@ -241,6 +265,8 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SYSTEMD_CFLAGS = @SYSTEMD_CFLAGS@
+SYSTEMD_LIBS = @SYSTEMD_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
@@ -292,6 +318,7 @@ psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
+subdirs = @subdirs@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
@@ -325,29 +352,28 @@ libpolkit_backend_1include_HEADERS = \
 	polkitbackendactionlookup.h					\
         $(NULL)
 
-libpolkit_backend_1_la_SOURCES = \
-	$(BUILT_SOURCES)								\
-        polkitbackend.h									\
-	polkitbackendtypes.h								\
-	polkitbackendprivate.h								\
-	polkitbackendauthority.h		polkitbackendauthority.c		\
-	polkitbackendinteractiveauthority.h	polkitbackendinteractiveauthority.c	\
-	polkitbackendlocalauthority.h		polkitbackendlocalauthority.c		\
-	polkitbackendactionpool.h		polkitbackendactionpool.c		\
-	polkitbackendsessionmonitor.h		polkitbackendsessionmonitor.c		\
-	polkitbackendconfigsource.h		polkitbackendconfigsource.c		\
-	polkitbackendactionlookup.h		polkitbackendactionlookup.c		\
-	polkitbackendlocalauthorizationstore.h	polkitbackendlocalauthorizationstore.c	\
-        $(NULL)
-
+libpolkit_backend_1_la_SOURCES = $(BUILT_SOURCES) polkitbackend.h \
+	polkitbackendtypes.h polkitbackendprivate.h \
+	polkitbackendauthority.h polkitbackendauthority.c \
+	polkitbackendinteractiveauthority.h \
+	polkitbackendinteractiveauthority.c \
+	polkitbackendlocalauthority.h polkitbackendlocalauthority.c \
+	polkitbackendactionpool.h polkitbackendactionpool.c \
+	polkitbackendconfigsource.h polkitbackendconfigsource.c \
+	polkitbackendactionlookup.h polkitbackendactionlookup.c \
+	polkitbackendlocalauthorizationstore.h \
+	polkitbackendlocalauthorizationstore.c $(NULL) $(am__append_1) \
+	$(am__append_2)
 libpolkit_backend_1_la_CFLAGS = \
         -D_POLKIT_COMPILATION                                  		\
         -D_POLKIT_BACKEND_COMPILATION                                  	\
         $(GLIB_CFLAGS)							\
+	$(SYSTEMD_CFLAGS)						\
         $(NULL)
 
 libpolkit_backend_1_la_LIBADD = \
         $(GLIB_LIBS)							\
+	$(SYSTEMD_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(EXPAT_LIBS)							\
         $(NULL)
@@ -441,6 +467,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_backend_1_la-polkitbackendinteractiveauthority.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthority.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Plo@am__quote@
 
 .c.o:
@@ -499,14 +526,6 @@ libpolkit_backend_1_la-polkitbackendactionpool.lo: polkitbackendactionpool.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendactionpool.lo `test -f 'polkitbackendactionpool.c' || echo '$(srcdir)/'`polkitbackendactionpool.c
 
-libpolkit_backend_1_la-polkitbackendsessionmonitor.lo: polkitbackendsessionmonitor.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendsessionmonitor.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Tpo -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor.lo `test -f 'polkitbackendsessionmonitor.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendsessionmonitor.c' object='libpolkit_backend_1_la-polkitbackendsessionmonitor.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor.lo `test -f 'polkitbackendsessionmonitor.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor.c
-
 libpolkit_backend_1_la-polkitbackendconfigsource.lo: polkitbackendconfigsource.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendconfigsource.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Tpo -c -o libpolkit_backend_1_la-polkitbackendconfigsource.lo `test -f 'polkitbackendconfigsource.c' || echo '$(srcdir)/'`polkitbackendconfigsource.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendconfigsource.Plo
@@ -530,6 +549,22 @@ libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo: polkitbackendloc
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendlocalauthorizationstore.c' object='libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendlocalauthorizationstore.lo `test -f 'polkitbackendlocalauthorizationstore.c' || echo '$(srcdir)/'`polkitbackendlocalauthorizationstore.c
+
+libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.lo: polkitbackendsessionmonitor-systemd.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.Tpo -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.lo `test -f 'polkitbackendsessionmonitor-systemd.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor-systemd.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendsessionmonitor-systemd.c' object='libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor-systemd.lo `test -f 'polkitbackendsessionmonitor-systemd.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor-systemd.c
+
+libpolkit_backend_1_la-polkitbackendsessionmonitor.lo: polkitbackendsessionmonitor.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_backend_1_la-polkitbackendsessionmonitor.lo -MD -MP -MF $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Tpo -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor.lo `test -f 'polkitbackendsessionmonitor.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Tpo $(DEPDIR)/libpolkit_backend_1_la-polkitbackendsessionmonitor.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitbackendsessionmonitor.c' object='libpolkit_backend_1_la-polkitbackendsessionmonitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_backend_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_backend_1_la-polkitbackendsessionmonitor.lo `test -f 'polkitbackendsessionmonitor.c' || echo '$(srcdir)/'`polkitbackendsessionmonitor.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
