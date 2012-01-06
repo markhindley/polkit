@@ -23,6 +23,7 @@
 #include <errno.h>
 #include <pwd.h>
 #include <grp.h>
+#include <netdb.h>
 #include <string.h>
 #include <glib/gstdio.h>
 #include <locale.h>
@@ -52,20 +53,34 @@
 static GList *get_users_in_group (PolkitIdentity              *group,
                                   gboolean                     include_root);
 
+static GList *get_users_in_net_group (PolkitIdentity          *group,
+                                      gboolean                 include_root);
+
 static GList *get_groups_for_user (PolkitIdentity              *user);
 
 /* ---------------------------------------------------------------------------------------------------- */
 
 typedef struct
 {
+  gchar *config_path;
   PolkitBackendConfigSource *config_source;
 
+  gchar **authorization_store_paths;
   GList *authorization_stores;
-
-  GFileMonitor *sysconf_dir_monitor;
-  GFileMonitor *localstate_dir_monitor;
+  GList *authorization_store_monitors;
 
 } PolkitBackendLocalAuthorityPrivate;
+
+/* ---------------------------------------------------------------------------------------------------- */
+
+enum
+{
+  PROP_0,
+
+  // Path overrides used for unit testing
+  PROP_CONFIG_PATH,
+  PROP_AUTH_STORE_PATHS,
+};
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -169,13 +184,15 @@ authorization_store_path_compare_func (GFile *file_a,
 static void
 add_all_authorization_stores (PolkitBackendLocalAuthority *authority)
 {
+  PolkitBackendLocalAuthorityPrivate *priv;
   guint n;
   GList *directories;
   GList *l;
 
+  priv = POLKIT_BACKEND_LOCAL_AUTHORITY_GET_PRIVATE (authority);
   directories = NULL;
 
-  for (n = 0; n < 2; n++)
+  for (n = 0; priv->authorization_store_paths && priv->authorization_store_paths[n]; n++)
     {
       const gchar *toplevel_path;
       GFile *toplevel_directory;
@@ -185,11 +202,7 @@ add_all_authorization_stores (PolkitBackendLocalAuthority *authority)
 
       error = NULL;
 
-      if (n == 0)
-        toplevel_path = PACKAGE_LOCALSTATE_DIR "/lib/polkit-1/localauthority";
-      else
-        toplevel_path = PACKAGE_SYSCONF_DIR "/polkit-1/localauthority";
-
+      toplevel_path = priv->authorization_store_paths[n];
       toplevel_directory = g_file_new_for_path (toplevel_path);
       directory_enumerator = g_file_enumerate_children (toplevel_directory,
                                                         "standard::name,standard::type",
@@ -276,30 +289,41 @@ static void
 polkit_backend_local_authority_init (PolkitBackendLocalAuthority *authority)
 {
   PolkitBackendLocalAuthorityPrivate *priv;
-  GFile *config_directory;
-  guint n;
 
   priv = POLKIT_BACKEND_LOCAL_AUTHORITY_GET_PRIVATE (authority);
 
-  config_directory = g_file_new_for_path (PACKAGE_SYSCONF_DIR "/polkit-1/localauthority.conf.d");
+  priv->config_path = NULL;
+  priv->authorization_store_paths = NULL;
+}
+
+static void
+polkit_backend_local_authority_constructed (GObject *object)
+{
+  PolkitBackendLocalAuthority *authority;
+  PolkitBackendLocalAuthorityPrivate *priv;
+  GFile *config_directory;
+  guint n;
+
+  authority = POLKIT_BACKEND_LOCAL_AUTHORITY (object);
+  priv = POLKIT_BACKEND_LOCAL_AUTHORITY_GET_PRIVATE (authority);
+
+  g_debug ("Using config directory `%s'", priv->config_path);
+  config_directory = g_file_new_for_path (priv->config_path);
   priv->config_source = polkit_backend_config_source_new (config_directory);
   g_object_unref (config_directory);
 
   add_all_authorization_stores (authority);
 
   /* Monitor the toplevels */
-  for (n = 0; n < 2; n++)
+  priv->authorization_store_monitors = NULL;
+  for (n = 0; priv->authorization_store_paths && priv->authorization_store_paths[n]; n++)
     {
       const gchar *toplevel_path;
       GFile *toplevel_directory;
       GFileMonitor *monitor;
       GError *error;
 
-      if (n == 0)
-        toplevel_path = PACKAGE_LOCALSTATE_DIR "/lib/polkit-1/localauthority";
-      else
-        toplevel_path = PACKAGE_SYSCONF_DIR "/polkit-1/localauthority";
-
+      toplevel_path = priv->authorization_store_paths[n];
       toplevel_directory = g_file_new_for_path (toplevel_path);
 
       error = NULL;
@@ -322,13 +346,12 @@ polkit_backend_local_authority_init (PolkitBackendLocalAuthority *authority)
                         G_CALLBACK (on_toplevel_authority_store_monitor_changed),
                         authority);
 
-      if (n == 0)
-        priv->sysconf_dir_monitor = monitor;
-      else
-        priv->localstate_dir_monitor = monitor;
+      priv->authorization_store_monitors = g_list_append (priv->authorization_store_monitors, monitor);
 
       g_object_unref (toplevel_directory);
     }
+
+  G_OBJECT_CLASS (polkit_backend_local_authority_parent_class)->constructed (object);
 }
 
 static void
@@ -342,13 +365,13 @@ polkit_backend_local_authority_finalize (GObject *object)
 
   purge_all_authorization_stores (local_authority);
 
-  if (priv->sysconf_dir_monitor != NULL)
-    g_object_unref (priv->sysconf_dir_monitor);
-  if (priv->localstate_dir_monitor != NULL)
-    g_object_unref (priv->localstate_dir_monitor);
+  g_list_free_full (priv->authorization_store_monitors, g_object_unref);
 
   if (priv->config_source != NULL)
     g_object_unref (priv->config_source);
+
+  g_free (priv->config_path);
+  g_strfreev (priv->authorization_store_paths);
 
   G_OBJECT_CLASS (polkit_backend_local_authority_parent_class)->finalize (object);
 }
@@ -372,22 +395,65 @@ polkit_backend_local_authority_get_features (PolkitBackendAuthority *authority)
 }
 
 static void
+polkit_backend_local_authority_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
+{
+  PolkitBackendLocalAuthority *local_authority;
+  PolkitBackendLocalAuthorityPrivate *priv;
+
+  local_authority = POLKIT_BACKEND_LOCAL_AUTHORITY (object);
+  priv = POLKIT_BACKEND_LOCAL_AUTHORITY_GET_PRIVATE (local_authority);
+
+  switch (property_id)
+    {
+      case PROP_CONFIG_PATH:
+        g_free (priv->config_path);
+        priv->config_path = g_value_dup_string (value);
+        break;
+      case PROP_AUTH_STORE_PATHS:
+        g_strfreev (priv->authorization_store_paths);
+        priv->authorization_store_paths = g_strsplit (g_value_get_string (value), ";", 0);
+        break;
+      default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+        break;
+    }
+}
+
+static void
 polkit_backend_local_authority_class_init (PolkitBackendLocalAuthorityClass *klass)
 {
   GObjectClass *gobject_class;
   PolkitBackendAuthorityClass *authority_class;
   PolkitBackendInteractiveAuthorityClass *interactive_authority_class;
+  GParamSpec *pspec;
 
   gobject_class = G_OBJECT_CLASS (klass);
   authority_class = POLKIT_BACKEND_AUTHORITY_CLASS (klass);
   interactive_authority_class = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_CLASS (klass);
 
+  gobject_class->set_property                           = polkit_backend_local_authority_set_property;
   gobject_class->finalize                               = polkit_backend_local_authority_finalize;
+  gobject_class->constructed                            = polkit_backend_local_authority_constructed;
   authority_class->get_name                             = polkit_backend_local_authority_get_name;
   authority_class->get_version                          = polkit_backend_local_authority_get_version;
   authority_class->get_features                         = polkit_backend_local_authority_get_features;
   interactive_authority_class->get_admin_identities     = polkit_backend_local_authority_get_admin_auth_identities;
   interactive_authority_class->check_authorization_sync = polkit_backend_local_authority_check_authorization_sync;
+
+  pspec = g_param_spec_string ("config-path",
+                               "Local Authority Configuration Path",
+                               "Path to directory of LocalAuthority config files.",
+                               PACKAGE_SYSCONF_DIR "/polkit-1/localauthority.conf.d",
+                               G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE);
+  g_object_class_install_property (gobject_class, PROP_CONFIG_PATH, pspec);
+
+  pspec = g_param_spec_string ("auth-store-paths",
+                               "Local Authorization Store Paths",
+                               "Semi-colon separated list of Authorization Store 'top' directories.",
+                               PACKAGE_LOCALSTATE_DIR "/lib/polkit-1/localauthority;"
+                               PACKAGE_SYSCONF_DIR "/polkit-1/localauthority",
+                               G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE);
+  g_object_class_install_property (gobject_class, PROP_AUTH_STORE_PATHS, pspec);
 
   g_type_class_add_private (klass, sizeof (PolkitBackendLocalAuthorityPrivate));
 }
@@ -444,6 +510,10 @@ polkit_backend_local_authority_get_admin_auth_identities (PolkitBackendInteracti
       else if (POLKIT_IS_UNIX_GROUP (identity))
         {
           ret = g_list_concat (ret, get_users_in_group (identity, FALSE));
+        }
+      else if (POLKIT_IS_UNIX_NETGROUP (identity))
+        {
+          ret =  g_list_concat (ret, get_users_in_net_group (identity, FALSE));
         }
       else
         {
@@ -598,7 +668,7 @@ get_users_in_group (PolkitIdentity                    *group,
       PolkitIdentity *user;
       GError *error;
 
-      if (!include_root && strcmp (grp->gr_mem[n], "root") == 0)
+      if (!include_root && g_strcmp0 (grp->gr_mem[n], "root") == 0)
         continue;
 
       error = NULL;
@@ -619,6 +689,59 @@ get_users_in_group (PolkitIdentity                    *group,
  out:
   return ret;
 }
+
+static GList *
+get_users_in_net_group (PolkitIdentity                    *group,
+                        gboolean                           include_root)
+{
+  const gchar *name;
+  GList *ret;
+
+  ret = NULL;
+  name = polkit_unix_netgroup_get_name (POLKIT_UNIX_NETGROUP (group));
+
+  if (setnetgrent (name) == 0)
+    {
+      g_warning ("Error looking up net group with name %s: %s", name, g_strerror (errno));
+      goto out;
+    }
+
+  for (;;)
+    {
+      char *hostname, *username, *domainname;
+      PolkitIdentity *user;
+      GError *error = NULL;
+
+      if (getnetgrent (&hostname, &username, &domainname) == 0)
+        break;
+
+      /* Skip NULL entries since we never want to make everyone an admin
+       * Skip "-" entries which mean "no match ever" in netgroup land */
+      if (username == NULL || g_strcmp0 (username, "-") == 0)
+        continue;
+
+      /* TODO: Should we match on hostname? Maybe only allow "-" as a hostname
+       * for safety. */
+
+      user = polkit_unix_user_new_for_name (username, &error);
+      if (user == NULL)
+        {
+          g_warning ("Unknown username '%s' in unix-netgroup: %s", username, error->message);
+          g_error_free (error);
+        }
+      else
+        {
+          ret = g_list_prepend (ret, user);
+        }
+    }
+
+  ret = g_list_reverse (ret);
+
+ out:
+  endnetgrent ();
+  return ret;
+}
+
 
 static GList *
 get_groups_for_user (PolkitIdentity *user)

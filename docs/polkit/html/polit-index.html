@@ -100,7 +100,7 @@
 </dt>
 <dt>PolkitAuthority:owner, <a class="indexterm" href="PolkitAuthority.html#PolkitAuthority--owner">The "owner" property</a>
 </dt>
-<dt>PolkitAuthorityFeatures, <a class="indexterm" href="PolkitAuthority.html#PolkitAuthorityFeatures">PolkitAuthority</a>
+<dt>PolkitAuthorityFeatures, <a class="indexterm" href="PolkitAuthority.html#PolkitAuthorityFeatures-enum">enum PolkitAuthorityFeatures</a>
 </dt>
 <dt>polkit_authority_authentication_agent_response, <a class="indexterm" href="PolkitAuthority.html#polkit-authority-authentication-agent-response">polkit_authority_authentication_agent_response ()</a>
 </dt>
@@ -197,6 +197,10 @@
 </dt>
 <dt>PolkitBackendLocalAuthority, <a class="indexterm" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority-struct">PolkitBackendLocalAuthority</a>
 </dt>
+<dt>PolkitBackendLocalAuthority:auth-store-paths, <a class="indexterm" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority--auth-store-paths">The "auth-store-paths" property</a>
+</dt>
+<dt>PolkitBackendLocalAuthority:config-path, <a class="indexterm" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority--config-path">The "config-path" property</a>
+</dt>
 <dt>PolkitBackendLocalAuthorityClass, <a class="indexterm" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthorityClass">struct PolkitBackendLocalAuthorityClass</a>
 </dt>
 <dt>polkit_backend_authority_authentication_agent_response, <a class="indexterm" href="PolkitBackendAuthority.html#polkit-backend-authority-authentication-agent-response">polkit_backend_authority_authentication_agent_response ()</a>
@@ -239,7 +243,7 @@
 </div>
 <div class="indexdiv">
 <h3>C</h3>
-<dl><dt>PolkitCheckAuthorizationFlags, <a class="indexterm" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags">PolkitAuthority</a>
+<dl><dt>PolkitCheckAuthorizationFlags, <a class="indexterm" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags-enum">enum PolkitCheckAuthorizationFlags</a>
 </dt></dl>
 </div>
 <div class="indexdiv">
@@ -260,7 +264,7 @@
 <div class="indexdiv">
 <h3>E</h3>
 <dl>
-<dt>PolkitError, <a class="indexterm" href="PolkitError.html">PolkitError</a>
+<dt>PolkitError, <a class="indexterm" href="PolkitError.html#PolkitError-enum">enum PolkitError</a>
 </dt>
 <dt>POLKIT_ERROR, <a class="indexterm" href="PolkitError.html#POLKIT-ERROR:CAPS">POLKIT_ERROR</a>
 </dt>
@@ -281,7 +285,7 @@
 </dt>
 <dt>polkit_identity_to_string, <a class="indexterm" href="PolkitIdentity.html#polkit-identity-to-string">polkit_identity_to_string ()</a>
 </dt>
-<dt>PolkitImplicitAuthorization, <a class="indexterm" href="PolkitActionDescription.html#PolkitImplicitAuthorization">PolkitActionDescription</a>
+<dt>PolkitImplicitAuthorization, <a class="indexterm" href="PolkitActionDescription.html#PolkitImplicitAuthorization-enum">enum PolkitImplicitAuthorization</a>
 </dt>
 </dl>
 </div>
@@ -365,6 +369,10 @@
 </dt>
 <dt>PolkitUnixGroup:gid, <a class="indexterm" href="PolkitUnixGroup.html#PolkitUnixGroup--gid">The "gid" property</a>
 </dt>
+<dt>PolkitUnixNetgroup, <a class="indexterm" href="PolkitUnixNetgroup.html#PolkitUnixNetgroup-struct">PolkitUnixNetgroup</a>
+</dt>
+<dt>PolkitUnixNetgroup:name, <a class="indexterm" href="PolkitUnixNetgroup.html#PolkitUnixNetgroup--name">The "name" property</a>
+</dt>
 <dt>PolkitUnixProcess, <a class="indexterm" href="PolkitUnixProcess.html#PolkitUnixProcess-struct">PolkitUnixProcess</a>
 </dt>
 <dt>PolkitUnixProcess:pid, <a class="indexterm" href="PolkitUnixProcess.html#PolkitUnixProcess--pid">The "pid" property</a>
@@ -390,6 +398,12 @@
 <dt>polkit_unix_group_new_for_name, <a class="indexterm" href="PolkitUnixGroup.html#polkit-unix-group-new-for-name">polkit_unix_group_new_for_name ()</a>
 </dt>
 <dt>polkit_unix_group_set_gid, <a class="indexterm" href="PolkitUnixGroup.html#polkit-unix-group-set-gid">polkit_unix_group_set_gid ()</a>
+</dt>
+<dt>polkit_unix_netgroup_get_name, <a class="indexterm" href="PolkitUnixNetgroup.html#polkit-unix-netgroup-get-name">polkit_unix_netgroup_get_name ()</a>
+</dt>
+<dt>polkit_unix_netgroup_new, <a class="indexterm" href="PolkitUnixNetgroup.html#polkit-unix-netgroup-new">polkit_unix_netgroup_new ()</a>
+</dt>
+<dt>polkit_unix_netgroup_set_name, <a class="indexterm" href="PolkitUnixNetgroup.html#polkit-unix-netgroup-set-name">polkit_unix_netgroup_set_name ()</a>
 </dt>
 <dt>polkit_unix_process_get_pid, <a class="indexterm" href="PolkitUnixProcess.html#polkit-unix-process-get-pid">polkit_unix_process_get_pid ()</a>
 </dt>
@@ -420,6 +434,8 @@
 <dt>polkit_unix_session_new_for_process_sync, <a class="indexterm" href="PolkitUnixSession.html#polkit-unix-session-new-for-process-sync">polkit_unix_session_new_for_process_sync ()</a>
 </dt>
 <dt>polkit_unix_session_set_session_id, <a class="indexterm" href="PolkitUnixSession.html#polkit-unix-session-set-session-id">polkit_unix_session_set_session_id ()</a>
+</dt>
+<dt>polkit_unix_user_get_name, <a class="indexterm" href="PolkitUnixUser.html#polkit-unix-user-get-name">polkit_unix_user_get_name ()</a>
 </dt>
 <dt>polkit_unix_user_get_uid, <a class="indexterm" href="PolkitUnixUser.html#polkit-unix-user-get-uid">polkit_unix_user_get_uid ()</a>
 </dt>

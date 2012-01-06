@@ -50,8 +50,8 @@ Stable, unless otherwise indicated
 <div class="refsynopsisdiv">
 <a name="PolkitAuthority.synopsis"></a><h2>Synopsis</h2>
 <a name="PolkitAuthorityFeatures"></a><a name="PolkitCheckAuthorizationFlags"></a><pre class="synopsis">                    <a class="link" href="PolkitAuthority.html#PolkitAuthority-struct" title="PolkitAuthority">PolkitAuthority</a>;
-enum                <a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures">PolkitAuthorityFeatures</a>;
-enum                <a class="link" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags">PolkitCheckAuthorizationFlags</a>;
+enum                <a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures-enum" title="enum PolkitAuthorityFeatures">PolkitAuthorityFeatures</a>;
+enum                <a class="link" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags-enum" title="enum PolkitCheckAuthorizationFlags">PolkitCheckAuthorizationFlags</a>;
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-get-async" title="polkit_authority_get_async ()">polkit_authority_get_async</a>          (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
@@ -63,7 +63,7 @@ enum                <a class="link" href="PolkitAuthority.html#PolkitCheckAuthor
 const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-name" title="polkit_authority_get_backend_name ()">polkit_authority_get_backend_name</a>   (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
 const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-version" title="polkit_authority_get_backend_version ()">polkit_authority_get_backend_version</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
-<a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a>  <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-features" title="polkit_authority_get_backend_features ()">polkit_authority_get_backend_features</a>
+<a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a> <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-features" title="polkit_authority_get_backend_features ()">polkit_authority_get_backend_features</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization" title="polkit_authority_check_authorization ()">polkit_authority_check_authorization</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
@@ -90,7 +90,7 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *                     <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-actions-finish" title="polkit_authority_enumerate_actions_finish ()">polkit_authority_enumerate_actions_finish</a>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-actions-finish" title="polkit_authority_enumerate_actions_finish ()">polkit_authority_enumerate_actions_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
@@ -261,9 +261,8 @@ The <a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span cl
 </div>
 <hr>
 <div class="refsect2">
-<a name="PolkitAuthorityFeatures"></a><h3>enum PolkitAuthorityFeatures</h3>
-<pre class="programlisting">typedef enum
-{
+<a name="PolkitAuthorityFeatures-enum"></a><h3>enum PolkitAuthorityFeatures</h3>
+<pre class="programlisting">typedef enum {
   POLKIT_AUTHORITY_FEATURES_NONE                    = 0,
   POLKIT_AUTHORITY_FEATURES_TEMPORARY_AUTHORIZATION = (1&lt;&lt;0),
 } PolkitAuthorityFeatures;
@@ -290,9 +289,8 @@ that can be obtained through authentication.
 </div>
 <hr>
 <div class="refsect2">
-<a name="PolkitCheckAuthorizationFlags"></a><h3>enum PolkitCheckAuthorizationFlags</h3>
-<pre class="programlisting">typedef enum
-{
+<a name="PolkitCheckAuthorizationFlags-enum"></a><h3>enum PolkitCheckAuthorizationFlags</h3>
+<pre class="programlisting">typedef enum {
   POLKIT_CHECK_AUTHORIZATION_FLAGS_NONE = 0,
   POLKIT_CHECK_AUTHORIZATION_FLAGS_ALLOW_USER_INTERACTION = (1&lt;&lt;0),
 } PolkitCheckAuthorizationFlags;
@@ -489,7 +487,7 @@ Gets the version of the authority backend.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-get-backend-features"></a><h3>polkit_authority_get_backend_features ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a>  polkit_authority_get_backend_features
+<pre class="programlisting"><a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a> polkit_authority_get_backend_features
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);</pre>
 <p>
 Gets the features supported by the authority backend.
@@ -747,7 +745,7 @@ to get the result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-enumerate-actions-finish"></a><h3>polkit_authority_enumerate_actions_finish ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *                     polkit_authority_enumerate_actions_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_authority_enumerate_actions_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>

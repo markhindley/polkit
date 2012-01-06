@@ -50,6 +50,7 @@
 <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="PolkitUnixUser.html#polkit-unix-user-get-uid" title="polkit_unix_user_get_uid ()">polkit_unix_user_get_uid</a>            (<em class="parameter"><code><a class="link" href="PolkitUnixUser.html" title="PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> *user</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitUnixUser.html#polkit-unix-user-set-uid" title="polkit_unix_user_set_uid ()">polkit_unix_user_set_uid</a>            (<em class="parameter"><code><a class="link" href="PolkitUnixUser.html" title="PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> *user</code></em>,
                                                          <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> uid</code></em>);
+const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitUnixUser.html#polkit-unix-user-get-name" title="polkit_unix_user_get_name ()">polkit_unix_user_get_name</a>           (<em class="parameter"><code><a class="link" href="PolkitUnixUser.html" title="PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> *user</code></em>);
 </pre>
 </div>
 <div class="refsect1">
@@ -175,6 +176,28 @@ Sets <em class="parameter"><code>uid</code></em> for <em class="parameter"><code
 <tr>
 <td><p><span class="term"><em class="parameter"><code>uid</code></em> :</span></p></td>
 <td>A UNIX user id.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="polkit-unix-user-get-name"></a><h3>polkit_unix_user_get_name ()</h3>
+<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_unix_user_get_name           (<em class="parameter"><code><a class="link" href="PolkitUnixUser.html" title="PolkitUnixUser"><span class="type">PolkitUnixUser</span></a> *user</code></em>);</pre>
+<p>
+Get the user's name.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user</code></em> :</span></p></td>
+<td>A <a class="link" href="PolkitUnixUser.html" title="PolkitUnixUser"><span class="type">PolkitUnixUser</span></a>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>User name string or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if user uid not found. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>][<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
+</td>
 </tr>
 </tbody>
 </table></div>

@@ -26,6 +26,8 @@
                   <a href="#PolkitBackendLocalAuthority.description" class="shortcut">Description</a>
                    | 
                   <a href="#PolkitBackendLocalAuthority.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#PolkitBackendLocalAuthority.properties" class="shortcut">Properties</a>
 </td></tr>
 </table>
 <div class="refentry">
@@ -54,6 +56,13 @@ struct              <a class="link" href="PolkitBackendLocalAuthority.html#Polki
    +----<a class="link" href="PolkitBackendAuthority.html" title="PolkitBackendAuthority">PolkitBackendAuthority</a>
          +----<a class="link" href="PolkitBackendInteractiveAuthority.html" title="PolkitBackendInteractiveAuthority">PolkitBackendInteractiveAuthority</a>
                +----PolkitBackendLocalAuthority
+</pre>
+</div>
+<div class="refsect1">
+<a name="PolkitBackendLocalAuthority.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority--auth-store-paths" title='The "auth-store-paths" property'>auth-store-paths</a>"         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Write / Construct Only
+  "<a class="link" href="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority--config-path" title='The "config-path" property'>config-path</a>"              <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Write / Construct Only
 </pre>
 </div>
 <div class="refsect1">
@@ -91,6 +100,22 @@ Class structure for <a class="link" href="PolkitBackendLocalAuthority.html" titl
 <td>The parent class.</td>
 </tr></tbody>
 </table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="PolkitBackendLocalAuthority.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="PolkitBackendLocalAuthority--auth-store-paths"></a><h3>The <code class="literal">"auth-store-paths"</code> property</h3>
+<pre class="programlisting">  "auth-store-paths"         <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Write / Construct Only</pre>
+<p>Semi-colon separated list of Authorization Store 'top' directories.</p>
+<p>Default value: "/var/lib/polkit-1/localauthority;/etc/polkit-1/localauthority"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="PolkitBackendLocalAuthority--config-path"></a><h3>The <code class="literal">"config-path"</code> property</h3>
+<pre class="programlisting">  "config-path"              <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Write / Construct Only</pre>
+<p>Path to directory of LocalAuthority config files.</p>
+<p>Default value: "/etc/polkit-1/localauthority.conf.d"</p>
 </div>
 </div>
 </div>

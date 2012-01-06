@@ -36,6 +36,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@HAVE_SYSTEMD_TRUE@am__append_1 = \
+@HAVE_SYSTEMD_TRUE@	polkitunixsession-systemd.c		polkitunixsession.h
+
+@HAVE_SYSTEMD_FALSE@am__append_2 = \
+@HAVE_SYSTEMD_FALSE@	polkitunixsession.c			polkitunixsession.h
+
 subdir = src/polkit
 DIST_COMMON = $(libpolkit_gobject_1include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
@@ -74,10 +80,29 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libpolkit_gobject_1_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+am__libpolkit_gobject_1_la_SOURCES_DIST = polkitenumtypes.c \
+	polkitenumtypes.h polkit.h polkitactiondescription.c \
+	polkitactiondescription.h polkitauthorityfeatures.h \
+	polkitauthorityfeatures.c polkitdetails.c polkitdetails.h \
+	polkitauthority.c polkitauthority.h polkiterror.c \
+	polkiterror.h polkitsubject.c polkitsubject.h \
+	polkitunixprocess.c polkitunixprocess.h polkitsystembusname.c \
+	polkitsystembusname.h polkitidentity.c polkitidentity.h \
+	polkitunixuser.c polkitunixuser.h polkitunixgroup.c \
+	polkitunixgroup.h polkitunixnetgroup.c polkitunixnetgroup.h \
+	polkitauthorizationresult.c polkitauthorizationresult.h \
+	polkitcheckauthorizationflags.c \
+	polkitcheckauthorizationflags.h polkitimplicitauthorization.c \
+	polkitimplicitauthorization.h polkittemporaryauthorization.c \
+	polkittemporaryauthorization.h polkitpermission.c \
+	polkitpermission.h polkitunixsession-systemd.c \
+	polkitunixsession.h polkitunixsession.c
 am__objects_1 =
 am__objects_2 = libpolkit_gobject_1_la-polkitenumtypes.lo \
 	$(am__objects_1)
+@HAVE_SYSTEMD_TRUE@am__objects_3 = libpolkit_gobject_1_la-polkitunixsession-systemd.lo
+@HAVE_SYSTEMD_FALSE@am__objects_4 = libpolkit_gobject_1_la-polkitunixsession.lo
 am_libpolkit_gobject_1_la_OBJECTS = $(am__objects_2) \
 	libpolkit_gobject_1_la-polkitactiondescription.lo \
 	libpolkit_gobject_1_la-polkitauthorityfeatures.lo \
@@ -86,16 +111,17 @@ am_libpolkit_gobject_1_la_OBJECTS = $(am__objects_2) \
 	libpolkit_gobject_1_la-polkiterror.lo \
 	libpolkit_gobject_1_la-polkitsubject.lo \
 	libpolkit_gobject_1_la-polkitunixprocess.lo \
-	libpolkit_gobject_1_la-polkitunixsession.lo \
 	libpolkit_gobject_1_la-polkitsystembusname.lo \
 	libpolkit_gobject_1_la-polkitidentity.lo \
 	libpolkit_gobject_1_la-polkitunixuser.lo \
 	libpolkit_gobject_1_la-polkitunixgroup.lo \
+	libpolkit_gobject_1_la-polkitunixnetgroup.lo \
 	libpolkit_gobject_1_la-polkitauthorizationresult.lo \
 	libpolkit_gobject_1_la-polkitcheckauthorizationflags.lo \
 	libpolkit_gobject_1_la-polkitimplicitauthorization.lo \
 	libpolkit_gobject_1_la-polkittemporaryauthorization.lo \
-	libpolkit_gobject_1_la-polkitpermission.lo $(am__objects_1)
+	libpolkit_gobject_1_la-polkitpermission.lo $(am__objects_1) \
+	$(am__objects_3) $(am__objects_4)
 libpolkit_gobject_1_la_OBJECTS = $(am_libpolkit_gobject_1_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -131,7 +157,7 @@ AM_V_GEN = $(am__v_GEN_$(V))
 am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
 am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(libpolkit_gobject_1_la_SOURCES)
-DIST_SOURCES = $(libpolkit_gobject_1_la_SOURCES)
+DIST_SOURCES = $(am__libpolkit_gobject_1_la_SOURCES_DIST)
 DATA = $(gir_DATA) $(typelibs_DATA)
 HEADERS = $(libpolkit_gobject_1include_HEADERS)
 ETAGS = etags
@@ -175,6 +201,8 @@ GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
+GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
+GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
 HAVE_PAM = @HAVE_PAM@
@@ -250,6 +278,8 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SYSTEMD_CFLAGS = @SYSTEMD_CFLAGS@
+SYSTEMD_LIBS = @SYSTEMD_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
@@ -301,6 +331,7 @@ psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
+subdirs = @subdirs@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
@@ -345,6 +376,7 @@ libpolkit_gobject_1include_HEADERS = \
 	polkitidentity.h								\
 	polkitunixuser.h								\
 	polkitunixgroup.h								\
+	polkitunixnetgroup.h								\
 	polkitauthorizationresult.h							\
 	polkitcheckauthorizationflags.h							\
 	polkitimplicitauthorization.h							\
@@ -352,35 +384,30 @@ libpolkit_gobject_1include_HEADERS = \
 	polkitpermission.h								\
         $(NULL)
 
-libpolkit_gobject_1_la_SOURCES = \
-	$(BUILT_SOURCES)								\
-        polkit.h									\
-	polkitactiondescription.c		polkitactiondescription.h		\
-	polkitauthorityfeatures.h		polkitauthorityfeatures.c		\
-	polkitdetails.c				polkitdetails.h				\
-	polkitauthority.c			polkitauthority.h			\
-	polkiterror.c				polkiterror.h				\
-	polkitsubject.c				polkitsubject.h				\
-	polkitunixprocess.c			polkitunixprocess.h			\
-	polkitunixsession.c			polkitunixsession.h			\
-	polkitsystembusname.c			polkitsystembusname.h			\
-	polkitidentity.c			polkitidentity.h			\
-	polkitunixuser.c			polkitunixuser.h			\
-	polkitunixgroup.c			polkitunixgroup.h			\
-	polkitauthorizationresult.c		polkitauthorizationresult.h		\
-	polkitcheckauthorizationflags.c		polkitcheckauthorizationflags.h		\
-	polkitimplicitauthorization.c		polkitimplicitauthorization.h		\
-	polkittemporaryauthorization.c		polkittemporaryauthorization.h		\
-	polkitpermission.c			polkitpermission.h			\
-        $(NULL)
-
+libpolkit_gobject_1_la_SOURCES = $(BUILT_SOURCES) polkit.h \
+	polkitactiondescription.c polkitactiondescription.h \
+	polkitauthorityfeatures.h polkitauthorityfeatures.c \
+	polkitdetails.c polkitdetails.h polkitauthority.c \
+	polkitauthority.h polkiterror.c polkiterror.h polkitsubject.c \
+	polkitsubject.h polkitunixprocess.c polkitunixprocess.h \
+	polkitsystembusname.c polkitsystembusname.h polkitidentity.c \
+	polkitidentity.h polkitunixuser.c polkitunixuser.h \
+	polkitunixgroup.c polkitunixgroup.h polkitunixnetgroup.c \
+	polkitunixnetgroup.h polkitauthorizationresult.c \
+	polkitauthorizationresult.h polkitcheckauthorizationflags.c \
+	polkitcheckauthorizationflags.h polkitimplicitauthorization.c \
+	polkitimplicitauthorization.h polkittemporaryauthorization.c \
+	polkittemporaryauthorization.h polkitpermission.c \
+	polkitpermission.h $(NULL) $(am__append_1) $(am__append_2)
 libpolkit_gobject_1_la_CFLAGS = \
         -D_POLKIT_COMPILATION                                  		\
         $(GLIB_CFLAGS)							\
+	$(SYSTEMD_CFLAGS)						\
         $(NULL)
 
 libpolkit_gobject_1_la_LIBADD = \
         $(GLIB_LIBS)							\
+	$(SYSTEMD_LIBS)							\
         $(NULL)
 
 libpolkit_gobject_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
@@ -480,7 +507,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitsystembusname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkittemporaryauthorization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixgroup.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixnetgroup.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixprocess.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession-systemd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpolkit_gobject_1_la-polkitunixuser.Plo@am__quote@
 
@@ -572,14 +601,6 @@ libpolkit_gobject_1_la-polkitunixprocess.lo: polkitunixprocess.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkitunixprocess.lo `test -f 'polkitunixprocess.c' || echo '$(srcdir)/'`polkitunixprocess.c
 
-libpolkit_gobject_1_la-polkitunixsession.lo: polkitunixsession.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_gobject_1_la-polkitunixsession.lo -MD -MP -MF $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession.Tpo -c -o libpolkit_gobject_1_la-polkitunixsession.lo `test -f 'polkitunixsession.c' || echo '$(srcdir)/'`polkitunixsession.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession.Tpo $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession.Plo
-@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitunixsession.c' object='libpolkit_gobject_1_la-polkitunixsession.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkitunixsession.lo `test -f 'polkitunixsession.c' || echo '$(srcdir)/'`polkitunixsession.c
-
 libpolkit_gobject_1_la-polkitsystembusname.lo: polkitsystembusname.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_gobject_1_la-polkitsystembusname.lo -MD -MP -MF $(DEPDIR)/libpolkit_gobject_1_la-polkitsystembusname.Tpo -c -o libpolkit_gobject_1_la-polkitsystembusname.lo `test -f 'polkitsystembusname.c' || echo '$(srcdir)/'`polkitsystembusname.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_gobject_1_la-polkitsystembusname.Tpo $(DEPDIR)/libpolkit_gobject_1_la-polkitsystembusname.Plo
@@ -611,6 +632,14 @@ libpolkit_gobject_1_la-polkitunixgroup.lo: polkitunixgroup.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitunixgroup.c' object='libpolkit_gobject_1_la-polkitunixgroup.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkitunixgroup.lo `test -f 'polkitunixgroup.c' || echo '$(srcdir)/'`polkitunixgroup.c
+
+libpolkit_gobject_1_la-polkitunixnetgroup.lo: polkitunixnetgroup.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_gobject_1_la-polkitunixnetgroup.lo -MD -MP -MF $(DEPDIR)/libpolkit_gobject_1_la-polkitunixnetgroup.Tpo -c -o libpolkit_gobject_1_la-polkitunixnetgroup.lo `test -f 'polkitunixnetgroup.c' || echo '$(srcdir)/'`polkitunixnetgroup.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_gobject_1_la-polkitunixnetgroup.Tpo $(DEPDIR)/libpolkit_gobject_1_la-polkitunixnetgroup.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitunixnetgroup.c' object='libpolkit_gobject_1_la-polkitunixnetgroup.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkitunixnetgroup.lo `test -f 'polkitunixnetgroup.c' || echo '$(srcdir)/'`polkitunixnetgroup.c
 
 libpolkit_gobject_1_la-polkitauthorizationresult.lo: polkitauthorizationresult.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_gobject_1_la-polkitauthorizationresult.lo -MD -MP -MF $(DEPDIR)/libpolkit_gobject_1_la-polkitauthorizationresult.Tpo -c -o libpolkit_gobject_1_la-polkitauthorizationresult.lo `test -f 'polkitauthorizationresult.c' || echo '$(srcdir)/'`polkitauthorizationresult.c
@@ -651,6 +680,22 @@ libpolkit_gobject_1_la-polkitpermission.lo: polkitpermission.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitpermission.c' object='libpolkit_gobject_1_la-polkitpermission.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkitpermission.lo `test -f 'polkitpermission.c' || echo '$(srcdir)/'`polkitpermission.c
+
+libpolkit_gobject_1_la-polkitunixsession-systemd.lo: polkitunixsession-systemd.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_gobject_1_la-polkitunixsession-systemd.lo -MD -MP -MF $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession-systemd.Tpo -c -o libpolkit_gobject_1_la-polkitunixsession-systemd.lo `test -f 'polkitunixsession-systemd.c' || echo '$(srcdir)/'`polkitunixsession-systemd.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession-systemd.Tpo $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession-systemd.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitunixsession-systemd.c' object='libpolkit_gobject_1_la-polkitunixsession-systemd.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkitunixsession-systemd.lo `test -f 'polkitunixsession-systemd.c' || echo '$(srcdir)/'`polkitunixsession-systemd.c
+
+libpolkit_gobject_1_la-polkitunixsession.lo: polkitunixsession.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -MT libpolkit_gobject_1_la-polkitunixsession.lo -MD -MP -MF $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession.Tpo -c -o libpolkit_gobject_1_la-polkitunixsession.lo `test -f 'polkitunixsession.c' || echo '$(srcdir)/'`polkitunixsession.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession.Tpo $(DEPDIR)/libpolkit_gobject_1_la-polkitunixsession.Plo
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='polkitunixsession.c' object='libpolkit_gobject_1_la-polkitunixsession.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpolkit_gobject_1_la_CFLAGS) $(CFLAGS) -c -o libpolkit_gobject_1_la-polkitunixsession.lo `test -f 'polkitunixsession.c' || echo '$(srcdir)/'`polkitunixsession.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
