@@ -1,3 +1,13 @@
+policykit-1 (0.104-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+    - Add support for netgroups. (LP: #724052)
+  * debian/rules: Disable systemd support, continue to work with ConsokeKit.
+  * 05_revert-admin-identities-unix-group-wheel.patch: Refresh to apply
+    cleanly.
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 06 Jan 2012 10:36:58 +0100
+
 policykit-1 (0.103-1) unstable; urgency=low
 
   * New upstream release.
