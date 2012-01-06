@@ -14,7 +14,9 @@ Build-Depends: debhelper (>= 8.1.3),
  xsltproc,
  libgirepository1.0-dev (>= 0.9.12),
  gobject-introspection (>= 0.9.12-4~),
- gir1.2-glib-2.0
+ gir1.2-glib-2.0,
+ libglib2.0-doc,
+ libgtk-3-doc
 Standards-Version: 3.9.2
 Vcs-Git: git://git.debian.org/git/pkg-utopia/policykit.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/policykit.git;a=summary
