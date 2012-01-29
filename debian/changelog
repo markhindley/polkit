@@ -1,3 +1,13 @@
+policykit-1 (0.96-4+squeeze2) UNRELEASED; urgency=low
+
+  * Upload 0.96-4+squeeze1 to stable without further changes. The
+    0.96-4+squeeze1 upload to stable-security was mistakenly made with an orig
+    tarball which didn't match the one from ftp-master so the security fix was
+    not automatically included in the next stable point release.
+    (Closes: #657758)
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 28 Jan 2012 22:31:09 +0100
+
 policykit-1 (0.96-4+squeeze1) stable-security; urgency=high
 
   * debian/patches/02_proc_pid_race.patch
