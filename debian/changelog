@@ -4,8 +4,9 @@ policykit-1 (0.105-1) UNRELEASED; urgency=low
   * debian/watch: Update URL, the tarballs are hosted on freedesktop.org now.
   * Update symbols file for libpolkit-gobject-1-0 and libpolkit-agent-1-0.
   * Update debian/copyright using the machine-readable copyright format 1.0.
+  * Bump Standards-Version to 3.9.3.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 24 Apr 2012 20:02:49 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 24 Apr 2012 20:09:22 +0200
 
 policykit-1 (0.104-2) unstable; urgency=low
 
