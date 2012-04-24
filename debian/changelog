@@ -3,8 +3,9 @@ policykit-1 (0.105-1) UNRELEASED; urgency=low
   * New upstream release.
   * debian/watch: Update URL, the tarballs are hosted on freedesktop.org now.
   * debian/libpolkit-gobject-1-0.symbols: Add new symbols.
+  * Update debian/copyright using the machine-readable copyright format 1.0.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 24 Apr 2012 19:47:12 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 24 Apr 2012 20:02:49 +0200
 
 policykit-1 (0.104-2) unstable; urgency=low
 
