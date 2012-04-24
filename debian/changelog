@@ -1,8 +1,9 @@
-policykit-1 (0.104-3) UNRELEASED; urgency=low
+policykit-1 (0.105-1) UNRELEASED; urgency=low
 
+  * New upstream release.
   * debian/watch: Update URL, the tarballs are hosted on freedesktop.org now.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 24 Apr 2012 19:43:24 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 24 Apr 2012 19:44:23 +0200
 
 policykit-1 (0.104-2) unstable; urgency=low
 
