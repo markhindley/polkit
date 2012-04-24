@@ -7,9 +7,9 @@ Bug-Ubuntu: https://launchpad.net/bugs/445303
 
 Index: policykit-1/src/polkitagent/polkitagentsession.c
 ===================================================================
---- policykit-1.orig/src/polkitagent/polkitagentsession.c	2011-08-02 02:55:33.649901115 +0200
-+++ policykit-1/src/polkitagent/polkitagentsession.c	2011-08-02 02:57:06.472734172 +0200
-@@ -421,6 +421,7 @@
+--- policykit-1.orig/src/polkitagent/polkitagentsession.c	2012-04-24 19:44:21.195751945 +0200
++++ policykit-1/src/polkitagent/polkitagentsession.c	2012-04-24 21:03:20.487887522 +0200
+@@ -435,6 +435,7 @@
                    gpointer user_data)
  {
    PolkitAgentSession *session = POLKIT_AGENT_SESSION (user_data);
@@ -17,7 +17,7 @@ Index: policykit-1/src/polkitagent/polkitagentsession.c
  
    if (G_UNLIKELY (_show_debug ()))
      {
-@@ -432,6 +433,11 @@
+@@ -446,6 +447,11 @@
  
    /* kill all the watches we have set up, except for the child since it has exited already */
    session->child_pid = 0;
@@ -29,7 +29,7 @@ Index: policykit-1/src/polkitagent/polkitagentsession.c
    complete_session (session, FALSE);
  }
  
-@@ -636,15 +642,15 @@
+@@ -650,15 +656,15 @@
    if (G_UNLIKELY (_show_debug ()))
      g_print ("PolkitAgentSession: spawned helper with pid %d\n", (gint) session->child_pid);
  
