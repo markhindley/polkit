@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Writing PolicyKit Authentication Agents</title>
+<title>Writing polkit Authentication Agents</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
-<link rel="home" href="index.html" title="PolicyKit Reference Manual">
-<link rel="up" href="overview.html" title="Part I. PolicyKit Overview">
-<link rel="prev" href="polkit-apps.html" title="Writing PolicyKit applications">
-<link rel="next" href="polkit-extending.html" title="Extending PolicyKit">
+<link rel="home" href="index.html" title="polkit Reference Manual">
+<link rel="up" href="overview.html" title="Part I. polkit Overview">
+<link rel="prev" href="polkit-apps.html" title="Writing polkit applications">
+<link rel="next" href="polkit-extending.html" title="Extending polkit">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -16,15 +16,15 @@
 <td><a accesskey="p" href="polkit-apps.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="overview.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">PolicyKit Reference Manual</th>
+<th width="100%" align="center">polkit Reference Manual</th>
 <td><a accesskey="n" href="polkit-extending.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="chapter">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="polkit-agents"></a>Writing PolicyKit Authentication Agents</h2></div></div></div>
+<a name="polkit-agents"></a>Writing polkit Authentication Agents</h2></div></div></div>
 <p>
       Authentication agents are provided by desktop environments. When
-      an user session starts, the agent registers with the PolicyKit
+      an user session starts, the agent registers with the polkit
       Authority using
       the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgent" title="RegisterAuthenticationAgent ()">RegisterAuthenticationAgent()</a>
       method. When services are needed, the authority will invoke
@@ -33,7 +33,7 @@
       D-Bus interface. Once the user is authenticated, (a privileged
       part of) the agent invokes
       the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse" title="AuthenticationAgentResponse ()">AuthenticationAgentResponse()</a>
-      method.  Note that the PolicyKit Authority itself does not care
+      method.  Note that the polkit Authority itself does not care
       how the agent authenticates the user.
     </p>
 <p>

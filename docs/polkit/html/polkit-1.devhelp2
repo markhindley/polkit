@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
-<book xmlns="http://www.devhelp.net/book" title="PolicyKit Reference Manual" link="index.html" author="David Zeuthen" name="polkit-1" version="2" language="c">
+<book xmlns="http://www.devhelp.net/book" title="polkit Reference Manual" link="index.html" author="" name="polkit-1" version="2" language="c">
   <chapters>
-    <sub name="PolicyKit Overview" link="overview.html">
+    <sub name="polkit Overview" link="overview.html">
       <sub name="Introduction" link="polkit-intro.html"/>
-      <sub name="Writing PolicyKit applications" link="polkit-apps.html"/>
-      <sub name="Writing PolicyKit Authentication Agents" link="polkit-agents.html"/>
-      <sub name="Extending PolicyKit" link="polkit-extending.html"/>
+      <sub name="Writing polkit applications" link="polkit-apps.html"/>
+      <sub name="Writing polkit Authentication Agents" link="polkit-agents.html"/>
+      <sub name="Extending polkit" link="polkit-extending.html"/>
     </sub>
     <sub name="D-Bus API Reference" link="ref-dbus-api.html">
       <sub name="org.freedesktop.PolicyKit1.Authority Interface" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html"/>
@@ -50,6 +50,7 @@
       <sub name="pkaction" link="pkaction.1.html"/>
       <sub name="pkexec" link="pkexec.1.html"/>
       <sub name="pklocalauthority" link="pklocalauthority.8.html"/>
+      <sub name="pkttyagent" link="pkttyagent.1.html"/>
     </sub>
     <sub name="Object Hierarchy" link="polkit-hierarchy.html"/>
     <sub name="Index" link="polit-index.html"/>
@@ -69,6 +70,7 @@
     <keyword type="function" name="CheckAuthorization ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CheckAuthorization"/>
     <keyword type="function" name="CancelCheckAuthorization ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CancelCheckAuthorization"/>
     <keyword type="function" name="RegisterAuthenticationAgent ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgent"/>
+    <keyword type="function" name="RegisterAuthenticationAgentWithOptions ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgentWithOptions"/>
     <keyword type="function" name="UnregisterAuthenticationAgent ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.UnregisterAuthenticationAgent"/>
     <keyword type="function" name="AuthenticationAgentResponse ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse"/>
     <keyword type="function" name="EnumerateTemporaryAuthorizations ()" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.EnumerateTemporaryAuthorizations"/>
@@ -99,6 +101,9 @@
     <keyword type="function" name="polkit_authority_register_authentication_agent ()" link="PolkitAuthority.html#polkit-authority-register-authentication-agent"/>
     <keyword type="function" name="polkit_authority_register_authentication_agent_finish ()" link="PolkitAuthority.html#polkit-authority-register-authentication-agent-finish"/>
     <keyword type="function" name="polkit_authority_register_authentication_agent_sync ()" link="PolkitAuthority.html#polkit-authority-register-authentication-agent-sync"/>
+    <keyword type="function" name="polkit_authority_register_authentication_agent_with_options ()" link="PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options"/>
+    <keyword type="function" name="polkit_authority_register_authentication_agent_with_options_finish ()" link="PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options-finish"/>
+    <keyword type="function" name="polkit_authority_register_authentication_agent_with_options_sync ()" link="PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options-sync"/>
     <keyword type="function" name="polkit_authority_unregister_authentication_agent ()" link="PolkitAuthority.html#polkit-authority-unregister-authentication-agent"/>
     <keyword type="function" name="polkit_authority_unregister_authentication_agent_finish ()" link="PolkitAuthority.html#polkit-authority-unregister-authentication-agent-finish"/>
     <keyword type="function" name="polkit_authority_unregister_authentication_agent_sync ()" link="PolkitAuthority.html#polkit-authority-unregister-authentication-agent-sync"/>
@@ -254,6 +259,7 @@
     <keyword type="function" name="polkit_agent_listener_initiate_authentication_finish ()" link="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication-finish"/>
     <keyword type="enum" name="enum PolkitAgentRegisterFlags" link="PolkitAgentListener.html#PolkitAgentRegisterFlags"/>
     <keyword type="function" name="polkit_agent_listener_register ()" link="PolkitAgentListener.html#polkit-agent-listener-register"/>
+    <keyword type="function" name="polkit_agent_listener_register_with_options ()" link="PolkitAgentListener.html#polkit-agent-listener-register-with-options"/>
     <keyword type="function" name="polkit_agent_listener_unregister ()" link="PolkitAgentListener.html#polkit-agent-listener-unregister"/>
     <keyword type="struct" name="PolkitAgentTextListener" link="PolkitAgentTextListener.html#PolkitAgentTextListener-struct"/>
     <keyword type="function" name="polkit_agent_text_listener_new ()" link="PolkitAgentTextListener.html#polkit-agent-text-listener-new"/>
@@ -268,7 +274,7 @@
     <keyword type="signal" name="The &quot;request&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-request"/>
     <keyword type="signal" name="The &quot;show-error&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-error"/>
     <keyword type="signal" name="The &quot;show-info&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-info"/>
-    <keyword type="" name="Known annotations" link="polkit.8.html#id645736"/>
+    <keyword type="" name="Known annotations" link="polkit.8.html#id502198"/>
     <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_NONE" link="PolkitAuthority.html#POLKIT-AUTHORITY-FEATURES-NONE:CAPS"/>
     <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_TEMPORARY_AUTHORIZATION" link="PolkitAuthority.html#POLKIT-AUTHORITY-FEATURES-TEMPORARY-AUTHORIZATION:CAPS"/>
     <keyword type="constant" name="POLKIT_CHECK_AUTHORIZATION_FLAGS_NONE" link="PolkitAuthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-NONE:CAPS"/>

@@ -1,3 +1,4 @@
+<ONLINE href="http://www.freedesktop.org/software/polkit/docs/latest/">
 <ANCHOR id="eggdbus-interface-org.freedesktop.PolicyKit1.Authority" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html">
 <ANCHOR id="eggdbus-if-signals-org.freedesktop.PolicyKit1.Authority" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-if-signals-org.freedesktop.PolicyKit1.Authority">
 <ANCHOR id="eggdbus-if-properties-org.freedesktop.PolicyKit1.Authority" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-if-properties-org.freedesktop.PolicyKit1.Authority">
@@ -33,6 +34,7 @@
 <ANCHOR id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.CheckAuthorization" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CheckAuthorization">
 <ANCHOR id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.CancelCheckAuthorization" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CancelCheckAuthorization">
 <ANCHOR id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgent" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgent">
+<ANCHOR id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgentWithOptions" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgentWithOptions">
 <ANCHOR id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.UnregisterAuthenticationAgent" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.UnregisterAuthenticationAgent">
 <ANCHOR id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse">
 <ANCHOR id="eggdbus-method-org.freedesktop.PolicyKit1.Authority.EnumerateTemporaryAuthorizations" href="polkit-1/eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.EnumerateTemporaryAuthorizations">
@@ -83,6 +85,9 @@
 <ANCHOR id="polkit-authority-register-authentication-agent" href="polkit-1/PolkitAuthority.html#polkit-authority-register-authentication-agent">
 <ANCHOR id="polkit-authority-register-authentication-agent-finish" href="polkit-1/PolkitAuthority.html#polkit-authority-register-authentication-agent-finish">
 <ANCHOR id="polkit-authority-register-authentication-agent-sync" href="polkit-1/PolkitAuthority.html#polkit-authority-register-authentication-agent-sync">
+<ANCHOR id="polkit-authority-register-authentication-agent-with-options" href="polkit-1/PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options">
+<ANCHOR id="polkit-authority-register-authentication-agent-with-options-finish" href="polkit-1/PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options-finish">
+<ANCHOR id="polkit-authority-register-authentication-agent-with-options-sync" href="polkit-1/PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options-sync">
 <ANCHOR id="polkit-authority-unregister-authentication-agent" href="polkit-1/PolkitAuthority.html#polkit-authority-unregister-authentication-agent">
 <ANCHOR id="polkit-authority-unregister-authentication-agent-finish" href="polkit-1/PolkitAuthority.html#polkit-authority-unregister-authentication-agent-finish">
 <ANCHOR id="polkit-authority-unregister-authentication-agent-sync" href="polkit-1/PolkitAuthority.html#polkit-authority-unregister-authentication-agent-sync">
@@ -381,6 +386,7 @@
 <ANCHOR id="POLKIT-AGENT-REGISTER-FLAGS-NONE:CAPS" href="polkit-1/PolkitAgentListener.html#POLKIT-AGENT-REGISTER-FLAGS-NONE:CAPS">
 <ANCHOR id="POLKIT-AGENT-REGISTER-FLAGS-RUN-IN-THREAD:CAPS" href="polkit-1/PolkitAgentListener.html#POLKIT-AGENT-REGISTER-FLAGS-RUN-IN-THREAD:CAPS">
 <ANCHOR id="polkit-agent-listener-register" href="polkit-1/PolkitAgentListener.html#polkit-agent-listener-register">
+<ANCHOR id="polkit-agent-listener-register-with-options" href="polkit-1/PolkitAgentListener.html#polkit-agent-listener-register-with-options">
 <ANCHOR id="polkit-agent-listener-unregister" href="polkit-1/PolkitAgentListener.html#polkit-agent-listener-unregister">
 <ANCHOR id="PolkitAgentTextListener" href="polkit-1/PolkitAgentTextListener.html">
 <ANCHOR id="PolkitAgentTextListener.stability-level" href="polkit-1/PolkitAgentTextListener.html#PolkitAgentTextListener.stability-level">
@@ -459,3 +465,10 @@
 <ANCHOR id="pklocalauthority-author" href="polkit-1/pklocalauthority.8.html#pklocalauthority-author">
 <ANCHOR id="pklocalauthority-bugs" href="polkit-1/pklocalauthority.8.html#pklocalauthority-bugs">
 <ANCHOR id="pklocalauthority-see-also" href="polkit-1/pklocalauthority.8.html#pklocalauthority-see-also">
+<ANCHOR id="pkttyagent.1" href="polkit-1/pkttyagent.1.html">
+<ANCHOR id="pkttyagent-descsription" href="polkit-1/pkttyagent.1.html#pkttyagent-descsription">
+<ANCHOR id="pkttyagent-return-value" href="polkit-1/pkttyagent.1.html#pkttyagent-return-value">
+<ANCHOR id="pkttyagent-notes" href="polkit-1/pkttyagent.1.html#pkttyagent-notes">
+<ANCHOR id="pkttyagent-author" href="polkit-1/pkttyagent.1.html#pkttyagent-author">
+<ANCHOR id="pkttyagent-bugs" href="polkit-1/pkttyagent.1.html#pkttyagent-bugs">
+<ANCHOR id="pkttyagent-see-also" href="polkit-1/pkttyagent.1.html#pkttyagent-see-also">
