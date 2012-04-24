@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Writing PolicyKit applications</title>
+<title>Writing polkit applications</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
-<link rel="home" href="index.html" title="PolicyKit Reference Manual">
-<link rel="up" href="overview.html" title="Part I. PolicyKit Overview">
+<link rel="home" href="index.html" title="polkit Reference Manual">
+<link rel="up" href="overview.html" title="Part I. polkit Overview">
 <link rel="prev" href="polkit-intro.html" title="Introduction">
-<link rel="next" href="polkit-agents.html" title="Writing PolicyKit Authentication Agents">
+<link rel="next" href="polkit-agents.html" title="Writing polkit Authentication Agents">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -16,24 +16,24 @@
 <td><a accesskey="p" href="polkit-intro.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="overview.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">PolicyKit Reference Manual</th>
+<th width="100%" align="center">polkit Reference Manual</th>
 <td><a accesskey="n" href="polkit-agents.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="chapter">
 <div class="titlepage"><div><div><h2 class="title">
-<a name="polkit-apps"></a>Writing PolicyKit applications</h2></div></div></div>
+<a name="polkit-apps"></a>Writing polkit applications</h2></div></div></div>
 <p>
-      PolicyKit applications are privileged mechanisms using the
-      PolicyKit authority as a decider component. To do this, a
+      polkit applications are privileged mechanisms using the
+      polkit authority as a decider component. To do this, a
       <span class="emphasis"><em>mechanism</em></span> use either
       the <a class="link" href="ref-api.html" title="Part III. Client API Reference">GObject API</a>,
       the <a class="link" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">D-Bus API</a> or
       the <a class="link" href="pkcheck.1.html" title="pkcheck">pkcheck</a> command to
-      communicate with the PolicyKit Authority.
+      communicate with the polkit Authority.
     </p>
 <p>
       Note that <span class="emphasis"><em>clients</em></span> normally doesn't use the
-      PolicyKit API directly – it is intended for privileged
+      polkit API directly – it is intended for privileged
       <span class="emphasis"><em>mechanisms</em></span>. If a client needs to disable,
       modify or remove UI elements to e.g. convey to the user that a
       certain action cannot be carried out (because e.g. the user is
@@ -42,14 +42,14 @@
       mechanism provide an API for this.
     </p>
 <p>
-      If a PolicyKit application wants to handle the case where no
+      If a polkit application wants to handle the case where no
       authentication agent exists (for example if the app is launched
       via a
       <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span>
       login), it is trivial for the application to use the <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener">PolkitAgentTextListener</a>
-      class to spawn its own authentication agent as needed. See the
-      <a class="link" href="pkcheck.1.html" title="pkcheck">pkcheck</a> or <a class="link" href="pkexec.1.html" title="pkexec">pkexec</a> program sources for an example
-      of how to do this.
+      class to spawn its own authentication agent as
+      needed. Alternatively, the <a class="xref" href="pkttyagent.1.html" title="pkttyagent"><span class="refentrytitle">pkttyagent</span>(1)</a>
+      helper can be used to do this.
     </p>
 <p>
       As an example of code using the GObject API, see <a class="xref" href="polkit-apps.html#cancel-example" title="Example 1. Querying the Authority">Example 1, “Querying the Authority”</a>.

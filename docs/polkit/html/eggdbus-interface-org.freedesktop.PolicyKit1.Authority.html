@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>org.freedesktop.PolicyKit1.Authority Interface</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
-<link rel="home" href="index.html" title="PolicyKit Reference Manual">
+<link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="prev" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="next" href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html" title="org.freedesktop.PolicyKit1.AuthenticationAgent Interface">
@@ -17,7 +17,7 @@
 <td><a accesskey="p" href="ref-dbus-api.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
 <td><a accesskey="u" href="ref-dbus-api.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">PolicyKit Reference Manual</th>
+<th width="100%" align="center">polkit Reference Manual</th>
 <td><a accesskey="n" href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr>
 <tr><td colspan="5" class="shortcuts">
@@ -64,6 +64,10 @@ Structure    <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgent" title="RegisterAuthenticationAgent ()">RegisterAuthenticationAgent</a>      (IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>                        subject,
                                   IN  String                         locale,
                                   IN  String                         object_path)
+<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgentWithOptions" title="RegisterAuthenticationAgentWithOptions ()">RegisterAuthenticationAgentWithOptions</a> (IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>                  subject,
+                                  IN  String                         locale,
+                                  IN  String                         object_path,
+                                  IN  Dict&lt;String,Variant&gt;     options)
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.UnregisterAuthenticationAgent" title="UnregisterAuthenticationAgent ()">UnregisterAuthenticationAgent</a>    (IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>                        subject,
                                   IN  String                         object_path)
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse" title="AuthenticationAgentResponse ()">AuthenticationAgentResponse</a>      (IN  String                         cookie,
@@ -784,6 +788,21 @@ The object path of authentication agent object on the unique name of the caller.
 </tr>
 </tbody>
 </table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgentWithOptions"></a><h3>RegisterAuthenticationAgentWithOptions ()</h3>
+<pre class="programlisting">
+RegisterAuthenticationAgentWithOptions (IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>  subject,
+                                        IN  String                   locale,
+                                        IN  String                   object_path,
+                                        IN  Dict&lt;String,Variant&gt;     options)
+    </pre>
+<p>
+</p>
+<p>Like <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgent" title="RegisterAuthenticationAgent ()">RegisterAuthenticationAgent</a> but takes additional options. If the option <code class="literal">fallback</code> (of type <code class="literal">Boolean</code>) is TRUE, then the authentcation agent will only be used as a fallback, e.g. if another agent (without the <code class="literal">fallback</code> option set TRUE) is available, it will be used instead.</p>
+<p>
+    </p>
 </div>
 <hr>
 <div class="refsect2">
