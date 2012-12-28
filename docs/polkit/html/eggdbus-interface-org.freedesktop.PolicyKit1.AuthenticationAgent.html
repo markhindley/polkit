@@ -3,11 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>org.freedesktop.PolicyKit1.AuthenticationAgent Interface</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="prev" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html" title="org.freedesktop.PolicyKit1.Authority Interface">
-<link rel="next" href="ref-api.html" title="Part III. Client API Reference">
+<link rel="next" href="ref-api.html" title="Part III. Library API Reference">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -89,8 +89,11 @@ BeginAuthentication (IN  String               action_id,
       </p>
 <p>
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>action_id</code></em></code>:</span></p></td>
@@ -146,8 +149,11 @@ CancelAuthentication (IN  String  cookie)
 <p>
 Called by the PolicyKit daemon if the authentication agent needs to cancel an authentication dialog.
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>cookie</code></em></code>:</span></p></td>
 <td><p>

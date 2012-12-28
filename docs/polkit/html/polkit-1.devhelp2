@@ -6,13 +6,12 @@
       <sub name="Introduction" link="polkit-intro.html"/>
       <sub name="Writing polkit applications" link="polkit-apps.html"/>
       <sub name="Writing polkit Authentication Agents" link="polkit-agents.html"/>
-      <sub name="Extending polkit" link="polkit-extending.html"/>
     </sub>
     <sub name="D-Bus API Reference" link="ref-dbus-api.html">
       <sub name="org.freedesktop.PolicyKit1.Authority Interface" link="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html"/>
       <sub name="org.freedesktop.PolicyKit1.AuthenticationAgent Interface" link="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html"/>
     </sub>
-    <sub name="Client API Reference" link="ref-api.html">
+    <sub name="Library API Reference" link="ref-api.html">
       <sub name="PolkitAuthority" link="PolkitAuthority.html"/>
       <sub name="PolkitAuthorizationResult" link="PolkitAuthorizationResult.html"/>
       <sub name="PolkitDetails" link="PolkitDetails.html"/>
@@ -33,11 +32,6 @@
         <sub name="PolkitUnixNetgroup" link="PolkitUnixNetgroup.html"/>
       </sub>
     </sub>
-    <sub name="Backend API Reference" link="ref-backend-api.html">
-      <sub name="PolkitBackendAuthority" link="PolkitBackendAuthority.html"/>
-      <sub name="PolkitBackendInteractiveAuthority" link="PolkitBackendInteractiveAuthority.html"/>
-      <sub name="PolkitBackendLocalAuthority" link="PolkitBackendLocalAuthority.html"/>
-    </sub>
     <sub name="Authentication Agent API Reference" link="ref-authentication-agent-api.html">
       <sub name="PolkitAgentListener" link="PolkitAgentListener.html"/>
       <sub name="PolkitAgentTextListener" link="PolkitAgentTextListener.html"/>
@@ -49,7 +43,6 @@
       <sub name="pkcheck" link="pkcheck.1.html"/>
       <sub name="pkaction" link="pkaction.1.html"/>
       <sub name="pkexec" link="pkexec.1.html"/>
-      <sub name="pklocalauthority" link="pklocalauthority.8.html"/>
       <sub name="pkttyagent" link="pkttyagent.1.html"/>
     </sub>
     <sub name="Object Hierarchy" link="polkit-hierarchy.html"/>
@@ -226,33 +219,6 @@
     <keyword type="function" name="polkit_unix_netgroup_get_name ()" link="PolkitUnixNetgroup.html#polkit-unix-netgroup-get-name"/>
     <keyword type="function" name="polkit_unix_netgroup_set_name ()" link="PolkitUnixNetgroup.html#polkit-unix-netgroup-set-name"/>
     <keyword type="property" name="The &quot;name&quot; property" link="PolkitUnixNetgroup.html#PolkitUnixNetgroup--name"/>
-    <keyword type="macro" name="POLKIT_BACKEND_AUTHORITY_EXTENSION_POINT_NAME" link="PolkitBackendAuthority.html#POLKIT-BACKEND-AUTHORITY-EXTENSION-POINT-NAME:CAPS"/>
-    <keyword type="struct" name="PolkitBackendAuthority" link="PolkitBackendAuthority.html#PolkitBackendAuthority-struct"/>
-    <keyword type="struct" name="struct PolkitBackendAuthorityClass" link="PolkitBackendAuthority.html#PolkitBackendAuthorityClass"/>
-    <keyword type="function" name="polkit_backend_authority_get_name ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-name"/>
-    <keyword type="function" name="polkit_backend_authority_get_version ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-version"/>
-    <keyword type="function" name="polkit_backend_authority_get_features ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get-features"/>
-    <keyword type="function" name="polkit_backend_authority_check_authorization ()" link="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization"/>
-    <keyword type="function" name="polkit_backend_authority_check_authorization_finish ()" link="PolkitBackendAuthority.html#polkit-backend-authority-check-authorization-finish"/>
-    <keyword type="function" name="polkit_backend_authority_register_authentication_agent ()" link="PolkitBackendAuthority.html#polkit-backend-authority-register-authentication-agent"/>
-    <keyword type="function" name="polkit_backend_authority_unregister_authentication_agent ()" link="PolkitBackendAuthority.html#polkit-backend-authority-unregister-authentication-agent"/>
-    <keyword type="function" name="polkit_backend_authority_authentication_agent_response ()" link="PolkitBackendAuthority.html#polkit-backend-authority-authentication-agent-response"/>
-    <keyword type="function" name="polkit_backend_authority_enumerate_actions ()" link="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-actions"/>
-    <keyword type="function" name="polkit_backend_authority_enumerate_temporary_authorizations ()" link="PolkitBackendAuthority.html#polkit-backend-authority-enumerate-temporary-authorizations"/>
-    <keyword type="function" name="polkit_backend_authority_revoke_temporary_authorizations ()" link="PolkitBackendAuthority.html#polkit-backend-authority-revoke-temporary-authorizations"/>
-    <keyword type="function" name="polkit_backend_authority_revoke_temporary_authorization_by_id ()" link="PolkitBackendAuthority.html#polkit-backend-authority-revoke-temporary-authorization-by-id"/>
-    <keyword type="function" name="polkit_backend_authority_get ()" link="PolkitBackendAuthority.html#polkit-backend-authority-get"/>
-    <keyword type="function" name="polkit_backend_authority_register ()" link="PolkitBackendAuthority.html#polkit-backend-authority-register"/>
-    <keyword type="function" name="polkit_backend_authority_unregister ()" link="PolkitBackendAuthority.html#polkit-backend-authority-unregister"/>
-    <keyword type="signal" name="The &quot;changed&quot; signal" link="PolkitBackendAuthority.html#PolkitBackendAuthority-changed"/>
-    <keyword type="struct" name="PolkitBackendInteractiveAuthority" link="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthority-struct"/>
-    <keyword type="struct" name="struct PolkitBackendInteractiveAuthorityClass" link="PolkitBackendInteractiveAuthority.html#PolkitBackendInteractiveAuthorityClass"/>
-    <keyword type="function" name="polkit_backend_interactive_authority_get_admin_identities ()" link="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-get-admin-identities"/>
-    <keyword type="function" name="polkit_backend_interactive_authority_check_authorization_sync ()" link="PolkitBackendInteractiveAuthority.html#polkit-backend-interactive-authority-check-authorization-sync"/>
-    <keyword type="struct" name="PolkitBackendLocalAuthority" link="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority-struct"/>
-    <keyword type="struct" name="struct PolkitBackendLocalAuthorityClass" link="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthorityClass"/>
-    <keyword type="property" name="The &quot;auth-store-paths&quot; property" link="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority--auth-store-paths"/>
-    <keyword type="property" name="The &quot;config-path&quot; property" link="PolkitBackendLocalAuthority.html#PolkitBackendLocalAuthority--config-path"/>
     <keyword type="struct" name="PolkitAgentListener" link="PolkitAgentListener.html#PolkitAgentListener-struct"/>
     <keyword type="struct" name="struct PolkitAgentListenerClass" link="PolkitAgentListener.html#PolkitAgentListenerClass"/>
     <keyword type="function" name="polkit_agent_listener_initiate_authentication ()" link="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication"/>
@@ -274,7 +240,11 @@
     <keyword type="signal" name="The &quot;request&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-request"/>
     <keyword type="signal" name="The &quot;show-error&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-error"/>
     <keyword type="signal" name="The &quot;show-info&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-info"/>
-    <keyword type="" name="Known annotations" link="polkit.8.html#id502198"/>
+    <keyword type="" name="Known annotations" link="polkit.8.html#idp13627680"/>
+    <keyword type="" name="The Polkit type" link="polkit.8.html#polkit-rules-polkit"/>
+    <keyword type="" name="The Action type" link="polkit.8.html#polkit-rules-actions"/>
+    <keyword type="" name="The Subject type" link="polkit.8.html#polkit-rules-subject"/>
+    <keyword type="" name="Authorization Rules Examples" link="polkit.8.html#polkit-rules-examples"/>
     <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_NONE" link="PolkitAuthority.html#POLKIT-AUTHORITY-FEATURES-NONE:CAPS"/>
     <keyword type="constant" name="POLKIT_AUTHORITY_FEATURES_TEMPORARY_AUTHORIZATION" link="PolkitAuthority.html#POLKIT-AUTHORITY-FEATURES-TEMPORARY-AUTHORIZATION:CAPS"/>
     <keyword type="constant" name="POLKIT_CHECK_AUTHORIZATION_FLAGS_NONE" link="PolkitAuthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-NONE:CAPS"/>

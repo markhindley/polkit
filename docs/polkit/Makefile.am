@@ -26,23 +26,16 @@ IGNORE_HFILES= \
 # CFLAGS and LDFLAGS for compiling scan program. Only needed
 # if $(DOC_MODULE).types is non-empty.
 INCLUDES = \
-	$(DBUS_GLIB_CFLAGS)					\
 	$(GLIB_CFLAGS)						\
-	$(GIO_CFLAGS)						\
 	-I$(top_srcdir)/src/polkit 				\
 	-I$(top_builddir)/src/polkit				\
-	-I$(top_srcdir)/src/polkitbackend			\
-	-I$(top_builddir)/src/polkitbackend			\
 	-I$(top_srcdir)/src/polkitagent 			\
 	-I$(top_builddir)/src/polkitagent			\
 	$(NULL)
 
 GTKDOC_LIBS = \
-	$(DBUS_GLIB_LIBS)					\
 	$(GLIB_LIBS)						\
-	$(GIO_LIBS)						\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la	\
-	$(top_builddir)/src/polkitbackend/libpolkit-backend-1.la \
 	$(top_builddir)/src/polkitagent/libpolkit-agent-1.la	\
 	$(NULL)
 
@@ -61,7 +54,6 @@ content_files =  			    								\
 	docbook-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.xml				\
 	../man/polkit.xml										\
 	../man/polkitd.xml										\
-	../man/pklocalauthority.xml									\
 	../man/pkcheck.xml										\
 	../man/pkaction.xml										\
 	../man/pkexec.xml										\
@@ -73,9 +65,6 @@ HTML_IMAGES = 						\
 	../polkit-architecture.png			\
 	../polkit-authentication-agent-example.png	\
 	../polkit-authentication-agent-example-wheel.png \
-	../pkexec-bash.png				\
-	../pkexec-frobnicate.png			\
-	../pkexec-frobnicate-da.png			\
 	$(NULL)
 
 # Extra options to supply to gtkdoc-fixref

@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitAuthorizationResult</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
-<link rel="up" href="ref-api.html" title="Part III. Client API Reference">
+<link rel="up" href="ref-api.html" title="Part III. Library API Reference">
 <link rel="prev" href="PolkitAuthority.html" title="PolkitAuthority">
 <link rel="next" href="PolkitDetails.html" title="PolkitDetails">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
@@ -45,18 +45,18 @@ Stable, unless otherwise indicated
 <a name="PolkitAuthorizationResult.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="PolkitAuthorizationResult.html#PolkitAuthorizationResult-struct" title="PolkitAuthorizationResult">PolkitAuthorizationResult</a>;
 <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-new" title="polkit_authorization_result_new ()">polkit_authorization_result_new</a>
-                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_authorized</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_challenge</code></em>,
+                                                        (<em class="parameter"><code><span class="type">gboolean</span> is_authorized</code></em>,
+                                                         <em class="parameter"><code><span class="type">gboolean</span> is_challenge</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-authorized" title="polkit_authorization_result_get_is_authorized ()">polkit_authorization_result_get_is_authorized</a>
+<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-authorized" title="polkit_authorization_result_get_is_authorized ()">polkit_authorization_result_get_is_authorized</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-challenge" title="polkit_authorization_result_get_is_challenge ()">polkit_authorization_result_get_is_challenge</a>
+<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-challenge" title="polkit_authorization_result_get_is_challenge ()">polkit_authorization_result_get_is_challenge</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-retains-authorization" title="polkit_authorization_result_get_retains_authorization ()">polkit_authorization_result_get_retains_authorization</a>
+<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-retains-authorization" title="polkit_authorization_result_get_retains_authorization ()">polkit_authorization_result_get_retains_authorization</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-temporary-authorization-id" title="polkit_authorization_result_get_temporary_authorization_id ()">polkit_authorization_result_get_temporary_authorization_id</a>
+const <span class="returnvalue">gchar</span> *       <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-temporary-authorization-id" title="polkit_authorization_result_get_temporary_authorization_id ()">polkit_authorization_result_get_temporary_authorization_id</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-dismissed" title="polkit_authorization_result_get_dismissed ()">polkit_authorization_result_get_dismissed</a>
+<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-dismissed" title="polkit_authorization_result_get_dismissed ()">polkit_authorization_result_get_dismissed</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);
 <a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="returnvalue">PolkitDetails</span></a> *     <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-details" title="polkit_authorization_result_get_details ()">polkit_authorization_result_get_details</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);
@@ -65,7 +65,7 @@ const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.htm
 <div class="refsect1">
 <a name="PolkitAuthorizationResult.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----PolkitAuthorizationResult
 </pre>
 </div>
@@ -88,14 +88,17 @@ The <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthoriza
 <div class="refsect2">
 <a name="polkit-authorization-result-new"></a><h3>polkit_authorization_result_new ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * polkit_authorization_result_new
-                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_authorized</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_challenge</code></em>,
+                                                        (<em class="parameter"><code><span class="type">gboolean</span> is_authorized</code></em>,
+                                                         <em class="parameter"><code><span class="type">gboolean</span> is_challenge</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>is_authorized</code></em> :</span></p></td>
@@ -104,17 +107,17 @@ Creates a new <a class="link" href="PolkitAuthorizationResult.html" title="Polki
 <tr>
 <td><p><span class="term"><em class="parameter"><code>is_challenge</code></em> :</span></p></td>
 <td>Whether the subject is authorized if more
-information is provided. Must be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> unless <em class="parameter"><code>is_authorized</code></em> is
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>.</td>
+information is provided. Must be <code class="literal">FALSE</code> unless <em class="parameter"><code>is_authorized</code></em> is
+<code class="literal">TRUE</code>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
-<td>Must be <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> unless <em class="parameter"><code>is_authorized</code></em> is <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Must be <code class="literal">NULL</code> unless <em class="parameter"><code>is_authorized</code></em> is <code class="literal">TRUE</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.</td>
+<td>A <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object. Free with <code class="function">g_object_unref()</code>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -122,7 +125,7 @@ information is provided. Must be <a href="http://library.gnome.org/devel/glib/un
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-is-authorized"></a><h3>polkit_authorization_result_get_is_authorized ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authorization_result_get_is_authorized
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authorization_result_get_is_authorized
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>
 Gets whether the subject is authorized.
@@ -131,8 +134,11 @@ Gets whether the subject is authorized.
 If the authorization is temporary, use <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-temporary-authorization-id" title="polkit_authorization_result_get_temporary_authorization_id ()"><code class="function">polkit_authorization_result_get_temporary_authorization_id()</code></a>
 to get the opaque identifier for the temporary authorization.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
@@ -148,13 +154,16 @@ to get the opaque identifier for the temporary authorization.
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-is-challenge"></a><h3>polkit_authorization_result_get_is_challenge ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authorization_result_get_is_challenge
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authorization_result_get_is_challenge
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>
 Gets whether the subject is authorized if more information is provided.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
@@ -170,7 +179,7 @@ Gets whether the subject is authorized if more information is provided.
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-retains-authorization"></a><h3>polkit_authorization_result_get_retains_authorization ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authorization_result_get_retains_authorization
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authorization_result_get_retains_authorization
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>
 Gets whether authorization is retained if obtained via authentication. This can only be the case
@@ -186,8 +195,11 @@ to check if the authorization is temporary.
 This method simply reads the value of the key/value pair in <em class="parameter"><code>details</code></em> with the
 key <code class="literal">polkit.retains_authorization_after_challenge</code>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
@@ -196,7 +208,7 @@ key <code class="literal">polkit.retains_authorization_after_challenge</code>.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authorization is or will be temporary.</td>
+<code class="literal">TRUE</code> if the authorization is or will be temporary.</td>
 </tr>
 </tbody>
 </table></div>
@@ -204,7 +216,7 @@ key <code class="literal">polkit.retains_authorization_after_challenge</code>.
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-temporary-authorization-id"></a><h3>polkit_authorization_result_get_temporary_authorization_id ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_authorization_result_get_temporary_authorization_id
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *       polkit_authorization_result_get_temporary_authorization_id
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>
 Gets the opaque temporary authorization id for <em class="parameter"><code>result</code></em> if <em class="parameter"><code>result</code></em> indicates the
@@ -225,8 +237,11 @@ to check if the authorization will be retained if obtained via authentication.
 This method simply reads the value of the key/value pair in <em class="parameter"><code>details</code></em> with the
 key <code class="literal">polkit.temporary_authorization_id</code>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
@@ -235,7 +250,7 @@ key <code class="literal">polkit.temporary_authorization_id</code>.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>The opaque temporary authorization id for
-<em class="parameter"><code>result</code></em> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not available. Do not free this string, it
+<em class="parameter"><code>result</code></em> or <code class="literal">NULL</code> if not available. Do not free this string, it
 is owned by <em class="parameter"><code>result</code></em>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
@@ -245,7 +260,7 @@ is owned by <em class="parameter"><code>result</code></em>. <span class="annotat
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-dismissed"></a><h3>polkit_authorization_result_get_dismissed ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authorization_result_get_dismissed
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authorization_result_get_dismissed
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>
 Gets whether the authentication request was dismissed / canceled by the user.
@@ -254,8 +269,11 @@ Gets whether the authentication request was dismissed / canceled by the user.
 This method simply reads the value of the key/value pair in <em class="parameter"><code>details</code></em> with the
 key <code class="literal">polkit.dismissed</code>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
@@ -264,7 +282,7 @@ key <code class="literal">polkit.dismissed</code>.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication request was dismissed, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</td>
+<code class="literal">TRUE</code> if the authentication request was dismissed, <code class="literal">FALSE</code> otherwise.</td>
 </tr>
 </tbody>
 </table></div>
@@ -278,8 +296,11 @@ key <code class="literal">polkit.dismissed</code>.
 <p>
 Gets the details about the result.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
@@ -288,7 +309,7 @@ Gets the details about the result.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>A <a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> object or
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if there are no details. This object is owned by <em class="parameter"><code>result</code></em> and
+<code class="literal">NULL</code> if there are no details. This object is owned by <em class="parameter"><code>result</code></em> and
 should not be freed by the caller. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>][<a href="http://foldoc.org/transfer%20none"><span class="acronym">transfer none</span></a>]</span>
 </td>
 </tr>

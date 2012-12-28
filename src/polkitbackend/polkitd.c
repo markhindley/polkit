@@ -25,10 +25,11 @@
 
 #include <glib-unix.h>
 
+#include <pwd.h>
+#include <grp.h>
+
 #include <polkit/polkit.h>
 #include <polkitbackend/polkitbackend.h>
-
-#include "gposixsignal.h"
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -52,11 +53,7 @@ on_bus_acquired (GDBusConnection *connection,
 
   g_print ("Connected to the system bus\n");
 
-  g_assert (authority == NULL);
   g_assert (registration_id == NULL);
-
-  authority = polkit_backend_authority_get ();
-  g_print ("Using authority class %s\n", g_type_name (G_TYPE_FROM_INSTANCE (authority)));
 
   error = NULL;
   registration_id = polkit_backend_authority_register (authority,
@@ -76,7 +73,8 @@ on_name_lost (GDBusConnection *connection,
               const gchar     *name,
               gpointer         user_data)
 {
-  g_print ("Lost the name org.freedesktop.PolicyKit1 - exiting\n");
+  polkit_backend_authority_log (POLKIT_BACKEND_AUTHORITY (authority),
+                                "Lost the name org.freedesktop.PolicyKit1 - exiting");
   g_main_loop_quit (loop);
 }
 
@@ -85,7 +83,8 @@ on_name_acquired (GDBusConnection *connection,
                   const gchar     *name,
                   gpointer         user_data)
 {
-  g_print ("Acquired the name org.freedesktop.PolicyKit1\n");
+  polkit_backend_authority_log (POLKIT_BACKEND_AUTHORITY (authority),
+                                "Acquired the name org.freedesktop.PolicyKit1 on the system bus");
 }
 
 static gboolean
@@ -94,6 +93,63 @@ on_sigint (gpointer user_data)
   g_print ("Handling SIGINT\n");
   g_main_loop_quit (loop);
   return FALSE;
+}
+
+static gboolean
+become_user (const gchar  *user,
+             GError      **error)
+{
+  gboolean ret = FALSE;
+  struct passwd *pw;
+
+  g_return_val_if_fail (user != NULL, FALSE);
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+
+  pw = getpwnam (user);
+  if (pw == NULL)
+    {
+      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                   "Error calling getpwnam(): %m");
+      goto out;
+    }
+
+  if (setgroups (0, NULL) != 0)
+    {
+      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                   "Error clearing groups: %m");
+      goto out;
+    }
+  if (initgroups (pw->pw_name, pw->pw_gid) != 0)
+    {
+      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                   "Error initializing groups: %m");
+      goto out;
+    }
+
+  setregid (pw->pw_gid, pw->pw_gid);
+  setreuid (pw->pw_uid, pw->pw_uid);
+  if ((geteuid () != pw->pw_uid) || (getuid () != pw->pw_uid) ||
+      (getegid () != pw->pw_gid) || (getgid () != pw->pw_gid))
+    {
+      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                   "Error becoming real+effective uid %d and gid %d: %m",
+                   (int) pw->pw_uid, (int) pw->pw_gid);
+      goto out;
+    }
+
+  if (chdir (pw->pw_dir) != 0)
+    {
+      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                   "Error changing to home directory %s: %m",
+                   pw->pw_dir);
+      goto out;
+    }
+
+
+  ret = TRUE;
+
+ out:
+  return ret;
 }
 
 int
@@ -115,7 +171,7 @@ main (int    argc,
 
   g_type_init ();
 
-  opt_context = g_option_context_new ("polkit authority");
+  opt_context = g_option_context_new ("polkit system daemon");
   g_option_context_add_main_entries (opt_context, opt_entries, NULL);
   error = NULL;
   if (!g_option_context_parse (opt_context, &argc, &argv, &error))
@@ -144,14 +200,27 @@ main (int    argc,
         }
     }
 
+  error = NULL;
+  if (!become_user (POLKITD_USER, &error))
+    {
+      g_printerr ("Error switcing to user %s: %s\n",
+                  POLKITD_USER, error->message);
+      g_clear_error (&error);
+      goto out;
+    }
+
+  g_print ("Successfully changed to user %s\n", POLKITD_USER);
+
+  if (g_getenv ("PATH") == NULL)
+    g_setenv ("PATH", "/usr/bin:/bin:/usr/sbin:/sbin", TRUE);
+
+  authority = polkit_backend_authority_get ();
 
   loop = g_main_loop_new (NULL, FALSE);
 
-  sigint_id = _g_posix_signal_watch_add (SIGINT,
-                                         G_PRIORITY_DEFAULT,
-                                         on_sigint,
-                                         NULL,
-                                         NULL);
+  sigint_id = g_unix_signal_add (SIGINT,
+                                 on_sigint,
+                                 NULL);
 
   name_owner_id = g_bus_own_name (G_BUS_TYPE_SYSTEM,
                                   "org.freedesktop.PolicyKit1",

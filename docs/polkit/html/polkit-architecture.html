@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Long Description</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
@@ -14,9 +14,9 @@
  +-------------------+
  | libpolkit-agent-1 |
  +-------------------+
-        ^                                  +--------+
-        |                                  | Client |
-        +--------------+                   +--------+
+        ^                                  +---------+
+        |                                  | Subject |
+        +--------------+                   +---------+
                        |                        ^
                        |                        |
 User Session           |                        |
@@ -34,11 +34,19 @@ System Context         |                        |
         |                       |      +---------------------+
         V                       +----&gt; | libpolkit-gobject-1 |
 +------------------+                   +---------------------+
+|    polkitd(8)    |
++------------------+
 | org.freedesktop. |
-|    PolicyKit1    |
-+------------------+
-|   Backends and   |
-|    Extensions    |
-+------------------+
+|    PolicyKit1    |&lt;---------+
++------------------+          |
+          ^                   |
+          |            +--------------------------------------+
+          |            | /usr/share/polkit-1/actions/*.policy |
+          |            +--------------------------------------+
+          |
+   +--------------------------------------+
+   | /etc/polkit-1/rules.d/*.rules        |
+   | /usr/share/polkit-1/rules.d/*.rules  |
+   +--------------------------------------+
 </pre></body>
 </html>

@@ -72,6 +72,8 @@ struct _PolkitBackendInteractiveAuthorityClass
                                                                 PolkitSubject                     *caller,
                                                                 PolkitSubject                     *subject,
                                                                 PolkitIdentity                    *user_for_subject,
+                                                                gboolean                           subject_is_local,
+                                                                gboolean                           subject_is_active,
                                                                 const gchar                       *action_id,
                                                                 PolkitDetails                     *details);
 
@@ -83,8 +85,7 @@ struct _PolkitBackendInteractiveAuthorityClass
                                                            gboolean                           subject_is_active,
                                                            const gchar                       *action_id,
                                                            PolkitDetails                     *details,
-                                                           PolkitImplicitAuthorization        implicit,
-                                                           PolkitDetails                     *out_details);
+                                                           PolkitImplicitAuthorization        implicit);
 
   /*< private >*/
   /* Padding for future expansion */
@@ -127,6 +128,8 @@ GList  *polkit_backend_interactive_authority_get_admin_identities (PolkitBackend
                                                                    PolkitSubject                     *caller,
                                                                    PolkitSubject                     *subject,
                                                                    PolkitIdentity                    *user_for_subject,
+                                                                   gboolean                           subject_is_local,
+                                                                   gboolean                           subject_is_active,
                                                                    const gchar                       *action_id,
                                                                    PolkitDetails                     *details);
 
@@ -139,8 +142,7 @@ PolkitImplicitAuthorization polkit_backend_interactive_authority_check_authoriza
                                                           gboolean                           subject_is_active,
                                                           const gchar                       *action_id,
                                                           PolkitDetails                     *details,
-                                                          PolkitImplicitAuthorization        implicit,
-                                                          PolkitDetails                     *out_details);
+                                                          PolkitImplicitAuthorization        implicit);
 
 G_END_DECLS
 

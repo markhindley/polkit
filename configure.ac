@@ -1,8 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT(polkit, 0.105, http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
-AM_INIT_AUTOMAKE(polkit, 0.105)
+AC_INIT(polkit, 0.109 http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
+AM_INIT_AUTOMAKE(polkit, 0.109)
 AM_CONFIG_HEADER(config.h)
 AM_MAINTAINER_MODE
 
@@ -34,7 +34,6 @@ AM_PROG_CC_C_O
 
 # Taken from dbus
 AC_ARG_ENABLE(ansi,             [  --enable-ansi           enable -ansi -pedantic gcc flags],enable_ansi=$enableval,enable_ansi=no)
-AC_ARG_ENABLE(verbose-mode,     [  --enable-verbose-mode   support verbose debug mode],enable_verbose_mode=$enableval,enable_verbose_mode=$USE_MAINTAINER_MODE)
 AC_ARG_ENABLE(man-pages,        [  --enable-man-pages      build manual pages],enable_man_pages=$enableval,enable_man_pages=yes)
 
 if test "${enable_man_page}" != no; then
@@ -123,9 +122,13 @@ if test "x$GCC" = "xyes"; then
   changequote([,])dnl
 fi
 
-PKG_CHECK_MODULES(GLIB, [gio-2.0 >= 2.28.0])
+PKG_CHECK_MODULES(GLIB, [gmodule-2.0 gio-2.0 >= 2.30.0])
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
+
+PKG_CHECK_MODULES(LIBJS, [mozjs185])
+AC_SUBST(LIBJS_CFLAGS)
+AC_SUBST(LIBJS_LIBS)
 
 EXPAT_LIB=""
 AC_ARG_WITH(expat, [  --with-expat=<dir>      Use expat from here],
@@ -148,33 +151,61 @@ if test "x$GCC" = "xyes"; then
 fi
 
 dnl ---------------------------------------------------------------------------
-dnl - Select wether to use systemd or ConsoleKit for session tracking
+dnl - Select wether to use libsystemd-login or ConsoleKit for session tracking
 dnl ---------------------------------------------------------------------------
 
-have_systemd=no
+have_libsystemd_login=no
 SESSION_TRACKING=ConsoleKit
 
-AC_ARG_ENABLE([systemd],
-              AS_HELP_STRING([--enable-systemd[=@<:@auto/yes/no@:>@]], [Use systemd (auto/yes/no)]),
-              [enable_systemd=$enableval],
-              [enable_systemd=auto])
-if test "$enable_systemd" != "no"; then
-  PKG_CHECK_MODULES(SYSTEMD,
+AC_ARG_ENABLE([libsystemd-login],
+              AS_HELP_STRING([--enable-libsystemd-login[=@<:@auto/yes/no@:>@]], [Use libsystemd-login (auto/yes/no)]),
+              [enable_libsystemd_login=$enableval],
+              [enable_libsystemd_login=auto])
+if test "$enable_libsystemd_login" != "no"; then
+  PKG_CHECK_MODULES(LIBSYSTEMD_LOGIN,
                     [libsystemd-login],
-                    have_systemd=yes,
-                    have_systemd=no)
-  if test "$have_systemd" = "yes"; then
-    SESSION_TRACKING=systemd
+                    have_libsystemd_login=yes,
+                    have_libsystemd_login=no)
+  if test "$have_libsystemd_login" = "yes"; then
+    SESSION_TRACKING=libsystemd-login
+    AC_DEFINE([HAVE_LIBSYSTEMD_LOGIN], 1, [Define to 1 if libsystemd-login is available])
   else
-    if test "$enable_systemd" = "yes"; then
-      AC_MSG_ERROR([systemd support requested but libsystemd-login1 library not found])
+    if test "$enable_libsystemd_login" = "yes"; then
+      AC_MSG_ERROR([libsystemd-login support requested but libsystemd-login library not found])
     fi
   fi
 fi
 
-AC_SUBST(SYSTEMD_CFLAGS)
-AC_SUBST(SYSTEMD_LIBS)
-AM_CONDITIONAL(HAVE_SYSTEMD, [test "$have_systemd" = "yes"], [Using systemd])
+AC_SUBST(LIBSYSTEMD_LOGIN_CFLAGS)
+AC_SUBST(LIBSYSTEMD_LOGIN_LIBS)
+AM_CONDITIONAL(HAVE_LIBSYSTEMD_LOGIN, [test "$have_libsystemd_login" = "yes"], [Using libsystemd-login])
+
+dnl ---------------------------------------------------------------------------
+dnl - systemd unit / service files
+dnl ---------------------------------------------------------------------------
+
+AC_ARG_WITH([systemdsystemunitdir],
+            AS_HELP_STRING([--with-systemdsystemunitdir=DIR], [Directory for systemd service files]),
+            [],
+            [with_systemdsystemunitdir=$($PKG_CONFIG --variable=systemdsystemunitdir systemd)])
+if test "x$with_systemdsystemunitdir" != "xno"; then
+  AC_SUBST([systemdsystemunitdir], [$with_systemdsystemunitdir])
+fi
+AM_CONDITIONAL(HAVE_SYSTEMD, [test -n "$systemdsystemunitdir"])
+
+dnl ---------------------------------------------------------------------------
+dnl - User for running polkitd
+dnl ---------------------------------------------------------------------------
+
+AC_ARG_WITH(polkitd_user, AS_HELP_STRING([--with-polkitd-user=<user>],[User for running polkitd (polkitd)]))
+
+if test -z "$with_polkitd_user" ; then
+    POLKITD_USER=polkitd
+else
+    POLKITD_USER=$with_polkitd_user
+fi
+AC_SUBST(POLKITD_USER)
+AC_DEFINE_UNQUOTED(POLKITD_USER,"$POLKITD_USER", [User for running polkitd])
 
 dnl ---------------------------------------------------------------------------
 dnl - Select which authentication framework to use
@@ -435,16 +466,13 @@ actions/Makefile
 data/Makefile
 data/polkit-1
 data/polkit-gobject-1.pc
-data/polkit-backend-1.pc
 data/polkit-agent-1.pc
 src/Makefile
 src/polkit/Makefile
 src/polkitbackend/Makefile
 src/polkitagent/Makefile
-src/polkitd/Makefile
 src/programs/Makefile
 src/examples/Makefile
-src/nullbackend/Makefile
 docs/version.xml
 docs/extensiondir.xml
 docs/Makefile
@@ -480,7 +508,9 @@ echo "
         Distribution/OS:            ${with_os_type}
         Authentication framework:   ${POLKIT_AUTHFW}
         Session tracking:           ${SESSION_TRACKING}
-        PAM support:                ${have_pam}"
+        PAM support:                ${have_pam}
+        systemdsystemunitdir:       ${systemdsystemunitdir}
+        polkitd user:               ${POLKITD_USER}"
 
 if test "$have_pam" = yes ; then
 echo "
@@ -491,22 +521,13 @@ echo "
 fi
 echo "
         Maintainer mode:            ${USE_MAINTAINER_MODE}
-        Building verbose mode:      ${enable_verbose_mode}
         Building api docs:          ${enable_gtk_doc}
         Building man pages:         ${enable_man_pages}
         Building examples:          ${enable_examples}
 
 "
 
-echo "NOTE: The directory ${sysconfdir}/polkit-1/localauthority must be owned"
-echo "      by root and have mode 700"
-echo
-
-echo "NOTE: The directory ${localstatedir}/lib/polkit-1 must be owned"
-echo "      by root and have mode 700"
-echo
-
-echo "NOTE: The file ${libexecdir}/polkit-agent-helper-1 must be owned"
+echo "NOTE: The file ${prefix}/lib/polkit-1/polkit-agent-helper-1 must be owned"
 echo "      by root and have mode 4755 (setuid root binary)"
 echo
 
@@ -514,3 +535,10 @@ echo "NOTE: The file ${bindir}/pkexec must be owned by root and"
 echo "      have mode 4755 (setuid root binary)"
 echo
 
+echo "NOTE: The directory ${sysconfdir}/polkit-1/rules.d must be owned"
+echo "      by user '$POLKITD_USER' and have mode 700"
+echo
+
+echo "NOTE: The directory ${datadir}/polkit-1/rules.d must be owned"
+echo "      by user '$POLKITD_USER' and have mode 700"
+echo
