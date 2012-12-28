@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitTemporaryAuthorization</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
-<link rel="up" href="ref-api.html" title="Part III. Client API Reference">
+<link rel="up" href="ref-api.html" title="Part III. Library API Reference">
 <link rel="prev" href="PolkitActionDescription.html" title="PolkitActionDescription">
 <link rel="next" href="PolkitPermission.html" title="PolkitPermission">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
@@ -40,22 +40,22 @@
 <div class="refsynopsisdiv">
 <a name="PolkitTemporaryAuthorization.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="PolkitTemporaryAuthorization.html#PolkitTemporaryAuthorization-struct" title="PolkitTemporaryAuthorization">PolkitTemporaryAuthorization</a>;
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-id" title="polkit_temporary_authorization_get_id ()">polkit_temporary_authorization_get_id</a>
+const <span class="returnvalue">gchar</span> *       <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-id" title="polkit_temporary_authorization_get_id ()">polkit_temporary_authorization_get_id</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);
-const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-action-id" title="polkit_temporary_authorization_get_action_id ()">polkit_temporary_authorization_get_action_id</a>
+const <span class="returnvalue">gchar</span> *       <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-action-id" title="polkit_temporary_authorization_get_action_id ()">polkit_temporary_authorization_get_action_id</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);
 <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-subject" title="polkit_temporary_authorization_get_subject ()">polkit_temporary_authorization_get_subject</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-time-obtained" title="polkit_temporary_authorization_get_time_obtained ()">polkit_temporary_authorization_get_time_obtained</a>
+<span class="returnvalue">guint64</span>             <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-time-obtained" title="polkit_temporary_authorization_get_time_obtained ()">polkit_temporary_authorization_get_time_obtained</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-time-expires" title="polkit_temporary_authorization_get_time_expires ()">polkit_temporary_authorization_get_time_expires</a>
+<span class="returnvalue">guint64</span>             <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-time-expires" title="polkit_temporary_authorization_get_time_expires ()">polkit_temporary_authorization_get_time_expires</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="PolkitTemporaryAuthorization.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----PolkitTemporaryAuthorization
 </pre>
 </div>
@@ -77,13 +77,16 @@ The <a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTempor
 <hr>
 <div class="refsect2">
 <a name="polkit-temporary-authorization-get-id"></a><h3>polkit_temporary_authorization_get_id ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_temporary_authorization_get_id
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *       polkit_temporary_authorization_get_id
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);</pre>
 <p>
 Gets the opaque identifier for <em class="parameter"><code>authorization</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>authorization</code></em> :</span></p></td>
@@ -99,13 +102,16 @@ Gets the opaque identifier for <em class="parameter"><code>authorization</code><
 <hr>
 <div class="refsect2">
 <a name="polkit-temporary-authorization-get-action-id"></a><h3>polkit_temporary_authorization_get_action_id ()</h3>
-<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_temporary_authorization_get_action_id
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *       polkit_temporary_authorization_get_action_id
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);</pre>
 <p>
 Gets the action that <em class="parameter"><code>authorization</code></em> is for.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>authorization</code></em> :</span></p></td>
@@ -126,8 +132,11 @@ Gets the action that <em class="parameter"><code>authorization</code></em> is fo
 <p>
 Gets the subject that <em class="parameter"><code>authorization</code></em> is for.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>authorization</code></em> :</span></p></td>
@@ -135,7 +144,7 @@ Gets the subject that <em class="parameter"><code>authorization</code></em> is f
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>, free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>, free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
 </td>
 </tr>
 </tbody>
@@ -144,7 +153,7 @@ Gets the subject that <em class="parameter"><code>authorization</code></em> is f
 <hr>
 <div class="refsect2">
 <a name="polkit-temporary-authorization-get-time-obtained"></a><h3>polkit_temporary_authorization_get_time_obtained ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             polkit_temporary_authorization_get_time_obtained
+<pre class="programlisting"><span class="returnvalue">guint64</span>             polkit_temporary_authorization_get_time_obtained
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);</pre>
 <p>
 Gets the time when <em class="parameter"><code>authorization</code></em> was obtained.
@@ -153,8 +162,11 @@ Gets the time when <em class="parameter"><code>authorization</code></em> was obt
 (Note that the PolicyKit daemon is using monotonic time internally
 so the returned value may change if system time changes.)
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>authorization</code></em> :</span></p></td>
@@ -170,7 +182,7 @@ so the returned value may change if system time changes.)
 <hr>
 <div class="refsect2">
 <a name="polkit-temporary-authorization-get-time-expires"></a><h3>polkit_temporary_authorization_get_time_expires ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             polkit_temporary_authorization_get_time_expires
+<pre class="programlisting"><span class="returnvalue">guint64</span>             polkit_temporary_authorization_get_time_expires
                                                         (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);</pre>
 <p>
 Gets the time when <em class="parameter"><code>authorization</code></em> will expire.
@@ -179,8 +191,11 @@ Gets the time when <em class="parameter"><code>authorization</code></em> will ex
 (Note that the PolicyKit daemon is using monotonic time internally
 so the returned value may change if system time changes.)
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>authorization</code></em> :</span></p></td>

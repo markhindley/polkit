@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitAgentListener</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
-<link rel="up" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
-<link rel="prev" href="ref-authentication-agent-api.html" title="Part V. Authentication Agent API Reference">
+<link rel="up" href="ref-authentication-agent-api.html" title="Part IV. Authentication Agent API Reference">
+<link rel="prev" href="ref-authentication-agent-api.html" title="Part IV. Authentication Agent API Reference">
 <link rel="next" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
@@ -47,41 +47,41 @@ Unstable, unless otherwise indicated
 struct              <a class="link" href="PolkitAgentListener.html#PolkitAgentListenerClass" title="struct PolkitAgentListenerClass">PolkitAgentListenerClass</a>;
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()">polkit_agent_listener_initiate_authentication</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *message</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *icon_name</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *action_id</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *message</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *icon_name</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *cookie</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> *identities</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication-finish" title="polkit_agent_listener_initiate_authentication_finish ()">polkit_agent_listener_initiate_authentication_finish</a>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *cookie</code></em>,
+                                                         <em class="parameter"><code><span class="type">GList</span> *identities</code></em>,
+                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
+<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication-finish" title="polkit_agent_listener_initiate_authentication_finish ()">polkit_agent_listener_initiate_authentication_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
 enum                <a class="link" href="PolkitAgentListener.html#PolkitAgentRegisterFlags" title="enum PolkitAgentRegisterFlags">PolkitAgentRegisterFlags</a>;
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a>            <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-register" title="polkit_agent_listener_register ()">polkit_agent_listener_register</a>      (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
+<span class="returnvalue">gpointer</span>            <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-register" title="polkit_agent_listener_register ()">polkit_agent_listener_register</a>      (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitAgentListener.html#PolkitAgentRegisterFlags" title="enum PolkitAgentRegisterFlags"><span class="type">PolkitAgentRegisterFlags</span></a> flags</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a>            <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-register-with-options" title="polkit_agent_listener_register_with_options ()">polkit_agent_listener_register_with_options</a>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
+                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">gpointer</span>            <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-register-with-options" title="polkit_agent_listener_register_with_options ()">polkit_agent_listener_register_with_options</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitAgentListener.html#PolkitAgentRegisterFlags" title="enum PolkitAgentRegisterFlags"><span class="type">PolkitAgentRegisterFlags</span></a> flags</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *options</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-unregister" title="polkit_agent_listener_unregister ()">polkit_agent_listener_unregister</a>    (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> registration_handle</code></em>);
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
+                                                         <em class="parameter"><code><span class="type">GVariant</span> *options</code></em>,
+                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-unregister" title="polkit_agent_listener_unregister ()">polkit_agent_listener_unregister</a>    (<em class="parameter"><code><span class="type">gpointer</span> registration_handle</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="PolkitAgentListener.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+  GObject
    +----PolkitAgentListener
          +----<a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener">PolkitAgentTextListener</a>
 </pre>
@@ -142,11 +142,14 @@ The <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">
 <p>
 VFuncs that authentication agents needs to implement.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="PolkitAgentListenerClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td><p><span class="term"><span class="type">GObjectClass</span> <em class="structfield"><code><a name="PolkitAgentListenerClass.parent-class"></a>parent_class</code></em>;</span></p></td>
 <td>The parent class.</td>
 </tr>
 <tr>
@@ -165,15 +168,15 @@ VFuncs that authentication agents needs to implement.
 <a name="polkit-agent-listener-initiate-authentication"></a><h3>polkit_agent_listener_initiate_authentication ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_agent_listener_initiate_authentication
                                                         (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *message</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *icon_name</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *action_id</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *message</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *icon_name</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *cookie</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> *identities</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *cookie</code></em>,
+                                                         <em class="parameter"><code><span class="type">GList</span> *identities</code></em>,
+                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>
 Called on a registered authentication agent (see
 <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-register" title="polkit_agent_listener_register ()"><code class="function">polkit_agent_listener_register()</code></a>) when the user owning the session
@@ -194,8 +197,11 @@ function can and will use it. Additionally, <em class="parameter"><code>callback
 invoked in the <GTKDOCLINK HREF="g-main-context-push-thread-default">thread-default main
 loop</GTKDOCLINK> of the thread that this method is called from.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -211,7 +217,7 @@ loop</GTKDOCLINK> of the thread that this method is called from.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>icon_name</code></em> :</span></p></td>
-<td>A themed icon name representing the action or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
+<td>A themed icon name representing the action or <code class="literal">NULL</code>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
@@ -227,7 +233,7 @@ loop</GTKDOCLINK> of the thread that this method is called from.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a>.</td>
+<td>A <span class="type">GCancellable</span>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
@@ -243,16 +249,19 @@ loop</GTKDOCLINK> of the thread that this method is called from.
 <hr>
 <div class="refsect2">
 <a name="polkit-agent-listener-initiate-authentication-finish"></a><h3>polkit_agent_listener_initiate_authentication_finish ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_agent_listener_initiate_authentication_finish
+<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_agent_listener_initiate_authentication_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Finishes an authentication request from the PolicyKit daemon, see
 <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()"><code class="function">polkit_agent_listener_initiate_authentication()</code></a> for details.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -260,7 +269,7 @@ Finishes an authentication request from the PolicyKit daemon, see
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> function passed to <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()"><code class="function">polkit_agent_listener_initiate_authentication()</code></a>.</td>
+<td>A <span class="type">GAsyncResult</span> obtained from the <span class="type">GAsyncReadyCallback</span> function passed to <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-initiate-authentication" title="polkit_agent_listener_initiate_authentication ()"><code class="function">polkit_agent_listener_initiate_authentication()</code></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
@@ -269,7 +278,7 @@ Finishes an authentication request from the PolicyKit daemon, see
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
+<code class="literal">TRUE</code> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -285,8 +294,11 @@ Finishes an authentication request from the PolicyKit daemon, see
 <p>
 Flags used in <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-register" title="polkit_agent_listener_register ()"><code class="function">polkit_agent_listener_register()</code></a>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><a name="POLKIT-AGENT-REGISTER-FLAGS-NONE:CAPS"></a><span class="term"><code class="literal">POLKIT_AGENT_REGISTER_FLAGS_NONE</code></span></p></td>
@@ -304,12 +316,12 @@ Flags used in <a class="link" href="PolkitAgentListener.html#polkit-agent-listen
 <hr>
 <div class="refsect2">
 <a name="polkit-agent-listener-register"></a><h3>polkit_agent_listener_register ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a>            polkit_agent_listener_register      (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
+<pre class="programlisting"><span class="returnvalue">gpointer</span>            polkit_agent_listener_register      (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitAgentListener.html#PolkitAgentRegisterFlags" title="enum PolkitAgentRegisterFlags"><span class="type">PolkitAgentRegisterFlags</span></a> flags</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
+                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Registers <em class="parameter"><code>listener</code></em> with the PolicyKit daemon as an authentication
 agent for <em class="parameter"><code>subject</code></em>. This is implemented by registering a D-Bus
@@ -331,8 +343,11 @@ example another authentication agent may already be registered for
 <p>
 Note that the calling thread is blocked until a reply is received.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -348,11 +363,11 @@ Note that the calling thread is blocked until a reply is received.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>object_path</code></em> :</span></p></td>
-<td>The D-Bus object path to use for the authentication agent or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the default object path.</td>
+<td>The D-Bus object path to use for the authentication agent or <code class="literal">NULL</code> for the default object path.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
+<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
@@ -361,7 +376,7 @@ Note that the calling thread is blocked until a reply is received.
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set, otherwise a
+<code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set, otherwise a
 registration handle that can be used with
 <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-unregister" title="polkit_agent_listener_unregister ()"><code class="function">polkit_agent_listener_unregister()</code></a>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
 </td>
@@ -372,20 +387,23 @@ registration handle that can be used with
 <hr>
 <div class="refsect2">
 <a name="polkit-agent-listener-register-with-options"></a><h3>polkit_agent_listener_register_with_options ()</h3>
-<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="returnvalue">gpointer</span></a>            polkit_agent_listener_register_with_options
+<pre class="programlisting"><span class="returnvalue">gpointer</span>            polkit_agent_listener_register_with_options
                                                         (<em class="parameter"><code><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> *listener</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitAgentListener.html#PolkitAgentRegisterFlags" title="enum PolkitAgentRegisterFlags"><span class="type">PolkitAgentRegisterFlags</span></a> flags</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *options</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
+                                                         <em class="parameter"><code><span class="type">GVariant</span> *options</code></em>,
+                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>
 Like <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-register" title="polkit_agent_listener_register ()"><code class="function">polkit_agent_listener_register()</code></a> but takes options to influence registration. See the
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.RegisterAuthenticationAgentWithOptions" title="RegisterAuthenticationAgentWithOptions ()"><code class="function">RegisterAuthenticationAgentWithOptions()</code></a> D-Bus method for details.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>listener</code></em> :</span></p></td>
@@ -401,16 +419,16 @@ Like <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-regist
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>object_path</code></em> :</span></p></td>
-<td>The D-Bus object path to use for the authentication agent or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> for the default object path.</td>
+<td>The D-Bus object path to use for the authentication agent or <code class="literal">NULL</code> for the default object path.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>options</code></em> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> with options or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <span class="type">GVariant</span> with options or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
+<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
@@ -419,7 +437,7 @@ Like <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-regist
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set, otherwise a
+<code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set, otherwise a
 registration handle that can be used with
 <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-unregister" title="polkit_agent_listener_unregister ()"><code class="function">polkit_agent_listener_unregister()</code></a>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
 </td>
@@ -430,12 +448,15 @@ registration handle that can be used with
 <hr>
 <div class="refsect2">
 <a name="polkit-agent-listener-unregister"></a><h3>polkit_agent_listener_unregister ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                polkit_agent_listener_unregister    (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> registration_handle</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                polkit_agent_listener_unregister    (<em class="parameter"><code><span class="type">gpointer</span> registration_handle</code></em>);</pre>
 <p>
 Unregisters <em class="parameter"><code>listener</code></em>.
 </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><em class="parameter"><code>registration_handle</code></em> :</span></p></td>
 <td>A handle obtained from <a class="link" href="PolkitAgentListener.html#polkit-agent-listener-register" title="polkit_agent_listener_register ()"><code class="function">polkit_agent_listener_register()</code></a>.</td>

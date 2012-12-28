@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Writing polkit applications</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="overview.html" title="Part I. polkit Overview">
 <link rel="prev" href="polkit-intro.html" title="Introduction">
@@ -23,461 +23,222 @@
 <div class="titlepage"><div><div><h2 class="title">
 <a name="polkit-apps"></a>Writing polkit applications</h2></div></div></div>
 <p>
-      polkit applications are privileged mechanisms using the
-      polkit authority as a decider component. To do this, a
-      <span class="emphasis"><em>mechanism</em></span> use either
-      the <a class="link" href="ref-api.html" title="Part III. Client API Reference">GObject API</a>,
-      the <a class="link" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">D-Bus API</a> or
-      the <a class="link" href="pkcheck.1.html" title="pkcheck">pkcheck</a> command to
-      communicate with the polkit Authority.
+      polkit applications are applications using the polkit authority
+      as a decider component. They do this by installing a <code class="filename">.policy</code> file into the <code class="filename">/usr/share/polkit-1/actions</code>
+      directory and communicating with the polkit authority at runtime
+      (either via the <a class="link" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">D-Bus API</a> or
+      indirectly through the <a class="link" href="ref-api.html" title="Part III. Library API Reference">libpolkit-gobject-1</a> library or the
+      <a class="link" href="pkcheck.1.html" title="pkcheck">pkcheck</a> command).
     </p>
+<div class="simplesect">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="polkit-apps-best-practices"></a>Best practices</h2></div></div></div>
+<div class="itemizedlist"><ul class="itemizedlist compact" style="list-style-type: opencircle; ">
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DO</strong></span> use polkit if you are
+            writing a privileged mechanism (that is, running as
+            <span class="emphasis"><em>root</em></span> or otherwise has special
+            permissions) that is intended to be used by unprivileged
+            programs.
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DO</strong></span> carefully consider
+            what actions to define. In many cases there isn't a 1:1
+            mapping between operations and polkit actions. Often a
+            polkit action has more to do with the object the operation
+            is acting on than the operation itself. It is important to
+            strike the right balance between too fine-grained and too
+            coarse-grained.
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DO</strong></span> try to pick actions
+            and implicit authorizations so applications using your
+            mechanism will work out-of-the box for users logged in at
+            the console. Not interrupting console users with
+            authentication dialogs should be considered a
+            priority. For example, it is not wise to require console
+            users to authenticate for such mundane tasks as adding a
+            printer queue (if the administrator really wants the OS to
+            act this way, he can always deploy suitable authorization
+            rules).
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DO</strong></span> pass polkit variables
+            along with <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CheckAuthorization" title="CheckAuthorization ()">CheckAuthorization()</a>
+            requests so it's possible to write <span class="emphasis"><em>authorization
+            rules</em></span> matching on these. Also document these
+            variables in your documentation (for example, see the
+            <a class="ulink" href="http://udisks.freedesktop.org/docs/latest/udisks-polkit-actions.html" target="_top">udisks2
+            actions and variables</a>).
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DO</strong></span> pass a customized
+            authentication message (using the
+            <code class="literal">polkit.message</code> and
+            <code class="literal">polkit.gettext_domain</code> variables) that
+            include more detailed information about the request than
+            whatever is declared in the <code class="filename">.policy</code> file's
+            <code class="literal">message</code> element. For example, it's
+            better to show <span class="quote">“<span class="quote">Authentication is needed to format
+            INTEL SSDSA2MH080G1GC (/dev/sda)</span>”</span> than just
+            <span class="quote">“<span class="quote">Authentication is needed to format the
+            device</span>”</span>.
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DO</strong></span> make sure
+            your application works even when the
+            <code class="literal">org.freedesktop.PolicyKit1</code>
+            D-Bus service is not available (this can
+            happen if
+            <a class="link" href="polkitd.8.html" title="polkitd"><span class="citerefentry"><span class="refentrytitle">polkitd</span>(8)</span></a>
+            is not installed or if the <span class="emphasis"><em>polkit.service</em></span> systemd unit/service has been
+            <a class="ulink" href="http://0pointer.de/blog/projects/three-levels-of-off.html" target="_top">masked</a>). If you are using the
+            <a class="link" href="ref-api.html" title="Part III. Library API Reference">libpolkit-gobject-1</a> library this
+            means handling
+            <a class="link" href="PolkitAuthority.html#polkit-authority-get-sync" title="polkit_authority_get_sync ()">polkit_authority_get_sync()</a>
+            or
+            <a class="link" href="PolkitAuthority.html#polkit-authority-get-finish" title="polkit_authority_get_finish ()">polkit_authority_get_finish()</a>
+            returning <code class="constant">NULL</code> or
+            <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization" title="polkit_authority_check_authorization ()">polkit_authority_check_authorization()</a> /
+            <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization-sync" title="polkit_authority_check_authorization_sync ()">polkit_authority_check_authorization_sync()</a>
+            failing with an error not in the
+            <a class="link" href="PolkitError.html#POLKIT-ERROR:CAPS" title="POLKIT_ERROR">POLKIT_ERROR</a>
+            domain.
+            An appropriate way of dealing with the polkit authority
+            not being available, could be to allow only uid 0 to
+            perform operations, forbid all operations or something
+            else.
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DON'T</strong></span> use polkit if your
+            program isn't intended to be used by unprivileged
+            programs. For example, if you are writing developer tools
+            or low-level core OS command-line tools it's fine to just
+            require the user to be root. Users can always run your
+            tool through e.g.
+            <span class="citerefentry"><span class="refentrytitle">sudo</span>(8)</span>,
+            <a class="link" href="pkexec.1.html" title="pkexec"><span class="citerefentry"><span class="refentrytitle">pkexec</span>(1)</span></a>
+            or write a simple polkit-using mechanism that allows
+            access to a (safe) subset of your tool.
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DON'T</strong></span> use polkit unless
+            you actually have to. In other words, not every single
+            privileged program providing service to unprivileged
+            programs has to use polkit. For example, if you have a
+            small well-written <a class="ulink" href="http://en.wikipedia.org/wiki/Setuid" target="_top">setuid</a>
+            helper to help deal with some implementation-detail of the
+            OS (such as elevating the priority of the sound server
+            process to real-time for console users) it's not really
+            helpful to define a polkit action for this since,
+            realistically, no-one is going to choose to
+            <span class="emphasis"><em>not</em></span> grant the privilege. Remember, a
+            secure program is often one with little amount of code and
+            few dependencies.
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DON'T</strong></span> call <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CheckAuthorization" title="CheckAuthorization ()">CheckAuthorization()</a>
+            for all your actions every time the authority emits the
+            <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-signal-org.freedesktop.PolicyKit1.Authority::Changed" title='The "Changed" signal'>Changed</a>
+            signal. Not only is this a waste of resources, the result
+            may also be inaccurate as authorization rules can return
+            whatever they want, whenever they want.
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DON'T</strong></span> block the main
+            thread in your mechanism (e.g. the one used to service IPC
+            requests from unprivileged programs) while waiting for the
+            authority to reply - calls to <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CheckAuthorization" title="CheckAuthorization ()">CheckAuthorization()</a>
+            may take a very long time (seconds, even minutes) to
+            complete as user interaction may be involved.  Instead,
+            use either the <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization" title="polkit_authority_check_authorization ()">asynchronous
+            API</a> or a dedicated thread with the <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization-sync" title="polkit_authority_check_authorization_sync ()">synchronous
+            API</a>.
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DON'T</strong></span> include any
+            authorization rules with your application as this is only
+            intended for administrators and special-purpose operating
+            systems / environments. See <a class="xref" href="polkit.8.html#polkit-rules" title="AUTHORIZATION RULES">the section called “AUTHORIZATION RULES”</a>
+            for more information.
+          </p></li>
+</ul></div>
+</div>
+<div class="simplesect">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="polkit-apps-unprivileged"></a>Usage in unprivileged programs</h2></div></div></div>
 <p>
-      Note that <span class="emphasis"><em>clients</em></span> normally doesn't use the
-      polkit API directly – it is intended for privileged
-      <span class="emphasis"><em>mechanisms</em></span>. If a client needs to disable,
-      modify or remove UI elements to e.g. convey to the user that a
-      certain action cannot be carried out (because e.g. the user is
-      not authorized) or authentication is needed (by e.g. displaying
-      a padlock icon in the UI), it is usually better to have the
-      mechanism provide an API for this.
-    </p>
+        An unprivileged program normally does not use polkit directly
+        - it simply calls into a privileged mechanism and the
+        mechanism either renders service (or refuses the request)
+        after checking with polkit (which may include presenting an
+        authentication dialog). In this setup, the unprivileged
+        program is oblivious to the fact that polkit is being used -
+        it simply just waits for the privileged mechanism to carry out
+        the request (which, if authentication dialogs are involved may
+        take many seconds). This is a good thing because not worrying
+        about implementation details like polkit, helps simplify the
+        unprivileged program.
+      </p>
 <p>
-      If a polkit application wants to handle the case where no
-      authentication agent exists (for example if the app is launched
-      via a
-      <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span>
-      login), it is trivial for the application to use the <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener">PolkitAgentTextListener</a>
-      class to spawn its own authentication agent as
-      needed. Alternatively, the <a class="xref" href="pkttyagent.1.html" title="pkttyagent"><span class="refentrytitle">pkttyagent</span>(1)</a>
-      helper can be used to do this.
-    </p>
+        Occasionally unprivileged programs need to disable, modify or
+        remove UI elements to convey to the user that a certain action
+        cannot be carried out (because e.g. the user is not
+        authorized) or authentication is needed (by e.g. displaying a
+        padlock icon in the UI). In this case, the best approach is
+        usually to have the unprivileged program get this information
+        from the privileged mechanism instead of polkit. This is
+        especially true because often there is no reliable way that
+        the unprivileged program can know what polkit action is going
+        to be used. In general, there is no guarantee that operations
+        (such as D-Bus methods) map 1:1: to polkit action - for
+        example, a disk manager service's <code class="literal">Format()</code>
+        method may check for the action
+        <code class="literal">net.company.diskmanager.format-removable</code> if
+        the disk is removable and
+        <code class="literal">net.company.diskmanager.format-fixed</code>
+        otherwise.
+      </p>
 <p>
-      As an example of code using the GObject API, see <a class="xref" href="polkit-apps.html#cancel-example" title="Example 1. Querying the Authority">Example 1, “Querying the Authority”</a>.
-      For an example using the D-Bus API, see <a class="xref" href="polkit-apps.html#polkit-raw-dbus-py" title="Example 2. Accessing the Authority via D-Bus">Example 2, “Accessing the Authority via D-Bus”</a>.
-    </p>
-<div class="example">
-<a name="cancel-example"></a><p class="title"><b>Example 1. Querying the Authority</b></p>
-<div class="example-contents">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="comment">/*</span>
-<span class="comment"> * Copyright (C) 2009 Red Hat, Inc.</span>
-<span class="comment"> *</span>
-<span class="comment"> * This library is free software; you can redistribute it and/or</span>
-<span class="comment"> * modify it under the terms of the GNU Lesser General Public</span>
-<span class="comment"> * License as published by the Free Software Foundation; either</span>
-<span class="comment"> * version 2 of the License, or (at your option) any later version.</span>
-<span class="comment"> *</span>
-<span class="comment"> * This library is distributed in the hope that it will be useful,</span>
-<span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</span>
-<span class="comment"> * Lesser General Public License for more details.</span>
-<span class="comment"> *</span>
-<span class="comment"> * You should have received a copy of the GNU Lesser General</span>
-<span class="comment"> * Public License along with this library; if not, write to the</span>
-<span class="comment"> * Free Software Foundation, Inc., 59 Temple Place, Suite 330,</span>
-<span class="comment"> * Boston, MA 02111-1307, USA.</span>
-<span class="comment"> *</span>
-<span class="comment"> * Author: David Zeuthen </span><span class="url"><a href="&lt;davidz@redhat.com&gt;">&lt;davidz@redhat.com&gt;</a></span>
-<span class="comment"> */</span>
-
-<span class="comment">/* Simple example that shows how to check for an authorization</span>
-<span class="comment"> * including cancelling the check.</span>
-<span class="comment"> *</span>
-<span class="comment"> * Cancelling an authorization check is desirable in situations where</span>
-<span class="comment"> * the object/action to check for vanishes.</span>
-<span class="comment"> *</span>
-<span class="comment"> * One concrete example of this is a disks service in which the user</span>
-<span class="comment"> * needs to authenticate to modify a disk. If the disk is removed</span>
-<span class="comment"> * while the authentication dialog is shown, the disks service should</span>
-<span class="comment"> * cancel the authorization check. A side effect of this, is that the</span>
-<span class="comment"> * authentication dialog is removed.</span>
-<span class="comment"> */</span>
-
-<span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;polkit/polkit.h&gt;</span>
-
-<span class="keyword">static</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean">gboolean</a></span>
-<span class="function">on_tensec_timeout</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">gpointer</span><span class="normal"> user_data</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GMainLoop</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">loop </span><span class="symbol">=</span><span class="normal"> user_data</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Warnings-and-Assertions.html#g-print">g_print</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Ten seconds has passed. Now exiting.</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#g-main-loop-quit">g_main_loop_quit</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">loop</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS">FALSE</a></span><span class="symbol">;</span>
-<span class="cbracket">}</span>
-
-<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
-<span class="function">check_authorization_cb</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">PolkitAuthority</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">authority</span><span class="symbol">,</span>
-<span class="normal">                        </span><span class="usertype">GAsyncResult</span><span class="normal">    </span><span class="symbol">*</span><span class="normal">res</span><span class="symbol">,</span>
-<span class="normal">                        </span><span class="usertype">gpointer</span><span class="normal">         user_data</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">GMainLoop</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">loop </span><span class="symbol">=</span><span class="normal"> user_data</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">PolkitAuthorizationResult</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">result</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GError</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">error</span><span class="symbol">;</span>
-
-<span class="normal">  error </span><span class="symbol">=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">;</span>
-<span class="normal">  result </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="PolkitAuthority.html#polkit-authority-check-authorization-finish">polkit_authority_check_authorization_finish</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authority</span><span class="symbol">,</span><span class="normal"> res</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">&amp;</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error </span><span class="symbol">!=</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Warnings-and-Assertions.html#g-print">g_print</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Error checking authorization: %s</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> error</span><span class="symbol">-&gt;</span><span class="normal">message</span><span class="symbol">);</span>
-<span class="normal">      </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#g-error-free">g_error_free</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">error</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="normal">  </span><span class="keyword">else</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">result_str</span><span class="symbol">;</span>
-<span class="normal">      </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-authorized">polkit_authorization_result_get_is_authorized</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">result</span><span class="symbol">))</span>
-<span class="normal">        </span><span class="cbracket">{</span>
-<span class="normal">          result_str </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"authorized"</span><span class="symbol">;</span>
-<span class="normal">        </span><span class="cbracket">}</span>
-<span class="normal">      </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-challenge">polkit_authorization_result_get_is_challenge</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">result</span><span class="symbol">))</span>
-<span class="normal">        </span><span class="cbracket">{</span>
-<span class="normal">          result_str </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"challenge"</span><span class="symbol">;</span>
-<span class="normal">        </span><span class="cbracket">}</span>
-<span class="normal">      </span><span class="keyword">else</span>
-<span class="normal">        </span><span class="cbracket">{</span>
-<span class="normal">          result_str </span><span class="symbol">=</span><span class="normal"> </span><span class="string">"not authorized"</span><span class="symbol">;</span>
-<span class="normal">        </span><span class="cbracket">}</span>
-
-<span class="normal">      </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Warnings-and-Assertions.html#g-print">g_print</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Authorization result: %s</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> result_str</span><span class="symbol">);</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Warnings-and-Assertions.html#g-print">g_print</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Authorization check has been cancelled and the dialog should now be hidden.</span><span class="specialchar">\n</span><span class="string">"</span>
-<span class="normal">           </span><span class="string">"This process will exit in ten seconds.</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#g-timeout-add">g_timeout_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="number">10000</span><span class="symbol">,</span><span class="normal"> on_tensec_timeout</span><span class="symbol">,</span><span class="normal"> loop</span><span class="symbol">);</span>
-<span class="cbracket">}</span>
-
-<span class="keyword">static</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean">gboolean</a></span>
-<span class="function">do_cancel</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GCancellable</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cancellable</span><span class="symbol">)</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Warnings-and-Assertions.html#g-print">g_print</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Timer has expired; cancelling authorization check</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html#g-cancellable-cancel">g_cancellable_cancel</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cancellable</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS">FALSE</a></span><span class="symbol">;</span>
-<span class="cbracket">}</span>
-
-<span class="type">int</span>
-<span class="function">main</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> argc</span><span class="symbol">,</span><span class="normal"> </span><span class="type">char</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">argv</span><span class="symbol">[])</span>
-<span class="cbracket">{</span>
-<span class="normal">  </span><span class="usertype">pid_t</span><span class="normal"> parent_pid</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">action_id</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GMainLoop</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">loop</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">PolkitSubject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">subject</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">PolkitAuthority</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">authority</span><span class="symbol">;</span>
-<span class="normal">  </span><span class="usertype">GCancellable</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">cancellable</span><span class="symbol">;</span>
-
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-Type-Information.html#g-type-init">g_type_init</a></span><span class="normal"> </span><span class="symbol">();</span>
-
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">argc </span><span class="symbol">!=</span><span class="normal"> </span><span class="number">2</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Warnings-and-Assertions.html#g-printerr">g_printerr</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"usage: %s &lt;action_id&gt;</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> argv</span><span class="symbol">[</span><span class="number">0</span><span class="symbol">]);</span>
-<span class="normal">      </span><span class="keyword">return</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="normal">  action_id </span><span class="symbol">=</span><span class="normal"> argv</span><span class="symbol">[</span><span class="number">1</span><span class="symbol">];</span>
-
-<span class="normal">  loop </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#g-main-loop-new">g_main_loop_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS">FALSE</a></span><span class="symbol">);</span>
-
-<span class="normal">  authority </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="PolkitAuthority.html#polkit-authority-get-sync">polkit_authority_get_sync</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal"><a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
-
-<span class="normal">  </span><span class="comment">/* Typically mechanisms will use a PolkitSystemBusName since most</span>
-<span class="comment">   * clients communicate with the mechanism via D-Bus. However for</span>
-<span class="comment">   * this simple example we use the process id of the calling process.</span>
-<span class="comment">   *</span>
-<span class="comment">   * Note that if the parent was reaped we have to be careful not to</span>
-<span class="comment">   * check if init(1) is authorized (it always is).</span>
-<span class="comment">   */</span>
-<span class="normal">  parent_pid </span><span class="symbol">=</span><span class="normal"> </span><span class="function">getppid</span><span class="normal"> </span><span class="symbol">();</span>
-<span class="normal">  </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent_pid </span><span class="symbol">==</span><span class="normal"> </span><span class="number">1</span><span class="symbol">)</span>
-<span class="normal">    </span><span class="cbracket">{</span>
-<span class="normal">      </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Warnings-and-Assertions.html#g-printerr">g_printerr</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Parent process was reaped by init(1)</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">);</span>
-<span class="normal">      </span><span class="keyword">return</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span>
-<span class="normal">    </span><span class="cbracket">}</span>
-<span class="normal">  subject </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="PolkitUnixProcess.html#polkit-unix-process-new">polkit_unix_process_new</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">parent_pid</span><span class="symbol">);</span>
-
-<span class="normal">  cancellable </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html#g-cancellable-new">g_cancellable_new</a></span><span class="normal"> </span><span class="symbol">();</span>
-
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-Warnings-and-Assertions.html#g-print">g_print</a></span><span class="normal"> </span><span class="symbol">(</span><span class="string">"Will cancel authorization check in 10 seconds</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">);</span>
-
-<span class="normal">  </span><span class="comment">/* Set up a 10 second timer to cancel the check */</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#g-timeout-add">g_timeout_add</a></span><span class="normal"> </span><span class="symbol">(</span><span class="number">10</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="number">1000</span><span class="symbol">,</span>
-<span class="normal">                 </span><span class="symbol">(</span><span class="normal"><a href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#GSourceFunc">GSourceFunc</a></span><span class="symbol">)</span><span class="normal"> do_cancel</span><span class="symbol">,</span>
-<span class="normal">                 cancellable</span><span class="symbol">);</span>
-
-<span class="normal">  </span><span class="function"><a href="PolkitAuthority.html#polkit-authority-check-authorization">polkit_authority_check_authorization</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authority</span><span class="symbol">,</span>
-<span class="normal">                                        subject</span><span class="symbol">,</span>
-<span class="normal">                                        action_id</span><span class="symbol">,</span>
-<span class="normal">                                        <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">,</span><span class="normal"> </span><span class="comment">/* PolkitDetails */</span>
-<span class="normal">                                        <a href="PolkitAuthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-ALLOW-USER-INTERACTION:CAPS">POLKIT_CHECK_AUTHORIZATION_FLAGS_ALLOW_USER_INTERACTION</a></span><span class="symbol">,</span>
-<span class="normal">                                        cancellable</span><span class="symbol">,</span>
-<span class="normal">                                        </span><span class="symbol">(</span><span class="normal"><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback">GAsyncReadyCallback</a></span><span class="symbol">)</span><span class="normal"> check_authorization_cb</span><span class="symbol">,</span>
-<span class="normal">                                        loop</span><span class="symbol">);</span>
-
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#g-main-loop-run">g_main_loop_run</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">loop</span><span class="symbol">);</span>
-
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">authority</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">subject</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cancellable</span><span class="symbol">);</span>
-<span class="normal">  </span><span class="function"><a href="http://library.gnome.org/devel/glib/unstable/glib-The-Main-Event-Loop.html#g-main-loop-unref">g_main_loop_unref</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">loop</span><span class="symbol">);</span>
-
-<span class="normal">  </span><span class="keyword">return</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
-<span class="cbracket">}</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
+        However, in certain cases, for example when using the
+        <span class="emphasis"><em>org.freedesktop.policykit.imply</em></span> annotation
+        (see the
+        <a class="link" href="polkit.8.html" title="polkit"><span class="citerefentry"><span class="refentrytitle">polkit</span>(8)</span></a> man page),
+        it is meaningful for an unprivileged program to query the
+        polkit authority (to e.g. update UI elements) and it is
+        in fact allowed to do so as long as the unprivileged program doesn't pass any variables along with the
+        <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CheckAuthorization" title="CheckAuthorization ()">CheckAuthorization()</a>
+        call (otherwise it would be easy to spoof authentication dialogs and bypass authorization rules).
+        In fact, since this use-case is so common,
+        <a class="link" href="ref-api.html" title="Part III. Library API Reference">libpolkit-gobject-1</a> provides the
+        <a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a> type (which is derived from
+        <a class="ulink" href="http://developer.gnome.org/gio/unstable/GPermission.html" target="_top"><span class="type">GPermission</span></a>)
+        that can be used together with
+        <a class="ulink" href="http://developer.gnome.org/gtk3/unstable/GtkLockButton.html" target="_top"><span class="type">GtkLockButton</span></a>.
+        Note that for <span class="type">GtkLockButton</span> to work well, the
+        polkit action backing it should use <code class="literal">auth_self_keep</code> or
+        <code class="literal">auth_admin_keep</code> for its implicit authorizations.
+        This is often used to implement an <a class="ulink" href="http://developer.gnome.org/hig-book/3.2/hig-book.html#windows-instant-apply" target="_top">instant
+        apply</a> paradigm whereby the user
+        <span class="emphasis"><em>unlocks</em></span> (by authenticating) e.g. a
+        preference pane window and is then free to change settings
+        until the authorization expires or is revoked.
+      </p>
 </div>
-
+<div class="simplesect">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="polkit-apps-no-auth-agent"></a>No authentication agent</h2></div></div></div>
+<p>
+        If a polkit application wants to handle the case where no
+        authentication agent exists (for example if the app is launched
+        via a
+        <span class="citerefentry"><span class="refentrytitle">ssh</span>(1)</span>
+        login), the application can use the <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener">PolkitAgentTextListener</a>
+        type to spawn its own authentication agent as
+        needed. Alternatively, the <a class="xref" href="pkttyagent.1.html" title="pkttyagent"><span class="refentrytitle">pkttyagent</span>(1)</a>
+        helper can be used to do this.
+      </p>
 </div>
-<br class="example-break"><div class="example">
-<a name="polkit-raw-dbus-py"></a><p class="title"><b>Example 2. Accessing the Authority via D-Bus</b></p>
-<div class="example-contents">
-  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td class="listing_lines" align="right"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41</pre></td>
-        <td class="listing_code"><pre class="programlisting"><span class="preproc">#</span><span class="symbol">!/</span><span class="normal">usr</span><span class="symbol">/</span><span class="normal">bin</span><span class="symbol">/</span><span class="normal">env python</span>
-
-<span class="preproc"># Copyright</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">C</span><span class="symbol">)</span><span class="normal"> </span><span class="number">2009</span><span class="normal"> </span><span class="usertype">Red</span><span class="normal"> Hat</span><span class="symbol">,</span><span class="normal"> Inc</span><span class="symbol">.</span>
-<span class="preproc">#</span>
-<span class="preproc"># This</span><span class="normal"> library is </span><span class="usertype">free</span><span class="normal"> software</span><span class="symbol">;</span><span class="normal"> you can redistribute </span><span class="usertype">it</span><span class="normal"> and</span><span class="symbol">/</span><span class="normal">or</span>
-<span class="preproc"># modify</span><span class="normal"> it under the terms of the GNU Lesser General Public</span>
-<span class="preproc"># License</span><span class="normal"> as published by the Free </span><span class="usertype">Software</span><span class="normal"> Foundation</span><span class="symbol">;</span><span class="normal"> either</span>
-<span class="preproc"># version</span><span class="normal"> </span><span class="number">2</span><span class="normal"> of </span><span class="usertype">the</span><span class="normal"> License</span><span class="symbol">,</span><span class="normal"> </span><span class="function">or</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">at </span><span class="usertype">your</span><span class="normal"> option</span><span class="symbol">)</span><span class="normal"> any </span><span class="usertype">later</span><span class="normal"> version</span><span class="symbol">.</span>
-<span class="preproc">#</span>
-<span class="preproc"># This</span><span class="normal"> library is distributed in the hope that it will </span><span class="usertype">be</span><span class="normal"> useful</span><span class="symbol">,</span>
-<span class="preproc"># but</span><span class="normal"> WITHOUT </span><span class="usertype">ANY</span><span class="normal"> WARRANTY</span><span class="symbol">;</span><span class="normal"> without even the implied warranty of</span>
-<span class="preproc"># MERCHANTABILITY</span><span class="normal"> or FITNESS FOR A </span><span class="usertype">PARTICULAR</span><span class="normal"> PURPOSE</span><span class="symbol">.</span><span class="normal">  See the GNU</span>
-<span class="preproc"># Lesser</span><span class="normal"> General Public License </span><span class="keyword">for</span><span class="normal"> </span><span class="usertype">more</span><span class="normal"> details</span><span class="symbol">.</span>
-<span class="preproc">#</span>
-<span class="preproc"># You</span><span class="normal"> should have received a copy of the GNU Lesser General</span>
-<span class="preproc"># Public</span><span class="normal"> License along with </span><span class="usertype">this</span><span class="normal"> library</span><span class="symbol">;</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> not</span><span class="symbol">,</span><span class="normal"> write to the</span>
-<span class="preproc"># Free</span><span class="normal"> </span><span class="usertype">Software</span><span class="normal"> Foundation</span><span class="symbol">,</span><span class="normal"> Inc</span><span class="symbol">.,</span><span class="normal"> </span><span class="number">59</span><span class="normal"> </span><span class="usertype">Temple</span><span class="normal"> Place</span><span class="symbol">,</span><span class="normal"> Suite </span><span class="number">330</span><span class="symbol">,</span>
-<span class="preproc"># Boston</span><span class="symbol">,</span><span class="normal"> MA </span><span class="number">02111</span><span class="symbol">-</span><span class="number">1307</span><span class="symbol">,</span><span class="normal"> USA</span><span class="symbol">.</span>
-<span class="preproc">#</span>
-<span class="preproc"># Author</span><span class="symbol">:</span><span class="normal"> </span><span class="usertype">David</span><span class="normal"> Zeuthen </span><span class="symbol">&lt;</span><span class="normal">davidz@redhat</span><span class="symbol">.</span><span class="normal">com</span><span class="symbol">&gt;</span>
-
-<span class="preproc"># Simple</span><span class="normal"> example showing how to access the Authority </span><span class="usertype">via</span><span class="normal"> D</span><span class="symbol">-</span><span class="normal">Bus calls</span>
-<span class="preproc">#</span>
-
-<span class="normal">import dbus</span>
-
-<span class="normal">bus </span><span class="symbol">=</span><span class="normal"> dbus</span><span class="symbol">.</span><span class="function">SystemBus</span><span class="symbol">()</span>
-<span class="normal">proxy </span><span class="symbol">=</span><span class="normal"> bus</span><span class="symbol">.</span><span class="function">get_object</span><span class="symbol">(</span><span class="string">'org.freedesktop.PolicyKit1'</span><span class="symbol">,</span><span class="normal"> </span><span class="string">'/org/freedesktop/PolicyKit1/Authority'</span><span class="symbol">)</span>
-<span class="normal">authority </span><span class="symbol">=</span><span class="normal"> dbus</span><span class="symbol">.</span><span class="function">Interface</span><span class="symbol">(</span><span class="normal">proxy</span><span class="symbol">,</span><span class="normal"> dbus_interface</span><span class="symbol">=</span><span class="string">'org.freedesktop.PolicyKit1.Authority'</span><span class="symbol">)</span>
-
-<span class="normal">system_bus_name </span><span class="symbol">=</span><span class="normal"> bus</span><span class="symbol">.</span><span class="function">get_unique_name</span><span class="symbol">()</span>
-
-<span class="normal">subject </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="string">'system-bus-name'</span><span class="symbol">,</span><span class="normal"> </span><span class="cbracket">{</span><span class="string">'name'</span><span class="normal"> </span><span class="symbol">:</span><span class="normal"> system_bus_name</span><span class="cbracket">}</span><span class="symbol">)</span>
-<span class="normal">action_id </span><span class="symbol">=</span><span class="normal"> </span><span class="string">'org.freedesktop.policykit.exec'</span>
-<span class="normal">details </span><span class="symbol">=</span><span class="normal"> </span><span class="cbracket">{}</span>
-<span class="normal">flags </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="normal">            # AllowUserInteraction flag</span>
-<span class="normal">cancellation_id </span><span class="symbol">=</span><span class="normal"> </span><span class="string">''</span><span class="normal"> # No cancellation id</span>
-
-<span class="normal">result </span><span class="symbol">=</span><span class="normal"> authority</span><span class="symbol">.</span><span class="function">CheckAuthorization</span><span class="symbol">(</span><span class="normal">subject</span><span class="symbol">,</span><span class="normal"> action_id</span><span class="symbol">,</span><span class="normal"> details</span><span class="symbol">,</span><span class="normal"> flags</span><span class="symbol">,</span><span class="normal"> cancellation_id</span><span class="symbol">)</span>
-
-<span class="normal">print result</span></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-</div>
-<br class="example-break">
 </div>
 <div class="footer">
 <hr>

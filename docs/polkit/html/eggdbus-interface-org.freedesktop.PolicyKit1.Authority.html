@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>org.freedesktop.PolicyKit1.Authority Interface</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="prev" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
@@ -117,8 +117,11 @@ Flags used in the <a class="link" href="eggdbus-interface-org.freedesktop.Policy
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><a name="eggdbus-constant-CheckAuthorizationFlags.None"></a><span class="term"><code class="literal">None</code></span></p></td>
@@ -159,8 +162,11 @@ An enumeration for granting implicit authorizations.
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><a name="eggdbus-constant-ImplicitAuthorization.NotAuthorized"></a><span class="term"><code class="literal">NotAuthorized</code></span></p></td>
@@ -224,8 +230,11 @@ Errors that can be returned by various method calls.
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><a name="eggdbus-constant-Error.org.freedesktop.PolicyKit1.Error.Failed"></a><span class="term"><code class="literal">org.freedesktop.PolicyKit1.Error.Failed</code></span></p></td>
@@ -280,8 +289,11 @@ Flags describing features supported by the Authority implementation.
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><a name="eggdbus-constant-AuthorityFeatures.None"></a><span class="term"><code class="literal">None</code></span></p></td>
@@ -329,8 +341,11 @@ The authority supports temporary authorizations that can be obtained through aut
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">String <em class="structfield"><code>subject_kind</code></em></code></span></p></td>
@@ -374,8 +389,11 @@ Details about the subject. Depending of the value of <em class="parameter"><code
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">String <em class="structfield"><code>identity_kind</code></em></code></span></p></td>
@@ -420,8 +438,11 @@ This struct describes actions registered with the PolicyKit daemon.
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">String <em class="structfield"><code>action_id</code></em></code></span></p></td>
@@ -507,8 +528,11 @@ Describes the result of calling <a class="link" href="eggdbus-interface-org.free
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">Boolean <em class="structfield"><code>is_authorized</code></em></code></span></p></td>
@@ -554,8 +578,11 @@ This struct describes a temporary authorization.
           </p>
 <p>
           </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">String <em class="structfield"><code>id</code></em></code></span></p></td>
@@ -606,8 +633,11 @@ EnumerateActions (IN  String                    locale,
 <p>
 Enumerates all registered PolicyKit actions.
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>locale</code></em></code>:</span></p></td>
@@ -663,8 +693,11 @@ CheckAuthorization (IN  <a class="link" href="eggdbus-interface-org.freedesktop.
       </p>
 <p>
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a> <em class="parameter"><code>subject</code></em></code>:</span></p></td>
@@ -741,8 +774,11 @@ CancelCheckAuthorization (IN  String  cancellation_id)
 <p>
 Cancels an authorization check.
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>cancellation_id</code></em></code>:</span></p></td>
 <td><p>
@@ -765,8 +801,11 @@ RegisterAuthenticationAgent (IN  <a class="link" href="eggdbus-interface-org.fre
 <p>Note that current versions of PolicyKit will only work if <em class="parameter"><code>session_id</code></em> is set to the empty string. In the future it might work for non-empty strings if the caller is sufficiently privileged.</p>
 <p>
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a> <em class="parameter"><code>subject</code></em></code>:</span></p></td>
@@ -814,8 +853,11 @@ UnregisterAuthenticationAgent (IN  <a class="link" href="eggdbus-interface-org.f
 <p>
 Unregister an authentication agent.
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a> <em class="parameter"><code>subject</code></em></code>:</span></p></td>
@@ -842,8 +884,11 @@ AuthenticationAgentResponse (IN  String    cookie,
 <p>
 Method for authentication agents to invoke on successful authentication. This method will fail unless a sufficiently privileged caller invokes it.
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>cookie</code></em></code>:</span></p></td>
@@ -870,8 +915,11 @@ EnumerateTemporaryAuthorizations (IN  <a class="link" href="eggdbus-interface-or
 <p>
 Retrieves all temporary authorizations that applies to <em class="parameter"><code>subject</code></em>.
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody>
 <tr>
 <td><p><span class="term"><code class="literal">IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a> <em class="parameter"><code>subject</code></em></code>:</span></p></td>
@@ -897,8 +945,11 @@ RevokeTemporaryAuthorizations (IN  <a class="link" href="eggdbus-interface-org.f
 <p>
 Revokes all temporary authorizations that applies to <em class="parameter"><code>subject</code></em>.
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><code class="literal">IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a> <em class="parameter"><code>subject</code></em></code>:</span></p></td>
 <td><p>
@@ -916,8 +967,11 @@ RevokeTemporaryAuthorizationById (IN  String  id)
 <p>
 Revokes all temporary authorizations that applies to <em class="parameter"><code>subject</code></em>.
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody><tr>
 <td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>id</code></em></code>:</span></p></td>
 <td><p>
@@ -937,8 +991,11 @@ Changed ()
 <p>
 This signal is emitted when actions and/or authorizations change
     </p>
-<div class="variablelist"><table border="0">
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
 <col align="left" valign="top">
+<col>
+</colgroup>
 <tbody></tbody>
 </table></div>
 </div>

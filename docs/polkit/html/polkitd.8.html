@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>polkitd</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
-<link rel="up" href="manpages.html" title="Part VI. Manual Pages">
+<link rel="up" href="manpages.html" title="Part V. Manual Pages">
 <link rel="prev" href="polkit.8.html" title="polkit">
 <link rel="next" href="pkcheck.1.html" title="pkcheck">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
@@ -24,7 +24,7 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle">polkitd</span></h2>
-<p>polkitd — PolicyKit daemon</p>
+<p>polkitd — The polkit system daemon</p>
 </td>
 <td valign="top" align="right"></td>
 </tr></table></div>
@@ -41,7 +41,19 @@
       should never need to start this daemon as it will be
       automatically started by
       <span class="citerefentry"><span class="refentrytitle">dbus-daemon</span>(1)</span>
+      or
+      <span class="citerefentry"><span class="refentrytitle">systemd</span>(1)</span>
       whenever an application calls into the service.
+    </p>
+<p>
+      <span class="command"><strong>polkitd</strong></span> must be started with superuser
+      privileges but drops privileges early by switching to the
+      unprivileged <span class="emphasis"><em>polkitd</em></span> system user.
+    </p>
+<p>
+      See the <a class="link" href="polkit.8.html" title="polkit"><span class="citerefentry"><span class="refentrytitle">polkit</span>(8)</span></a>
+      man page for more information.
+
     </p>
 </div>
 <div class="refsect1">
@@ -63,7 +75,13 @@
 <div class="refsect1">
 <a name="polkitd-see-also"></a><h2>SEE ALSO</h2>
 <p>
-      <span class="citerefentry"><span class="refentrytitle">polkit</span>(8)</span>
+      <a class="link" href="polkit.8.html" title="polkit"><span class="citerefentry"><span class="refentrytitle">polkit</span>(8)</span></a>,
+      <a class="link" href="pkaction.1.html" title="pkaction"><span class="citerefentry"><span class="refentrytitle">pkaction</span>(1)</span></a>,
+      <a class="link" href="pkcheck.1.html" title="pkcheck"><span class="citerefentry"><span class="refentrytitle">pkcheck</span>(1)</span></a>,
+      <a class="link" href="pkexec.1.html" title="pkexec"><span class="citerefentry"><span class="refentrytitle">pkexec</span>(1)</span></a>,
+      <a class="link" href="pkttyagent.1.html" title="pkttyagent"><span class="citerefentry"><span class="refentrytitle">pkttyagent</span>(1)</span></a>,
+      <span class="citerefentry"><span class="refentrytitle">dbus-daemon</span>(1)</span>,
+      <span class="citerefentry"><span class="refentrytitle">systemd</span>(1)</span>
     </p>
 </div>
 </div>

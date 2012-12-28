@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>polkit Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="next" href="overview.html" title="Part I. polkit Overview">
 <meta name="generator" content="GTK-Doc V1.18 (XML mode)">
@@ -15,7 +15,7 @@
 <div>
 <div><table class="navigation" id="top" width="100%" cellpadding="2" cellspacing="0"><tr><th valign="middle"><p class="title">polkit Reference Manual</p></th></tr></table></div>
 <div><p class="releaseinfo">
-      For version 0.105
+      For version 0.109
  — the latest version of this
       documentation can be found at <a class="ulink" href="http://www.freedesktop.org/software/polkit/docs/latest/" target="_top">http://www.freedesktop.org/software/polkit/docs/latest/</a>.
     </p></div>
@@ -28,7 +28,6 @@
 <dt><span class="chapter"><a href="polkit-intro.html">Introduction</a></span></dt>
 <dt><span class="chapter"><a href="polkit-apps.html">Writing polkit applications</a></span></dt>
 <dt><span class="chapter"><a href="polkit-agents.html">Writing polkit Authentication Agents</a></span></dt>
-<dt><span class="chapter"><a href="polkit-extending.html">Extending polkit</a></span></dt>
 </dl></dd>
 <dt><span class="part"><a href="ref-dbus-api.html">II. D-Bus API Reference</a></span></dt>
 <dd><dl>
@@ -39,7 +38,7 @@
 <span class="refentrytitle"><a href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html">org.freedesktop.PolicyKit1.AuthenticationAgent Interface</a></span><span class="refpurpose"> — Authentication Agent Interface</span>
 </dt>
 </dl></dd>
-<dt><span class="part"><a href="ref-api.html">III. Client API Reference</a></span></dt>
+<dt><span class="part"><a href="ref-api.html">III. Library API Reference</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="PolkitAuthority.html">PolkitAuthority</a></span><span class="refpurpose"> — Authority</span>
@@ -60,7 +59,7 @@
 <span class="refentrytitle"><a href="PolkitTemporaryAuthorization.html">PolkitTemporaryAuthorization</a></span><span class="refpurpose"> — Temporary Authorizations</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="PolkitPermission.html">PolkitPermission</a></span><span class="refpurpose"> — PolicyKit <a href="http://library.gnome.org/devel/gio/unstable/GPermission.html"><span class="type">GPermission</span></a> implementation</span>
+<span class="refentrytitle"><a href="PolkitPermission.html">PolkitPermission</a></span><span class="refpurpose">PolicyKit <span class="type">GPermission</span> implementation</span>
 </dt>
 <dt><span class="chapter"><a href="subjects.html">Subjects</a></span></dt>
 <dd><dl>
@@ -93,19 +92,7 @@
 </dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="part"><a href="ref-backend-api.html">IV. Backend API Reference</a></span></dt>
-<dd><dl>
-<dt>
-<span class="refentrytitle"><a href="PolkitBackendAuthority.html">PolkitBackendAuthority</a></span><span class="refpurpose"> — Abstract base class for authority backends</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="PolkitBackendInteractiveAuthority.html">PolkitBackendInteractiveAuthority</a></span><span class="refpurpose"> — Interactive Authority</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="PolkitBackendLocalAuthority.html">PolkitBackendLocalAuthority</a></span><span class="refpurpose"> — Local Authority</span>
-</dt>
-</dl></dd>
-<dt><span class="part"><a href="ref-authentication-agent-api.html">V. Authentication Agent API Reference</a></span></dt>
+<dt><span class="part"><a href="ref-authentication-agent-api.html">IV. Authentication Agent API Reference</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="PolkitAgentListener.html">PolkitAgentListener</a></span><span class="refpurpose"> — Abstract base class for Authentication Agents</span>
@@ -117,13 +104,13 @@
 <span class="refentrytitle"><a href="PolkitAgentSession.html">PolkitAgentSession</a></span><span class="refpurpose"> — Authentication Session</span>
 </dt>
 </dl></dd>
-<dt><span class="part"><a href="manpages.html">VI. Manual Pages</a></span></dt>
+<dt><span class="part"><a href="manpages.html">V. Manual Pages</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="polkit.8.html">polkit</a></span><span class="refpurpose"> — Authorization Framework</span>
+<span class="refentrytitle"><a href="polkit.8.html">polkit</a></span><span class="refpurpose"> — Authorization Manager</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="polkitd.8.html">polkitd</a></span><span class="refpurpose"> — PolicyKit daemon</span>
+<span class="refentrytitle"><a href="polkitd.8.html">polkitd</a></span><span class="refpurpose"> — The polkit system daemon</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="pkcheck.1.html">pkcheck</a></span><span class="refpurpose"> — Check whether a process is authorized</span>
@@ -133,9 +120,6 @@
 </dt>
 <dt>
 <span class="refentrytitle"><a href="pkexec.1.html">pkexec</a></span><span class="refpurpose"> — Execute a command as another user</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="pklocalauthority.8.html">pklocalauthority</a></span><span class="refpurpose"> — PolicyKit Local Authority</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="pkttyagent.1.html">pkttyagent</a></span><span class="refpurpose"> — Textual authentication helper</span>

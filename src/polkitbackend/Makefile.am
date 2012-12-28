@@ -1,5 +1,7 @@
 NULL =
 
+BUILT_SOURCES =
+
 INCLUDES =                                                      \
         -I$(top_builddir)/src                                   \
         -I$(top_srcdir)/src                                     \
@@ -16,18 +18,12 @@ INCLUDES =                                                      \
         -D_REENTRANT                                            \
         $(NULL)
 
-lib_LTLIBRARIES=libpolkit-backend-1.la
+noinst_LTLIBRARIES=libpolkit-backend-1.la
 
-libpolkit_backend_1includedir=$(includedir)/polkit-1/polkitbackend
+initjs.h : init.js
+	$(PERL) $(srcdir)/toarray.pl $(srcdir)/init.js init_js > $@
 
-libpolkit_backend_1include_HEADERS =                        		\
-	polkitbackend.h							\
-	polkitbackendtypes.h						\
-	polkitbackendauthority.h					\
-	polkitbackendinteractiveauthority.h				\
-	polkitbackendlocalauthority.h					\
-	polkitbackendactionlookup.h					\
-        $(NULL)
+BUILT_SOURCES += initjs.h
 
 libpolkit_backend_1_la_SOURCES =                                   			\
 	$(BUILT_SOURCES)								\
@@ -36,14 +32,13 @@ libpolkit_backend_1_la_SOURCES =                                   			\
 	polkitbackendprivate.h								\
 	polkitbackendauthority.h		polkitbackendauthority.c		\
 	polkitbackendinteractiveauthority.h	polkitbackendinteractiveauthority.c	\
-	polkitbackendlocalauthority.h		polkitbackendlocalauthority.c		\
+	polkitbackendjsauthority.h		polkitbackendjsauthority.c		\
 	polkitbackendactionpool.h		polkitbackendactionpool.c		\
 	polkitbackendconfigsource.h		polkitbackendconfigsource.c		\
 	polkitbackendactionlookup.h		polkitbackendactionlookup.c		\
-	polkitbackendlocalauthorizationstore.h	polkitbackendlocalauthorizationstore.c	\
         $(NULL)
 
-if HAVE_SYSTEMD
+if HAVE_LIBSYSTEMD_LOGIN
 libpolkit_backend_1_la_SOURCES += \
 	polkitbackendsessionmonitor.h		polkitbackendsessionmonitor-systemd.c
 else
@@ -55,25 +50,52 @@ libpolkit_backend_1_la_CFLAGS =                                        	\
         -D_POLKIT_COMPILATION                                  		\
         -D_POLKIT_BACKEND_COMPILATION                                  	\
         $(GLIB_CFLAGS)							\
-	$(SYSTEMD_CFLAGS)						\
+	$(LIBSYSTEMD_LOGIN_CFLAGS)					\
+	$(LIBJS_CFLAGS)							\
         $(NULL)
 
+# Note: We don't include $(LIBJS_LIBS) here since it's dlopen()'ed in polkitbackendjsauthority.c
+#
 libpolkit_backend_1_la_LIBADD =                               		\
         $(GLIB_LIBS)							\
-	$(SYSTEMD_LIBS)							\
+	$(LIBSYSTEMD_LOGIN_LIBS)					\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(EXPAT_LIBS)							\
         $(NULL)
 
-libpolkit_backend_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
+rulesdir = $(sysconfdir)/polkit-1/rules.d
+rules_DATA = 50-default.rules
+
+# ----------------------------------------------------------------------------------------------------
+
+libprivdir = $(prefix)/lib/polkit-1
+libpriv_PROGRAMS = polkitd
+
+polkitd_SOURCES = 							\
+					polkitd.c			\
+	$(NULL)
+
+polkitd_CFLAGS = 							\
+	-DPOLKIT_BACKEND_I_KNOW_API_IS_SUBJECT_TO_CHANGE		\
+	-DG_LOG_DOMAIN=\"polkitd-1\"					\
+	$(GLIB_CFLAGS)							\
+	$(NULL)
+
+polkitd_LDADD = 				        		\
+	$(GLIB_LIBS)							\
+	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
+	libpolkit-backend-1.la						\
+	$(NULL)
+
+# ----------------------------------------------------------------------------------------------------
+
 
 CLEANFILES = $(BUILT_SOURCES)
 
-localauthorityconfigdir = $(sysconfdir)/polkit-1/localauthority.conf.d
-localauthorityconfig_DATA = 50-localauthority.conf
-
 EXTRA_DIST =								\
-	$(localauthorityconfig_DATA)					\
+	init.js								\
+	toarray.pl							\
+	$(rules_DATA)							\
 	$(NULL)
 
 dist-hook :
@@ -82,11 +104,10 @@ dist-hook :
 clean-local :
 	rm -f *~ $(BUILT_SOURCES)
 
-install-exec-hook:
-	mkdir -p $(DESTDIR)$(localstatedir)/lib/polkit-1
-	mkdir -p $(DESTDIR)$(localstatedir)/lib/polkit-1/localauthority/{10-vendor.d,20-org.d,30-site.d,50-local.d,90-mandatory.d}
-	-chmod 700 $(DESTDIR)$(localstatedir)/lib/polkit-1
-	mkdir -p $(DESTDIR)$(sysconfdir)/polkit-1
-	mkdir -p $(DESTDIR)$(sysconfdir)/polkit-1/localauthority/{10-vendor.d,20-org.d,30-site.d,50-local.d,90-mandatory.d}
-	-chmod 700 $(DESTDIR)$(sysconfdir)/polkit-1/localauthority
-	mkdir -p $(DESTDIR)$(libdir)/polkit-1/extensions
+install-data-hook:
+	mkdir -p $(DESTDIR)$(sysconfdir)/polkit-1/rules.d
+	-chmod 700 $(DESTDIR)$(sysconfdir)/polkit-1/rules.d
+	-chown $(POLKITD_USER) $(DESTDIR)$(sysconfdir)/polkit-1/rules.d
+	mkdir -p $(DESTDIR)$(datadir)/polkit-1/rules.d
+	-chmod 700 $(DESTDIR)$(datadir)/polkit-1/rules.d
+	-chown $(POLKITD_USER) $(DESTDIR)$(datadir)/polkit-1/rules.d

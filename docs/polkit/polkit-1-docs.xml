@@ -23,7 +23,7 @@
   </part>
 
   <part id="ref-api">
-    <title>Client API Reference</title>
+    <title>Library API Reference</title>
     <xi:include href="xml/polkitauthority.xml"/>
     <xi:include href="xml/polkitauthorizationresult.xml"/>
     <xi:include href="xml/polkitdetails.xml"/>
@@ -47,13 +47,6 @@
     </chapter>
   </part>
 
-  <part id="ref-backend-api">
-    <title>Backend API Reference</title>
-    <xi:include href="xml/polkitbackendauthority.xml"/>
-    <xi:include href="xml/polkitbackendinteractiveauthority.xml"/>
-    <xi:include href="xml/polkitbackendlocalauthority.xml"/>
-  </part>
-
   <part id="ref-authentication-agent-api">
     <title>Authentication Agent API Reference</title>
     <xi:include href="xml/polkitagentlistener.xml"/>
@@ -68,7 +61,6 @@
     <xi:include href="../man/pkcheck.xml"/>
     <xi:include href="../man/pkaction.xml"/>
     <xi:include href="../man/pkexec.xml"/>
-    <xi:include href="../man/pklocalauthority.xml"/>
     <xi:include href="../man/pkttyagent.xml"/>
   </part>
 
