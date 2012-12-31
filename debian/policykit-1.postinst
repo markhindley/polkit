@@ -44,6 +44,11 @@ case "$1" in
 	set_perms root root 4755 /usr/lib/policykit-1/polkit-agent-helper-1
 	set_perms root root 4755 /usr/bin/pkexec
 
+	# When upgrading from an older version, reload systemd as the name
+	# of the .service file has changed.
+	if dpkg --compare-versions "$2" lt "0.109-1"; then
+	    [ -e /sys/fs/cgroup/systemd ] && systemctl daemon-reload || true
+	fi
 	# Kill the old polkitd daemon on upgrade, to ensure that the new
 	# version will be used at the next occasion.
 	kill $(get_pid org.freedesktop.PolicyKit1) 2>/dev/null || true
