@@ -7,6 +7,10 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
   * Remove polkitbackend library.
   * Use systemd service file provided by upstream.
   * Reload systemd as the name of the .service file has changed.
+  * Update policykit-1.install:
+    - Private binaries have been moved to /usr/lib/polkit-1.
+    - The extension system has been removed.
+    - The .pkla files are gone and so is /var/lib/polkit-1.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 
