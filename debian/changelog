@@ -13,6 +13,8 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
     - The .pkla files are gone and so is /var/lib/polkit-1.
   * Remove obsolete conffiles and the corresponding (empty) directories on
     upgrades.
+  * Convert the old localauthority conf files to the new JavaScript based
+    rules file format and make sure it is executed before 50-default.rules.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 

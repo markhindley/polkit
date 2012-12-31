@@ -33,7 +33,7 @@ override_dh_install:
 	# on Debian use sudo group; on Ubuntu, also allow the admin group for
 	# historical reasons
 	if dpkg-vendor --is ubuntu; then \
-	    /bin/echo -e "[Configuration]\nAdminIdentities=unix-group:sudo;unix-group:admin" > debian/policykit-1/etc/polkit-1/localauthority.conf.d/51-ubuntu-admin.conf; \
+	    sed s/@admin@/unix-group:sudo;unix-group:admin/ debian/admin.rules.in > debian/policykit-1/etc/polkit-1/rules.d/40-ubuntu-admin.rules; \
 	elif dpkg-vendor --is debian; then \
-	    /bin/echo -e "[Configuration]\nAdminIdentities=unix-group:sudo" > debian/policykit-1/etc/polkit-1/localauthority.conf.d/51-debian-sudo.conf; \
+	    sed s/@admin@/unix-group:sudo/ debian/admin.rules.in > debian/policykit-1/etc/polkit-1/rules.d/40-debian-sudo.rules; \
 	fi
