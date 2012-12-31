@@ -10,30 +10,14 @@ This reverts commit 763faf434b445c20ae9529100d3ef5290976d0c9.
  src/polkitbackend/50-localauthority.conf |    2 +-
  2 files changed, 3 insertions(+), 3 deletions(-)
 
-Index: policykit/docs/man/pklocalauthority.xml
+Index: policykit-1/src/polkitbackend/50-default.rules
 ===================================================================
---- policykit.orig/docs/man/pklocalauthority.xml	2012-01-06 10:34:01.830221577 +0100
-+++ policykit/docs/man/pklocalauthority.xml	2012-01-06 10:39:24.206237179 +0100
-@@ -385,10 +385,10 @@
-     </para>
-     <programlisting>
- [Configuration]
--AdminIdentities=unix-group:staff
-+AdminIdentities=unix-group:desktop_admin_r
-     </programlisting>
-     <para>
--      specifies that any user in the <literal>staff</literal> UNIX
-+      that any user in the <literal>desktop_admin_r</literal> UNIX
-       group can be used for authentication when administrator
-       authentication is needed. This file would typically be installed
-       in the <filename>/etc/polkit-1/localauthority.conf.d</filename>
-Index: policykit/src/polkitbackend/50-localauthority.conf
-===================================================================
---- policykit.orig/src/polkitbackend/50-localauthority.conf	2012-01-06 10:33:58.254221404 +0100
-+++ policykit/src/polkitbackend/50-localauthority.conf	2012-01-06 10:39:24.210237180 +0100
-@@ -7,4 +7,4 @@
- #
+--- policykit-1.orig/src/polkitbackend/50-default.rules	2012-12-28 19:35:53.716603422 +0100
++++ policykit-1/src/polkitbackend/50-default.rules	2012-12-28 19:50:50.979271903 +0100
+@@ -8,5 +8,5 @@
+ // about configuring polkit.
  
- [Configuration]
--AdminIdentities=unix-group:wheel
-+AdminIdentities=unix-user:0
+ polkit.addAdminRule(function(action, subject) {
+-    return ["unix-group:wheel"];
++    return ["unix-user:0"];
+ });
