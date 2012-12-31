@@ -68,6 +68,13 @@ esac
 
 #DEBHELPER#
 
+# Clean up old directories after dpkg-maintscript-helper has removed the
+# conffiles.
+if dpkg --compare-versions "$2" lt "0.109-1"; then
+    rmdir --ignore-fail-on-non-empty /etc/polkit-1/nullbackend.conf.d/
+    rmdir --ignore-fail-on-non-empty /etc/polkit-1/localauthority.conf.d/
+fi
+
 exit 0
 
 

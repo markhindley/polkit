@@ -11,6 +11,8 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
     - Private binaries have been moved to /usr/lib/polkit-1.
     - The extension system has been removed.
     - The .pkla files are gone and so is /var/lib/polkit-1.
+  * Remove obsolete conffiles and the corresponding (empty) directories on
+    upgrades.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 
