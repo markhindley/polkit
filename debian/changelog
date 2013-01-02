@@ -15,6 +15,7 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
     upgrades.
   * Convert the old localauthority conf files to the new JavaScript based
     rules file format and make sure it is executed before 50-default.rules.
+  * Refresh patches to apply without fuzz.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 

@@ -9,10 +9,10 @@ Bug-Ubuntu: https://launchpad.net/bugs/619632
  src/polkitbackend/polkitbackendactionpool.c |   48 +++++++++++++++++++++++++++
  1 files changed, 48 insertions(+), 0 deletions(-)
 
-Index: policykit/src/polkitbackend/polkitbackendactionpool.c
+Index: policykit-1/src/polkitbackend/polkitbackendactionpool.c
 ===================================================================
---- policykit.orig/src/polkitbackend/polkitbackendactionpool.c	2011-04-20 12:02:27.366174916 +0200
-+++ policykit/src/polkitbackend/polkitbackendactionpool.c	2011-08-08 14:14:31.713738052 +0200
+--- policykit-1.orig/src/polkitbackend/polkitbackendactionpool.c	2013-01-02 21:55:04.927771005 +0100
++++ policykit-1/src/polkitbackend/polkitbackendactionpool.c	2013-01-02 21:55:04.923770962 +0100
 @@ -24,6 +24,8 @@
  #include <pwd.h>
  #include <string.h>
@@ -174,7 +174,7 @@ Index: policykit/src/polkitbackend/polkitbackendactionpool.c
             const gchar *lang)
  {
    const gchar *result;
-   gchar lang2[256];
+   gchar **langs;
    guint n;
 +  
 +  if (domain != NULL)
