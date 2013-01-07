@@ -1,4 +1,4 @@
-policykit-1 (0.109-1) UNRELEASED; urgency=low
+policykit-1 (0.109-1) experimental; urgency=low
 
   * New upstream release. (Closes: #689473)
   * Update Build-Depends:
@@ -32,7 +32,7 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
   * Use dh-autoreconf to update the build system.
   * Update the Homepage: field.
 
- -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
+ -- Michael Biebl <biebl@debian.org>  Mon, 07 Jan 2013 23:59:52 +0100
 
 policykit-1 (0.105-3) unstable; urgency=low
 
