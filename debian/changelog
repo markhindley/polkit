@@ -27,6 +27,8 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
   * debian/patches/09_link_libmozjs.patch: Explicitly link against libmozjs,
     even if that library is dlopenend as we want to have a proper shlibs
     dependency.
+  * Use --no-as-needed flag to ensure the linker doesn't remove the libmozjs
+    dependency.
   * Use dh-autoreconf to update the build system.
   * Update the Homepage: field.
 
