@@ -19,6 +19,8 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
   * The polkitd daemon now runs as unprivileged polkitd user instead of root.
     Create this system user in postinst and change the directory permissions
     accordingly so the daemon has access to the rules files.
+  * debian/patches/08_chdir_root.patch: Explicitly use chdir("/") instead of
+    relying on $HOME being set properly.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 
