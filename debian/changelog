@@ -28,6 +28,7 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
     even if that library is dlopenend as we want to have a proper shlibs
     dependency.
   * Use dh-autoreconf to update the build system.
+  * Update the Homepage: field.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 
