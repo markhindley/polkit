@@ -21,6 +21,9 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
     accordingly so the daemon has access to the rules files.
   * debian/patches/08_chdir_root.patch: Explicitly use chdir("/") instead of
     relying on $HOME being set properly.
+  * Since /etc/polkit-1/rules.d/50-default.rules is a proper conffile, remove
+    the comment from upstream that changes to that file are not preserved on
+    upgrades. (Closes: #580634)
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 
