@@ -39,9 +39,10 @@ get_pid() {
 
 case "$1" in
     configure)
-	set_perms root root 700 /var/lib/polkit-1
-	set_perms root root 700 /etc/polkit-1/localauthority
-	set_perms root root 4755 /usr/lib/policykit-1/polkit-agent-helper-1
+	adduser --system --quiet --no-create-home polkitd
+	set_perms polkitd root 700 /usr/share/polkit-1/rules.d
+	set_perms polkitd root 700 /etc/polkit-1/rules.d
+	set_perms root root 4755 /usr/lib/polkit-1/polkit-agent-helper-1
 	set_perms root root 4755 /usr/bin/pkexec
 
 	# When upgrading from an older version, reload systemd as the name

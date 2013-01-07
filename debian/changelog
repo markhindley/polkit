@@ -16,6 +16,9 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
   * Convert the old localauthority conf files to the new JavaScript based
     rules file format and make sure it is executed before 50-default.rules.
   * Refresh patches to apply without fuzz.
+  * The polkitd daemon now runs as unprivileged polkitd user instead of root.
+    Create this system user in postinst and change the directory permissions
+    accordingly so the daemon has access to the rules files.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 
