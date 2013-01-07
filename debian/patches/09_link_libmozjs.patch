@@ -1,0 +1,12 @@
+diff --git a/src/polkitbackend/Makefile.am b/src/polkitbackend/Makefile.am
+index aa57a97..a7edca6 100644
+--- a/src/polkitbackend/Makefile.am
++++ b/src/polkitbackend/Makefile.am
+@@ -61,6 +61,7 @@ libpolkit_backend_1_la_LIBADD =                               		\
+ 	$(LIBSYSTEMD_LOGIN_LIBS)					\
+ 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
+ 	$(EXPAT_LIBS)							\
++	$(LIBJS_LIBS)							\
+         $(NULL)
+ 
+ rulesdir = $(sysconfdir)/polkit-1/rules.d

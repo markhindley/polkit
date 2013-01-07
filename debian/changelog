@@ -24,6 +24,9 @@ policykit-1 (0.109-1) UNRELEASED; urgency=low
   * Since /etc/polkit-1/rules.d/50-default.rules is a proper conffile, remove
     the comment from upstream that changes to that file are not preserved on
     upgrades. (Closes: #580634)
+  * debian/patches/09_link_libmozjs.patch: Explicitly link against libmozjs,
+    even if that library is dlopenend as we want to have a proper shlibs
+    dependency.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 28 Dec 2012 19:39:27 +0100
 
