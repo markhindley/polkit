@@ -1,4 +1,42 @@
 --------------
+polkit 0.110
+--------------
+
+WARNING WARNING WARNING: This is a prerelease on the road to polkit
+1.0. Public API might change and certain parts of the code still needs
+some security review. Use at your own risk.
+
+This is polkit 0.110.
+
+Build requirements
+
+ glib, gobject, gio    >= 2.30
+ mozjs185
+ gobject-introspection >= 0.6.2 (optional)
+ pam (optional)
+ ConsoleKit OR systemd
+
+Changes since polkit 0.109:
+
+David Zeuthen (5):
+      Post-release version bump to 0.110
+      Set XAUTHORITY environment variable if is unset
+      Use mutex and condition variables properly
+      Remove AM_PROG_CC_STDC
+      Update NEWS for release
+
+Emilio Pozuelo Monfort (1):
+      Fix build on GNU Hurd
+
+Michael Biebl (1):
+      build: Remove generated introspection files on "make clean"
+
+Thanks to our contributors.
+
+David Zeuthen,
+Jan 9, 2013
+
+--------------
 polkit 0.109
 --------------
 
