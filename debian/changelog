@@ -1,6 +1,7 @@
 policykit-1 (0.110-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Drop patches which have been merged upstream.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 09 Jan 2013 21:35:29 +0100
 
