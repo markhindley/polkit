@@ -466,6 +466,7 @@ polkit_agent_helper_1_LDADD = \
 @HAVE_INTROSPECTION_TRUE@PolkitAgent_1_0_gir_FILES = $(libpolkit_agent_1_la_SOURCES)
 @HAVE_INTROSPECTION_TRUE@PolkitAgent_1_0_gir_EXPORT_PACKAGES = polkit-agent-1
 EXTRA_DIST = polkitagentmarshal.list polkitagentenumtypes.h.template polkitagentenumtypes.c.template
+CLEANFILES = $(gir_DATA) $(typelibs_DATA)
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -899,6 +900,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)

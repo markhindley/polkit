@@ -53,7 +53,7 @@
 #include <polkitagent/polkitagent.h>
 
 static gchar *original_user_name = NULL;
-static gchar original_cwd[PATH_MAX];
+static gchar *original_cwd;
 static gchar *command_line = NULL;
 static struct passwd *pw;
 
@@ -476,7 +476,7 @@ main (int argc, char *argv[])
       goto out;
     }
 
-  if (getcwd (original_cwd, sizeof (original_cwd)) == NULL)
+  if ((original_cwd = g_get_current_dir ()) == NULL)
     {
       g_printerr ("Error getting cwd: %s\n",
                   g_strerror (errno));
@@ -606,6 +606,28 @@ main (int argc, char *argv[])
 
       g_ptr_array_add (saved_env, g_strdup (key));
       g_ptr_array_add (saved_env, g_strdup (value));
+    }
+
+  /* $XAUTHORITY is "special" - if unset, we need to set it to ~/.Xauthority. Yes,
+   * this is broken but it's unfortunately how things work (see fdo #51623 for
+   * details)
+   */
+  if (g_getenv ("XAUTHORITY") == NULL)
+    {
+      const gchar *home;
+
+      /* pre-2.36 GLib does not examine $HOME (it always looks in /etc/passwd) and
+       * this is not what we want
+       */
+      home = g_getenv ("HOME");
+      if (home == NULL)
+        home = g_get_home_dir ();
+
+      if (home != NULL)
+        {
+          g_ptr_array_add (saved_env, g_strdup ("XAUTHORITY"));
+          g_ptr_array_add (saved_env, g_build_filename (home, ".Xauthority", NULL));
+        }
     }
 
   /* Nuke the environment to get a well-known and sanitized environment to avoid attacks
@@ -948,6 +970,7 @@ main (int argc, char *argv[])
       g_ptr_array_free (saved_env, TRUE);
     }
 
+  g_free (original_cwd);
   g_free (path);
   g_free (command_line);
   g_free (opt_user);
