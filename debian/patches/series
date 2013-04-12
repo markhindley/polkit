@@ -1,3 +1,4 @@
+00git_pkexec_pam_env.patch
 01_pam_polkit.patch
 02_gettext.patch
 03_complete_session.patch
