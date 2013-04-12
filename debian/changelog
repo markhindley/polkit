@@ -2,8 +2,11 @@ policykit-1 (0.110-3) UNRELEASED; urgency=low
 
   * Add 00git_pkexec_pam_env.patch: pkexec: Set process environment from
     pam_getenvlist(). Backported from upstream git head.
+  * 01_pam_polkit.patch: Adjust patch to invoke pam_env, so
+    our global settings from /etc/default/locale are applied correctly.
+    Thanks Steve Langasek!
 
- -- Martin Pitt <martin.pitt@ubuntu.com>  Fri, 12 Apr 2013 05:35:27 +0200
+ -- Martin Pitt <mpitt@debian.org>  Fri, 12 Apr 2013 05:35:27 +0200
 
 policykit-1 (0.110-2) experimental; urgency=low
 
