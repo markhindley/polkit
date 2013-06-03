@@ -72,6 +72,7 @@
 <ANCHOR id="polkit-authority-get-async" href="polkit-1/PolkitAuthority.html#polkit-authority-get-async">
 <ANCHOR id="polkit-authority-get-finish" href="polkit-1/PolkitAuthority.html#polkit-authority-get-finish">
 <ANCHOR id="polkit-authority-get-sync" href="polkit-1/PolkitAuthority.html#polkit-authority-get-sync">
+<ANCHOR id="polkit-authority-get" href="polkit-1/PolkitAuthority.html#polkit-authority-get">
 <ANCHOR id="polkit-authority-get-owner" href="polkit-1/PolkitAuthority.html#polkit-authority-get-owner">
 <ANCHOR id="polkit-authority-get-backend-name" href="polkit-1/PolkitAuthority.html#polkit-authority-get-backend-name">
 <ANCHOR id="polkit-authority-get-backend-version" href="polkit-1/PolkitAuthority.html#polkit-authority-get-backend-version">
@@ -171,6 +172,9 @@
 <ANCHOR id="polkit-action-description-get-implicit-inactive" href="polkit-1/PolkitActionDescription.html#polkit-action-description-get-implicit-inactive">
 <ANCHOR id="polkit-action-description-get-implicit-active" href="polkit-1/PolkitActionDescription.html#polkit-action-description-get-implicit-active">
 <ANCHOR id="polkit-action-description-get-annotation" href="polkit-1/PolkitActionDescription.html#polkit-action-description-get-annotation">
+<ANCHOR id="polkit-action-description-get-annotation-keys" href="polkit-1/PolkitActionDescription.html#polkit-action-description-get-annotation-keys">
+<ANCHOR id="polkit-implicit-authorization-to-string" href="polkit-1/PolkitActionDescription.html#polkit-implicit-authorization-to-string">
+<ANCHOR id="polkit-implicit-authorization-from-string" href="polkit-1/PolkitActionDescription.html#polkit-implicit-authorization-from-string">
 <ANCHOR id="PolkitTemporaryAuthorization" href="polkit-1/PolkitTemporaryAuthorization.html">
 <ANCHOR id="PolkitTemporaryAuthorization.synopsis" href="polkit-1/PolkitTemporaryAuthorization.html#PolkitTemporaryAuthorization.synopsis">
 <ANCHOR id="PolkitTemporaryAuthorization.object-hierarchy" href="polkit-1/PolkitTemporaryAuthorization.html#PolkitTemporaryAuthorization.object-hierarchy">
@@ -232,6 +236,7 @@
 <ANCHOR id="polkit-unix-process-get-start-time" href="polkit-1/PolkitUnixProcess.html#polkit-unix-process-get-start-time">
 <ANCHOR id="polkit-unix-process-set-uid" href="polkit-1/PolkitUnixProcess.html#polkit-unix-process-set-uid">
 <ANCHOR id="polkit-unix-process-get-uid" href="polkit-1/PolkitUnixProcess.html#polkit-unix-process-get-uid">
+<ANCHOR id="polkit-unix-process-get-owner" href="polkit-1/PolkitUnixProcess.html#polkit-unix-process-get-owner">
 <ANCHOR id="PolkitUnixProcess.property-details" href="polkit-1/PolkitUnixProcess.html#PolkitUnixProcess.property-details">
 <ANCHOR id="PolkitUnixProcess--pid" href="polkit-1/PolkitUnixProcess.html#PolkitUnixProcess--pid">
 <ANCHOR id="PolkitUnixProcess--start-time" href="polkit-1/PolkitUnixProcess.html#PolkitUnixProcess--start-time">
@@ -338,6 +343,7 @@
 <ANCHOR id="polkit-agent-listener-register" href="polkit-1/PolkitAgentListener.html#polkit-agent-listener-register">
 <ANCHOR id="polkit-agent-listener-register-with-options" href="polkit-1/PolkitAgentListener.html#polkit-agent-listener-register-with-options">
 <ANCHOR id="polkit-agent-listener-unregister" href="polkit-1/PolkitAgentListener.html#polkit-agent-listener-unregister">
+<ANCHOR id="polkit-agent-register-listener" href="polkit-1/PolkitAgentListener.html#polkit-agent-register-listener">
 <ANCHOR id="PolkitAgentTextListener" href="polkit-1/PolkitAgentTextListener.html">
 <ANCHOR id="PolkitAgentTextListener.stability-level" href="polkit-1/PolkitAgentTextListener.html#PolkitAgentTextListener.stability-level">
 <ANCHOR id="PolkitAgentTextListener.synopsis" href="polkit-1/PolkitAgentTextListener.html#PolkitAgentTextListener.synopsis">
@@ -418,3 +424,7 @@
 <ANCHOR id="pkttyagent-author" href="polkit-1/pkttyagent.1.html#pkttyagent-author">
 <ANCHOR id="pkttyagent-bugs" href="polkit-1/pkttyagent.1.html#pkttyagent-bugs">
 <ANCHOR id="pkttyagent-see-also" href="polkit-1/pkttyagent.1.html#pkttyagent-see-also">
+<ANCHOR id="annotation-glossterm-allow-none" href="polkit-1/annotation-glossary.html#annotation-glossterm-allow-none">
+<ANCHOR id="annotation-glossterm-element-type" href="polkit-1/annotation-glossary.html#annotation-glossterm-element-type">
+<ANCHOR id="annotation-glossterm-transfer full" href="polkit-1/annotation-glossary.html#annotation-glossterm-transfer full">
+<ANCHOR id="annotation-glossterm-transfer none" href="polkit-1/annotation-glossary.html#annotation-glossterm-transfer none">

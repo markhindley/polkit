@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>polkit</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="manpages.html" title="Part V. Manual Pages">
 <link rel="prev" href="manpages.html" title="Part V. Manual Pages">
@@ -284,7 +284,9 @@
 <td><p><span class="term"><code class="literal">auth_self</code></span></p></td>
 <td><p>Authentication by the owner of the
               session that the client originates from is
-              required.</p></td>
+              required.  Note that this is not restrictive enough for most
+	      uses on multi-user systems; <code class="literal">auth_admin</code>* is
+	      generally recommended.</p></td>
 </tr>
 <tr>
 <td><p><span class="term"><code class="literal">auth_admin</code></span></p></td>
@@ -295,7 +297,9 @@
 <td><p><span class="term"><code class="literal">auth_self_keep</code></span></p></td>
 <td><p>Like <code class="literal">auth_self</code> but
               the authorization is kept for a brief
-              period (e.g. five minutes).</p></td>
+              period (e.g. five minutes).  The warning about
+	      <code class="literal">auth_self</code> above applies
+	      likewise.</p></td>
 </tr>
 <tr>
 <td><p><span class="term"><code class="literal">auth_admin_keep</code></span></p></td>
@@ -350,7 +354,7 @@
       command.
     </p>
 <div class="refsect2">
-<a name="idp13181504"></a><h3>Known annotations</h3>
+<a name="idm272417335360"></a><h3>Known annotations</h3>
 <p>
         The <code class="literal">org.freedesktop.policykit.exec.path</code>
         annotation is used by the <span class="command"><strong>pkexec</strong></span> program
@@ -794,7 +798,7 @@ polkit.addRule(function(action, subject) {
 polkit.addRule(function(action, subject) {
     if (action.id == "org.freedesktop.policykit.exec" &amp;&amp;
         action.lookup("program") == "/usr/bin/cat") {
-        return polkit.Result.AUTH_SELF;
+        return polkit.Result.AUTH_ADMIN;
     }
 });
 </pre>

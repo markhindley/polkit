@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitUnixSession</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="subjects.html" title="Subjects">
 <link rel="prev" href="PolkitUnixProcess.html" title="PolkitUnixProcess">
@@ -44,27 +44,27 @@
 <div class="refsynopsisdiv">
 <a name="PolkitUnixSession.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="PolkitUnixSession.html#PolkitUnixSession-struct" title="PolkitUnixSession">PolkitUnixSession</a>;
-<a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new" title="polkit_unix_session_new ()">polkit_unix_session_new</a>             (<em class="parameter"><code>const <span class="type">gchar</span> *session_id</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-process" title="polkit_unix_session_new_for_process ()">polkit_unix_session_new_for_process</a> (<em class="parameter"><code><span class="type">gint</span> pid</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
+<a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new" title="polkit_unix_session_new ()">polkit_unix_session_new</a>             (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *session_id</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-process" title="polkit_unix_session_new_for_process ()">polkit_unix_session_new_for_process</a> (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
 <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-process-finish" title="polkit_unix_session_new_for_process_finish ()">polkit_unix_session_new_for_process_finish</a>
-                                                        (<em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-process-sync" title="polkit_unix_session_new_for_process_sync ()">polkit_unix_session_new_for_process_sync</a>
-                                                        (<em class="parameter"><code><span class="type">gint</span> pid</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-const <span class="returnvalue">gchar</span> *       <a class="link" href="PolkitUnixSession.html#polkit-unix-session-get-session-id" title="polkit_unix_session_get_session_id ()">polkit_unix_session_get_session_id</a>  (<em class="parameter"><code><a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> *session</code></em>);
+                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitUnixSession.html#polkit-unix-session-get-session-id" title="polkit_unix_session_get_session_id ()">polkit_unix_session_get_session_id</a>  (<em class="parameter"><code><a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> *session</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitUnixSession.html#polkit-unix-session-set-session-id" title="polkit_unix_session_set_session_id ()">polkit_unix_session_set_session_id</a>  (<em class="parameter"><code><a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> *session</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *session_id</code></em>);
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *session_id</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="PolkitUnixSession.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitUnixSession
 </pre>
 </div>
@@ -72,13 +72,13 @@ const <span class="returnvalue">gchar</span> *       <a class="link" href="Polki
 <a name="PolkitUnixSession.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 PolkitUnixSession implements
- <a class="link" href="PolkitSubject.html" title="PolkitSubject">PolkitSubject</a>,  GInitable and  GAsyncInitable.</p>
+ <a class="link" href="PolkitSubject.html" title="PolkitSubject">PolkitSubject</a>,  <a href="http://library.gnome.org/devel/gio/unstable/GInitable.html">GInitable</a> and  <a href="http://library.gnome.org/devel/gio/unstable/GAsyncInitable.html">GAsyncInitable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="PolkitUnixSession.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="PolkitUnixSession.html#PolkitUnixSession--pid" title='The "pid" property'>pid</a>"                      <span class="type">gint</span>                  : Write / Construct Only
-  "<a class="link" href="PolkitUnixSession.html#PolkitUnixSession--session-id" title='The "session-id" property'>session-id</a>"               <span class="type">gchar</span>*                : Read / Write / Construct
+  "<a class="link" href="PolkitUnixSession.html#PolkitUnixSession--pid" title='The "pid" property'>pid</a>"                      <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Write / Construct Only
+  "<a class="link" href="PolkitUnixSession.html#PolkitUnixSession--session-id" title='The "session-id" property'>session-id</a>"               <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct
 </pre>
 </div>
 <div class="refsect1">
@@ -102,7 +102,7 @@ The <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><spa
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-session-new"></a><h3>polkit_unix_session_new ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_session_new             (<em class="parameter"><code>const <span class="type">gchar</span> *session_id</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_session_new             (<em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *session_id</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> for <em class="parameter"><code>session_id</code></em>.
 </p>
@@ -118,7 +118,7 @@ Creates a new <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSes
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a>. Free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a>. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -127,10 +127,10 @@ Creates a new <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSes
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-session-new-for-process"></a><h3>polkit_unix_session_new_for_process ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                polkit_unix_session_new_for_process (<em class="parameter"><code><span class="type">gint</span> pid</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                polkit_unix_session_new_for_process (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously creates a new <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> object for the
 process with process id <em class="parameter"><code>pid</code></em>.
@@ -159,12 +159,12 @@ use <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-pro
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -177,8 +177,8 @@ use <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-pro
 <div class="refsect2">
 <a name="polkit-unix-session-new-for-process-finish"></a><h3>polkit_unix_session_new_for_process_finish ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_session_new_for_process_finish
-                                                        (<em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes constructing a <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> for a process id.
 </p>
@@ -190,18 +190,18 @@ Finishes constructing a <a class="link" href="PolkitSubject.html" title="PolkitS
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the <span class="type">GAsyncReadyCallback</span> passed to <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-process" title="polkit_unix_session_new_for_process ()"><code class="function">polkit_unix_session_new_for_process()</code></a>.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> passed to <a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-process" title="polkit_unix_session_new_for_process ()"><code class="function">polkit_unix_session_new_for_process()</code></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>A <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> for the <em class="parameter"><code>pid</code></em> passed to
-<a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-process" title="polkit_unix_session_new_for_process ()"><code class="function">polkit_unix_session_new_for_process()</code></a> or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is
-set. Free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>][<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<a class="link" href="PolkitUnixSession.html#polkit-unix-session-new-for-process" title="polkit_unix_session_new_for_process ()"><code class="function">polkit_unix_session_new_for_process()</code></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is
+set. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -211,9 +211,9 @@ set. Free with <code class="function">g_object_unref()</code>. <span class="anno
 <div class="refsect2">
 <a name="polkit-unix-session-new-for-process-sync"></a><h3>polkit_unix_session_new_for_process_sync ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_session_new_for_process_sync
-                                                        (<em class="parameter"><code><span class="type">gint</span> pid</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> for the process with process id <em class="parameter"><code>pid</code></em>.
 </p>
@@ -234,18 +234,18 @@ reply is received. For the asynchronous version, see
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>A <a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> for
-<em class="parameter"><code>pid</code></em> or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set. Free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>][<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<em class="parameter"><code>pid</code></em> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -254,7 +254,7 @@ reply is received. For the asynchronous version, see
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-session-get-session-id"></a><h3>polkit_unix_session_get_session_id ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *       polkit_unix_session_get_session_id  (<em class="parameter"><code><a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> *session</code></em>);</pre>
+<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_unix_session_get_session_id  (<em class="parameter"><code><a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> *session</code></em>);</pre>
 <p>
 Gets the session id for <em class="parameter"><code>session</code></em>.
 </p>
@@ -280,7 +280,7 @@ is owned by <em class="parameter"><code>session</code></em>.</td>
 <div class="refsect2">
 <a name="polkit-unix-session-set-session-id"></a><h3>polkit_unix_session_set_session_id ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_unix_session_set_session_id  (<em class="parameter"><code><a class="link" href="PolkitUnixSession.html" title="PolkitUnixSession"><span class="type">PolkitUnixSession</span></a> *session</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *session_id</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *session_id</code></em>);</pre>
 <p>
 Sets the session id for <em class="parameter"><code>session</code></em> to <em class="parameter"><code>session_id</code></em>.
 </p>
@@ -306,7 +306,7 @@ Sets the session id for <em class="parameter"><code>session</code></em> to <em c
 <a name="PolkitUnixSession.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="PolkitUnixSession--pid"></a><h3>The <code class="literal">"pid"</code> property</h3>
-<pre class="programlisting">  "pid"                      <span class="type">gint</span>                  : Write / Construct Only</pre>
+<pre class="programlisting">  "pid"                      <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Write / Construct Only</pre>
 <p>
 The UNIX process id to look up the session.
 </p>
@@ -316,7 +316,7 @@ The UNIX process id to look up the session.
 <hr>
 <div class="refsect2">
 <a name="PolkitUnixSession--session-id"></a><h3>The <code class="literal">"session-id"</code> property</h3>
-<pre class="programlisting">  "session-id"               <span class="type">gchar</span>*                : Read / Write / Construct</pre>
+<pre class="programlisting">  "session-id"               <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct</pre>
 <p>
 The UNIX session id.
 </p>

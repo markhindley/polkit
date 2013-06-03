@@ -137,8 +137,8 @@ polkit_agent_helper_1_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
 polkit_agent_helper_1_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(polkit_agent_helper_1_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+	$(polkit_agent_helper_1_CFLAGS) $(CFLAGS) \
+	$(polkit_agent_helper_1_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -311,6 +311,8 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SUID_CFLAGS = @SUID_CFLAGS@
+SUID_LDFLAGS = @SUID_LDFLAGS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
@@ -436,6 +438,7 @@ polkit_agent_helper_1_SOURCES = polkitagenthelperprivate.c \
 	$(am__append_2)
 polkit_agent_helper_1_CFLAGS = \
         -D_POLKIT_COMPILATION                                  		\
+	$(SUID_CFLAGS)							\
 	$(GLIB_CFLAGS)							\
 	$(NULL)
 
@@ -443,6 +446,11 @@ polkit_agent_helper_1_LDADD = \
 	$(AUTH_LIBS)							\
 	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
+	$(NULL)
+
+polkit_agent_helper_1_LDFLAGS = \
+	$(SUID_LDFLAGS)							\
+	$(AM_LDFLAGS)							\
 	$(NULL)
 
 @HAVE_INTROSPECTION_TRUE@girdir = $(INTROSPECTION_GIRDIR)

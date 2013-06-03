@@ -1,9 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT(polkit, 0.110 http://lists.freedesktop.org/mailman/listinfo/polkit-devel)
-AM_INIT_AUTOMAKE(polkit, 0.110)
-AM_CONFIG_HEADER(config.h)
+AC_INIT([polkit], [0.111], [http://lists.freedesktop.org/mailman/listinfo/polkit-devel], , [http://www.freedesktop.org/wiki/Software/polkit])
+AM_INIT_AUTOMAKE([])
+AC_CONFIG_HEADERS(config.h)
 AM_MAINTAINER_MODE
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -124,8 +124,23 @@ fi
 PKG_CHECK_MODULES(GLIB, [gmodule-2.0 gio-2.0 >= 2.30.0])
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
+AC_DEFINE([GLIB_VERSION_MIN_REQUIRED], [GLIB_VERSION_2_30],
+	[Avoid warning spew about g_type_init() being deprecated])
+AC_DEFINE([GLIB_VERSION_MAX_ALLOWED], [G_ENCODE_VERSION(2,34)],
+        [Notify us when we'll need to transition away from g_type_init()])
 
-PKG_CHECK_MODULES(LIBJS, [mozjs185])
+AC_ARG_WITH(mozjs, AS_HELP_STRING([--with-mozjs=@<:@mozjs185/mozjs-17.0|auto@:>@],
+		                  [Specify version of Spidermonkey to use]),,
+            with_mozjs=auto)
+AS_IF([test x${with_mozjs} != xauto], [
+  PKG_CHECK_MODULES(LIBJS, ${with_mozjs})
+], [
+  PKG_CHECK_MODULES(LIBJS, [mozjs185], have_mozjs185=yes, have_mozjs185=no)
+  AS_IF([test x${have_mozjs185} = xno], [
+  PKG_CHECK_MODULES(LIBJS, [mozjs-17.0], have_mozjs17=yes,
+   [AC_MSG_ERROR([Could not find mozjs185 or mozjs-17.0; see http://ftp.mozilla.org/pub/mozilla.org/js/])])
+  ])
+])
 AC_SUBST(LIBJS_CFLAGS)
 AC_SUBST(LIBJS_LIBS)
 
@@ -174,6 +189,26 @@ if test "$enable_libsystemd_login" != "no"; then
     fi
   fi
 fi
+
+AS_IF([test "x$cross_compiling" != "xyes" ], [
+  AS_IF([test "$have_libsystemd_login" = "yes"], [
+    AS_IF([test ! -d /sys/fs/cgroup/systemd/ ], [
+      AS_IF([test "$enable_libsystemd_login" = "yes"], [
+        AC_MSG_WARN([libsystemd-login requested but system does not appear to be using systemd])
+      ], [
+        AC_MSG_ERROR([libsystemd-login autoconfigured, but system does not appear to use systemd])
+      ])
+    ])
+  ], [
+    AS_IF([test -d /sys/fs/cgroup/systemd/ ], [
+      AS_IF([test "$enable_libsystemd_login" = "no" ], [
+        AC_MSG_WARN([ConsoleKit requested but system appears to use systemd])
+      ], [
+        AC_MSG_ERROR([ConsoleKit autoconfigured, but systemd is in use (missing libsystemd-login pkg-config?)])
+      ])
+    ])
+  ])
+])
 
 AC_SUBST(LIBSYSTEMD_LOGIN_CFLAGS)
 AC_SUBST(LIBSYSTEMD_LOGIN_LIBS)
@@ -458,6 +493,11 @@ GETTEXT_PACKAGE=polkit-1
 AC_SUBST([GETTEXT_PACKAGE])
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
+
+AC_ARG_VAR([SUID_CFLAGS],
+           [CFLAGS used for binaries which are usually with the suid bit])
+AC_ARG_VAR([SUID_LDFLAGS],
+           [LDFLAGS used for binaries which are usually with the suid bit])
 
 AC_OUTPUT([
 Makefile

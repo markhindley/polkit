@@ -95,7 +95,7 @@ pkexec_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
 pkexec_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(pkexec_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+	$(pkexec_LDFLAGS) $(LDFLAGS) -o $@
 am_pkttyagent_OBJECTS = pkttyagent-pkttyagent.$(OBJEXT)
 pkttyagent_OBJECTS = $(am_pkttyagent_OBJECTS)
 pkttyagent_DEPENDENCIES = $(am__DEPENDENCIES_1) \
@@ -275,6 +275,8 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SUID_CFLAGS = @SUID_CFLAGS@
+SUID_LDFLAGS = @SUID_LDFLAGS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
@@ -354,6 +356,7 @@ INCLUDES = \
 # ----------------------------------------------------------------------------------------------------
 pkexec_SOURCES = pkexec.c
 pkexec_CFLAGS = \
+	$(SUID_CFLAGS)							\
 	$(GLIB_CFLAGS)							\
 	$(AUTH_LIBS)							\
 	$(NULL)
@@ -362,6 +365,11 @@ pkexec_LDADD = \
 	$(GLIB_LIBS)							\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(top_builddir)/src/polkitagent/libpolkit-agent-1.la		\
+	$(NULL)
+
+pkexec_LDFLAGS = \
+	$(SUID_LDFLAGS)							\
+	$(AM_LDFLAGS)							\
 	$(NULL)
 
 

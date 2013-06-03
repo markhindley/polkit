@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitAgentTextListener</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-authentication-agent-api.html" title="Part IV. Authentication Agent API Reference">
 <link rel="prev" href="PolkitAgentListener.html" title="PolkitAgentListener">
@@ -46,14 +46,14 @@ Unstable, unless otherwise indicated
 <div class="refsynopsisdiv">
 <a name="PolkitAgentTextListener.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="PolkitAgentTextListener.html#PolkitAgentTextListener-struct" title="PolkitAgentTextListener">PolkitAgentTextListener</a>;
-<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> * <a class="link" href="PolkitAgentTextListener.html#polkit-agent-text-listener-new" title="polkit_agent_text_listener_new ()">polkit_agent_text_listener_new</a>    (<em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> * <a class="link" href="PolkitAgentTextListener.html#polkit-agent-text-listener-new" title="polkit_agent_text_listener_new ()">polkit_agent_text_listener_new</a>    (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a>
          +----PolkitAgentTextListener
 </pre>
@@ -62,7 +62,7 @@ Unstable, unless otherwise indicated
 <a name="PolkitAgentTextListener.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 PolkitAgentTextListener implements
- GInitable.</p>
+ <a href="http://library.gnome.org/devel/gio/unstable/GInitable.html">GInitable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.description"></a><h2>Description</h2>
@@ -83,8 +83,8 @@ The <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextLi
 <hr>
 <div class="refsect2">
 <a name="polkit-agent-text-listener-new"></a><h3>polkit_agent_text_listener_new ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> * polkit_agent_text_listener_new    (<em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> * polkit_agent_text_listener_new    (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> for authenticating the user
 via an textual interface on the controlling terminal
@@ -99,15 +99,15 @@ current process has no controlling terminal.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>.</td>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set. Free with <code class="function">g_object_unref()</code> when done with it.</td>
+<td>A <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a> when done with it.</td>
 </tr>
 </tbody>
 </table></div>
