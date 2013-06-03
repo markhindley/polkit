@@ -75,7 +75,8 @@ am__DEPENDENCIES_1 =
 libpolkit_backend_1_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 am__libpolkit_backend_1_la_SOURCES_DIST = initjs.h polkitbackend.h \
 	polkitbackendtypes.h polkitbackendprivate.h \
 	polkitbackendauthority.h polkitbackendauthority.c \
@@ -314,6 +315,8 @@ SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
+SUID_CFLAGS = @SUID_CFLAGS@
+SUID_LDFLAGS = @SUID_LDFLAGS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
@@ -411,14 +414,12 @@ libpolkit_backend_1_la_CFLAGS = \
 	$(LIBJS_CFLAGS)							\
         $(NULL)
 
-
-# Note: We don't include $(LIBJS_LIBS) here since it's dlopen()'ed in polkitbackendjsauthority.c
-#
 libpolkit_backend_1_la_LIBADD = \
         $(GLIB_LIBS)							\
 	$(LIBSYSTEMD_LOGIN_LIBS)					\
 	$(top_builddir)/src/polkit/libpolkit-gobject-1.la		\
 	$(EXPAT_LIBS)							\
+	$(LIBJS_LIBS)							\
         $(NULL)
 
 rulesdir = $(sysconfdir)/polkit-1/rules.d

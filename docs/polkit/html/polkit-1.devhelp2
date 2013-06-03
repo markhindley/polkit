@@ -46,6 +46,7 @@
       <sub name="pkttyagent" link="pkttyagent.1.html"/>
     </sub>
     <sub name="Object Hierarchy" link="polkit-hierarchy.html"/>
+    <sub name="Annotation Glossary" link="annotation-glossary.html"/>
     <sub name="Index" link="polit-index.html"/>
     <sub name="License" link="license.html"/>
   </chapters>
@@ -81,6 +82,7 @@
     <keyword type="function" name="polkit_authority_get_async ()" link="PolkitAuthority.html#polkit-authority-get-async"/>
     <keyword type="function" name="polkit_authority_get_finish ()" link="PolkitAuthority.html#polkit-authority-get-finish"/>
     <keyword type="function" name="polkit_authority_get_sync ()" link="PolkitAuthority.html#polkit-authority-get-sync"/>
+    <keyword type="function" name="polkit_authority_get ()" link="PolkitAuthority.html#polkit-authority-get"/>
     <keyword type="function" name="polkit_authority_get_owner ()" link="PolkitAuthority.html#polkit-authority-get-owner"/>
     <keyword type="function" name="polkit_authority_get_backend_name ()" link="PolkitAuthority.html#polkit-authority-get-backend-name"/>
     <keyword type="function" name="polkit_authority_get_backend_version ()" link="PolkitAuthority.html#polkit-authority-get-backend-version"/>
@@ -144,6 +146,9 @@
     <keyword type="function" name="polkit_action_description_get_implicit_inactive ()" link="PolkitActionDescription.html#polkit-action-description-get-implicit-inactive"/>
     <keyword type="function" name="polkit_action_description_get_implicit_active ()" link="PolkitActionDescription.html#polkit-action-description-get-implicit-active"/>
     <keyword type="function" name="polkit_action_description_get_annotation ()" link="PolkitActionDescription.html#polkit-action-description-get-annotation"/>
+    <keyword type="function" name="polkit_action_description_get_annotation_keys ()" link="PolkitActionDescription.html#polkit-action-description-get-annotation-keys"/>
+    <keyword type="function" name="polkit_implicit_authorization_to_string ()" link="PolkitActionDescription.html#polkit-implicit-authorization-to-string"/>
+    <keyword type="function" name="polkit_implicit_authorization_from_string ()" link="PolkitActionDescription.html#polkit-implicit-authorization-from-string"/>
     <keyword type="struct" name="PolkitTemporaryAuthorization" link="PolkitTemporaryAuthorization.html#PolkitTemporaryAuthorization-struct"/>
     <keyword type="function" name="polkit_temporary_authorization_get_id ()" link="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-id"/>
     <keyword type="function" name="polkit_temporary_authorization_get_action_id ()" link="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-action-id"/>
@@ -177,6 +182,7 @@
     <keyword type="function" name="polkit_unix_process_get_start_time ()" link="PolkitUnixProcess.html#polkit-unix-process-get-start-time"/>
     <keyword type="function" name="polkit_unix_process_set_uid ()" link="PolkitUnixProcess.html#polkit-unix-process-set-uid"/>
     <keyword type="function" name="polkit_unix_process_get_uid ()" link="PolkitUnixProcess.html#polkit-unix-process-get-uid"/>
+    <keyword type="function" name="polkit_unix_process_get_owner ()" link="PolkitUnixProcess.html#polkit-unix-process-get-owner"/>
     <keyword type="property" name="The &quot;pid&quot; property" link="PolkitUnixProcess.html#PolkitUnixProcess--pid"/>
     <keyword type="property" name="The &quot;start-time&quot; property" link="PolkitUnixProcess.html#PolkitUnixProcess--start-time"/>
     <keyword type="property" name="The &quot;uid&quot; property" link="PolkitUnixProcess.html#PolkitUnixProcess--uid"/>
@@ -227,6 +233,7 @@
     <keyword type="function" name="polkit_agent_listener_register ()" link="PolkitAgentListener.html#polkit-agent-listener-register"/>
     <keyword type="function" name="polkit_agent_listener_register_with_options ()" link="PolkitAgentListener.html#polkit-agent-listener-register-with-options"/>
     <keyword type="function" name="polkit_agent_listener_unregister ()" link="PolkitAgentListener.html#polkit-agent-listener-unregister"/>
+    <keyword type="function" name="polkit_agent_register_listener ()" link="PolkitAgentListener.html#polkit-agent-register-listener"/>
     <keyword type="struct" name="PolkitAgentTextListener" link="PolkitAgentTextListener.html#PolkitAgentTextListener-struct"/>
     <keyword type="function" name="polkit_agent_text_listener_new ()" link="PolkitAgentTextListener.html#polkit-agent-text-listener-new"/>
     <keyword type="struct" name="PolkitAgentSession" link="PolkitAgentSession.html#PolkitAgentSession-struct"/>
@@ -240,7 +247,7 @@
     <keyword type="signal" name="The &quot;request&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-request"/>
     <keyword type="signal" name="The &quot;show-error&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-error"/>
     <keyword type="signal" name="The &quot;show-info&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-info"/>
-    <keyword type="" name="Known annotations" link="polkit.8.html#idp13181504"/>
+    <keyword type="" name="Known annotations" link="polkit.8.html#idm272417335360"/>
     <keyword type="" name="The Polkit type" link="polkit.8.html#polkit-rules-polkit"/>
     <keyword type="" name="The Action type" link="polkit.8.html#polkit-rules-actions"/>
     <keyword type="" name="The Subject type" link="polkit.8.html#polkit-rules-subject"/>

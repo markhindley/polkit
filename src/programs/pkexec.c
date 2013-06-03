@@ -77,7 +77,11 @@ usage (int argc, char *argv[])
               "       --disable-internal-agent |\n"
               "       [--user username] PROGRAM [ARGUMENTS...]\n"
               "\n"
-              "See the pkexec manual page for more details.\n");
+              "See the pkexec manual page for more details.\n"
+	      "\n"
+	      "Report bugs to: %s\n"
+	      "%s home page: <%s>\n", PACKAGE_BUGREPORT, PACKAGE_NAME,
+	      PACKAGE_URL);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -145,6 +149,7 @@ open_session (const gchar *user_to_auth)
   gboolean ret;
   gint rc;
   pam_handle_t *pam_h;
+  char **envlist;
   struct pam_conv conversation;
 
   ret = FALSE;
@@ -175,6 +180,15 @@ open_session (const gchar *user_to_auth)
     }
 
   ret = TRUE;
+
+  envlist = pam_getenvlist (pam_h);
+  if (envlist != NULL)
+    {
+      guint n;
+      for (n = 0; envlist[n]; n++)
+        putenv (envlist[n]);
+      free (envlist);
+    }
 
 out:
   if (pam_h != NULL)

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Writing polkit applications</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="overview.html" title="Part I. polkit Overview">
 <link rel="prev" href="polkit-intro.html" title="Introduction">
@@ -61,6 +61,21 @@
             printer queue (if the administrator really wants the OS to
             act this way, he can always deploy suitable authorization
             rules).
+          </p></li>
+<li class="listitem" style="list-style-type: circle"><p>
+            <span class="bold"><strong>DO</strong></span> consider the impact of the
+            chosen implicit authorizations on multi-user systems.  Generally,
+            ordinary users should be able to neither modify important system's
+            behavior for other users, nor view other users' private data.  If
+            your application needs an authorization framework at all, it is
+            fairly likely that the default configuration should deny
+            authorization in at least some cases.  Default to using
+            <code class="literal">auth_admin</code>* instead of
+            <code class="literal">auth_self</code>*.  (On single-user desktops, the
+            single user is typically configured as a polkit administrator, so
+            the two variants behave equally.  On multi-user systems,
+            non-administrator users will be restricted by the default
+            configuration.)
           </p></li>
 <li class="listitem" style="list-style-type: circle"><p>
             <span class="bold"><strong>DO</strong></span> pass polkit variables
@@ -216,8 +231,10 @@
         that can be used together with
         <a class="ulink" href="http://developer.gnome.org/gtk3/unstable/GtkLockButton.html" target="_top"><span class="type">GtkLockButton</span></a>.
         Note that for <span class="type">GtkLockButton</span> to work well, the
-        polkit action backing it should use <code class="literal">auth_self_keep</code> or
-        <code class="literal">auth_admin_keep</code> for its implicit authorizations.
+        polkit action backing it should use <code class="literal">auth_admin_keep</code>
+	for its implicit authorizations (or more rarely
+	<code class="literal">auth_self_keep</code> for services which don't affect other
+	users).
         This is often used to implement an <a class="ulink" href="http://developer.gnome.org/hig-book/3.2/hig-book.html#windows-instant-apply" target="_top">instant
         apply</a> paradigm whereby the user
         <span class="emphasis"><em>unlocks</em></span> (by authenticating) e.g. a

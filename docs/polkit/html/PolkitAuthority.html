@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitAuthority</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-api.html" title="Part III. Library API Reference">
 <link rel="prev" href="ref-api.html" title="Part III. Library API Reference">
@@ -52,177 +52,178 @@ Stable, unless otherwise indicated
 <a name="PolkitAuthorityFeatures"></a><a name="PolkitCheckAuthorizationFlags"></a><pre class="synopsis">                    <a class="link" href="PolkitAuthority.html#PolkitAuthority-struct" title="PolkitAuthority">PolkitAuthority</a>;
 enum                <a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures-enum" title="enum PolkitAuthorityFeatures">PolkitAuthorityFeatures</a>;
 enum                <a class="link" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags-enum" title="enum PolkitCheckAuthorizationFlags">PolkitCheckAuthorizationFlags</a>;
-<span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-get-async" title="polkit_authority_get_async ()">polkit_authority_get_async</a>          (<em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   <a class="link" href="PolkitAuthority.html#polkit-authority-get-finish" title="polkit_authority_get_finish ()">polkit_authority_get_finish</a>         (<em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   <a class="link" href="PolkitAuthority.html#polkit-authority-get-sync" title="polkit_authority_get_sync ()">polkit_authority_get_sync</a>           (<em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gchar</span> *             <a class="link" href="PolkitAuthority.html#polkit-authority-get-owner" title="polkit_authority_get_owner ()">polkit_authority_get_owner</a>          (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
-const <span class="returnvalue">gchar</span> *       <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-name" title="polkit_authority_get_backend_name ()">polkit_authority_get_backend_name</a>   (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
-const <span class="returnvalue">gchar</span> *       <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-version" title="polkit_authority_get_backend_version ()">polkit_authority_get_backend_version</a>
+<span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-get-async" title="polkit_authority_get_async ()">polkit_authority_get_async</a>          (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   <a class="link" href="PolkitAuthority.html#polkit-authority-get-finish" title="polkit_authority_get_finish ()">polkit_authority_get_finish</a>         (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   <a class="link" href="PolkitAuthority.html#polkit-authority-get-sync" title="polkit_authority_get_sync ()">polkit_authority_get_sync</a>           (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   <a class="link" href="PolkitAuthority.html#polkit-authority-get" title="polkit_authority_get ()">polkit_authority_get</a>                (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="PolkitAuthority.html#polkit-authority-get-owner" title="polkit_authority_get_owner ()">polkit_authority_get_owner</a>          (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
+const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-name" title="polkit_authority_get_backend_name ()">polkit_authority_get_backend_name</a>   (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
+const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-version" title="polkit_authority_get_backend_version ()">polkit_authority_get_backend_version</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
 <a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="returnvalue">PolkitAuthorityFeatures</span></a> <a class="link" href="PolkitAuthority.html#polkit-authority-get-backend-features" title="polkit_authority_get_backend_features ()">polkit_authority_get_backend_features</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization" title="polkit_authority_check_authorization ()">polkit_authority_check_authorization</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *action_id</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags"><span class="type">PolkitCheckAuthorizationFlags</span></a> flags</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
 <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization-finish" title="polkit_authority_check_authorization_finish ()">polkit_authority_check_authorization_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization-sync" title="polkit_authority_check_authorization_sync ()">polkit_authority_check_authorization_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *action_id</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags"><span class="type">PolkitCheckAuthorizationFlags</span></a> flags</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-actions" title="polkit_authority_enumerate_actions ()">polkit_authority_enumerate_actions</a>  (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<span class="returnvalue">GList</span> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-actions-finish" title="polkit_authority_enumerate_actions_finish ()">polkit_authority_enumerate_actions_finish</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-actions-finish" title="polkit_authority_enumerate_actions_finish ()">polkit_authority_enumerate_actions_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">GList</span> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-actions-sync" title="polkit_authority_enumerate_actions_sync ()">polkit_authority_enumerate_actions_sync</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-actions-sync" title="polkit_authority_enumerate_actions_sync ()">polkit_authority_enumerate_actions_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent" title="polkit_authority_register_authentication_agent ()">polkit_authority_register_authentication_agent</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-finish" title="polkit_authority_register_authentication_agent_finish ()">polkit_authority_register_authentication_agent_finish</a>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-finish" title="polkit_authority_register_authentication_agent_finish ()">polkit_authority_register_authentication_agent_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-sync" title="polkit_authority_register_authentication_agent_sync ()">polkit_authority_register_authentication_agent_sync</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-sync" title="polkit_authority_register_authentication_agent_sync ()">polkit_authority_register_authentication_agent_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options" title="polkit_authority_register_authentication_agent_with_options ()">polkit_authority_register_authentication_agent_with_options</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GVariant</span> *options</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options-finish" title="polkit_authority_register_authentication_agent_with_options_finish ()">polkit_authority_register_authentication_agent_with_options_finish</a>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *options</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options-finish" title="polkit_authority_register_authentication_agent_with_options_finish ()">polkit_authority_register_authentication_agent_with_options_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options-sync" title="polkit_authority_register_authentication_agent_with_options_sync ()">polkit_authority_register_authentication_agent_with_options_sync</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-register-authentication-agent-with-options-sync" title="polkit_authority_register_authentication_agent_with_options_sync ()">polkit_authority_register_authentication_agent_with_options_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GVariant</span> *options</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *options</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-unregister-authentication-agent" title="polkit_authority_unregister_authentication_agent ()">polkit_authority_unregister_authentication_agent</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-unregister-authentication-agent-finish" title="polkit_authority_unregister_authentication_agent_finish ()">polkit_authority_unregister_authentication_agent_finish</a>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-unregister-authentication-agent-finish" title="polkit_authority_unregister_authentication_agent_finish ()">polkit_authority_unregister_authentication_agent_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-unregister-authentication-agent-sync" title="polkit_authority_unregister_authentication_agent_sync ()">polkit_authority_unregister_authentication_agent_sync</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-unregister-authentication-agent-sync" title="polkit_authority_unregister_authentication_agent_sync ()">polkit_authority_unregister_authentication_agent_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-authentication-agent-response" title="polkit_authority_authentication_agent_response ()">polkit_authority_authentication_agent_response</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *cookie</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *cookie</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitIdentity.html" title="PolkitIdentity"><span class="type">PolkitIdentity</span></a> *identity</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-authentication-agent-response-finish" title="polkit_authority_authentication_agent_response_finish ()">polkit_authority_authentication_agent_response_finish</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-authentication-agent-response-finish" title="polkit_authority_authentication_agent_response_finish ()">polkit_authority_authentication_agent_response_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-authentication-agent-response-sync" title="polkit_authority_authentication_agent_response_sync ()">polkit_authority_authentication_agent_response_sync</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-authentication-agent-response-sync" title="polkit_authority_authentication_agent_response_sync ()">polkit_authority_authentication_agent_response_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *cookie</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *cookie</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitIdentity.html" title="PolkitIdentity"><span class="type">PolkitIdentity</span></a> *identity</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-temporary-authorizations" title="polkit_authority_enumerate_temporary_authorizations ()">polkit_authority_enumerate_temporary_authorizations</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<span class="returnvalue">GList</span> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-temporary-authorizations-finish" title="polkit_authority_enumerate_temporary_authorizations_finish ()">polkit_authority_enumerate_temporary_authorizations_finish</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-temporary-authorizations-finish" title="polkit_authority_enumerate_temporary_authorizations_finish ()">polkit_authority_enumerate_temporary_authorizations_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">GList</span> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-temporary-authorizations-sync" title="polkit_authority_enumerate_temporary_authorizations_sync ()">polkit_authority_enumerate_temporary_authorizations_sync</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="PolkitAuthority.html#polkit-authority-enumerate-temporary-authorizations-sync" title="polkit_authority_enumerate_temporary_authorizations_sync ()">polkit_authority_enumerate_temporary_authorizations_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorizations" title="polkit_authority_revoke_temporary_authorizations ()">polkit_authority_revoke_temporary_authorizations</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorizations-finish" title="polkit_authority_revoke_temporary_authorizations_finish ()">polkit_authority_revoke_temporary_authorizations_finish</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorizations-finish" title="polkit_authority_revoke_temporary_authorizations_finish ()">polkit_authority_revoke_temporary_authorizations_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorizations-sync" title="polkit_authority_revoke_temporary_authorizations_sync ()">polkit_authority_revoke_temporary_authorizations_sync</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorizations-sync" title="polkit_authority_revoke_temporary_authorizations_sync ()">polkit_authority_revoke_temporary_authorizations_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorization-by-id" title="polkit_authority_revoke_temporary_authorization_by_id ()">polkit_authority_revoke_temporary_authorization_by_id</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorization-by-id-finish" title="polkit_authority_revoke_temporary_authorization_by_id_finish ()">polkit_authority_revoke_temporary_authorization_by_id_finish</a>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorization-by-id-finish" title="polkit_authority_revoke_temporary_authorization_by_id_finish ()">polkit_authority_revoke_temporary_authorization_by_id_finish</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
-<span class="returnvalue">gboolean</span>            <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorization-by-id-sync" title="polkit_authority_revoke_temporary_authorization_by_id_sync ()">polkit_authority_revoke_temporary_authorization_by_id_sync</a>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="PolkitAuthority.html#polkit-authority-revoke-temporary-authorization-by-id-sync" title="polkit_authority_revoke_temporary_authorization_by_id_sync ()">polkit_authority_revoke_temporary_authorization_by_id_sync</a>
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="PolkitAuthority.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitAuthority
 </pre>
 <pre class="synopsis">
@@ -238,21 +239,21 @@ const <span class="returnvalue">gchar</span> *       <a class="link" href="Polki
 <a name="PolkitAuthority.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 PolkitAuthority implements
- GInitable and  GAsyncInitable.</p>
+ <a href="http://library.gnome.org/devel/gio/unstable/GInitable.html">GInitable</a> and  <a href="http://library.gnome.org/devel/gio/unstable/GAsyncInitable.html">GAsyncInitable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="PolkitAuthority.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
   "<a class="link" href="PolkitAuthority.html#PolkitAuthority--backend-features" title='The "backend-features" property'>backend-features</a>"         <a class="link" href="PolkitAuthority.html#PolkitAuthorityFeatures"><span class="type">PolkitAuthorityFeatures</span></a>  : Read
-  "<a class="link" href="PolkitAuthority.html#PolkitAuthority--backend-name" title='The "backend-name" property'>backend-name</a>"             <span class="type">gchar</span>*                : Read
-  "<a class="link" href="PolkitAuthority.html#PolkitAuthority--backend-version" title='The "backend-version" property'>backend-version</a>"          <span class="type">gchar</span>*                : Read
-  "<a class="link" href="PolkitAuthority.html#PolkitAuthority--owner" title='The "owner" property'>owner</a>"                    <span class="type">gchar</span>*                : Read
+  "<a class="link" href="PolkitAuthority.html#PolkitAuthority--backend-name" title='The "backend-name" property'>backend-name</a>"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="PolkitAuthority.html#PolkitAuthority--backend-version" title='The "backend-version" property'>backend-version</a>"          <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
+  "<a class="link" href="PolkitAuthority.html#PolkitAuthority--owner" title='The "owner" property'>owner</a>"                    <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read
 </pre>
 </div>
 <div class="refsect1">
 <a name="PolkitAuthority.signals"></a><h2>Signals</h2>
 <pre class="synopsis">
-  "<a class="link" href="PolkitAuthority.html#PolkitAuthority-changed" title='The "changed" signal'>changed</a>"                                        : <code class="literal">Run Last</code>
+  "<a class="link" href="PolkitAuthority.html#PolkitAuthority-changed" title='The "changed" signal'>changed</a>"                                        : <a href="http://library.gnome.org/devel/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
 </pre>
 </div>
 <div class="refsect1">
@@ -346,9 +347,9 @@ means that the method used for checking authorization is likely to block for a l
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-get-async"></a><h3>polkit_authority_get_async ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_get_async          (<em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_get_async          (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously gets a reference to the authority.
 </p>
@@ -367,12 +368,12 @@ can use <a class="link" href="PolkitAuthority.html#polkit-authority-get-finish" 
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -384,8 +385,8 @@ can use <a class="link" href="PolkitAuthority.html#polkit-authority-get-finish" 
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-get-finish"></a><h3>polkit_authority_get_finish ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   polkit_authority_get_finish         (<em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   polkit_authority_get_finish         (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes an operation started with <a class="link" href="PolkitAuthority.html#polkit-authority-get-async" title="polkit_authority_get_async ()"><code class="function">polkit_authority_get_async()</code></a>.
 </p>
@@ -397,17 +398,17 @@ Finishes an operation started with <a class="link" href="PolkitAuthority.html#po
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the <span class="type">GAsyncReadyCallback</span> passed to <a class="link" href="PolkitAuthority.html#polkit-authority-get-async" title="polkit_authority_get_async ()"><code class="function">polkit_authority_get_async()</code></a>.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> passed to <a class="link" href="PolkitAuthority.html#polkit-authority-get-async" title="polkit_authority_get_async ()"><code class="function">polkit_authority_get_async()</code></a>.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>A <a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a>. Free it with
-<code class="function">g_object_unref()</code> when done with it. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a> when done with it. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -416,8 +417,8 @@ Finishes an operation started with <a class="link" href="PolkitAuthority.html#po
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-get-sync"></a><h3>polkit_authority_get_sync ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   polkit_authority_get_sync           (<em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   polkit_authority_get_sync           (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Synchronously gets a reference to the authority.
 </p>
@@ -434,18 +435,18 @@ for the asynchronous version.
 <tbody>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>A <a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a>. Free it with
-<code class="function">g_object_unref()</code> when done with it. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a> when done with it. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -453,12 +454,31 @@ for the asynchronous version.
 </div>
 <hr>
 <div class="refsect2">
+<a name="polkit-authority-get"></a><h3>polkit_authority_get ()</h3>
+<pre class="programlisting"><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="returnvalue">PolkitAuthority</span></a> *   polkit_authority_get                (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+(deprecated)
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>value. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
 <a name="polkit-authority-get-owner"></a><h3>polkit_authority_get_owner ()</h3>
-<pre class="programlisting"><span class="returnvalue">gchar</span> *             polkit_authority_get_owner          (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             polkit_authority_get_owner          (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);</pre>
 <p>
 The unique name on the system message bus of the owner of the name
-<code class="literal">org.freedesktop.PolicyKit1</code> or <code class="literal">NULL</code> if no-one
-currently owns the name. You may connect to the <span class="type">"notify"</span>
+<code class="literal">org.freedesktop.PolicyKit1</code> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if no-one
+currently owns the name. You may connect to the <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">"notify"</span></a>
 signal to track changes to the <a class="link" href="PolkitAuthority.html#PolkitAuthority--owner" title='The "owner" property'><span class="type">"owner"</span></a> property.
 </p>
 <div class="variablelist"><table border="0" class="variablelist">
@@ -474,7 +494,7 @@ signal to track changes to the <a class="link" href="PolkitAuthority.html#Polkit
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">NULL</code> or a string that should be freed with <code class="function">g_free()</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> or a string that should be freed with <a href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -483,7 +503,7 @@ signal to track changes to the <a class="link" href="PolkitAuthority.html#Polkit
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-get-backend-name"></a><h3>polkit_authority_get_backend_name ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *       polkit_authority_get_backend_name   (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);</pre>
+<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_authority_get_backend_name   (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);</pre>
 <p>
 Gets the name of the authority backend.
 </p>
@@ -507,7 +527,7 @@ Gets the name of the authority backend.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-get-backend-version"></a><h3>polkit_authority_get_backend_version ()</h3>
-<pre class="programlisting">const <span class="returnvalue">gchar</span> *       polkit_authority_get_backend_version
+<pre class="programlisting">const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       polkit_authority_get_backend_version
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>);</pre>
 <p>
 Gets the version of the authority backend.
@@ -560,12 +580,12 @@ Gets the features supported by the authority backend.
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_check_authorization
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *action_id</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags"><span class="type">PolkitCheckAuthorizationFlags</span></a> flags</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously checks if <em class="parameter"><code>subject</code></em> is authorized to perform the action represented
 by <em class="parameter"><code>action_id</code></em>.
@@ -616,7 +636,7 @@ sufficiently authorized (e.g. running as uid 0).
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
-<td>Details about the action or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Details about the action or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
@@ -625,12 +645,12 @@ sufficiently authorized (e.g. running as uid 0).
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -644,8 +664,8 @@ sufficiently authorized (e.g. running as uid 0).
 <a name="polkit-authority-check-authorization-finish"></a><h3>polkit_authority_check_authorization_finish ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * polkit_authority_check_authorization_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes checking if a subject is authorized for an action.
 </p>
@@ -661,17 +681,17 @@ Finishes checking if a subject is authorized for an action.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> or <code class="literal">NULL</code> if
-<em class="parameter"><code>error</code></em> is set. Free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if
+<em class="parameter"><code>error</code></em> is set. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -683,11 +703,11 @@ Finishes checking if a subject is authorized for an action.
 <pre class="programlisting"><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> * polkit_authority_check_authorization_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *action_id</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitAuthority.html#PolkitCheckAuthorizationFlags"><span class="type">PolkitCheckAuthorizationFlags</span></a> flags</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Checks if <em class="parameter"><code>subject</code></em> is authorized to perform the action represented
 by <em class="parameter"><code>action_id</code></em>.
@@ -734,7 +754,7 @@ the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
-<td>Details about the action or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Details about the action or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
@@ -743,17 +763,17 @@ the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set. Free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -763,9 +783,9 @@ the <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority
 <div class="refsect2">
 <a name="polkit-authority-enumerate-actions"></a><h3>polkit_authority_enumerate_actions ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_enumerate_actions  (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously retrieves all registered actions.
 </p>
@@ -788,12 +808,12 @@ to get the result of the operation.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -805,10 +825,10 @@ to get the result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-enumerate-actions-finish"></a><h3>polkit_authority_enumerate_actions_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">GList</span> *             polkit_authority_enumerate_actions_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_authority_enumerate_actions_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes retrieving all registered actions.
 </p>
@@ -824,19 +844,19 @@ Finishes retrieving all registered actions.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A list of <a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a>
-objects or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set. The returned list should be
-freed with <code class="function">g_list_free()</code> after each element have been freed with
-<code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A list of
+<a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> objects or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. The returned
+list should be freed with <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a> after each element have been freed
+with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> Polkit.ActionDescription][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -845,10 +865,10 @@ freed with <code class="function">g_list_free()</code> after each element have b
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-enumerate-actions-sync"></a><h3>polkit_authority_enumerate_actions_sync ()</h3>
-<pre class="programlisting"><span class="returnvalue">GList</span> *             polkit_authority_enumerate_actions_sync
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_authority_enumerate_actions_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Synchronously retrieves all registered actions - the calling thread
 is blocked until a reply is received. See
@@ -866,20 +886,20 @@ is blocked until a reply is received. See
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A list of <a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> or
-<code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set. The returned list should be freed with
-<code class="function">g_list_free()</code> after each element have been freed with
-<code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A list of
+<a class="link" href="PolkitActionDescription.html" title="PolkitActionDescription"><span class="type">PolkitActionDescription</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. The returned list should
+be freed with <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a> after each element have been freed with
+<a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> Polkit.ActionDescription][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -891,11 +911,11 @@ is blocked until a reply is received. See
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_register_authentication_agent
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously registers an authentication agent.
 </p>
@@ -931,12 +951,12 @@ result of the operation.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -948,10 +968,10 @@ result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-register-authentication-agent-finish"></a><h3>polkit_authority_register_authentication_agent_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_register_authentication_agent_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_register_authentication_agent_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes registering an authentication agent.
 </p>
@@ -967,17 +987,17 @@ Finishes registering an authentication agent.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the authentication agent was successfully registered, <code class="literal">FALSE</code> if <em class="parameter"><code>error</code></em> is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication agent was successfully registered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -985,13 +1005,13 @@ Finishes registering an authentication agent.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-register-authentication-agent-sync"></a><h3>polkit_authority_register_authentication_agent_sync ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_register_authentication_agent_sync
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_register_authentication_agent_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Registers an authentication agent. The calling thread is blocked
 until a reply is received. See
@@ -1022,18 +1042,18 @@ asynchronous version.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the authentication agent was successfully registered, <code class="literal">FALSE</code> if <em class="parameter"><code>error</code></em> is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication agent was successfully registered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1044,12 +1064,12 @@ asynchronous version.
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_register_authentication_agent_with_options
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GVariant</span> *options</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *options</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously registers an authentication agent.
 </p>
@@ -1085,17 +1105,17 @@ result of the operation.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>options</code></em> :</span></p></td>
-<td>A <span class="type">GVariant</span> with options or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> with options or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -1107,10 +1127,10 @@ result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-register-authentication-agent-with-options-finish"></a><h3>polkit_authority_register_authentication_agent_with_options_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_register_authentication_agent_with_options_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_register_authentication_agent_with_options_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes registering an authentication agent.
 </p>
@@ -1126,17 +1146,17 @@ Finishes registering an authentication agent.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the authentication agent was successfully registered, <code class="literal">FALSE</code> if <em class="parameter"><code>error</code></em> is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication agent was successfully registered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1144,14 +1164,14 @@ Finishes registering an authentication agent.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-register-authentication-agent-with-options-sync"></a><h3>polkit_authority_register_authentication_agent_with_options_sync ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_register_authentication_agent_with_options_sync
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_register_authentication_agent_with_options_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *locale</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GVariant</span> *options</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *locale</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *options</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Registers an authentication agent. The calling thread is blocked
 until a reply is received. See
@@ -1182,23 +1202,23 @@ asynchronous version.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>options</code></em> :</span></p></td>
-<td>A <span class="type">GVariant</span> with options or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/glib/unstable/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> with options or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the authentication agent was successfully registered, <code class="literal">FALSE</code> if <em class="parameter"><code>error</code></em> is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication agent was successfully registered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1209,10 +1229,10 @@ asynchronous version.
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_unregister_authentication_agent
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously unregisters an authentication agent.
 </p>
@@ -1244,12 +1264,12 @@ the result of the operation.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -1261,10 +1281,10 @@ the result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-unregister-authentication-agent-finish"></a><h3>polkit_authority_unregister_authentication_agent_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_unregister_authentication_agent_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_unregister_authentication_agent_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes unregistering an authentication agent.
 </p>
@@ -1280,17 +1300,17 @@ Finishes unregistering an authentication agent.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the authentication agent was successfully unregistered, <code class="literal">FALSE</code> if <em class="parameter"><code>error</code></em> is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication agent was successfully unregistered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1298,12 +1318,12 @@ Finishes unregistering an authentication agent.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-unregister-authentication-agent-sync"></a><h3>polkit_authority_unregister_authentication_agent_sync ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_unregister_authentication_agent_sync
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_unregister_authentication_agent_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *object_path</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *object_path</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Unregisters an authentication agent. The calling thread is blocked
 until a reply is received. See
@@ -1330,18 +1350,18 @@ asynchronous version.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the authentication agent was successfully unregistered, <code class="literal">FALSE</code> if <em class="parameter"><code>error</code></em> is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication agent was successfully unregistered, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1351,11 +1371,11 @@ asynchronous version.
 <a name="polkit-authority-authentication-agent-response"></a><h3>polkit_authority_authentication_agent_response ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_authentication_agent_response
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *cookie</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *cookie</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitIdentity.html" title="PolkitIdentity"><span class="type">PolkitIdentity</span></a> *identity</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously provide response that <em class="parameter"><code>identity</code></em> successfully authenticated
 for the authentication request identified by <em class="parameter"><code>cookie</code></em>.
@@ -1392,12 +1412,12 @@ result of the operation.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -1409,10 +1429,10 @@ result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-authentication-agent-response-finish"></a><h3>polkit_authority_authentication_agent_response_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_authentication_agent_response_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_authentication_agent_response_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes providing response from an authentication agent.
 </p>
@@ -1428,17 +1448,17 @@ Finishes providing response from an authentication agent.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if <em class="parameter"><code>authority</code></em> acknowledged the call, <code class="literal">FALSE</code> if <em class="parameter"><code>error</code></em> is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>authority</code></em> acknowledged the call, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1446,12 +1466,12 @@ Finishes providing response from an authentication agent.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-authentication-agent-response-sync"></a><h3>polkit_authority_authentication_agent_response_sync ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_authentication_agent_response_sync
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_authentication_agent_response_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *cookie</code></em>,
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *cookie</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitIdentity.html" title="PolkitIdentity"><span class="type">PolkitIdentity</span></a> *identity</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Provide response that <em class="parameter"><code>identity</code></em> successfully authenticated for the
 authentication request identified by <em class="parameter"><code>cookie</code></em>. See <a class="link" href="PolkitAuthority.html#polkit-authority-authentication-agent-response" title="polkit_authority_authentication_agent_response ()"><code class="function">polkit_authority_authentication_agent_response()</code></a>
@@ -1482,18 +1502,18 @@ asynchronous version.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if <em class="parameter"><code>authority</code></em> acknowledged the call, <code class="literal">FALSE</code> if <em class="parameter"><code>error</code></em> is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>authority</code></em> acknowledged the call, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1504,9 +1524,9 @@ asynchronous version.
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_enumerate_temporary_authorizations
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously gets all temporary authorizations for <em class="parameter"><code>subject</code></em>.
 </p>
@@ -1534,12 +1554,12 @@ the result of the operation.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -1551,10 +1571,10 @@ the result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-enumerate-temporary-authorizations-finish"></a><h3>polkit_authority_enumerate_temporary_authorizations_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">GList</span> *             polkit_authority_enumerate_temporary_authorizations_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_authority_enumerate_temporary_authorizations_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes retrieving all registered actions.
 </p>
@@ -1570,19 +1590,19 @@ Finishes retrieving all registered actions.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A list of <a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a>
-objects or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set. The returned list should be
-freed with <code class="function">g_list_free()</code> after each element have been freed with
-<code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A
+list of <a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> objects or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. The
+returned list should be freed with <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a> after each element have
+been freed with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> Polkit.TemporaryAuthorization][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -1591,11 +1611,11 @@ freed with <code class="function">g_list_free()</code> after each element have b
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-enumerate-temporary-authorizations-sync"></a><h3>polkit_authority_enumerate_temporary_authorizations_sync ()</h3>
-<pre class="programlisting"><span class="returnvalue">GList</span> *             polkit_authority_enumerate_temporary_authorizations_sync
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             polkit_authority_enumerate_temporary_authorizations_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Synchronousky gets all temporary authorizations for <em class="parameter"><code>subject</code></em>.
 </p>
@@ -1620,20 +1640,20 @@ asynchronous version.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A list of <a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a>
-objects or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em> is set. The returned list should be
-freed with <code class="function">g_list_free()</code> after each element have been freed with
-<code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A
+list of <a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> objects or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. The
+returned list should be freed with <a href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#g-list-free"><code class="function">g_list_free()</code></a> after each element have
+been freed with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> Polkit.TemporaryAuthorization][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -1645,9 +1665,9 @@ freed with <code class="function">g_list_free()</code> after each element have b
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_revoke_temporary_authorizations
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously revokes all temporary authorizations for <em class="parameter"><code>subject</code></em>.
 </p>
@@ -1675,12 +1695,12 @@ the result of the operation.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -1692,10 +1712,10 @@ the result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-revoke-temporary-authorizations-finish"></a><h3>polkit_authority_revoke_temporary_authorizations_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_revoke_temporary_authorizations_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_revoke_temporary_authorizations_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes revoking temporary authorizations.
 </p>
@@ -1711,17 +1731,17 @@ Finishes revoking temporary authorizations.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if all the temporary authorizations was revoked, <code class="literal">FALSE</code> if error is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if all the temporary authorizations was revoked, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if error is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1729,11 +1749,11 @@ Finishes revoking temporary authorizations.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-revoke-temporary-authorizations-sync"></a><h3>polkit_authority_revoke_temporary_authorizations_sync ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_revoke_temporary_authorizations_sync
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_revoke_temporary_authorizations_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
                                                          <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Synchronously revokes all temporary authorization from <em class="parameter"><code>subject</code></em>.
 </p>
@@ -1758,18 +1778,18 @@ asynchronous version.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the temporary authorization was revoked, <code class="literal">FALSE</code> if error is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the temporary authorization was revoked, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if error is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1779,10 +1799,10 @@ asynchronous version.
 <a name="polkit-authority-revoke-temporary-authorization-by-id"></a><h3>polkit_authority_revoke_temporary_authorization_by_id ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_authority_revoke_temporary_authorization_by_id
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
-                                                         <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
 <p>
 Asynchronously revoke a temporary authorization.
 </p>
@@ -1810,12 +1830,12 @@ get the result of the operation.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
@@ -1827,10 +1847,10 @@ get the result of the operation.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-revoke-temporary-authorization-by-id-finish"></a><h3>polkit_authority_revoke_temporary_authorization_by_id_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_revoke_temporary_authorization_by_id_finish
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_revoke_temporary_authorization_by_id_finish
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> *res</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Finishes revoking a temporary authorization by id.
 </p>
@@ -1846,17 +1866,17 @@ Finishes revoking a temporary authorization by id.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
-<td>A <span class="type">GAsyncResult</span> obtained from the callback.</td>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"><span class="type">GAsyncResult</span></a> obtained from the callback.</td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the temporary authorization was revoked, <code class="literal">FALSE</code> if error is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the temporary authorization was revoked, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if error is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1864,11 +1884,11 @@ Finishes revoking a temporary authorization by id.
 <hr>
 <div class="refsect2">
 <a name="polkit-authority-revoke-temporary-authorization-by-id-sync"></a><h3>polkit_authority_revoke_temporary_authorization_by_id_sync ()</h3>
-<pre class="programlisting"><span class="returnvalue">gboolean</span>            polkit_authority_revoke_temporary_authorization_by_id_sync
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            polkit_authority_revoke_temporary_authorization_by_id_sync
                                                         (<em class="parameter"><code><a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>,
-                                                         <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
-                                                         <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+                                                         <em class="parameter"><code>const <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
 <p>
 Synchronously revokes a temporary authorization.
 </p>
@@ -1893,18 +1913,18 @@ asynchronous version.
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <code class="literal">NULL</code>. <span class="annotation">[<a href="http://foldoc.org/allow-none"><span class="acronym">allow-none</span></a>]</span>
+<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
 </td>
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
 <td>
-<code class="literal">TRUE</code> if the temporary authorization was revoked, <code class="literal">FALSE</code> if error is set.</td>
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the temporary authorization was revoked, <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if error is set.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1922,7 +1942,7 @@ The features of the currently used Authority backend.
 <hr>
 <div class="refsect2">
 <a name="PolkitAuthority--backend-name"></a><h3>The <code class="literal">"backend-name"</code> property</h3>
-<pre class="programlisting">  "backend-name"             <span class="type">gchar</span>*                : Read</pre>
+<pre class="programlisting">  "backend-name"             <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 The name of the currently used Authority backend.
 </p>
@@ -1931,18 +1951,18 @@ The name of the currently used Authority backend.
 <hr>
 <div class="refsect2">
 <a name="PolkitAuthority--backend-version"></a><h3>The <code class="literal">"backend-version"</code> property</h3>
-<pre class="programlisting">  "backend-version"          <span class="type">gchar</span>*                : Read</pre>
+<pre class="programlisting">  "backend-version"          <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>The version of the currently used Authority backend.</p>
 <p>Default value: NULL</p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="PolkitAuthority--owner"></a><h3>The <code class="literal">"owner"</code> property</h3>
-<pre class="programlisting">  "owner"                    <span class="type">gchar</span>*                : Read</pre>
+<pre class="programlisting">  "owner"                    <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read</pre>
 <p>
 The unique name of the owner of the org.freedesktop.PolicyKit1
-D-Bus service or <code class="literal">NULL</code> if there is no owner. Connect to the
-<span class="type">"notify"</span> signal to track changes to this property.
+D-Bus service or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if there is no owner. Connect to the
+<a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-notify"><span class="type">"notify"</span></a> signal to track changes to this property.
 </p>
 <p>Default value: NULL</p>
 </div>
@@ -1952,7 +1972,7 @@ D-Bus service or <code class="literal">NULL</code> if there is no owner. Connect
 <div class="refsect2">
 <a name="PolkitAuthority-changed"></a><h3>The <code class="literal">"changed"</code> signal</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="PolkitAuthority.html" title="PolkitAuthority"><span class="type">PolkitAuthority</span></a> *authority,
-                                                        <span class="type">gpointer</span>         user_data)      : <code class="literal">Run Last</code></pre>
+                                                        <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>         user_data)      : <a href="http://library.gnome.org/devel/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
 <p>
 Emitted when actions and/or authorizations change
 </p>

@@ -6,6 +6,12 @@
 /* gettext domain */
 #undef GETTEXT_PACKAGE
 
+/* Notify us when we'll need to transition away from g_type_init() */
+#undef GLIB_VERSION_MAX_ALLOWED
+
+/* Avoid warning spew about g_type_init() being deprecated */
+#undef GLIB_VERSION_MIN_REQUIRED
+
 /* Define to 1 if you have the `bind_textdomain_codeset' function. */
 #undef HAVE_BIND_TEXTDOMAIN_CODESET
 

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitUnixProcess</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="subjects.html" title="Subjects">
 <link rel="prev" href="PolkitSubject.html" title="PolkitSubject">
@@ -44,27 +44,29 @@
 <div class="refsynopsisdiv">
 <a name="PolkitUnixProcess.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">                    <a class="link" href="PolkitUnixProcess.html#PolkitUnixProcess-struct" title="PolkitUnixProcess">PolkitUnixProcess</a>;
-<a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-new" title="polkit_unix_process_new ()">polkit_unix_process_new</a>             (<em class="parameter"><code><span class="type">gint</span> pid</code></em>);
-<a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-new-full" title="polkit_unix_process_new_full ()">polkit_unix_process_new_full</a>        (<em class="parameter"><code><span class="type">gint</span> pid</code></em>,
-                                                         <em class="parameter"><code><span class="type">guint64</span> start_time</code></em>);
-<a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-new-for-owner" title="polkit_unix_process_new_for_owner ()">polkit_unix_process_new_for_owner</a>   (<em class="parameter"><code><span class="type">gint</span> pid</code></em>,
-                                                         <em class="parameter"><code><span class="type">guint64</span> start_time</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> uid</code></em>);
+<a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-new" title="polkit_unix_process_new ()">polkit_unix_process_new</a>             (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>);
+<a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-new-full" title="polkit_unix_process_new_full ()">polkit_unix_process_new_full</a>        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> start_time</code></em>);
+<a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-new-for-owner" title="polkit_unix_process_new_for_owner ()">polkit_unix_process_new_for_owner</a>   (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> start_time</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> uid</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-set-pid" title="polkit_unix_process_set_pid ()">polkit_unix_process_set_pid</a>         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> pid</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-get-pid" title="polkit_unix_process_get_pid ()">polkit_unix_process_get_pid</a>         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-get-pid" title="polkit_unix_process_get_pid ()">polkit_unix_process_get_pid</a>         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-set-start-time" title="polkit_unix_process_set_start_time ()">polkit_unix_process_set_start_time</a>  (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>,
-                                                         <em class="parameter"><code><span class="type">guint64</span> start_time</code></em>);
-<span class="returnvalue">guint64</span>             <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-get-start-time" title="polkit_unix_process_get_start_time ()">polkit_unix_process_get_start_time</a>  (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> start_time</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-get-start-time" title="polkit_unix_process_get_start_time ()">polkit_unix_process_get_start_time</a>  (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);
 <span class="returnvalue">void</span>                <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-set-uid" title="polkit_unix_process_set_uid ()">polkit_unix_process_set_uid</a>         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> uid</code></em>);
-<span class="returnvalue">gint</span>                <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-get-uid" title="polkit_unix_process_get_uid ()">polkit_unix_process_get_uid</a>         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> uid</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-get-uid" title="polkit_unix_process_get_uid ()">polkit_unix_process_get_uid</a>         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);
+<a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="PolkitUnixProcess.html#polkit-unix-process-get-owner" title="polkit_unix_process_get_owner ()">polkit_unix_process_get_owner</a>       (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
 </pre>
 </div>
 <div class="refsect1">
 <a name="PolkitUnixProcess.object-hierarchy"></a><h2>Object Hierarchy</h2>
 <pre class="synopsis">
-  GObject
+  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
    +----PolkitUnixProcess
 </pre>
 </div>
@@ -77,9 +79,9 @@ PolkitUnixProcess implements
 <div class="refsect1">
 <a name="PolkitUnixProcess.properties"></a><h2>Properties</h2>
 <pre class="synopsis">
-  "<a class="link" href="PolkitUnixProcess.html#PolkitUnixProcess--pid" title='The "pid" property'>pid</a>"                      <span class="type">gint</span>                  : Read / Write / Construct
-  "<a class="link" href="PolkitUnixProcess.html#PolkitUnixProcess--start-time" title='The "start-time" property'>start-time</a>"               <span class="type">guint64</span>               : Read / Write / Construct
-  "<a class="link" href="PolkitUnixProcess.html#PolkitUnixProcess--uid" title='The "uid" property'>uid</a>"                      <span class="type">gint</span>                  : Read / Write / Construct
+  "<a class="link" href="PolkitUnixProcess.html#PolkitUnixProcess--pid" title='The "pid" property'>pid</a>"                      <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Read / Write / Construct
+  "<a class="link" href="PolkitUnixProcess.html#PolkitUnixProcess--start-time" title='The "start-time" property'>start-time</a>"               <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a>               : Read / Write / Construct
+  "<a class="link" href="PolkitUnixProcess.html#PolkitUnixProcess--uid" title='The "uid" property'>uid</a>"                      <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Read / Write / Construct
 </pre>
 </div>
 <div class="refsect1">
@@ -105,7 +107,7 @@ The <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><spa
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-process-new"></a><h3>polkit_unix_process_new ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_process_new             (<em class="parameter"><code><span class="type">gint</span> pid</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_process_new             (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> for <em class="parameter"><code>pid</code></em>.
 </p>
@@ -126,7 +128,7 @@ platform in use.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>. Free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -135,8 +137,8 @@ platform in use.
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-process-new-full"></a><h3>polkit_unix_process_new_full ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_process_new_full        (<em class="parameter"><code><span class="type">gint</span> pid</code></em>,
-                                                         <em class="parameter"><code><span class="type">guint64</span> start_time</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_process_new_full        (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> start_time</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> object for <em class="parameter"><code>pid</code></em> and <em class="parameter"><code>start_time</code></em>.
 </p>
@@ -161,7 +163,7 @@ use.
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>. Free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -170,9 +172,9 @@ use.
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-process-new-for-owner"></a><h3>polkit_unix_process_new_for_owner ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_process_new_for_owner   (<em class="parameter"><code><span class="type">gint</span> pid</code></em>,
-                                                         <em class="parameter"><code><span class="type">guint64</span> start_time</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> uid</code></em>);</pre>
+<pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *     polkit_unix_process_new_for_owner   (<em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> start_time</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> uid</code></em>);</pre>
 <p>
 Creates a new <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> object for <em class="parameter"><code>pid</code></em>, <em class="parameter"><code>start_time</code></em> and <em class="parameter"><code>uid</code></em>.
 </p>
@@ -196,7 +198,7 @@ Creates a new <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixPro
 </tr>
 <tr>
 <td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>. Free with <code class="function">g_object_unref()</code>. <span class="annotation">[<a href="http://foldoc.org/transfer%20full"><span class="acronym">transfer full</span></a>]</span>
+<td>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
 </td>
 </tr>
 </tbody>
@@ -206,7 +208,7 @@ Creates a new <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixPro
 <div class="refsect2">
 <a name="polkit-unix-process-set-pid"></a><h3>polkit_unix_process_set_pid ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_unix_process_set_pid         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> pid</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> pid</code></em>);</pre>
 <p>
 Sets <em class="parameter"><code>pid</code></em> for <em class="parameter"><code>process</code></em>.
 </p>
@@ -230,7 +232,7 @@ Sets <em class="parameter"><code>pid</code></em> for <em class="parameter"><code
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-process-get-pid"></a><h3>polkit_unix_process_get_pid ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                polkit_unix_process_get_pid         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                polkit_unix_process_get_pid         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);</pre>
 <p>
 Gets the process id for <em class="parameter"><code>process</code></em>.
 </p>
@@ -255,7 +257,7 @@ Gets the process id for <em class="parameter"><code>process</code></em>.
 <div class="refsect2">
 <a name="polkit-unix-process-set-start-time"></a><h3>polkit_unix_process_set_start_time ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_unix_process_set_start_time  (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>,
-                                                         <em class="parameter"><code><span class="type">guint64</span> start_time</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> start_time</code></em>);</pre>
 <p>
 Set the start time of <em class="parameter"><code>process</code></em>.
 </p>
@@ -279,7 +281,7 @@ Set the start time of <em class="parameter"><code>process</code></em>.
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-process-get-start-time"></a><h3>polkit_unix_process_get_start_time ()</h3>
-<pre class="programlisting"><span class="returnvalue">guint64</span>             polkit_unix_process_get_start_time  (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>             polkit_unix_process_get_start_time  (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);</pre>
 <p>
 Gets the start time of <em class="parameter"><code>process</code></em>.
 </p>
@@ -304,7 +306,7 @@ Gets the start time of <em class="parameter"><code>process</code></em>.
 <div class="refsect2">
 <a name="polkit-unix-process-set-uid"></a><h3>polkit_unix_process_set_uid ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>                polkit_unix_process_set_uid         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>,
-                                                         <em class="parameter"><code><span class="type">gint</span> uid</code></em>);</pre>
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a> uid</code></em>);</pre>
 <p>
 Sets the (real, not effective) user id for <em class="parameter"><code>process</code></em>.
 </p>
@@ -328,7 +330,7 @@ Sets the (real, not effective) user id for <em class="parameter"><code>process</
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-process-get-uid"></a><h3>polkit_unix_process_get_uid ()</h3>
-<pre class="programlisting"><span class="returnvalue">gint</span>                polkit_unix_process_get_uid         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);</pre>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                polkit_unix_process_get_uid         (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>);</pre>
 <p>
 Gets the user id for <em class="parameter"><code>process</code></em>. Note that this is the real user-id,
 not the effective user-id.
@@ -350,12 +352,37 @@ not the effective user-id.
 </tbody>
 </table></div>
 </div>
+<hr>
+<div class="refsect2">
+<a name="polkit-unix-process-get-owner"></a><h3>polkit_unix_process_get_owner ()</h3>
+<pre class="programlisting"><a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                polkit_unix_process_get_owner       (<em class="parameter"><code><a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a> *process</code></em>,
+                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>
+(deprecated)
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>process</code></em> :</span></p></td>
+<td>A <a class="link" href="PolkitUnixProcess.html" title="PolkitUnixProcess"><span class="type">PolkitUnixProcess</span></a>.</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>Return location for error.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
 </div>
 <div class="refsect1">
 <a name="PolkitUnixProcess.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="PolkitUnixProcess--pid"></a><h3>The <code class="literal">"pid"</code> property</h3>
-<pre class="programlisting">  "pid"                      <span class="type">gint</span>                  : Read / Write / Construct</pre>
+<pre class="programlisting">  "pid"                      <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Read / Write / Construct</pre>
 <p>
 The UNIX process id.
 </p>
@@ -365,7 +392,7 @@ The UNIX process id.
 <hr>
 <div class="refsect2">
 <a name="PolkitUnixProcess--start-time"></a><h3>The <code class="literal">"start-time"</code> property</h3>
-<pre class="programlisting">  "start-time"               <span class="type">guint64</span>               : Read / Write / Construct</pre>
+<pre class="programlisting">  "start-time"               <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a>               : Read / Write / Construct</pre>
 <p>
 The start time of the process.
 </p>
@@ -374,7 +401,7 @@ The start time of the process.
 <hr>
 <div class="refsect2">
 <a name="PolkitUnixProcess--uid"></a><h3>The <code class="literal">"uid"</code> property</h3>
-<pre class="programlisting">  "uid"                      <span class="type">gint</span>                  : Read / Write / Construct</pre>
+<pre class="programlisting">  "uid"                      <a href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Read / Write / Construct</pre>
 <p>
 The UNIX user id of the process or -1 if unknown.
 </p>
