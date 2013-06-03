@@ -15,7 +15,6 @@ Build-Depends: debhelper (>= 9),
  xsltproc,
  libgirepository1.0-dev (>= 0.9.12),
  gobject-introspection (>= 0.9.12-4~),
- gir1.2-glib-2.0,
  libglib2.0-doc,
  libgtk-3-doc
 Standards-Version: 3.9.3
