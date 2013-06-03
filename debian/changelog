@@ -4,6 +4,7 @@ policykit-1 (0.111-1) UNRELEASED; urgency=low
   * Remove 00git_pkexec_pam_env.patch and 09_link_libmozjs.patch, both merged
     upstream.
   * Drop explicit Build-Depends on gir1.2-glib-2.0.
+  * Bump Standards-Version to 3.9.4. No further changes.
 
  -- Michael Biebl <biebl@debian.org>  Mon, 03 Jun 2013 06:03:56 +0200
 
