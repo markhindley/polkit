@@ -247,7 +247,7 @@
     <keyword type="signal" name="The &quot;request&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-request"/>
     <keyword type="signal" name="The &quot;show-error&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-error"/>
     <keyword type="signal" name="The &quot;show-info&quot; signal" link="PolkitAgentSession.html#PolkitAgentSession-show-info"/>
-    <keyword type="" name="Known annotations" link="polkit.8.html#idm272417335360"/>
+    <keyword type="" name="Known annotations" link="polkit.8.html#id-1.6.2.7.12"/>
     <keyword type="" name="The Polkit type" link="polkit.8.html#polkit-rules-polkit"/>
     <keyword type="" name="The Action type" link="polkit.8.html#polkit-rules-actions"/>
     <keyword type="" name="The Subject type" link="polkit.8.html#polkit-rules-subject"/>
