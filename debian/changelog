@@ -1,4 +1,4 @@
-policykit-1 (0.112-1) UNRELEASED; urgency=low
+policykit-1 (0.112-1) experimental; urgency=low
 
   * New upstream release.
     - Fixes CVE-2013-4288, unix-process subject for authorization is racy.
@@ -8,7 +8,7 @@ policykit-1 (0.112-1) UNRELEASED; urgency=low
   * Drop explicit Build-Depends on gir1.2-glib-2.0.
   * Bump Standards-Version to 3.9.4. No further changes.
 
- -- Michael Biebl <biebl@debian.org>  Mon, 03 Jun 2013 06:03:56 +0200
+ -- Michael Biebl <biebl@debian.org>  Thu, 19 Sep 2013 17:39:54 +0200
 
 policykit-1 (0.110-3) experimental; urgency=low
 
