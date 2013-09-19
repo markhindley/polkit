@@ -1,4 +1,4 @@
-policykit-1 (0.111-1) UNRELEASED; urgency=low
+policykit-1 (0.112-1) UNRELEASED; urgency=low
 
   * New upstream release.
   * Remove 00git_pkexec_pam_env.patch and 09_link_libmozjs.patch, both merged
