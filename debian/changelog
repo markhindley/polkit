@@ -1,6 +1,8 @@
 policykit-1 (0.112-1) UNRELEASED; urgency=low
 
   * New upstream release.
+    - Fixes CVE-2013-4288, unix-process subject for authorization is racy.
+      (Closes: #723717)
   * Remove 00git_pkexec_pam_env.patch and 09_link_libmozjs.patch, both merged
     upstream.
   * Drop explicit Build-Depends on gir1.2-glib-2.0.
