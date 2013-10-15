@@ -1,4 +1,4 @@
-policykit-1 (0.105-4) UNRELEASED; urgency=low
+policykit-1 (0.105-4) unstable; urgency=low
 
   * Acknowledge non-maintainer upload for CVE-2013-4288.
   * Also cherry-pick the upstream commit which deprecates the racy APIs.
@@ -9,7 +9,7 @@ policykit-1 (0.105-4) UNRELEASED; urgency=low
   * The two changes above fix pkexec to properly export the pam environment.
     Thanks Steve Langasek for the patch. (Closes: #692340)
 
- -- Michael Biebl <biebl@debian.org>  Tue, 15 Oct 2013 18:18:34 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 15 Oct 2013 18:34:24 +0200
 
 policykit-1 (0.105-3+nmu1) unstable; urgency=high
 
