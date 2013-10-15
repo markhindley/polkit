@@ -2,6 +2,12 @@ policykit-1 (0.105-4) UNRELEASED; urgency=low
 
   * Acknowledge non-maintainer upload for CVE-2013-4288.
   * Also cherry-pick the upstream commit which deprecates the racy APIs.
+  * debian/patches/09_pam_environment.patch: set process environment from
+    pam_getenvlist().
+  * debian/patches/01_pam_polkit.patch: adjust patch to invoke pam_env, so our
+    global settings from /etc/environment are applied correctly.
+  * The two changes above fix pkexec to properly export the pam environment.
+    Thanks Steve Langasek for the patch. (Closes: #692340)
 
  -- Michael Biebl <biebl@debian.org>  Tue, 15 Oct 2013 18:18:34 +0200
 
