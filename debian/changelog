@@ -1,3 +1,16 @@
+policykit-1 (0.105-4) UNRELEASED; urgency=low
+
+  * Acknowledge non-maintainer upload for CVE-2013-4288.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 15 Oct 2013 18:16:08 +0200
+
+policykit-1 (0.105-3+nmu1) unstable; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Fix cve-2013-4288: race condition in pkcheck.c (closes: #723717).
+
+ -- Michael Gilbert <mgilbert@debian.org>  Mon, 14 Oct 2013 00:08:43 +0000
+
 policykit-1 (0.105-3) unstable; urgency=low
 
   * 07_set-XAUTHORITY-environment-variable-if-unset.patch: Set XAUTHORITY
