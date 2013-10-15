@@ -1,8 +1,9 @@
 policykit-1 (0.105-4) UNRELEASED; urgency=low
 
   * Acknowledge non-maintainer upload for CVE-2013-4288.
+  * Also cherry-pick the upstream commit which deprecates the racy APIs.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 15 Oct 2013 18:16:08 +0200
+ -- Michael Biebl <biebl@debian.org>  Tue, 15 Oct 2013 18:18:34 +0200
 
 policykit-1 (0.105-3+nmu1) unstable; urgency=high
 
