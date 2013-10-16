@@ -1,8 +1,8 @@
-policykit-1 (0.105-3+deb7u1) UNRELEASED; urgency=low
+policykit-1 (0.105-3+deb7u1) stable; urgency=low
 
   * Fix CVE-2013-4288: race condition in pkcheck. (Closes: #723717)
 
- -- Michael Biebl <biebl@debian.org>  Tue, 15 Oct 2013 18:16:08 +0200
+ -- Michael Biebl <biebl@debian.org>  Wed, 16 Oct 2013 18:35:01 +0200
 
 policykit-1 (0.105-3) unstable; urgency=low
 
