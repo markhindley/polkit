@@ -1,6 +1,7 @@
 policykit-1 (0.112-2) experimental; urgency=low
 
   * Use logind on linux and consolekit on non-linux
+  * Update to mozjs17
 
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 01 Nov 2013 21:36:55 +0100
 
