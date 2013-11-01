@@ -1,3 +1,9 @@
+policykit-1 (0.112-2) UNRELEASED; urgency=low
+
+  * Use logind on linux
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 23 Oct 2013 22:15:10 +0200
+
 policykit-1 (0.112-1) experimental; urgency=low
 
   * New upstream release.

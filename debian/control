@@ -16,7 +16,8 @@ Build-Depends: debhelper (>= 9),
  libgirepository1.0-dev (>= 0.9.12),
  gobject-introspection (>= 0.9.12-4~),
  libglib2.0-doc,
- libgtk-3-doc
+ libgtk-3-doc,
+ libsystemd-login-dev [linux-any]
 Standards-Version: 3.9.4
 Vcs-Git: git://git.debian.org/git/pkg-utopia/policykit.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/policykit.git;a=summary
@@ -25,7 +26,9 @@ Homepage: http://www.freedesktop.org/wiki/Software/polkit
 Package: policykit-1
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}, consolekit, dbus, adduser
+Depends: ${shlibs:Depends}, ${misc:Depends},
+  systemd [linux-any], consolekit [!linux-any],
+  dbus, adduser
 Multi-Arch: foreign
 Description: framework for managing administrative policies and privileges
  PolicyKit is an application-level toolkit for defining and handling the policy

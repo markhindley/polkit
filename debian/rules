@@ -11,12 +11,18 @@ export DPKG_GENSYMBOLS_CHECK_LEVEL
 
 LDFLAGS += -Wl,--no-as-needed
 
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+  SYSTEMD_CONFIG_FLAG = ---enable-libsystemd-login
+else
+  SYSTEMD_CONFIG_FLAG = --disable-systemd
+endif
+
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		--enable-gtk-doc \
 		--enable-man-pages \
 		--enable-introspection \
-		--disable-systemd \
+		--enable-libsystemd-login \
 		--disable-examples \
 		--with-systemdsystemunitdir=/lib/systemd/system \
 		--libexecdir=\$${prefix}/lib/policykit-1
