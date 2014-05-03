@@ -12,7 +12,7 @@ export DPKG_GENSYMBOLS_CHECK_LEVEL
 LDFLAGS += -Wl,--no-as-needed
 
 ifeq (linux,$(DEB_HOST_ARCH_OS))
-  SYSTEMD_CONFIG_FLAG = ---enable-libsystemd-login
+  SYSTEMD_CONFIG_FLAG = --enable-libsystemd-login
 else
   SYSTEMD_CONFIG_FLAG = --disable-systemd
 endif
