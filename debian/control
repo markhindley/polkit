@@ -18,8 +18,8 @@ Build-Depends: debhelper (>= 9),
  libglib2.0-doc,
  libgtk-3-doc
 Standards-Version: 3.9.5
-Vcs-Git: git://git.debian.org/git/pkg-utopia/policykit.git
-Vcs-Browser: http://git.debian.org/?p=pkg-utopia/policykit.git;a=summary
+Vcs-Git: git://anonscm.debian.org/pkg-utopia/policykit.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/policykit.git;a=summary
 Homepage: http://hal.freedesktop.org/docs/PolicyKit/
 
 Package: policykit-1
