@@ -1,4 +1,4 @@
-policykit-1 (0.112-2) UNRELEASED; urgency=medium
+policykit-1 (0.112-3) UNRELEASED; urgency=medium
 
   * debian/rules: Really enable logind support on linux architectures only
   * debian/control: Use canonical VCS-* URL's
