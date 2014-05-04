@@ -1,10 +1,11 @@
-policykit-1 (0.105-5) UNRELEASED; urgency=medium
+policykit-1 (0.105-5) unstable; urgency=medium
 
+  * Team upload.
   * Enable systemd support on linux architectures
   * debian/control: Bump Standards-Version to 3.9.5 (no further changes)
   * debian/control: Use canonical VCS-* URL's
 
- -- Laurent Bigonville <bigon@debian.org>  Sat, 03 May 2014 13:07:09 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 04 May 2014 12:40:59 +0200
 
 policykit-1 (0.105-4) unstable; urgency=low
 
