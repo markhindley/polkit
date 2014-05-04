@@ -3,8 +3,9 @@ policykit-1 (0.112-3) UNRELEASED; urgency=medium
   * debian/rules: Really enable logind support on linux architectures only
   * debian/control: Use canonical VCS-* URL's
   * debian/control: Bump Standards-Version to 3.9.5 (no further changes)
+  * debian/control: Depends against libpam-systemd instead of just systemd
 
- -- Laurent Bigonville <bigon@debian.org>  Sat, 03 May 2014 13:03:34 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 04 May 2014 10:56:08 +0200
 
 policykit-1 (0.112-2) experimental; urgency=low
 

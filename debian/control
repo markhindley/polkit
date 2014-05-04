@@ -27,7 +27,7 @@ Package: policykit-1
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends},
-  systemd [linux-any], consolekit [!linux-any],
+  libpam-systemd [linux-any], consolekit [!linux-any],
   dbus, adduser
 Multi-Arch: foreign
 Description: framework for managing administrative policies and privileges
