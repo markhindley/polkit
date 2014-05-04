@@ -21,7 +21,7 @@ Build-Depends: debhelper (>= 9),
 Standards-Version: 3.9.5
 Vcs-Git: git://anonscm.debian.org/pkg-utopia/policykit.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/policykit.git;a=summary
-Homepage: http://hal.freedesktop.org/docs/PolicyKit/
+Homepage: http://www.freedesktop.org/wiki/Software/polkit/
 
 Package: policykit-1
 Architecture: any
