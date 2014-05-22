@@ -48,7 +48,7 @@ case "$1" in
 	# When upgrading from an older version, reload systemd as the name
 	# of the .service file has changed.
 	if dpkg --compare-versions "$2" lt "0.109-1"; then
-	    [ -e /sys/fs/cgroup/systemd ] && systemctl daemon-reload || true
+	    [ -d /run/systemd/system ] && systemctl daemon-reload || true
 	fi
 	# Kill the old polkitd daemon on upgrade, to ensure that the new
 	# version will be used at the next occasion.
