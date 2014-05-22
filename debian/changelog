@@ -1,8 +1,10 @@
 policykit-1 (0.105-6) UNRELEASED; urgency=medium
 
   * debian/control: Update Homepage URL
+  * debian/control: Add a Breaks against gdm3 (<< 3.8.4-7~) to ensure it
+    registers a logind session properly (Closes: #745983)
 
- -- Laurent Bigonville <bigon@debian.org>  Sun, 04 May 2014 13:48:45 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 22 May 2014 19:14:46 +0200
 
 policykit-1 (0.105-5) unstable; urgency=medium
 
