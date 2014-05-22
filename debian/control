@@ -30,6 +30,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
   libpam-systemd [linux-any], consolekit [!linux-any],
   dbus, adduser
 Multi-Arch: foreign
+Breaks: gdm3 (<< 3.8.4-7~)
 Description: framework for managing administrative policies and privileges
  PolicyKit is an application-level toolkit for defining and handling the policy
  that allows unprivileged processes to speak to privileged processes.
