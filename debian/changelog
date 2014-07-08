@@ -6,8 +6,10 @@ policykit-1 (0.112-3) UNRELEASED; urgency=medium
   * debian/control: Depends against libpam-systemd instead of just systemd
   * debian/control: Add a Breaks against gdm3 (<< 3.8.4-7~) to ensure it
     registers a logind session properly (Closes: #745983)
+  * debian/policykit-1.postinst: Explicitly set a home directory for the
+    polkitd user (Closes: #748981)
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 22 May 2014 19:12:31 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Tue, 08 Jul 2014 14:25:12 +0200
 
 policykit-1 (0.112-2) experimental; urgency=low
 
