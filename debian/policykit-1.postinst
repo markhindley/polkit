@@ -42,7 +42,9 @@ case "$1" in
 	adduser --system --quiet --gecos 'polkit' \
 		--home /var/lib/polkit-1 polkitd
 	if dpkg --compare-versions "$2" lt-nl "0.112-3~"; then
-	    usermod --home /var/lib/polkit-1 --comment "polkit,,," polkitd
+	    # Kill the daemon before updating the HOME so usermod will not complain
+	    kill $(get_pid org.freedesktop.PolicyKit1) 2>/dev/null || true
+	    usermod --home /var/lib/polkit-1 --comment "polkit,,," polkitd 2>/dev/null
 	fi
 	set_perms polkitd root 700 /var/lib/polkit-1
 	set_perms polkitd root 700 /usr/share/polkit-1/rules.d
