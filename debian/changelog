@@ -1,5 +1,6 @@
-policykit-1 (0.112-3) UNRELEASED; urgency=medium
+policykit-1 (0.112-3) experimental; urgency=medium
 
+  * Team upload.
   * debian/rules: Really enable logind support on linux architectures only
   * debian/control: Use canonical VCS-* URL's
   * debian/control: Bump Standards-Version to 3.9.5 (no further changes)
@@ -9,7 +10,7 @@ policykit-1 (0.112-3) UNRELEASED; urgency=medium
   * debian/policykit-1.postinst: Explicitly set a home directory for the
     polkitd user (Closes: #748981)
 
- -- Laurent Bigonville <bigon@debian.org>  Tue, 08 Jul 2014 14:25:12 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 07 Sep 2014 14:22:54 +0200
 
 policykit-1 (0.112-2) experimental; urgency=low
 
