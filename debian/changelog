@@ -1,3 +1,9 @@
+policykit-1 (0.112-4) UNRELEASED; urgency=medium
+
+  * Install typelib files into MA libdir.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 25 Sep 2014 14:39:32 +0200
+
 policykit-1 (0.112-3) experimental; urgency=medium
 
   * Team upload.
