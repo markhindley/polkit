@@ -6,6 +6,7 @@ policykit-1 (0.112-4) UNRELEASED; urgency=medium
   [ Martin Pitt ]
   * Rebuild against libsystemd0. This drops the last remaining dependency to
     libsystemd-login0. (Closes: #771281)
+  * Bump Standards-Version to 3.9.6 (no changes necessary).
 
  -- Andreas Henriksson <andreas@fatal.se>  Thu, 25 Sep 2014 14:39:32 +0200
 
