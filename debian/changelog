@@ -11,6 +11,9 @@ policykit-1 (0.112-5) UNRELEASED; urgency=medium
     (Closes: #772125)
   * Replace 03_complete_session.patch with a change from upstream
     which seems like a more correct solution for LP#445303, LP#649939
+  * Add patches from upstream to treat background processes as part of
+    the same uid's active GUI session if any, fixing use of
+    dbus-user-session (Closes: #779988)
 
  -- Simon McVittie <smcv@debian.org>  Sat, 07 Mar 2015 12:02:35 +0000
 
