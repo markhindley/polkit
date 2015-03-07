@@ -1,3 +1,11 @@
+policykit-1 (0.112-5) UNRELEASED; urgency=medium
+
+  * Go back to mozjs 1.8.5, like the version in unstable: mozjs 17 has
+    been removed from Debian, and mozjs 24 requires significant upstream
+    changes and no longer has a C API (Closes: #776744)
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 07 Mar 2015 12:02:35 +0000
+
 policykit-1 (0.112-4) experimental; urgency=medium
 
   [ Andreas Henriksson ]
