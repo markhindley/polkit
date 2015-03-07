@@ -5,6 +5,10 @@ policykit-1 (0.112-5) UNRELEASED; urgency=medium
     changes and no longer has a C API (Closes: #776744)
   * Add a symlink so the old library can run the new agent helper
     (Closes: #699447)
+  * Add patch from upstream to work around older versions of libpam-systemd
+    which would give root processes the real uid's XDG_RUNTIME_DIR
+    under su; it shouldn't be necessary any more, but is harmless
+    (Closes: #772125)
 
  -- Simon McVittie <smcv@debian.org>  Sat, 07 Mar 2015 12:02:35 +0000
 

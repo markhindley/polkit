@@ -1,3 +1,4 @@
+0010-pkexec-Work-around-systemd-injecting-broken-XDG_RUNT.patch
 01_pam_polkit.patch
 02_gettext.patch
 03_complete_session.patch
