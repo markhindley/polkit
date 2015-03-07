@@ -9,6 +9,8 @@ policykit-1 (0.112-5) UNRELEASED; urgency=medium
     which would give root processes the real uid's XDG_RUNTIME_DIR
     under su; it shouldn't be necessary any more, but is harmless
     (Closes: #772125)
+  * Replace 03_complete_session.patch with a change from upstream
+    which seems like a more correct solution for LP#445303, LP#649939
 
  -- Simon McVittie <smcv@debian.org>  Sat, 07 Mar 2015 12:02:35 +0000
 
