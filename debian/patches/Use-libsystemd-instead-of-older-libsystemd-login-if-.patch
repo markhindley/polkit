@@ -5,7 +5,9 @@ Subject: [PATCH] Use libsystemd instead of older libsystemd-login if possible
 
 The command-line option is still --enable-libsystemd-login for now.
 
+Bug: https://bugs.freedesktop.org/show_bug.cgi?id=86813
 Bug-Debian: https://bugs.debian.org/779756
+Forwarded: yes
 ---
  configure.ac                                 | 42 +++++++++++++++++-----------
  src/polkit/Makefile.am                       |  6 ++--
