@@ -14,7 +14,8 @@ policykit-1 (0.112-5) UNRELEASED; urgency=medium
   * Add patches from upstream to treat background processes as part of
     the same uid's active GUI session if any, fixing use of
     dbus-user-session (Closes: #779988)
-  * Add patches from upstream to fix some memory leaks (Closes: #775158)
+  * Add patches from upstream to fix some memory leaks (Closes: #775158,
+    LP: #1417637)
   * Add patch from upstream to fix redundant removal of an event source
   * Add patch to use libsystemd instead of the libsystemd-login compat
     library (Closes: #779756)
