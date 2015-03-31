@@ -6,6 +6,7 @@
 0016-sessionmonitor-systemd-prepare-for-D-Bus-user-bus-mo.patch
 0017-Refuse-duplicate-user-arguments-to-pkexec.patch
 0018-authority-Fix-memory-leak-in-EnumerateActions-call-r.patch
+Use-libsystemd-instead-of-older-libsystemd-login-if-.patch
 01_pam_polkit.patch
 02_gettext.patch
 05_revert-admin-identities-unix-group-wheel.patch

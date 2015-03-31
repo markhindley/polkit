@@ -16,6 +16,8 @@ policykit-1 (0.112-5) UNRELEASED; urgency=medium
     dbus-user-session (Closes: #779988)
   * Add patches from upstream to fix some memory leaks (Closes: #775158)
   * Add patch from upstream to fix redundant removal of an event source
+  * Add patch to use libsystemd instead of the libsystemd-login compat
+    library (Closes: #779756)
 
  -- Simon McVittie <smcv@debian.org>  Sat, 07 Mar 2015 12:02:35 +0000
 
