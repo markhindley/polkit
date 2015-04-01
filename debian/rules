@@ -19,6 +19,7 @@ endif
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
+		--disable-silent-rules \
 		--enable-gtk-doc \
 		--enable-man-pages \
 		--enable-introspection \
