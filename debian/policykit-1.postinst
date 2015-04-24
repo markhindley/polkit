@@ -59,7 +59,11 @@ case "$1" in
 	fi
 	# Kill the old polkitd daemon on upgrade, to ensure that the new
 	# version will be used at the next occasion.
-	kill $(get_pid org.freedesktop.PolicyKit1) 2>/dev/null || true
+	if [ -d /run/systemd/system ]; then
+		deb-systemd-invoke restart polkitd.service || true
+	else
+		kill $(get_pid org.freedesktop.PolicyKit1) 2>/dev/null || true
+	fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

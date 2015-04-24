@@ -1,7 +1,13 @@
 policykit-1 (0.112-6) UNRELEASED; urgency=medium
 
+  [ Simon McVittie ]
   * Disable silent build rules. (Previously done in Ubuntu, although
     it seems to have been lost in a merge somewhere.)
+
+  [ Martin Pitt ]
+  * policykit-1.postinst: Don't kill polkitd under systemd, but properly
+    restart it. This avoids killing it shortly after systemd tries to
+    bus-activate it on installation. (LP: #1447654)
 
  -- Simon McVittie <smcv@debian.org>  Wed, 01 Apr 2015 15:36:11 +0100
 
