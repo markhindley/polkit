@@ -1,3 +1,11 @@
+policykit-1 (0.105-9) UNRELEASED; urgency=medium
+
+  * policykit-1.postinst: Don't kill polkitd under systemd, but properly
+    restart it. This avoids killing it shortly after systemd tries to
+    bus-activate it on installation. (LP: #1447654)
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 24 Apr 2015 16:51:47 +0100
+
 policykit-1 (0.105-8) unstable; urgency=medium
 
   * Rebuild against libsystemd0. This drops the last remaining dependency to
