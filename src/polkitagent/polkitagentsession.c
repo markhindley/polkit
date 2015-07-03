@@ -55,6 +55,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <gio/gunixoutputstream.h>
 #include <pwd.h>
 
 #include "polkitagentmarshal.h"
@@ -88,11 +89,10 @@ struct _PolkitAgentSession
   gchar *cookie;
   PolkitIdentity *identity;
 
-  int child_stdin;
+  GOutputStream *child_stdin;
   int child_stdout;
   GPid child_pid;
 
-  GSource *child_watch_source;
   GSource *child_stdout_watch_source;
   GIOChannel *child_stdout_channel;
 
@@ -130,7 +130,6 @@ G_DEFINE_TYPE (PolkitAgentSession, polkit_agent_session, G_TYPE_OBJECT);
 static void
 polkit_agent_session_init (PolkitAgentSession *session)
 {
-  session->child_stdin = -1;
   session->child_stdout = -1;
 }
 
@@ -377,13 +376,6 @@ kill_helper (PolkitAgentSession *session)
       session->child_pid = 0;
     }
 
-  if (session->child_watch_source != NULL)
-    {
-      g_source_destroy (session->child_watch_source);
-      g_source_unref (session->child_watch_source);
-      session->child_watch_source = NULL;
-    }
-
   if (session->child_stdout_watch_source != NULL)
     {
       g_source_destroy (session->child_stdout_watch_source);
@@ -403,11 +395,7 @@ kill_helper (PolkitAgentSession *session)
       session->child_stdout = -1;
     }
 
-  if (session->child_stdin != -1)
-    {
-      g_warn_if_fail (close (session->child_stdin) == 0);
-      session->child_stdin = -1;
-    }
+  g_clear_object (&session->child_stdin);
 
   session->helper_is_running = FALSE;
 
@@ -424,29 +412,10 @@ complete_session (PolkitAgentSession *session,
     {
       if (G_UNLIKELY (_show_debug ()))
         g_print ("PolkitAgentSession: emitting ::completed(%s)\n", result ? "TRUE" : "FALSE");
-      g_signal_emit_by_name (session, "completed", result);
       session->have_emitted_completed = TRUE;
+      /* Note that the signal handler may drop the last reference to session. */
+      g_signal_emit_by_name (session, "completed", result);
     }
-}
-
-static void
-child_watch_func (GPid     pid,
-                  gint     status,
-                  gpointer user_data)
-{
-  PolkitAgentSession *session = POLKIT_AGENT_SESSION (user_data);
-
-  if (G_UNLIKELY (_show_debug ()))
-    {
-      g_print ("PolkitAgentSession: in child_watch_func for pid %d (WIFEXITED=%d WEXITSTATUS=%d)\n",
-               (gint) pid,
-               WIFEXITED(status),
-               WEXITSTATUS(status));
-    }
-
-  /* kill all the watches we have set up, except for the child since it has exited already */
-  session->child_pid = 0;
-  complete_session (session, FALSE);
 }
 
 static gboolean
@@ -475,10 +444,13 @@ io_watch_have_data (GIOChannel    *channel,
                           NULL,
                           NULL,
                           &error);
-  if (error != NULL)
+  if (error != NULL || line == NULL)
     {
-      g_warning ("Error reading line from helper: %s", error->message);
-      g_error_free (error);
+      /* In case we get just G_IO_HUP, line is NULL but error is
+         unset.*/
+      g_warning ("Error reading line from helper: %s",
+                 error ? error->message : "nothing to read");
+      g_clear_error (&error);
 
       complete_session (session, FALSE);
       goto out;
@@ -540,6 +512,9 @@ io_watch_have_data (GIOChannel    *channel,
   g_free (line);
   g_free (unescaped);
 
+  if (condition & (G_IO_ERR | G_IO_HUP))
+    complete_session (session, FALSE);
+
   /* keep the IOChannel around */
   return TRUE;
 }
@@ -567,9 +542,9 @@ polkit_agent_session_response (PolkitAgentSession *session,
 
   add_newline = (response[response_len] != '\n');
 
-  write (session->child_stdin, response, response_len);
+  (void) g_output_stream_write_all (session->child_stdin, response, response_len, NULL, NULL, NULL);
   if (add_newline)
-    write (session->child_stdin, newline, 1);
+    (void) g_output_stream_write_all (session->child_stdin, newline, 1, NULL, NULL, NULL);
 }
 
 /**
@@ -589,8 +564,9 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
 {
   uid_t uid;
   GError *error;
-  gchar *helper_argv[4];
+  gchar *helper_argv[3];
   struct passwd *passwd;
+  int stdin_fd = -1;
 
   g_return_if_fail (POLKIT_AGENT_IS_SESSION (session));
 
@@ -622,10 +598,8 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
 
   helper_argv[0] = PACKAGE_PREFIX "/lib/polkit-1/polkit-agent-helper-1";
   helper_argv[1] = passwd->pw_name;
-  helper_argv[2] = session->cookie;
-  helper_argv[3] = NULL;
+  helper_argv[2] = NULL;
 
-  session->child_stdin = -1;
   session->child_stdout = -1;
 
   error = NULL;
@@ -637,7 +611,7 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
                                  NULL,
                                  NULL,
                                  &session->child_pid,
-                                 &session->child_stdin,
+                                 &stdin_fd,
                                  &session->child_stdout,
                                  NULL,
                                  &error))
@@ -650,12 +624,16 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
   if (G_UNLIKELY (_show_debug ()))
     g_print ("PolkitAgentSession: spawned helper with pid %d\n", (gint) session->child_pid);
 
-  session->child_watch_source = g_child_watch_source_new (session->child_pid);
-  g_source_set_callback (session->child_watch_source, (GSourceFunc) child_watch_func, session, NULL);
-  g_source_attach (session->child_watch_source, g_main_context_get_thread_default ());
+  session->child_stdin = (GOutputStream*)g_unix_output_stream_new (stdin_fd, TRUE);
+
+  /* Write the cookie on stdin so it can't be seen by other processes */
+  (void) g_output_stream_write_all (session->child_stdin, session->cookie, strlen (session->cookie),
+                                    NULL, NULL, NULL);
+  (void) g_output_stream_write_all (session->child_stdin, "\n", 1, NULL, NULL, NULL);
 
   session->child_stdout_channel = g_io_channel_unix_new (session->child_stdout);
-  session->child_stdout_watch_source = g_io_create_watch (session->child_stdout_channel, G_IO_IN);
+  session->child_stdout_watch_source = g_io_create_watch (session->child_stdout_channel,
+                                                          G_IO_IN | G_IO_ERR | G_IO_HUP);
   g_source_set_callback (session->child_stdout_watch_source, (GSourceFunc) io_watch_have_data, session, NULL);
   g_source_attach (session->child_stdout_watch_source, g_main_context_get_thread_default ());
 

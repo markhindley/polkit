@@ -1,6 +1,6 @@
 NULL =
 
-INCLUDES =                                                      \
+AM_CPPFLAGS =                                                   \
         -I$(top_builddir)/src                                   \
         -I$(top_srcdir)/src                                     \
         -DPACKAGE_LIBEXEC_DIR=\""$(libexecdir)"\"               \
@@ -81,7 +81,7 @@ libpolkit_gobject_1_la_SOURCES =                                   			\
 	polkitpermission.c			polkitpermission.h			\
         $(NULL)
 
-if HAVE_LIBSYSTEMD_LOGIN
+if HAVE_LIBSYSTEMD
 libpolkit_gobject_1_la_SOURCES += \
 	polkitunixsession-systemd.c		polkitunixsession.h
 else
@@ -92,12 +92,12 @@ endif
 libpolkit_gobject_1_la_CFLAGS =                                        	\
         -D_POLKIT_COMPILATION                                  		\
         $(GLIB_CFLAGS)							\
-	$(LIBSYSTEMD_LOGIN_CFLAGS)					\
+	$(LIBSYSTEMD_CFLAGS)						\
         $(NULL)
 
 libpolkit_gobject_1_la_LIBADD =                               		\
         $(GLIB_LIBS)							\
-	$(LIBSYSTEMD_LOGIN_LIBS)					\
+	$(LIBSYSTEMD_LIBS)						\
         $(NULL)
 
 libpolkit_gobject_1_la_LDFLAGS = -export-symbols-regex '(^polkit_.*)'
@@ -137,3 +137,5 @@ dist-hook :
 clean-local :
 	rm -f *~ $(polkit_built_sources) $(BUILT_SOURCES)
 
+
+-include $(top_srcdir)/git.mk

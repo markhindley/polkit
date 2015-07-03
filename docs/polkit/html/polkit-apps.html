@@ -2,22 +2,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Writing polkit applications</title>
+<title>Writing polkit applications: polkit Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="overview.html" title="Part I. polkit Overview">
 <link rel="prev" href="polkit-intro.html" title="Introduction">
 <link rel="next" href="polkit-agents.html" title="Writing polkit Authentication Agents">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.24 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
-<td><a accesskey="p" href="polkit-intro.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="overview.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">polkit Reference Manual</th>
-<td><a accesskey="n" href="polkit-agents.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts"></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="overview.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="polkit-intro.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="polkit-agents.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="chapter">
 <div class="titlepage"><div><div><h2 class="title">
@@ -110,14 +110,14 @@
             <a class="ulink" href="http://0pointer.de/blog/projects/three-levels-of-off.html" target="_top">masked</a>). If you are using the
             <a class="link" href="ref-api.html" title="Part III. Library API Reference">libpolkit-gobject-1</a> library this
             means handling
-            <a class="link" href="PolkitAuthority.html#polkit-authority-get-sync" title="polkit_authority_get_sync ()">polkit_authority_get_sync()</a>
+            <a class="link" href="PolkitAuthority.html#polkit-authority-get-sync" title="polkit_authority_get_sync ()">polkit_authority_get_sync()</a>
             or
-            <a class="link" href="PolkitAuthority.html#polkit-authority-get-finish" title="polkit_authority_get_finish ()">polkit_authority_get_finish()</a>
+            <a class="link" href="PolkitAuthority.html#polkit-authority-get-finish" title="polkit_authority_get_finish ()">polkit_authority_get_finish()</a>
             returning <code class="constant">NULL</code> or
-            <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization" title="polkit_authority_check_authorization ()">polkit_authority_check_authorization()</a> /
-            <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization-sync" title="polkit_authority_check_authorization_sync ()">polkit_authority_check_authorization_sync()</a>
+            <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization" title="polkit_authority_check_authorization ()">polkit_authority_check_authorization()</a> /
+            <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization-sync" title="polkit_authority_check_authorization_sync ()">polkit_authority_check_authorization_sync()</a>
             failing with an error not in the
-            <a class="link" href="PolkitError.html#POLKIT-ERROR:CAPS" title="POLKIT_ERROR">POLKIT_ERROR</a>
+            <a class="link" href="polkit-1-PolkitError.html#POLKIT-ERROR:CAPS" title="POLKIT_ERROR">POLKIT_ERROR</a>
             domain.
             An appropriate way of dealing with the polkit authority
             not being available, could be to allow only uid 0 to
@@ -166,8 +166,8 @@
             authority to reply - calls to <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.CheckAuthorization" title="CheckAuthorization ()">CheckAuthorization()</a>
             may take a very long time (seconds, even minutes) to
             complete as user interaction may be involved.  Instead,
-            use either the <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization" title="polkit_authority_check_authorization ()">asynchronous
-            API</a> or a dedicated thread with the <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization-sync" title="polkit_authority_check_authorization_sync ()">synchronous
+            use either the <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization" title="polkit_authority_check_authorization ()">asynchronous
+            API</a> or a dedicated thread with the <a class="link" href="PolkitAuthority.html#polkit-authority-check-authorization-sync" title="polkit_authority_check_authorization_sync ()">synchronous
             API</a>.
           </p></li>
 <li class="listitem" style="list-style-type: circle"><p>
@@ -258,7 +258,6 @@
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.19</div>
+<hr>Generated by GTK-Doc V1.24</div>
 </body>
 </html>

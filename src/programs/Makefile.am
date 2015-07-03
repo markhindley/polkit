@@ -1,7 +1,7 @@
 
 NULL =
 
-INCLUDES =                                              	\
+AM_CPPFLAGS =                                              	\
 	-I$(top_builddir)/src                           	\
 	-I$(top_srcdir)/src                             	\
 	-DPACKAGE_LIBEXEC_DIR=\""$(libexecdir)"\"       	\
@@ -88,3 +88,5 @@ clean-local :
 
 install-exec-hook :
 	-chmod 4755 $(DESTDIR)$(bindir)/pkexec
+
+-include $(top_srcdir)/git.mk

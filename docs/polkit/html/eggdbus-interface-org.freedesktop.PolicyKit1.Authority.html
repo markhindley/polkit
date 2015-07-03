@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>org.freedesktop.PolicyKit1.Authority Interface</title>
+<title>org.freedesktop.PolicyKit1.Authority Interface: polkit Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="prev" href="ref-dbus-api.html" title="Part II. D-Bus API Reference">
 <link rel="next" href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html" title="org.freedesktop.PolicyKit1.AuthenticationAgent Interface">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.24 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="ref-dbus-api.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ref-dbus-api.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">polkit Reference Manual</th>
-<td><a accesskey="n" href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.properties" class="shortcut">Properties</a>
-                   | 
-                  <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.signals" class="shortcut">Signals</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.description" class="shortcut">Description</a></span><span id="nav_properties">  <span class="dim">|</span> 
+                  <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.properties" class="shortcut">Properties</a></span><span id="nav_signals">  <span class="dim">|</span> 
+                  <a href="#eggdbus-interface-org.freedesktop.PolicyKit1.Authority.signals" class="shortcut">Signals</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ref-dbus-api.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="ref-dbus-api.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="eggdbus-interface-org.freedesktop.PolicyKit1.AuthenticationAgent.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="eggdbus-interface-org.freedesktop.PolicyKit1.Authority"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -37,7 +31,7 @@
 <h2><span class="refentrytitle">org.freedesktop.PolicyKit1.Authority Interface</span></h2>
 <p>org.freedesktop.PolicyKit1.Authority Interface — Authority Interface</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsynopsisdiv">
 <h2>Methods</h2>
@@ -71,6 +65,8 @@ Structure    <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.UnregisterAuthenticationAgent" title="UnregisterAuthenticationAgent ()">UnregisterAuthenticationAgent</a>    (IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>                        subject,
                                   IN  String                         object_path)
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse" title="AuthenticationAgentResponse ()">AuthenticationAgentResponse</a>      (IN  String                         cookie,
+                                  IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity" title="The Identity Structure">Identity</a>                       identity)
+<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse2" title="AuthenticationAgentResponse2 ()">AuthenticationAgentResponse2</a>      (IN uint32 uid, IN  String                         cookie,
                                   IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity" title="The Identity Structure">Identity</a>                       identity)
 <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.EnumerateTemporaryAuthorizations" title="EnumerateTemporaryAuthorizations ()">EnumerateTemporaryAuthorizations</a> (IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Subject" title="The Subject Structure">Subject</a>                        subject,
                                   OUT Array&lt;<a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-TemporaryAuthorization" title="The TemporaryAuthorization Structure">TemporaryAuthorization</a>&gt;  temporary_authorizations)
@@ -798,7 +794,7 @@ RegisterAuthenticationAgent (IN  <a class="link" href="eggdbus-interface-org.fre
 <p>
 </p>
 <p>Register an authentication agent.</p>
-<p>Note that current versions of PolicyKit will only work if <em class="parameter"><code>session_id</code></em> is set to the empty string. In the future it might work for non-empty strings if the caller is sufficiently privileged.</p>
+<p>Note that this should be called by same effective UID which will be passed to <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse2" title="AuthenticationAgentResponse2 ()">AuthenticationAgentResponse2()</a>.</p>
 <p>
     </p>
 <div class="variablelist"><table border="0" class="variablelist">
@@ -882,7 +878,10 @@ AuthenticationAgentResponse (IN  String    cookie,
                              IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity" title="The Identity Structure">Identity</a>  identity)
     </pre>
 <p>
-Method for authentication agents to invoke on successful authentication. This method will fail unless a sufficiently privileged caller invokes it.
+Method for authentication agents to invoke on successful
+authentication, intended only for use by a privileged helper process
+internal to polkit. This method will fail unless a sufficiently privileged
++caller invokes it. Deprecated in favor of <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse2" title="AuthenticationAgentResponse2 ()">AuthenticationAgentResponse2()</a>.
     </p>
 <div class="variablelist"><table border="0" class="variablelist">
 <colgroup>
@@ -890,6 +889,50 @@ Method for authentication agents to invoke on successful authentication. This me
 <col>
 </colgroup>
 <tbody>
+<tr>
+<td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>cookie</code></em></code>:</span></p></td>
+<td><p>
+The cookie identifying the authentication request that was passed to the authentication agent.
+      </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="literal">IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity" title="The Identity Structure">Identity</a> <em class="parameter"><code>identity</code></em></code>:</span></p></td>
+<td><p>
+A <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity" title="The Identity Structure">Identity</a> struct describing what identity was authenticated.
+      </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse2"></a><h3>AuthenticationAgentResponse2 ()</h3>
+<pre class="programlisting">
+AuthenticationAgentResponse2 (IN  uint32 uid,
+                              IN  String cookie,
+                              IN  <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-struct-Identity" title="The Identity Structure">Identity</a>  identity)
+    </pre>
+<p>
+Method for authentication agents to invoke on successful
+authentication, intended only for use by a privileged helper process
+internal to polkit. This method will fail unless a sufficiently privileged
+caller invokes it. Note this method was introduced in 0.114 and should be
+preferred over <a class="link" href="eggdbus-interface-org.freedesktop.PolicyKit1.Authority.html#eggdbus-method-org.freedesktop.PolicyKit1.Authority.AuthenticationAgentResponse" title="AuthenticationAgentResponse ()">AuthenticationAgentResponse()</a>
+as it fixes a security issue.
+    </p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><code class="literal">IN  uint32 <em class="parameter"><code>uid</code></em></code>:</span></p></td>
+<td><p>
+The user id of the agent; normally this is the owner of the parent pid
+of the process that invoked the internal setuid helper.
+      </p></td>
+</tr>
 <tr>
 <td><p><span class="term"><code class="literal">IN  String <em class="parameter"><code>cookie</code></em></code>:</span></p></td>
 <td><p>
@@ -1034,7 +1077,6 @@ The features supported by the currently used Authority backend.
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.19</div>
+<hr>Generated by GTK-Doc V1.24</div>
 </body>
 </html>

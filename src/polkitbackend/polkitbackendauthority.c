@@ -343,6 +343,7 @@ polkit_backend_authority_unregister_authentication_agent (PolkitBackendAuthority
  * polkit_backend_authority_authentication_agent_response:
  * @authority: A #PolkitBackendAuthority.
  * @caller: The system bus name that initiated the query.
+ * @uid: The real UID of the registered agent, or (uid_t)-1 if unknown.
  * @cookie: The cookie passed to the authentication agent from the authority.
  * @identity: The identity that was authenticated.
  * @error: Return location for error or %NULL.
@@ -355,6 +356,7 @@ polkit_backend_authority_unregister_authentication_agent (PolkitBackendAuthority
 gboolean
 polkit_backend_authority_authentication_agent_response (PolkitBackendAuthority    *authority,
                                                         PolkitSubject             *caller,
+                                                        uid_t                      uid,
                                                         const gchar               *cookie,
                                                         PolkitIdentity            *identity,
                                                         GError                   **error)
@@ -373,7 +375,7 @@ polkit_backend_authority_authentication_agent_response (PolkitBackendAuthority  
     }
   else
     {
-      return klass->authentication_agent_response (authority, caller, cookie, identity, error);
+      return klass->authentication_agent_response (authority, caller, uid, cookie, identity, error);
     }
 }
 
@@ -587,6 +589,11 @@ static const gchar *server_introspection_data =
   "      <arg type='s' name='cookie' direction='in'/>"
   "      <arg type='(sa{sv})' name='identity' direction='in'/>"
   "    </method>"
+  "    <method name='AuthenticationAgentResponse2'>"
+  "      <arg type='u' name='uid' direction='in'/>"
+  "      <arg type='s' name='cookie' direction='in'/>"
+  "      <arg type='(sa{sv})' name='identity' direction='in'/>"
+  "    </method>"
   "    <method name='EnumerateTemporaryAuthorizations'>"
   "      <arg type='(sa{sv})' name='subject' direction='in'/>"
   "      <arg type='a(ss(sa{sv})tt)' name='temporary_authorizations' direction='out'/>"
@@ -707,6 +714,7 @@ check_auth_cb (GObject      *source_object,
       g_variant_ref_sink (value);
       g_dbus_method_invocation_return_value (data->invocation, g_variant_new ("(@(bba{ss}))", value));
       g_variant_unref (value);
+      g_object_unref (result);
     }
 
   check_auth_data_free (data);
@@ -892,6 +900,7 @@ server_handle_register_authentication_agent (Server                 *server,
   g_dbus_method_invocation_return_value (invocation, g_variant_new ("()"));
 
  out:
+  g_variant_unref (subject_gvariant);
   if (subject != NULL)
     g_object_unref (subject);
 }
@@ -1035,6 +1044,57 @@ server_handle_authentication_agent_response (Server                 *server,
   error = NULL;
   if (!polkit_backend_authority_authentication_agent_response (server->authority,
                                                                caller,
+                                                               (uid_t)-1,
+                                                               cookie,
+                                                               identity,
+                                                               &error))
+    {
+      g_dbus_method_invocation_return_gerror (invocation, error);
+      g_error_free (error);
+      goto out;
+    }
+
+  g_dbus_method_invocation_return_value (invocation, g_variant_new ("()"));
+
+ out:
+  if (identity != NULL)
+    g_object_unref (identity);
+}
+
+static void
+server_handle_authentication_agent_response2 (Server                 *server,
+                                              GVariant               *parameters,
+                                              PolkitSubject          *caller,
+                                              GDBusMethodInvocation  *invocation)
+{
+  const gchar *cookie;
+  GVariant *identity_gvariant;
+  PolkitIdentity *identity;
+  GError *error;
+  guint32 uid;
+
+  identity = NULL;
+
+  g_variant_get (parameters,
+                 "(u&s@(sa{sv}))",
+                 &uid,
+                 &cookie,
+                 &identity_gvariant);
+
+  error = NULL;
+  identity = polkit_identity_new_for_gvariant (identity_gvariant, &error);
+  if (identity == NULL)
+    {
+      g_prefix_error (&error, "Error getting identity: ");
+      g_dbus_method_invocation_return_gerror (invocation, error);
+      g_error_free (error);
+      goto out;
+    }
+
+  error = NULL;
+  if (!polkit_backend_authority_authentication_agent_response (server->authority,
+                                                               caller,
+                                                               (uid_t)uid,
                                                                cookie,
                                                                identity,
                                                                &error))
@@ -1222,6 +1282,8 @@ server_handle_method_call (GDBusConnection        *connection,
     server_handle_unregister_authentication_agent (server, parameters, caller, invocation);
   else if (g_strcmp0 (method_name, "AuthenticationAgentResponse") == 0)
     server_handle_authentication_agent_response (server, parameters, caller, invocation);
+  else if (g_strcmp0 (method_name, "AuthenticationAgentResponse2") == 0)
+    server_handle_authentication_agent_response2 (server, parameters, caller, invocation);
   else if (g_strcmp0 (method_name, "EnumerateTemporaryAuthorizations") == 0)
     server_handle_enumerate_temporary_authorizations (server, parameters, caller, invocation);
   else if (g_strcmp0 (method_name, "RevokeTemporaryAuthorizations") == 0)

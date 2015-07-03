@@ -108,8 +108,9 @@ static AuthenticationAgent *get_authentication_agent_for_subject (PolkitBackendI
                                                                   PolkitSubject *subject);
 
 
-static AuthenticationSession *get_authentication_session_for_cookie (PolkitBackendInteractiveAuthority *authority,
-                                                                     const gchar *cookie);
+static AuthenticationSession *get_authentication_session_for_uid_and_cookie (PolkitBackendInteractiveAuthority *authority,
+                                                                             uid_t                              uid,
+                                                                             const gchar                       *cookie);
 
 static GList *get_authentication_sessions_initiated_by_system_bus_unique_name (PolkitBackendInteractiveAuthority *authority,
                                                                                const gchar *system_bus_unique_name);
@@ -169,6 +170,7 @@ static gboolean polkit_backend_interactive_authority_unregister_authentication_a
 
 static gboolean polkit_backend_interactive_authority_authentication_agent_response (PolkitBackendAuthority   *authority,
                                                                               PolkitSubject            *caller,
+                                                                              uid_t                     uid,
                                                                               const gchar              *cookie,
                                                                               PolkitIdentity           *identity,
                                                                               GError                  **error);
@@ -214,6 +216,8 @@ typedef struct
 
   GDBusConnection *system_bus_connection;
   guint name_owner_changed_signal_id;
+
+  guint64 agent_serial;
 } PolkitBackendInteractiveAuthorityPrivate;
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -223,6 +227,14 @@ G_DEFINE_TYPE (PolkitBackendInteractiveAuthority,
                POLKIT_BACKEND_TYPE_AUTHORITY);
 
 #define POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), POLKIT_BACKEND_TYPE_INTERACTIVE_AUTHORITY, PolkitBackendInteractiveAuthorityPrivate))
+
+static gboolean
+identity_is_root_user (PolkitIdentity *user)
+{
+  if (!POLKIT_IS_UNIX_USER (user))
+    return FALSE;
+  return polkit_unix_user_get_uid (POLKIT_UNIX_USER (user)) == 0;
+}
 
 /* ---------------------------------------------------------------------------------------------------- */
 
@@ -278,10 +290,9 @@ polkit_backend_interactive_authority_init (PolkitBackendInteractiveAuthority *au
   PolkitBackendInteractiveAuthorityPrivate *priv;
   GFile *directory;
   GError *error;
-  static volatile GQuark domain = 0;
 
   /* Force registering error domain */
-  domain = POLKIT_ERROR; domain;
+  (void)POLKIT_ERROR;
 
   priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (authority);
 
@@ -431,12 +442,17 @@ struct AuthenticationAgent
 {
   volatile gint ref_count;
 
+  uid_t creator_uid;
   PolkitSubject *scope;
+  guint64 serial;
 
   gchar *locale;
   GVariant *registration_options;
   gchar *object_path;
   gchar *unique_system_bus_name;
+  GRand *cookie_pool;
+  gchar *cookie_prefix;
+  guint64  cookie_serial;
 
   GDBusProxy *proxy;
 
@@ -559,7 +575,11 @@ log_result (PolkitBackendInteractiveAuthority    *authority,
   user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, subject, NULL);
 
   subject_str = polkit_subject_to_string (subject);
-  user_of_subject_str = polkit_identity_to_string (user_of_subject);
+
+  if (user_of_subject != NULL)
+    user_of_subject_str = polkit_identity_to_string (user_of_subject);
+  else
+    user_of_subject_str = g_strdup ("<unknown>");
   caller_str = polkit_subject_to_string (caller);
 
   subject_cmdline = _polkit_subject_get_cmdline (subject);
@@ -764,7 +784,7 @@ may_identity_check_authorization (PolkitBackendInteractiveAuthority   *interacti
   guint n;
 
   /* uid 0 may check anything */
-  if (POLKIT_IS_UNIX_USER (identity) && polkit_unix_user_get_uid (POLKIT_UNIX_USER (identity)) == 0)
+  if (identity_is_root_user (identity))
     {
       ret = TRUE;
       goto out;
@@ -1002,7 +1022,7 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
 
   /* Otherwise just return the result */
   g_simple_async_result_set_op_res_gpointer (simple,
-                                             result,
+                                             g_object_ref (result),
                                              g_object_unref);
   g_simple_async_result_complete (simple);
   g_object_unref (simple);
@@ -1019,6 +1039,9 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
   g_free (subject_str);
   g_free (user_of_caller_str);
   g_free (user_of_subject_str);
+
+  if (result != NULL)
+    g_object_unref (result);
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -1092,7 +1115,7 @@ check_authorization_sync (PolkitBackendAuthority         *authority,
       goto out;
 
   /* special case: uid 0, root, is _always_ authorized for anything */
-  if (POLKIT_IS_UNIX_USER (user_of_subject) && polkit_unix_user_get_uid (POLKIT_UNIX_USER (user_of_subject)) == 0)
+  if (identity_is_root_user (user_of_subject))
     {
       result = polkit_authorization_result_new (TRUE, FALSE, NULL);
       goto out;
@@ -1416,9 +1439,54 @@ authentication_session_cancelled_cb (GCancellable *cancellable,
   authentication_session_cancel (session);
 }
 
+/* We're not calling this a UUID, but it's basically
+ * the same thing, just not formatted that way because:
+ *
+ *  - I'm too lazy to do it
+ *  - If we did, people might think it was actually
+ *    generated from /dev/random, which we're not doing
+ *    because this value doesn't actually need to be
+ *    globally unique.
+ */
+static void
+append_rand_u128_str (GString *buf,
+                      GRand   *pool)
+{
+  g_string_append_printf (buf, "%08x%08x%08x%08x",
+                          g_rand_int (pool),
+                          g_rand_int (pool),
+                          g_rand_int (pool),
+                          g_rand_int (pool));
+}
+
+/* A value that should be unique to the (AuthenticationAgent, AuthenticationSession)
+ * pair, and not guessable by other agents.
+ *
+ * <agent serial> - <agent uuid> - <session serial> - <session uuid>
+ *
+ * See http://lists.freedesktop.org/archives/polkit-devel/2015-June/000425.html
+ *
+ */
+static gchar *
+authentication_agent_generate_cookie (AuthenticationAgent *agent)
+{
+  GString *buf = g_string_new ("");
+
+  g_string_append (buf, agent->cookie_prefix);
+  
+  g_string_append_c (buf, '-');
+  agent->cookie_serial++;
+  g_string_append_printf (buf, "%" G_GUINT64_FORMAT, 
+                          agent->cookie_serial);
+  g_string_append_c (buf, '-');
+  append_rand_u128_str (buf, agent->cookie_pool);
+
+  return g_string_free (buf, FALSE);
+}
+
+
 static AuthenticationSession *
 authentication_session_new (AuthenticationAgent         *agent,
-                            const gchar                 *cookie,
                             PolkitSubject               *subject,
                             PolkitIdentity              *user_of_subject,
                             PolkitSubject               *caller,
@@ -1436,7 +1504,7 @@ authentication_session_new (AuthenticationAgent         *agent,
 
   session = g_new0 (AuthenticationSession, 1);
   session->agent = authentication_agent_ref (agent);
-  session->cookie = g_strdup (cookie);
+  session->cookie = authentication_agent_generate_cookie (agent);
   session->subject = g_object_ref (subject);
   session->user_of_subject = g_object_ref (user_of_subject);
   session->caller = g_object_ref (caller);
@@ -1483,16 +1551,6 @@ authentication_session_free (AuthenticationSession *session)
   if (session->cancellable != NULL)
     g_object_unref (session->cancellable);
   g_free (session);
-}
-
-static gchar *
-authentication_agent_new_cookie (AuthenticationAgent *agent)
-{
-  static gint counter = 0;
-
-  /* TODO: use a more random-looking cookie */
-
-  return g_strdup_printf ("cookie%d", counter++);
 }
 
 static PolkitSubject *
@@ -1542,45 +1600,80 @@ authentication_agent_unref (AuthenticationAgent *agent)
       g_free (agent->unique_system_bus_name);
       if (agent->registration_options != NULL)
         g_variant_unref (agent->registration_options);
+      g_rand_free (agent->cookie_pool);
+      g_free (agent->cookie_prefix);
       g_free (agent);
     }
 }
 
 static AuthenticationAgent *
-authentication_agent_new (PolkitSubject *scope,
+authentication_agent_new (guint64      serial,
+                          PolkitSubject *scope,
+                          PolkitIdentity *creator,
                           const gchar *unique_system_bus_name,
                           const gchar *locale,
                           const gchar *object_path,
-                          GVariant    *registration_options)
+                          GVariant    *registration_options,
+                          GError     **error)
 {
   AuthenticationAgent *agent;
-  GError *error;
+  GDBusProxy *proxy;
+  PolkitUnixUser *creator_user;
+
+  g_assert (POLKIT_IS_UNIX_USER (creator));
+  creator_user = POLKIT_UNIX_USER (creator);
+
+  if (!g_variant_is_object_path (object_path))
+    {
+      g_set_error (error, POLKIT_ERROR, POLKIT_ERROR_FAILED,
+                   "Invalid object path '%s'", object_path);
+      return NULL;
+    }
+
+  proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SYSTEM,
+                                         G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES |
+                                         G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
+                                         NULL, /* GDBusInterfaceInfo* */
+                                         unique_system_bus_name,
+                                         object_path,
+                                         "org.freedesktop.PolicyKit1.AuthenticationAgent",
+                                         NULL, /* GCancellable* */
+                                         error);
+  if (proxy == NULL)
+    {
+      g_prefix_error (error, "Failed to construct proxy for agent: " );
+      return NULL;
+    }
 
   agent = g_new0 (AuthenticationAgent, 1);
-
   agent->ref_count = 1;
+  agent->serial = serial;
   agent->scope = g_object_ref (scope);
+  agent->creator_uid = (uid_t)polkit_unix_user_get_uid (creator_user);
   agent->object_path = g_strdup (object_path);
   agent->unique_system_bus_name = g_strdup (unique_system_bus_name);
   agent->locale = g_strdup (locale);
   agent->registration_options = registration_options != NULL ? g_variant_ref (registration_options) : NULL;
+  agent->proxy = proxy;
 
-  error = NULL;
-  agent->proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SYSTEM,
-                                                G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES |
-                                                G_DBUS_PROXY_FLAGS_DO_NOT_CONNECT_SIGNALS,
-                                                NULL, /* GDBusInterfaceInfo* */
-                                                agent->unique_system_bus_name,
-                                                agent->object_path,
-                                                "org.freedesktop.PolicyKit1.AuthenticationAgent",
-                                                NULL, /* GCancellable* */
-                                                &error);
-  if (agent->proxy == NULL)
-    {
-      g_warning ("Error constructing proxy for agent: %s", error->message);
-      g_error_free (error);
-      /* TODO: Make authentication_agent_new() return NULL and set a GError */
-    }
+  {
+    GString *cookie_prefix = g_string_new ("");
+    GRand *agent_private_rand = g_rand_new ();
+
+    g_string_append_printf (cookie_prefix, "%" G_GUINT64_FORMAT "-", agent->serial);
+
+    /* Use a uniquely seeded PRNG to get a prefix cookie for this agent,
+     * whose sequence will not correlate with the per-authentication session
+     * cookies.
+     */
+    append_rand_u128_str (cookie_prefix, agent_private_rand);
+    g_rand_free (agent_private_rand);
+
+    agent->cookie_prefix = g_string_free (cookie_prefix, FALSE);
+    
+    /* And a newly seeded pool for per-session cookies */
+    agent->cookie_pool = g_rand_new ();
+  }
 
   return agent;
 }
@@ -1655,8 +1748,9 @@ get_authentication_agent_for_subject (PolkitBackendInteractiveAuthority *authori
 }
 
 static AuthenticationSession *
-get_authentication_session_for_cookie (PolkitBackendInteractiveAuthority *authority,
-                                       const gchar *cookie)
+get_authentication_session_for_uid_and_cookie (PolkitBackendInteractiveAuthority *authority,
+                                               uid_t                              uid,
+                                               const gchar                       *cookie)
 {
   PolkitBackendInteractiveAuthorityPrivate *priv;
   GHashTableIter hash_iter;
@@ -1673,6 +1767,23 @@ get_authentication_session_for_cookie (PolkitBackendInteractiveAuthority *author
   while (g_hash_table_iter_next (&hash_iter, NULL, (gpointer) &agent))
     {
       GList *l;
+
+      /* We need to ensure that if somehow we have duplicate cookies
+       * due to wrapping, that the cookie used is matched to the user
+       * who called AuthenticationAgentResponse2.  See
+       * http://lists.freedesktop.org/archives/polkit-devel/2015-June/000425.html
+       * 
+       * Except if the legacy AuthenticationAgentResponse is invoked,
+       * we don't know the uid and hence use -1.  Continue to support
+       * the old behavior for backwards compatibility, although everyone
+       * who is using our own setuid helper will automatically be updated
+       * to the new API.
+       */
+      if (uid != (uid_t)-1)
+        {
+          if (agent->creator_uid != uid)
+            continue;
+        }
 
       for (l = agent->active_sessions; l != NULL; l = l->next)
         {
@@ -2113,11 +2224,15 @@ get_users_in_net_group (PolkitIdentity                    *group,
   ret = NULL;
   name = polkit_unix_netgroup_get_name (POLKIT_UNIX_NETGROUP (group));
 
+#ifdef HAVE_SETNETGRENT_RETURN
   if (setnetgrent (name) == 0)
     {
       g_warning ("Error looking up net group with name %s: %s", name, g_strerror (errno));
       goto out;
     }
+#else
+  setnetgrent (name);
+#endif
 
   for (;;)
     {
@@ -2172,7 +2287,6 @@ authentication_agent_initiate_challenge (AuthenticationAgent         *agent,
 {
   PolkitBackendInteractiveAuthorityPrivate *priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (authority);
   AuthenticationSession *session;
-  gchar *cookie;
   GList *l;
   GList *identities;
   gchar *localized_message;
@@ -2193,8 +2307,6 @@ authentication_agent_initiate_challenge (AuthenticationAgent         *agent,
                                     &localized_message,
                                     &localized_icon_name,
                                     &localized_details);
-
-  cookie = authentication_agent_new_cookie (agent);
 
   identities = NULL;
 
@@ -2258,7 +2370,6 @@ authentication_agent_initiate_challenge (AuthenticationAgent         *agent,
     user_identities = g_list_prepend (NULL, polkit_unix_user_new (0));
 
   session = authentication_session_new (agent,
-                                        cookie,
                                         subject,
                                         user_of_subject,
                                         caller,
@@ -2314,7 +2425,6 @@ authentication_agent_initiate_challenge (AuthenticationAgent         *agent,
   g_list_free_full (user_identities, g_object_unref);
   g_list_foreach (identities, (GFunc) g_object_unref, NULL);
   g_list_free (identities);
-  g_free (cookie);
 
   g_free (localized_message);
   g_free (localized_icon_name);
@@ -2379,8 +2489,6 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
   caller_cmdline = NULL;
   agent = NULL;
 
-  /* TODO: validate that object path is well-formed */
-
   interactive_authority = POLKIT_BACKEND_INTERACTIVE_AUTHORITY (authority);
   priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (interactive_authority);
 
@@ -2439,7 +2547,7 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
     }
   if (!polkit_identity_equal (user_of_caller, user_of_subject))
     {
-      if (POLKIT_IS_UNIX_USER (user_of_caller) && polkit_unix_user_get_uid (POLKIT_UNIX_USER (user_of_caller)) == 0)
+      if (identity_is_root_user (user_of_caller))
         {
           /* explicitly allow uid 0 to register for other users */
         }
@@ -2463,11 +2571,17 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
       goto out;
     }
 
-  agent = authentication_agent_new (subject,
+  priv->agent_serial++;
+  agent = authentication_agent_new (priv->agent_serial,
+                                    subject,
+                                    user_of_caller,
                                     polkit_system_bus_name_get_name (POLKIT_SYSTEM_BUS_NAME (caller)),
                                     locale,
                                     object_path,
-                                    options);
+                                    options,
+                                    error);
+  if (!agent)
+    goto out;
 
   g_hash_table_insert (priv->hash_scope_to_authentication_agent,
                        g_object_ref (subject),
@@ -2592,7 +2706,7 @@ polkit_backend_interactive_authority_unregister_authentication_agent (PolkitBack
     }
   if (!polkit_identity_equal (user_of_caller, user_of_subject))
     {
-      if (POLKIT_IS_UNIX_USER (user_of_caller) && polkit_unix_user_get_uid (POLKIT_UNIX_USER (user_of_caller)) == 0)
+      if (identity_is_root_user (user_of_caller))
         {
           /* explicitly allow uid 0 to register for other users */
         }
@@ -2674,6 +2788,7 @@ polkit_backend_interactive_authority_unregister_authentication_agent (PolkitBack
 static gboolean
 polkit_backend_interactive_authority_authentication_agent_response (PolkitBackendAuthority   *authority,
                                                               PolkitSubject            *caller,
+                                                              uid_t                     uid,
                                                               const gchar              *cookie,
                                                               PolkitIdentity           *identity,
                                                               GError                  **error)
@@ -2705,7 +2820,7 @@ polkit_backend_interactive_authority_authentication_agent_response (PolkitBacken
     goto out;
 
   /* only uid 0 is allowed to invoke this method */
-  if (!POLKIT_IS_UNIX_USER (user_of_caller) || polkit_unix_user_get_uid (POLKIT_UNIX_USER (user_of_caller)) != 0)
+  if (!identity_is_root_user (user_of_caller))
     {
       g_set_error (error,
                    POLKIT_ERROR,
@@ -2716,7 +2831,7 @@ polkit_backend_interactive_authority_authentication_agent_response (PolkitBacken
     }
 
   /* find the authentication session */
-  session = get_authentication_session_for_cookie (interactive_authority, cookie);
+  session = get_authentication_session_for_uid_and_cookie (interactive_authority, uid, cookie);
   if (session == NULL)
     {
       g_set_error (error,

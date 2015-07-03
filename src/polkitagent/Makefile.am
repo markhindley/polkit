@@ -1,6 +1,6 @@
 NULL =
 
-INCLUDES =                                                      \
+AM_CPPFLAGS =                                                   \
         -I$(top_builddir)/src                                   \
         -I$(top_srcdir)/src                                     \
         -I$(top_builddir)/src/polkit                            \
@@ -154,3 +154,5 @@ dist-hook :
 
 clean-local :
 	rm -f *~ $(marshal_built_sources) $(BUILT_SOURCES)
+
+-include $(top_srcdir)/git.mk
