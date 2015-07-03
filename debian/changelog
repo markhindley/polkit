@@ -1,4 +1,6 @@
-policykit-1 (0.113-1) UNRELEASED; urgency=medium
+policykit-1 (0.113-1) experimental; urgency=medium
+
+  * Team upload.
 
   [ Martin Pitt ]
   * policykit-1.postinst: Don't kill polkitd under systemd, but properly
@@ -30,7 +32,7 @@ policykit-1 (0.113-1) UNRELEASED; urgency=medium
   * policykit-1.postinst: restart polkit.service, not polkitd.service
     (which doesn't exist)
 
- -- Simon McVittie <smcv@debian.org>  Wed, 01 Apr 2015 15:36:11 +0100
+ -- Simon McVittie <smcv@debian.org>  Fri, 03 Jul 2015 13:33:59 +0100
 
 policykit-1 (0.112-5) experimental; urgency=medium
 
