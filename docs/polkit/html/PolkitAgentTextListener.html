@@ -2,34 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>PolkitAgentTextListener</title>
+<title>PolkitAgentTextListener: polkit Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-authentication-agent-api.html" title="Part IV. Authentication Agent API Reference">
 <link rel="prev" href="PolkitAgentListener.html" title="PolkitAgentListener">
 <link rel="next" href="PolkitAgentSession.html" title="PolkitAgentSession">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.24 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="PolkitAgentListener.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ref-authentication-agent-api.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">polkit Reference Manual</th>
-<td><a accesskey="n" href="PolkitAgentSession.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#PolkitAgentTextListener.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#PolkitAgentTextListener.description" class="shortcut">Description</a>
-                   | 
-                  <a href="#PolkitAgentTextListener.object-hierarchy" class="shortcut">Object Hierarchy</a>
-                   | 
-                  <a href="#PolkitAgentTextListener.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#PolkitAgentTextListener.description" class="shortcut">Description</a></span><span id="nav_hierarchy">  <span class="dim">|</span> 
+                  <a href="#PolkitAgentTextListener.object-hierarchy" class="shortcut">Object Hierarchy</a></span><span id="nav_interfaces">  <span class="dim">|</span> 
+                  <a href="#PolkitAgentTextListener.implemented-interfaces" class="shortcut">Implemented Interfaces</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ref-authentication-agent-api.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="PolkitAgentListener.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="PolkitAgentSession.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="PolkitAgentTextListener"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -37,85 +31,123 @@
 <h2><span class="refentrytitle"><a name="PolkitAgentTextListener.top_of_page"></a>PolkitAgentTextListener</span></h2>
 <p>PolkitAgentTextListener — Text-based Authentication Agent</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.stability-level"></a><h2>Stability Level</h2>
-Unstable, unless otherwise indicated
+<acronym title="Unstable interfaces are experimental or transitional. They are typically used to
+give outside developers early access to new or rapidly changing technology, or
+to provide an interim solution to a problem where a more general solution is
+anticipated. No claims are made about either source or binary compatibility from
+one minor release to the next.
+
+The Unstable interface level is a warning that these interfaces are  subject to
+change without warning and should not be used in unbundled products.
+
+Given such caveats, customer impact need not be a factor when considering
+incompatible changes to an Unstable interface in a major or minor release.
+Nonetheless, when such changes are introduced, the changes should still be
+mentioned in the release notes for the affected release.
+"><span class="acronym">Unstable</span></acronym>, unless otherwise indicated
 </div>
-<div class="refsynopsisdiv">
-<a name="PolkitAgentTextListener.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">                    <a class="link" href="PolkitAgentTextListener.html#PolkitAgentTextListener-struct" title="PolkitAgentTextListener">PolkitAgentTextListener</a>;
-<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> * <a class="link" href="PolkitAgentTextListener.html#polkit-agent-text-listener-new" title="polkit_agent_text_listener_new ()">polkit_agent_text_listener_new</a>    (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
-</pre>
+<div class="refsect1">
+<a name="PolkitAgentTextListener.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody><tr>
+<td class="function_type">
+<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="PolkitAgentTextListener.html#polkit-agent-text-listener-new" title="polkit_agent_text_listener_new ()">polkit_agent_text_listener_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="PolkitAgentTextListener.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="PolkitAgentTextListener.html#PolkitAgentTextListener-struct" title="PolkitAgentTextListener">PolkitAgentTextListener</a></td>
+</tr></tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="synopsis">
-  <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
-   +----<a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a>
-         +----PolkitAgentTextListener
+<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+    <span class="lineart">╰──</span> <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a>
+        <span class="lineart">╰──</span> PolkitAgentTextListener
 </pre>
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 PolkitAgentTextListener implements
- <a href="http://library.gnome.org/devel/gio/unstable/GInitable.html">GInitable</a>.</p>
+ <a href="https://developer.gnome.org/gio/unstable/GInitable.html">GInitable</a>.</p>
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.description"></a><h2>Description</h2>
-<p>
-<a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> is an <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> implementation
-that interacts with the user using a textual interface.
-</p>
+<p><a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> is an <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="type">PolkitAgentListener</span></a> implementation
+that interacts with the user using a textual interface.</p>
 </div>
 <div class="refsect1">
-<a name="PolkitAgentTextListener.details"></a><h2>Details</h2>
+<a name="PolkitAgentTextListener.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
-<a name="PolkitAgentTextListener-struct"></a><h3>PolkitAgentTextListener</h3>
-<pre class="programlisting">typedef struct _PolkitAgentTextListener PolkitAgentTextListener;</pre>
-<p>
-The <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> struct should not be accessed directly.
-</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="polkit-agent-text-listener-new"></a><h3>polkit_agent_text_listener_new ()</h3>
-<pre class="programlisting"><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> * polkit_agent_text_listener_new    (<em class="parameter"><code><a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                                         <em class="parameter"><code><a href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>
-Creates a new <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> for authenticating the user
+<a name="polkit-agent-text-listener-new"></a><h3>polkit_agent_text_listener_new ()</h3>
+<pre class="programlisting"><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> *
+polkit_agent_text_listener_new (<em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Creates a new <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> for authenticating the user
 via an textual interface on the controlling terminal
 (e.g. <code class="filename">/dev/tty</code>). This can fail if e.g. the
-current process has no controlling terminal.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+current process has no controlling terminal.</p>
+<div class="refsect3">
+<a name="id-1.5.3.9.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
 </colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
-<td>A <a href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
+<td class="parameter_name"><p>cancellable</p></td>
+<td class="parameter_description"><p>A <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>Return location for error or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>A <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> or <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em> is set. Free with <a href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a> when done with it.</td>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
+<div class="refsect3">
+<a name="id-1.5.3.9.2.6"></a><h4>Returns</h4>
+<p> A <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
+is set. Free with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a> when done with it.</p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="PolkitAgentTextListener.other_details"></a><h2>Types and Values</h2>
+<div class="refsect2">
+<a name="PolkitAgentTextListener-struct"></a><h3>PolkitAgentTextListener</h3>
+<pre class="programlisting">typedef struct _PolkitAgentTextListener PolkitAgentTextListener;</pre>
+<p>The <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> struct should not be accessed directly.</p>
+</div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.19</div>
+<hr>Generated by GTK-Doc V1.24</div>
 </body>
 </html>

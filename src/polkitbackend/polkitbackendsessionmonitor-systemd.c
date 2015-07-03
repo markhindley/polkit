@@ -277,25 +277,7 @@ polkit_backend_session_monitor_get_user_for_subject (PolkitBackendSessionMonitor
     }
   else if (POLKIT_IS_SYSTEM_BUS_NAME (subject))
     {
-      GVariant *result;
-
-      result = g_dbus_connection_call_sync (monitor->system_bus,
-                                            "org.freedesktop.DBus",
-                                            "/org/freedesktop/DBus",
-                                            "org.freedesktop.DBus",
-                                            "GetConnectionUnixUser",
-                                            g_variant_new ("(s)", polkit_system_bus_name_get_name (POLKIT_SYSTEM_BUS_NAME (subject))),
-                                            G_VARIANT_TYPE ("(u)"),
-                                            G_DBUS_CALL_FLAGS_NONE,
-                                            -1, /* timeout_msec */
-                                            NULL, /* GCancellable */
-                                            error);
-      if (result == NULL)
-        goto out;
-      g_variant_get (result, "(u)", &uid);
-      g_variant_unref (result);
-
-      ret = polkit_unix_user_new (uid);
+      ret = (PolkitIdentity*)polkit_system_bus_name_get_user_sync (POLKIT_SYSTEM_BUS_NAME (subject), NULL, error);
     }
   else if (POLKIT_IS_UNIX_SESSION (subject))
     {
@@ -331,61 +313,59 @@ polkit_backend_session_monitor_get_session_for_subject (PolkitBackendSessionMoni
                                                         PolkitSubject               *subject,
                                                         GError                     **error)
 {
-  PolkitSubject *session;
-
-  session = NULL;
+  PolkitUnixProcess *tmp_process = NULL;
+  PolkitUnixProcess *process = NULL;
+  PolkitSubject *session = NULL;
+  char *session_id = NULL;
+  pid_t pid;
+#if HAVE_SD_UID_GET_DISPLAY
+  uid_t uid;
+#endif
 
   if (POLKIT_IS_UNIX_PROCESS (subject))
-    {
-      gchar *session_id;
-      pid_t pid;
-
-      pid = polkit_unix_process_get_pid (POLKIT_UNIX_PROCESS (subject));
-      if (sd_pid_get_session (pid, &session_id) < 0)
-        goto out;
-
-      session = polkit_unix_session_new (session_id);
-      free (session_id);
-    }
+    process = POLKIT_UNIX_PROCESS (subject); /* We already have a process */
   else if (POLKIT_IS_SYSTEM_BUS_NAME (subject))
     {
-      guint32 pid;
-      gchar *session_id;
-      GVariant *result;
-
-      result = g_dbus_connection_call_sync (monitor->system_bus,
-                                            "org.freedesktop.DBus",
-                                            "/org/freedesktop/DBus",
-                                            "org.freedesktop.DBus",
-                                            "GetConnectionUnixProcessID",
-                                            g_variant_new ("(s)", polkit_system_bus_name_get_name (POLKIT_SYSTEM_BUS_NAME (subject))),
-                                            G_VARIANT_TYPE ("(u)"),
-                                            G_DBUS_CALL_FLAGS_NONE,
-                                            -1, /* timeout_msec */
-                                            NULL, /* GCancellable */
-                                            error);
-      if (result == NULL)
-        goto out;
-      g_variant_get (result, "(u)", &pid);
-      g_variant_unref (result);
-
-      if (sd_pid_get_session (pid, &session_id) < 0)
-        goto out;
-
-      session = polkit_unix_session_new (session_id);
-      free (session_id);
+      /* Convert bus name to process */
+      tmp_process = (PolkitUnixProcess*)polkit_system_bus_name_get_process_sync (POLKIT_SYSTEM_BUS_NAME (subject), NULL, error);
+      if (!tmp_process)
+	goto out;
+      process = tmp_process;
     }
   else
     {
       g_set_error (error,
                    POLKIT_ERROR,
                    POLKIT_ERROR_NOT_SUPPORTED,
-                   "Cannot get user for subject of type %s",
+                   "Cannot get session for subject of type %s",
                    g_type_name (G_TYPE_FROM_INSTANCE (subject)));
     }
 
- out:
+  /* Now do process -> pid -> same session */
+  g_assert (process != NULL);
+  pid = polkit_unix_process_get_pid (process);
 
+  if (sd_pid_get_session (pid, &session_id) >= 0)
+    {
+      session = polkit_unix_session_new (session_id);
+      goto out;
+    }
+
+#if HAVE_SD_UID_GET_DISPLAY
+  /* Now do process -> uid -> graphical session (systemd version 213)*/
+  if (sd_pid_get_owner_uid (pid, &uid) < 0)
+    goto out;
+
+  if (sd_uid_get_display (uid, &session_id) >= 0)
+    {
+      session = polkit_unix_session_new (session_id);
+      goto out;
+    }
+#endif
+
+ out:
+  free (session_id);
+  if (tmp_process) g_object_unref (tmp_process);
   return session;
 }
 
@@ -409,6 +389,37 @@ gboolean
 polkit_backend_session_monitor_is_session_active (PolkitBackendSessionMonitor *monitor,
                                                   PolkitSubject               *session)
 {
-  return sd_session_is_active (polkit_unix_session_get_session_id (POLKIT_UNIX_SESSION (session)));
+  const char *session_id;
+  char *state;
+  uid_t uid;
+  gboolean is_active = FALSE;
+
+  session_id = polkit_unix_session_get_session_id (POLKIT_UNIX_SESSION (session));
+
+  g_debug ("Checking whether session %s is active.", session_id);
+
+  /* Check whether *any* of the user's current sessions are active. */
+  if (sd_session_get_uid (session_id, &uid) < 0)
+    goto fallback;
+
+  g_debug ("Session %s has UID %u.", session_id, uid);
+
+  if (sd_uid_get_state (uid, &state) < 0)
+    goto fallback;
+
+  g_debug ("UID %u has state %s.", uid, state);
+
+  is_active = (g_strcmp0 (state, "active") == 0);
+  free (state);
+
+  return is_active;
+
+fallback:
+  /* Fall back to checking the session. This is not ideal, since the user
+   * might have multiple sessions, and we cannot guarantee to have chosen
+   * the active one.
+   *
+   * See: https://bugs.freedesktop.org/show_bug.cgi?id=76358. */
+  return sd_session_is_active (session_id);
 }
 

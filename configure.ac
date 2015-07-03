@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT([polkit], [0.112], [http://lists.freedesktop.org/mailman/listinfo/polkit-devel], , [http://www.freedesktop.org/wiki/Software/polkit])
+AC_INIT([polkit], [0.113], [http://lists.freedesktop.org/mailman/listinfo/polkit-devel], , [http://www.freedesktop.org/wiki/Software/polkit])
 AM_INIT_AUTOMAKE([])
 AC_CONFIG_HEADERS(config.h)
 AM_MAINTAINER_MODE
@@ -121,7 +121,7 @@ if test "x$GCC" = "xyes"; then
   changequote([,])dnl
 fi
 
-PKG_CHECK_MODULES(GLIB, [gmodule-2.0 gio-2.0 >= 2.30.0])
+PKG_CHECK_MODULES(GLIB, [gmodule-2.0 gio-unix-2.0 >= 2.30.0])
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 AC_DEFINE([GLIB_VERSION_MIN_REQUIRED], [GLIB_VERSION_2_30],
@@ -158,45 +158,76 @@ AC_CHECK_LIB(expat,XML_ParserCreate,[EXPAT_LIBS="-lexpat"],
 	     [AC_MSG_ERROR([Can't find expat library. Please install expat.])])
 AC_SUBST(EXPAT_LIBS)
 
-AC_CHECK_FUNCS(clearenv)
+AC_CHECK_FUNCS(clearenv fdatasync)
 
 if test "x$GCC" = "xyes"; then
   LDFLAGS="-Wl,--as-needed $LDFLAGS"
 fi
 
 dnl ---------------------------------------------------------------------------
+dnl - Check whether setnetgrent has a return value
+dnl ---------------------------------------------------------------------------
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+	#include <stddef.h>
+	#include <netdb.h>
+]], [[
+	int r = setnetgrent (NULL);]])],
+[AC_DEFINE([HAVE_SETNETGRENT_RETURN], 1, [Define to 1 if setnetgrent has return value])])
+
+dnl ---------------------------------------------------------------------------
+dnl - Check whether we want to build test
+dnl ---------------------------------------------------------------------------
+AC_ARG_ENABLE([test],
+              [AS_HELP_STRING([--disable-test], [Do not build tests])],
+              [enable_test=$enableval], [enable_test=yes])
+
+AM_CONDITIONAL(BUILD_TEST, [test "x$enable_test" = "xyes"])
+
+dnl ---------------------------------------------------------------------------
 dnl - Select wether to use libsystemd-login or ConsoleKit for session tracking
 dnl ---------------------------------------------------------------------------
 
-have_libsystemd_login=no
+have_libsystemd=no
 SESSION_TRACKING=ConsoleKit
 
 AC_ARG_ENABLE([libsystemd-login],
-              AS_HELP_STRING([--enable-libsystemd-login[=@<:@auto/yes/no@:>@]], [Use libsystemd-login (auto/yes/no)]),
+              [AS_HELP_STRING([--enable-libsystemd-login[=@<:@auto/yes/no@:>@]], [Use libsystemd (auto/yes/no)])],
               [enable_libsystemd_login=$enableval],
               [enable_libsystemd_login=auto])
 if test "$enable_libsystemd_login" != "no"; then
-  PKG_CHECK_MODULES(LIBSYSTEMD_LOGIN,
-                    [libsystemd-login],
-                    have_libsystemd_login=yes,
-                    have_libsystemd_login=no)
-  if test "$have_libsystemd_login" = "yes"; then
+  PKG_CHECK_MODULES([LIBSYSTEMD],
+    [libsystemd],
+    [have_libsystemd=yes],
+    dnl if libsystemd is not available, fall back to the older libsystemd-login
+    [PKG_CHECK_MODULES([LIBSYSTEMD_LOGIN],
+      [libsystemd-login],
+      [
+        have_libsystemd=yes
+        LIBSYSTEMD_CFLAGS="$LIBSYSTEMD_LOGIN_CFLAGS"
+        LIBSYSTEMD_LIBS="$LIBSYSTEMD_LOGIN_LIBS"
+      ],
+      [have_libsystemd=no])])
+  if test "$have_libsystemd" = "yes"; then
     SESSION_TRACKING=libsystemd-login
-    AC_DEFINE([HAVE_LIBSYSTEMD_LOGIN], 1, [Define to 1 if libsystemd-login is available])
+    AC_DEFINE([HAVE_LIBSYSTEMD], 1, [Define to 1 if libsystemd is available])
+    save_LIBS=$LIBS
+    LIBS=$LIBSYSTEMD_LIBS
+    AC_CHECK_FUNCS(sd_uid_get_display)
+    LIBS=$save_LIBS
   else
     if test "$enable_libsystemd_login" = "yes"; then
-      AC_MSG_ERROR([libsystemd-login support requested but libsystemd-login library not found])
+      AC_MSG_ERROR([libsystemd support requested but libsystemd or libsystemd-login library not found])
     fi
   fi
 fi
 
 AS_IF([test "x$cross_compiling" != "xyes" ], [
-  AS_IF([test "$have_libsystemd_login" = "yes"], [
+  AS_IF([test "$have_libsystemd" = "yes"], [
     AS_IF([test ! -d /sys/fs/cgroup/systemd/ ], [
       AS_IF([test "$enable_libsystemd_login" = "yes"], [
-        AC_MSG_WARN([libsystemd-login requested but system does not appear to be using systemd])
+        AC_MSG_WARN([libsystemd requested but system does not appear to be using systemd])
       ], [
-        AC_MSG_ERROR([libsystemd-login autoconfigured, but system does not appear to use systemd])
+        AC_MSG_ERROR([libsystemd autoconfigured, but system does not appear to use systemd])
       ])
     ])
   ], [
@@ -204,15 +235,15 @@ AS_IF([test "x$cross_compiling" != "xyes" ], [
       AS_IF([test "$enable_libsystemd_login" = "no" ], [
         AC_MSG_WARN([ConsoleKit requested but system appears to use systemd])
       ], [
-        AC_MSG_ERROR([ConsoleKit autoconfigured, but systemd is in use (missing libsystemd-login pkg-config?)])
+        AC_MSG_ERROR([ConsoleKit autoconfigured, but systemd is in use (missing libsystemd or libsystemd-login pkg-config?)])
       ])
     ])
   ])
 ])
 
-AC_SUBST(LIBSYSTEMD_LOGIN_CFLAGS)
-AC_SUBST(LIBSYSTEMD_LOGIN_LIBS)
-AM_CONDITIONAL(HAVE_LIBSYSTEMD_LOGIN, [test "$have_libsystemd_login" = "yes"], [Using libsystemd-login])
+AC_SUBST(LIBSYSTEMD_CFLAGS)
+AC_SUBST(LIBSYSTEMD_LIBS)
+AM_CONDITIONAL(HAVE_LIBSYSTEMD, [test "$have_libsystemd" = "yes"], [Using libsystemd])
 
 dnl ---------------------------------------------------------------------------
 dnl - systemd unit / service files

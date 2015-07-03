@@ -35,13 +35,20 @@
 
 #include <polkit/polkitprivate.h>
 
-#ifdef HAVE_LIBSYSTEMD_LOGIN
+#ifdef HAVE_LIBSYSTEMD
 #include <systemd/sd-login.h>
-#endif /* HAVE_LIBSYSTEMD_LOGIN */
+#endif /* HAVE_LIBSYSTEMD */
 
 #include <jsapi.h>
 
 #include "initjs.h" /* init.js */
+
+#ifdef JSGC_USE_EXACT_ROOTING
+/* See https://developer.mozilla.org/en-US/docs/SpiderMonkey/Internals/GC/Exact_Stack_Rooting
+ * for more information about exact stack rooting.
+ */
+#error "This code is not safe in SpiderMonkey exact stack rooting configurations"
+#endif
 
 /**
  * SECTION:polkitbackendjsauthority
@@ -73,6 +80,8 @@ struct _PolkitBackendJsAuthorityPrivate
   GMainContext *rkt_context;
   GMainLoop *rkt_loop;
   GSource *rkt_source;
+  GMutex rkt_timeout_pending_mutex;
+  gboolean rkt_timeout_pending;
 
   /* A list of JSObject instances */
   GList *scripts;
@@ -239,6 +248,7 @@ rules_file_name_cmp (const gchar *a,
   return ret;
 }
 
+/* authority->priv->cx must be within a request */
 static void
 load_scripts (PolkitBackendJsAuthority  *authority)
 {
@@ -339,6 +349,8 @@ reload_scripts (PolkitBackendJsAuthority *authority)
   jsval argv[1] = {JSVAL_NULL};
   jsval rval = JSVAL_NULL;
 
+  JS_BeginRequest (authority->priv->cx);
+
   if (!JS_CallFunctionName(authority->priv->cx,
                            authority->priv->js_polkit,
                            "_deleteRules",
@@ -364,7 +376,7 @@ reload_scripts (PolkitBackendJsAuthority *authority)
   /* Let applications know we have new rules... */
   g_signal_emit_by_name (authority, "changed");
  out:
-  ;
+  JS_EndRequest (authority->priv->cx);
 }
 
 static void
@@ -447,6 +459,7 @@ static void
 polkit_backend_js_authority_constructed (GObject *object)
 {
   PolkitBackendJsAuthority *authority = POLKIT_BACKEND_JS_AUTHORITY (object);
+  gboolean entered_request = FALSE;
 
   authority->priv->rt = JS_NewRuntime (8L * 1024L * 1024L);
   if (authority->priv->rt == NULL)
@@ -466,6 +479,9 @@ polkit_backend_js_authority_constructed (GObject *object)
   JS_SetErrorReporter(authority->priv->cx, report_error);
   JS_SetContextPrivate (authority->priv->cx, authority);
 
+  JS_BeginRequest(authority->priv->cx);
+  entered_request = TRUE;
+
   authority->priv->js_global =
 #if JS_VERSION == 186
     JS_NewGlobalObject (authority->priv->cx, &js_global_class, NULL);
@@ -475,6 +491,7 @@ polkit_backend_js_authority_constructed (GObject *object)
 
   if (authority->priv->js_global == NULL)
     goto fail;
+  JS_AddObjectRoot (authority->priv->cx, &authority->priv->js_global);
 
   if (!JS_InitStandardClasses (authority->priv->cx, authority->priv->js_global))
     goto fail;
@@ -487,6 +504,7 @@ polkit_backend_js_authority_constructed (GObject *object)
                                                 JSPROP_ENUMERATE);
   if (authority->priv->js_polkit == NULL)
     goto fail;
+  JS_AddObjectRoot (authority->priv->cx, &authority->priv->js_polkit);
 
   if (!JS_DefineFunctions (authority->priv->cx,
                            authority->priv->js_polkit,
@@ -512,6 +530,7 @@ polkit_backend_js_authority_constructed (GObject *object)
 
   g_mutex_init (&authority->priv->rkt_init_mutex);
   g_cond_init (&authority->priv->rkt_init_cond);
+  g_mutex_init (&authority->priv->rkt_timeout_pending_mutex);
 
   authority->priv->runaway_killer_thread = g_thread_new ("runaway-killer-thread",
                                                          runaway_killer_thread_func,
@@ -526,10 +545,15 @@ polkit_backend_js_authority_constructed (GObject *object)
   setup_file_monitors (authority);
   load_scripts (authority);
 
+  JS_EndRequest (authority->priv->cx);
+  entered_request = FALSE;
+
   G_OBJECT_CLASS (polkit_backend_js_authority_parent_class)->constructed (object);
   return;
 
  fail:
+  if (entered_request)
+    JS_EndRequest (authority->priv->cx);
   g_critical ("Error initializing JavaScript environment");
   g_assert_not_reached ();
 }
@@ -542,6 +566,7 @@ polkit_backend_js_authority_finalize (GObject *object)
 
   g_mutex_clear (&authority->priv->rkt_init_mutex);
   g_cond_clear (&authority->priv->rkt_init_cond);
+  g_mutex_clear (&authority->priv->rkt_timeout_pending_mutex);
 
   /* shut down the killer thread */
   g_assert (authority->priv->rkt_loop != NULL);
@@ -559,6 +584,11 @@ polkit_backend_js_authority_finalize (GObject *object)
     }
   g_free (authority->priv->dir_monitors);
   g_strfreev (authority->priv->rules_dirs);
+
+  JS_BeginRequest (authority->priv->cx);
+  JS_RemoveObjectRoot (authority->priv->cx, &authority->priv->js_polkit);
+  JS_RemoveObjectRoot (authority->priv->cx, &authority->priv->js_global);
+  JS_EndRequest (authority->priv->cx);
 
   JS_DestroyContext (authority->priv->cx);
   JS_DestroyRuntime (authority->priv->rt);
@@ -642,6 +672,7 @@ polkit_backend_js_authority_class_init (PolkitBackendJsAuthorityClass *klass)
 
 /* ---------------------------------------------------------------------------------------------------- */
 
+/* authority->priv->cx must be within a request */
 static void
 set_property_str (PolkitBackendJsAuthority  *authority,
                   JSObject                  *obj,
@@ -655,38 +686,34 @@ set_property_str (PolkitBackendJsAuthority  *authority,
   JS_SetProperty (authority->priv->cx, obj, name, &value_jsval);
 }
 
+/* authority->priv->cx must be within a request */
 static void
 set_property_strv (PolkitBackendJsAuthority  *authority,
                    JSObject                  *obj,
                    const gchar               *name,
-                   const gchar *const        *value,
-                   gssize                     len)
+                   GPtrArray                 *value)
 {
   jsval value_jsval;
   JSObject *array_object;
-  jsval *jsvals;
   guint n;
 
-  if (len < 0)
-    len = g_strv_length ((gchar **) value);
+  array_object = JS_NewArrayObject (authority->priv->cx, 0, NULL);
 
-  jsvals = g_new0 (jsval, len);
-  for (n = 0; n < len; n++)
+  for (n = 0; n < value->len; n++)
     {
       JSString *jsstr;
-      jsstr = JS_NewStringCopyZ (authority->priv->cx, value[n]);
-      jsvals[n] = STRING_TO_JSVAL (jsstr);
-    }
+      jsval val;
 
-  array_object = JS_NewArrayObject (authority->priv->cx, (gint32) len, jsvals);
+      jsstr = JS_NewStringCopyZ (authority->priv->cx, g_ptr_array_index(value, n));
+      val = STRING_TO_JSVAL (jsstr);
+      JS_SetElement (authority->priv->cx, array_object, n, &val);
+    }
 
   value_jsval = OBJECT_TO_JSVAL (array_object);
   JS_SetProperty (authority->priv->cx, obj, name, &value_jsval);
-
-  g_free (jsvals);
 }
 
-
+/* authority->priv->cx must be within a request */
 static void
 set_property_int32 (PolkitBackendJsAuthority  *authority,
                     JSObject                  *obj,
@@ -698,6 +725,7 @@ set_property_int32 (PolkitBackendJsAuthority  *authority,
   JS_SetProperty (authority->priv->cx, obj, name, &value_jsval);
 }
 
+/* authority->priv->cx must be within a request */
 static void
 set_property_bool (PolkitBackendJsAuthority  *authority,
                    JSObject                  *obj,
@@ -711,6 +739,7 @@ set_property_bool (PolkitBackendJsAuthority  *authority,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
+/* authority->priv->cx must be within a request */
 static gboolean
 subject_to_jsval (PolkitBackendJsAuthority  *authority,
                   PolkitSubject             *subject,
@@ -740,7 +769,7 @@ subject_to_jsval (PolkitBackendJsAuthority  *authority,
                           __FILE__, __LINE__,
                           &ret_jsval))
     {
-      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED, "Evaluting '%s' failed", src);
+      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED, "Evaluating '%s' failed", src);
       goto out;
     }
 
@@ -764,7 +793,7 @@ subject_to_jsval (PolkitBackendJsAuthority  *authority,
       g_assert_not_reached ();
     }
 
-#ifdef HAVE_LIBSYSTEMD_LOGIN
+#ifdef HAVE_LIBSYSTEMD
   if (sd_pid_get_session (pid, &session_str) == 0)
     {
       if (sd_session_get_seat (session_str, &seat_str) == 0)
@@ -772,7 +801,7 @@ subject_to_jsval (PolkitBackendJsAuthority  *authority,
           /* do nothing */
         }
     }
-#endif /* HAVE_LIBSYSTEMD_LOGIN */
+#endif /* HAVE_LIBSYSTEMD */
 
   g_assert (POLKIT_IS_UNIX_USER (user_for_subject));
   uid = polkit_unix_user_get_uid (POLKIT_UNIX_USER (user_for_subject));
@@ -818,11 +847,9 @@ subject_to_jsval (PolkitBackendJsAuthority  *authority,
         }
     }
 
-  g_ptr_array_add (groups, NULL);
-
   set_property_int32 (authority, obj, "pid", pid);
   set_property_str (authority, obj, "user", user_name);
-  set_property_strv (authority, obj, "groups", (const gchar* const *) groups->pdata, groups->len);
+  set_property_strv (authority, obj, "groups", groups);
   set_property_str (authority, obj, "seat", seat_str);
   set_property_str (authority, obj, "session", session_str);
   set_property_bool (authority, obj, "local", subject_is_local);
@@ -845,6 +872,7 @@ subject_to_jsval (PolkitBackendJsAuthority  *authority,
 
 /* ---------------------------------------------------------------------------------------------------- */
 
+/* authority->priv->cx must be within a request */
 static gboolean
 action_and_details_to_jsval (PolkitBackendJsAuthority  *authority,
                              const gchar               *action_id,
@@ -866,7 +894,7 @@ action_and_details_to_jsval (PolkitBackendJsAuthority  *authority,
                           __FILE__, __LINE__,
                           &ret_jsval))
     {
-      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED, "Evaluting '%s' failed", src);
+      g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED, "Evaluating '%s' failed", src);
       goto out;
     }
 
@@ -933,13 +961,27 @@ js_operation_callback (JSContext *cx)
   JSString *val_str;
   jsval val;
 
+  /* This callback can be called by the runtime at any time without us causing
+   * it by JS_TriggerOperationCallback().
+   */
+  g_mutex_lock (&authority->priv->rkt_timeout_pending_mutex);
+  if (!authority->priv->rkt_timeout_pending)
+    {
+      g_mutex_unlock (&authority->priv->rkt_timeout_pending_mutex);
+      return JS_TRUE;
+    }
+  authority->priv->rkt_timeout_pending = FALSE;
+  g_mutex_unlock (&authority->priv->rkt_timeout_pending_mutex);
+
   /* Log that we are terminating the script */
   polkit_backend_authority_log (POLKIT_BACKEND_AUTHORITY (authority), "Terminating runaway script");
 
   /* Throw an exception - this way the JS code can ignore the runaway script handling */
+  JS_SetOperationCallback (authority->priv->cx, NULL);
   val_str = JS_NewStringCopyZ (cx, "Terminating runaway script");
   val = STRING_TO_JSVAL (val_str);
   JS_SetPendingException (authority->priv->cx, val);
+  JS_SetOperationCallback (authority->priv->cx, js_operation_callback);
   return JS_FALSE;
 }
 
@@ -947,6 +989,10 @@ static gboolean
 rkt_on_timeout (gpointer user_data)
 {
   PolkitBackendJsAuthority *authority = POLKIT_BACKEND_JS_AUTHORITY (user_data);
+
+  g_mutex_lock (&authority->priv->rkt_timeout_pending_mutex);
+  authority->priv->rkt_timeout_pending = TRUE;
+  g_mutex_unlock (&authority->priv->rkt_timeout_pending_mutex);
 
   /* Supposedly this is thread-safe... */
 #if JS_VERSION == 186
@@ -967,6 +1013,9 @@ runaway_killer_setup (PolkitBackendJsAuthority *authority)
   g_assert (authority->priv->rkt_source == NULL);
 
   /* set-up timer for runaway scripts, will be executed in runaway_killer_thread */
+  g_mutex_lock (&authority->priv->rkt_timeout_pending_mutex);
+  authority->priv->rkt_timeout_pending = FALSE;
+  g_mutex_unlock (&authority->priv->rkt_timeout_pending_mutex);
   authority->priv->rkt_source = g_timeout_source_new_seconds (15);
   g_source_set_callback (authority->priv->rkt_source, rkt_on_timeout, authority, NULL);
   g_source_attach (authority->priv->rkt_source, authority->priv->rkt_context);
@@ -1048,6 +1097,8 @@ polkit_backend_js_authority_get_admin_auth_identities (PolkitBackendInteractiveA
   gchar *ret_str = NULL;
   gchar **ret_strs = NULL;
 
+  JS_BeginRequest (authority->priv->cx);
+
   if (!action_and_details_to_jsval (authority, action_id, details, &argv[0], &error))
     {
       polkit_backend_authority_log (POLKIT_BACKEND_AUTHORITY (authority),
@@ -1074,7 +1125,7 @@ polkit_backend_js_authority_get_admin_auth_identities (PolkitBackendInteractiveA
 
   if (!call_js_function_with_runaway_killer (authority,
                                              "_runAdminRules",
-                                             2,
+                                             G_N_ELEMENTS (argv),
                                              argv,
                                              &rval))
     {
@@ -1127,6 +1178,8 @@ polkit_backend_js_authority_get_admin_auth_identities (PolkitBackendInteractiveA
 
   JS_MaybeGC (authority->priv->cx);
 
+  JS_EndRequest (authority->priv->cx);
+
   return ret;
 }
 
@@ -1152,6 +1205,8 @@ polkit_backend_js_authority_check_authorization_sync (PolkitBackendInteractiveAu
   const jschar *ret_utf16;
   gchar *ret_str = NULL;
   gboolean good = FALSE;
+
+  JS_BeginRequest (authority->priv->cx);
 
   if (!action_and_details_to_jsval (authority, action_id, details, &argv[0], &error))
     {
@@ -1179,7 +1234,7 @@ polkit_backend_js_authority_check_authorization_sync (PolkitBackendInteractiveAu
 
   if (!call_js_function_with_runaway_killer (authority,
                                              "_runRules",
-                                             3,
+                                             G_N_ELEMENTS (argv),
                                              argv,
                                              &rval))
     {
@@ -1228,6 +1283,8 @@ polkit_backend_js_authority_check_authorization_sync (PolkitBackendInteractiveAu
   g_free (ret_str);
 
   JS_MaybeGC (authority->priv->cx);
+
+  JS_EndRequest (authority->priv->cx);
 
   return ret;
 }
@@ -1286,7 +1343,9 @@ get_signal_name (gint signal_number)
     _HANDLE_SIG (SIGTTIN);
     _HANDLE_SIG (SIGTTOU);
     _HANDLE_SIG (SIGBUS);
+#ifdef SIGPOLL
     _HANDLE_SIG (SIGPOLL);
+#endif
     _HANDLE_SIG (SIGPROF);
     _HANDLE_SIG (SIGSYS);
     _HANDLE_SIG (SIGTRAP);
@@ -1362,7 +1421,6 @@ js_polkit_spawn (JSContext  *cx,
           JS_ReportError (cx, "Element %d is not a string", n);
           goto out;
 	}
-      s = JS_EncodeString (cx, JSVAL_TO_STRING (elem_val));
       s = JS_EncodeString (cx, JSVAL_TO_STRING (elem_val));
       argv[n] = g_strdup (s);
       JS_free (cx, s);

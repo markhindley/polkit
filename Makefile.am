@@ -1,6 +1,10 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = actions data src docs po test
+SUBDIRS = actions data src docs po
+
+if BUILD_TEST
+SUBDIRS += test
+endif
 
 NULL =
 
@@ -30,3 +34,5 @@ publish-docs :
 
 clean-local :
 	rm -f *~
+
+-include $(top_srcdir)/git.mk
