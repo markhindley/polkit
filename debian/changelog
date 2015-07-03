@@ -12,6 +12,20 @@ policykit-1 (0.113-1) UNRELEASED; urgency=medium
     - drop most patches: they either came from upstream, or have been
       merged upstream
     - add new function to symbols file
+  * Annotate remaining patches with a bit more information. They are:
+    - 01_pam_polkit.patch: use Debian's common-* infrastructure,
+      plus pam_env to get the global environment and locale.
+      Debian-specific.
+    - 02_gettext.patch: Use gettext to translate .policy files at
+      runtime, allowing for Ubuntu-style language packs.
+      Debian-specific (mainly for Ubuntu's benefit, really).
+    - 05_revert-admin-identities-unix-group-wheel.patch: Debian does
+      not use the "wheel" group like Red Hat derivatives do;
+      treat uid 0 as the administrative identity instead.
+      Debian-specific.
+    - 08_chdir_root.patch: Explicitly use chdir("/") instead of
+      relying on user's home in `getent passwd` being set properly.
+      Potentially upstreamable?
 
  -- Simon McVittie <smcv@debian.org>  Wed, 01 Apr 2015 15:36:11 +0100
 

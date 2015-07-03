@@ -1,3 +1,9 @@
+From: Michael Biebl <biebl@debian.org>
+Date: Tue, 02 Oct 2007 22:38:04 +0200
+Subject: Use Debian's common-* PAM infrastructure, plus pam_env
+
+Forwarded: no, Debian-specific
+
 Index: trunk/data/polkit-1.in
 ===================================================================
 --- trunk.orig/data/polkit-1.in

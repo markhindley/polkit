@@ -1,3 +1,7 @@
+From: Michael Biebl <biebl@debian.org>
+Date: Mon, 07 Jan 2013 23:59:52 +0100
+Subject: Explicitly use chdir("/") instead of relying on ~user being set properly
+
 diff --git a/src/polkitbackend/polkitd.c b/src/polkitbackend/polkitd.c
 index 4cbef2f..77b2feb 100644
 --- a/src/polkitbackend/polkitd.c
