@@ -12,6 +12,7 @@ policykit-1 (0.113-1) UNRELEASED; urgency=medium
     - drop most patches: they either came from upstream, or have been
       merged upstream
     - add new function to symbols file
+    - fixes CVE-2015-4625, CVE-2015-3218, CVE-2015-3255, CVE-2015-3256
   * Annotate remaining patches with a bit more information. They are:
     - 01_pam_polkit.patch: use Debian's common-* infrastructure,
       plus pam_env to get the global environment and locale.
