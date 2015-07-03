@@ -27,6 +27,8 @@ policykit-1 (0.113-1) UNRELEASED; urgency=medium
     - 08_chdir_root.patch: Explicitly use chdir("/") instead of
       relying on user's home in `getent passwd` being set properly.
       Potentially upstreamable?
+  * policykit-1.postinst: restart polkit.service, not polkitd.service
+    (which doesn't exist)
 
  -- Simon McVittie <smcv@debian.org>  Wed, 01 Apr 2015 15:36:11 +0100
 
