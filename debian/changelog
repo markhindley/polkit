@@ -2,6 +2,8 @@ policykit-1 (0.105-10) UNRELEASED; urgency=medium
 
   * Add 00git_type_registration.patch: Use GOnce for interface type
     registration. Fixes frequent udisks segfault (LP: #1236510).
+  * Add 00git_fix_memleak.patch: Fix memory leak in EnumerateActions call
+    results handler. (LP: #1417637)
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 08 Jul 2015 12:07:15 +0200
 
