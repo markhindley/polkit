@@ -1,3 +1,4 @@
+00git_type_registration.patch
 01_pam_polkit.patch
 02_gettext.patch
 03_complete_session.patch
