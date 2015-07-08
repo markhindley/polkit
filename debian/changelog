@@ -1,4 +1,4 @@
-policykit-1 (0.105-9) UNRELEASED; urgency=medium
+policykit-1 (0.105-9) unstable; urgency=medium
 
   [ Martin Pitt ]
   * policykit-1.postinst: Don't kill polkitd under systemd, but properly
@@ -9,7 +9,7 @@ policykit-1 (0.105-9) UNRELEASED; urgency=medium
   * Build against libsystemd instead of the old libsystemd-login compat
     library. (Closes: #779756)
 
- -- Martin Pitt <mpitt@debian.org>  Fri, 24 Apr 2015 16:51:47 +0100
+ -- Michael Biebl <biebl@debian.org>  Wed, 08 Jul 2015 02:10:58 +0200
 
 policykit-1 (0.105-8) unstable; urgency=medium
 
