@@ -1,8 +1,13 @@
 policykit-1 (0.105-9) UNRELEASED; urgency=medium
 
+  [ Martin Pitt ]
   * policykit-1.postinst: Don't kill polkitd under systemd, but properly
     restart it. This avoids killing it shortly after systemd tries to
     bus-activate it on installation. (LP: #1447654)
+
+  [ Michael Biebl ]
+  * Build against libsystemd instead of the old libsystemd-login compat
+    library. (Closes: #779756)
 
  -- Martin Pitt <mpitt@debian.org>  Fri, 24 Apr 2015 16:51:47 +0100
 

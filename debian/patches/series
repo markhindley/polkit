@@ -8,3 +8,4 @@
 08_deprecate_racy_APIs.patch
 cve-2013-4288.patch
 09_pam_environment.patch
+10_build-against-libsystemd.patch
