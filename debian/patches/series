@@ -1,5 +1,6 @@
 00git_type_registration.patch
 00git_fix_memleak.patch
+00git_invalid_object_paths.patch
 01_pam_polkit.patch
 02_gettext.patch
 03_complete_session.patch

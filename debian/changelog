@@ -1,3 +1,10 @@
+policykit-1 (0.105-11) UNRELEASED; urgency=medium
+
+  * Add 00git_invalid_object_paths.patch: backend: Handle invalid object paths
+    in RegisterAuthenticationAgent (CVE-2015-3218, Closes: #787932)
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 10 Jul 2015 12:54:00 +0200
+
 policykit-1 (0.105-10) unstable; urgency=medium
 
   * Add 00git_type_registration.patch: Use GOnce for interface type
