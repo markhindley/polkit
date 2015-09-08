@@ -1,4 +1,3 @@
-From 20ad116a6582e57d20f9d8197758947918753a4c Mon Sep 17 00:00:00 2001
 From: Tomas Bzatek <tbzatek@redhat.com>
 Date: Wed, 29 May 2013 13:45:31 +0000
 Subject: Use GOnce for interface type registration
@@ -10,8 +9,14 @@ Related to these udisksd warnings:
 
 Thanks to Hans de Goede for spotting this!
 
-https://bugs.freedesktop.org/show_bug.cgi?id=65130
+Bug: https://bugs.freedesktop.org/show_bug.cgi?id=65130
+Origin: upstream, 0.112, commit:20ad116a6582e57d20f9d8197758947918753a4c
 ---
+ src/polkit/polkitidentity.c                   | 10 ++++++----
+ src/polkit/polkitsubject.c                    | 10 ++++++----
+ src/polkitbackend/polkitbackendactionlookup.c | 10 ++++++----
+ 3 files changed, 18 insertions(+), 12 deletions(-)
+
 diff --git a/src/polkit/polkitidentity.c b/src/polkit/polkitidentity.c
 index dd15b2f..7813c2c 100644
 --- a/src/polkit/polkitidentity.c
@@ -111,6 +116,3 @@ index 5a1a228..20747e7 100644
  }
  
  /**
---
-cgit v0.9.0.2-2-gbebe
-

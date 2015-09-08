@@ -1,9 +1,9 @@
-From dd589e56c21e7e5a23dfc2d8a09c29409c8b39cc Mon Sep 17 00:00:00 2001
 From: Michael Biebl <biebl@debian.org>
 Date: Wed, 8 Jul 2015 02:08:33 +0200
-Subject: [PATCH] Build against libsystemd
+Subject: Build against libsystemd
 
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=779756
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=779756
+Forwarded: no, obsoleted by upstream commit 2291767a014f5a04a92ca6f0eb472794f212ca67 in 0.113
 ---
  configure.ac | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
@@ -29,6 +29,3 @@ index f4a0c41..b13d90f 100644
      fi
    fi
  fi
--- 
-2.1.4
-

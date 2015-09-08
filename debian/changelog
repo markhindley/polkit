@@ -1,3 +1,40 @@
+policykit-1 (0.105-12) UNRELEASED; urgency=medium
+
+  * 05_revert-admin-identities-unix-group-wheel.patch: remove confusing
+    staff -> desktop_admin_r change in a man page (desktop_admin_r looks
+    vaguely like a SELinux role but is actually being used as a group);
+    keep only the actual functional change. This matches the syntactically
+    different but functionally similar change in experimental.
+  * 09_pam_environment.patch: replace with the version that went upstream.
+  * Annotate remaining patches with a bit more information.
+    They are:
+    - 00git_fix_memleak.patch, 00git_invalid_object_paths.patch,
+      00git_type_registration.patch, 04_get_cwd.patch,
+      07_set-XAUTHORITY-environment-variable-if-unset.patch,
+      08_deprecate_racy_APIs.patch, 09_pam_environment.patch,
+      cve-2013-4288.patch: either backports from upstream, or already
+      applied upstream, and not discussed further here.
+    - 01_pam_polkit.patch: use Debian's common-* infrastructure,
+      plus pam_env to get the global environment and locale.
+      Debian-specific.
+    - 02_gettext.patch: Use gettext to translate .policy files at
+      runtime, allowing for Ubuntu-style language packs.
+      Debian-specific (mainly for Ubuntu's benefit, really).
+    - 03_complete_session.patch: Fix the race that leads to
+      the password box disappearing, but the dialog remaining.
+      Not forwarded: appears to be obsoleted by an upstream change in
+      0.113, commit 7650ad1. (LP: #649939, LP: #445303)
+    - 05_revert-admin-identities-unix-group-wheel.patch: Debian does
+      not use the "wheel" group like Red Hat derivatives do;
+      treat uid 0 as the administrative identity instead.
+      Debian-specific.
+    - 06_systemd-service.patch: hook up the systemd service in
+      debian/polkitd.service.
+      Not forwarded: obsoleted by an upstream change in 0.106,
+      commit 2995085.
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 08 Sep 2015 17:35:47 +0100
+
 policykit-1 (0.105-11) unstable; urgency=medium
 
   * Add 00git_invalid_object_paths.patch: backend: Handle invalid object paths

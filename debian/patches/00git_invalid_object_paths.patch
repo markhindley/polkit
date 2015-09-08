@@ -1,10 +1,9 @@
-From 48e646918efb2bf0b3b505747655726d7869f31c Mon Sep 17 00:00:00 2001
 From: Colin Walters <walters@redhat.com>
 Date: Sat, 30 May 2015 09:06:23 -0400
 Subject: CVE-2015-3218: backend: Handle invalid object paths in
  RegisterAuthenticationAgent
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 Properly propagate the error, otherwise we dereference a `NULL`
@@ -15,19 +14,23 @@ pointer.  This is a local, authenticated DoS.
 this.
 
 http://lists.freedesktop.org/archives/polkit-devel/2015-May/000420.html
+
 Bug: https://bugs.freedesktop.org/show_bug.cgi?id=90829
 Bug-Debian: https://bugs.debian.org/787932
-
 Reported-by: Tavis Ormandy <taviso@google.com>
 Reviewed-by: Philip Withnall <philip@tecnocode.co.uk>
 Reviewed-by: Miloslav Trmač <mitr@redhat.com>
 Signed-off-by: Colin Walters <walters@redhat.com>
+Origin: upstream, 0.113, commit:48e646918efb2bf0b3b505747655726d7869f31c
+---
+ .../polkitbackendinteractiveauthority.c            | 53 ++++++++++++----------
+ 1 file changed, 30 insertions(+), 23 deletions(-)
 
 diff --git a/src/polkitbackend/polkitbackendinteractiveauthority.c b/src/polkitbackend/polkitbackendinteractiveauthority.c
-index f6ea0fc..587f954 100644
+index b237e9d..25e13fb 100644
 --- a/src/polkitbackend/polkitbackendinteractiveauthority.c
 +++ b/src/polkitbackend/polkitbackendinteractiveauthority.c
-@@ -1566,36 +1566,42 @@ authentication_agent_new (PolkitSubject *scope,
+@@ -1558,36 +1558,42 @@ authentication_agent_new (PolkitSubject *scope,
                            const gchar *unique_system_bus_name,
                            const gchar *locale,
                            const gchar *object_path,
@@ -90,7 +93,7 @@ index f6ea0fc..587f954 100644
  
    return agent;
  }
-@@ -2398,8 +2404,6 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
+@@ -2234,8 +2240,6 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
    caller_cmdline = NULL;
    agent = NULL;
  
@@ -99,7 +102,7 @@ index f6ea0fc..587f954 100644
    interactive_authority = POLKIT_BACKEND_INTERACTIVE_AUTHORITY (authority);
    priv = POLKIT_BACKEND_INTERACTIVE_AUTHORITY_GET_PRIVATE (interactive_authority);
  
-@@ -2486,7 +2490,10 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
+@@ -2322,7 +2326,10 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
                                      polkit_system_bus_name_get_name (POLKIT_SYSTEM_BUS_NAME (caller)),
                                      locale,
                                      object_path,
@@ -111,6 +114,3 @@ index f6ea0fc..587f954 100644
  
    g_hash_table_insert (priv->hash_scope_to_authentication_agent,
                         g_object_ref (subject),
--- 
-cgit v0.10.2
-

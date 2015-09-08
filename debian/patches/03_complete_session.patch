@@ -1,15 +1,21 @@
 From: James Westby <james.westby@linaro.org>
 Date: Thu, 28 Oct 2010 09:14:26 -0400
-Subject: Fix the race that leads to the password box disappearing, but the dialog remaining.
+Subject: Fix the race that leads to the password box disappearing,
+ but the dialog remaining.
+
 Bug: http://bugs.freedesktop.org/show_bug.cgi?id=30515
 Bug-Ubuntu: https://launchpad.net/bugs/649939
 Bug-Ubuntu: https://launchpad.net/bugs/445303
+Forwarded: not-needed, superseded by commit 7650ad1 in 0.113
+---
+ src/polkitagent/polkitagentsession.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-Index: policykit-1/src/polkitagent/polkitagentsession.c
-===================================================================
---- policykit-1.orig/src/polkitagent/polkitagentsession.c	2012-04-24 19:44:21.195751945 +0200
-+++ policykit-1/src/polkitagent/polkitagentsession.c	2012-04-24 21:03:20.487887522 +0200
-@@ -435,6 +435,7 @@
+diff --git a/src/polkitagent/polkitagentsession.c b/src/polkitagent/polkitagentsession.c
+index 8129cd9..d373b58 100644
+--- a/src/polkitagent/polkitagentsession.c
++++ b/src/polkitagent/polkitagentsession.c
+@@ -435,6 +435,7 @@ child_watch_func (GPid     pid,
                    gpointer user_data)
  {
    PolkitAgentSession *session = POLKIT_AGENT_SESSION (user_data);
@@ -17,7 +23,7 @@ Index: policykit-1/src/polkitagent/polkitagentsession.c
  
    if (G_UNLIKELY (_show_debug ()))
      {
-@@ -446,6 +447,11 @@
+@@ -446,6 +447,11 @@ child_watch_func (GPid     pid,
  
    /* kill all the watches we have set up, except for the child since it has exited already */
    session->child_pid = 0;
@@ -29,7 +35,7 @@ Index: policykit-1/src/polkitagent/polkitagentsession.c
    complete_session (session, FALSE);
  }
  
-@@ -650,15 +656,15 @@
+@@ -650,15 +656,15 @@ polkit_agent_session_initiate (PolkitAgentSession *session)
    if (G_UNLIKELY (_show_debug ()))
      g_print ("PolkitAgentSession: spawned helper with pid %d\n", (gint) session->child_pid);
  

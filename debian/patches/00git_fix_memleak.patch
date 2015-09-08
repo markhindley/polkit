@@ -1,4 +1,3 @@
-From f4d71e0de885010494b8b0b8d62ca910011d7544 Mon Sep 17 00:00:00 2001
 From: "Max A. Dednev" <dednev@rambler.ru>
 Date: Sun, 11 Jan 2015 20:00:44 -0500
 Subject: authority: Fix memory leak in EnumerateActions call results handler
@@ -7,10 +6,14 @@ Policykit-1 doesn't release reference counters of GVariant data for
 org.freedesktop.PolicyKit1.Authority.EnumerateActions dbus call.  This
 patch fixed reference counting and following memory leak.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88288
+Bug: https://bugs.freedesktop.org/show_bug.cgi?id=88288
+Origin: upstream, 0.113, commit:f4d71e0de885010494b8b0b8d62ca910011d7544
+---
+ src/polkit/polkitauthority.c | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/src/polkit/polkitauthority.c b/src/polkit/polkitauthority.c
-index 75619ab..ab6d3cd 100644
+index 9947cf3..84dab72 100644
 --- a/src/polkit/polkitauthority.c
 +++ b/src/polkit/polkitauthority.c
 @@ -715,7 +715,6 @@ polkit_authority_enumerate_actions_finish (PolkitAuthority *authority,
@@ -21,6 +24,3 @@ index 75619ab..ab6d3cd 100644
        g_variant_unref (child);
      }
    ret = g_list_reverse (ret);
--- 
-cgit v0.10.2
-
