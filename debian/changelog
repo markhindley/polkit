@@ -1,5 +1,7 @@
 policykit-1 (0.105-12) UNRELEASED; urgency=medium
 
+  * Replace 03_complete_session.patch with a change from upstream
+    which seems like a more correct solution for LP#445303, LP#649939
   * 05_revert-admin-identities-unix-group-wheel.patch: remove confusing
     staff -> desktop_admin_r change in a man page (desktop_admin_r looks
     vaguely like a SELinux role but is actually being used as a group);
@@ -20,10 +22,6 @@ policykit-1 (0.105-12) UNRELEASED; urgency=medium
     - 02_gettext.patch: Use gettext to translate .policy files at
       runtime, allowing for Ubuntu-style language packs.
       Debian-specific (mainly for Ubuntu's benefit, really).
-    - 03_complete_session.patch: Fix the race that leads to
-      the password box disappearing, but the dialog remaining.
-      Not forwarded: appears to be obsoleted by an upstream change in
-      0.113, commit 7650ad1. (LP: #649939, LP: #445303)
     - 05_revert-admin-identities-unix-group-wheel.patch: Debian does
       not use the "wheel" group like Red Hat derivatives do;
       treat uid 0 as the administrative identity instead.
