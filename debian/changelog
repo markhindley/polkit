@@ -1,3 +1,10 @@
+policykit-1 (0.113-2) UNRELEASED; urgency=medium
+
+  * policykit-1.links: statically alias polkit.service (upstream's name)
+    as polkitd.service (Debian's historical name)
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 08 Sep 2015 20:57:09 +0100
+
 policykit-1 (0.113-1) experimental; urgency=medium
 
   * Team upload.
