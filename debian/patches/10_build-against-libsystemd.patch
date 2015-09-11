@@ -9,7 +9,7 @@ Forwarded: no, obsoleted by upstream commit 2291767a014f5a04a92ca6f0eb472794f212
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index f4a0c41..b13d90f 100644
+index 914041b..ab318db 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -160,14 +160,14 @@ AC_ARG_ENABLE([systemd],

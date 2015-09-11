@@ -7,6 +7,10 @@
 0.113/03_PolkitAgentSession-fix-race-between-child-and-io-wat.patch
 0.113/00git_fix_memleak.patch
 0.113/00git_invalid_object_paths.patch
+0.113/CVE-2015-4625-Use-unpredictable-cookie-values-keep-t.patch
+0.113/CVE-2015-4625-Bind-use-of-cookies-to-specific-uids.patch
+0.113/docs-Update-for-changes-to-uid-binding-Authenticatio.patch
+0.113/CVE-2015-3255-Fix-GHashTable-usage.patch
 01_pam_polkit.patch
 02_gettext.patch
 05_revert-admin-identities-unix-group-wheel.patch

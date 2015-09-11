@@ -32,6 +32,8 @@ policykit-1 (0.105-12) UNRELEASED; urgency=medium
       commit 2995085.
   * Re-order patch series to put upstream changes first, sorted by version
     in which they went upstream, and put them in subdirectories by version
+  * Add patches from 0.113 to fix heap corruption CVE-2015-3255 and
+    local authenticated denial of service CVE-2015-4625 (Closes: #796134)
 
  -- Simon McVittie <smcv@debian.org>  Tue, 08 Sep 2015 17:35:47 +0100
 
