@@ -43,6 +43,8 @@ policykit-1 (0.105-12) UNRELEASED; urgency=medium
     - fix some memory leaks (Closes: #775158, LP: #1417637)
   * Add backported public API polkit_system_bus_name_get_user_sync() to
     symbols file
+  * Fix FTBFS with dpkg-buildpackage -A by only installing files into
+    policykit-1 in per-arch builds
 
  -- Simon McVittie <smcv@debian.org>  Tue, 08 Sep 2015 17:35:47 +0100
 
