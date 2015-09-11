@@ -3,7 +3,9 @@ Section: admin
 Priority: optional
 Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
 Uploaders: Michael Biebl <biebl@debian.org>, Martin Pitt <mpitt@debian.org>
-Build-Depends: debhelper (>= 9),
+Build-Depends:
+ dbus,
+ debhelper (>= 9),
  dh-autoreconf,
  pkg-config,
  libglib2.0-dev (>= 2.30.0),
