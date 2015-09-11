@@ -1,5 +1,6 @@
-policykit-1 (0.105-12) UNRELEASED; urgency=medium
+policykit-1 (0.105-12) unstable; urgency=medium
 
+  * Team upload
   * Replace 03_complete_session.patch with a change from upstream
     which seems like a more correct solution for LP#445303, LP#649939
   * 05_revert-admin-identities-unix-group-wheel.patch: remove confusing
@@ -48,7 +49,7 @@ policykit-1 (0.105-12) UNRELEASED; urgency=medium
   * Run tests with a session bus pretending to be the system bus,
     so they can pass in a buildd environment
 
- -- Simon McVittie <smcv@debian.org>  Tue, 08 Sep 2015 17:35:47 +0100
+ -- Simon McVittie <smcv@debian.org>  Fri, 11 Sep 2015 09:48:00 +0100
 
 policykit-1 (0.105-11) unstable; urgency=medium
 
