@@ -9,7 +9,7 @@ Applied-upstream: 0.110, commit:d6de13e12379826af8ca9355a32da48707b9831f
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/src/programs/pkexec.c b/src/programs/pkexec.c
-index 373977b..254900d 100644
+index 7fafa14..682fe95 100644
 --- a/src/programs/pkexec.c
 +++ b/src/programs/pkexec.c
 @@ -53,7 +53,7 @@
@@ -30,7 +30,7 @@ index 373977b..254900d 100644
      {
        g_printerr ("Error getting cwd: %s\n",
                    g_strerror (errno));
-@@ -931,6 +931,7 @@ main (int argc, char *argv[])
+@@ -953,6 +953,7 @@ main (int argc, char *argv[])
        g_ptr_array_free (saved_env, TRUE);
      }
  

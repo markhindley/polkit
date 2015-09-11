@@ -24,7 +24,7 @@ Origin: upstream, 0.110, commit:d6acecdd0ebb42e28ff28e04e0207cb01fa20910
  1 file changed, 22 insertions(+)
 
 diff --git a/src/programs/pkexec.c b/src/programs/pkexec.c
-index 254900d..682fe95 100644
+index 373977b..7fafa14 100644
 --- a/src/programs/pkexec.c
 +++ b/src/programs/pkexec.c
 @@ -597,6 +597,28 @@ main (int argc, char *argv[])
