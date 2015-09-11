@@ -45,6 +45,8 @@ policykit-1 (0.105-12) UNRELEASED; urgency=medium
     symbols file
   * Fix FTBFS with dpkg-buildpackage -A by only installing files into
     policykit-1 in per-arch builds
+  * Run tests with a session bus pretending to be the system bus,
+    so they can pass in a buildd environment
 
  -- Simon McVittie <smcv@debian.org>  Tue, 08 Sep 2015 17:35:47 +0100
 

@@ -25,9 +25,8 @@ override_dh_auto_configure:
 		--libexecdir=\$${prefix}/lib/policykit-1
 
 override_dh_auto_test:
-	# the system D-BUS tests can't work on the buildds, so don't let a
-	# failed test fail the build
-	make check || true
+	# on buildds we can't rely on actually having a system bus
+	dbus-run-session -- sh -c 'DBUS_SYSTEM_BUS_ADDRESS=$$DBUS_SESSION_BUS_ADDRESS make check'
 
 override_dh_makeshlibs:
 	dh_makeshlibs -Xusr/lib/$(DEB_HOST_MULTIARCH)/polkit-1/
