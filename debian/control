@@ -27,7 +27,7 @@ Homepage: http://www.freedesktop.org/wiki/Software/polkit/
 
 Package: policykit-1
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libpam-systemd [linux-any], consolekit [!linux-any], dbus (>= 1.9.18)
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpam-systemd [linux-any], consolekit [!linux-any], dbus
 Multi-Arch: foreign
 Breaks: gdm3 (<< 3.8.4-7~)
 Description: framework for managing administrative policies and privileges
