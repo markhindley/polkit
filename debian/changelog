@@ -1,7 +1,15 @@
 policykit-1 (0.113-2) UNRELEASED; urgency=medium
 
+  [ Simon McVittie ]
   * policykit-1.links: statically alias polkit.service (upstream's name)
     as polkitd.service (Debian's historical name)
+
+  [ Martin Pitt ]
+  * debian/policykit-1.{pre,pos}inst: Temporarily mask polkitd.service while
+    policykit-1 is unpackaged but not yet configured. During that time we
+    don't yet have our D-Bus policy in /etc so that polkitd cannot work yet.
+    This can be dropped once the D-Bus policy moves to /usr.
+    (Closes: #794723, LP: #1447654)
 
  -- Simon McVittie <smcv@debian.org>  Tue, 08 Sep 2015 20:57:09 +0100
 
