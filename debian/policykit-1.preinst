@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    install|upgrade)
+        # avoid attempts to start polkitd.service while we are unconfigured and
+        # might not yet have our D-Bus policy in /etc
+        if [ -d /run/systemd/system ]; then
+            ln -s /dev/null /run/systemd/system/polkitd.service
+        fi
+        ;;
+
+    abort-upgrade)
+        rm -f /run/systemd/system/polkitd.service
+        ;;
+esac
+
+#DEBHELPER#
