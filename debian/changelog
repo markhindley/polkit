@@ -1,4 +1,4 @@
-policykit-1 (0.105-13) UNRELEASED; urgency=medium
+policykit-1 (0.105-13) unstable; urgency=medium
 
   * debian/policykit-1.{pre,pos}inst: Temporarily mask polkitd.service while
     policykit-1 is unpackaged but not yet configured. During that time we
@@ -6,7 +6,7 @@ policykit-1 (0.105-13) UNRELEASED; urgency=medium
     This can be dropped once the D-Bus policy moves to /usr.
     (Closes: #794723, LP: #1447654)
 
- -- Martin Pitt <mpitt@debian.org>  Tue, 20 Oct 2015 05:53:25 +0200
+ -- Martin Pitt <mpitt@debian.org>  Wed, 21 Oct 2015 08:11:22 +0200
 
 policykit-1 (0.105-12) unstable; urgency=medium
 
