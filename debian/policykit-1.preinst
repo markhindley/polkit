@@ -6,7 +6,7 @@ case "$1" in
         # avoid attempts to start polkitd.service while we are unconfigured and
         # might not yet have our D-Bus policy in /etc
         if [ -d /run/systemd/system ]; then
-            ln -s /dev/null /run/systemd/system/polkitd.service
+            systemctl mask --runtime polkitd.service
         fi
         ;;
 

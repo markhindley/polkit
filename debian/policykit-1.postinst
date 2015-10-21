@@ -48,7 +48,7 @@ case "$1" in
 	# version will be used at the next occasion.
 	if [ -d /run/systemd/system ]; then
 		# remove the temporary mask from preinst
-		rm -f /run/systemd/system/polkitd.service
+		systemctl unmask --runtime polkitd.service
 		systemctl daemon-reload
 		deb-systemd-invoke restart polkitd.service || true
 	else
