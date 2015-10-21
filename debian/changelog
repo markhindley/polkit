@@ -1,3 +1,10 @@
+policykit-1 (0.105-14) UNRELEASED; urgency=medium
+
+  * debian/policykit-1.preinst: Use systemctl unmask instead of direct symlink
+    removal for consistency.
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 21 Oct 2015 08:25:35 +0200
+
 policykit-1 (0.105-13) unstable; urgency=medium
 
   * debian/policykit-1.{pre,pos}inst: Temporarily mask polkitd.service while

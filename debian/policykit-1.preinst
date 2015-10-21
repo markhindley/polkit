@@ -11,7 +11,9 @@ case "$1" in
         ;;
 
     abort-upgrade)
-        rm -f /run/systemd/system/polkitd.service
+        if [ -d /run/systemd/system ]; then
+            systemctl unmask --runtime polkitd.service
+        fi
         ;;
 esac
 
