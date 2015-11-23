@@ -1,11 +1,11 @@
-policykit-1 (0.105-14) UNRELEASED; urgency=medium
+policykit-1 (0.105-14) unstable; urgency=medium
 
   * debian/policykit-1.preinst: Use systemctl unmask instead of direct symlink
     removal for consistency.
   * Fix handling of multi-line helper output. Thanks Dariusz Gadomski! Patch
     backported from upstream master. (LP: #1510824)
 
- -- Martin Pitt <mpitt@debian.org>  Wed, 21 Oct 2015 08:25:35 +0200
+ -- Martin Pitt <mpitt@debian.org>  Mon, 23 Nov 2015 11:38:00 +0100
 
 policykit-1 (0.105-13) unstable; urgency=medium
 
