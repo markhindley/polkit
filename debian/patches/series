@@ -26,6 +26,7 @@
 0.113/CVE-2015-3255-Fix-GHashTable-usage.patch
 0.113/Fix-use-after-free-in-polkitagentsession.c.patch
 0.113/README-Note-to-send-security-reports-via-DBus-s-mech.patch
+master/Fix-multi-line-pam-text-info.patch
 01_pam_polkit.patch
 02_gettext.patch
 05_revert-admin-identities-unix-group-wheel.patch
