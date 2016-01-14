@@ -9,6 +9,8 @@
 0.113/03_PolkitAgentSession-fix-race-between-child-and-io-wat.patch
 0.113/polkitd-Fix-problem-with-removing-non-existent-sourc.patch
 0.113/PolkitSystemBusName-Add-public-API-to-retrieve-Unix-.patch
+0.113/Fixed-compilation-problem-in-the-backend.patch
+0.113/Don-t-discard-error-data-returned-by-polkit_system_b.patch
 0.113/sessionmonitor-systemd-Deduplicate-code-paths.patch
 0.113/sessionmonitor-systemd-prepare-for-D-Bus-user-bus-mo.patch
 0.113/Refuse-duplicate-user-arguments-to-pkexec.patch
