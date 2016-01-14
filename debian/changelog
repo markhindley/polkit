@@ -1,3 +1,10 @@
+policykit-1 (0.105-14.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix FTBFS on non-linux/non-systemd. (Closes: #798769)
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 14 Jan 2016 06:28:38 +0100
+
 policykit-1 (0.105-14) unstable; urgency=medium
 
   * debian/policykit-1.preinst: Use systemctl unmask instead of direct symlink
