@@ -1,11 +1,11 @@
-policykit-1 (0.113-3) UNRELEASED; urgency=medium
+policykit-1 (0.113-3) experimental; urgency=medium
 
   * Generate tight inter-package dependencies.
     This ensures that everything from the same source package is upgraded in
     lockstep. (Closes: #817998)
   * Drop obsolete Breaks from pre-wheezy.
 
- -- Michael Biebl <biebl@debian.org>  Thu, 14 Apr 2016 14:14:26 +0200
+ -- Michael Biebl <biebl@debian.org>  Thu, 14 Apr 2016 14:15:09 +0200
 
 policykit-1 (0.113-2) experimental; urgency=medium
 
