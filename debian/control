@@ -56,7 +56,6 @@ Section: libs
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Multi-Arch: same
-Breaks: policykit-1 (<< 0.99), libpolkit-gtk-1-0 (<< 0.99), libpolkit-agent-1-0 (<< 0.99)
 Description: PolicyKit Authorization API
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
