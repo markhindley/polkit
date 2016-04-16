@@ -1,10 +1,10 @@
-etc/pam.d/
 etc/dbus-1/
+etc/pam.d/
 etc/polkit-1/
+lib/systemd/system/
 usr/bin/
 usr/lib/polkit-1/
-usr/share/man/
-usr/share/polkit-1/
 usr/share/dbus-1/
 usr/share/locale/
-lib/systemd/system/
+usr/share/man/
+usr/share/polkit-1/
