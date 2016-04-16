@@ -4,6 +4,10 @@ policykit-1 (0.113-4) UNRELEASED; urgency=medium
   * Run tests with a session bus pretending to be the system bus,
     so they can pass in a buildd environment
 
+  [ Michael Biebl ]
+  * Create our custom rules files in debian/tmp so we don't FTBFS for
+    binary-indep builds and run dh_install after that.
+
  -- Michael Biebl <biebl@debian.org>  Sat, 16 Apr 2016 14:34:11 +0200
 
 policykit-1 (0.113-3) experimental; urgency=medium

@@ -33,11 +33,11 @@ override_dh_auto_test:
 	dbus-run-session -- sh -c 'DBUS_SYSTEM_BUS_ADDRESS=$$DBUS_SESSION_BUS_ADDRESS make check'
 
 override_dh_install:
-	dh_install --list-missing
 	# on Debian use sudo group; on Ubuntu, also allow the admin group for
 	# historical reasons
 	if dpkg-vendor --is ubuntu; then \
-	    sed 's/@admin@/"unix-group:sudo", "unix-group:admin"/' debian/admin.rules.in > debian/policykit-1/etc/polkit-1/rules.d/40-ubuntu-admin.rules; \
+	    sed 's/@admin@/"unix-group:sudo", "unix-group:admin"/' debian/admin.rules.in > debian/tmp/etc/polkit-1/rules.d/40-ubuntu-admin.rules; \
 	elif dpkg-vendor --is debian; then \
-	    sed 's/@admin@/"unix-group:sudo"/' debian/admin.rules.in > debian/policykit-1/etc/polkit-1/rules.d/40-debian-sudo.rules; \
+	    sed 's/@admin@/"unix-group:sudo"/' debian/admin.rules.in > debian/tmp/etc/polkit-1/rules.d/40-debian-sudo.rules; \
 	fi
+	dh_install --list-missing
