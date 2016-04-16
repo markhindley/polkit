@@ -1,4 +1,4 @@
-policykit-1 (0.113-4) UNRELEASED; urgency=medium
+policykit-1 (0.113-4) experimental; urgency=medium
 
   [ Simon McVittie ]
   * Run tests with a session bus pretending to be the system bus,
@@ -10,7 +10,7 @@ policykit-1 (0.113-4) UNRELEASED; urgency=medium
   * Run wrap-and-sort -ast.
   * Bump Standards-Version to 3.9.8.
 
- -- Michael Biebl <biebl@debian.org>  Sat, 16 Apr 2016 14:34:11 +0200
+ -- Michael Biebl <biebl@debian.org>  Sat, 16 Apr 2016 14:46:18 +0200
 
 policykit-1 (0.113-3) experimental; urgency=medium
 
