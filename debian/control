@@ -22,7 +22,7 @@ Build-Depends:
  libsystemd-dev [linux-any],
  pkg-config,
  xsltproc,
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Vcs-Git: git://anonscm.debian.org/pkg-utopia/policykit.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/policykit.git;a=summary
 Homepage: http://www.freedesktop.org/wiki/Software/polkit
