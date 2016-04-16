@@ -2,24 +2,26 @@ Source: policykit-1
 Section: admin
 Priority: optional
 Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
-Uploaders: Michael Biebl <biebl@debian.org>, Martin Pitt <mpitt@debian.org>
+Uploaders:
+ Michael Biebl <biebl@debian.org>,
+ Martin Pitt <mpitt@debian.org>,
 Build-Depends:
  dbus,
  debhelper (>= 9),
  dh-autoreconf,
- pkg-config,
- libglib2.0-dev (>= 2.28.0),
- libexpat1-dev,
- libpam0g-dev,
- libselinux1-dev [linux-any],
- gtk-doc-tools,
- xsltproc,
- libgirepository1.0-dev (>= 0.9.12),
- gobject-introspection (>= 0.9.12-4~),
  gir1.2-glib-2.0,
+ gobject-introspection (>= 0.9.12-4~),
+ gtk-doc-tools,
+ libexpat1-dev,
+ libgirepository1.0-dev (>= 0.9.12),
+ libglib2.0-dev (>= 2.28.0),
  libglib2.0-doc,
  libgtk-3-doc,
- libsystemd-dev [linux-any]
+ libpam0g-dev,
+ libselinux1-dev [linux-any],
+ libsystemd-dev [linux-any],
+ pkg-config,
+ xsltproc,
 Standards-Version: 3.9.6
 Vcs-Git: git://anonscm.debian.org/pkg-utopia/policykit.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/policykit.git;a=summary
@@ -27,9 +29,15 @@ Homepage: http://www.freedesktop.org/wiki/Software/polkit/
 
 Package: policykit-1
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libpam-systemd [linux-any], consolekit [!linux-any], dbus
+Depends:
+ consolekit [!linux-any],
+ dbus,
+ libpam-systemd [linux-any],
+ ${misc:Depends},
+ ${shlibs:Depends},
 Multi-Arch: foreign
-Breaks: gdm3 (<< 3.8.4-7~)
+Breaks:
+ gdm3 (<< 3.8.4-7~),
 Description: framework for managing administrative policies and privileges
  PolicyKit is an application-level toolkit for defining and handling the policy
  that allows unprivileged processes to speak to privileged processes.
@@ -41,8 +49,10 @@ Description: framework for managing administrative policies and privileges
 Package: policykit-1-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}
-Suggests: devhelp
+Depends:
+ ${misc:Depends},
+Suggests:
+ devhelp,
 Description: documentation for PolicyKit-1
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -52,8 +62,11 @@ Description: documentation for PolicyKit-1
 Package: libpolkit-gobject-1-0
 Architecture: any
 Section: libs
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
 Multi-Arch: same
 Description: PolicyKit Authorization API
  PolicyKit is a toolkit for defining and handling the policy that
@@ -64,7 +77,11 @@ Description: PolicyKit Authorization API
 Package: libpolkit-gobject-1-dev
 Architecture: any
 Section: libdevel
-Depends: libpolkit-gobject-1-0 (= ${binary:Version}), ${misc:Depends}, libglib2.0-dev, gir1.2-polkit-1.0 (= ${binary:Version})
+Depends:
+ gir1.2-polkit-1.0 (= ${binary:Version}),
+ libglib2.0-dev,
+ libpolkit-gobject-1-0 (= ${binary:Version}),
+ ${misc:Depends},
 Description: PolicyKit Authorization API - development files
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -75,8 +92,11 @@ Description: PolicyKit Authorization API - development files
 Package: libpolkit-agent-1-0
 Architecture: any
 Section: libs
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
 Multi-Arch: same
 Description: PolicyKit Authentication Agent API
  PolicyKit is a toolkit for defining and handling the policy that
@@ -87,7 +107,11 @@ Description: PolicyKit Authentication Agent API
 Package: libpolkit-agent-1-dev
 Architecture: any
 Section: libdevel
-Depends: libpolkit-agent-1-0 (= ${binary:Version}), ${misc:Depends}, libpolkit-gobject-1-dev, gir1.2-polkit-1.0 (= ${binary:Version})
+Depends:
+ gir1.2-polkit-1.0 (= ${binary:Version}),
+ libpolkit-agent-1-0 (= ${binary:Version}),
+ libpolkit-gobject-1-dev,
+ ${misc:Depends},
 Description: PolicyKit Authentication Agent API - development files
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -98,8 +122,11 @@ Description: PolicyKit Authentication Agent API - development files
 Package: libpolkit-backend-1-0
 Architecture: any
 Section: libs
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
 Multi-Arch: same
 Description: PolicyKit backend API
  PolicyKit is a toolkit for defining and handling the policy that
@@ -110,7 +137,10 @@ Description: PolicyKit backend API
 Package: libpolkit-backend-1-dev
 Architecture: any
 Section: libdevel
-Depends: libpolkit-backend-1-0 (= ${binary:Version}), ${misc:Depends}, libpolkit-gobject-1-dev
+Depends:
+ libpolkit-backend-1-0 (= ${binary:Version}),
+ libpolkit-gobject-1-dev,
+ ${misc:Depends},
 Description: PolicyKit backend API - development files
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
@@ -121,7 +151,10 @@ Description: PolicyKit backend API - development files
 Package: gir1.2-polkit-1.0
 Section: introspection
 Architecture: any
-Depends: ${gir:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends:
+ ${gir:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
 Description: GObject introspection data for PolicyKit
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
