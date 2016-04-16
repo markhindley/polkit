@@ -9,7 +9,6 @@ Build-Depends:
  dbus,
  debhelper (>= 9),
  dh-autoreconf,
- gir1.2-glib-2.0,
  gobject-introspection (>= 0.9.12-4~),
  gtk-doc-tools,
  libexpat1-dev,
