@@ -1,3 +1,9 @@
+policykit-1 (0.105-15~deb8u1) stable; urgency=medium
+
+  * Upload to stable.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 27 May 2016 12:46:17 +0200
+
 policykit-1 (0.105-15) unstable; urgency=medium
 
   * Generate tight inter-package dependencies.
