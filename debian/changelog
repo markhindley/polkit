@@ -10,6 +10,7 @@ policykit-1 (0.105-16) UNRELEASED; urgency=medium
   [ Martin Pitt ]
   * Add fallback if agent is not running in a logind session. This fixes
     polkit with dbus-user-session. Thanks Sebastien Bacher for the patch!
+  * Bump Standards-Version to 3.9.8 (no changes necessary).
 
  -- Michael Biebl <biebl@debian.org>  Sat, 16 Apr 2016 13:28:05 +0200
 
