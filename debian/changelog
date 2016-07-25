@@ -1,10 +1,15 @@
 policykit-1 (0.105-16) UNRELEASED; urgency=medium
 
+  [ Michael Biebl ]
   * Drop obsolete Breaks from pre-wheezy.
   * Use gir addon instead of calling dh_girepository manually.
   * Run wrap-and-sort -ast.
   * Drop explicit Build-Depends on gir1.2-glib-2.0. This dependency is already
     pulled in via libgirepository1.0-dev.
+
+  [ Martin Pitt ]
+  * Add fallback if agent is not running in a logind session. This fixes
+    polkit with dbus-user-session. Thanks Sebastien Bacher for the patch!
 
  -- Michael Biebl <biebl@debian.org>  Sat, 16 Apr 2016 13:28:05 +0200
 

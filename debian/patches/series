@@ -31,6 +31,7 @@
 master/Fix-multi-line-pam-text-info.patch
 01_pam_polkit.patch
 02_gettext.patch
+03_polkitunixsession_sessionid_from_display.patch
 05_revert-admin-identities-unix-group-wheel.patch
 06_systemd-service.patch
 10_build-against-libsystemd.patch
