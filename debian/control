@@ -25,7 +25,7 @@ Build-Depends:
  xsltproc,
 Standards-Version: 3.9.8
 Vcs-Git: git://anonscm.debian.org/pkg-utopia/policykit.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/policykit.git;a=summary
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-utopia/policykit.git
 Homepage: https://www.freedesktop.org/wiki/Software/polkit/
 
 Package: policykit-1

@@ -6,6 +6,7 @@ policykit-1 (0.113-5) UNRELEASED; urgency=medium
 
   [ Michael Biebl ]
   * Use https:// for the upstream homepage.
+  * Update Vcs-Browser to use cgit.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 21 Oct 2016 16:23:14 +0200
 
