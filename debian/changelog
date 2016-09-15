@@ -1,3 +1,11 @@
+policykit-1 (0.113-5) UNRELEASED; urgency=medium
+
+  [ Simon McVittie ]
+  * Build-depend on intltool instead of relying on gtk-doc-tools'
+    dependency (Closes: #837846)
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 21 Oct 2016 16:23:14 +0200
+
 policykit-1 (0.113-4) experimental; urgency=medium
 
   [ Simon McVittie ]
