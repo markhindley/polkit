@@ -11,6 +11,7 @@ Build-Depends:
  dh-autoreconf,
  gobject-introspection (>= 0.9.12-4~),
  gtk-doc-tools,
+ intltool (>= 0.40.0),
  libexpat1-dev,
  libgirepository1.0-dev (>= 0.9.12),
  libglib2.0-dev (>= 2.28.0),

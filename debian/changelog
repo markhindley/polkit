@@ -1,7 +1,12 @@
 policykit-1 (0.105-17) UNRELEASED; urgency=medium
 
+  [ Michael Biebl ]
   * Use https:// for the upstream homepage.
   * Update Vcs-Browser to use cgit.
+
+  [ Simon McVittie ]
+  * Build-depend on intltool instead of relying on gtk-doc-tools'
+    dependency (Closes: #837846)
 
  -- Michael Biebl <biebl@debian.org>  Tue, 06 Sep 2016 18:08:43 +0200
 
