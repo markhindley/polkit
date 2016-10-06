@@ -23,4 +23,4 @@ index 142dadd..b890276 100644
 +@include common-password
 +session       required   pam_env.so readenv=1 user_readenv=0
 +session       required   pam_env.so readenv=1 envfile=/etc/default/locale user_readenv=0
-+@include common-session
++@include common-session-noninteractive
