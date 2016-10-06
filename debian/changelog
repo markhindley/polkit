@@ -10,6 +10,16 @@ policykit-1 (0.113-5) UNRELEASED; urgency=medium
   * Drop the polkitd.service Alias. The version in unstable, based on 0.105,
     now also uses the name polkit.service for the systemd service unit.
 
+  [ Martin Pitt ]
+  * Use PAM's common-session-noninteractive modules for pkexec instead of
+    common-session. The latter also runs pam_systemd (the only difference
+    normally) which is a no-op under the classic session-centric
+    D-BUS/graphical login model (as it won't start a new one if it is already
+    running within a logind session), but very expensive when using
+    dbus-user-session and being called from a service that runs outside the
+    PAM session. This causes long delays in e. g. gnome-settings-daemon's
+    backlight helpers. (LP: #1626651)
+
  -- Michael Biebl <biebl@debian.org>  Fri, 21 Oct 2016 16:23:14 +0200
 
 policykit-1 (0.113-4) experimental; urgency=medium

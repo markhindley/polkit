@@ -20,4 +20,4 @@ Index: trunk/data/polkit-1.in
 +@include common-password
 +session       required   pam_env.so readenv=1 user_readenv=0
 +session       required   pam_env.so readenv=1 envfile=/etc/default/locale user_readenv=0
-+@include common-session
++@include common-session-noninteractive
