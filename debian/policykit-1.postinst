@@ -44,13 +44,20 @@ case "$1" in
 	set_perms root root 4755 /usr/lib/policykit-1/polkit-agent-helper-1
 	set_perms root root 4755 /usr/bin/pkexec
 
+	# The service file was renamed to polkit.service to match the upstream name.
+	# Stop the old polkitd.service on upgrades.
+	if [ -d /run/systemd/system ] && dpkg --compare-versions "$2" lt-nl 0.105-17; then
+		systemctl daemon-reload
+		deb-systemd-invoke stop polkitd.service || true
+	fi
+
 	# Kill the old polkitd daemon on upgrade, to ensure that the new
 	# version will be used at the next occasion.
 	if [ -d /run/systemd/system ]; then
 		# remove the temporary mask from preinst
-		systemctl unmask --runtime polkitd.service
+		systemctl unmask --runtime polkit.service
 		systemctl daemon-reload
-		deb-systemd-invoke restart polkitd.service || true
+		deb-systemd-invoke restart polkit.service || true
 	else
 		kill $(get_pid org.freedesktop.PolicyKit1) 2>/dev/null || true
 	fi

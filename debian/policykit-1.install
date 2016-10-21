@@ -1,4 +1,4 @@
-debian/polkitd.service lib/systemd/system/
+debian/polkit.service lib/systemd/system/
 etc/dbus-1/
 etc/pam.d/
 etc/polkit-1/

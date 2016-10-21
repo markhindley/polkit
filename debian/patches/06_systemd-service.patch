@@ -15,4 +15,4 @@ index b6cd02b..ba3a1b6 100644
  Name=org.freedesktop.PolicyKit1
  Exec=@libexecdir@/polkitd --no-debug
  User=root
-+SystemdService=polkitd.service
++SystemdService=polkit.service
