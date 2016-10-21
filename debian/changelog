@@ -1,4 +1,4 @@
-policykit-1 (0.105-17) UNRELEASED; urgency=medium
+policykit-1 (0.105-17) unstable; urgency=medium
 
   [ Michael Biebl ]
   * Use https:// for the upstream homepage.
@@ -20,7 +20,7 @@ policykit-1 (0.105-17) UNRELEASED; urgency=medium
     PAM session. This causes long delays in e. g. gnome-settings-daemon's
     backlight helpers. (LP: #1626651)
 
- -- Michael Biebl <biebl@debian.org>  Tue, 06 Sep 2016 18:08:43 +0200
+ -- Michael Biebl <biebl@debian.org>  Fri, 21 Oct 2016 15:44:57 +0200
 
 policykit-1 (0.105-16) unstable; urgency=medium
 
