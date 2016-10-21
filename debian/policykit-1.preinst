@@ -3,7 +3,7 @@ set -e
 
 case "$1" in
     install|upgrade)
-        # avoid attempts to start polkitd.service while we are unconfigured and
+        # avoid attempts to start polkit.service while we are unconfigured and
         # might not yet have our D-Bus policy in /etc
         if [ -d /run/systemd/system ]; then
             systemctl mask --runtime polkit.service

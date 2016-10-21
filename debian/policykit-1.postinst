@@ -52,11 +52,13 @@ case "$1" in
 	set_perms root root 4755 /usr/lib/polkit-1/polkit-agent-helper-1
 	set_perms root root 4755 /usr/bin/pkexec
 
-	# When upgrading from an older version, reload systemd as the name
-	# of the .service file has changed.
-	if dpkg --compare-versions "$2" lt "0.109-1"; then
-	    [ -d /run/systemd/system ] && systemctl daemon-reload || true
+	# The service file was renamed to polkit.service to match the upstream name.
+	# Stop the old polkitd.service on upgrades.
+	if [ -d /run/systemd/system ] && dpkg --compare-versions "$2" lt-nl 0.105-17; then
+		systemctl daemon-reload
+		deb-systemd-invoke stop polkitd.service || true
 	fi
+
 	# Kill the old polkitd daemon on upgrade, to ensure that the new
 	# version will be used at the next occasion.
 	if [ -d /run/systemd/system ]; then

@@ -7,6 +7,8 @@ policykit-1 (0.113-5) UNRELEASED; urgency=medium
   [ Michael Biebl ]
   * Use https:// for the upstream homepage.
   * Update Vcs-Browser to use cgit.
+  * Drop the polkitd.service Alias. The version in unstable, based on 0.105,
+    now also uses the name polkit.service for the systemd service unit.
 
  -- Michael Biebl <biebl@debian.org>  Fri, 21 Oct 2016 16:23:14 +0200
 
@@ -40,7 +42,7 @@ policykit-1 (0.113-2) experimental; urgency=medium
     as polkitd.service (Debian's historical name)
 
   [ Martin Pitt ]
-  * debian/policykit-1.{pre,pos}inst: Temporarily mask polkitd.service while
+  * debian/policykit-1.{pre,post}inst: Temporarily mask polkit.service while
     policykit-1 is unpackaged but not yet configured. During that time we
     don't yet have our D-Bus policy in /etc so that polkitd cannot work yet.
     This can be dropped once the D-Bus policy moves to /usr.
