@@ -1,0 +1,88 @@
+From 7eef6482fd3831bfae73a3576230af5341aaf53f Mon Sep 17 00:00:00 2001
+From: Matthias Clasen <mclasen@redhat.com>
+Date: Fri, 15 Jul 2016 11:12:35 -0400
+Subject: [PATCH] Add gettext support for .policy files
+
+gettext can extract strings from and merge them back into xml
+file formats, with the help of .its files.
+
+https://bugs.freedesktop.org/show_bug.cgi?id=96940
+
+---
+
+Author: Peter Hutterer <peter.hutterer@who-t.net>
+Date:   Thu Oct 20 10:50:58 2016 +1000
+gettext: switch to default-translate "no"
+
+The default appears to be to translate all entries. This rule never takes
+effect, the path to /action/message and /action/description is wrong (/action
+is not a root node). Since we wanted them to be translated, it doesn't matter.
+
+But it also translates all other tags (vendor, allow_any, etc.) and that
+causes polkit to be unhappy, it can't handle the various language versions of
+"no"
+
+** (polkitd:27434): WARNING **: Unknown PolkitImplicitAuthorization string
+'tidak'
+
+Switch to a default of "no" and explicitly include the message and description
+strings to be translated.
+
+The patch was modified for PolicyKit by Ondrej Holy <oholy@redhat.com>.
+
+https://bugs.freedesktop.org/show_bug.cgi?id=98366
+
+Origin: upstream, commit:c78819245ff8a270f97c9f800773e727918be838 commit:32e9a69c335324a53a2c0ba4e0b513fb044be0fd
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863207
+
+---
+ data/Makefile.am | 3 +++
+ data/polkit.its  | 8 ++++++++
+ data/polkit.loc  | 6 ++++++
+ 3 files changed, 17 insertions(+)
+ create mode 100644 data/polkit.its
+ create mode 100644 data/polkit.loc
+
+diff --git a/data/Makefile.am b/data/Makefile.am
+index f0beeba..7ea361d 100644
+--- a/data/Makefile.am
++++ b/data/Makefile.am
+@@ -20,6 +20,9 @@ endif
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = polkit-gobject-1.pc polkit-backend-1.pc polkit-agent-1.pc
+ 
++itsdir = $(datadir)/gettext/its
++its_DATA = polkit.loc polkit.its
++
+ CLEANFILES = $(BUILT_SOURCES)
+ 
+ EXTRA_DIST = 							\
+diff --git a/data/polkit.its b/data/polkit.its
+new file mode 100644
+index 0000000..1c37e6b
+--- /dev/null
++++ b/data/polkit.its
+@@ -0,0 +1,8 @@
++<?xml version="1.0"?>
++<its:rules xmlns:its="http://www.w3.org/2005/11/its"
++           version="2.0">
++  <its:translateRule selector="//*" translate="no"/>
++  <its:translateRule selector="//action/description |
++                               //action/message"
++                     translate="yes"/>
++</its:rules>
+diff --git a/data/polkit.loc b/data/polkit.loc
+new file mode 100644
+index 0000000..c7427ec
+--- /dev/null
++++ b/data/polkit.loc
+@@ -0,0 +1,6 @@
++<?xml version="1.0"?>
++<locatingRules>
++  <locatingRule name="polkit policy" pattern="*.policy">
++    <documentRule localName="policyconfig" target="polkit.its"/>
++  </locatingRule>
++</locatingRules>
+-- 
+2.11.0
+
