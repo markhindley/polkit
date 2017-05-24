@@ -1,3 +1,13 @@
+policykit-1 (0.113-6) UNRELEASED; urgency=medium
+
+  * master/Add-gettext-support-for-.policy-files.patch: Backport from master:
+    Add .loc and .its files so that gettext can be used to translate policy
+    files. Some upstreams, particularly those that are switching to meson,
+    expect these files to be present so that their PK policy files can be
+    translated. (Closes: #863207)
+
+ -- Iain Lane <laney@debian.org>  Wed, 24 May 2017 16:06:19 +0100
+
 policykit-1 (0.113-5) experimental; urgency=medium
 
   [ Simon McVittie ]
