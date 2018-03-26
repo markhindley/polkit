@@ -2,7 +2,7 @@ Description: Escape helper output to handle multiline messages
  Some pam modules produce multiline messages which caused errors in
  PolkitAgentSession as the subsequent lines were interpreted as separate
  messages unrecognized by the authenticator. Escaping every message allows
- to avoid such behaviour.
+ one to avoid such behaviour.
 Author: Dariusz Gadomski <dariusz.gadomski@canonical.com>
 Bug-Ubuntu: https://bugs.launchpad.net/bugs/1510824
 Bug: https://bugs.freedesktop.org/show_bug.cgi?id=92886

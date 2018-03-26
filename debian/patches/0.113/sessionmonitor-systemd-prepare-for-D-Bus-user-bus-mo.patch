@@ -7,7 +7,7 @@ D-Bus instance, a polkit requesting process might live outside the
 login session which registered the user's polkit agent.
 
 In case a polkit requesting process is not part of the user's login
-session, we ask systemd-logind for the the user's "display" session
+session, we ask systemd-logind for the user's "display" session
 instead.
 
 Bug: https://bugs.freedesktop.org/show_bug.cgi?id=78905

@@ -2,7 +2,7 @@ From: =?utf-8?q?Miloslav_Trma=C4=8D?= <mitr@redhat.com>
 Date: Tue, 26 Aug 2014 17:59:47 +0200
 Subject: Refuse duplicate --user arguments to pkexec
 
-This usage is clearly errorneous, so we should tell the users they are
+This usage is clearly erroneous, so we should tell the users they are
 making a mistake.
 
 Besides, this allows an attacker to cause a high number of heap
