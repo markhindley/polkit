@@ -1,3 +1,10 @@
+policykit-1 (0.105-20) UNRELEASED; urgency=medium
+
+  * Disable parallel builds until they're fixed. Thanks, Adrian Bunk
+    (Closes: #894205)
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 27 Mar 2018 13:30:46 +0100
+
 policykit-1 (0.105-19) unstable; urgency=medium
 
   * debian/copyright: Use https URL for Format:
