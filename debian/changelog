@@ -1,9 +1,10 @@
-policykit-1 (0.105-20) UNRELEASED; urgency=medium
+policykit-1 (0.105-20) unstable; urgency=medium
 
+  * Team upload
   * d/p/0.108/build-Fix-.gir-generation-for-parallel-make.patch:
     Add patch from upstream to fix parallel builds (Closes: #894205)
 
- -- Simon McVittie <smcv@debian.org>  Tue, 27 Mar 2018 13:30:46 +0100
+ -- Simon McVittie <smcv@debian.org>  Tue, 27 Mar 2018 13:50:28 +0100
 
 policykit-1 (0.105-19) unstable; urgency=medium
 
