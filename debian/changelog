@@ -1,7 +1,7 @@
 policykit-1 (0.105-20) UNRELEASED; urgency=medium
 
-  * Disable parallel builds until they're fixed. Thanks, Adrian Bunk
-    (Closes: #894205)
+  * d/p/0.108/build-Fix-.gir-generation-for-parallel-make.patch:
+    Add patch from upstream to fix parallel builds (Closes: #894205)
 
  -- Simon McVittie <smcv@debian.org>  Tue, 27 Mar 2018 13:30:46 +0100
 

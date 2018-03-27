@@ -1,3 +1,4 @@
+0.108/build-Fix-.gir-generation-for-parallel-make.patch
 0.110/07_set-XAUTHORITY-environment-variable-if-unset.patch
 0.110/04_get_cwd.patch
 0.111/09_pam_environment.patch
