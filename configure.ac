@@ -1,9 +1,10 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59c)
-AC_INIT([polkit], [0.113], [http://lists.freedesktop.org/mailman/listinfo/polkit-devel], , [http://www.freedesktop.org/wiki/Software/polkit])
+AC_INIT([polkit], [0.114], [http://lists.freedesktop.org/mailman/listinfo/polkit-devel], , [http://www.freedesktop.org/wiki/Software/polkit])
 AM_INIT_AUTOMAKE([])
 AC_CONFIG_HEADERS(config.h)
+AC_CONFIG_MACRO_DIR([buildutil])
 AM_MAINTAINER_MODE
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -22,6 +23,7 @@ AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
 AC_SUBST(LT_AGE)
 
+AC_USE_SYSTEM_EXTENSIONS
 AC_ISC_POSIX
 AC_PROG_CC
 AC_HEADER_STDC
@@ -30,6 +32,8 @@ AC_PROG_MAKE_SET
 AC_PROG_LN_S
 AC_SYS_LARGEFILE
 AM_PROG_CC_C_O
+AC_PROG_CXX
+AX_CXX_COMPILE_STDCXX_11()
 
 # Taken from dbus
 AC_ARG_ENABLE(ansi,             [  --enable-ansi           enable -ansi -pedantic gcc flags],enable_ansi=$enableval,enable_ansi=no)
@@ -50,98 +54,35 @@ GTK_DOC_CHECK([1.3])
 
 #### gcc warning flags
 
-if test "x$GCC" = "xyes"; then
-  changequote(,)dnl
-  case " $CFLAGS " in
-  *[\ \	]-Wall[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wall" ;;
-  esac
-
-  case " $CFLAGS " in
-  *[\ \	]-Wchar-subscripts[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wchar-subscripts" ;;
-  esac
-
-  case " $CFLAGS " in
-  *[\ \	]-Wmissing-declarations[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wmissing-declarations" ;;
-  esac
-
-  case " $CFLAGS " in
-  *[\ \	]-Wnested-externs[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wnested-externs" ;;
-  esac
-
-  case " $CFLAGS " in
-  *[\ \	]-Wpointer-arith[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wpointer-arith" ;;
-  esac
-
-  case " $CFLAGS " in
-  *[\ \	]-Wcast-align[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wcast-align" ;;
-  esac
-
-  case " $CFLAGS " in
-  *[\ \	]-Wsign-compare[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wsign-compare" ;;
-  esac
-
-  case " $CFLAGS " in
-  *[\ \	]-Wformat[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wformat" ;;
-  esac
-
-  case " $CFLAGS " in
-  *[\ \	]-Wformat-security[\ \	]*) ;;
-  *) CFLAGS="$CFLAGS -Wformat-security" ;;
-  esac
-
-  if test "x$enable_ansi" = "xyes"; then
-    case " $CFLAGS " in
-    *[\ \	]-ansi[\ \	]*) ;;
-    *) CFLAGS="$CFLAGS -ansi" ;;
-    esac
-
-    case " $CFLAGS " in
-    *[\ \	]-D_POSIX_C_SOURCE*) ;;
-    *) CFLAGS="$CFLAGS -D_POSIX_C_SOURCE=199309L" ;;
-    esac
-
-    case " $CFLAGS " in
-    *[\ \	]-D_BSD_SOURCE[\ \	]*) ;;
-    *) CFLAGS="$CFLAGS -D_BSD_SOURCE" ;;
-    esac
-
-    case " $CFLAGS " in
-    *[\ \	]-pedantic[\ \	]*) ;;
-    *) CFLAGS="$CFLAGS -pedantic" ;;
-    esac
-  fi
-  changequote([,])dnl
-fi
+CC_CHECK_FLAGS_APPEND([WARN_CFLAGS], [CFLAGS], [\
+        -pipe \
+        -Wall \
+	-Werror=empty-body \
+	-Werror=strict-prototypes \
+	-Werror=missing-prototypes \
+	-Werror=implicit-function-declaration \
+        "-Werror=format=2 -Werror=format-security -Werror=format-nonliteral" \
+	-Werror=pointer-arith -Werror=init-self \
+        -Werror=missing-declarations \
+        -Werror=return-type \
+        -Werror=overflow \
+        -Werror=int-conversion \
+        -Werror=parenthesis \
+        -Werror=incompatible-pointer-types \
+        -Werror=misleading-indentation \
+	-Werror=missing-include-dirs -Werror=aggregate-return \
+	-Werror=declaration-after-statement \
+])
+AC_SUBST(WARN_CFLAGS)
 
 PKG_CHECK_MODULES(GLIB, [gmodule-2.0 gio-unix-2.0 >= 2.30.0])
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
-AC_DEFINE([GLIB_VERSION_MIN_REQUIRED], [GLIB_VERSION_2_30],
-	[Avoid warning spew about g_type_init() being deprecated])
-AC_DEFINE([GLIB_VERSION_MAX_ALLOWED], [G_ENCODE_VERSION(2,34)],
-        [Notify us when we'll need to transition away from g_type_init()])
 
-AC_ARG_WITH(mozjs, AS_HELP_STRING([--with-mozjs=@<:@mozjs185/mozjs-17.0|auto@:>@],
-		                  [Specify version of Spidermonkey to use]),,
-            with_mozjs=auto)
-AS_IF([test x${with_mozjs} != xauto], [
-  PKG_CHECK_MODULES(LIBJS, ${with_mozjs})
-], [
-  PKG_CHECK_MODULES(LIBJS, [mozjs185], have_mozjs185=yes, have_mozjs185=no)
-  AS_IF([test x${have_mozjs185} = xno], [
-  PKG_CHECK_MODULES(LIBJS, [mozjs-17.0], have_mozjs17=yes,
-   [AC_MSG_ERROR([Could not find mozjs185 or mozjs-17.0; see http://ftp.mozilla.org/pub/mozilla.org/js/])])
-  ])
-])
+PKG_CHECK_MODULES(LIBJS, [mozjs-52])
+
 AC_SUBST(LIBJS_CFLAGS)
+AC_SUBST(LIBJS_CXXFLAGS)
 AC_SUBST(LIBJS_LIBS)
 
 EXPAT_LIB=""
@@ -167,11 +108,15 @@ fi
 dnl ---------------------------------------------------------------------------
 dnl - Check whether setnetgrent has a return value
 dnl ---------------------------------------------------------------------------
+AC_CHECK_HEADERS([netgroup.h])
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
-	#include <stddef.h>
-	#include <netdb.h>
-]], [[
-	int r = setnetgrent (NULL);]])],
+    #include <stddef.h>
+    #ifdef HAVE_NETGROUP_H
+    #include <netgroup.h>
+    #else
+    #include <netdb.h>
+    #endif
+]], [[int r = setnetgrent (NULL);]])],
 [AC_DEFINE([HAVE_SETNETGRENT_RETURN], 1, [Define to 1 if setnetgrent has return value])])
 
 dnl ---------------------------------------------------------------------------
@@ -184,10 +129,11 @@ AC_ARG_ENABLE([test],
 AM_CONDITIONAL(BUILD_TEST, [test "x$enable_test" = "xyes"])
 
 dnl ---------------------------------------------------------------------------
-dnl - Select wether to use libsystemd-login or ConsoleKit for session tracking
+dnl - Select wether to use libsystemd-login, libelogind or ConsoleKit for session tracking
 dnl ---------------------------------------------------------------------------
 
 have_libsystemd=no
+have_libelogind=no
 SESSION_TRACKING=ConsoleKit
 
 AC_ARG_ENABLE([libsystemd-login],
@@ -208,16 +154,48 @@ if test "$enable_libsystemd_login" != "no"; then
       ],
       [have_libsystemd=no])])
   if test "$have_libsystemd" = "yes"; then
-    SESSION_TRACKING=libsystemd-login
-    AC_DEFINE([HAVE_LIBSYSTEMD], 1, [Define to 1 if libsystemd is available])
-    save_LIBS=$LIBS
-    LIBS=$LIBSYSTEMD_LIBS
-    AC_CHECK_FUNCS(sd_uid_get_display)
-    LIBS=$save_LIBS
+      SESSION_TRACKING=libsystemd-login
+  fi
+fi
+
+AC_ARG_ENABLE([libelogind],
+              [AS_HELP_STRING([--enable-libelogind[=@<:@auto/yes/no@:>@]], [Use libelogind (auto/yes/no)])],
+              [enable_libelogind=$enableval],
+              [enable_libelogind=auto])
+dnl Using libelogind makes no sense when libsystemd-login is already in use
+if test "$have_libsystemd" = "yes"; then
+  enable_libelogind=no
+fi
+if test "$enable_libelogind" != "no"; then
+  PKG_CHECK_MODULES([LIBELOGIND],
+    [libelogind],
+    [have_libelogind=yes])
+  if test "$have_libelogind" = "yes"; then
+      SESSION_TRACKING=libelogind
+  fi
+fi
+
+dnl libelogind is a drop-in replacement for libsystemd-login, so using it does
+dnl not need any different actions than using libsystemd-login.
+if test "$SESSION_TRACKING" != "ConsoleKit"; then
+  AC_DEFINE([HAVE_LIBSYSTEMD], 1, [Define to 1 if libsystemd or libelogind is available])
+  save_LIBS=$LIBS
+  if test "$have_libelogind" = "yes"; then
+    LIBS=$LIBELOGIND_LIBS
+    dnl We have to act like this was libsystemd-login
+    LIBSYSTEMD_CFLAGS=$LIBELOGIND_CFLAGS
+    LIBSYSTEMD_LIBS=$LIBELOGIND_LIBS
   else
-    if test "$enable_libsystemd_login" = "yes"; then
-      AC_MSG_ERROR([libsystemd support requested but libsystemd or libsystemd-login library not found])
-    fi
+    LIBS=$LIBSYSTEMD_LIBS
+  fi
+  AC_CHECK_FUNCS(sd_uid_get_display)
+  LIBS=$save_LIBS
+else
+  if test "$enable_libsystemd_login" = "yes"; then
+    AC_MSG_ERROR([libsystemd support requested but libsystemd or libsystemd-login library not found])
+  fi
+  if test "$enable_libelogind" = "yes"; then
+    AC_MSG_ERROR([libelogind support requested but libelogind library not found])
   fi
 fi
 
@@ -318,6 +296,11 @@ case $POLKIT_AUTHFW in
     AC_DEFINE(POLKIT_AUTHFW_SHADOW, 1, [If using the Shadow authentication framework])
     ;;
 
+  bsdauth)
+    need_pam=no
+    AC_DEFINE(POLKIT_AUTHFW_BSDAUTH, 1, [If using the bsd_auth(3) authentication framework])
+    ;;
+
   *)
     AC_MSG_ERROR([Unknown Authentication Framework: $POLKIT_AUTHFW])
     ;;
@@ -326,6 +309,7 @@ esac
 AM_CONDITIONAL(POLKIT_AUTHFW_NONE, [test x$POLKIT_AUTHFW = xnone], [Using no authfw])
 AM_CONDITIONAL(POLKIT_AUTHFW_PAM, [test x$POLKIT_AUTHFW = xpam], [Using PAM authfw])
 AM_CONDITIONAL(POLKIT_AUTHFW_SHADOW, [test x$POLKIT_AUTHFW = xshadow], [Using Shadow authfw])
+AM_CONDITIONAL(POLKIT_AUTHFW_BSDAUTH, [test x$POLKIT_AUTHFW = xbsdauth], [Using bsd_auth(3) authfw])
 
 
 dnl ---------------------------------------------------------------------------
@@ -411,7 +395,7 @@ fi
 
 AC_SUBST(PAM_MODULE_DIR)
 
-AC_ARG_WITH(os-type,     [  --with-os-type=<os>        distribution or OS (redhat/suse/gentoo/pardus/solaris)])
+AC_ARG_WITH(os-type,     [  --with-os-type=<os>        distribution or OS (redhat/suse/gentoo/pardus/solaris/netbsd)])
 
 #### Check our operating system (distro-tweaks required)
 if test "z$with_os_type" = "z"; then
@@ -440,8 +424,17 @@ if test x$with_os_type = x; then
 	with_os_type=solaris
     elif test x$operating_system = xfreebsd ; then
 	with_os_type=freebsd
+    elif test x$operating_system = xnetbsd ; then
+	with_os_type=netbsd
     else
-        with_os_type=unknown
+	case "$host_os" in
+	  *netbsd*)
+		with_os_type=netbsd
+		;;
+	  *)
+		with_os_type=unknown
+		::
+	esac
     fi
 fi
 
@@ -472,7 +465,7 @@ elif test x$with_os_type = xsuse -o x$with_os_type = xsolaris ; then
    PAM_FILE_INCLUDE_ACCOUNT=common-account
    PAM_FILE_INCLUDE_PASSWORD=common-password
    PAM_FILE_INCLUDE_SESSION=common-session
-elif test x$with_os_type = xfreebsd ; then
+elif test x$with_os_type = xfreebsd -o x$with_os_type = xnetbsd; then
     PAM_FILE_INCLUDE_AUTH=system
     PAM_FILE_INCLUDE_ACCOUNT=system
     PAM_FILE_INCLUDE_PASSWORD=system
@@ -504,6 +497,12 @@ case "$host_os" in
 	;;
   *freebsd*)
   	AC_DEFINE([HAVE_FREEBSD], 1, [Is this a FreeBSD system?])
+	;;
+  *netbsd*)
+	AC_DEFINE([HAVE_NETBSD], 1, [Is this an NetBSD system?])
+	;;
+  *openbsd*)
+	AC_DEFINE([HAVE_OPENBSD], 1, [Is this an OpenBSD system?])
 	;;
 esac
 

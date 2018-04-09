@@ -1,5 +1,6 @@
 NULL =
 
+AM_CFLAGS = -std=gnu99 $(WARN_CFLAGS)
 AM_CPPFLAGS =                                                   \
         -I$(top_builddir)/src                                   \
         -I$(top_srcdir)/src                                     \
@@ -90,6 +91,9 @@ polkit_agent_helper_1_SOURCES += polkitagenthelper-pam.c
 endif
 if POLKIT_AUTHFW_SHADOW
 polkit_agent_helper_1_SOURCES += polkitagenthelper-shadow.c
+endif
+if POLKIT_AUTHFW_BSDAUTH
+polkit_agent_helper_1_SOURCES += polkitagenthelper-bsdauth.c
 endif
 
 polkit_agent_helper_1_CFLAGS  = 					\

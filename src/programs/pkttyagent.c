@@ -24,6 +24,7 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <glib/gi18n.h>
 #include <polkit/polkit.h>
 #define POLKIT_AGENT_I_KNOW_API_IS_SUBJECT_TO_CHANGE
@@ -54,7 +55,7 @@ main (int argc, char *argv[])
       },
       {
 	"system-bus-name", 's', 0, G_OPTION_ARG_STRING, &opt_system_bus_name,
-	N_("Register the agent owner of BUS_NAME"), N_("BUS_NAME")
+	N_("Register the agent for the owner of BUS_NAME"), N_("BUS_NAME")
       },
       {
 	"version", 0, 0, G_OPTION_ARG_NONE, &opt_show_version,
@@ -74,7 +75,8 @@ main (int argc, char *argv[])
   guint ret = 126;
   GVariantBuilder builder;
 
-  g_type_init ();
+  /* Disable remote file access from GIO. */
+  setenv ("GIO_USE_VFS", "local", 1);
 
   error = NULL;
   context = g_option_context_new ("");

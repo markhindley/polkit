@@ -24,6 +24,7 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <glib/gi18n.h>
 #include <polkit/polkit.h>
 
@@ -121,7 +122,8 @@ main (int argc, char *argv[])
   actions = NULL;
   ret = 1;
 
-  g_type_init ();
+  /* Disable remote file access from GIO. */
+  setenv ("GIO_USE_VFS", "local", 1);
 
   opt_show_version = FALSE;
   opt_verbose = FALSE;

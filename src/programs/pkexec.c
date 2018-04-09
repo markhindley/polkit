@@ -23,8 +23,6 @@
 #  include "config.h"
 #endif
 
-#define _GNU_SOURCE
-
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -503,6 +501,9 @@ main (int argc, char *argv[])
   opt_user = NULL;
   local_agent_handle = NULL;
 
+  /* Disable remote file access from GIO. */
+  setenv ("GIO_USE_VFS", "local", 1);
+
   /* check for correct invocation */
   if (geteuid () != 0)
     {
@@ -703,11 +704,6 @@ main (int argc, char *argv[])
       g_printerr ("Error clearing environment: %s\n", g_strerror (errno));
       goto out;
     }
-
-  /* Initialize the GLib type system - this is needed to interact with the
-   * PolicyKit daemon
-   */
-  g_type_init ();
 
   /* make sure we are nuked if the parent process dies */
 #ifdef __linux__
