@@ -1,12 +1,17 @@
 From: Michael Biebl <biebl@debian.org>
-Date: Mon, 07 Jan 2013 23:59:52 +0100
-Subject: Explicitly use chdir("/") instead of relying on ~user being set properly
+Date: Mon, 7 Jan 2013 23:59:52 +0100
+Subject: Explicitly use chdir("/") instead of relying on ~user being set
+ properly
+
+---
+ src/polkitbackend/polkitd.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/polkitbackend/polkitd.c b/src/polkitbackend/polkitd.c
-index 4cbef2f..77b2feb 100644
+index 6c57151..107d754 100644
 --- a/src/polkitbackend/polkitd.c
 +++ b/src/polkitbackend/polkitd.c
-@@ -137,10 +137,10 @@ become_user (const gchar  *user,
+@@ -138,10 +138,10 @@ become_user (const gchar  *user,
        goto out;
      }
  

@@ -1,13 +1,16 @@
 From: Michael Biebl <biebl@debian.org>
-Date: Tue, 02 Oct 2007 22:38:04 +0200
+Date: Tue, 2 Oct 2007 22:38:04 +0200
 Subject: Use Debian's common-* PAM infrastructure, plus pam_env
 
 Forwarded: no, Debian-specific
+---
+ data/polkit-1.in | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-Index: trunk/data/polkit-1.in
-===================================================================
---- trunk.orig/data/polkit-1.in
-+++ trunk/data/polkit-1.in
+diff --git a/data/polkit-1.in b/data/polkit-1.in
+index 142dadd..6f8af2a 100644
+--- a/data/polkit-1.in
++++ b/data/polkit-1.in
 @@ -1,6 +1,8 @@
  #%PAM-1.0
  
