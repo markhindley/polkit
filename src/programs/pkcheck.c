@@ -24,6 +24,7 @@
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <glib/gi18n.h>
 #include <polkit/polkit.h>
 #define POLKIT_AGENT_I_KNOW_API_IS_SUBJECT_TO_CHANGE
@@ -362,7 +363,8 @@ main (int argc, char *argv[])
   local_agent_handle = NULL;
   ret = 126;
 
-  g_type_init ();
+  /* Disable remote file access from GIO. */
+  setenv ("GIO_USE_VFS", "local", 1);
 
   details = polkit_details_new ();
 

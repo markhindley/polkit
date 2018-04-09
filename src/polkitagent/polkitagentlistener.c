@@ -129,6 +129,8 @@ server_free (Server *server)
     g_object_unref (server->subject);
 
   g_free (server->object_path);
+
+  g_free (server);
 }
 
 static gboolean
@@ -154,7 +156,6 @@ server_register (Server   *server,
                                                                          NULL,
                                                                          &local_error))
     {
-      g_warning ("Unable to register authentication agent: %s", local_error->message);
       g_propagate_error (error, local_error);
     }
   else
@@ -420,10 +421,8 @@ polkit_agent_listener_register_with_options (PolkitAgentListener      *listener,
 
   if (flags & POLKIT_AGENT_REGISTER_FLAGS_RUN_IN_THREAD)
     {
-      server->thread = g_thread_create (server_thread_func,
-                                        server,
-                                        TRUE,
-                                        error);
+      server->thread = g_thread_try_new ("polkit agent listener",
+					 server_thread_func, server, error);
       if (server->thread == NULL)
         {
           server_free (server);
@@ -569,8 +568,8 @@ polkit_agent_register_listener (PolkitAgentListener  *listener,
 
 typedef struct
 {
-  Server *server;
   gchar *cookie;
+  GHashTable *cookie_to_pending_auth;
   GDBusMethodInvocation *invocation;
   GCancellable *cancellable;
 } AuthData;
@@ -581,6 +580,7 @@ auth_data_free (AuthData *data)
   g_free (data->cookie);
   g_object_unref (data->invocation);
   g_object_unref (data->cancellable);
+  g_hash_table_unref (data->cookie_to_pending_auth);
   g_free (data);
 }
 
@@ -607,7 +607,7 @@ auth_cb (GObject      *source_object,
       g_dbus_method_invocation_return_value (data->invocation, NULL);
     }
 
-  g_hash_table_remove (data->server->cookie_to_pending_auth, data->cookie);
+  g_hash_table_remove (data->cookie_to_pending_auth, data->cookie);
 
   auth_data_free (data);
 }
@@ -668,7 +668,7 @@ auth_agent_handle_begin_authentication (Server                 *server,
   identities = g_list_reverse (identities);
 
   data = g_new0 (AuthData, 1);
-  data->server = server;
+  data->cookie_to_pending_auth = g_hash_table_ref (server->cookie_to_pending_auth);
   data->cookie = g_strdup (cookie);
   data->invocation = g_object_ref (invocation);
   data->cancellable = g_cancellable_new ();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<book xmlns="http://www.devhelp.net/book" title="polkit Reference Manual" link="index.html" author="" name="polkit-1" version="2" language="c">
+<book xmlns="http://www.devhelp.net/book" title="polkit Reference Manual" link="index.html" author="" name="polkit-1" version="2" language="c" online="http://www.freedesktop.org/software/polkit/docs/latest/">
   <chapters>
     <sub name="polkit Overview" link="overview.html">
       <sub name="Introduction" link="polkit-intro.html"/>
@@ -264,5 +264,19 @@
     <keyword type="constant" name="POLKIT_IMPLICIT_AUTHORIZATION_AUTHORIZED" link="PolkitActionDescription.html#POLKIT-IMPLICIT-AUTHORIZATION-AUTHORIZED:CAPS"/>
     <keyword type="constant" name="POLKIT_AGENT_REGISTER_FLAGS_NONE" link="PolkitAgentListener.html#POLKIT-AGENT-REGISTER-FLAGS-NONE:CAPS"/>
     <keyword type="constant" name="POLKIT_AGENT_REGISTER_FLAGS_RUN_IN_THREAD" link="PolkitAgentListener.html#POLKIT-AGENT-REGISTER-FLAGS-RUN-IN-THREAD:CAPS"/>
+    <keyword type="member" name="PolkitSubjectIface.parent-iface" link="PolkitSubject.html#PolkitSubjectIface.parent-iface"/>
+    <keyword type="member" name="PolkitSubjectIface.hash" link="PolkitSubject.html#PolkitSubjectIface.hash"/>
+    <keyword type="member" name="PolkitSubjectIface.equal" link="PolkitSubject.html#PolkitSubjectIface.equal"/>
+    <keyword type="member" name="PolkitSubjectIface.to-string" link="PolkitSubject.html#PolkitSubjectIface.to-string"/>
+    <keyword type="member" name="PolkitSubjectIface.exists" link="PolkitSubject.html#PolkitSubjectIface.exists"/>
+    <keyword type="member" name="PolkitSubjectIface.exists-finish" link="PolkitSubject.html#PolkitSubjectIface.exists-finish"/>
+    <keyword type="member" name="PolkitSubjectIface.exists-sync" link="PolkitSubject.html#PolkitSubjectIface.exists-sync"/>
+    <keyword type="member" name="PolkitIdentityIface.parent-iface" link="PolkitIdentity.html#PolkitIdentityIface.parent-iface"/>
+    <keyword type="member" name="PolkitIdentityIface.hash" link="PolkitIdentity.html#PolkitIdentityIface.hash"/>
+    <keyword type="member" name="PolkitIdentityIface.equal" link="PolkitIdentity.html#PolkitIdentityIface.equal"/>
+    <keyword type="member" name="PolkitIdentityIface.to-string" link="PolkitIdentity.html#PolkitIdentityIface.to-string"/>
+    <keyword type="member" name="PolkitAgentListenerClass.parent-class" link="PolkitAgentListener.html#PolkitAgentListenerClass.parent-class"/>
+    <keyword type="member" name="PolkitAgentListenerClass.initiate-authentication" link="PolkitAgentListener.html#PolkitAgentListenerClass.initiate-authentication"/>
+    <keyword type="member" name="PolkitAgentListenerClass.initiate-authentication-finish" link="PolkitAgentListener.html#PolkitAgentListenerClass.initiate-authentication-finish"/>
   </functions>
 </book>
