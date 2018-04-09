@@ -1,6 +1,6 @@
 From: Robert Ancell <robert.ancell@canonical.com>
 Date: Wed, 18 Aug 2010 16:26:15 +1000
-Subject: [PATCH] Use gettext for translations in .policy files
+Subject: Use gettext for translations in .policy files
 
 ---
  src/polkitbackend/polkitbackendactionpool.c | 49 +++++++++++++++++++++++++++++
