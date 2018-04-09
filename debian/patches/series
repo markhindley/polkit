@@ -2,3 +2,4 @@
 02_gettext.patch
 05_revert-admin-identities-unix-group-wheel.patch
 08_chdir_root.patch
+jsauthority-pass-s-format-string-to-remaining-report.patch
