@@ -129,6 +129,8 @@ Depends:
  ${gir:Depends},
  ${misc:Depends},
  ${shlibs:Depends},
+Provides:
+ gir1.2-polkitagent-1.0 (= ${binary:Version}),
 Description: GObject introspection data for PolicyKit
  PolicyKit is a toolkit for defining and handling the policy that
  allows unprivileged processes to speak to privileged processes.
