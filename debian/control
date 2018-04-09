@@ -17,7 +17,7 @@ Build-Depends:
  libglib2.0-dev (>= 2.30.0),
  libglib2.0-doc,
  libgtk-3-doc,
- libmozjs185-dev,
+ libmozjs-52-dev,
  libpam0g-dev,
  libselinux1-dev [linux-any],
  libsystemd-dev [linux-any],
