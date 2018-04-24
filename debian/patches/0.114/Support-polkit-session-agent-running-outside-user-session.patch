@@ -1,9 +1,18 @@
 From: Sebastien Bacher <seb128@ubuntu.com>
-Date: Tue, 24 Apr 2018 08:40:46 +0100
-Subject: Add fallback if agent is not running in a logind session
+Date: Mon, 2 Apr 2018 10:52:47 -0400
+Subject: Support polkit session agent running outside user session
 
-This fixes polkit with dbus-user-session.
+commit a68f5dfd7662767b7b9822090b70bc5bd145c50c made
+session applications that are running from a user bus
+work with polkitd, by falling back to using the currently
+active session.
+
+This commit is similar, but for the polkit agent.  It allows,
+a polkit agent to be run from a systemd --user service
+that's not running directly in the users session.
+
 Bug: https://bugs.freedesktop.org/show_bug.cgi?id=96977
+Applied-upstream: 0.114, commit:00a663e3fb14d8023e7cb6a66d091872bf4f2851
 ---
  src/polkit/polkitunixsession-systemd.c | 14 ++++++++++++++
  1 file changed, 14 insertions(+)

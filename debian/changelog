@@ -13,6 +13,10 @@ policykit-1 (0.105-21) UNRELEASED; urgency=medium
       Split into d/p/0.106/agenthelper-pam-Fix-newline-trimming-code.patch,
       d/p/0.114/Fix-multi-line-pam-text-info.patch,
       d/p/0.114/Refactor-send_to_helper-usage.patch
+  * d/p/03_polkitunixsession_sessionid_from_display.patch:
+    Replace with functionally identical
+    d/p/0.114/Support-polkit-session-agent-running-outside-user-session.patch
+    as applied upstream
 
  -- Simon McVittie <smcv@debian.org>  Wed, 28 Mar 2018 12:10:49 +0100
 
