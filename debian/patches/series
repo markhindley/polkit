@@ -1,7 +1,9 @@
+0.106/agenthelper-pam-Fix-newline-trimming-code.patch
 0.108/build-Fix-.gir-generation-for-parallel-make.patch
 0.110/07_set-XAUTHORITY-environment-variable-if-unset.patch
 0.110/04_get_cwd.patch
 0.111/09_pam_environment.patch
+0.111/Fix-a-memory-leak.patch
 0.112/00git_type_registration.patch
 0.112/08_deprecate_racy_APIs.patch
 0.112/cve-2013-4288.patch
@@ -19,6 +21,7 @@
 0.113/00git_invalid_object_paths.patch
 0.113/sessionmonitor-systemd-Use-sd_uid_get_state-to-check.patch
 0.113/Fix-a-possible-NULL-dereference.patch
+0.113/Remove-a-redundant-assignment.patch
 0.113/Fix-duplicate-GError-use-when-uid-is-missing.patch
 0.113/Fix-a-crash-when-two-authentication-requests-are-in-.patch
 0.113/CVE-2015-4625-Use-unpredictable-cookie-values-keep-t.patch
@@ -29,7 +32,8 @@
 0.113/CVE-2015-3255-Fix-GHashTable-usage.patch
 0.113/Fix-use-after-free-in-polkitagentsession.c.patch
 0.113/README-Note-to-send-security-reports-via-DBus-s-mech.patch
-master/Fix-multi-line-pam-text-info.patch
+0.114/Fix-multi-line-pam-text-info.patch
+0.114/Refactor-send_to_helper-usage.patch
 0.114/Add-gettext-support-for-.policy-files.patch
 0.114/gettext-switch-to-default-translate-no.patch
 01_pam_polkit.patch

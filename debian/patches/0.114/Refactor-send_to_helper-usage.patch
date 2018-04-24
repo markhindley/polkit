@@ -1,20 +1,18 @@
 From: Dariusz Gadomski <dariusz.gadomski@canonical.com>
-Date: Tue, 24 Apr 2018 08:40:46 +0100
-Subject: Escape helper output to handle multiline messages
+Date: Thu, 12 Nov 2015 15:01:19 +0100
+Subject: Refactor send_to_helper usage
 
-Some pam modules produce multiline messages which caused errors in
-PolkitAgentSession as the subsequent lines were interpreted as separate
-messages unrecognized by the authenticator. Escaping every message allows
-one to avoid such behaviour.
-Bug-Ubuntu: https://bugs.launchpad.net/bugs/1510824
+There were duplicated pieces of code detecting EOLs and escaping the code.
+Those actions has been delegated to already-existing send_to_helper function.
+
 Bug: https://bugs.freedesktop.org/show_bug.cgi?id=92886
-Origin: upstream
+Origin: upstream, 0.114, commit:2690cd0312b310946c86674c8dd1f55c63f7dd6a
 ---
- src/polkitagent/polkitagenthelper-pam.c | 71 ++++++++++++---------------------
- 1 file changed, 26 insertions(+), 45 deletions(-)
+ src/polkitagent/polkitagenthelper-pam.c | 81 +++++++++++----------------------
+ 1 file changed, 26 insertions(+), 55 deletions(-)
 
 diff --git a/src/polkitagent/polkitagenthelper-pam.c b/src/polkitagent/polkitagenthelper-pam.c
-index e1747c1..bab3ed6 100644
+index 063d656..3ea3a3f 100644
 --- a/src/polkitagent/polkitagenthelper-pam.c
 +++ b/src/polkitagent/polkitagenthelper-pam.c
 @@ -39,25 +39,35 @@ static void
@@ -71,15 +69,17 @@ index e1747c1..bab3ed6 100644
        g_free (s);
        goto error;
      }
-@@ -232,7 +242,6 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
+@@ -232,9 +242,6 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
    struct pam_response *aresp;
    char buf[PAM_MAX_RESP_SIZE];
    int i;
 -  gchar *escaped = NULL;
+-  gchar *tmp = NULL;
+-  size_t len;
  
-   data = data;
+   (void)data;
    if (n <= 0 || n > PAM_MAX_NUM_MSG)
-@@ -249,35 +258,13 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
+@@ -251,38 +258,13 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
          {
  
          case PAM_PROMPT_ECHO_OFF:
@@ -99,9 +99,12 @@ index e1747c1..bab3ed6 100644
 -#ifdef PAH_DEBUG
 -          fprintf (stderr, "polkit-agent-helper-1: writing `%s' to stdout\n", msg[i]->msg);
 -#endif /* PAH_DEBUG */
--          if (strlen (msg[i]->msg) > 0 && msg[i]->msg[strlen (msg[i]->msg) - 1] == '\n')
--            msg[i]->msg[strlen (msg[i]->msg) - 1] == '\0';
--          escaped = g_strescape (msg[i]->msg, NULL);
+-          tmp = g_strdup (msg[i]->msg);
+-          len = strlen (tmp);
+-          if (len > 0 && tmp[len - 1] == '\n')
+-            tmp[len - 1] = '\0';
+-          escaped = g_strescape (tmp, NULL);
+-          g_free (tmp);
 -          fputs (escaped, stdout);
 -          g_free (escaped);
 -#ifdef PAH_DEBUG
@@ -118,7 +121,7 @@ index e1747c1..bab3ed6 100644
            if (fgets (buf, sizeof buf, stdin) == NULL)
              goto error;
  
-@@ -291,17 +278,11 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
+@@ -296,22 +278,11 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
            break;
  
          case PAM_ERROR_MSG:
@@ -130,10 +133,15 @@ index e1747c1..bab3ed6 100644
          case PAM_TEXT_INFO:
 -          fprintf (stdout, "PAM_TEXT_INFO ");
 -        conv2:
--          fputs (msg[i]->msg, stdout);
--          if (strlen (msg[i]->msg) > 0 &&
--              msg[i]->msg[strlen (msg[i]->msg) - 1] != '\n')
--            fputc ('\n', stdout);
+-          tmp = g_strdup (msg[i]->msg);
+-          len = strlen (tmp);
+-          if (len > 0 && tmp[len - 1] == '\n')
+-            tmp[len - 1] = '\0';
+-          escaped = g_strescape (tmp, NULL);
+-          g_free (tmp);
+-          fputs (escaped, stdout);
+-          g_free (escaped);
+-          fputc ('\n', stdout);
 -          fflush (stdout);
 +          send_to_helper ("PAM_TEXT_INFO", msg[i]->msg);
            break;

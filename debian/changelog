@@ -4,6 +4,15 @@ policykit-1 (0.105-21) UNRELEASED; urgency=medium
     Thanks to Adrian Bunk for spotting this.
   * Refresh patches via gbp pq
   * Use one patch per upstream commit for easier metadata round-trips
+  * Sync up src/polkitagent/polkitagenthelper-pam.c with 0.114
+    - d/p/0.111/Fix-a-memory-leak.patch:
+      Fix a memory leak when PAM authentication fails
+    - d/p/0.113/Remove-a-redundant-assignment.patch:
+      Fix a potential compiler warning
+    - d/p/master/Fix-multi-line-pam-text-info.patch:
+      Split into d/p/0.106/agenthelper-pam-Fix-newline-trimming-code.patch,
+      d/p/0.114/Fix-multi-line-pam-text-info.patch,
+      d/p/0.114/Refactor-send_to_helper-usage.patch
 
  -- Simon McVittie <smcv@debian.org>  Wed, 28 Mar 2018 12:10:49 +0100
 
