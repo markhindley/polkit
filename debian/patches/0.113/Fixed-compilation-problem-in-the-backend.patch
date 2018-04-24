@@ -1,6 +1,6 @@
 From: Xabier Rodriguez Calvar <calvaris@igalia.com>
 Date: Sun, 10 Nov 2013 19:16:41 +0100
-Subject: [PATCH] Fixed compilation problem in the backend
+Subject: Fixed compilation problem in the backend
 
 Origin: upstream, 0.113, commit: dbbb7dc60abdd970af0a8fae404484181fa909c9
 Bug-Debian: https://bugs.debian.org/798769
@@ -21,6 +21,3 @@ index 4075d3f..05f51c5 100644
      }
    else if (POLKIT_IS_UNIX_SESSION (subject))
      {
--- 
-2.1.4
-

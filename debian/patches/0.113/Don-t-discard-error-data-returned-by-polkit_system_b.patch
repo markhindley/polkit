@@ -1,10 +1,9 @@
-From: Miloslav Trmač <mitr@redhat.com>
+From: =?utf-8?q?Miloslav_Trma=C4=8D?= <mitr@redhat.com>
 Date: Mon, 11 Nov 2013 23:51:23 +0100
-Subject: [PATCH] Don't discard error data returned by
+Subject: Don't discard error data returned by
  polkit_system_bus_name_get_user_sync
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71458
-
+Bug: https://bugs.freedesktop.org/show_bug.cgi?id=71458
 Origin: upstream, 0.113, commit: 145d43b9c891f248ad68ebe597cb151a865bdb3a
 Bug-Debian: https://bugs.debian.org/798769
 ---
@@ -24,6 +23,3 @@ index 05f51c5..e1a9ab3 100644
      }
    else if (POLKIT_IS_UNIX_SESSION (subject))
      {
--- 
-2.1.4
-

@@ -8,7 +8,7 @@ Forwarded: no, obsoleted by an upstream commit in 0.106
  1 file changed, 1 insertion(+)
 
 diff --git a/data/org.freedesktop.PolicyKit1.service.in b/data/org.freedesktop.PolicyKit1.service.in
-index b6cd02b..ba3a1b6 100644
+index b6cd02b..fbceb3f 100644
 --- a/data/org.freedesktop.PolicyKit1.service.in
 +++ b/data/org.freedesktop.PolicyKit1.service.in
 @@ -2,3 +2,4 @@

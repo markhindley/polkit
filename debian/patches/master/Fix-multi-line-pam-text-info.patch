@@ -1,15 +1,22 @@
-Description: Escape helper output to handle multiline messages
- Some pam modules produce multiline messages which caused errors in
- PolkitAgentSession as the subsequent lines were interpreted as separate
- messages unrecognized by the authenticator. Escaping every message allows
- one to avoid such behaviour.
-Author: Dariusz Gadomski <dariusz.gadomski@canonical.com>
+From: Dariusz Gadomski <dariusz.gadomski@canonical.com>
+Date: Tue, 24 Apr 2018 08:40:46 +0100
+Subject: Escape helper output to handle multiline messages
+
+Some pam modules produce multiline messages which caused errors in
+PolkitAgentSession as the subsequent lines were interpreted as separate
+messages unrecognized by the authenticator. Escaping every message allows
+one to avoid such behaviour.
 Bug-Ubuntu: https://bugs.launchpad.net/bugs/1510824
 Bug: https://bugs.freedesktop.org/show_bug.cgi?id=92886
 Origin: upstream
+---
+ src/polkitagent/polkitagenthelper-pam.c | 71 ++++++++++++---------------------
+ 1 file changed, 26 insertions(+), 45 deletions(-)
 
---- policykit-1-0.105.orig/src/polkitagent/polkitagenthelper-pam.c
-+++ policykit-1-0.105/src/polkitagent/polkitagenthelper-pam.c
+diff --git a/src/polkitagent/polkitagenthelper-pam.c b/src/polkitagent/polkitagenthelper-pam.c
+index e1747c1..bab3ed6 100644
+--- a/src/polkitagent/polkitagenthelper-pam.c
++++ b/src/polkitagent/polkitagenthelper-pam.c
 @@ -39,25 +39,35 @@ static void
  send_to_helper (const gchar *str1,
                  const gchar *str2)
@@ -64,7 +71,7 @@ Origin: upstream
        g_free (s);
        goto error;
      }
-@@ -232,7 +242,6 @@ conversation_function (int n, const stru
+@@ -232,7 +242,6 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
    struct pam_response *aresp;
    char buf[PAM_MAX_RESP_SIZE];
    int i;
@@ -72,7 +79,7 @@ Origin: upstream
  
    data = data;
    if (n <= 0 || n > PAM_MAX_NUM_MSG)
-@@ -249,35 +258,13 @@ conversation_function (int n, const stru
+@@ -249,35 +258,13 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
          {
  
          case PAM_PROMPT_ECHO_OFF:
@@ -111,7 +118,7 @@ Origin: upstream
            if (fgets (buf, sizeof buf, stdin) == NULL)
              goto error;
  
-@@ -291,17 +278,11 @@ conversation_function (int n, const stru
+@@ -291,17 +278,11 @@ conversation_function (int n, const struct pam_message **msg, struct pam_respons
            break;
  
          case PAM_ERROR_MSG:

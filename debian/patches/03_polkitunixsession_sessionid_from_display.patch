@@ -1,13 +1,18 @@
-Author: Sebastien Bacher <seb128@ubuntu.com>
-Description: Add fallback if agent is not running in a logind session
- This fixes polkit with dbus-user-session.
-Bug: https://bugs.freedesktop.org/show_bug.cgi?id=96977
+From: Sebastien Bacher <seb128@ubuntu.com>
+Date: Tue, 24 Apr 2018 08:40:46 +0100
+Subject: Add fallback if agent is not running in a logind session
 
-Index: policykit-1/src/polkit/polkitunixsession-systemd.c
-===================================================================
---- policykit-1.orig/src/polkit/polkitunixsession-systemd.c
-+++ policykit-1/src/polkit/polkitunixsession-systemd.c
-@@ -451,6 +451,7 @@ polkit_unix_session_initable_init (GInit
+This fixes polkit with dbus-user-session.
+Bug: https://bugs.freedesktop.org/show_bug.cgi?id=96977
+---
+ src/polkit/polkitunixsession-systemd.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/src/polkit/polkitunixsession-systemd.c b/src/polkit/polkitunixsession-systemd.c
+index 8a8bf65..c34f36a 100644
+--- a/src/polkit/polkitunixsession-systemd.c
++++ b/src/polkit/polkitunixsession-systemd.c
+@@ -451,6 +451,7 @@ polkit_unix_session_initable_init (GInitable     *initable,
    PolkitUnixSession *session = POLKIT_UNIX_SESSION (initable);
    gboolean ret = FALSE;
    char *s;
@@ -15,7 +20,7 @@ Index: policykit-1/src/polkit/polkitunixsession-systemd.c
  
    if (session->session_id != NULL)
      {
-@@ -467,6 +468,19 @@ polkit_unix_session_initable_init (GInit
+@@ -467,6 +468,19 @@ polkit_unix_session_initable_init (GInitable     *initable,
        goto out;
      }
  

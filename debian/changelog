@@ -2,6 +2,7 @@ policykit-1 (0.105-21) UNRELEASED; urgency=medium
 
   * Remove --no-parallel now that parallel builds (hopefully) work.
     Thanks to Adrian Bunk for spotting this.
+  * Refresh most patches via gbp pq
 
  -- Simon McVittie <smcv@debian.org>  Wed, 28 Mar 2018 12:10:49 +0100
 

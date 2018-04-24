@@ -1,7 +1,6 @@
-From 7eef6482fd3831bfae73a3576230af5341aaf53f Mon Sep 17 00:00:00 2001
 From: Matthias Clasen <mclasen@redhat.com>
 Date: Fri, 15 Jul 2016 11:12:35 -0400
-Subject: [PATCH] Add gettext support for .policy files
+Subject: Add gettext support for .policy files
 
 gettext can extract strings from and merge them back into xml
 file formats, with the help of .its files.
@@ -83,6 +82,3 @@ index 0000000..c7427ec
 +    <documentRule localName="policyconfig" target="polkit.its"/>
 +  </locatingRule>
 +</locatingRules>
--- 
-2.11.0
-

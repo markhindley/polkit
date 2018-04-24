@@ -8,7 +8,7 @@ Forwarded: no, Debian-specific
  1 file changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/data/polkit-1.in b/data/polkit-1.in
-index 142dadd..b890276 100644
+index 142dadd..6f8af2a 100644
 --- a/data/polkit-1.in
 +++ b/data/polkit-1.in
 @@ -1,6 +1,8 @@
