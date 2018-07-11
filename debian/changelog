@@ -1,4 +1,4 @@
-policykit-1 (0.105-21) UNRELEASED; urgency=medium
+policykit-1 (0.105-21) unstable; urgency=medium
 
   * Remove --no-parallel now that parallel builds (hopefully) work.
     Thanks to Adrian Bunk for spotting this.
@@ -17,8 +17,21 @@ policykit-1 (0.105-21) UNRELEASED; urgency=medium
     Replace with functionally identical
     d/p/0.114/Support-polkit-session-agent-running-outside-user-session.patch
     as applied upstream
+  * d/watch: Use https
+  * d/watch: Download upstream PGP signatures
+  * debian/upstream/signing-key.asc: Add public keys for Ray Strode,
+    Miloslav Trmac, David Zeuthen
+  * d/gbp.conf: Merge upstream tags into the upstream branch
+  * Add myself to Uploaders
+  * d/gbp.conf: Set patch-numbers to false to match current practice
+  * d/p/0.115/Fix-CVE-2018-1116-Trusting-client-supplied-UID.patch:
+    Backport the security-significant part of 0.115 (CVE-2018-1116)
+  * d/libpolkit-gobject-1-0.symbols: Update for new semi-private ABI
+  * d/rules: Skip build-time tests if DEB_BUILD_OPTIONS=nocheck
+  * Standards-Version: 4.1.5 (no changes required)
+  * Set Rules-Requires-Root to no
 
- -- Simon McVittie <smcv@debian.org>  Wed, 28 Mar 2018 12:10:49 +0100
+ -- Simon McVittie <smcv@debian.org>  Wed, 11 Jul 2018 09:29:32 +0100
 
 policykit-1 (0.105-20) unstable; urgency=medium
 
