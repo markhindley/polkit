@@ -23,7 +23,11 @@
 #include <errno.h>
 #include <pwd.h>
 #include <grp.h>
+#ifdef HAVE_NETGROUP_H
+#include <netgroup.h>
+#else
 #include <netdb.h>
+#endif
 #include <string.h>
 #include <glib/gstdio.h>
 #include <locale.h>
@@ -32,7 +36,6 @@
 #include "polkitbackendinteractiveauthority.h"
 #include "polkitbackendactionpool.h"
 #include "polkitbackendsessionmonitor.h"
-#include "polkitbackendconfigsource.h"
 
 #include <polkit/polkitprivate.h>
 
@@ -572,7 +575,7 @@ log_result (PolkitBackendInteractiveAuthority    *authority,
   if (polkit_authorization_result_get_is_authorized (result))
     log_result_str = "ALLOWING";
 
-  user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, subject, NULL);
+  user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, subject, NULL, NULL);
 
   subject_str = polkit_subject_to_string (subject);
 
@@ -844,6 +847,7 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
   gchar *subject_str;
   PolkitIdentity *user_of_caller;
   PolkitIdentity *user_of_subject;
+  gboolean user_of_subject_matches;
   gchar *user_of_caller_str;
   gchar *user_of_subject_str;
   PolkitAuthorizationResult *result;
@@ -889,7 +893,7 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
            action_id);
 
   user_of_caller = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor,
-                                                                        caller,
+                                                                        caller, NULL,
                                                                         &error);
   if (error != NULL)
     {
@@ -904,7 +908,7 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
   g_debug (" user of caller is %s", user_of_caller_str);
 
   user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor,
-                                                                         subject,
+                                                                         subject, &user_of_subject_matches,
                                                                          &error);
   if (error != NULL)
     {
@@ -934,7 +938,10 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
    * We only allow this if, and only if,
    *
    *  - processes may check for another process owned by the *same* user but not
-   *    if details are passed (otherwise you'd be able to spoof the dialog)
+   *    if details are passed (otherwise you'd be able to spoof the dialog);
+   *    the caller supplies the user_of_subject value, so we additionally
+   *    require it to match at least at one point in time (via
+   *    user_of_subject_matches).
    *
    *  - processes running as uid 0 may check anything and pass any details
    *
@@ -942,7 +949,9 @@ polkit_backend_interactive_authority_check_authorization (PolkitBackendAuthority
    *    then any uid referenced by that annotation is also allowed to check
    *    to check anything and pass any details
    */
-  if (!polkit_identity_equal (user_of_caller, user_of_subject) || has_details)
+  if (!user_of_subject_matches
+      || !polkit_identity_equal (user_of_caller, user_of_subject)
+      || has_details)
     {
       if (!may_identity_check_authorization (interactive_authority, action_id, user_of_caller))
         {
@@ -1107,9 +1116,10 @@ check_authorization_sync (PolkitBackendAuthority         *authority,
       goto out;
     }
 
-  /* every subject has a user */
+  /* every subject has a user; this is supplied by the client, so we rely
+   * on the caller to validate its acceptability. */
   user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor,
-                                                                         subject,
+                                                                         subject, NULL,
                                                                          error);
   if (user_of_subject == NULL)
       goto out;
@@ -1903,15 +1913,15 @@ authentication_agent_begin_cb (GDBusProxy   *proxy,
   AuthenticationSession *session = user_data;
   gboolean gained_authorization;
   gboolean was_dismissed;
+  GVariant *result;
   GError *error;
 
   was_dismissed = FALSE;
   gained_authorization = FALSE;
 
   error = NULL;
-  if (!g_dbus_proxy_call_finish (proxy,
-                                 res,
-                                 &error))
+  result = g_dbus_proxy_call_finish (proxy, res, &error);
+  if (result == NULL)
     {
       g_printerr ("Error performing authentication: %s (%s %d)\n",
                   error->message,
@@ -1923,6 +1933,7 @@ authentication_agent_begin_cb (GDBusProxy   *proxy,
     }
   else
     {
+      g_variant_unref (result);
       gained_authorization = session->is_authenticated;
       g_debug ("Authentication complete, is_authenticated = %d", session->is_authenticated);
     }
@@ -2236,7 +2247,11 @@ get_users_in_net_group (PolkitIdentity                    *group,
 
   for (;;)
     {
+#if defined(HAVE_NETBSD) || defined(HAVE_OPENBSD)
+      const char *hostname, *username, *domainname;
+#else
       char *hostname, *username, *domainname;
+#endif
       PolkitIdentity *user;
       GError *error = NULL;
 
@@ -2292,7 +2307,6 @@ authentication_agent_initiate_challenge (AuthenticationAgent         *agent,
   gchar *localized_message;
   gchar *localized_icon_name;
   PolkitDetails *localized_details;
-  GVariant *details_gvariant;
   GList *user_identities = NULL;
   GVariantBuilder identities_builder;
   GVariant *parameters;
@@ -2390,28 +2404,21 @@ authentication_agent_initiate_challenge (AuthenticationAgent         *agent,
   add_pid (localized_details, caller, "polkit.caller-pid");
   add_pid (localized_details, subject, "polkit.subject-pid");
 
-  details_gvariant = polkit_details_to_gvariant (localized_details);
-  g_variant_ref_sink (details_gvariant);
-
   g_variant_builder_init (&identities_builder, G_VARIANT_TYPE ("a(sa{sv})"));
   for (l = user_identities; l != NULL; l = l->next)
     {
       PolkitIdentity *identity = POLKIT_IDENTITY (l->data);
-      GVariant *value;
-      value = polkit_identity_to_gvariant (identity);
-      g_variant_ref_sink (value);
-      g_variant_builder_add_value (&identities_builder, value);
-      g_variant_unref (value);
+      g_variant_builder_add_value (&identities_builder,
+                                   polkit_identity_to_gvariant (identity)); /* A floating value */
     }
 
   parameters = g_variant_new ("(sss@a{ss}sa(sa{sv}))",
                               action_id,
                               localized_message,
                               localized_icon_name,
-                              details_gvariant,
+                              polkit_details_to_gvariant (localized_details), /* A floating value */
                               session->cookie,
                               &identities_builder);
-  g_variant_unref (details_gvariant);
 
   g_dbus_proxy_call (agent->proxy,
                      "BeginAuthentication",
@@ -2437,13 +2444,18 @@ authentication_agent_cancel_cb (GDBusProxy   *proxy,
                                 GAsyncResult *res,
                                 gpointer      user_data)
 {
+  GVariant *result;
   GError *error;
+
   error = NULL;
-  if (!g_dbus_proxy_call_finish (proxy, res, &error))
+  result = g_dbus_proxy_call_finish (proxy, res, &error);
+  if (result == NULL)
     {
       g_printerr ("Error cancelling authentication: %s\n", error->message);
       g_error_free (error);
     }
+  else
+    g_variant_unref (result);
 }
 
 static void
@@ -2475,6 +2487,7 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
   PolkitSubject *session_for_caller;
   PolkitIdentity *user_of_caller;
   PolkitIdentity *user_of_subject;
+  gboolean user_of_subject_matches;
   AuthenticationAgent *agent;
   gboolean ret;
   gchar *caller_cmdline;
@@ -2527,7 +2540,7 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
       goto out;
     }
 
-  user_of_caller = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, caller, NULL);
+  user_of_caller = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, caller, NULL, NULL);
   if (user_of_caller == NULL)
     {
       g_set_error (error,
@@ -2536,7 +2549,7 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
                    "Cannot determine user of caller");
       goto out;
     }
-  user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, subject, NULL);
+  user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, subject, &user_of_subject_matches, NULL);
   if (user_of_subject == NULL)
     {
       g_set_error (error,
@@ -2545,7 +2558,8 @@ polkit_backend_interactive_authority_register_authentication_agent (PolkitBacken
                    "Cannot determine user of subject");
       goto out;
     }
-  if (!polkit_identity_equal (user_of_caller, user_of_subject))
+  if (!user_of_subject_matches
+      || !polkit_identity_equal (user_of_caller, user_of_subject))
     {
       if (identity_is_root_user (user_of_caller))
         {
@@ -2638,6 +2652,7 @@ polkit_backend_interactive_authority_unregister_authentication_agent (PolkitBack
   PolkitSubject *session_for_caller;
   PolkitIdentity *user_of_caller;
   PolkitIdentity *user_of_subject;
+  gboolean user_of_subject_matches;
   AuthenticationAgent *agent;
   gboolean ret;
   gchar *scope_str;
@@ -2686,7 +2701,7 @@ polkit_backend_interactive_authority_unregister_authentication_agent (PolkitBack
       goto out;
     }
 
-  user_of_caller = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, caller, NULL);
+  user_of_caller = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, caller, NULL, NULL);
   if (user_of_caller == NULL)
     {
       g_set_error (error,
@@ -2695,7 +2710,7 @@ polkit_backend_interactive_authority_unregister_authentication_agent (PolkitBack
                    "Cannot determine user of caller");
       goto out;
     }
-  user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, subject, NULL);
+  user_of_subject = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor, subject, &user_of_subject_matches, NULL);
   if (user_of_subject == NULL)
     {
       g_set_error (error,
@@ -2704,7 +2719,8 @@ polkit_backend_interactive_authority_unregister_authentication_agent (PolkitBack
                    "Cannot determine user of subject");
       goto out;
     }
-  if (!polkit_identity_equal (user_of_caller, user_of_subject))
+  if (!user_of_subject_matches
+      || !polkit_identity_equal (user_of_caller, user_of_subject))
     {
       if (identity_is_root_user (user_of_caller))
         {
@@ -2814,7 +2830,7 @@ polkit_backend_interactive_authority_authentication_agent_response (PolkitBacken
            identity_str);
 
   user_of_caller = polkit_backend_session_monitor_get_user_for_subject (priv->session_monitor,
-                                                                        caller,
+                                                                        caller, NULL,
                                                                         error);
   if (user_of_caller == NULL)
     goto out;

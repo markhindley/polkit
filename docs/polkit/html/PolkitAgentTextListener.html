@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitAgentTextListener: polkit Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-authentication-agent-api.html" title="Part IV. Authentication Agent API Reference">
 <link rel="prev" href="PolkitAgentListener.html" title="PolkitAgentListener">
 <link rel="next" href="PolkitAgentSession.html" title="PolkitAgentSession">
-<meta name="generator" content="GTK-Doc V1.24 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -52,7 +52,7 @@ mentioned in the release notes for the affected release.
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -69,7 +69,7 @@ mentioned in the release notes for the affected release.
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -82,7 +82,7 @@ mentioned in the release notes for the affected release.
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    GObject
     <span class="lineart">╰──</span> <a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener">PolkitAgentListener</a>
         <span class="lineart">╰──</span> PolkitAgentTextListener
 </pre>
@@ -91,7 +91,7 @@ mentioned in the release notes for the affected release.
 <a name="PolkitAgentTextListener.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 PolkitAgentTextListener implements
- <a href="https://developer.gnome.org/gio/unstable/GInitable.html">GInitable</a>.</p>
+ GInitable.</p>
 </div>
 <div class="refsect1">
 <a name="PolkitAgentTextListener.description"></a><h2>Description</h2>
@@ -103,15 +103,15 @@ that interacts with the user using a textual interface.</p>
 <div class="refsect2">
 <a name="polkit-agent-text-listener-new"></a><h3>polkit_agent_text_listener_new ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitAgentListener.html" title="PolkitAgentListener"><span class="returnvalue">PolkitAgentListener</span></a> *
-polkit_agent_text_listener_new (<em class="parameter"><code><a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+polkit_agent_text_listener_new (<em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Creates a new <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> for authenticating the user
 via an textual interface on the controlling terminal
 (e.g. <code class="filename">/dev/tty</code>). This can fail if e.g. the
 current process has no controlling terminal.</p>
 <div class="refsect3">
-<a name="id-1.5.3.9.2.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="polkit-agent-text-listener-new.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -120,21 +120,21 @@ current process has no controlling terminal.</p>
 <tbody>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p>A <a href="https://developer.gnome.org/gio/unstable/GCancellable.html"><span class="type">GCancellable</span></a> or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
+<td class="parameter_description"><p>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
+<td class="parameter_description"><p>Return location for error or <code class="literal">NULL</code>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.5.3.9.2.6"></a><h4>Returns</h4>
-<p> A <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
-is set. Free with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a> when done with it.</p>
+<a name="polkit-agent-text-listener-new.returns"></a><h4>Returns</h4>
+<p> A <a class="link" href="PolkitAgentTextListener.html" title="PolkitAgentTextListener"><span class="type">PolkitAgentTextListener</span></a> or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em>
+is set. Free with <code class="function">g_object_unref()</code> when done with it.</p>
 </div>
 </div>
 </div>
@@ -148,6 +148,6 @@ is set. Free with <a href="https://developer.gnome.org/gobject/unstable/gobject-
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.24</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

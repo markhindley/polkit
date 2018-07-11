@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-04 11:06+0200\n"
+"POT-Creation-Date: 2016-07-15 17:44+0200\n"
 "PO-Revision-Date: 2013-06-04 11:33+0200\n"
 "Last-Translator: Tomáš Chvátal <tchvatal@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -40,27 +40,27 @@ msgstr ""
 "(user=$(user), user.gecos=$(user.gecos), user.display=$(user.display), "
 "program=$(program), command_line=$(command_line))"
 
-#: ../src/programs/pkaction.c:100
+#: ../src/programs/pkaction.c:101
 msgid "Only output information about ACTION"
 msgstr "Pouze vypsat informace o ČINNOSTI"
 
-#: ../src/programs/pkaction.c:100
+#: ../src/programs/pkaction.c:101
 msgid "ACTION"
 msgstr "ČINNOST"
 
-#: ../src/programs/pkaction.c:104
+#: ../src/programs/pkaction.c:105
 msgid "Output detailed action information"
 msgstr "Vypsat podrobné informace o činnosti"
 
-#: ../src/programs/pkaction.c:108 ../src/programs/pkttyagent.c:61
+#: ../src/programs/pkaction.c:109 ../src/programs/pkttyagent.c:62
 msgid "Show version"
 msgstr "Zobrazit verzi"
 
-#: ../src/programs/pkaction.c:130
+#: ../src/programs/pkaction.c:134
 msgid "[--action-id ACTION]"
 msgstr "[--action-id ČINNOST]"
 
-#: ../src/programs/pkaction.c:131 ../src/programs/pkttyagent.c:81
+#: ../src/programs/pkaction.c:135 ../src/programs/pkttyagent.c:85
 #, c-format
 msgid ""
 "Report bugs to: %s\n"
@@ -69,14 +69,14 @@ msgstr ""
 "Chyby hlaste na: %s\n"
 "%s domovská stránka: <%s>"
 
-#: ../src/programs/pkaction.c:145 ../src/programs/pkcheck.c:482
-#: ../src/programs/pkttyagent.c:95
+#: ../src/programs/pkaction.c:149 ../src/programs/pkcheck.c:495
+#: ../src/programs/pkttyagent.c:99
 #, c-format
 msgid "%s: Unexpected argument `%s'\n"
 msgstr "%s: neočekávaný argument `%s'\n"
 
-#: ../src/programs/pkcheck.c:35
-#, c-format
+#: ../src/programs/pkcheck.c:36
+#, fuzzy, c-format
 msgid ""
 "Usage:\n"
 "  pkcheck [OPTION...]\n"
@@ -93,7 +93,7 @@ msgid ""
 "necessary\n"
 "  --list-temp                        List temporary authorizations for "
 "current session\n"
-"  -p, --process=PID[,START_TIME]     Check authorization of specified "
+"  -p, --process=PID[,START_TIME,UID] Check authorization of specified "
 "process\n"
 "  --revoke-temp                      Revoke all temporary authorizations for "
 "current session\n"
@@ -113,8 +113,8 @@ msgstr ""
 "Možnosti aplikace:\n"
 "  -a, --action-id=ČINNOST             Zkontroluje oprávnění pro vykonání "
 "činnosti\n"
-"  -u, --allow-user-interaction       Povolit uživatelskou interakci, pokud je "
-"potřeba\n"
+"  -u, --allow-user-interaction       Povolit uživatelskou interakci, pokud "
+"je potřeba\n"
 "  -d, --details=KLÍČ HODNOTA            Přidá (KLÍČ, HODNOTA) do informací o "
 "činnosti\n"
 "  --enable-internal-agent            Pokud je třeba, tak použít interního "
@@ -132,23 +132,23 @@ msgstr ""
 "Chyby hlaste na: %s\n"
 "%s domovská stránka: <%s>\n"
 
-#: ../src/programs/pkcheck.c:390 ../src/programs/pkcheck.c:415
-#: ../src/programs/pkcheck.c:427
+#: ../src/programs/pkcheck.c:395 ../src/programs/pkcheck.c:428
+#: ../src/programs/pkcheck.c:440
 #, c-format
 msgid "%s: Argument expected after `%s'\n"
 msgstr "%s: po `%s' je očekáván argument\n"
 
-#: ../src/programs/pkcheck.c:405
+#: ../src/programs/pkcheck.c:418
 #, c-format
 msgid "%s: Invalid --process value `%s'\n"
 msgstr "%s: Neplatná hodnota --process `%s'\n"
 
-#: ../src/programs/pkcheck.c:442 ../src/programs/pkcheck.c:451
+#: ../src/programs/pkcheck.c:455 ../src/programs/pkcheck.c:464
 #, c-format
 msgid "%s: Two arguments expected after `--detail'\n"
 msgstr "%s: po `--detail' jsou očekávány dva argumenty\n"
 
-#: ../src/programs/pkcheck.c:512
+#: ../src/programs/pkcheck.c:525
 #, c-format
 msgid "%s: Subject not specified\n"
 msgstr "%s: neurčen předmět\n"
@@ -157,7 +157,7 @@ msgstr "%s: neurčen předmět\n"
 #. * translate the $(program) fragment - it will be expanded to the path
 #. * of the program e.g.  /bin/bash.
 #.
-#: ../src/programs/pkexec.c:741
+#: ../src/programs/pkexec.c:797
 msgid "Authentication is needed to run `$(program)' as the super user"
 msgstr "Pro spuštění `$(program)' jako správce je vyžadováno ověření"
 
@@ -166,40 +166,40 @@ msgstr "Pro spuštění `$(program)' jako správce je vyžadováno ověření"
 #. * be expanded to the path of the program e.g. "/bin/bash" and the latter
 #. * to the user e.g. "John Doe (johndoe)" or "johndoe".
 #.
-#: ../src/programs/pkexec.c:751
+#: ../src/programs/pkexec.c:807
 msgid "Authentication is needed to run `$(program)' as user $(user.display)"
 msgstr ""
 "Pro spuštění `$(program)' jako uživatel $(user.display) je vyžadováno ověření"
 
-#: ../src/programs/pkttyagent.c:44
+#: ../src/programs/pkttyagent.c:45
 msgid "Don't replace existing agent if any"
 msgstr "Nenahrazovat již bežícího agenta"
 
-#: ../src/programs/pkttyagent.c:48
+#: ../src/programs/pkttyagent.c:49
 msgid "Close FD when the agent is registered"
 msgstr "Uzavře FD při registraci agenta"
 
-#: ../src/programs/pkttyagent.c:48
+#: ../src/programs/pkttyagent.c:49
 msgid "FD"
 msgstr "FD"
 
-#: ../src/programs/pkttyagent.c:52
+#: ../src/programs/pkttyagent.c:53
 msgid "Register the agent for the specified process"
 msgstr "Registrovat agenta pro určený proces"
 
-#: ../src/programs/pkttyagent.c:53
+#: ../src/programs/pkttyagent.c:54
 msgid "PID[,START_TIME]"
 msgstr "PID[,ČAS_ZAHÁJENÍ]"
 
-#: ../src/programs/pkttyagent.c:57
+#: ../src/programs/pkttyagent.c:58
 msgid "Register the agent owner of BUS_NAME"
 msgstr "Registrovat agenta vlastníka NÁZEV_SBĚRNICE"
 
-#: ../src/programs/pkttyagent.c:57
+#: ../src/programs/pkttyagent.c:58
 msgid "BUS_NAME"
 msgstr "NÁZEV_SBĚRNICE"
 
-#: ../src/programs/pkttyagent.c:119
+#: ../src/programs/pkttyagent.c:131
 #, c-format
 msgid "%s: Invalid process specifier `%s'\n"
 msgstr "%s: neplatný identifikátor procesu `%s'\n"

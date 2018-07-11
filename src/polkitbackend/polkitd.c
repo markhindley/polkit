@@ -22,6 +22,7 @@
 #include "config.h"
 
 #include <signal.h>
+#include <stdlib.h>
 
 #include <glib-unix.h>
 
@@ -169,14 +170,15 @@ main (int    argc,
   sigint_id = 0;
   registration_id = NULL;
 
-  g_type_init ();
+  /* Disable remote file access from GIO. */
+  setenv ("GIO_USE_VFS", "local", 1);
 
   opt_context = g_option_context_new ("polkit system daemon");
   g_option_context_add_main_entries (opt_context, opt_entries, NULL);
   error = NULL;
   if (!g_option_context_parse (opt_context, &argc, &argv, &error))
     {
-      g_printerr ("Error parsing options: %s", error->message);
+      g_printerr ("Error parsing options: %s\n", error->message);
       g_error_free (error);
       goto out;
     }
@@ -203,7 +205,7 @@ main (int    argc,
   error = NULL;
   if (!become_user (POLKITD_USER, &error))
     {
-      g_printerr ("Error switcing to user %s: %s\n",
+      g_printerr ("Error switching to user %s: %s\n",
                   POLKITD_USER, error->message);
       g_clear_error (&error);
       goto out;

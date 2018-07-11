@@ -2,6 +2,7 @@ NULL =
 
 BUILT_SOURCES =
 
+AM_CFLAGS = -std=gnu99 $(WARN_CFLAGS)
 AM_CPPFLAGS =                                                   \
         -I$(top_builddir)/src                                   \
         -I$(top_srcdir)/src                                     \
@@ -32,9 +33,8 @@ libpolkit_backend_1_la_SOURCES =                                   			\
 	polkitbackendprivate.h								\
 	polkitbackendauthority.h		polkitbackendauthority.c		\
 	polkitbackendinteractiveauthority.h	polkitbackendinteractiveauthority.c	\
-	polkitbackendjsauthority.h		polkitbackendjsauthority.c		\
+	polkitbackendjsauthority.h		polkitbackendjsauthority.cpp		\
 	polkitbackendactionpool.h		polkitbackendactionpool.c		\
-	polkitbackendconfigsource.h		polkitbackendconfigsource.c		\
 	polkitbackendactionlookup.h		polkitbackendactionlookup.c		\
         $(NULL)
 
@@ -53,6 +53,8 @@ libpolkit_backend_1_la_CFLAGS =                                        	\
 	$(LIBSYSTEMD_CFLAGS)						\
 	$(LIBJS_CFLAGS)							\
         $(NULL)
+
+libpolkit_backend_1_la_CXXFLAGS = $(libpolkit_backend_1_la_CFLAGS)
 
 libpolkit_backend_1_la_LIBADD =                               		\
         $(GLIB_LIBS)							\
@@ -73,6 +75,9 @@ libpriv_PROGRAMS = polkitd
 polkitd_SOURCES = 							\
 					polkitd.c			\
 	$(NULL)
+
+# force C++ link via dummy C++ file, (see GNU automake manual section 8.3.5)
+nodist_EXTRA_polkitd_SOURCES = dummy-force-cpp-link.cxx
 
 polkitd_CFLAGS = 							\
 	-DPOLKIT_BACKEND_I_KNOW_API_IS_SUBJECT_TO_CHANGE		\

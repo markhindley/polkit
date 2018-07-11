@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PolkitDetails: polkit Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
 <link rel="home" href="index.html" title="polkit Reference Manual">
 <link rel="up" href="ref-api.html" title="Part III. Library API Reference">
 <link rel="prev" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult">
 <link rel="next" href="polkit-1-PolkitError.html" title="PolkitError">
-<meta name="generator" content="GTK-Doc V1.24 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -44,7 +44,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="PolkitDetails.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -59,7 +59,7 @@ justifications.
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="PolkitDetails.html#polkit-details-lookup" title="polkit_details_lookup ()">polkit_details_lookup</a> <span class="c_punctuation">()</span>
@@ -75,7 +75,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> **
+<span class="returnvalue">gchar</span> **
 </td>
 <td class="function_name">
 <a class="link" href="PolkitDetails.html#polkit-details-get-keys" title="polkit_details_get_keys ()">polkit_details_get_keys</a> <span class="c_punctuation">()</span>
@@ -86,7 +86,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="PolkitDetails.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table width="100%" border="0">
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -99,7 +99,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="PolkitDetails.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+<pre class="screen">    GObject
     <span class="lineart">╰──</span> PolkitDetails
 </pre>
 </div>
@@ -115,22 +115,22 @@ justifications.
 polkit_details_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Creates a new <a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> object.</p>
 <div class="refsect3">
-<a name="id-1.4.4.8.2.5"></a><h4>Returns</h4>
-<p> A <a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> object. Free with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.</p>
+<a name="polkit-details-new.returns"></a><h4>Returns</h4>
+<p> A <a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> object. Free with <code class="function">g_object_unref()</code>.</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-details-lookup"></a><h3>polkit_details_lookup ()</h3>
-<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 polkit_details_lookup (<em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>,
-                       <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *key</code></em>);</pre>
+                       <em class="parameter"><code>const <span class="type">gchar</span> *key</code></em>);</pre>
 <p>Gets the value for <em class="parameter"><code>key</code></em>
  on <em class="parameter"><code>details</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.4.4.8.3.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="polkit-details-lookup.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -151,8 +151,8 @@ polkit_details_lookup (<em class="parameter"><code><a class="link" href="PolkitD
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.4.4.8.3.6"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if there is no value for <em class="parameter"><code>key</code></em>
+<a name="polkit-details-lookup.returns"></a><h4>Returns</h4>
+<p><code class="literal">NULL</code> if there is no value for <em class="parameter"><code>key</code></em>
 , otherwise a string owned by <em class="parameter"><code>details</code></em>
 . </p>
 <p><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
@@ -163,17 +163,17 @@ polkit_details_lookup (<em class="parameter"><code><a class="link" href="PolkitD
 <a name="polkit-details-insert"></a><h3>polkit_details_insert ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 polkit_details_insert (<em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>,
-                       <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *key</code></em>,
-                       <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *value</code></em>);</pre>
+                       <em class="parameter"><code>const <span class="type">gchar</span> *key</code></em>,
+                       <em class="parameter"><code>const <span class="type">gchar</span> *value</code></em>);</pre>
 <p>Inserts a copy of <em class="parameter"><code>key</code></em>
  and <em class="parameter"><code>value</code></em>
  on <em class="parameter"><code>details</code></em>
 .</p>
 <p>If <em class="parameter"><code>value</code></em>
- is <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>, the key will be removed.</p>
+ is <code class="literal">NULL</code>, the key will be removed.</p>
 <div class="refsect3">
-<a name="id-1.4.4.8.4.6"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="polkit-details-insert.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -192,7 +192,7 @@ polkit_details_insert (<em class="parameter"><code><a class="link" href="PolkitD
 </tr>
 <tr>
 <td class="parameter_name"><p>value</p></td>
-<td class="parameter_description"><p> A value. </p></td>
+<td class="parameter_description"><p>A value. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -202,13 +202,13 @@ polkit_details_insert (<em class="parameter"><code><a class="link" href="PolkitD
 <hr>
 <div class="refsect2">
 <a name="polkit-details-get-keys"></a><h3>polkit_details_get_keys ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> **
+<pre class="programlisting"><span class="returnvalue">gchar</span> **
 polkit_details_get_keys (<em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>);</pre>
 <p>Gets a list of all keys on <em class="parameter"><code>details</code></em>
 .</p>
 <div class="refsect3">
-<a name="id-1.4.4.8.5.5"></a><h4>Parameters</h4>
-<div class="informaltable"><table width="100%" border="0">
+<a name="polkit-details-get-keys.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -222,10 +222,10 @@ polkit_details_get_keys (<em class="parameter"><code><a class="link" href="Polki
 </table></div>
 </div>
 <div class="refsect3">
-<a name="id-1.4.4.8.5.6"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if there are no keys
+<a name="polkit-details-get-keys.returns"></a><h4>Returns</h4>
+<p><code class="literal">NULL</code> if there are no keys
 otherwise an array of strings that should be freed with
-<a href="https://developer.gnome.org/glib/unstable/glib-String-Utility-Functions.html#g-strfreev"><code class="function">g_strfreev()</code></a>. </p>
+<code class="function">g_strfreev()</code>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>][<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
 </div>
 </div>
@@ -240,6 +240,6 @@ otherwise an array of strings that should be freed with
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.24</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>
