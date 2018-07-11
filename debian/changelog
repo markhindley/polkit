@@ -1,5 +1,8 @@
-policykit-1 (0.114-2) UNRELEASED; urgency=medium
+policykit-1 (0.115-1) UNRELEASED; urgency=medium
 
+  * New upstream version 0.115 (CVE-2018-1116)
+    - d/p/jsauthority-pass-s-format-string-to-remaining-report.patch:
+      Drop, applied upstream
   * d/watch: Use https
   * d/watch: Download upstream PGP signatures
   * debian/upstream/signing-key.asc: Add public keys for Ray Strode, Miloslav Trmac, David Zeuthen
