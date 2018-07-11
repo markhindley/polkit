@@ -1,6 +1,7 @@
-policykit-1 (0.115-1) UNRELEASED; urgency=medium
+policykit-1 (0.115-1) experimental; urgency=medium
 
-  * New upstream version 0.115 (CVE-2018-1116)
+  * New upstream version 0.115
+    - Fixes CVE-2018-1116 (Closes: #903563)
     - d/p/jsauthority-pass-s-format-string-to-remaining-report.patch:
       Drop, applied upstream
   * d/watch: Use https
@@ -8,8 +9,13 @@ policykit-1 (0.115-1) UNRELEASED; urgency=medium
   * debian/upstream/signing-key.asc: Add public keys for Ray Strode,
     Miloslav Trmac, David Zeuthen
   * d/gbp.conf: Merge upstream tags into the upstream branch
+  * Add myself to Uploaders
+  * d/libpolkit-gobject-1-0.symbols: Update for new semi-private ABI
+  * d/rules: Skip build-time tests if DEB_BUILD_OPTIONS=nocheck
+  * Standards-Version: 4.1.5 (no changes required)
+  * Set Rules-Requires-Root to no
 
- -- Simon McVittie <smcv@debian.org>  Wed, 11 Jul 2018 08:24:32 +0100
+ -- Simon McVittie <smcv@debian.org>  Wed, 11 Jul 2018 12:24:20 +0100
 
 policykit-1 (0.114-1) experimental; urgency=medium
 
