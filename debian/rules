@@ -27,8 +27,10 @@ override_dh_auto_configure:
 		--libexecdir=\$${prefix}/lib/policykit-1
 
 override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	# on buildds we can't rely on actually having a system bus
 	dbus-run-session -- sh -c 'DBUS_SYSTEM_BUS_ADDRESS=$$DBUS_SESSION_BUS_ADDRESS make check'
+endif
 
 override_dh_install:
 	# on Debian use sudo group; on Ubuntu, also allow the admin group for
