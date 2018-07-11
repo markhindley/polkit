@@ -5,6 +5,7 @@ Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.
 Uploaders:
  Michael Biebl <biebl@debian.org>,
  Martin Pitt <mpitt@debian.org>,
+ Simon McVittie <smcv@debian.org>,
 Build-Depends:
  dbus,
  debhelper (>= 10),
