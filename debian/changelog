@@ -5,7 +5,8 @@ policykit-1 (0.115-1) UNRELEASED; urgency=medium
       Drop, applied upstream
   * d/watch: Use https
   * d/watch: Download upstream PGP signatures
-  * debian/upstream/signing-key.asc: Add public keys for Ray Strode, Miloslav Trmac, David Zeuthen
+  * debian/upstream/signing-key.asc: Add public keys for Ray Strode,
+    Miloslav Trmac, David Zeuthen
   * d/gbp.conf: Merge upstream tags into the upstream branch
 
  -- Simon McVittie <smcv@debian.org>  Wed, 11 Jul 2018 08:24:32 +0100
