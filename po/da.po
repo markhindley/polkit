@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DeviceKit-disks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-03 13:03-0500\n"
+"POT-Creation-Date: 2016-07-15 17:44+0200\n"
 "PO-Revision-Date: 2011-03-03 13:05-0500\n"
 "Last-Translator: David Zeuthen <davidz@redhat.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -19,38 +19,118 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../actions/org.freedesktop.policykit.policy.in.h:1
-msgid "Authentication is required to configure lock down policy"
-msgstr "Autorisering er påkrævet for at konfigurer lock down"
+#, fuzzy
+msgid "Run a program as another user"
+msgstr "Kør et program som en anden bruger"
 
 #: ../actions/org.freedesktop.policykit.policy.in.h:2
 msgid "Authentication is required to run a program as another user"
 msgstr "Autorisering er påkrævet for at afvikle et program som en anden bruger"
 
-#: ../actions/org.freedesktop.policykit.policy.in.h:3
-msgid "Configure lock down for an action"
-msgstr "Konfigurer lock down for en action"
-
-#: ../actions/org.freedesktop.policykit.policy.in.h:4
-msgid "Run programs as another user"
-msgstr "Kør et program som en anden bruger"
-
 #: ../src/examples/org.freedesktop.policykit.examples.pkexec.policy.in.h:1
+#, fuzzy
+msgid "Run the polkit example program Frobnicate"
+msgstr "Kør PolicyKit eksemplet Frobnicate"
+
+#: ../src/examples/org.freedesktop.policykit.examples.pkexec.policy.in.h:2
+#, fuzzy
 msgid ""
-"Authentication is required to run the PolicyKit example program Frobnicate "
-"(user=$(user), program=$(program), command_line=$(command_line))"
+"Authentication is required to run the polkit example program Frobnicate "
+"(user=$(user), user.gecos=$(user.gecos), user.display=$(user.display), "
+"program=$(program), command_line=$(command_line))"
 msgstr ""
 "Autorisering er påkrævet for at afvikle PolicyKit eksemplet Frobnicate (user="
 "$(user), program=$(program), command_line=$(command_line))"
 
-#: ../src/examples/org.freedesktop.policykit.examples.pkexec.policy.in.h:2
-msgid "Run the PolicyKit example program Frobnicate"
-msgstr "Kør PolicyKit eksemplet Frobnicate"
+#: ../src/programs/pkaction.c:101
+msgid "Only output information about ACTION"
+msgstr ""
+
+#: ../src/programs/pkaction.c:101
+msgid "ACTION"
+msgstr ""
+
+#: ../src/programs/pkaction.c:105
+msgid "Output detailed action information"
+msgstr ""
+
+#: ../src/programs/pkaction.c:109 ../src/programs/pkttyagent.c:62
+msgid "Show version"
+msgstr ""
+
+#: ../src/programs/pkaction.c:134
+msgid "[--action-id ACTION]"
+msgstr ""
+
+#: ../src/programs/pkaction.c:135 ../src/programs/pkttyagent.c:85
+#, c-format
+msgid ""
+"Report bugs to: %s\n"
+"%s home page: <%s>"
+msgstr ""
+
+#: ../src/programs/pkaction.c:149 ../src/programs/pkcheck.c:495
+#: ../src/programs/pkttyagent.c:99
+#, c-format
+msgid "%s: Unexpected argument `%s'\n"
+msgstr ""
+
+#: ../src/programs/pkcheck.c:36
+#, c-format
+msgid ""
+"Usage:\n"
+"  pkcheck [OPTION...]\n"
+"\n"
+"Help Options:\n"
+"  -h, --help                         Show help options\n"
+"\n"
+"Application Options:\n"
+"  -a, --action-id=ACTION             Check authorization to perform ACTION\n"
+"  -u, --allow-user-interaction       Interact with the user if necessary\n"
+"  -d, --details=KEY VALUE            Add (KEY, VALUE) to information about "
+"the action\n"
+"  --enable-internal-agent            Use an internal authentication agent if "
+"necessary\n"
+"  --list-temp                        List temporary authorizations for "
+"current session\n"
+"  -p, --process=PID[,START_TIME,UID] Check authorization of specified "
+"process\n"
+"  --revoke-temp                      Revoke all temporary authorizations for "
+"current session\n"
+"  -s, --system-bus-name=BUS_NAME     Check authorization of owner of "
+"BUS_NAME\n"
+"  --version                          Show version\n"
+"\n"
+"Report bugs to: %s\n"
+"%s home page: <%s>\n"
+msgstr ""
+
+#: ../src/programs/pkcheck.c:395 ../src/programs/pkcheck.c:428
+#: ../src/programs/pkcheck.c:440
+#, c-format
+msgid "%s: Argument expected after `%s'\n"
+msgstr ""
+
+#: ../src/programs/pkcheck.c:418
+#, c-format
+msgid "%s: Invalid --process value `%s'\n"
+msgstr ""
+
+#: ../src/programs/pkcheck.c:455 ../src/programs/pkcheck.c:464
+#, c-format
+msgid "%s: Two arguments expected after `--detail'\n"
+msgstr ""
+
+#: ../src/programs/pkcheck.c:525
+#, c-format
+msgid "%s: Subject not specified\n"
+msgstr ""
 
 #. Translators: message shown when trying to run a program as root. Do not
 #. * translate the $(program) fragment - it will be expanded to the path
 #. * of the program e.g.  /bin/bash.
 #.
-#: ../src/programs/pkexec.c:666
+#: ../src/programs/pkexec.c:797
 msgid "Authentication is needed to run `$(program)' as the super user"
 msgstr "Autorisering er påkrævet for at afvikle `$(program)' som super bruger"
 
@@ -59,7 +139,47 @@ msgstr "Autorisering er påkrævet for at afvikle `$(program)' som super bruger"
 #. * be expanded to the path of the program e.g. "/bin/bash" and the latter
 #. * to the user e.g. "John Doe (johndoe)" or "johndoe".
 #.
-#: ../src/programs/pkexec.c:676
-msgid "Authentication is needed to run `$(program)' as user $(user)"
+#: ../src/programs/pkexec.c:807
+#, fuzzy
+msgid "Authentication is needed to run `$(program)' as user $(user.display)"
 msgstr ""
 "Autorisering er påkrævet for at afvikle `$(program)' som bruger $(user)"
+
+#: ../src/programs/pkttyagent.c:45
+msgid "Don't replace existing agent if any"
+msgstr ""
+
+#: ../src/programs/pkttyagent.c:49
+msgid "Close FD when the agent is registered"
+msgstr ""
+
+#: ../src/programs/pkttyagent.c:49
+msgid "FD"
+msgstr ""
+
+#: ../src/programs/pkttyagent.c:53
+msgid "Register the agent for the specified process"
+msgstr ""
+
+#: ../src/programs/pkttyagent.c:54
+msgid "PID[,START_TIME]"
+msgstr ""
+
+#: ../src/programs/pkttyagent.c:58
+msgid "Register the agent owner of BUS_NAME"
+msgstr ""
+
+#: ../src/programs/pkttyagent.c:58
+msgid "BUS_NAME"
+msgstr ""
+
+#: ../src/programs/pkttyagent.c:131
+#, c-format
+msgid "%s: Invalid process specifier `%s'\n"
+msgstr ""
+
+#~ msgid "Authentication is required to configure lock down policy"
+#~ msgstr "Autorisering er påkrævet for at konfigurer lock down"
+
+#~ msgid "Configure lock down for an action"
+#~ msgstr "Konfigurer lock down for en action"

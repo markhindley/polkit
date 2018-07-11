@@ -8,7 +8,7 @@
 <link rel="up" href="subjects.html" title="Subjects">
 <link rel="prev" href="subjects.html" title="Subjects">
 <link rel="next" href="PolkitUnixProcess.html" title="PolkitUnixProcess">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -44,7 +44,7 @@
 <tbody>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>
+<span class="returnvalue">guint</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitSubject.html#polkit-subject-hash" title="polkit_subject_hash ()">polkit_subject_hash</a> <span class="c_punctuation">()</span>
@@ -52,7 +52,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitSubject.html#polkit-subject-equal" title="polkit_subject_equal ()">polkit_subject_equal</a> <span class="c_punctuation">()</span>
@@ -68,7 +68,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitSubject.html#polkit-subject-exists-finish" title="polkit_subject_exists_finish ()">polkit_subject_exists_finish</a> <span class="c_punctuation">()</span>
@@ -76,7 +76,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitSubject.html#polkit-subject-exists-sync" title="polkit_subject_exists_sync ()">polkit_subject_exists_sync</a> <span class="c_punctuation">()</span>
@@ -84,7 +84,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="PolkitSubject.html#polkit-subject-to-string" title="polkit_subject_to_string ()">polkit_subject_to_string</a> <span class="c_punctuation">()</span>
@@ -130,7 +130,7 @@
 <a name="PolkitSubject.prerequisites"></a><h2>Prerequisites</h2>
 <p>
 PolkitSubject requires
- <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>.</p>
+ GObject.</p>
 </div>
 <div class="refsect1">
 <a name="PolkitSubject.implementations"></a><h2>Known Implementations</h2>
@@ -147,10 +147,10 @@ processes.</p>
 <a name="PolkitSubject.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="polkit-subject-hash"></a><h3>polkit_subject_hash ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#guint"><span class="returnvalue">guint</span></a>
+<pre class="programlisting"><span class="returnvalue">guint</span>
 polkit_subject_hash (<em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>);</pre>
 <p>Gets a hash code for <em class="parameter"><code>subject</code></em>
- that can be used with e.g. <a href="../glib/glib-Hash-Tables.html#g-hash-table-new"><code class="function">g_hash_table_new()</code></a>.</p>
+ that can be used with e.g. <code class="function">g_hash_table_new()</code>.</p>
 <div class="refsect3">
 <a name="polkit-subject-hash.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -174,13 +174,13 @@ polkit_subject_hash (<em class="parameter"><code><a class="link" href="PolkitSub
 <hr>
 <div class="refsect2">
 <a name="polkit-subject-equal"></a><h3>polkit_subject_equal ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 polkit_subject_equal (<em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *a</code></em>,
                       <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *b</code></em>);</pre>
 <p>Checks if <em class="parameter"><code>a</code></em>
  and <em class="parameter"><code>b</code></em>
  are equal, ie. represent the same subject.</p>
-<p>This function can be used in e.g. <a href="../glib/glib-Hash-Tables.html#g-hash-table-new"><code class="function">g_hash_table_new()</code></a>.</p>
+<p>This function can be used in e.g. <code class="function">g_hash_table_new()</code>.</p>
 <div class="refsect3">
 <a name="polkit-subject-equal.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -205,9 +205,9 @@ polkit_subject_equal (<em class="parameter"><code><a class="link" href="PolkitSu
 </div>
 <div class="refsect3">
 <a name="polkit-subject-equal.returns"></a><h4>Returns</h4>
-<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>a</code></em>
+<p> <code class="literal">TRUE</code> if <em class="parameter"><code>a</code></em>
 and <em class="parameter"><code>b</code></em>
-are equal, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
+are equal, <code class="literal">FALSE</code> otherwise.</p>
 </div>
 </div>
 <hr>
@@ -215,9 +215,9 @@ are equal, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="l
 <a name="polkit-subject-exists"></a><h3>polkit_subject_exists ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 polkit_subject_exists (<em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                       <em class="parameter"><code><a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                       <em class="parameter"><code><a href="../gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                       <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+                       <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                       <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                       <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
 <p>Asynchronously checks if <em class="parameter"><code>subject</code></em>
  exists.</p>
 <p>When the operation is finished, <em class="parameter"><code>callback</code></em>
@@ -242,12 +242,12 @@ result of the operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p>A <a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>A <a href="../gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied</p></td>
+<td class="parameter_description"><p>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -263,10 +263,10 @@ result of the operation.</p>
 <hr>
 <div class="refsect2">
 <a name="polkit-subject-exists-finish"></a><h3>polkit_subject_exists_finish ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 polkit_subject_exists_finish (<em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                              <em class="parameter"><code><a href="../gio/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *res</code></em>,
-                              <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                              <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
+                              <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Finishes checking whether a subject exists.</p>
 <div class="refsect3">
 <a name="polkit-subject-exists-finish.parameters"></a><h4>Parameters</h4>
@@ -284,12 +284,12 @@ polkit_subject_exists_finish (<em class="parameter"><code><a class="link" href="
 </tr>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p>A <a href="../gio/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> obtained from the <a href="../gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> passed to <a class="link" href="PolkitSubject.html#polkit-subject-exists" title="polkit_subject_exists ()"><code class="function">polkit_subject_exists()</code></a>.</p></td>
+<td class="parameter_description"><p>A <span class="type">GAsyncResult</span> obtained from the <span class="type">GAsyncReadyCallback</span> passed to <a class="link" href="PolkitSubject.html#polkit-subject-exists" title="polkit_subject_exists ()"><code class="function">polkit_subject_exists()</code></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>Return location for error or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -297,17 +297,17 @@ polkit_subject_exists_finish (<em class="parameter"><code><a class="link" href="
 </div>
 <div class="refsect3">
 <a name="polkit-subject-exists-finish.returns"></a><h4>Returns</h4>
-<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the subject exists, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if not or <em class="parameter"><code>error</code></em>
+<p> <code class="literal">TRUE</code> if the subject exists, <code class="literal">FALSE</code> if not or <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-subject-exists-sync"></a><h3>polkit_subject_exists_sync ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 polkit_subject_exists_sync (<em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                            <em class="parameter"><code><a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                            <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+                            <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                            <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Checks if <em class="parameter"><code>subject</code></em>
  exists.</p>
 <p>This is a synchronous blocking call - the calling thread is blocked
@@ -329,12 +329,12 @@ asynchronous version.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p>A <a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>Return location for error or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -342,14 +342,14 @@ asynchronous version.</p>
 </div>
 <div class="refsect3">
 <a name="polkit-subject-exists-sync.returns"></a><h4>Returns</h4>
-<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the subject exists, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if not or <em class="parameter"><code>error</code></em>
+<p> <code class="literal">TRUE</code> if the subject exists, <code class="literal">FALSE</code> if not or <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-subject-to-string"></a><h3>polkit_subject_to_string ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting"><span class="returnvalue">gchar</span> *
 polkit_subject_to_string (<em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>);</pre>
 <p>Serializes <em class="parameter"><code>subject</code></em>
  to a string that can be used in
@@ -372,15 +372,15 @@ polkit_subject_to_string (<em class="parameter"><code><a class="link" href="Polk
 <div class="refsect3">
 <a name="polkit-subject-to-string.returns"></a><h4>Returns</h4>
 <p> A string representing <em class="parameter"><code>subject</code></em>
-. Free with <a href="../glib/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>.</p>
+. Free with <code class="function">g_free()</code>.</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-subject-from-string"></a><h3>polkit_subject_from_string ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="returnvalue">PolkitSubject</span></a> *
-polkit_subject_from_string (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *str</code></em>,
-                            <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+polkit_subject_from_string (<em class="parameter"><code>const <span class="type">gchar</span> *str</code></em>,
+                            <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Creates an object from <em class="parameter"><code>str</code></em>
  that implements the <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>
 interface.</p>
@@ -400,7 +400,7 @@ interface.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>Return location for error or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -408,9 +408,9 @@ interface.</p>
 </div>
 <div class="refsect3">
 <a name="polkit-subject-from-string.returns"></a><h4>Returns</h4>
-<p>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
+<p>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em>
 is
-set. Free with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+set. Free with <code class="function">g_object_unref()</code>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
@@ -460,7 +460,7 @@ set. Free with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-un
 </colgroup>
 <tbody>
 <tr>
-<td class="struct_member_name"><p><a href="../gobject/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="PolkitSubjectIface.parent-iface"></a>parent_iface</code></em>;</p></td>
+<td class="struct_member_name"><p><span class="type">GTypeInterface</span> <em class="structfield"><code><a name="PolkitSubjectIface.parent-iface"></a>parent_iface</code></em>;</p></td>
 <td class="struct_member_description"><p>The parent interface.</p></td>
 <td class="struct_member_annotations"> </td>
 </tr>
@@ -502,6 +502,6 @@ used in <a class="link" href="PolkitSubject.html#polkit-subject-from-string" tit
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

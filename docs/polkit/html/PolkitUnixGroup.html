@@ -8,7 +8,7 @@
 <link rel="up" href="Identities.html" title="Identities">
 <link rel="prev" href="PolkitUnixUser.html" title="PolkitUnixUser">
 <link rel="next" href="PolkitUnixNetgroup.html" title="PolkitUnixNetgroup">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -60,7 +60,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
+<span class="returnvalue">gint</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitUnixGroup.html#polkit-unix-group-get-gid" title="polkit_unix_group_get_gid ()">polkit_unix_group_get_gid</a> <span class="c_punctuation">()</span>
@@ -86,7 +86,7 @@
 <col width="200px" class="properties_flags">
 </colgroup>
 <tbody><tr>
-<td class="property_type"><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a></td>
+<td class="property_type"><span class="type">gint</span></td>
 <td class="property_name"><a class="link" href="PolkitUnixGroup.html#PolkitUnixGroup--gid" title="The “gid” property">gid</a></td>
 <td class="property_flags">Read / Write / Construct</td>
 </tr></tbody>
@@ -107,7 +107,7 @@
 </div>
 <div class="refsect1">
 <a name="PolkitUnixGroup.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    GObject
     <span class="lineart">╰──</span> PolkitUnixGroup
 </pre>
 </div>
@@ -126,7 +126,7 @@ PolkitUnixGroup implements
 <div class="refsect2">
 <a name="polkit-unix-group-new"></a><h3>polkit_unix_group_new ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitIdentity.html" title="PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *
-polkit_unix_group_new (<em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> gid</code></em>);</pre>
+polkit_unix_group_new (<em class="parameter"><code><span class="type">gint</span> gid</code></em>);</pre>
 <p>Creates a new <a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup"><span class="type">PolkitUnixGroup</span></a> object for <em class="parameter"><code>gid</code></em>
 .</p>
 <div class="refsect3">
@@ -146,7 +146,7 @@ polkit_unix_group_new (<em class="parameter"><code><a href="../glib/glib-Basic-T
 </div>
 <div class="refsect3">
 <a name="polkit-unix-group-new.returns"></a><h4>Returns</h4>
-<p>A <a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup"><span class="type">PolkitUnixGroup</span></a> object. Free with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>A <a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup"><span class="type">PolkitUnixGroup</span></a> object. Free with <code class="function">g_object_unref()</code>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
@@ -154,8 +154,8 @@ polkit_unix_group_new (<em class="parameter"><code><a href="../glib/glib-Basic-T
 <div class="refsect2">
 <a name="polkit-unix-group-new-for-name"></a><h3>polkit_unix_group_new_for_name ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitIdentity.html" title="PolkitIdentity"><span class="returnvalue">PolkitIdentity</span></a> *
-polkit_unix_group_new_for_name (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>,
-                                <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+polkit_unix_group_new_for_name (<em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>,
+                                <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Creates a new <a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup"><span class="type">PolkitUnixGroup</span></a> object for a group with the group name
 <em class="parameter"><code>name</code></em>
 .</p>
@@ -183,7 +183,7 @@ polkit_unix_group_new_for_name (<em class="parameter"><code>const <a href="../gl
 </div>
 <div class="refsect3">
 <a name="polkit-unix-group-new-for-name.returns"></a><h4>Returns</h4>
-<p>(allow-none): A <a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup"><span class="type">PolkitUnixGroup</span></a> object or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
+<p>(allow-none): A <a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup"><span class="type">PolkitUnixGroup</span></a> object or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em>
 is set. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -191,7 +191,7 @@ is set. </p>
 <hr>
 <div class="refsect2">
 <a name="polkit-unix-group-get-gid"></a><h3>polkit_unix_group_get_gid ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>
+<pre class="programlisting"><span class="returnvalue">gint</span>
 polkit_unix_group_get_gid (<em class="parameter"><code><a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup"><span class="type">PolkitUnixGroup</span></a> *group</code></em>);</pre>
 <p>Gets the UNIX group id for <em class="parameter"><code>group</code></em>
 .</p>
@@ -220,7 +220,7 @@ polkit_unix_group_get_gid (<em class="parameter"><code><a class="link" href="Pol
 <a name="polkit-unix-group-set-gid"></a><h3>polkit_unix_group_set_gid ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
 polkit_unix_group_set_gid (<em class="parameter"><code><a class="link" href="PolkitUnixGroup.html" title="PolkitUnixGroup"><span class="type">PolkitUnixGroup</span></a> *group</code></em>,
-                           <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> gid</code></em>);</pre>
+                           <em class="parameter"><code><span class="type">gint</span> gid</code></em>);</pre>
 <p>Sets <em class="parameter"><code>gid</code></em>
  for <em class="parameter"><code>group</code></em>
 .</p>
@@ -260,7 +260,7 @@ polkit_unix_group_set_gid (<em class="parameter"><code><a class="link" href="Pol
 <a name="PolkitUnixGroup.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="PolkitUnixGroup--gid"></a><h3>The <code class="literal">“gid”</code> property</h3>
-<pre class="programlisting">  “gid”                      <a href="../glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a></pre>
+<pre class="programlisting">  “gid”                      <span class="type">gint</span></pre>
 <p>The UNIX group id.</p>
 <p>Flags: Read / Write / Construct</p>
 <p>Allowed values: &gt;= 0</p>
@@ -269,6 +269,6 @@ polkit_unix_group_set_gid (<em class="parameter"><code><a class="link" href="Pol
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

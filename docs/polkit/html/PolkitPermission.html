@@ -8,7 +8,7 @@
 <link rel="up" href="ref-api.html" title="Part III. Library API Reference">
 <link rel="prev" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization">
 <link rel="next" href="subjects.html" title="Subjects">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -30,7 +30,7 @@
 <div class="refnamediv"><table width="100%"><tr>
 <td valign="top">
 <h2><span class="refentrytitle"><a name="PolkitPermission.top_of_page"></a>PolkitPermission</span></h2>
-<p>PolkitPermission — PolicyKit <a href="../gio/GPermission.html#GPermission-struct"><span class="type">GPermission</span></a> implementation</p>
+<p>PolkitPermission — PolicyKit <span class="type">GPermission</span> implementation</p>
 </td>
 <td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
@@ -62,7 +62,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="../gio/GPermission.html#GPermission-struct"><span class="returnvalue">GPermission</span></a> *
+<span class="returnvalue">GPermission</span> *
 </td>
 <td class="function_name">
 <a class="link" href="PolkitPermission.html#polkit-permission-new-finish" title="polkit_permission_new_finish ()">polkit_permission_new_finish</a> <span class="c_punctuation">()</span>
@@ -70,14 +70,14 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="../gio/GPermission.html#GPermission-struct"><span class="returnvalue">GPermission</span></a> *
+<span class="returnvalue">GPermission</span> *
 </td>
 <td class="function_name">
 <a class="link" href="PolkitPermission.html#polkit-permission-new-sync" title="polkit_permission_new_sync ()">polkit_permission_new_sync</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="PolkitPermission.html#polkit-permission-get-action-id" title="polkit_permission_get_action_id ()">polkit_permission_get_action_id</a> <span class="c_punctuation">()</span>
@@ -105,7 +105,7 @@ justifications.
 <tbody>
 <tr>
 <td class="property_type">
-<a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</td>
+<span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="PolkitPermission.html#PolkitPermission--action-id" title="The “action-id” property">action-id</a></td>
 <td class="property_flags">Read / Write / Construct Only</td>
 </tr>
@@ -133,8 +133,8 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="PolkitPermission.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
-    <span class="lineart">╰──</span> <a href="../gio/GPermission.html#GPermission-struct">GPermission</a>
+<pre class="screen">    GObject
+    <span class="lineart">╰──</span> GPermission
         <span class="lineart">╰──</span> PolkitPermission
 </pre>
 </div>
@@ -142,12 +142,12 @@ justifications.
 <a name="PolkitPermission.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
 <p>
 PolkitPermission implements
- <a href="../gio/GInitable.html#GInitable-struct">GInitable</a> and  <a href="../gio/GAsyncInitable.html#GAsyncInitable-struct">GAsyncInitable</a>.</p>
+ GInitable and  GAsyncInitable.</p>
 </div>
 <div class="refsect1">
 <a name="PolkitPermission.description"></a><h2>Description</h2>
-<p><a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a> is a <a href="../gio/GPermission.html#GPermission-struct"><span class="type">GPermission</span></a> implementation. It can be used
-with e.g. <a href="../gtk3/GtkLockButton.html#GtkLockButton-struct"><span class="type">GtkLockButton</span></a>. See the <a href="../gio/GPermission.html#GPermission-struct"><span class="type">GPermission</span></a> documentation for
+<p><a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a> is a <span class="type">GPermission</span> implementation. It can be used
+with e.g. <span class="type">GtkLockButton</span>. See the <span class="type">GPermission</span> documentation for
 more information.</p>
 </div>
 <div class="refsect1">
@@ -155,12 +155,12 @@ more information.</p>
 <div class="refsect2">
 <a name="polkit-permission-new"></a><h3>polkit_permission_new ()</h3>
 <pre class="programlisting"><span class="returnvalue">void</span>
-polkit_permission_new (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
+polkit_permission_new (<em class="parameter"><code>const <span class="type">gchar</span> *action_id</code></em>,
                        <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                       <em class="parameter"><code><a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                       <em class="parameter"><code><a href="../gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> callback</code></em>,
-                       <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
-<p>Creates a <a href="../gio/GPermission.html#GPermission-struct"><span class="type">GPermission</span></a> instance for the PolicyKit action
+                       <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                       <em class="parameter"><code><span class="type">GAsyncReadyCallback</span> callback</code></em>,
+                       <em class="parameter"><code><span class="type">gpointer</span> user_data</code></em>);</pre>
+<p>Creates a <span class="type">GPermission</span> instance for the PolicyKit action
 <em class="parameter"><code>action_id</code></em>
 .</p>
 <p>When the operation is finished, <em class="parameter"><code>callback</code></em>
@@ -185,17 +185,17 @@ operation.</p>
 </tr>
 <tr>
 <td class="parameter_name"><p>subject</p></td>
-<td class="parameter_description"><p>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> for the current process. </p></td>
+<td class="parameter_description"><p>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <code class="literal">NULL</code> for the current process. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p>A <a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>callback</p></td>
-<td class="parameter_description"><p>A <a href="../gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> to call when the request is satisfied.</p></td>
+<td class="parameter_description"><p>A <span class="type">GAsyncReadyCallback</span> to call when the request is satisfied.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
@@ -211,9 +211,9 @@ operation.</p>
 <hr>
 <div class="refsect2">
 <a name="polkit-permission-new-finish"></a><h3>polkit_permission_new_finish ()</h3>
-<pre class="programlisting"><a href="../gio/GPermission.html#GPermission-struct"><span class="returnvalue">GPermission</span></a> *
-polkit_permission_new_finish (<em class="parameter"><code><a href="../gio/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> *res</code></em>,
-                              <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<pre class="programlisting"><span class="returnvalue">GPermission</span> *
+polkit_permission_new_finish (<em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
+                              <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Finishes an operation started with <a class="link" href="PolkitPermission.html#polkit-permission-new" title="polkit_permission_new ()"><code class="function">polkit_permission_new()</code></a>.</p>
 <div class="refsect3">
 <a name="polkit-permission-new-finish.parameters"></a><h4>Parameters</h4>
@@ -226,12 +226,12 @@ polkit_permission_new_finish (<em class="parameter"><code><a href="../gio/GAsync
 <tbody>
 <tr>
 <td class="parameter_name"><p>res</p></td>
-<td class="parameter_description"><p>A <a href="../gio/GAsyncResult.html#GAsyncResult-struct"><span class="type">GAsyncResult</span></a> obtained from the <a href="../gio/GAsyncResult.html#GAsyncReadyCallback"><span class="type">GAsyncReadyCallback</span></a> passed to <a class="link" href="PolkitPermission.html#polkit-permission-new" title="polkit_permission_new ()"><code class="function">polkit_permission_new()</code></a>.</p></td>
+<td class="parameter_description"><p>A <span class="type">GAsyncResult</span> obtained from the <span class="type">GAsyncReadyCallback</span> passed to <a class="link" href="PolkitPermission.html#polkit-permission-new" title="polkit_permission_new ()"><code class="function">polkit_permission_new()</code></a>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>Return location for error or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -239,19 +239,19 @@ polkit_permission_new_finish (<em class="parameter"><code><a href="../gio/GAsync
 </div>
 <div class="refsect3">
 <a name="polkit-permission-new-finish.returns"></a><h4>Returns</h4>
-<p> A <a href="../gio/GPermission.html#GPermission-struct"><span class="type">GPermission</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
+<p> A <span class="type">GPermission</span> or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-permission-new-sync"></a><h3>polkit_permission_new_sync ()</h3>
-<pre class="programlisting"><a href="../gio/GPermission.html#GPermission-struct"><span class="returnvalue">GPermission</span></a> *
-polkit_permission_new_sync (<em class="parameter"><code>const <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *action_id</code></em>,
+<pre class="programlisting"><span class="returnvalue">GPermission</span> *
+polkit_permission_new_sync (<em class="parameter"><code>const <span class="type">gchar</span> *action_id</code></em>,
                             <em class="parameter"><code><a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> *subject</code></em>,
-                            <em class="parameter"><code><a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> *cancellable</code></em>,
-                            <em class="parameter"><code><a href="../glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>Creates a <a href="../gio/GPermission.html#GPermission-struct"><span class="type">GPermission</span></a> instance for the PolicyKit action
+                            <em class="parameter"><code><span class="type">GCancellable</span> *cancellable</code></em>,
+                            <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
+<p>Creates a <span class="type">GPermission</span> instance for the PolicyKit action
 <em class="parameter"><code>action_id</code></em>
 .</p>
 <p>This is a synchronous failable constructor. See
@@ -272,17 +272,17 @@ polkit_permission_new_sync (<em class="parameter"><code>const <a href="../glib/g
 </tr>
 <tr>
 <td class="parameter_name"><p>subject</p></td>
-<td class="parameter_description"><p>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> for the current process. </p></td>
+<td class="parameter_description"><p>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a> or <code class="literal">NULL</code> for the current process. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>cancellable</p></td>
-<td class="parameter_description"><p>A <a href="../gio/GCancellable.html#GCancellable-struct"><span class="type">GCancellable</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>A <span class="type">GCancellable</span> or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 <tr>
 <td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a>. </p></td>
+<td class="parameter_description"><p>Return location for error or <code class="literal">NULL</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -290,14 +290,14 @@ polkit_permission_new_sync (<em class="parameter"><code>const <a href="../glib/g
 </div>
 <div class="refsect3">
 <a name="polkit-permission-new-sync.returns"></a><h4>Returns</h4>
-<p> A <a href="../gio/GPermission.html#GPermission-struct"><span class="type">GPermission</span></a> or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
+<p> A <span class="type">GPermission</span> or <code class="literal">NULL</code> if <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-permission-get-action-id"></a><h3>polkit_permission_get_action_id ()</h3>
-<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 polkit_permission_get_action_id (<em class="parameter"><code><a class="link" href="PolkitPermission.html" title="PolkitPermission"><span class="type">PolkitPermission</span></a> *permission</code></em>);</pre>
 <p>Gets the PolicyKit action identifier used for <em class="parameter"><code>permission</code></em>
 .</p>
@@ -364,7 +364,7 @@ polkit_permission_get_subject (<em class="parameter"><code><a class="link" href=
 <a name="PolkitPermission.property-details"></a><h2>Property Details</h2>
 <div class="refsect2">
 <a name="PolkitPermission--action-id"></a><h3>The <code class="literal">“action-id”</code> property</h3>
-<pre class="programlisting">  “action-id”                <a href="../glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *</pre>
+<pre class="programlisting">  “action-id”                <span class="type">gchar</span> *</pre>
 <p>The action identifier to use for the permission.</p>
 <p>Flags: Read / Write / Construct Only</p>
 <p>Default value: NULL</p>
@@ -380,6 +380,6 @@ construction, it will be set to match the current process.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

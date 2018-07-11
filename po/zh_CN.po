@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit master\n"
-"Report-Msgid-Bugs-To: https://bugs.freedesktop.org/enter_bug.cgi?"
-"product=PolicyKit&keywords=I18N+L10N&component=libpolkit\n"
-"POT-Creation-Date: 2015-11-13 02:11+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-15 17:44+0200\n"
 "PO-Revision-Date: 2015-11-13 01:59-0500\n"
 "Last-Translator: Mingye Wang (Arthur2e5) <arthur200126@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
@@ -40,27 +39,27 @@ msgstr ""
 "gecos), user.display=$(user.display), program=$(program), command_line="
 "$(command_line))"
 
-#: ../src/programs/pkaction.c:100
+#: ../src/programs/pkaction.c:101
 msgid "Only output information about ACTION"
 msgstr "只输出与操作有关的信息"
 
-#: ../src/programs/pkaction.c:100
+#: ../src/programs/pkaction.c:101
 msgid "ACTION"
 msgstr "操作"
 
-#: ../src/programs/pkaction.c:104
+#: ../src/programs/pkaction.c:105
 msgid "Output detailed action information"
 msgstr "输出详细的操作信息"
 
-#: ../src/programs/pkaction.c:108 ../src/programs/pkttyagent.c:61
+#: ../src/programs/pkaction.c:109 ../src/programs/pkttyagent.c:62
 msgid "Show version"
 msgstr "显示版本"
 
-#: ../src/programs/pkaction.c:130
+#: ../src/programs/pkaction.c:134
 msgid "[--action-id ACTION]"
 msgstr "[--action-id 操作]"
 
-#: ../src/programs/pkaction.c:131 ../src/programs/pkttyagent.c:81
+#: ../src/programs/pkaction.c:135 ../src/programs/pkttyagent.c:85
 #, c-format
 msgid ""
 "Report bugs to: %s\n"
@@ -69,13 +68,13 @@ msgstr ""
 "报告错误到：%s\n"
 "%s 项目主页：<%s>"
 
-#: ../src/programs/pkaction.c:145 ../src/programs/pkcheck.c:491
-#: ../src/programs/pkttyagent.c:95
+#: ../src/programs/pkaction.c:149 ../src/programs/pkcheck.c:495
+#: ../src/programs/pkttyagent.c:99
 #, c-format
 msgid "%s: Unexpected argument `%s'\n"
 msgstr "%s: 意外的参数 \"%s\"\n"
 
-#: ../src/programs/pkcheck.c:35
+#: ../src/programs/pkcheck.c:36
 #, c-format
 msgid ""
 "Usage:\n"
@@ -124,23 +123,23 @@ msgstr ""
 "报告错误到：%s\n"
 "%s 项目主页：<%s>\n"
 
-#: ../src/programs/pkcheck.c:391 ../src/programs/pkcheck.c:424
-#: ../src/programs/pkcheck.c:436
+#: ../src/programs/pkcheck.c:395 ../src/programs/pkcheck.c:428
+#: ../src/programs/pkcheck.c:440
 #, c-format
 msgid "%s: Argument expected after `%s'\n"
 msgstr "%s: %s 后预期参数\n"
 
-#: ../src/programs/pkcheck.c:414
+#: ../src/programs/pkcheck.c:418
 #, c-format
 msgid "%s: Invalid --process value `%s'\n"
 msgstr "%s: 无效 --process 值 \"%s\"\n"
 
-#: ../src/programs/pkcheck.c:451 ../src/programs/pkcheck.c:460
+#: ../src/programs/pkcheck.c:455 ../src/programs/pkcheck.c:464
 #, c-format
 msgid "%s: Two arguments expected after `--detail'\n"
 msgstr "%s: --detail 后预期两个参数\n"
 
-#: ../src/programs/pkcheck.c:521
+#: ../src/programs/pkcheck.c:525
 #, c-format
 msgid "%s: Subject not specified\n"
 msgstr "%s: 主题未指定\n"
@@ -149,7 +148,7 @@ msgstr "%s: 主题未指定\n"
 #. * translate the $(program) fragment - it will be expanded to the path
 #. * of the program e.g.  /bin/bash.
 #.
-#: ../src/programs/pkexec.c:794
+#: ../src/programs/pkexec.c:797
 msgid "Authentication is needed to run `$(program)' as the super user"
 msgstr "需要授权：作为超级用户身份运行 \"$(program)\" "
 
@@ -158,39 +157,39 @@ msgstr "需要授权：作为超级用户身份运行 \"$(program)\" "
 #. * be expanded to the path of the program e.g. "/bin/bash" and the latter
 #. * to the user e.g. "John Doe (johndoe)" or "johndoe".
 #.
-#: ../src/programs/pkexec.c:804
+#: ../src/programs/pkexec.c:807
 msgid "Authentication is needed to run `$(program)' as user $(user.display)"
 msgstr "需要授权：作为用户 \"$(user.display)\" 运行 \"$(program)\" "
 
-#: ../src/programs/pkttyagent.c:44
+#: ../src/programs/pkttyagent.c:45
 msgid "Don't replace existing agent if any"
 msgstr "不替换现有助理程序，若有的话"
 
-#: ../src/programs/pkttyagent.c:48
+#: ../src/programs/pkttyagent.c:49
 msgid "Close FD when the agent is registered"
 msgstr "注册助理程序时关闭文件描述符"
 
-#: ../src/programs/pkttyagent.c:48
+#: ../src/programs/pkttyagent.c:49
 msgid "FD"
 msgstr "文件描述符"
 
-#: ../src/programs/pkttyagent.c:52
+#: ../src/programs/pkttyagent.c:53
 msgid "Register the agent for the specified process"
 msgstr "对指定进程注册助理程序"
 
-#: ../src/programs/pkttyagent.c:53
+#: ../src/programs/pkttyagent.c:54
 msgid "PID[,START_TIME]"
 msgstr "PID[,开始时间]"
 
-#: ../src/programs/pkttyagent.c:57
+#: ../src/programs/pkttyagent.c:58
 msgid "Register the agent owner of BUS_NAME"
 msgstr "注册 BUS_NAME 的助理所有者"
 
-#: ../src/programs/pkttyagent.c:57
+#: ../src/programs/pkttyagent.c:58
 msgid "BUS_NAME"
 msgstr ""
 
-#: ../src/programs/pkttyagent.c:127
+#: ../src/programs/pkttyagent.c:131
 #, c-format
 msgid "%s: Invalid process specifier `%s'\n"
 msgstr "%s: 无效进程定义 \"%s\" \n"

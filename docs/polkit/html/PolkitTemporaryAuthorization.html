@@ -8,7 +8,7 @@
 <link rel="up" href="ref-api.html" title="Part III. Library API Reference">
 <link rel="prev" href="PolkitActionDescription.html" title="PolkitActionDescription">
 <link rel="next" href="PolkitPermission.html" title="PolkitPermission">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -41,14 +41,14 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-id" title="polkit_temporary_authorization_get_id ()">polkit_temporary_authorization_get_id</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-action-id" title="polkit_temporary_authorization_get_action_id ()">polkit_temporary_authorization_get_action_id</a> <span class="c_punctuation">()</span>
@@ -64,7 +64,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>
+<span class="returnvalue">guint64</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-time-obtained" title="polkit_temporary_authorization_get_time_obtained ()">polkit_temporary_authorization_get_time_obtained</a> <span class="c_punctuation">()</span>
@@ -72,7 +72,7 @@
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>
+<span class="returnvalue">guint64</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitTemporaryAuthorization.html#polkit-temporary-authorization-get-time-expires" title="polkit_temporary_authorization_get_time_expires ()">polkit_temporary_authorization_get_time_expires</a> <span class="c_punctuation">()</span>
@@ -96,7 +96,7 @@
 </div>
 <div class="refsect1">
 <a name="PolkitTemporaryAuthorization.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    GObject
     <span class="lineart">╰──</span> PolkitTemporaryAuthorization
 </pre>
 </div>
@@ -108,7 +108,7 @@
 <a name="PolkitTemporaryAuthorization.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
 <a name="polkit-temporary-authorization-get-id"></a><h3>polkit_temporary_authorization_get_id ()</h3>
-<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 polkit_temporary_authorization_get_id (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);</pre>
 <p>Gets the opaque identifier for <em class="parameter"><code>authorization</code></em>
 .</p>
@@ -136,7 +136,7 @@ polkit_temporary_authorization_get_id (<em class="parameter"><code><a class="lin
 <hr>
 <div class="refsect2">
 <a name="polkit-temporary-authorization-get-action-id"></a><h3>polkit_temporary_authorization_get_action_id ()</h3>
-<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 polkit_temporary_authorization_get_action_id
                                (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);</pre>
 <p>Gets the action that <em class="parameter"><code>authorization</code></em>
@@ -187,14 +187,14 @@ polkit_temporary_authorization_get_subject
 </div>
 <div class="refsect3">
 <a name="polkit-temporary-authorization-get-subject.returns"></a><h4>Returns</h4>
-<p>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>, free with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>. </p>
+<p>A <a class="link" href="PolkitSubject.html" title="PolkitSubject"><span class="type">PolkitSubject</span></a>, free with <code class="function">g_object_unref()</code>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-temporary-authorization-get-time-obtained"></a><h3>polkit_temporary_authorization_get_time_obtained ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>
+<pre class="programlisting"><span class="returnvalue">guint64</span>
 polkit_temporary_authorization_get_time_obtained
                                (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);</pre>
 <p>Gets the time when <em class="parameter"><code>authorization</code></em>
@@ -224,7 +224,7 @@ so the returned value may change if system time changes.)</p>
 <hr>
 <div class="refsect2">
 <a name="polkit-temporary-authorization-get-time-expires"></a><h3>polkit_temporary_authorization_get_time_expires ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#guint64"><span class="returnvalue">guint64</span></a>
+<pre class="programlisting"><span class="returnvalue">guint64</span>
 polkit_temporary_authorization_get_time_expires
                                (<em class="parameter"><code><a class="link" href="PolkitTemporaryAuthorization.html" title="PolkitTemporaryAuthorization"><span class="type">PolkitTemporaryAuthorization</span></a> *authorization</code></em>);</pre>
 <p>Gets the time when <em class="parameter"><code>authorization</code></em>
@@ -262,6 +262,6 @@ so the returned value may change if system time changes.)</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>

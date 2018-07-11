@@ -8,7 +8,7 @@
 <link rel="up" href="ref-api.html" title="Part III. Library API Reference">
 <link rel="prev" href="PolkitAuthority.html" title="PolkitAuthority">
 <link rel="next" href="PolkitDetails.html" title="PolkitDetails">
-<meta name="generator" content="GTK-Doc V1.27 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.28 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -60,7 +60,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-authorized" title="polkit_authorization_result_get_is_authorized ()">polkit_authorization_result_get_is_authorized</a> <span class="c_punctuation">()</span>
@@ -68,7 +68,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-is-challenge" title="polkit_authorization_result_get_is_challenge ()">polkit_authorization_result_get_is_challenge</a> <span class="c_punctuation">()</span>
@@ -76,14 +76,14 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-retains-authorization" title="polkit_authorization_result_get_retains_authorization ()">polkit_authorization_result_get_retains_authorization</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
-<td class="function_type">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<td class="function_type">const <span class="returnvalue">gchar</span> *
 </td>
 <td class="function_name">
 <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-temporary-authorization-id" title="polkit_authorization_result_get_temporary_authorization_id ()">polkit_authorization_result_get_temporary_authorization_id</a> <span class="c_punctuation">()</span>
@@ -91,7 +91,7 @@ justifications.
 </tr>
 <tr>
 <td class="function_type">
-<a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<span class="returnvalue">gboolean</span>
 </td>
 <td class="function_name">
 <a class="link" href="PolkitAuthorizationResult.html#polkit-authorization-result-get-dismissed" title="polkit_authorization_result_get_dismissed ()">polkit_authorization_result_get_dismissed</a> <span class="c_punctuation">()</span>
@@ -123,7 +123,7 @@ justifications.
 </div>
 <div class="refsect1">
 <a name="PolkitAuthorizationResult.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="../gobject/gobject-The-Base-Object-Type.html#GObject-struct">GObject</a>
+<pre class="screen">    GObject
     <span class="lineart">╰──</span> PolkitAuthorizationResult
 </pre>
 </div>
@@ -136,8 +136,8 @@ justifications.
 <div class="refsect2">
 <a name="polkit-authorization-result-new"></a><h3>polkit_authorization_result_new ()</h3>
 <pre class="programlisting"><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="returnvalue">PolkitAuthorizationResult</span></a> *
-polkit_authorization_result_new (<em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_authorized</code></em>,
-                                 <em class="parameter"><code><a href="../glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> is_challenge</code></em>,
+polkit_authorization_result_new (<em class="parameter"><code><span class="type">gboolean</span> is_authorized</code></em>,
+                                 <em class="parameter"><code><span class="type">gboolean</span> is_challenge</code></em>,
                                  <em class="parameter"><code><a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> *details</code></em>);</pre>
 <p>Creates a new <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object.</p>
 <div class="refsect3">
@@ -157,15 +157,15 @@ polkit_authorization_result_new (<em class="parameter"><code><a href="../glib/gl
 <tr>
 <td class="parameter_name"><p>is_challenge</p></td>
 <td class="parameter_description"><p>Whether the subject is authorized if more
-information is provided. Must be <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> unless <em class="parameter"><code>is_authorized</code></em>
+information is provided. Must be <code class="literal">FALSE</code> unless <em class="parameter"><code>is_authorized</code></em>
 is
-<a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>.</p></td>
+<code class="literal">TRUE</code>.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
 <td class="parameter_name"><p>details</p></td>
-<td class="parameter_description"><p>Must be <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> unless <em class="parameter"><code>is_authorized</code></em>
-is <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a>. </p></td>
+<td class="parameter_description"><p>Must be <code class="literal">NULL</code> unless <em class="parameter"><code>is_authorized</code></em>
+is <code class="literal">TRUE</code>. </p></td>
 <td class="parameter_annotations"><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></td>
 </tr>
 </tbody>
@@ -173,13 +173,13 @@ is <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">T
 </div>
 <div class="refsect3">
 <a name="polkit-authorization-result-new.returns"></a><h4>Returns</h4>
-<p> A <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object. Free with <a href="../gobject/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.</p>
+<p> A <a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> object. Free with <code class="function">g_object_unref()</code>.</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-is-authorized"></a><h3>polkit_authorization_result_get_is_authorized ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 polkit_authorization_result_get_is_authorized
                                (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>Gets whether the subject is authorized.</p>
@@ -208,7 +208,7 @@ to get the opaque identifier for the temporary authorization.</p>
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-is-challenge"></a><h3>polkit_authorization_result_get_is_challenge ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 polkit_authorization_result_get_is_challenge
                                (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>Gets whether the subject is authorized if more information is provided.</p>
@@ -235,7 +235,7 @@ polkit_authorization_result_get_is_challenge
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-retains-authorization"></a><h3>polkit_authorization_result_get_retains_authorization ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 polkit_authorization_result_get_retains_authorization
                                (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>Gets whether authorization is retained if obtained via authentication. This can only be the case
@@ -265,13 +265,13 @@ key <code class="literal">polkit.retains_authorization_after_challenge</code>.</
 </div>
 <div class="refsect3">
 <a name="polkit-authorization-result-get-retains-authorization.returns"></a><h4>Returns</h4>
-<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authorization is or will be temporary.</p>
+<p> <code class="literal">TRUE</code> if the authorization is or will be temporary.</p>
 </div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-temporary-authorization-id"></a><h3>polkit_authorization_result_get_temporary_authorization_id ()</h3>
-<pre class="programlisting">const <a href="../glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+<pre class="programlisting">const <span class="returnvalue">gchar</span> *
 polkit_authorization_result_get_temporary_authorization_id
                                (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>Gets the opaque temporary authorization id for <em class="parameter"><code>result</code></em>
@@ -307,7 +307,7 @@ key <code class="literal">polkit.temporary_authorization_id</code>.</p>
 <a name="polkit-authorization-result-get-temporary-authorization-id.returns"></a><h4>Returns</h4>
 <p>The opaque temporary authorization id for
 <em class="parameter"><code>result</code></em>
-or <a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> if not available. Do not free this string, it
+or <code class="literal">NULL</code> if not available. Do not free this string, it
 is owned by <em class="parameter"><code>result</code></em>
 . </p>
 <p><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span></p>
@@ -316,7 +316,7 @@ is owned by <em class="parameter"><code>result</code></em>
 <hr>
 <div class="refsect2">
 <a name="polkit-authorization-result-get-dismissed"></a><h3>polkit_authorization_result_get_dismissed ()</h3>
-<pre class="programlisting"><a href="../glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+<pre class="programlisting"><span class="returnvalue">gboolean</span>
 polkit_authorization_result_get_dismissed
                                (<em class="parameter"><code><a class="link" href="PolkitAuthorizationResult.html" title="PolkitAuthorizationResult"><span class="type">PolkitAuthorizationResult</span></a> *result</code></em>);</pre>
 <p>Gets whether the authentication request was dismissed / canceled by the user.</p>
@@ -340,7 +340,7 @@ key <code class="literal">polkit.dismissed</code>.</p>
 </div>
 <div class="refsect3">
 <a name="polkit-authorization-result-get-dismissed.returns"></a><h4>Returns</h4>
-<p> <a href="../glib/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the authentication request was dismissed, <a href="../glib/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
+<p> <code class="literal">TRUE</code> if the authentication request was dismissed, <code class="literal">FALSE</code> otherwise.</p>
 </div>
 <p class="since">Since: 0.101</p>
 </div>
@@ -369,7 +369,7 @@ polkit_authorization_result_get_details
 <div class="refsect3">
 <a name="polkit-authorization-result-get-details.returns"></a><h4>Returns</h4>
 <p>A <a class="link" href="PolkitDetails.html" title="PolkitDetails"><span class="type">PolkitDetails</span></a> object or
-<a href="../liboil/liboil-liboiljunk.html#NULL:CAPS"><code class="literal">NULL</code></a> if there are no details. This object is owned by <em class="parameter"><code>result</code></em>
+<code class="literal">NULL</code> if there are no details. This object is owned by <em class="parameter"><code>result</code></em>
 and
 should not be freed by the caller. </p>
 <p><span class="annotation">[<acronym title="NULL is OK, both for passing and for returning."><span class="acronym">allow-none</span></acronym>][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
@@ -386,6 +386,6 @@ should not be freed by the caller. </p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.27</div>
+<hr>Generated by GTK-Doc V1.28</div>
 </body>
 </html>
