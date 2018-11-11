@@ -20,7 +20,7 @@ Build-Depends:
  libmozjs-52-dev,
  libpam0g-dev,
  libselinux1-dev [linux-any],
- libsystemd-dev [linux-any],
+ libelogind-dev [linux-any],
  pkg-config,
  xsltproc,
 Rules-Requires-Root: no
@@ -37,7 +37,7 @@ Depends:
  adduser,
  consolekit [!linux-any],
  dbus,
- libpam-systemd [linux-any],
+ libpam-elogind [linux-any],
  ${misc:Depends},
  ${shlibs:Depends},
 Multi-Arch: foreign
@@ -50,6 +50,8 @@ Description: framework for managing administrative policies and privileges
  It is a framework for centralizing the decision making process with respect to
  granting access to privileged operations for unprivileged (desktop)
  applications.
+ .
+ This version is build using elogind.
 
 Package: policykit-1-doc
 Architecture: all
@@ -78,6 +80,8 @@ Description: PolicyKit Authorization API
  allows unprivileged processes to speak to privileged processes.
  .
  This package contains a library for accessing PolicyKit.
+ .
+ This version is build using elogind.
 
 Package: libpolkit-gobject-1-dev
 Architecture: any
@@ -93,6 +97,8 @@ Description: PolicyKit Authorization API - development files
  .
  This package contains the development files for the library found in
  libpolkit-gobject-1-0.
+ .
+ This version is build using elogind.
 
 Package: libpolkit-agent-1-0
 Architecture: any
@@ -108,6 +114,8 @@ Description: PolicyKit Authentication Agent API
  allows unprivileged processes to speak to privileged processes.
  .
  This package contains a library for accessing the authentication agent.
+ .
+ This version is build using elogind.
 
 Package: libpolkit-agent-1-dev
 Architecture: any
@@ -123,6 +131,8 @@ Description: PolicyKit Authentication Agent API - development files
  .
  This package contains the development files for the library found in
  libpolkit-agent-1-0.
+ .
+ This version is build using elogind.
 
 Package: gir1.2-polkit-1.0
 Section: introspection
@@ -141,3 +151,5 @@ Description: GObject introspection data for PolicyKit
  .
  It can be used by packages using the GIRepository format to generate
  dynamic bindings.
+ .
+ This version is build using elogind.
