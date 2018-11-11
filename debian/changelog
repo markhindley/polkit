@@ -1,3 +1,9 @@
+policykit-1 (0.115-1+elogind1) experimental; urgency=medium
+
+  * Build against elogind.
+
+ -- Mark Hindley <mark@hindley.org.uk>  Sun, 11 Nov 2018 09:17:24 +0000
+
 policykit-1 (0.115-1) experimental; urgency=medium
 
   * New upstream version 0.115
