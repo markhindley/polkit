@@ -10,13 +10,14 @@ DPKG_GENSYMBOLS_CHECK_LEVEL=4
 export DPKG_GENSYMBOLS_CHECK_LEVEL
 
 ifeq (linux,$(DEB_HOST_ARCH_OS))
-  SYSTEMD_CONFIG_FLAG = --enable-libsystemd-login --enable-libelogind
+  SYSTEMD_CONFIG_FLAG = --enable-libsystemd-login
 else
   SYSTEMD_CONFIG_FLAG = --disable-libsystemd-login
 endif
 
 override_dh_auto_configure:
-	dh_auto_configure -- \
+	dh_auto_configure --builddirectory=build \
+		-- \
 		--disable-silent-rules \
 		--enable-gtk-doc \
 		--enable-man-pages \
@@ -26,10 +27,43 @@ override_dh_auto_configure:
 		--with-systemdsystemunitdir=/lib/systemd/system \
 		--libexecdir=\$${prefix}/lib/policykit-1
 
+# Also configure for build against libelogind on Linux
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	dh_auto_configure --builddirectory=build-elogind \
+		-- \
+		--disable-silent-rules \
+		--disable-gtk-doc \
+		--disable-man-pages \
+		--enable-introspection \
+		--disable-libsystemd-login \
+		--enable-libelogind \
+		--disable-examples \
+		--with-systemdsystemunitdir=/lib/systemd/system \
+		--libexecdir=\$${prefix}/lib/policykit-1
+endif
+
+override_dh_auto_build:
+	dh_auto_build --builddirectory=build
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	dh_auto_build --builddirectory=build-elogind
+endif
+
 override_dh_auto_test:
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	# on buildds we can't rely on actually having a system bus
-	dbus-run-session -- sh -c 'DBUS_SYSTEM_BUS_ADDRESS=$$DBUS_SESSION_BUS_ADDRESS make check'
+	dbus-run-session -- sh -c 'DBUS_SYSTEM_BUS_ADDRESS=$$DBUS_SESSION_BUS_ADDRESS make -C build check'
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	dbus-run-session -- sh -c 'DBUS_SYSTEM_BUS_ADDRESS=$$DBUS_SESSION_BUS_ADDRESS make -C build-elogind check'
+endif
+endif
+
+override_dh_makeshlibs:
+	dh_makeshlibs -Xusr/lib/$(DEB_HOST_MULTIARCH)/polkit-1/
+
+override_dh_auto_install:
+	dh_auto_install --builddirectory=build
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	dh_auto_install --builddirectory=build-elogind --destdir=debian/tmp-elogind
 endif
 
 override_dh_install:
@@ -40,4 +74,13 @@ override_dh_install:
 	elif dpkg-vendor --is debian; then \
 	    sed 's/@admin@/"unix-group:sudo"/' debian/admin.rules.in > debian/tmp/etc/polkit-1/rules.d/40-debian-sudo.rules; \
 	fi
-	dh_install --list-missing
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	dh_install -ppolicykit-1-elogind -plibpolkit-agent-elogind-1-0 -plibpolkit-gobject-elogind-1-0 --sourcedir=debian/tmp-elogind
+endif
+	dh_install --remaining --list-missing
+
+dh_override_dh_clean:
+	rm -rf debian/tmp/
+	rm -rf debian/tmp-elogind/
+	dh_auto_clean --builddirectory=build
+	dh_auto_clean --builddirectory=build-elogind

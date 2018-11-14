@@ -20,6 +20,7 @@ Build-Depends:
  libmozjs-52-dev,
  libpam0g-dev,
  libselinux1-dev [linux-any],
+ libsystemd-dev [linux-any],
  libelogind-dev [linux-any],
  pkg-config,
  xsltproc,
@@ -37,7 +38,7 @@ Depends:
  adduser,
  consolekit [!linux-any],
  dbus,
- libpam-elogind [linux-any],
+ libpam-systemd [linux-any],
  ${misc:Depends},
  ${shlibs:Depends},
 Multi-Arch: foreign
@@ -50,8 +51,32 @@ Description: framework for managing administrative policies and privileges
  It is a framework for centralizing the decision making process with respect to
  granting access to privileged operations for unprivileged (desktop)
  applications.
+
+Package: policykit-1-elogind
+Architecture: any
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ adduser,
+ consolekit [!linux-any],
+ dbus,
+ libpam-elogind [linux-any],
+ ${misc:Depends},
+ ${shlibs:Depends},
+Multi-Arch: foreign
+Provides: policykit-1
+Replaces: policykit-1
+Breaks:
+ gdm3 (<< 3.8.4-7~),
+Description: framework for managing administrative policies and privileges
+ PolicyKit is an application-level toolkit for defining and handling the policy
+ that allows unprivileged processes to speak to privileged processes.
  .
- This version is build using elogind.
+ It is a framework for centralizing the decision making process with respect to
+ granting access to privileged operations for unprivileged (desktop)
+ applications.
+ .
+ This version is build using elogind for session management.
 
 Package: policykit-1-doc
 Architecture: all
@@ -80,8 +105,26 @@ Description: PolicyKit Authorization API
  allows unprivileged processes to speak to privileged processes.
  .
  This package contains a library for accessing PolicyKit.
+ 
+Package: libpolkit-gobject-elogind-1-0
+Architecture: any
+Section: libs
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Provides: libpolkit-gobject-1-0
+Replaces: libpolkit-gobject-1-0
+Multi-Arch: same
+Description: PolicyKit Authorization API
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
  .
- This version is build using elogind.
+ This package contains a library for accessing PolicyKit.
+ .
+ This version is built using elogind for session management.
+ 
 
 Package: libpolkit-gobject-1-dev
 Architecture: any
@@ -97,8 +140,6 @@ Description: PolicyKit Authorization API - development files
  .
  This package contains the development files for the library found in
  libpolkit-gobject-1-0.
- .
- This version is build using elogind.
 
 Package: libpolkit-agent-1-0
 Architecture: any
@@ -114,8 +155,25 @@ Description: PolicyKit Authentication Agent API
  allows unprivileged processes to speak to privileged processes.
  .
  This package contains a library for accessing the authentication agent.
+
+Package: libpolkit-agent-elogind-1-0
+Architecture: any
+Section: libs
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Provides: libpolkit-agent-1-0
+Replaces: libpolkit-agent-1-0
+Multi-Arch: same
+Description: PolicyKit Authentication Agent API
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
  .
- This version is build using elogind.
+ This package contains a library for accessing the authentication agent.
+ .
+ This version is built with elogind for session management.
 
 Package: libpolkit-agent-1-dev
 Architecture: any
@@ -131,8 +189,6 @@ Description: PolicyKit Authentication Agent API - development files
  .
  This package contains the development files for the library found in
  libpolkit-agent-1-0.
- .
- This version is build using elogind.
 
 Package: gir1.2-polkit-1.0
 Section: introspection
@@ -151,5 +207,3 @@ Description: GObject introspection data for PolicyKit
  .
  It can be used by packages using the GIRepository format to generate
  dynamic bindings.
- .
- This version is build using elogind.
