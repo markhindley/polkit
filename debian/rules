@@ -77,7 +77,11 @@ override_dh_install:
 ifeq (linux,$(DEB_HOST_ARCH_OS))
 	dh_install -ppolicykit-1-elogind -plibpolkit-agent-elogind-1-0 -plibpolkit-gobject-elogind-1-0 --sourcedir=debian/tmp-elogind
 endif
-	dh_install --remaining --list-missing
+	dh_install --remaining
+
+override_dh_missing:
+	dh_missing --sourcedir debian/tmp --list-missing
+	dh_missing --sourcedir debian/tmp-elogind --list-missing
 
 dh_override_dh_clean:
 	rm -rf debian/tmp/
