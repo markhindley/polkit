@@ -117,6 +117,7 @@ Depends:
  ${shlibs:Depends},
 Provides: libpolkit-gobject-1-0 (=${binary:Version})
 Replaces: libpolkit-gobject-1-0
+Conflicts: libpolkit-gobject-1-0
 Multi-Arch: same
 Description: PolicyKit Authorization API
  PolicyKit is a toolkit for defining and handling the policy that
@@ -167,6 +168,7 @@ Depends:
  ${shlibs:Depends},
 Provides: libpolkit-agent-1-0 (=${binary:Version})
 Replaces: libpolkit-agent-1-0
+Conflicts: libpolkit-agent-1-0
 Multi-Arch: same
 Description: PolicyKit Authentication Agent API
  PolicyKit is a toolkit for defining and handling the policy that
