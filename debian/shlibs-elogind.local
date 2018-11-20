@@ -1,0 +1,2 @@
+libpolkit-agent-1 0 libpolkit-agent-elogind-1-0 (= ${binary:Version})
+libpolkit-gobject-1 0 libpolkit-gobject-elogind-1-0 (= ${binary:Version})

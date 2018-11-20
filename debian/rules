@@ -60,6 +60,12 @@ endif
 override_dh_makeshlibs:
 	dh_makeshlibs -Xusr/lib/$(DEB_HOST_MULTIARCH)/polkit-1/
 
+override_dh_shlibdeps:
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	dh_shlibdeps -ppolicykit-1-elogind -plibpolkit-agent-elogind-1-0 -plibpolkit-gobject-elogind-1-0 -- -Ldebian/shlibs-elogind.local
+endif
+	dh_shlibdeps --remaining
+
 override_dh_auto_install:
 	dh_auto_install --builddirectory=build
 ifeq (linux,$(DEB_HOST_ARCH_OS))
