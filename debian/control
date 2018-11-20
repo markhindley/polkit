@@ -66,6 +66,7 @@ Depends:
 Multi-Arch: foreign
 Provides: policykit-1 (=${binary:Version})
 Replaces: policykit-1
+Conflicts: policykit-1
 Breaks:
  gdm3 (<< 3.8.4-7~),
 Description: framework for managing administrative policies and privileges
