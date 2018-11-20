@@ -83,7 +83,7 @@ override_dh_missing:
 	dh_missing --sourcedir debian/tmp --list-missing
 	dh_missing --sourcedir debian/tmp-elogind --list-missing
 
-dh_override_dh_clean:
+dh_override_dh_auto_clean:
 	rm -rf debian/tmp/
 	rm -rf debian/tmp-elogind/
 	dh_auto_clean --builddirectory=build
