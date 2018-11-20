@@ -64,7 +64,7 @@ Depends:
  ${misc:Depends},
  ${shlibs:Depends},
 Multi-Arch: foreign
-Provides: policykit-1
+Provides: policykit-1 (=${binary:Version})
 Replaces: policykit-1
 Breaks:
  gdm3 (<< 3.8.4-7~),
@@ -114,7 +114,7 @@ Pre-Depends:
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
-Provides: libpolkit-gobject-1-0
+Provides: libpolkit-gobject-1-0 (=${binary:Version})
 Replaces: libpolkit-gobject-1-0
 Multi-Arch: same
 Description: PolicyKit Authorization API
@@ -164,7 +164,7 @@ Pre-Depends:
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
-Provides: libpolkit-agent-1-0
+Provides: libpolkit-agent-1-0 (=${binary:Version})
 Replaces: libpolkit-agent-1-0
 Multi-Arch: same
 Description: PolicyKit Authentication Agent API
